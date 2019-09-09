@@ -1,8 +1,8 @@
 ---
 name: SD change request
 about: Suggest an idea for this project
-title: "[SD CHANGE]"
-labels: enhancement, SD
+title: "[SD CHANGE] "
+labels: SD, enhancement
 assignees: ''
 
 ---

@@ -1,8 +1,8 @@
 ---
 name: PP-Configuration change request
 about: Suggest an idea for this project
-title: "[PPC CHANGE]"
-labels: enhancement, PP-Config
+title: "[PPC CHANGE] "
+labels: PP-Config, enhancement
 assignees: ''
 
 ---
