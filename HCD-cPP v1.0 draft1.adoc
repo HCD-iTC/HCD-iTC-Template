@@ -808,11 +808,72 @@ Selection:: The requirement inclusion is determined by selections in other requi
 
 |Security Audit (FAU)
 |
-|
+|4.3.1	FAU_GEN.1	Audit data generation 
+(for O.AUDIT)
+Hierarchical to:	No other components.
+Dependencies: 	FPT_STM.1	Reliable time stamps
+FAU_GEN.1.1	The TSF shall be able to generate an audit record of the following auditable events: 
+a)	Start-up and shutdown of the audit functions; 
+b)	All auditable events for the not specified level of audit; and 
+c)	All auditable events specified in Table 1, [assignment: other specifically defined auditable events]. 
 
-|Communication (FCO)
-|
-|
+FAU_GEN.1.2	The TSF shall record within each audit record at least the following information: 
+a)	Date and time of the event, type of event, subject identity (if applicable), and the outcome (success or failure) of the event; and 
+b)	For each audit event type, based on the auditable event definitions of the functional components included in the PP/ST, additional information specified in Table 1, [assignment: other audit relevant information]. 
+
+.Table 1 Auditable Events
+|===
+|Auditable event |Relevant SFR |Additional information 
+
+|Job completion
+|FDP_ACF.1
+|Type of job
+
+|Unsuccessful User authentication
+|FIA_UAU.1
+|None
+
+|Unsuccessful User identification
+|FIA_UID.1
+|None
+
+|Use of management functions
+|FMT_SMF.1
+|None
+
+|Modification to the group of Users that are part of a role
+|FMT_SMR.1
+|None
+
+|Changes to the time
+|FPT_STM.1
+|None
+
+|Failure to establish session
+|FTP_ITC.1, FTP_TRP.1(a), FTP_TRP.1(b)
+|Reason for failure
+|===
+
+Application Note:
+In cases where user identification events are inseparable from user authentication events, they may be considered to be a single event for audit purposes.
+Regarding FMT_SMR.1, if the relationship between users and roles is not modifiable, its auditable event cannot be generated and the requirement to generate an audit record can be ignored.
+The ST author can include other auditable events directly in the table; they are not limited to the list presented.
+
+FAU_GEN.2	User identity association 
+(for O.AUDIT)
+Hierarchical to:	No other components.
+Dependencies:	FAU_GEN.1	Audit data generation
+		FIA_UID.1	Timing of identification
+
+FAU_GEN.2.1	For audit events resulting from actions of identified users, the TSF shall be able to associate each auditable event with the identity of the user that caused the event.
+
+FAU_STG_EXT.1	Extended: External Audit Trail Storage 
+(for O.AUDIT)
+Hierarchical to:	No other components.
+Dependencies:	FAU_GEN.1	Audit data generation,
+	FTP_ITC.1	Inter-TSF trusted channel.
+
+FAU_STG_EXT.1.1	The TSF shall be able to transmit the generated audit data to an External IT Entity using a trusted channel according to FTP_ITC.1.
 
 |Cryptograhic Support (FCS)
 |
