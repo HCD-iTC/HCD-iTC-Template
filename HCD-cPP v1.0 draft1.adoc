@@ -117,36 +117,30 @@ This may not be necessary depending on the technology type. It may already be cl
 ====
 
 === TOE Use Case
-If you are defining use cases (such as specific use scenarios that may have unique requirement selections), put that here.
-
-[GUIDANCE]
-====
-It is possible that you don't have individual use cases and a single description may suffice. If you have multiple separate use cases though, they should be described here separately.
-====
 
 ==== USE CASE 1: Required Use Cases
 The security-relevant use cases for Required Uses of a conforming HCD are:
-1. One or more of the following:
-a)	Printing: A Network User sends a Document from an External IT Entity to the HCD over a LAN with instructions for printing. The HCD has the capability to protect the User’s Document from unauthorized disclosure or alteration while it is in transit to the HCD, in Temporary Storage in the HCD, and before printed output is released to a User.
-b)	Scanning: A Local User initiates scanning a Document on the HCD and the HCD sends the digital image to an External IT Entity. The HCD has the capability to protect the User’s Document from unauthorized disclosure or alteration while it is in Temporary Storage in the HCD and while it is in transit to the External IT Entity.
-c)	Copying: A Local User scans a Document on the HCD and the HCD prints the Document. The HCD has the capability to protect the User’s Document from unauthorized disclosure and alteration while it is in Temporary Storage in the HCD.
-2. Configuration: A Local or Network User with administrative privileges configures the security settings of the HCD. The HCD has the capability to assign Users to roles that distinguish Users who can perform administrative functions from Users who can perform User functions. The HCD also has the capability to protect its security settings from unauthorized disclosure and alteration when they are stored in the HCD and in transit to or from an External IT Entity.
-3. Auditing: Authorized personnel monitor security-relevant events in an audit log. The HCD generates audit log records when security-relevant events occur. It is mandatory that the HCD is able to securely transmit audit logs to an External IT Entity for storage, and the HCD has the capability to protect it from unauthorized disclosure or alteration while in transit to the External IT Entity. 
-4. Verifying software updates: Authorized personnel install updated software on the HCD. The HCD ensures that only authorized personnel are permitted to install software, has the capability to help the installer to verify the authenticity of the software update. 
-5. Verifying HCD function: The HCD checks itself for malfunctions by performing a self-test each time that it is powered on.
+. One or more of the following:
+.. Printing: A Network User sends a Document from an External IT Entity to the HCD over a LAN with instructions for printing. The HCD has the capability to protect the User’s Document from unauthorized disclosure or alteration while it is in transit to the HCD, in Temporary Storage in the HCD, and before printed output is released to a User.
+.. Scanning: A Local User initiates scanning a Document on the HCD and the HCD sends the digital image to an External IT Entity. The HCD has the capability to protect the User’s Document from unauthorized disclosure or alteration while it is in Temporary Storage in the HCD and while it is in transit to the External IT Entity.
+.. Copying: A Local User scans a Document on the HCD and the HCD prints the Document. The HCD has the capability to protect the User’s Document from unauthorized disclosure and alteration while it is in Temporary Storage in the HCD.
+. Configuration: A Local or Network User with administrative privileges configures the security settings of the HCD. The HCD has the capability to assign Users to roles that distinguish Users who can perform administrative functions from Users who can perform User functions. The HCD also has the capability to protect its security settings from unauthorized disclosure and alteration when they are stored in the HCD and in transit to or from an External IT Entity.
+. Auditing: Authorized personnel monitor security-relevant events in an audit log. The HCD generates audit log records when security-relevant events occur. It is mandatory that the HCD is able to securely transmit audit logs to an External IT Entity for storage, and the HCD has the capability to protect it from unauthorized disclosure or alteration while in transit to the External IT Entity. 
+. Verifying software updates: Authorized personnel install updated software on the HCD. The HCD ensures that only authorized personnel are permitted to install software, has the capability to help the installer to verify the authenticity of the software update. 
+. Verifying HCD function: The HCD checks itself for malfunctions by performing a self-test each time that it is powered on.
 
 ==== USE CASE 2: Conditionally Mandatory Use Cases
 Security-relevant use cases for Conditionally Mandatory Uses (if present) of a conforming HCD may include:
-Sending PSTN faxes: A Local User scans a Document on the HCD, or a Network User sends a Document from an External IT Entity to the HCD; the User provides instructions for sending it to a remote PSTN fax destination; the HCD sends a facsimile of the Document over the PSTN to the PSTN fax destination using standard PSTN fax protocols. The HCD has the capability to protect the Network User’s Document from unauthorized disclosure and alteration while in transit on the LAN. The HCD also has the capability to protect the User’s Document from unauthorized disclosure and alteration while in Temporary Storage in the HCD.
-Receiving PSTN faxes: A remote PSTN fax sender sends a facsimile of a Document over the PSTN to the HCD using standard PSTN fax protocols. The HCD has the capability to protect received PSTN faxes from unauthorized disclosure and alteration while it is present in the HCD. Further, the HCD has the capability to ensure that the PSTN fax modem is not used to access the LAN.
-Storing and retrieving Documents: A Local or Network User instructs the HCD to store or retrieve an electronic Document in the HCD. The sources and destinations of such Documents may be any of the other operations such as scanning, printing, or PSTN faxing. The HCD has the capability to protect such Documents from unauthorized disclosure and alteration while in transit and in storage in the HCD.
-Field-Replaceable Nonvolatile Storage Devices: Authorized personnel remove the HCD from service in its Operational Environment to perform preventative maintenance, repairs, or other servicing-related operations. The HCD has the capability to protect documents or confidential system information that may be present in Field-Replaceable Nonvolatile Storage Devices from exposure if such a device is removed from the HCD.
+. Sending PSTN faxes: A Local User scans a Document on the HCD, or a Network User sends a Document from an External IT Entity to the HCD; the User provides instructions for sending it to a remote PSTN fax destination; the HCD sends a facsimile of the Document over the PSTN to the PSTN fax destination using standard PSTN fax protocols. The HCD has the capability to protect the Network User’s Document from unauthorized disclosure and alteration while in transit on the LAN. The HCD also has the capability to protect the User’s Document from unauthorized disclosure and alteration while in Temporary Storage in the HCD.
+. Receiving PSTN faxes: A remote PSTN fax sender sends a facsimile of a Document over the PSTN to the HCD using standard PSTN fax protocols. The HCD has the capability to protect received PSTN faxes from unauthorized disclosure and alteration while it is present in the HCD. Further, the HCD has the capability to ensure that the PSTN fax modem is not used to access the LAN.
+. Storing and retrieving Documents: A Local or Network User instructs the HCD to store or retrieve an electronic Document in the HCD. The sources and destinations of such Documents may be any of the other operations such as scanning, printing, or PSTN faxing. The HCD has the capability to protect such Documents from unauthorized disclosure and alteration while in transit and in storage in the HCD.
+. Field-Replaceable Nonvolatile Storage Devices: Authorized personnel remove the HCD from service in its Operational Environment to perform preventative maintenance, repairs, or other servicing-related operations. The HCD has the capability to protect documents or confidential system information that may be present in Field-Replaceable Nonvolatile Storage Devices from exposure if such a device is removed from the HCD.
 
 ==== USE CASE 3: Optional Use Cases
 Security-relevant use cases for Optional Uses (if present) of a conforming HCD may include:
-Internal Audit Log Storage: If the audit log can also be stored in the HCD, the HCD has the capability to protect its audit log from unauthorized disclosure and alteration.
-Image Overwrite: At the conclusion of an image processing job, residual image data may be present in the HCD. The HCD has the capability to actively overwrite such image data.
-Redeploying or Decommissioning the HCD: Authorized personnel remove the HCD from service in its Operational Environment to move it to a different Operational Environment, to permanently remove it from operation, or otherwise change its ownership. The HCD has the capability to make all customer data that may be present in the HCD unavailable for recovery if it is removed from the Operational Environment.
+. Internal Audit Log Storage: If the audit log can also be stored in the HCD, the HCD has the capability to protect its audit log from unauthorized disclosure and alteration.
+. Image Overwrite: At the conclusion of an image processing job, residual image data may be present in the HCD. The HCD has the capability to actively overwrite such image data.
+. Redeploying or Decommissioning the HCD: Authorized personnel remove the HCD from service in its Operational Environment to move it to a different Operational Environment, to permanently remove it from operation, or otherwise change its ownership. The HCD has the capability to make all customer data that may be present in the HCD unavailable for recovery if it is removed from the Operational Environment.
 
 == CC Conformance Claims
 As defined by the references <<CC1>>, <<CC2>> and <<CC3>>, this cPP:
@@ -190,120 +184,142 @@ The security problem is described in terms of the threats that the TOE is expect
 === Threats
 
 The following are Threats against the TOE that are countered by conforming products. Additional details about threats are in Appendix A.3.
-2.3.1	Unauthorized Access to User Data
+==== Unauthorized Access to User Data
 An attacker may access (read, modify, or delete) User Document Data or change (modify or delete) User Job Data in the TOE through one of the TOE’s interfaces [T.UNAUTHORIZED_ACCESS]. For example, depending on the design of the TOE, the attacker might access the printed output of a Network User’s print job, or modify the instructions for a job that is waiting in a queue, or read User Document Data that is in a User’s private or group storage area.
-2.3.2	Unauthorized Access to TSF Data
+
+==== Unauthorized Access to TSF Data
 An attacker may gain Unauthorized Access to TSF Data in the TOE through one of the TOE’s interfaces [T.TSF_COMPROMISE]. For example, depending on the design of the TOE, the attacker might use Unauthorized Access to TSF Data to elevate their own privileges, alter an Address Book to redirect output to a different destination, or use the TOE’s Credentials to gain access to an external server.
 An attacker may cause the installation of unauthorized software on the TOE [T.UNAUTHORIZED_UPDATE]. For example, unauthorized software could be used to gain access to information that is processed by the TOE, or to attack other systems on the LAN.
-2.3.3	Network Communication Attacks
+
+==== Network Communication Attacks
 An attacker may access data in transit or otherwise compromise the security of the TOE by monitoring or manipulating network communication [T.NET_COMRPOMISE]. For example, here are several ways that network communications could be compromised: By monitoring clear-text communications on a wired LAN, the attacker might obtain User Document Data, User Credentials, or system Credentials, or hijack an interactive session. The attacker might record and replay a network communication session in order to log into the TOE as an authorized User to access Documents or as an authorized Administrator to change security settings. The attacker might masquerade as a trusted system on the LAN in order to receive outgoing scan jobs, to record the transmission of system Credentials, or to send malicious data to the TOE.
-2.3.4	Malfunction
+
+==== Malfunction
 A malfunction of the TSF may cause loss of security if the TOE is permitted to operate while in a degraded state [T.TSF_FAILURE]. Hardware or software malfunctions can produce unpredictable results, with a possibility that security functions will not operate correctly.
 
 === Assumptions
 The following assumptions must be upheld so that the objectives and requirements can effectively counter the threats described in this Protection Profile. Additional details about assumptions are in Appendix A.5.
-2.5.1	Physical Security
+
+==== Physical Security
 Physical security, commensurate with the value of the TOE and the data it stores or processes, is assumed to be provided by the environment [A.PHYSICAL]. The TOE is assumed to be located in a physical environment that is controlled or monitored such that a physical attack is prevented or detected.
-2.5.2	Network Security
+
+==== Network Security
 The Operational Environment is assumed to protect the TOE from direct, public access to its LAN interface [A.NETWORK]. The TOE is not intended to withstand network-based attacks from an unmanaged network environment.
-2.5.3	Administrator Trust
+
+==== Administrator Trust
 TOE Administrators are trusted to administer the TOE according to site security policies [A.TRUSTED_ADMIN]. It is the responsibility of the TOE Owner to only authorize administrators who are trusted to configure and operate the TOE according to site policies and to not use their privileges for malicious purposes.
-2.5.4	User Training
+
+==== User Training
 Authorized Users are trained to use the TOE according to site security policies [A.TRAINED_USERS]. It is the responsibility of the TOE Owner to only authorize Users who are trained to use the TOE according to site policies.
  
 === Organizational Security Policies
 The following are Organizational Security Policies  (OSPs) that are upheld by conforming products. Additional details about OSPs are in Appendix A.4.
-2.4.1	User Authorization
+
+==== User Authorization
 Users must be authorized before performing Document Processing and administrative functions [P.AUTHORIZATION]. Authorization allows the TOE Owner to control who is able to use the resources of the TOE and who is permitted to perform administrative functions. 
-2.4.2	Auditing
+
+==== Auditing
 Security-relevant activities must be audited and the log of such actions must be protected and transmitted to an External IT Entity [P.AUDIT]. Stored on an External IT Entity (or, optionally, also in the TOE), an audit trail makes it possible for authorized personnel to review and identify suspicious activities and to account for TOE use as may be required by site policy or regulations.
-2.4.3	Protected Communications
+
+==== Protected Communications
 The TOE must be able to identify itself to other devices on the LAN [P.COMMS_PROTECTION]. Assuring identification helps prevent an attacker from masquerading as the TOE in order to receive incoming print jobs, recording the transmission of User Credentials, or sending malicious data to External IT Entities.
-2.4.4	Storage Encryption (conditionally mandatory)
+
+==== Storage Encryption (conditionally mandatory)
 If the TOE stores User Document Data or Confidential TSF Data on Field-Replaceable Nonvolatile Storage Devices , it will encrypt such data on those devices [P.STORAGE_ENCRYPTION]. Data is assumed to be protected by the TSF when the TOE is operating in its Operational Environment. However, if Field-Replaceable Nonvolatile Storage Devices are removed from the TOE for Servicing, redeployment to another environment, or decommissioning, an attacker may be able to expose or modify User Document Data or Confidential TSF Data. Encrypting such data prevents the attacker from doing so without access to encryption keys or keying material.
+
 Cleartext keys, submasks, random numbers, or any other values that contribute to the creation of encryption keys for Field-Replaceable Nonvolatile Storage of User Document Data or Confidential TSF Data must be protected from unauthorized access and must not be stored on that storage device [P.KEY_MATERIAL]. Unauthorized possession of key material in cleartext may allow an attacker to decrypt User Document Data or Confidential TSF Data.
-2.4.5	PSTN Fax-Network Separation (conditionally mandatory)
+
+==== PSTN Fax-Network Separation (conditionally mandatory)
 If the TOE includes a PSTN fax function, it will ensure separation between the PSTN fax line and the LAN [P.FAX_FLOW]. The TOE is assumed to be in an Operational Environment that is protected, such as by an external firewall. However, the PSTN fax modem may be connected to a public switched telephone network. Ensuring separation of the PSTN fax and network prevents an attacker from using the PSTN fax modem to bypass the firewall or other external protection to access the protected environment.
-2.4.6	Image Overwrite (optional)
-	Upon completion or cancellation of a Document Processing job, the TOE shall overwrite residual image data from its Field-Replaceable Nonvolatile Storage Devices [P.IMAGE_OVERWRITE]. A customer may be concerned that image data that has been dereferenced by the TOE operating software may remain on Field-Replaceable Nonvolatile Storage Devices in the TOE after a Document Processing job has been completed or cancelled. Such customers desire that the image data be made unavailable by overwriting it with other data.
-2.4.7	Purge Data (optional)
+
+====Image Overwrite (optional)
+Upon completion or cancellation of a Document Processing job, the TOE shall overwrite residual image data from its Field-Replaceable Nonvolatile Storage Devices [P.IMAGE_OVERWRITE]. A customer may be concerned that image data that has been dereferenced by the TOE operating software may remain on Field-Replaceable Nonvolatile Storage Devices in the TOE after a Document Processing job has been completed or cancelled. Such customers desire that the image data be made unavailable by overwriting it with other data.
+
+==== Purge Data (optional)
 The TOE shall provide a function that an authorized administrator can invoke to make all customer-supplied User Data and TSF Data permanently irretrievable from Nonvolatile Storage Devices [P.PURGE_DATA]. A customer may be concerned that data which is considered confidential in the Operational Environment may remain in Nonvolatile Storage Devices in the TOE after the TOE is permanently removed from its Operational Environment to be decommissioned from service or to be redeployed to a different Operational Environment. Such customers desire that all customer-supplied User Data and TSF Data be purged from the TOE so that it cannot be retrieved outside of the Operational Environment.
 
 == Security Objectives 
-[REVIEW]
-====
-The sections here are boilerplate, but the content needs to be filled in.
-====
 
 === Security Objectives for the TOE
 
 The following Security Objectives must be fulfilled by the TOE. Additional details about objectives for the TOE are in Appendices A.6 and A.7.
-3.1.1	User Authorization
+
+==== User Authorization
 The TOE shall perform authorization of Users in accordance with security policies [O.USER_AUTHORIZATION].
 This objective supports the policy that Users are authorized to administer the TOE or perform Document Processing functions that consume TOE resources. Users must be authorized to perform any of the Document Processing functions present in the TOE.
 The mechanism for authorization is implemented within the TOE, and it may also depend on a trusted External IT Entity. If a conforming TOE supports more than one mechanism, then each should be evaluated as separate modes of operation.
-In the case of printing (if that function is present in the TOE), User authorization may take place after the job has been submitted but must take place before printed output is made available to the User.
-Users must be authorized to perform PSTN fax sending functions and document storage and retrieval functions, if such functions are provided by the conforming TOE.
+
+In the case of printing (if that function is present in the TOE), User authorization may take place after the job has been submitted but must take place before printed output is made available to the User. Users must be authorized to perform PSTN fax sending functions and document storage and retrieval functions, if such functions are provided by the conforming TOE.
 Note that the TOE can receive a PSTN fax without any User authorization, but the received Document is subject to access controls.
-3.1.2	User Identification and Authentication
+
+==== User Identification and Authentication
 The TOE shall perform identification and authentication of Users for operations that require access control, User authorization, or Administrator roles [O.USER_I&A].
 The mechanism for identification and authentication (I&A) is implemented within the TOE, and it may also depend on a trusted External IT Entity (e.g., LDAP, Kerberos, or Active Directory). If a conforming TOE supports more than one mechanism, then each should be evaluated as separate modes of operation.
-3.1.3	Access Control
+
+==== Access Control
 The TOE shall enforce access controls to protect User Data and TSF Data in accordance with security policies [O.ACCESS_CONTROL]. 
 The guiding principles for access control security policies in this PP are:
-•	User Document Data [D.USER.DOC] can be accessed only by the Document owner or an Administrator.
-•	User Job Data [D.USER.JOB] can be read by any User but can be modified only by the Job Owner or an Administrator.
-•	Protected TSF Data [D.TSF.PROT] are data that can be read by any User but can be modified only by an Administrator or (in certain cases) a Normal User who is the owner of or otherwise associated with that data.
-•	Confidential TSF Data [D.TSF.CONF] are data that can only be accessed by an Administrator or (in certain cases) a Normal User who is the owner of or otherwise associated with that data.
-¶ 120	The Security Target of a conforming TOE must clearly specify its access control policies for User Data and TSF Data.
-3.1.4	Administrator Roles
+. User Document Data [D.USER.DOC] can be accessed only by the Document owner or an Administrator.
+. User Job Data [D.USER.JOB] can be read by any User but can be modified only by the Job Owner or an Administrator.
+. Protected TSF Data [D.TSF.PROT] are data that can be read by any User but can be modified only by an Administrator or (in certain cases) a Normal User who is the owner of or otherwise associated with that data.
+. Confidential TSF Data [D.TSF.CONF] are data that can only be accessed by an Administrator or (in certain cases) a Normal User who is the owner of or otherwise associated with that data.
+The Security Target of a conforming TOE must clearly specify its access control policies for User Data and TSF Data.
+
+==== Administrator Roles
 The TOE shall ensure that only authorized Administrators are permitted to perform administrator functions [O.ADMIN_ROLES]. 
 This objective addresses the need to have at least one Administrator role that is distinct from Normal Users. A conforming TOE may have specialized Administrator sub-roles, such as for device management, network management, or audit management.
-3.1.5	Software Update Verification
+
+==== Software Update Verification
 The TOE shall provide mechanisms to verify the authenticity of software updates [O.UPDATE_VERIFICATION]. 
 This objective addresses the concern that malicious software may be introduced into the TOE as a software update. Verifying authenticity, such as with a digital signature or published hash, is required. Access control by itself does not satisfy this objective.
-3.1.6	Self-test
+
+==== Self-test
 The TOE shall test some subset of its security functionality to help ensure that subset is operating properly [O.TSF_SELF_TEST].
 A malfunction of the TOE may compromise its security if the malfunction is not detected and the TOE is allowed to operate. Self-test is intended to detect such malfunctions. It is performed during power-up. 
-3.1.7	Communications Protection
-The TOE shall have the capability to protect LAN communications of User Data and TSF Data from Unauthorized Access, replay, and source/destination spoofing [O.COMMS_PROTECTION]. 
-This objective addresses the common concerns of network communications:
-•	Sensitive data or Credentials are obtained by monitoring LAN data outside of the TOE.
-•	A successfully authenticated session is captured and replayed on the LAN, permitting the attacker to masquerade as the authenticated User.
-•	Sensitive data or Credentials are obtained by redirecting communications from the TOE or from an External IT Entity to a malevolent destination.
-3.1.8	Auditing
-The TOE shall generate audit data, and be capable of sending it to a trusted External IT Entity. Optionally, it may store audit data in the TOE [O.AUDIT]. 
-The TOE must be able to send audit data to a trusted External IT Entity (e.g., an audit server such as a syslog server). Audit data may also be stored in the TOE with appropriate access controls to ensure confidentiality and integrity. If a conforming TOE supports both mechanisms, then each should be evaluated as separate modes of operation.
-3.1.9	Storage Encryption (conditionally mandatory)
-If the TOE stores User Document Data or Confidential TSF Data in Field-Replaceable Nonvolatile Storage devices, then the TOE shall encrypt such data on those devices. [O.STORAGE_ENCRYPTION].
-This objective addresses the concern that User Document Data or Confidential TSF Data on a Field-Replaceable Nonvolatile Storage Device may be exposed if the device is removed from the TOE, such as for Servicing, Redeployment to another environment, or Decommissioning. 
-3.1.10	Protection of Key Material (conditionally mandatory)
-The TOE shall protect from unauthorized access any cleartext keys, submasks, random numbers, or other values that contribute to the creation of encryption keys for storage of User Document Data or Confidential TSF Data in Field-Replaceable Nonvolatile Storage Devices; The TOE shall ensure that such key material is not stored in cleartext on the storage device that uses that material [O.KEY_MATERIAL].
-This objective addresses the concern that unauthorized possession of keys or key material may be used to decrypt User Document Data or Confidential TSF Data.
-3.1.11	PSTN Fax-Network Separation (conditionally mandatory)
-If the TOE provides a PSTN fax function, then the TOE shall ensure separation of the PSTN fax telephone line and the LAN, by system design or active security function [O.FAX_NET_SEPARATION]. 
-This objective addresses customer concerns about having a telephone line connected to a device that is inside their firewall. Depending on implementation, it may be satisfied in different ways, such as by system architecture (no data path from the PSTN fax interface to the network interface), by system design (fax chipset recognizes only PSTN fax protocols), or by active security function (flow control). 
-3.1.12	Image Overwrite (optional)
+
+==== Communications Protection
+The TOE shall have the capability to protect LAN communications of User Data and TSF Data from Unauthorized Access, replay, and source/destination spoofing [O.COMMS_PROTECTION]. This objective addresses the common concerns of network communications:
+. Sensitive data or Credentials are obtained by monitoring LAN data outside of the TOE.
+. A successfully authenticated session is captured and replayed on the LAN, permitting the attacker to masquerade as the authenticated User.
+. Sensitive data or Credentials are obtained by redirecting communications from the TOE or from an External IT Entity to a malevolent destination.
+
+==== Auditing
+The TOE shall generate audit data, and be capable of sending it to a trusted External IT Entity. Optionally, it may store audit data in the TOE [O.AUDIT]. The TOE must be able to send audit data to a trusted External IT Entity (e.g., an audit server such as a syslog server). Audit data may also be stored in the TOE with appropriate access controls to ensure confidentiality and integrity. If a conforming TOE supports both mechanisms, then each should be evaluated as separate modes of operation.
+
+==== Storage Encryption (conditionally mandatory)
+If the TOE stores User Document Data or Confidential TSF Data in Field-Replaceable Nonvolatile Storage devices, then the TOE shall encrypt such data on those devices. [O.STORAGE_ENCRYPTION]. This objective addresses the concern that User Document Data or Confidential TSF Data on a Field-Replaceable Nonvolatile Storage Device may be exposed if the device is removed from the TOE, such as for Servicing, Redeployment to another environment, or Decommissioning. 
+
+==== Protection of Key Material (conditionally mandatory)
+The TOE shall protect from unauthorized access any cleartext keys, submasks, random numbers, or other values that contribute to the creation of encryption keys for storage of User Document Data or Confidential TSF Data in Field-Replaceable Nonvolatile Storage Devices; The TOE shall ensure that such key material is not stored in cleartext on the storage device that uses that material [O.KEY_MATERIAL]. This objective addresses the concern that unauthorized possession of keys or key material may be used to decrypt User Document Data or Confidential TSF Data.
+
+==== PSTN Fax-Network Separation (conditionally mandatory)
+If the TOE provides a PSTN fax function, then the TOE shall ensure separation of the PSTN fax telephone line and the LAN, by system design or active security function [O.FAX_NET_SEPARATION]. This objective addresses customer concerns about having a telephone line connected to a device that is inside their firewall. Depending on implementation, it may be satisfied in different ways, such as by system architecture (no data path from the PSTN fax interface to the network interface), by system design (fax chipset recognizes only PSTN fax protocols), or by active security function (flow control). 
+
+==== Image Overwrite (optional)
 Upon completion or cancellation of a Document Processing job, the TOE shall overwrite residual image data in its Field-Replaceable Nonvolatile Storage Devices [O.IMAGE_OVERWRITE]. This objective addresses customer concerns that image data may remain on Field-Replaceable Nonvolatile Storage Devices in the TOE after a Document Processing job has been completed or cancelled.
-3.1.13	Purge Data (optional)
+
+==== Purge Data (optional)
 The TOE provides a function that an authorized administrator can invoke to make all customer-supplied User Data and TSF Data permanently irretrievable from Nonvolatile Storage Devices [O.PURGE_DATA]. This objective addresses customer concerns that data that is protected in the Operational Environment may remain in Nonvolatile Storage Devices after the TOE is permanently removed from its Operational Environment to be decommissioned from service or to be redeployed to a different Operational Environment.
 
 === Security Objectives for the Operational Environment
 
 The following Security Objectives must be provided by the Operational Environment. Additional details about objectives for the Operational Environment are in Appendix A.7.
-3.2.1	Physical Protection
-The Operational Environment shall provide physical security, commensurate with the value of the TOE and the data it stores or processes [OE.PHYSICAL_PROTECTION].
-Due to its intended function, this kind of TOE must be physically accessible to authorized Users, but it is not expected to be hardened against physical attacks. Therefore, the environment must provide an appropriate level of physical protection or monitoring to prevent physical attacks.
-3.2.2	Network Protection
-The Operational Environment shall provide network security to protect the TOE from direct, public access to its LAN interface [OE.NETWORK_PROTECTION].
-This kind of TOE is not intended to be directly connected to a hostile network. Therefore, the environment must provide an appropriate level of network isolation. 
-3.2.3	Trusted Administrators
+
+==== Physical Protection
+The Operational Environment shall provide physical security, commensurate with the value of the TOE and the data it stores or processes [OE.PHYSICAL_PROTECTION]. Due to its intended function, this kind of TOE must be physically accessible to authorized Users, but it is not expected to be hardened against physical attacks. Therefore, the environment must provide an appropriate level of physical protection or monitoring to prevent physical attacks.
+
+==== Network Protection
+The Operational Environment shall provide network security to protect the TOE from direct, public access to its LAN interface [OE.NETWORK_PROTECTION]. This kind of TOE is not intended to be directly connected to a hostile network. Therefore, the environment must provide an appropriate level of network isolation. 
+
+==== Trusted Administrators
 The TOE Owner shall establish trust that Administrators will not use their privileges for malicious purposes [OE.ADMIN_TRUST].
 Administrators have privileges that can be misused for malicious purposes. It is the responsibility of the TOE Owner to grant administrator privileges only to individuals whom the TOE Owner trusts.
-3.2.4	Trained Users
+
+==== Trained Users
 The TOE Owner shall ensure that Users are aware of site security policies and have the competence to follow them [OE.USER_TRAINING].
 Site security depends on a combination of TOE security functions and appropriate use of those functions by Normal Users. Manufacturers may provide guidance to the TOE Owner regarding the TOE security functions that apply to Normal Users. 
-3.2.5	Trained Administrators
+
+==== Trained Administrators
 The TOE Owner shall ensure that Administrators are aware of site security policies and have the competence to use manufacturer’s guidance to correctly configure the TOE and protect passwords and keys accordingly [OE.ADMIN_TRAINING].
 This kind of TOE may have many options for enabling and disabling security functions. Administrators must be able to understand and configure the TOE security functions to enforce site security policies.
 
