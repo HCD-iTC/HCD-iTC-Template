@@ -393,7 +393,7 @@ Dependencies: 	FPT_STM.1	Reliable time stamps
 
 | Use of management functions | FMT_SMF.1 | None
 
-| Modification to the group of Users that ar part of a role | FFMT_SMR.1 | None
+| Modification to the group of Users that are part of a role | FMT_SMR.1 | None
 
 | Changes to the time | FPT_STM.1 | None
 
