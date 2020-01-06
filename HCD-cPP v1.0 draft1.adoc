@@ -103,10 +103,12 @@ For more see the http://www.commoncriteriaportal.org/[Common Criteria Portal].
 - PP Date: {revdate}
 
 === TOE Overview
-[GUIDANCE]
-====
-This may be short, but is likely to be 1-2 pages. This should provide a good description of what the products being evaluated should do. For example, in a biometric, this could talk about things like enrolling your biometric, verifying it, and then checking that it can't be faked. For a mobile device, this could talk about the scope of the eval, and high level expectations like protecting DIT/DAR.
-====
+
+The Target of Evaluation in this PP is an HCD. HCDs support job functions to convert hardcopy documents into digital form (scanning), convert digital documents into hardcopy form (printing), duplicate hardcopy documents (copying), or transmit documents over a PSTN connection (PSTN faxing). Hardcopy documents typically take the form of paper, but can take other forms (e.g. transparencies). 
+
+For the purpose of this cPP, a conforming HCD must support at least one of the job functions printing, scanning, or copying and must support the functions network communications and administration.
+
+The job functions supported by the HCD and the network communications and administration functions are “Required Uses” of a conforming HCD and are mandatory functions. A conforming HCD may also support “Conditionally Mandatory Uses”. Conditionally Mandatory Uses are optional functions, the presence of which in a HCD is not required for conformance, but which must meet conditionally mandatory requirements if they are present in a HCD
 
 === TOE Design
 [GUIDANCE]
