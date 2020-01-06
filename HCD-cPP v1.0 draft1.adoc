@@ -401,8 +401,29 @@ Dependencies: 	FPT_STM.1	Reliable time stamps
 
 |===
 
-=== Communication (FCO)
+_*Application Note*:
 
+In cases where user identification events are inseparable from user authentication events, they may be considered to be a single event for audit purposes.
+
+Regarding FMT_SMR.1, if the relationship between users and roles is not modifiable, its auditable event cannot be generated and the requirement to generate an audit record can be ignored.
+
+The ST author can include other auditable events directly in the table; they are not limited to the list presented._
+
+==== *FAU_GEN.2	User identity association* 
+	(for O.AUDIT)
+	Hierarchical to:	No other components.
+	Dependencies:	FAU_GEN.1	Audit data generation
+			FIA_UID.1	Timing of identification
+	*FAU_GEN.2.1*	For audit events resulting from actions of identified users, the TSF shall be able to associate each auditable event with the identity of the user that caused the event.
+
+
+==== *FAU_STG_EXT.1	Extended: External Audit Trail Storage* 
+	(for O.AUDIT)
+	Hierarchical to:	No other components.
+	Dependencies:	FAU_GEN.1	Audit data generation,
+			FTP_ITC.1	Inter-TSF trusted channel.
+
+	*FAU_STG_EXT.1.1*	The TSF shall be able to transmit the generated audit data to an External IT Entity using a trusted channel according to FTP_ITC.1.
 
 === Cryptograhic Support (FCS)
 
