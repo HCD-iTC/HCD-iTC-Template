@@ -367,8 +367,39 @@ The following conventions are used for the completion of operations:
 The following sections have been included from CC Part 2 just as reference. Include only those classes in 5.2 - 5.12 for which the TOE will need to comply with one or more SFRs from that class. Any sections that do not have applicable SFRs can be removed.
 ====
 
-=== Security Audit (FAU)
+=== *Security Audit (FAU)*
 
+==== *FAU_GEN.1	Audit data generation* 
+(for O.AUDIT)
+Hierarchical to:	No other components.
+Dependencies: 	FPT_STM.1	Reliable time stamps
+*FAU_GEN.1.1*	The TSF shall be able to generate an audit record of the following auditable events: 
+.	Start-up and shutdown of the audit functions; 
+.	All auditable events for the *not specified* level of audit; and 
+.	*All  auditable events specified in Table 1*, [assignment: _other specifically defined auditable events_].
+
+*FAU_GEN.1.2*	The TSF shall record within each audit record at least the following information: 
+. 	Date and time of the event, type of event, subject identity (if applicable), and the outcome (success or failure) of the event; and 
+.	For each audit event type, based on the auditable event definitions of the functional components included in the PP/ST, *additional information specified in Table 1*, [assignment: _other audit relevant information_].
+
+|===
+| Auditable Event | Relevant SFR | Additional Information
+
+| Job Completion | FDP_ACF.1 | Type of Job  
+
+| Unsuccessful User authentication | FIA_UAU.1 | None
+
+| Unsuccessful User identification | FIA_UID.1 | None
+
+| Use of management functions | FMT_SMF.1 | None
+
+| Modification to the group of Users that ar part of a role | FFMT_SMR.1 | None
+
+| Changes to the time | FPT_STM.1 | None
+
+| Failure to establish session | FTP_ITC.1, FTP_TRP.1(a), FTP_TRP.1(b) | Reason for failure
+
+|===
 
 === Communication (FCO)
 
