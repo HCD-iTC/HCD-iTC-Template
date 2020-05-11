@@ -1,0 +1,2820 @@
+= collaborative Protection Profile for _Hardcopy Devices_
+:showtitle:
+:toc: macro
+:toclevels: 7
+:sectnums:
+:sectnumlevels: 7
+:imagesdir: images
+:icons: font
+:revnumber: 0.2
+:revdate: 2019-08-23
+
+:iTC-longname: Hardcopy Device
+:iTC-shortname: HCD-iTC
+:iTC-email: HCD-itc-mailing-list@gmail.com
+:iTC-website: https://HCD.github.io/
+:iTC-GitHub: https://github.com/HCD/repository/
+
+:sectnums!:
+
+== Acknowledgements
+This collaborative Protection Profile (cPP) was developed by the {iTC-longname} international Technical Community (iTC) also known as {iTC-shortname} with representatives from industry, Government agencies, Common Criteria Test Laboratories, and members of academia.
+
+*INDUSTRY*
+
+_Vendors_
+
+*COMMON CRITERIA TESTING LABORATORIES*
+
+_ITSEF Name_
+
+*GOVERNMENT AGENCIES*
+
+_Government Agency Names_
+
+=== Revision History
+
+.Revision history
+[%header,cols="1,2,4"]
+|===
+|Version
+|Date
+|Description
+
+|0.1
+|<DATE>
+|Initial Release for iTC Review
+
+|
+|
+|
+
+
+|===
+
+toc::[]
+
+== Preface
+
+[REVIEW]
+====
+The technology type needs to be specified here, but the rest is boilerplate.
+====
+
+=== Objectives of Document
+This document presents the Common Criteria (CC) collaborative Protection Profile (cPP) to express the security functional requirements (SFRs) and security assurance requirements (SARs) for _some technology type_. The Evaluation activities that specify the actions the evaluator performs to determine if a product satisfies the SFRs captured within this cPP, are described in <<SD>>.
+
+[BOILERPLATE]
+====
+The rest of this section is boilerplate and should not need edits.
+====
+
+=== Scope of Document
+The scope of the cPP within the development and evaluation process is described in the Common Criteria for Information Technology Security Evaluation. In particular, a cPP defines the IT security requirements of a generic type of TOE and specifies the functional security measures to be offered by that TOE to meet stated requirements [<<CC1>>, Section B.14].
+
+=== Intended Readership
+The target audiences of this cPP are developers, CC consumers, system integrators, evaluators and schemes.
+
+Although the cPP and SD may contain minor editorial errors, the cPP is recognized as living document and the iTC is dedicated to ongoing updates and revisions. Please report any issues to the {iTC-shortname}.
+
+=== Related Documents
+[REVIEW]
+====
+Edit the Supporting Document in the list.
+====
+
+[bibliography]
+* [#CC1]#[CC1]# Common Criteria for Information Technology Security Evaluation, Part 1: Introduction and General Model, CCMB-2017-04-001, Version 3.1 Revision 5, April 2017.
+* [#CC2]#[CC2]# Common Criteria for Information Technology Security Evaluation, Part 2: Security Functional Components, CCMB-2017-04-002, Version 3.1 Revision 5, April 2017.
+* [#CC3]#[CC3]# Common Criteria for Information Technology Security Evaluation, Part 3: Security Assurance Components, CCMB-2017-04-003, Version 3.1 Revision 5, April 2017.
+* [#CEM]#[CEM]# Common Methodology for Information Technology Security Evaluation, Evaluation Methodology, CCMB-2017-04-004, Version 3.1 Revision 5, April 2017.
+* [#SD]#[SD]# Supporting Document
+
+For more see the http://www.commoncriteriaportal.org/[Common Criteria Portal].
+
+
+:sectnums:
+
+== PP Introduction
+
+=== PP Reference Identification
+- PP Reference: {doctitle}
+- PP Version: {revnumber}
+- PP Date: {revdate}
+
+=== TOE Overview
+
+The Target of Evaluation in this PP is an HCD. HCDs support job functions to convert hardcopy documents into digital form (scanning), convert digital documents into hardcopy form (printing), duplicate hardcopy documents (copying), or transmit documents over a PSTN connection (PSTN faxing). Hardcopy documents typically take the form of paper, but can take other forms (e.g. transparencies).
+
+For the purpose of this cPP, a conforming HCD must support at least one of the job functions printing, scanning, or copying and must support the functions network communications and administration.
+
+The job functions supported by the HCD and the network communications and administration functions are “Required Uses” of a conforming HCD and are mandatory functions. A conforming HCD may also support “Conditionally Mandatory Uses”. Conditionally Mandatory Uses are optional functions, the presence of which in a HCD is not required for conformance, but which must meet conditionally mandatory requirements if they are present in a HCD
+
+=== TOE Design
+[GUIDANCE]
+====
+This may not be necessary depending on the technology type. It may already be clear what the design is, or it is covered in the Overview. For example in the Network cPP there is an entire section dedicated to use case/design selections to deal with distributed TOEs.
+====
+
+=== TOE Use Case
+
+==== USE CASE 1: Required Use Cases
+The security-relevant use cases for Required Uses of a conforming HCD are:
+
+. One or more of the following:
+.. Printing: A Network User sends a Document from an External IT Entity to the HCD over a LAN with instructions for printing. The HCD has the capability to protect the User’s Document from unauthorized disclosure or alteration while it is in transit to the HCD, in Temporary Storage in the HCD, and before printed output is released to a User.
+.. Scanning: A Local User initiates scanning a Document on the HCD and the HCD sends the digital image to an External IT Entity. The HCD has the capability to protect the User’s Document from unauthorized disclosure or alteration while it is in Temporary Storage in the HCD and while it is in transit to the External IT Entity.
+.. Copying: A Local User scans a Document on the HCD and the HCD prints the Document. The HCD has the capability to protect the User’s Document from unauthorized disclosure and alteration while it is in Temporary Storage in the HCD.
+. Configuration: A Local or Network User with administrative privileges configures the security settings of the HCD. The HCD has the capability to assign Users to roles that distinguish Users who can perform administrative functions from Users who can perform User functions. The HCD also has the capability to protect its security settings from unauthorized disclosure and alteration when they are stored in the HCD and in transit to or from an External IT Entity.
+. Auditing: Authorized personnel monitor security-relevant events in an audit log. The HCD generates audit log records when security-relevant events occur. It is mandatory that the HCD is able to securely transmit audit logs to an External IT Entity for storage, and the HCD has the capability to protect it from unauthorized disclosure or alteration while in transit to the External IT Entity.
+. Verifying software updates: Authorized personnel install updated software on the HCD. The HCD ensures that only authorized personnel are permitted to install software, has the capability to help the installer to verify the authenticity of the software update.
+. Verifying HCD function: The HCD checks itself for malfunctions by performing a self-test each time that it is powered on.
+
+==== USE CASE 2: Conditionally Mandatory Use Cases
+Security-relevant use cases for Conditionally Mandatory Uses (if present) of a conforming HCD may include:
+
+. Sending PSTN faxes: A Local User scans a Document on the HCD, or a Network User sends a Document from an External IT Entity to the HCD; the User provides instructions for sending it to a remote PSTN fax destination; the HCD sends a facsimile of the Document over the PSTN to the PSTN fax destination using standard PSTN fax protocols. The HCD has the capability to protect the Network User’s Document from unauthorized disclosure and alteration while in transit on the LAN. The HCD also has the capability to protect the User’s Document from unauthorized disclosure and alteration while in Temporary Storage in the HCD.
+. Receiving PSTN faxes: A remote PSTN fax sender sends a facsimile of a Document over the PSTN to the HCD using standard PSTN fax protocols. The HCD has the capability to protect received PSTN faxes from unauthorized disclosure and alteration while it is present in the HCD. Further, the HCD has the capability to ensure that the PSTN fax modem is not used to access the LAN.
+. Storing and retrieving Documents: A Local or Network User instructs the HCD to store or retrieve an electronic Document in the HCD. The sources and destinations of such Documents may be any of the other operations such as scanning, printing, or PSTN faxing. The HCD has the capability to protect such Documents from unauthorized disclosure and alteration while in transit and in storage in the HCD.
+. Field-Replaceable Nonvolatile Storage Devices: Authorized personnel remove the HCD from service in its Operational Environment to perform preventative maintenance, repairs, or other servicing-related operations. The HCD has the capability to protect documents or confidential system information that may be present in Field-Replaceable Nonvolatile Storage Devices from exposure if such a device is removed from the HCD.
+
+==== USE CASE 3: Optional Use Cases
+Security-relevant use cases for Optional Uses (if present) of a conforming HCD may include:
+
+. Internal Audit Log Storage: If the audit log can also be stored in the HCD, the HCD has the capability to protect its audit log from unauthorized disclosure and alteration.
+. Image Overwrite: At the conclusion of an image processing job, residual image data may be present in the HCD. The HCD has the capability to actively overwrite such image data.
+. Redeploying or Decommissioning the HCD: Authorized personnel remove the HCD from service in its Operational Environment to move it to a different Operational Environment, to permanently remove it from operation, or otherwise change its ownership. The HCD has the capability to make all customer data that may be present in the HCD unavailable for recovery if it is removed from the Operational Environment.
+
+== CC Conformance Claims
+As defined by the references <<CC1>>, <<CC2>> and <<CC3>>, this cPP:
+
+* conforms to the requirements of Common Criteria v3.1, Revision 5,
+* is Part 2 extended,
+* is Part 3 conformant,
+* does not claim conformance to any other security functional requirement packages.
+
+[REVIEW]
+====
+The following paragraph may not be applicable for all cPPs and should be added or edited as appropriate.
+====
+
+In order to be conformant to this cPP, a ST shall demonstrate Exact Conformance. Exact Conformance, as a subset of Strict Conformance as defined by the CC, is defined as the ST containing all of the SFRs in <<Security Functional Requirements>> (these are the mandatory SFRs) of this cPP, and potentially SFRs from <<Consistency Rationale>> (these are selection-based SFRs) and <<Selection-Based Requirements>> (these are optional SFRs) of this cPP. While iteration is allowed, no additional requirements (from the CC parts 2 or 3, or definitions of extended components not already included in this cPP) are allowed to be included in the ST. Further, no SFRs in <<Security Functional Requirements>> of this cPP are allowed to be omitted.
+
+
+[GUIDANCE]
+====
+This section may not be applicable, especially early in the development of a cPP but may come back later. The site location here is a recommendation and all sections would be added to this page.
+====
+
+=== Components allowed with this cPP in a PP-Configuration
+
+The list of packages, PP-Modules and cPPs that may be used in conjunction with this cPP can be found at: {iTC-website}PP-config.html
+
+The packages to which exact conformance can be claimed in conjunction with this PP are specified in the Allowed Packages list.
+
+PP-Modules that are allowed to specify this cPP as a base PP are specified in the Base PP list.
+
+Other cPPs that are allowed to be included in a PP-Configuration along with this cPP are specified in the Other cPP list.
+
+== Security Problem Definition
+[REVIEW]
+====
+The sections here are boilerplate, but the content needs to be filled in.
+====
+
+The security problem is described in terms of the threats that the TOE is expected to address, assumptions about its operational environment, and any organizational security policies that the TOE is expected to enforce.
+
+=== Threats
+
+The following are Threats against the TOE that are countered by conforming products. Additional details about threats are in Appendix A.3.
+
+==== Unauthorized Access to User Data
+An attacker may access (read, modify, or delete) User Document Data or change (modify or delete) User Job Data in the TOE through one of the TOE’s interfaces [T.UNAUTHORIZED_ACCESS]. For example, depending on the design of the TOE, the attacker might access the printed output of a Network User’s print job, or modify the instructions for a job that is waiting in a queue, or read User Document Data that is in a User’s private or group storage area.
+
+==== Unauthorized Access to TSF Data
+An attacker may gain Unauthorized Access to TSF Data in the TOE through one of the TOE’s interfaces [T.TSF_COMPROMISE]. For example, depending on the design of the TOE, the attacker might use Unauthorized Access to TSF Data to elevate their own privileges, alter an Address Book to redirect output to a different destination, or use the TOE’s Credentials to gain access to an external server.
+
+An attacker may cause the installation of unauthorized software on the TOE [T.UNAUTHORIZED_UPDATE]. For example, unauthorized software could be used to gain access to information that is processed by the TOE, or to attack other systems on the LAN.
+
+==== Network Communication Attacks
+An attacker may access data in transit or otherwise compromise the security of the TOE by monitoring or manipulating network communication [T.NET_COMRPOMISE].
+For example, here are several ways that network communications could be compromised: By monitoring clear-text communications on a wired LAN, the attacker might
+obtain User Document Data, User Credentials, or system Credentials, or hijack an interactive session. The attacker might record and replay a network communication
+session in order to log into the TOE as an authorized User to access Documents or as an authorized Administrator to change security settings.
+The attacker might masquerade as a trusted system on the LAN in order to receive outgoing scan jobs, to record the transmission of system Credentials, or to
+send malicious data to the TOE.
+
+==== Malfunction
+A malfunction of the TSF may cause loss of security if the TOE is permitted to operate while in a degraded state [T.TSF_FAILURE]. Hardware or software malfunctions can produce unpredictable results, with a possibility that security functions will not operate correctly.
+
+=== Assumptions
+The following assumptions must be upheld so that the objectives and requirements can effectively counter the threats described in this Protection Profile. Additional details about assumptions are in Appendix A.5.
+
+==== Physical Security
+Physical security, commensurate with the value of the TOE and the data it stores or processes, is assumed to be provided by the environment [A.PHYSICAL]. The TOE is assumed to be located in a physical environment that is controlled or monitored such that a physical attack is prevented or detected.
+
+==== Network Security
+The Operational Environment is assumed to protect the TOE from direct, public access to its LAN interface [A.NETWORK]. The TOE is not intended to withstand network-based attacks from an unmanaged network environment.
+
+==== Administrator Trust
+TOE Administrators are trusted to administer the TOE according to site security policies [A.TRUSTED_ADMIN]. It is the responsibility of the TOE Owner to only authorize administrators who are trusted to configure and operate the TOE according to site policies and to not use their privileges for malicious purposes.
+
+==== User Training
+Authorized Users are trained to use the TOE according to site security policies [A.TRAINED_USERS]. It is the responsibility of the TOE Owner to only authorize Users who are trained to use the TOE according to site policies.
+
+=== Organizational Security Policies
+The following are Organizational Security Policies  (OSPs) that are upheld by conforming products. Additional details about OSPs are in Appendix A.4.
+
+==== User Authorization
+Users must be authorized before performing Document Processing and administrative functions [P.AUTHORIZATION]. Authorization allows the TOE Owner to control who is able to use the resources of the TOE and who is permitted to perform administrative functions.
+
+==== Auditing
+Security-relevant activities must be audited and the log of such actions must be protected and transmitted to an External IT Entity [P.AUDIT]. Stored on an External IT Entity (or, optionally, also in the TOE), an audit trail makes it possible for authorized personnel to review and identify suspicious activities and to account for TOE use as may be required by site policy or regulations.
+
+==== Protected Communications
+The TOE must be able to identify itself to other devices on the LAN [P.COMMS_PROTECTION]. Assuring identification helps prevent an attacker from masquerading as the TOE in order to receive incoming print jobs, recording the transmission of User Credentials, or sending malicious data to External IT Entities.
+
+==== Storage Encryption (conditionally mandatory)
+If the TOE stores User Document Data or Confidential TSF Data on Field-Replaceable Nonvolatile Storage Devices , it will encrypt such data on those devices [P.STORAGE_ENCRYPTION]. Data is assumed to be protected by the TSF when the TOE is operating in its Operational Environment. However, if Field-Replaceable Nonvolatile Storage Devices are removed from the TOE for Servicing, redeployment to another environment, or decommissioning, an attacker may be able to expose or modify User Document Data or Confidential TSF Data. Encrypting such data prevents the attacker from doing so without access to encryption keys or keying material.
+
+Cleartext keys, submasks, random numbers, or any other values that contribute to the creation of encryption keys for Field-Replaceable Nonvolatile Storage of User Document Data or Confidential TSF Data must be protected from unauthorized access and must not be stored on that storage device [P.KEY_MATERIAL]. Unauthorized possession of key material in cleartext may allow an attacker to decrypt User Document Data or Confidential TSF Data.
+
+==== PSTN Fax-Network Separation (conditionally mandatory)
+If the TOE includes a PSTN fax function, it will ensure separation between the PSTN fax line and the LAN [P.FAX_FLOW]. The TOE is assumed to be in an Operational Environment that is protected, such as by an external firewall. However, the PSTN fax modem may be connected to a public switched telephone network. Ensuring separation of the PSTN fax and network prevents an attacker from using the PSTN fax modem to bypass the firewall or other external protection to access the protected environment.
+
+==== Image Overwrite (optional)
+Upon completion or cancellation of a Document Processing job, the TOE shall overwrite residual image data from its Field-Replaceable Nonvolatile Storage Devices [P.IMAGE_OVERWRITE]. A customer may be concerned that image data that has been dereferenced by the TOE operating software may remain on Field-Replaceable Nonvolatile Storage Devices in the TOE after a Document Processing job has been completed or cancelled. Such customers desire that the image data be made unavailable by overwriting it with other data.
+
+==== Purge Data (optional)
+The TOE shall provide a function that an authorized administrator can invoke to make all customer-supplied User Data and TSF Data permanently irretrievable from Nonvolatile Storage Devices [P.PURGE_DATA]. A customer may be concerned that data which is considered confidential in the Operational Environment may remain in Nonvolatile Storage Devices in the TOE after the TOE is permanently removed from its Operational Environment to be decommissioned from service or to be redeployed to a different Operational Environment. Such customers desire that all customer-supplied User Data and TSF Data be purged from the TOE so that it cannot be retrieved outside of the Operational Environment.
+
+== Security Objectives
+
+=== Security Objectives for the TOE
+
+The following Security Objectives must be fulfilled by the TOE. Additional details about objectives for the TOE are in Appendices A.6 and A.7.
+
+==== User Authorization
+The TOE shall perform authorization of Users in accordance with security policies [O.USER_AUTHORIZATION].
+
+This objective supports the policy that Users are authorized to administer the TOE or perform Document Processing functions that consume TOE resources. Users must be authorized to perform any of the Document Processing functions present in the TOE.
+
+The mechanism for authorization is implemented within the TOE, and it may also depend on a trusted External IT Entity. If a conforming TOE supports more than one mechanism, then each should be evaluated as separate modes of operation.
+
+In the case of printing (if that function is present in the TOE), User authorization may take place after the job has been submitted but must take place before printed output is made available to the User.
+
+Users must be authorized to perform PSTN fax sending functions and document storage and retrieval functions, if such functions are provided by the conforming TOE.
+
+Note that the TOE can receive a PSTN fax without any User authorization, but the received Document is subject to access controls.
+
+==== User Identification and Authentication
+The TOE shall perform identification and authentication of Users for operations that require access control, User authorization, or Administrator roles [O.USER_I&A].
+
+The mechanism for identification and authentication (I&A) is implemented within the TOE, and it may also depend on a trusted External IT Entity (e.g., LDAP, Kerberos, or Active Directory). If a conforming TOE supports more than one mechanism, then each should be evaluated as separate modes of operation.
+
+==== Access Control
+The TOE shall enforce access controls to protect User Data and TSF Data in accordance with security policies [O.ACCESS_CONTROL].
+
+The guiding principles for access control security policies in this PP are:
+
+. User Document Data [D.USER.DOC] can be accessed only by the Document owner or an Administrator.
+. User Job Data [D.USER.JOB] can be read by any User but can be modified only by the Job Owner or an Administrator.
+. Protected TSF Data [D.TSF.PROT] are data that can be read by any User but can be modified only by an Administrator or (in certain cases) a Normal User who is the owner of or otherwise associated with that data.
+. Confidential TSF Data [D.TSF.CONF] are data that can only be accessed by an Administrator or (in certain cases) a Normal User who is the owner of or otherwise associated with that data.
+
+The Security Target of a conforming TOE must clearly specify its access control policies for User Data and TSF Data.
+
+==== Administrator Roles
+The TOE shall ensure that only authorized Administrators are permitted to perform administrator functions [O.ADMIN_ROLES].
+
+This objective addresses the need to have at least one Administrator role that is distinct from Normal Users. A conforming TOE may have specialized Administrator sub-roles, such as for device management, network management, or audit management.
+
+==== Software Update Verification
+The TOE shall provide mechanisms to verify the authenticity of software updates [O.UPDATE_VERIFICATION].
+
+This objective addresses the concern that malicious software may be introduced into the TOE as a software update. Verifying authenticity, such as with a digital signature or published hash, is required. Access control by itself does not satisfy this objective.
+
+==== Self-test
+The TOE shall test some subset of its security functionality to help ensure that subset is operating properly [O.TSF_SELF_TEST].
+
+A malfunction of the TOE may compromise its security if the malfunction is not detected and the TOE is allowed to operate. Self-test is intended to detect such malfunctions. It is performed during power-up.
+
+==== Communications Protection
+The TOE shall have the capability to protect LAN communications of User Data and TSF Data from Unauthorized Access, replay, and source/destination spoofing [O.COMMS_PROTECTION]. This objective addresses the common concerns of network communications:
+
+. Sensitive data or Credentials are obtained by monitoring LAN data outside of the TOE.
+. A successfully authenticated session is captured and replayed on the LAN, permitting the attacker to masquerade as the authenticated User.
+. Sensitive data or Credentials are obtained by redirecting communications from the TOE or from an External IT Entity to a malevolent destination.
+
+==== Auditing
+The TOE shall generate audit data, and be capable of sending it to a trusted External IT Entity. Optionally, it may store audit data in the TOE [O.AUDIT].
+
+The TOE must be able to send audit data to a trusted External IT Entity (e.g., an audit server such as a syslog server). Audit data may also be stored in the TOE with appropriate access controls to ensure confidentiality and integrity. If a conforming TOE supports both mechanisms, then each should be evaluated as separate modes of operation.
+
+==== Storage Encryption (conditionally mandatory)
+If the TOE stores User Document Data or Confidential TSF Data in Field-Replaceable Nonvolatile Storage devices, then the TOE shall encrypt such data on those devices. [O.STORAGE_ENCRYPTION].
+
+This objective addresses the concern that User Document Data or Confidential TSF Data on a Field-Replaceable Nonvolatile Storage Device may be exposed if the device is removed from the TOE, such as for Servicing, Redeployment to another environment, or Decommissioning.
+
+==== Protection of Key Material (conditionally mandatory)
+The TOE shall protect from unauthorized access any cleartext keys, submasks, random numbers, or other values that contribute to the creation of encryption keys for storage of User Document Data or Confidential TSF Data in Field-Replaceable Nonvolatile Storage Devices; The TOE shall ensure that such key material is not stored in cleartext on the storage device that uses that material [O.KEY_MATERIAL].
+
+This objective addresses the concern that unauthorized possession of keys or key material may be used to decrypt User Document Data or Confidential TSF Data.
+
+==== PSTN Fax-Network Separation (conditionally mandatory)
+If the TOE provides a PSTN fax function, then the TOE shall ensure separation of the PSTN fax telephone line and the LAN, by system design or active security function [O.FAX_NET_SEPARATION].
+
+This objective addresses customer concerns about having a telephone line connected to a device that is inside their firewall. Depending on implementation, it may be satisfied in different ways, such as by system architecture (no data path from the PSTN fax interface to the network interface), by system design (fax chipset recognizes only PSTN fax protocols), or by active security function (flow control).
+
+==== Image Overwrite (optional)
+Upon completion or cancellation of a Document Processing job, the TOE shall overwrite residual image data in its Field-Replaceable Nonvolatile Storage Devices [O.IMAGE_OVERWRITE]. This objective addresses customer concerns that image data may remain on Field-Replaceable Nonvolatile Storage Devices in the TOE after a Document Processing job has been completed or cancelled.
+
+==== Purge Data (optional)
+The TOE provides a function that an authorized administrator can invoke to make all customer-supplied User Data and TSF Data permanently irretrievable from Nonvolatile Storage Devices [O.PURGE_DATA]. This objective addresses customer concerns that data that is protected in the Operational Environment may remain in Nonvolatile Storage Devices after the TOE is permanently removed from its Operational Environment to be decommissioned from service or to be redeployed to a different Operational Environment.
+
+=== Security Objectives for the Operational Environment
+
+The following Security Objectives must be provided by the Operational Environment. Additional details about objectives for the Operational Environment are in Appendix A.7.
+
+==== Physical Protection
+The Operational Environment shall provide physical security, commensurate with the value of the TOE and the data it stores or processes [OE.PHYSICAL_PROTECTION].
+
+Due to its intended function, this kind of TOE must be physically accessible to authorized Users, but it is not expected to be hardened against physical attacks. Therefore, the environment must provide an appropriate level of physical protection or monitoring to prevent physical attacks.
+
+==== Network Protection
+The Operational Environment shall provide network security to protect the TOE from direct, public access to its LAN interface [OE.NETWORK_PROTECTION].
+
+This kind of TOE is not intended to be directly connected to a hostile network. Therefore, the environment must provide an appropriate level of network isolation.
+
+==== Trusted Administrators
+The TOE Owner shall establish trust that Administrators will not use their privileges for malicious purposes [OE.ADMIN_TRUST].
+
+Administrators have privileges that can be misused for malicious purposes. It is the responsibility of the TOE Owner to grant administrator privileges only to individuals whom the TOE Owner trusts.
+
+==== Trained Users
+The TOE Owner shall ensure that Users are aware of site security policies and have the competence to follow them [OE.USER_TRAINING].
+
+Site security depends on a combination of TOE security functions and appropriate use of those functions by Normal Users. Manufacturers may provide guidance to the TOE Owner regarding the TOE security functions that apply to Normal Users.
+
+==== Trained Administrators
+The TOE Owner shall ensure that Administrators are aware of site security policies and have the competence to use manufacturer’s guidance to correctly configure the TOE and protect passwords and keys accordingly [OE.ADMIN_TRAINING].
+
+This kind of TOE may have many options for enabling and disabling security functions. Administrators must be able to understand and configure the TOE security functions to enforce site security policies.
+
+=== Security Objectives Rationale
+The following table describes how the assumptions, threats, and organizational security policies map to the security objectives.
+
+.Mapping between Security Problem Defintion and Security Objectives
+[%header,cols="1,1,1"]
+|===
+|Threat, Assumption, or OSP
+|Security Objectives
+|Rationale
+
+|
+|
+|
+
+|===
+
+== Security Functional Requirements
+
+=== Conventions
+[BOILERPLATE]
+====
+This section is boilerplate and should be left alone. Attention should be paid though as this is supposed to be followed in the SFRs.
+====
+
+The individual security functional requirements are specified in the sections below.
+The following conventions are used for the completion of operations:
+
+* [_Italicized text within square brackets_] indicates an operation to be completed by the ST author.
+
+* *Bold text* indicates additional text provided as a refinement.
+
+* [*Bold text within square brackets*] indicates the completion of an assignment.
+
+* [text within square brackets] indicates the completion of a selection.
+
+* Number in parentheses after SFR name, e.g. (1) indicates the completion of an iteration.
+
+* Extended SFRs are identified by having a label “EXT” at the end of the SFR name.
+
+[GUIDANCE]
+====
+The following sections have been included from CC Part 2 just as reference. Include only those classes in 5.2 - 5.12 for which the TOE will need to comply with one or more SFRs from that class. Any sections that do not have applicable SFRs can be removed.
+====
+
+=== *Security Audit (FAU)*
+
+=== *FAU_GEN.1	Audit data generation*
+
+....
+(for O.AUDIT)
+Hierarchical to: 	No other components.
+Dependencies: 		FPT_STM.1 Reliable time stamps
+....
+
+*FAU_GEN.1.1*	The TSF shall be able to generate an audit record of the following auditable events:
+
+.	Start-up and shutdown of the audit functions;
+.	All auditable events for the *not specified* level of audit; and
+.	*All  auditable events specified in Table 1*, [assignment: _other specifically defined auditable events_].
+
+
+
+*FAU_GEN.1.2*	The TSF shall record within each audit record at least the following information:
+
+.	Date and time of the event, type of event, subject identity (if applicable), and the outcome (success or failure) of the event; and
+.	For each audit event type, based on the auditable event definitions of the functional components included in the PP/ST, *additional information specified in Table 1*, [assignment: _other audit relevant information_].
+
+|===
+| Auditable Event | Relevant SFR | Additional Information
+| Job Completion | FDP_ACF.1 | Type of Job
+| Unsuccessful User authentication | FIA_UAU.1 | None
+| Unsuccessful User identification | FIA_UID.1 | None
+| Use of management functions | FMT_SMF.1 | None
+| Modification to the group of Users that are part of a role | FMT_SMR.1 | None
+| Changes to the time | FPT_STM.1 | None
+| Failure to establish session | FTP_ITC.1, FTP_TRP.1(a), FTP_TRP.1(b) | Reason for failure
+|===
+
+*Application Note*:
+
+_In cases where user identification events are inseparable from user authentication events, they may be considered to be a single event for audit purposes.
+
+Regarding FMT_SMR.1, if the relationship between users and roles is not modifiable, its auditable event cannot be generated and the requirement to generate an audit record can be ignored.
+
+The ST author can include other auditable events directly in the table; they are not limited to the list presented._
+
+*Assurance Activity:*
+
+*TSS:*
+
+The evaluator shall check the TOE Summary Specification (TSS) to ensure that
+auditable events and its recorded information are consistent with the definition
+of the SFR.
+
+*Operational Guidance:*
+
+The evaluator shall check the guidance documents to ensure that auditable
+events and its recorded information are consistent with the definition of the
+SFRs.
+
+*Test:*
+
+The evaluator shall also perform the following tests:
+
+The evaluator shall check to ensure that the audit record of each of the auditable
+events described in Table 1 is appropriately generated.
+
+The evaluator shall check a representative sample of methods for generating
+auditable events, if there are multiple methods.
+
+The evaluator shall check that FIA_UAU.1 events have been generated for each
+mechanism, if there are several different I&A mechanisms.
+
+
+
+
+==== *FAU_GEN.2	User identity association*
+
+....
+(for O.AUDIT)
+Hierarchical to:	No other components.
+Dependencies:		FAU_GEN.1	Audit data generation
+			FIA_UID.1	Timing of identification
+....
+
+*FAU_GEN.2.1*	For audit events resulting from actions of identified users, the TSF shall be able to associate each auditable event with the identity of the user that caused the event.
+
+*Assurance Activity:*
+
+The Assurance Activities for FAU_GEN.1 address this SFR.
+
+==== *FAU_STG_EXT.1	Extended: External Audit Trail Storage*
+
+	(for O.AUDIT)
+	Hierarchical to:	No other components.
+	Dependencies:		FAU_GEN.1	Audit data generation,
+				FTP_ITC.1	Inter-TSF trusted channel.
+
+*FAU_STG_EXT.1.1*	The TSF shall be able to transmit the generated audit data to an External IT Entity using a trusted channel according to FTP_ITC.1.
+
+	(for O.AUDIT)
+	Hierarchical to: 	No other components.
+	Dependencies: 		FAU_GEN.1 Audit data generation,
+				FTP_ITC.1 Inter-TSF trusted channel.
+
+*Assurance Activity:*
+
+*TSS:*
+
+The evaluator shall examine the TSS to ensure it describes the means by which
+the audit data are transferred to the external audit server, and how the trusted
+channel is provided. Testing of the trusted channel mechanism will be
+performed as specified in the associated assurance activities for the particular
+trusted channel mechanism.
+
+The evaluator shall examine the TSS to ensure it describes the amount of audit
+data that are stored locally; what happens when the local audit data store is full;
+and how these records are protected against unauthorized access. The evaluator
+shall also examine the operational guidance to determine that it describes the
+relationship between the local audit data and the audit data that are sent to the
+audit log server. For example, when an audit event is generated, is it
+simultaneously sent to the external server and the local store, or is the local store
+used as a buffer and “cleared” periodically by sending the data to the audit
+server.
+
+*Operational Guidance:*
+
+The evaluator shall also examine the operational guidance to ensure it describes
+how to establish the trusted channel to the audit server, as well as describe any
+requirements on the audit server (particular audit server protocol, version of the
+protocol required, etc.), as well as configuration of the TOE needed to
+communicate with the audit server. The evaluator shall perform the following
+test for this requirement:
+
+*Test:*
+
+Test 1: The evaluator shall establish a session between the TOE and the audit
+server according to the configuration guidance provided. The evaluator shall
+then examine the traffic that passes between the audit server and the TOE during
+several activities of the evaluator’s choice designed to generate audit data to be
+transferred to the audit server. The evaluator shall observe that these data are not
+able to be viewed in the clear during this transfer, and that they are successfully
+received by the audit server. The evaluator shall record the particular software
+(name, version) used on the audit server during testing.
+
+
+=== Cryptograhic Support (FCS)
+
+==== FCS_CKM.1(a) Cryptographic Key Generation (for asymmetric keys)
+
+	(for O.COMMS_PROTECTION)
+	Hierarchical to:	No other components.
+	Dependencies:		[FCS_CKM.2 Cryptographic key distribution, or
+				FCS_COP.1(b) Cryptographic Operation (for signature generation/
+verification)]
+				FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction
+
+FCS_CKM.1.1(a) Refinement: The TSF shall generate asymmetric cryptographic keys
+used for key establishment in accordance with [selection:
+
+• NIST Special Publication 800-56A, “Recommendation for Pair-Wise Key
+Establishment Schemes Using Discrete Logarithm Cryptography” for finite
+field-based key establishment schemes;
+
+• NIST Special Publication 800-56A, “Recommendation for Pair-Wise Key
+Establishment Schemes Using Discrete Logarithm Cryptography” for elliptic
+curve-based key establishment schemes and implementing “NIST curves” P256, P-384 and [selection: P-521, no other curves] (as defined in FIPS PUB
+186-4, “Digital Signature Standard”)
+
+• NIST Special Publication 800-56B, “Recommendation for Pair-Wise Key
+Establishment Schemes Using Integer Factorization Cryptography” for RSAbased key establishment schemes
+
+] and specified cryptographic key sizes equivalent to, or greater than, a symmetric
+key strength of 112 bits.
+
+Application Note:
+
+The ST author selects the key generation scheme used for key establishment and
+device authentication. If multiple schemes are supported, then the ST author
+should iterate this component to capture this capability. When key generation is
+used for device authentication, the public key is expected to be associated with
+an X.509v3 certificate. If the TOE acts as a receiver in the RSA key
+establishment scheme, the TOE does not need to implement RSA key generation.
+
+Since the domain parameters to be used are specified by the requirements of the
+protocol in this PP, it is not expected that the TOE will generate domain
+parameters, and therefore there is no additional domain parameter validation
+needed when the TOE complies with the protocols specified in this PP.
+
+SP 800-56B references (but does not mandate) key generation according to
+FIPS 186-3. For purposes of compliance in this version of the HCD PP, RSA
+key pair generation according to FIPS 186-4 is allowed in order for the TOE to
+claim conformance to SP 800-56B.
+
+The generated key strength of 2048-bit DSA and rDSA keys need to be
+equivalent to, or greater than, a symmetric key strength of 112 bits. See NIST
+Special Publication 800-57, “Recommendation for Key Management” for
+information about equivalent key strengths.
+
+Assurance Activity:
+
+TSS:
+
+The evaluator shall ensure that the TSS contains a description of how the TSF
+complies with 800-56A and/or 800-56B, depending on the selections made. This
+description shall indicate the sections in 800-56A and/or 800-56B that are
+implemented by the TSF, and the evaluator shall ensure that key establishment
+is among those sections that the TSF claims to implement.
+
+Any TOE-specific extensions, processing that is not included in the documents,
+or alternative implementations allowed by the documents that may impact the
+security requirements the TOE is to enforce shall be described in the TSS.
+
+The TSS may refer to the Key Management Description (KMD), described in
+Appendix F , that may not be made available to the public.
+
+Test:
+
+The evaluator shall use the key pair generation portions of "The FIPS 186-4
+Digital Signature Algorithm Validation System (DSA2VS)", "The FIPS 186-4
+Elliptic Curve Digital Signature Algorithm Validation System (ECDSA2VS)",
+and “The 186-4 RSA Validation System (RSA2VS)” as a guide in testing the
+requirement above, depending on the selection performed by the ST author. This
+will require that the evaluator have a trusted reference implementation of the
+algorithms that can produce test vectors that are verifiable during the test.
+
+==== FCS_CKM.1(b) Cryptographic key generation (Symmetric Keys)
+
+	(for O.COMMS_PROTECTION, O.STORAGE_ENCRYPTION)
+	Hierarchical to: No other components.
+	Dependencies: [FCS_CKM.2 Cryptographic key distribution, or
+			FCS_COP.1(f) Cryptographic operation (Key Encryption)]
+			FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction
+
+FCS_RBG_EXT.1 Extended: Cryptographic Operation (Random Bit
+Generation)
+
+FCS_CKM.1.1(b) Refinement: The TSF shall generate symmetric cryptographic keys
+using a Random Bit Generator as specified in FCS_RBG_EXT.1 and specified
+cryptographic key sizes [selection: 128 bit, 256 bit] that meet the following: No
+Standard.
+
+Application Note:
+
+Symmetric keys may be used to generate keys along the key chain.
+
+Assurance activity:
+
+TSS:
+
+The evaluator shall review the TSS to determine that it describes how the
+functionality described by FCS_RBG_EXT.1 is invoked.
+
+KMD:
+
+If the TOE is relying on random number generation from a third-party source,
+the KMD needs to describe the function call and parameters used when calling
+the third-party DRBG function. Also, the KMD needs to include a short
+description of the vendor's assumption for the amount of entropy seeding the
+third-party DRBG. The evaluator uses the description of the RBG functionality
+in FCS_RBG_EXT or the KMD to determine that the key size being requested
+is identical to the key size and mode to be used for the encryption/decryption of
+the user data (FCS_COP.1(d)).
+
+The KMD is described in Appendix F.
+
+==== FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction
+
+	(for O.COMMS_PROTECTION, O.STORAGE_ENCRYPTION, O.PURGE_DATA)
+	Hierarchical to: No other components.
+	Dependencies: [FCS_CKM.1(a) Cryptographic Key Generation (for asymmetric
+keys), or
+	FCS_CKM.1(b) Cryptographic key generation (Symmetric Keys)],
+	FCS_CKM.4 Cryptographic key destruction
+
+FCS_CKM_EXT.4.1 The TSF shall destroy all plaintext secret and private
+cryptographic keys and cryptographic critical security parameters when no longer
+needed.
+
+Application Note:
+
+“Cryptographic Critical Security Parameters” are defined in FIPS 140-2 as
+“security-related information (e.g., secret and private cryptographic keys, and
+authentication data such as passwords and PINs) whose disclosure or
+modification can compromise the security of a cryptographic module”.
+
+Keys, including intermediate keys and key material that are no longer needed
+are destroyed by using an approved method, FCS_CKM.4.1. Examples of keys
+are intermediate keys, submasks, and BEV. There may be instances where keys
+or key material that are contained in persistent storage are no longer needed
+and require destruction. Based on their implementation, vendors will explain
+when certain keys are no longer needed. There are multiple situations in which
+key material is no longer necessary, for example, a wrapped key may need to be
+destroyed when a password is changed. However, there are instances when
+keys are allowed to remain in memory, for example, a device identification key.
+
+Assurance activity:
+
+TSS:
+
+The evaluator shall verify the TSS provides a high level description of what it
+means for keys and key material to be no longer needed and when then should
+be expected to be destroyed.
+
+KMD:
+
+The evaluator shall verify the Key Management Description (KMD) includes a
+description of the areas where keys and key material reside and when the keys
+and key material are no longer needed.
+
+The evaluator shall verify the KMD includes a key lifecycle, that includes a
+description where key material reside, how the key material is used, how it is
+determined that keys and key material are no longer needed, and how the
+material is destroyed once it is not needed and that the documentation in the KMD follows FCS_CKM.4 for the destruction.
+
+==== FCS_CKM.4 Cryptographic key destruction
+
+	(for O.COMMS_PROTECTION, O.STORAGE_ENCRYPTION, O.PURGE_DATA)
+	Hierarchical to: No other components.
+	Dependencies: [FCS_CKM.1(a) Cryptographic Key Generation (for asymmetric keys), or
+	FCS_CKM.1(b) Cryptographic key generation (Symmetric Keys)]
+
+FCS_CKM.4.1 Refinement: The TSF shall destroy cryptographic keys in accordance
+with a specified cryptographic key destruction method [selection:
+
+For volatile memory, the destruction shall be executed by [selection:
+powering off a device, [assignment: other mechanism that ensures keys are
+destroyed]].
+
+For nonvolatile storage, the destruction shall be executed by a [selection:
+single, three or more times] overwrite of key data storage location consisting
+of [selection: a pseudo random pattern using the TSF’s RBG (as specified in
+FCS_RBG_EXT.1), a static pattern], followed by a [selection: read-verify,
+none]. If read-verification of the overwritten data fails, the process shall be
+repeated again;
+
+that meets the following: [selection: NIST SP800-88, no standard].
+
+Application Note:
+
+Keys, including intermediate keys and key material that are no longer needed
+are destroyed in volatile memory by using one of these approved methods. In
+these cases, the destruction method conforms to one of methods specified in this
+requirement. This requirement calls out the method for performing
+Cryptographic Erase and is considered a well-defined term for the destruction
+of key information. Some solutions support write access to media locations
+where keys are stored, thus allow for destruction of cryptographic keys via
+direct overwrites of key and key material data. Note that keys material stored
+using storage technologies that do not support direct overwrites of locations and
+onetime programmable memories are excluded from the requirement to satisfy
+this SFR.
+
+Assurance activity:
+
+TSS:
+
+The evaluator shall verify the TSS provides a high level description of how keys
+and key material are destroyed.
+
+KMD:
+
+The evaluator shall check to ensure the KMD lists each type of key material, its
+origin, possible temporary locations (e.g. key register, cache memory, stack,
+FIFO), and storage location.
+
+The evaluator shall verify that the KMD describes when each type of key
+material is destroyed (for example, on system power off, on wipe function, on
+disconnection of trusted channels, when no longer needed by the trusted channel
+per the protocol, etc.).
+
+The evaluator shall also verify that, for each type of key and storage, the type of
+destruction procedure that is performed (cryptographic erase, overwrite with
+zeros, overwrite with random pattern, or block erase) is listed. If different types
+of memory are used to store the materials to be protected, the evaluator shall
+check to ensure that the TSS describes the clearing procedure in terms of the
+memory in which the data are stored (for example, "secret keys stored on flash
+are destroyed by overwriting once with zeros, while secret keys stored on the
+internal persistent storage device are destroyed by overwriting three times with a
+random pattern that is changed before each write").
+
+The evaluator shall check to ensure the KMD lists each type of key material
+(software-based key storage, BEVs, passwords, etc.) and its origin, storage
+location, and the method for destruction for each key.
+
+Test:
+
+For each software and firmware key destruction situation the evaluator shall
+repeat the following tests for Nonvolatile Memory. There is no test for keys in
+volatile memory, since they are destroyed by powering down the TOE. For the
+test below, “key” refers to keys and key material.
+
+Test 1: The evaluator shall utilize appropriate combinations of specialized
+Operational Environment (e.g. a Virtual Machine) and development tools
+(debuggers, simulators, etc.) to test that keys are destroyed, including all copies
+of the key that may have been created internally by the TOE during normal
+cryptographic processing with that key.
+
+For each key subject to destruction, including intermediate copies of keys that
+are persisted encrypted by the TOE the evaluator shall:
+
+1. Attach to the TOE software/firmware with a debugger, or use alternative
+methods to perform the tests that follow, including the use of developerprovided special tools that allow inspection of device memory in a special
+test configuration.
+
+2. Record the value of the key in the TOE subject to destruction.
+
+3. Cause the TOE to perform a normal cryptographic processing with the key
+from #1.
+
+4. Cause the TOE to destroy the key.
+
+5. Cause the TOE to stop the execution but not exit.
+
+6. Cause the TOE to dump the entire memory footprint of the TOE into a
+binary file.
+
+7. Search the content of the binary file created in #6 for instances of the
+known key value from #2.
+
+The test succeeds if no copies of the key from #2 are found in step #7 above and
+fails otherwise.
+
+The evaluator shall perform this test on all keys subject to destruction, including
+those persisted in encrypted form, to ensure intermediate copies are cleared.
+
+==== FCS_COP.1(a) Cryptographic Operation (Symmetric encryption/decryption)
+	(for O.COMMS_PROTECTION)
+	Hierarchical to: No other components.
+	Dependencies: [FDP_ITC.1 Import of user data without security attributes, or
+	FDP_ITC.2 Import of user data with security attributes, or
+	FCS_CKM.1(b) Cryptographic key generation (Symmetric Keys)]
+	FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction
+
+FCS_COP.1.1(a) Refinement: The TSF shall perform encryption and decryption in
+accordance with a specified cryptographic algorithm AES operating in [assignment:
+one or more modes] and cryptographic key sizes 128-bits and 256-bits that meets the
+following:
+
+• FIPS PUB 197, “Advanced Encryption Standard (AES)”
+• [Selection: NIST SP 800-38A, NIST SP 800-38B, NIST SP 800-38C, NIST SP 800-38D]
+
+Application Note:
+
+For the assignment, the ST author should assign the mode or modes in which
+AES operates to support the cryptographic protocols chosen for FTP_ITC and
+FTP_TRP.
+
+For the selection, the ST author should choose the standards that describe the
+modes specified in the assignment.
+
+Assurance Activity:
+
+Test:
+
+The evaluator shall use tests appropriate to the modes selected in the above
+requirement from "The Advanced Encryption Standard Algorithm Validation
+Suite (AESAVS)", The CMAC Validation System (CMACVS)", "The Counter
+with Cipher Block Chaining-Message Authentication Code (CCM) Validation
+System (CCMVS)", and "The Galois/Counter Mode (GCM) and GMAC
+Validation System (GCMVS)" (these documents are available from
+http://csrc.nist.gov/groups/STM/cavp/index.html) as a guide in testing the
+requirement above. This will require that the evaluator have a reference
+implementation of the algorithms known to be good that can produce test
+vectors that are verifiable during the test.
+
+==== 4.5.6 FCS_COP.1(b) Cryptographic Operation (for signature generation/verification)
+
+	(for O.UPDATE_VERIFICATION, O.COMMS_PROTECTION)
+	Hierarchical to: No other components.
+	Dependencies: [FDP_ITC.1 Import of user data without security attributes, or
+		FDP_ITC.2 Import of user data with security attributes, or
+		FCS_CKM.1 Cryptographic key generation]
+		FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction
+
+FCS_COP.1.1(b) Refinement: The TSF shall perform cryptographic signature
+services in accordance with a [selection:
+
+• Digital Signature Algorithm (DSA) with key sizes (modulus) of [assignment:
+2048 bits or greater],
+• RSA Digital Signature Algorithm (rDSA) with key sizes (modulus) of [assignment: 2048 bits or greater], or
+• Elliptic Curve Digital Signature Algorithm (ECDSA) with key sizes of [assignment: 256 bits or greater]]
+
+that meets the following [selection:
+
+Case: Digital Signature Algorithm
+
+• FIPS PUB 186-4, “Digital Signature Standard”
+
+Case: RSA Digital Signature Algorithm
+
+• FIPS PUB 186-4, “Digital Signature Standard”
+
+Case: Elliptic Curve Digital Signature Algorithm
+
+• FIPS PUB 186-4, “Digital Signature Standard”
+• The TSF shall implement “NIST curves” P-256, P384 and [selection:
+P521, no other curves] (as defined in FIPS PUB 186-4, “Digital Signature
+Standard”).
+
+].
+
+Application Note:
+
+The ST Author should choose the algorithm implemented to perform digital
+signatures; if more than one algorithm is available, this requirement (and the
+corresponding FCS_CKM.1 requirement) should be iterated to specify the
+functionality. For the algorithm chosen, the ST author should make the
+appropriate assignments/selections to specify the parameters that are
+implemented for that algorithm.
+
+For elliptic curve-based schemes, the key size refers to the log2 of the order of
+the base point.
+
+Assurance Activity:
+
+Test:
+
+The evaluator shall use the signature generation and signature verification
+portions of "The Digital Signature Algorithm Validation System” (DSA2VS),
+"The Elliptic Curve Digital Signature Algorithm Validation System”
+(ECDSA2VS), and "The RSA Validation System” RSA2VS as a guide in testing
+the requirement above. The Validation System used shall comply with the
+conformance standard identified in the ST (i.e., FIPS PUB 186-4). This will
+require that the evaluator have a reference implementation of the algorithms
+known to be good that can produce test vectors that are verifiable during the test.
+
+==== FCS_RBG_EXT.1 Extended: Cryptographic Operation (Random Bit Generation)
+	(for O.STORAGE_ENCRYPTION and O.COMMS_PROTECTION)
+	Hierarchical to: No other components.
+	Dependencies: No dependencies.
+
+FCS_RBG_EXT.1.1: The TSF shall perform all deterministic random bit generation
+services in accordance with [selection: ISO/IEC 18031:2011, NIST SP 800-90A] using
+[selection: Hash_DRBG (any), HMAC_DRBG (any), CTR_DRBG (AES)].
+
+FCS_RBG_EXT.1.2 The deterministic RBG shall be seeded by at least one entropy
+source that accumulates entropy from [selection: [assignment: number of software-based
+sources] software-based noise source(s), [assignment: number of hardware-based
+sources] hardware-based noise source(s)] with a minimum of [selection: 128 bits, 256
+bits] of entropy at least equal to the greatest security strength, according to ISO/IEC
+18031:2011 Table C.1 “Security Strength Table for Hash Functions”, of the keys and
+hashes that it will generate.
+
+Application Note:
+
+ISO/IEC 18031:2011 contains different methods of generating random numbers;
+each of these, in turn, depends on underlying cryptographic primitives (hash
+functions/ciphers). The ST author will select the function used and include the
+specific underlying cryptographic primitives used in the requirement. While any
+of the identified hash functions (SHA-1, SHA-224, SHA-256, SHA-384, SHA512) are allowed for Hash_DRBG or HMAC_DRBG, only AES-based
+implementations for CTR_DRBG are allowed. Table C.2 in ISO/IEC
+18031:2011 provides an identification of Security strengths, Entropy and Seed
+length requirements for the AES-128 and 256 Block Cipher.
+
+The CTR_DRGB in ISO/IEC 18031:2011 requires using derivation function,
+whereas NIST SP 800-90A does not. Either model is acceptable. In the first
+selection in FCS_RBG_EXT.1.1, the ST Author chooses the standard with which
+they are compliant.
+
+The first selection in FCS_RBG_EXT.1.2 the ST author fills in how many
+entropy sources are used for each type of entropy source they employ. It should
+be noted that a combination of hardware and software based noise sources is
+acceptable.
+
+It should be noted that the entropy source is considered to be a part of the RBG
+and if the RBG is included in the TOE, the developer is required to provide the
+entropy description outlined in Appendix E. The documentation *and tests*
+required in the Evaluation Activity for this element necessarily cover each
+source indicated in FCS_RBG_EXT.1.2.
+
+Assurance activity:
+
+TSS:
+
+For any RBG services provided by a third party, the evaluator shall ensure the
+TSS includes a statement about the expected amount of entropy received from
+such a source, and a full description of the processing of the output of the thirdparty source. The evaluator shall verify that this statement is consistent with the
+selection made in FCS_RBG_EXT.1.2 for the seeding of the DRBG. If the ST
+specifies more than one DRBG, the evaluator shall examine the TSS to verify
+that it identifies the usage of each DRBG mechanism.
+
+Entropy Description:
+
+The evaluator shall ensure the Entropy Description provides all of the required
+information as described in Appendix E. The evaluator assesses the information
+provided and ensures the TOE is providing sufficient entropy when it is
+generating a Random Bit String.
+
+Operational Guidance:
+
+The evaluator shall verify that the AGD guidance instructs the administrator
+how to configure the TOE to use the selected DRBG mechanism(s), if necessary.
+
+Test:
+
+The evaluator shall perform 15 trials for the RBG implementation. If the RBG is
+configurable by the TOE, the evaluator shall perform 15 trials for each
+configuration. The evaluator shall verify that the instructions in the operational
+guidance for configuration of the RBG are valid.
+
+If the RBG has prediction resistance enabled, each trial consists of (1) instantiate
+DRBG, (2) generate the first block of random bits (3) generate a second block of
+random bits (4) uninstantiate. The evaluator verifies that the second block of
+random bits is the expected value. The evaluator shall generate eight input
+values for each trial. The first is a count (0 – 14). The next three are entropy
+input, nonce, and personalization string for the instantiate operation. The next
+two are additional input and entropy input for the first call to generate. The final
+two are additional input and entropy input for the second call to generate. These
+values are randomly generated. “Generate one block of random bits” means to
+generate random bits with number of returned bits equal to the Output Block
+Length (as defined in NIST SP800-90A).
+
+If the RBG does not have prediction resistance, each trial consists of (1)
+instantiate DRBG, (2) generate the first block of random bits (3) reseed, (4)
+generate a second block of random bits (5) uninstantiate. The evaluator verifies
+that the second block of random bits is the expected value. The evaluator shall
+generate eight input values for each trial. The first is a count (0 – 14). The next
+three are entropy input, nonce, and personalization string for the instantiate
+operation. The fifth value is additional input to the first call to generate. The
+sixth and seventh are additional input and entropy input to the call to reseed. The
+final value is additional input to the second generate call.
+
+The following paragraphs contain more information on some of the input values
+to be generated/selected by the evaluator.
+
+Entropy input: the length of the entropy input value must equal the seed length.
+
+Nonce: If a nonce is supported (CTR_DRBG with no Derivation Function does
+not use a nonce), the nonce bit length is one-half the seed length.
+
+Personalization string: The length of the personalization string must be <= seed
+length. If the implementation only supports one personalization string length,
+then the same length can be used for both values. If more than one string length
+is support, the evaluator shall use personalization strings of two different lengths.
+If the implementation does not use a personalization string, no value needs to be
+supplied.
+
+Additional input: the additional input bit lengths have the same defaults and
+restrictions as the personalization string lengths.
+
+=== User Data Protection (FDP)
+
+Application Note:
+
+The User Data Access Control SFP is composed of Table 2, Table 3,
+FDP_ACC.1, FDP_ACF.1, FMT_MSA.1, and FMT_MSA.3.
+
+==== FDP_ACC.1 Subset access control
+
+	(for O.ACCESS_CONTROL and O.USER_AUTHORIZATION)
+	Hierarchical to: No other components.
+	Dependencies: FDP_ACF.1 Security attribute based access control
+
+
+FDP_ACC.1.1 Refinement: The TSF shall enforce the User Data Access Control SFP
+on subjects, objects, and operations among subjects and objects specified in Table 2 and
+Table 3.
+
+Assurance Activity:
+
+It is covered by assurance activities for FDP_ACF.1.
+
+==== FDP_ACF.1 Security attribute based access control
+
+	(for O.ACCESS_CONTROL and O.USER_AUTHORIZATION)
+	Hierarchical to: No other components.
+	Dependencies: FDP_ACC.1 Subset access control
+	FMT_MSA.3 Static attribute initialization
+
+FDP_ACF.1.1 Refinement: The TSF shall enforce the User Data Access Control SFP
+to objects based on the following: subjects, objects, and attributes specified in Table 2
+and Table 3.
+
+FDP_ACF.1.2 Refinement: The TSF shall enforce the following rules to determine if
+an operation among controlled subjects and controlled objects is allowed: rules
+governing access among controlled subjects and controlled objects using controlled
+operations on controlled objects specified in Table 2 and Table 3.
+
+FDP_ACF.1.3 Refinement: The TSF shall explicitly authorise access of subjects to
+objects based on the following additional rules: [assignment: rules that do not conflict
+with the User Data Access Control SFP, based on security attributes, that explicitly
+authorise access of subjects to objects].
+
+FDP_ACF.1.4 Refinement: The TSF shall explicitly deny access of subjects to objects
+based on the following additional rules: [assignment: rules that do not conflict with the
+User Data Access Control SFP, based on security attributes, that explicitly deny access
+of subjects to objects].
+
+Table 2 D.USER.DOC Access Control SFP
+|====
+| *PRINT* | "Create" |"Read" |"Modify" |"Delete"
+| Operation: | Submit a document to be printed | View image or Release printed output | Modify stored document | Delete stored document
+| Job owner | (note 1) | | |
+| U.ADMIN | | | |
+| U.NORMAL | denied | denied | denied
+| Unauthenticated | (condition 1) | denied | denied | denied
+|====
+
+|====
+| *SCAN* | "Create" | "Read" | "Modify" | "Delete"
+| Operation: | Submit a document for scanning | View scanned image | Modify stored image | Delete stored image
+| Job owner | (note 2) | | |
+| U.ADMIN | | | |
+| U.NORMAL | denied | denied | denied
+| Unauthenticated | denied | denied | denied | denied
+|====
+
+|====
+| *COPY* | "Create" | "Read" | "Modify" | "Delete"
+| Operation: | Submit a document for copying | View scanned image or Release printed copy output | Modify stored image | Delete stored image
+| Job owner | (note 2) | | |
+| U.ADMIN | | | |
+| U.NORMAL | denied | denied | denied |
+| Unauthenticated | denied | denied | denied | denied
+|====
+
+|====
+| *FAX SEND* | "Create" | "Read" | "Modify" | "Delete"
+| Operation: | Submit a document to send as a fax | View scanned image | Modify stored image | Delete stored image
+| Job owner | (note 2) | | |
+| U.ADMIN | | | |
+| U.NORMAL | denied | denied | denied |
+| Unauthenticated | denied | denied | denied | denied
+|====
+
+|====
+| *FAX RECEIVE* | "Create" | "Read" | "Modify" | "Delete"
+| Operation: | Receive a fax and store it | View fax image or Release printed fax output | Modify image of received fax | Delete image of received fax
+| Fax owner | (note 3) | | |
+| U.ADMIN | (note 4) | | |
+| U.NORMAL | (note 4) | denied | denied | denied
+| Unauthenticated | denied | denied | denied
+|====
+
+|====
+| *STORAGE/RETRIEVAL* | "Create" | "Read" | "Modify" | "Delete"
+| Operation: | Store document | Retrieve stored document | Modify stored document | Delete stored document
+| Job owner  | (note 1) | | |
+| U.ADMIN | | | |
+| U.NORMAL | denied | denied | denied |
+| Unauthenticated | (condition 1) | denied | denied | denied
+|====
+
+
+Table 3 D.USER.JOB Access Control SFP
+|====
+| "PRINT" | "Create" * | "Read" | "Modify" | "Delete"
+| Operation: | Create print job | View print queue / log | Modify print job | Cancel print job
+| Job owner | (note 1) | | |
+| U.ADMIN | | | |
+| U.NORMAL | | denied | denied
+| Unauthenticated | | denied | denied
+|====
+
+|====
+| "SCAN" | "Create" * | "Read" | "Modify" | "Delete"
+| Operation: | Create scan job | View scan status / log | Modify scan job | Cancel scan job
+| Job owner | (note 2) | | |
+| U.ADMIN | | | |
+| U.NORMAL | | | denied | denied
+| Unauthenticated | denied | | denied | denied
+|====
+
+|====
+| "COPY" | "Create" * | "Read" | "Modify" | "Delete"
+| Operation: | Create copy job | View copy status / log | Modify copy job | Cancel copy job
+| Job owner | (note 2) | | |
+| U.ADMIN | | | |
+| U.NORMAL | | | denied | denied
+| Unauthenticated | denied | | denied | denied
+|====
+
+|====
+| "FAX SEND" | "Create" * | "Read" | "Modify" | "Delete"
+| Operation: | Create fax send job | View fax job queue / log | Modify fax send job | Cancel fax send job
+| Job owner | (note 2) | | |
+| U.ADMIN | | | |
+| U.NORMAL | | | denied | denied
+| Unauthenticated | denied | | denied | denied
+|====
+
+|====
+| "FAX RECEIVE" | "Create" * | "Read" | "Modify" | "Delete"
+| Operation: | Create fax receive job | View fax receive status / log | Modify fax receive job | Cancel fax receive job
+| Fax owner | (note 3) | | |
+| U.ADMIN | (note 4) | | |
+| U.NORMAL | (note 4) | | denied | denied
+| Unauthenticated | | | denied | denied
+|====
+
+|====
+| "STORAGE/RETRIEVAL" | "Create" * | "Read" | "Modify" | "Delete"
+| Operation: | Create storage / retrieval job | View storage / retrieval log | Modify storage / retrieval log | Cancel storage / retrieval log
+| Job owner | (note 1) | | |
+| U.ADMIN | | | |
+| U.NORMAL | | | denied | denied
+| Unauthenticated | (condition 1) | | denied | denied
+|====
+
+Application note:
+
+In general, the ST Author may modify this SFP provided that any changes are
+more restrictive. As examples, the ST Author may: remove the rules related to
+Document Processing functions that are not present in a TOE, add or modify
+rules to further deny access, or subdivide User Data to further restrict access
+for some data (e.g., D.USER.JOB.PROT and D.USER.JOB.CONF). Empty cells
+in the table indicate that the operation may be permitted, but it is not required to
+be permitted.
+
+In particular, referring to Table 2 and Table 3:
+
+• A cell marked “Denied” indicates that the user (row) must not be permitted
+to perform the operation (column). The ST Author cannot override this.
+• A cell that is blank indicates that the user may be permitted to perform the
+operation. However, the ST author may add conditions or restrictions, or
+deny permission entirely.
+• A cell that is marked with a Condition means that the user can be permitted
+to perform the operation, provided that it meets that Condition as specified
+below. As with blank cells, the ST author can make it more restrictive.
+
+Condition 1: Jobs submitted by unauthenticated users must contain a credential
+that the TOE can use to identify the Job Owner.
+
+See also the following Notes that are referenced in Table 2 and Table 3:
+
+Note 1: Job Owner is identified by a credential or assigned to an authorized
+User as part of the process of submitting a print or storage Job.
+
+Note 2: Job Owner is assigned to an authorized User as part of the process of
+initiating a scan, copy, fax send, or retrieval Job.
+
+Note 3: Job Owner of received faxes is assigned by default or configuration.
+Minimally, ownership of received faxes is assigned to a specific user or
+U.ADMIN role.
+
+Note 4: PSTN faxes are received from outside of the TOE, they are not initiated
+by Users of the TOE.
+
+Assurance Activity:
+
+TSS:
+
+The evaluator shall check to ensure that the TSS describes the functions to
+realize SFP defined in Table 2 and Table 3.
+
+Operational Guidance:
+
+The evaluator shall check to ensure that the operational guidance contains a
+description of the operation to realize the SFP defined in Table 2 and Table 3,
+which is consistent with the description in the TSS.
+
+Test:
+
+The evaluator shall perform tests to confirm the functions to realize the SFP
+defined in Table 2 and Table 3 with each type of interface (e.g., operation panel,
+Web interfaces) to the TOE.
+
+
+The evaluator testing should include the following viewpoints:
+
+• representative sets of the operations against representative sets of the object
+types defined in Table 2 and Table 3 (including some cases where
+operations are either permitted or denied)
+• representative sets for the combinations of the setting for security attributes
+that are used in access control
+
+
+
+
+
+=== Identification and Authentication (FIA)
+
+==== FIA_AFL.1 Authentication failure handling
+
+	(for O.USER_I&A)
+	Hierarchical to: No other components.
+	Dependencies: FIA_UAU.1 Timing of authentication
+
+FIA_AFL.1.1 The TSF shall detect when [selection: [assignment: positive integer
+number], an administrator configurable positive integer within [assignment: range of
+acceptable values]] unsuccessful authentication attempts occur related to [assignment:
+list of authentication events].
+
+FIA_AFL.1.2 When the defined number of unsuccessful authentication attempts has
+been [selection: met, surpassed], the TSF shall [assignment: list of actions].
+
+Application note:
+
+This SFR applies only to internal identification and authentication.
+
+Assurance Activity:
+
+TSS:
+
+The evaluator shall check to ensure that the TSS contains a description of the
+actions in the case of authentication failure (types of authentication events, the
+number of unsuccessful authentication attempts, actions to be conducted), which
+is consistent with the definition of the SFR.
+
+Operational Guidance:
+
+The evaluator shall check to ensure that the administrator guidance describes the
+setting for actions to be taken in the case of authentication failure, if any are
+defined in the SFR.
+
+Test:
+
+The evaluator shall also perform the following tests:
+
+1. The evaluator shall check to ensure that the subsequent authentication
+attempts do not succeed by the behavior according to the actions defined in
+the SFR when unsuccessful authentication attempts reach the status defined
+in the SFR.
+
+2. The evaluator shall check to ensure that authentication attempts succeed
+when conditions to re-enable authentication attempts are defined in the
+SFR and when the conditions are fulfilled.
+
+3. The evaluator shall perform the tests 1 and 2 described above for all the
+targeted authentication methods when there are multiple Internal
+Authentication methods (e.g., password authentication, biometric
+authentication).
+
+4. The evaluator shall perform the tests 1 and 2 described above for all
+interfaces when there are multiple interfaces (e.g., operation panel, Web
+interfaces) that implement authentication attempts.
+
+==== FIA_ATD.1 User attribute definition
+
+	(for O.USER_AUTHORIZATION)
+	Hierarchical to: No other components.
+	Dependencies: No dependencies.
+
+FIA_ATD.1.1 The TSF shall maintain the following list of security attributes belonging
+to individual users: [assignment: list of security attributes].
+
+Application note:
+
+The list of security attributes should be the union of all attributes for each of the
+supported authentication methods.
+
+Assurance Activity:
+
+TSS:
+
+The evaluator shall check to ensure that the TSS contains a description of the
+user security attributes that the TOE uses to implement the SFR, which is
+consistent with the definition of the SFR.
+
+==== FIA_PMG_EXT.1 Extended: Password Management
+
+	(for O.USER_I&A)
+	Hierarchical to: No other components.
+	Dependencies: No dependencies.
+
+FIA_PMG_EXT.1.1 The TSF shall provide the following password management
+capabilities for User passwords:
+
+• Passwords shall be able to be composed of any combination of upper and lower
+case letters, numbers, and the following special characters: [selection: “!”, “@”,
+“#”, “$”, “%”, “^”, “&”, “*”, “(“, “)”, [assignment: other characters]];
+• Minimum password length shall be settable by an Administrator, and have the
+capability to require passwords of 15 characters or greater;
+
+Application Note:
+
+This SFR applies only to password-based single-factor Internal Authentication.
+
+Assurance Activity:
+
+Operational Guidance:
+
+The evaluator shall examine the operational guidance to determine that it
+provides guidance to security administrators on the composition of passwords,
+and that it provides instructions on setting the minimum password length.
+
+Test:
+
+The evaluator shall also perform the following test:
+
+The evaluator shall compose passwords that either meet the requirements, or fail
+to meet the requirements, in some way. For each password, the evaluator shall
+verify that the TOE supports the password. While the evaluator is not required
+(nor is it feasible) to test all possible compositions of passwords, the evaluator
+shall ensure that all characters, rule characteristics, and a minimum length listed
+in the requirement are supported, and justify the subset of those characters
+chosen for testing.
+
+==== FIA_UAU.1 Timing of authentication
+
+	(for O.USER_I&A)
+	Hierarchical to: No other components.
+	Dependencies: FIA_UID.1 Timing of identification
+
+FIA_UAU.1.1 Refinement: The TSF shall allow [assignment: list of TSF mediated actions
+that do not conflict with the User Data Access Control SFP, and do not provide access
+to D.TSF.CONF, and do not change any TSF data] on behalf of the user to be
+performed before the user is authenticated.
+
+FIA_UAU.1.2 The TSF shall require each user to be successfully authenticated before
+allowing any other TSF-mediated actions on behalf of that user.
+
+Application note:
+
+User authentication may be performed internally by the TOE or externally by an
+External IT Entity.
+
+Assurance Activity:
+
+TSS:
+
+The evaluator shall check to ensure that the TSS describes all the identification
+and authentication mechanisms that the TOE provides (e.g., Internal
+Authentication and authentication by external servers).
+
+The evaluator shall check to ensure that the TSS identifies all the interfaces to
+perform identification and authentication (e.g., identification and authentication
+from operation panel or via Web interfaces).
+
+The evaluator shall check to ensure that the TSS describes the protocols (e.g.,
+LDAP, Kerberos, OCSP) used in performing identification and authentication
+when the TOE exchanges identification and authentication with External
+Authentication servers.
+
+The evaluator shall check to ensure that the TSS contains a description of the
+permitted actions before performing identification and authentication, which is
+consistent with the definition of the SFR.
+
+Operational Guidance:
+
+The evaluator shall check to ensure that the administrator guidance contains
+descriptions of identification and authentication methods that the TOE provides
+(e.g., External Authentication, Internal Authentication) as well as interfaces (e.g.,
+identification and authentication from operation panel or via Web interfaces),
+which are consistent with the ST (TSS).
+
+Test:
+
+The evaluator shall also perform the following tests:
+
+1. The evaluator shall check to ensure that identification and authentication
+succeeds, enabling the access to the TOE when using authorized data.
+2. The evaluator shall check to ensure that identification and authentication
+fails, disabling the access to the TOE afterwards when using unauthorized
+data.
+
+The evaluator shall perform the tests described above for each of the
+authentication methods that the TOE provides (e.g., External Authentication,
+Internal Authentication) as well as interfaces (e.g., identification and
+authentication from operation panel or via Web interfaces).
+
+==== FIA_UAU.7 Protected authentication feedback
+
+	(for O.USER_I&A)
+	Hierarchical to: No other components.
+	Dependencies: FIA_UAU.1 Timing of authentication
+
+FIA_UAU.7.1 The TSF shall provide only [assignment: list of feedback] to the user while
+the authentication is in progress.
+
+Application note:
+
+FIA_UAU.7 applies only to authentication processes in which the User interacts
+with the TOE.
+
+Assurance Activity:
+
+TSS:
+
+The evaluator shall check to ensure that the TSS contains a description of the
+authentication information feedback provided to users while the authentication
+is in progress, which is consistent with the definition of the SFR.
+
+Test:
+
+The evaluator shall also perform the following tests:
+
+1. The evaluator shall check to ensure that only the information defined in
+the SFR is provided for feedback by attempting identification and
+authentication.
+2. The evaluator shall perform the test 1 described above for all the interfaces
+that the TOE provides (e.g., operation panel, identification and
+authentication via Web interface).
+
+==== FIA_UID.1 Timing of identification
+
+	(for O.USER_I&A and O.ADMIN_ROLES)
+	Hierarchical to: No other components.
+	Dependencies: No dependencies.
+
+FIA_UID.1.1 Refinement: The TSF shall allow [assignment: list of TSF-mediated actions
+that do not conflict with the User Data Access Control SFP, and do not provide access
+to D.TSF.CONF, and do not change any TSF data] on behalf of the user to be
+performed before the user is identified.
+
+FIA_UID.1.2 The TSF shall require each user to be successfully identified before
+allowing any other TSF-mediated actions on behalf of that user.
+
+Application note:
+
+User identification may be performed internally by the TOE or externally by an
+External IT Entity.
+
+Assurance Activity:
+
+It is covered by assurance activities for FIA_UAU.1.
+
+==== FIA_USB.1 User-subject binding
+
+	(for O.USER_I&A)
+	Hierarchical to: No other components.
+	Dependencies: FIA_ATD.1 User attribute definition
+
+FIA_USB.1.1 The TSF shall associate the following user security attributes with subjects
+acting on the behalf of that user: [assignment: list of user security attributes].
+
+FIA_USB.1.2 The TSF shall enforce the following rules on the initial association of user
+security attributes with subjects acting on the behalf of users: [assignment: rules for the
+initial association of attributes].
+
+FIA_USB.1.3 The TSF shall enforce the following rules governing changes to the user
+security attributes associated with subjects acting on the behalf of users: [assignment:
+rules for the changing of attributes].
+
+Assurance Activity:
+
+TSS:
+
+The evaluator shall check to ensure that the TSS contains a description of rules
+for associating security attributes with the users who succeed identification and
+authentication, which is consistent with the definition of the SFR.
+
+Test:
+
+The evaluator shall also perform the following test:
+
+The evaluator shall check to ensure that security attributes defined in the SFR
+are associated with the users who succeed identification and authentication (it is
+ensured in the tests of FDP_ACF) for each role that the TOE supports (e.g., User
+and Administrator).
+
+
+
+
+
+
+=== Security Management (FMT)
+
+==== FMT_MOF.1 Management of security functions behavior
+
+	(for O.ADMIN_ROLES)
+	Hierarchical to: No other components.
+	Dependencies: FMT_SMR.1 Security roles
+	FMT_SMF.1 Specification of Management Functions
+
+FMT_MOF.1.1 Refinement: The TSF shall restrict the ability to [selection: determine
+the behaviour of, disable, enable, modify the behaviour of] the functions [assignment: list
+of functions] to U.ADMIN.
+
+Assurance Activity:
+
+TSS:
+
+The evaluator shall check to ensure that the TSS contains a description of the
+management functions that the TOE provides as well as user roles that are
+permitted to manage the functions, which is consistent with the definition of the
+SFR.
+
+The evaluator shall check to ensure that the TSS identifies interfaces to operate
+the management functions.
+
+Operational Guidance:
+
+The evaluator shall check to ensure that the administrator guidance describes the
+operation methods for users of the given roles defined in the SFR to operate the
+management functions.
+
+Test:
+
+The evaluator shall also perform the following tests:
+
+1. The evaluator shall check to ensure that users of the given roles defined in
+the SFR can operate the management functions in accordance with the
+operation methods specified in the administrator guidance.
+2. The evaluator shall check to ensure that the operation results are
+appropriately reflected.
+3. The evaluator shall check to ensure that U.NORMAL is not permitted to
+operate the management functions.
+
+==== FMT_MSA.1 Management of security attributes
+
+	(for O.ACCESS_CONTROL and O.USER_AUTHORIZATION)
+	Hierarchical to: No other components.
+	Dependencies: [FDP_ACC.1 Subset access control, or
+	FDP_IFC.1 Subset information flow control]
+	FMT_SMR.1 Security roles
+	FMT_SMF.1 Specification of Management Functions
+
+FMT_MSA.1.1 Refinement: The TSF shall enforce the User Data Access Control SFP
+to restrict the ability to [selection: change_default, query, modify, delete, [assignment:
+other operations]] the security attributes [assignment: list of security attributes] to
+[assignment: the authorised identified roles].
+
+Assurance Activity:
+
+TSS:
+
+The evaluator shall check to ensure that the TSS contains a description of
+possible operations for security attributes and given roles to those security
+attributes, which is consistent with the definition of the SFR.
+
+Operational Guidance:
+
+The evaluator shall check to ensure that the administrator guidance contains a
+description of possible operations for security attributes and given roles to those
+security attributes, which is consistent with the definition of the SFR.
+
+The evaluator shall check to ensure that the administrator guidance describes the
+timing of modified security attributes.
+
+Test:
+
+The evaluator shall also perform the following tests:
+
+1. The evaluator shall check to ensure that users of the given roles defined in
+the SFR can perform operations to the security attributes in accordance
+with the operation methods specified in the administrator guidance.
+
+2. The evaluator shall check to ensure that the operation results are
+appropriately reflected as specified in the administrator guidance.
+
+3. The evaluator shall check to ensure that a user that is not part of an
+authorized role defined in the SFR is not permitted to perform operations
+on the security attributes.
+
+==== FMT_MSA.3 Static attribute initialization
+	(for O.ACCESS_CONTROL and O.USER_AUTHORIZATION)
+	Hierarchical to: No other components.
+	Dependencies: FMT_MSA.1 Management of security attributes
+	FMT_SMR.1 Security roles
+
+FMT_MSA.3.1 Refinement: The TSF shall enforce the User Data Access Control SFP
+to provide [selection, choose one of: restrictive, permissive, [assignment: other
+property]] default values for security attributes that are used to enforce the SFP.
+
+FMT_MSA.3.2 Refinement: The TSF shall allow the [selection: U.ADMIN, no role] to
+specify alternative initial values to override the default values when an object or
+information is created.
+
+Application note:
+
+FMT_MSA.3.2 applies only to security attributes whose default values can be
+overridden.
+
+Assurance Activity:
+
+TSS:
+
+The evaluator shall check to ensure that the TSS describes mechanisms to
+generate security attributes which have properties of default values, which are
+defined in the SFR.
+
+Test:
+
+If U.ADMIN is selected, then testing of this SFR is performed in the tests of
+FDP_ACF.1.
+
+==== FMT_MTD.1 Management of TSF data
+
+	(for O.ACCESS CONTROL)
+	Hierarchical to: No other components.
+	Dependencies: FMT_SMR.1 Security roles
+	FMT_SMF.1 Specification of Management Functions
+
+FMT_MTD.1.1 Refinement: The TSF shall restrict the ability to perform the specified
+operations on the specified TSF Data to the roles specified in Table 4.
+
+Table 4 Management of TSF Data
+|====
+| Data | Operation | Authorised role(s)
+| [assignment: list of TSF Data owned by a U.NORMAL or associated with Documents or jobs owned by a U.NORMAL] | [selection: change default, query, modify, delete, clear, [assignment: other operations]] | U.ADMIN, the owning U.NORMAL.
+| [assignment: list of TSF Data not owned by a U.NORMAL] | [selection: change default, query, modify, delete, clear, [assignment: other operations]] | U.ADMIN
+| [assignment: list of software, firmware, and related configuration data] | [selection: change default, query, modify, delete, clear, [assignment: other operations]] | U.ADMIN
+|====
+
+Assurance Activity:
+
+Operational Guidance:
+
+The evaluator shall check to ensure that the administrator guidance identifies the
+management operations and authorized roles consistent with the SFR.
+
+The evaluator shall check to ensure that the administrator guidance describes
+how the assignment of roles is managed.
+
+The evaluator shall check to ensure that the administrator guidance describes
+how security attributes are assigned and managed.
+
+The evaluator shall check to ensure that the administrator guidance describes
+how the security-related rules (.e.g., access control rules, timeout, number of
+consecutive logon failures,) are configured.
+
+Test:
+
+The evaluator shall perform the following tests:
+
+1. The evaluator shall check to ensure that users of the given roles defined in
+the SFR can perform operations to TSF data in accordance with the
+operation methods specified in the administrator guidance.
+2. The evaluator shall check to ensure that the operation results are
+appropriately reflected as specified in the administrator guidance.
+3. The evaluator shall check to ensure that no users other than users of the
+given roles defined in the SFR can perform operations to TSF data.
+
+==== FMT_SMF.1 Specification of Management Functions
+
+	(for O.USER_AUTHORIZATION, O.ACCESS_CONTROL, and O.ADMIN_ROLES)
+	Hierarchical to: No other components.
+	Dependencies: No dependencies.
+
+
+FMT_SMF.1.1 Refinement: The TSF shall be capable of performing the following
+management functions: [assignment: list of management functions provided by the TSF].
+
+Application note:
+
+Regarding “management functions provided by the TSF”, the ST Author should
+consider management functions that support the security objectives of this
+protection profile.
+
+The management functions should be restricted to the authorized identified role
+in FMT_MOF.1, FMT_MTD.1, FMT_MSA.1.
+
+The ST Author may identify cases where a security objective is fulfilled without
+explicit manageability.
+
+For example, the following management functions are categorized by security
+objectives:
+
+For O.USER_AUTHORIZATION, O.USER_I&A, O.ADMIN_ROLES, O.ACCESS_CONTROL:
+
+• User management (e.g., add/change/remove local user)
+• Role management (e.g., assign/deassign role relationship with user)
+• Configuring identification and authentication (e.g., selecting between
+local and external I&A)
+• Configuring authorization and access controls (e.g., access control lists
+for TOE resources)
+• Configuring communication with External IT Entities
+
+For O.UPDATE_VERIFICATION:
+
+• Configuring software updates
+
+For O.COMMS_PROTECTION:
+
+• Configuring network communications
+• Configuring the system or network time source
+
+For O.AUDIT:
+
+• Configuring data transmission to audit server
+• Configuring the system or network time source
+• Configuring internal audit log storage
+
+For O.STORAGE_ENCRYPTION, O.KEY_MATERIAL:
+
+• Configuring and invoking encryption of Field-Replaceable Nonvolatile Storage Devices
+
+(Optional) For O.IMAGE_OVERWRITE, O.PURGE DATA:
+
+• Configuring and/or invoking image overwrite functions
+• Configuring and/or invoking data purging functions
+
+Assurance Activity:
+
+TSS:
+
+The evaluator shall check the TSS to ensure that the management functions are
+consistent with the assignment in the SFR.
+
+Operational Guidance:
+
+The evaluator shall check the guidance documents to ensure that management
+functions are consistent with the assignment in the SFR, and that their operation
+is described.
+
+==== FMT_SMR.1 Security roles
+
+	(for O.ACCESS_CONTROL, O.USER_AUTHORIZATION, and O.ADMIN_ROLES)
+	Hierarchical to: No other components.
+	Dependencies: FIA_UID.1 Timing of identification
+
+FMT_SMR.1.1 Refinement: The TSF shall maintain the roles U.ADMIN, U.NORMAL.
+
+FMT_SMR.1.2The TSF shall be able to associate users with roles.
+
+Assurance Activity:
+
+TSS:
+
+The evaluator shall check to ensure that the TSS contains a description of
+security related roles that the TOE maintains, which is consistent with the
+definition of the SFR.
+
+Test:
+
+As for tests of this SFR, it is performed in the tests of FMT_MOF.1,
+FMT_MSA.1, and FMT_MTD.1.
+
+
+
+
+
+=== Privacy (FPR)
+
+There are no class FPR requirements.
+
+
+=== Protection of the TSF (FPT)
+
+==== FPT_SKP_EXT.1 Extended: Protection of TSF Data
+
+	(for O.COMMS_PROTECTION)
+	Hierarchical to: No other components.
+	Dependencies: No dependencies.
+
+FPT_SKP_EXT.1.1 The TSF shall prevent reading of all pre-shared keys, symmetric
+keys, and private keys.
+
+Application Note:
+
+The intent of the requirement is that an administrator is unable to read or view
+the identified keys (stored or ephemeral) through “normal” interfaces. While it
+is understood that the administrator could directly read memory to view these
+keys, doing so is not a trivial task and may require substantial work on the part
+of an administrator. Since the administrator is considered a trusted agent, it is
+assumed they would not engage in such an activity.
+
+Assurance Activity:
+
+TSS:
+
+The evaluator shall examine the TSS to determine that it details how any preshared keys, symmetric keys, and private keys are stored and that they are
+unable to be viewed through an interface designed specifically for that purpose,
+as outlined in the application note. If these values are not stored in plaintext, the
+TSS shall describe how they are protected/obscured.
+
+==== FPT_STM.1 Reliable time stamps
+
+	(for.O.AUDIT)
+	Hierarchical to: No other components.
+	Dependencies: No dependencies.
+
+FPT_STM.1.1 The TSF shall be able to provide reliable time stamps.
+
+Application note:
+
+The time may be set by a trusted administrator or by a network service (e.g.,
+NTP) from a trusted External IT Entity.
+
+Assurance Activity:
+
+TSS:
+
+The evaluator shall check to ensure that the TSS describes mechanisms that
+provide reliable time stamps.
+
+Operational Guidance:
+
+The evaluator shall check to ensure that the guidance describes the method of
+setting the time.
+
+Test:
+
+The evaluator shall also perform the following tests:
+
+1. The evaluator shall check to ensure that the time is correctly set up in
+accordance with the guidance or external network services (e.g., NTP).
+2. The evaluator shall check to ensure that the time stamps are appropriately
+provided.
+
+==== FPT_TST_EXT.1 Extended: TSF testing
+
+	(for O.TSF_SELF_TEST)
+	Hierarchical to: No other components.
+	Dependencies: No dependencies.
+
+FPT_TST_EXT.1.1 The TSF shall run a suite of self-tests during initial start-up (and
+power on) to demonstrate the correct operation of the TSF.
+
+Application note:
+
+Power-on self-tests may take place before the TSF is operational, in which case
+this SFR can be satisfied by verifying the TSF image by digital signature as
+specified in FCS_COP.1(b), or by hash specified in FCS_COP.1(c).
+
+Assurance Activity:
+
+TSS:
+
+The evaluator shall examine the TSS to ensure that it details the self-tests that
+are run by the TSF on start-up; this description should include an outline of what
+the tests are actually doing (e.g., rather than saying "memory is tested", a
+description similar to "memory is tested by writing a value to each memory
+location and reading it back to ensure it is identical to what was written" shall be
+used). The evaluator shall ensure that the TSS makes an argument that the tests
+are sufficient to demonstrate that the TSF is operating correctly.
+
+Operational Guidance:
+
+The evaluator shall also ensure that the operational guidance describes the
+possible errors that may result from such tests, and actions the administrator
+should take in response; these possible errors shall correspond to those described
+in the TSS.
+
+==== FPT_TUD_EXT.1 Extended: Trusted Update
+
+	(for O.UPDATE_VERIFICATION)
+	Hierarchical to: No other components.
+	Dependencies: [FCS_COP.1(b) Cryptographic Operation (for signature generation/verification), or FCS_COP.1(c) Cryptographic operation (Hash Algorithm)].
+
+FPT_TUD_EXT.1.1 The TSF shall provide authorized administrators the ability to
+query the current version of the TOE firmware/software.
+
+FPT_TUD_EXT.1.2 The TSF shall provide authorized administrators the ability to
+initiate updates to TOE firmware/software.
+
+FPT_TUD_EXT.1.3 The TSF shall provide a means to verify firmware/software
+updates to the TOE using a digital signature mechanism and [selection: published hash,
+no other functions] prior to installing those updates.
+
+Application note:
+
+FPT_TUD_EXT.1.2 may be interpreted to allow an administrator to “preauthorize” automatic updates, provided that they are verified according to
+FPT_TUD_EXT.1.3.
+
+The digital signature mechanism is specified in FCS_COP.1(b). The published
+hash is generated by one of the functions specified in FCS_COP.1(c). It is
+acceptable to implement both mechanisms.
+
+Assurance Activity:
+
+TSS:
+
+The evaluator shall check to ensure that the TSS contains a description of
+mechanisms that verify software for update when performing updates, which is
+consistent with the definition of the SFR.
+
+The evaluator shall check to ensure that the TSS identifies interfaces for
+administrators to obtain the current version of the TOE as well as interfaces to
+perform updates.
+
+Operational Guidance:
+
+The evaluator shall check to ensure that the administrator guidance contains
+descriptions of the operation methods to obtain the TOE version as well as the
+operation methods to start update processing, which are consistent with the
+description of the TSS.
+
+Test:
+
+The evaluator shall also perform the following tests:
+
+1. The evaluator shall check to ensure the current version of the TOE can be
+appropriately obtained by means of the operation methods specified by the
+administrator guidance.
+2. The evaluator shall check to ensure that the verification of the data for
+updates of the TOE succeeds using authorized data for updates by means
+of the operation methods specified by the administrator guidance.
+3. The evaluator shall check to ensure that only administrators can
+implement the application for updates using authorized data for updates.
+4. The evaluator shall check to ensure that the updates are correctly
+performed by obtaining the current version of the TOE after the normal
+updates finish.
+5. The evaluator shall check to ensure that the verification of the data for
+updates of the TOE fails using unauthorized data for updates by means of
+the operation methods specified by the administrator guidance. (The
+evaluator shall also check those cases where hash verification mechanism
+and digital signature verification mechanism fail.)
+
+
+
+
+=== Resource Utilization (FRU)
+
+There are no class FRU requirements.
+
+=== TOE Access (FTA)
+
+==== FTA_SSL.3 TSF-initiated termination
+
+	(for O.USER_I&A)
+	Hierarchical to: No other components.
+	Dependencies: No dependencies.
+
+FTA_SSL.3.1 The TSF shall terminate an interactive session after a [assignment: time
+interval of user inactivity].
+
+Assurance Activity:
+
+TSS:
+
+The evaluator shall check to ensure that the TSS describes the types of user
+sessions to be terminated (e.g., user sessions via operation panel or Web
+interfaces) after a specified period of user inactivity.
+
+Operational Guidance:
+
+The evaluator shall check to ensure that the guidance describes the default time
+interval and, if it is settable, the method of setting the time intervals until the
+termination of the session.
+
+Test:
+
+The evaluator shall also perform the following tests:
+
+1. If it is settable, the evaluator shall check to ensure that the time until the
+termination of the session can be set up by the method of setting specified
+in the administrator guidance.
+2. The evaluator shall check to ensure that the session terminates after the
+specified time interval.
+3. The evaluator shall perform the tests 1 and 2 described above for all the
+user sessions identified in the TSS.
+
+=== Trusted Channels (FTP)
+
+==== *FTP_ITC.1 Inter-TSF trusted channel*
+
+....
+(for O.COMMS_PROTECTION, O.AUDIT)
+Hierarchical to:	No other components.
+Dependencies:		[FCS_IPSEC_EXT.1 Extended: IPsec selected, or
+			FCS_TLS_EXT.1 Extended: TLS selected, or
+			FCS_SSH_EXT.1 Extended: SSH selected, or
+			FCS_HTTPS_EXT.1 Extended: HTTPS selected].
+....
+
+*FTP_ITC.1.1 Refinement:* The TSF shall use [selection: IPsec, SSH, TLS,
+TLS/HTTPS] to provide a trusted communication channel between itself and authorized
+IT entities supporting the following capabilities: [selection: authentication server,
+[assignment: other capabilities]] that is logically distinct from other communication
+channels and provides assured identification of its end points and protection of the
+channel data from disclosure and detection of modification of the channel data.
+
+*FTP_ITC.1.2 Refinement:* The TSF shall permit the TSF, or the authorized IT
+entities, to initiate communication via the trusted channel
+
+*FTP_ITC.1.3 Refinement:* The TSF shall initiate communication via the trusted channel
+for [assignment: list of services for which the TSF is able to initiate communications].
+
+*Application note:*
+
+The assignment in FTP_ITC.1.3 should address the confidentiality and/or
+integrity requirements for communication of User and TSF Data between the
+TOE and another IT entity. FTP_TRP.1 is intended to be used for interactive
+communication between the TOE and remote users.
+
+The intent of the above requirement is to use a cryptographic protocol to protect
+external communications with authorized IT entities that the TOE interacts with
+to perform its functions. Protection (by one of the listed protocols) is required at
+least for communications with the server that collects the audit information. If it
+communicates with an authentication server (e.g., RADIUS), then the ST author
+chooses “authentication server” in FTP_ITC.1.1 and this connection must be
+protected by one of the listed protocols. If other authorized IT entities (e.g., NTP
+server) are protected, the ST author makes the appropriate assignments (for
+those entities) and selections (for the protocols that are used to protect those
+connections). After the ST author has made the selections, they are to select the
+detailed requirements in Appendix D.2 corresponding to their protocol selection
+to put in the ST. To summarize, the connection to an external audit collection
+server is required to be protected by one of the listed protocols. If an External
+Authentication server is supported, then it is required to protect that connection
+with one of the listed protocols. For any other external server, external
+communications are not required to be protected, but if protection is claimed,
+then it must be protected with one of the identified protocols.
+
+While there are no requirements on the party initiating the communication, the
+ST author lists in the assignment for FTP_ITC.1.3 the services for which the
+TOE can initiate the communication with the authorized IT entity.
+
+The requirement implies that not only are communications protected when they
+are initially established, but also on resumption after an outage. It may be the
+case that some part of the TOE setup involves manually setting up tunnels to
+protect other communication, and if after an outage the TOE attempts to reestablish the communication automatically with (the necessary) manual
+intervention, there may be a window created where an attacker might be able to
+gain critical information or compromise a connection.
+
+*Assurance Activity:*
+
+*TSS:*
+
+The evaluator shall examine the TSS to determine that, for all communications
+with authorized IT entities identified in the requirement, each communications
+mechanism is identified in terms of the allowed protocols for that IT entity. The
+evaluator shall also confirm that all protocols listed in the TSS are specified and
+included in the requirements in the ST. The evaluator shall confirm that the
+operational guidance contains instructions for establishing the allowed protocols
+with each authorized IT entity, and that it contains recovery instructions should
+a connection be unintentionally broken.
+
+*Test:*
+
+The evaluator shall also perform the following tests:
+
+1. The evaluators shall ensure that communications using each protocol with
+each authorized IT entity is tested during the course of the evaluation,
+setting up the connections as described in the operational guidance and
+ensuring that communication is successful.
+
+2. For each protocol that the TOE can initiate as defined in the requirement,
+the evaluator shall follow the operational guidance to ensure that in fact
+the communication channel can be initiated from the TOE.
+
+3. The evaluator shall ensure, for each communication channel with an
+authorized IT entity, the channel data are not sent in plaintext.
+
+4. The evaluator shall ensure, for each protocol associated with each
+authorized IT entity tested during test 1, the connection is physically
+interrupted. The evaluator shall ensure that when physical connectivity is
+restored, communications are appropriately protected.
+
+Further assurance activities are associated with the specific protocols.
+
+==== *FTP_TRP.1(a) Trusted path (for Administrators)*
+
+....
+(for O.COMMS_PROTECTION)
+Hierarchical to:	No other components.
+Dependencies:		[FCS_IPSEC_EXT.1 Extended: IPsec selected, or
+			FCS_TLS_EXT.1 Extended: TLS selected, or
+			FCS_SSH_EXT.1 Extended: SSH selected, or
+			FCS_HTTPS_EXT.1 Extended: HTTPS selected].
+....
+
+*FTP_TRP.1.1(a) Refinement:* The TSF shall use [selection, choose at least one of:
+IPsec, SSH, TLS, TLS/HTTPS] to provide a trusted communication path between
+itself and remote administrators that is logically distinct from other communication
+paths and provides assured identification of its end points and protection of the
+communicated data from disclosure and detection of modification of the
+communicated data.
+
+*FTP_TRP.1.2(a) Refinement:* The TSF shall permit remote administrators to initiate
+communication via the trusted path
+
+*FTP_TRP.1.3(a) Refinement:* The TSF shall require the use of the trusted path for
+initial administrator authentication and all remote administration actions.
+
+*Application Note:*
+
+This requirement ensures that authorized remote administrators initiate all
+communication with the TOE via a trusted path, and that all communications
+with the TOE by remote administrators is performed over this path. The data
+passed in this trusted communication path are encrypted as defined the protocol
+chosen in the first selection. The ST author chooses the mechanism or
+mechanisms supported by the TOE, and then ensures the detailed requirements
+in Appendix D.2 corresponding to their selection are copied to the ST if not
+already present.
+
+*Assurance Activity:*
+
+*TSS:*
+
+The evaluator shall examine the TSS to determine that the methods of remote
+TOE administration are indicated, along with how those communications are
+protected. The evaluator shall also confirm that all protocols listed in the TSS in
+support of TOE administration are consistent with those specified in the
+requirement, and are included in the requirements in the ST.
+
+*Operational Guidance:*
+
+The evaluator shall confirm that the operational guidance contains instructions
+for establishing the remote administrative sessions for each supported method.
+
+*Test:*
+
+The evaluator shall also perform the following tests:
+
+1. The evaluators shall ensure that communications using each specified (in
+the operational guidance) remote administration method is tested during
+the course of the evaluation, setting up the connections as described in the
+operational guidance and ensuring that communication is successful.
+
+2. For each method of remote administration supported, the evaluator shall
+follow the operational guidance to ensure that there is no available
+interface that can be used by a remote user to establish a remote
+administrative sessions without invoking the trusted path.
+
+3. The evaluator shall ensure, for each method of remote administration, the
+channel data are not sent in plaintext.
+
+Further assurance activities are associated with the specific protocols.
+
+==== *FTP_TRP.1(b) Trusted path (for Non-administrators)*
+
+....
+(for O.COMMS_PROTECTION)
+Hierarchical to:	No other components.
+Dependencies:		[FCS_IPSEC_EXT.1 Extended: IPsec selected, or
+			FCS_TLS_EXT.1 Extended: TLS selected, or
+			FCS_SSH_EXT.1 Extended: SSH selected, or
+			FCS_HTTPS_EXT.1 Extended: HTTPS selected].
+....
+
+*FTP_TRP.1.1(b) Refinement:* The TSF shall use [selection, choose at least one of:
+IPsec, SSH, TLS, TLS/HTTPS] to provide a trusted communication path between itself
+and remote users that is logically distinct from other communication paths and provides
+assured identification of its end points and protection of the communicated data from
+disclosure and detection of modification of the communicated data.
+
+*FTP_TRP.1.2(b) Refinement:* The TSF shall permit [selection: the TSF, remote
+users] to initiate communication via the trusted path
+
+*FTP_TRP.1.3(b) Refinement:* The TSF shall require the use of the trusted path for
+initial user authentication and all remote user actions.
+
+*Application Note:*
+
+This requirement ensures that authorized remote users initiate all
+communication with the TOE via a trusted path, and that all communications
+with the TOE by remote users is performed over this path. The data passed in
+this trusted communication path are encrypted as defined the protocol chosen in
+the first selection. The ST author chooses the mechanism or mechanisms
+supported by the TOE, and then ensures the detailed requirements in Appendix
+D.2 corresponding to their selection are copied to the ST if not already present.
+
+*Assurance Activity:*
+
+*TSS:*
+
+The evaluator shall examine the TSS to determine that the methods of remote
+TOE access for non-administrative users are indicated, along with how those
+communications are protected.
+
+The evaluator shall also confirm that all protocols listed in the TSS in support of
+remote TOE access are consistent with those specified in the requirement, and
+are included in the requirements in the ST.
+
+*Operational Guidance:*
+
+The evaluator shall confirm that the operational guidance contains instructions
+for establishing the remote user sessions for each supported method.
+
+*Test:*
+
+The evaluator shall also perform the following tests:
+
+1. The evaluators shall ensure that communications using each specified (in
+the operational guidance) remote user access method is tested during the
+course of the evaluation, setting up the connections as described in the
+operational guidance and ensuring that communication is successful.
+
+2. For each method of remote access supported, the evaluator shall follow the
+operational guidance to ensure that there is no available interface that can
+be used by a remote user to establish a remote user session without
+invoking the trusted path.
+
+3. The evaluator shall ensure, for each method of remote user access, the
+channel data are not sent in plaintext.
+
+Further assurance activities are associated with the specific protocols.
+
+
+== Security Assurance Requirements
+[BOILERPLATE]
+====
+This section is boilerplate
+====
+
+The <<Security Objectives>> for the TOE were constructed to address <<threats>> identified in the <<Security Problem Definition>>. The <<Security Functional Requirements>> are a formal instantiation of the <<Security Objectives>>. This cPP identifies the Security Assurance Requirements to frame the extent to which the evaluator assesses the documentation applicable for the evaluation and performs independent testing.
+
+This section lists the set of SARs from CC part 3 that are required in evaluations against this cPP. Individual Evaluation Activities to be performed are specified in <<SD>>.
+
+The general model for evaluation of TOEs against STs written to conform to this cPP is as follows:
+
+After the ST has been approved for evaluation, the ITSEF (IT Security Evaluation Facility) will obtain the TOE, supporting environmental IT (if required), and the administrative/user guides for the TOE. The ITSEF is expected to perform actions mandated by the Common Evaluation Methodology (CEM) for the ASE and ALC SARs. The ITSEF also performs the Evaluation Activities contained within the SD, which are intended to be an interpretation of the other CEM assurance requirements as they apply to the specific technology instantiated in the TOE. The Evaluation Activities that are captured in the SD also provide clarification as to what the developer needs to provide to demonstrate the TOE is compliant with the cPP.
+
+[REVIEW]
+====
+If the iTC decides to go above EAL1 requirements then this table (and the associated SARs) will need to be modified. If not, then this is boilerplate and can be left alone.
+====
+
+.Security Assurance Requirements
+[Header,cols="1,2"]
+|===
+|Assurance Class
+|Assurance Components
+
+.7+.^|Security Target (ASE)
+|Conformance Claims (ASE_CCL.1)
+
+|Extended components definition (ASE_ECD.1)
+
+|ST introduction (ASE_INT.1)
+
+|Security objectives for the operational environment (ASE_OBJ.1)
+
+|Stated security requirements (ASE_REQ.1)
+
+|Security Problem Definition (ASE_SPD.1)
+
+|TOE summary specification (ASE_TSS.1)
+
+|Development (ADV)
+|Basic functional specification (ADV_FSP.1)
+
+.2+.^|Guidance documents (AGD)
+|Operational user guidance (AGD_OPE.1)
+
+|Preparative procedures (AGD_PRE.1)
+
+.2+.^|Life cycle support (ALC)
+|Labeling of the TOE (ALC_CMC.1)
+
+|TOE CM coverage (ALC_CMS.1)
+
+|Tests (ATE)
+|Independent testing – sample (ATE_IND.1)
+
+|Vulnerability assessment (AVA)
+|Vulnerability survey (AVA_VAN.1)
+
+|===
+
+=== ASE: Security Target
+[BOILERPLATE]
+====
+This section is boilerplate except for the guidance noted here
+====
+
+The ST is evaluated as per ASE activities defined in the <<CEM>>. In addition, there may be Evaluation Activities specified within the <<SD>> that call for necessary descriptions to be included in the TSS that are specific to the TOE technology type.
+
+[GUIDANCE]
+====
+As an option, the cPP may express a need for a more detailed description of how a TOE satisfies one or more SFRs. The level of detail required by the SD may include proprietary information, or simply information that should not be made public (i.e., provides attackers insight into the operation of the TOE that may increase the likelihood of a successful attack against the product). This information could be submitted as an appendix to the ST or as a separate document. The required information may take the form of a refinement as shown below, and the associated Evaluation Activity would be specified in the SD.
+====
+
+[BOILERPLATE]
+====
+As long as you are doing EAL1, none of these sections until you get to AVA_VAN.1 will need to be modified.
+====
+
+=== ADV: Development
+The design information about the TOE is contained in the guidance documentation available to the end user as well as the TSS portion of the ST, and any additional information required by this cPP that is not to be made public (e.g., Entropy Report).
+
+==== Basic Functional Specification (ADV_FSP.1)
+The functional specification describes the TOE Security Functions Interfaces (TSFIs). It is not necessary to have a formal or complete specification of these interfaces. Additionally, because TOEs conforming to this cPP will necessarily have interfaces to the Operational Environment that are not directly invokable by TOE users, there is little point specifying that such interfaces be described in and of themselves since only indirect testing of such interfaces may be possible. For this cPP, the Evaluation Activities for this family focus on understanding the interfaces presented in the TSS in response to the functional requirements and the interfaces presented in the AGD documentation. No additional “functional specification” documentation is necessary to satisfy the Evaluation Activities specified in <<SD>>.
+
+The Evaluation Activities in <<SD>> are associated with the applicable SFRs; since these are directly associated with the SFRs, the tracing in element ADV_FSP.1.2D is implicitly already done and no additional documentation is necessary.
+
+=== AGD: Guidance Documentation
+The guidance documents will be provided with the ST. Guidance must include a description of how the IT personnel verifies that the Operational Environment can fulfill its role for the security functionality. The documentation should be in an informal style and readable by the IT personnel.
+
+Guidance must be provided for every operational environment that the product supports as claimed in the ST. This guidance includes:
+
+* instructions to successfully install the TSF in that environment; and
+* instructions to manage the security of the TSF as a product and as a component of the larger operational environment; and
+* instructions to provide a protected administrative capability.
+
+Guidance pertaining to particular security functionality must also be provided; requirements on such guidance are contained in the Evaluation Activities specified in the <<SD>>.
+
+==== Operational User Guidance (AGD_OPE.1)
+The operational user guidance does not have to be contained in a single document. Guidance to users, administrators and application developers can be spread among documents or web pages.
+
+The developer should review the Evaluation Activities contained in the <<SD>> to ascertain the specifics of the guidance that the evaluator will be checking for. This will provide the necessary information for the preparation of acceptable guidance.
+
+==== Preparative Procedures (AGD_PRE.1)
+As with the operational guidance, the developer should look to the Evaluation Activities to determine the required content with respect to preparative procedures.
+
+=== Class ALC: Life-cycle Support
+At the assurance level provided for TOEs conformant to this cPP, life-cycle support is limited to end-user-visible aspects of the life-cycle, rather than an examination of the TOE vendor’s development and configuration management process. This is not meant to diminish the critical role that a developer’s practices play in contributing to the overall trustworthiness of a product; rather, it is a reflection on the information to be made available for evaluation at this assurance level.
+
+==== Labelling of the TOE (ALC_CMC.1)
+This component is targeted at identifying the TOE such that it can be distinguished from other products or versions from the same vendor and can be easily specified when being procured by an end user.
+
+==== TOE CM Coverage (ALC_CMS.1)
+Given the scope of the TOE and its associated evaluation evidence requirements, the evaluator performs the CEM work units associated with ALC_CMC.1.
+
+=== Class ATE: Tests
+Testing is specified for functional aspects of the system as well as aspects that take advantage of design or implementation weaknesses. The former is done through the ATE_IND family, while the latter is through the AVA_VAN family. For this cPP, testing is based on advertised functionality and interfaces with dependency on the availability of design information. One of the primary outputs of the evaluation process is the test report as specified in the following requirements.
+
+==== Independent Testing – Conformance (ATE_IND.1)
+Testing is performed to confirm the functionality described in the TSS as well as the operational guidance (includes “evaluated configuration” instructions). The focus of the testing is to confirm that the requirements specified in Section 5 are being met. The Evaluation Activities in the SD identify the specific testing activities necessary to verify compliance with the SFRs. The evaluator produces a test report documenting the plan for and results of testing, as well as coverage arguments focused on the platform/TOE combinations that are claiming conformance to this cPP.
+
+=== Class AVA: Vulnerability Assessment
+
+[REVIEW]
+====
+AVA is a difficult subject. This is taken from the NDcPP v2.1 as an example, but will need to be determined by the iTC.
+====
+
+For the first generation of this cPP, the iTC is expected to survey open sources to discover what vulnerabilities have been discovered in these types of products and provide that content into the AVA_VAN discussion. In most cases, these vulnerabilities will require sophistication beyond that of a basic attacker. This information will be used in the development of future protection profiles.
+
+==== Vulnerability Survey (AVA_VAN.1)
+<<SD>> provides a guide to the evaluator in performing a vulnerability analysis.
+
+[appendix]
+== Selection-Based Requirements
+[BOILERPLATE]
+====
+If there are selection-based requirements, the following paragraphs should be left
+====
+
+As indicated in the introduction to this cPP, the baseline requirements (those that shall be performed by the TOE) are contained in <<Security Functional Requirements>>. Additionally, there are two other types of requirements specified in <<Consistency Rationale>>.
+
+The first type (in this Appendix) comprises requirements based on selections in other SFRs from the cPP: if certain selections are made, then additional requirements in this chapter will need to be included in the body of the ST.
+
+The second type (in the next Appendix) comprises requirements that can be included in the ST, but are not mandatory for a TOE to claim conformance to this cPP.
+
+[REVIEW]
+====
+It is likely (though not guaranteed) there will be selection-based requirements. If there are, then they should be placed here. If there are none, then that should be explicitly stated in this section.
+====
+
+[appendix]
+== Optional Requirements
+[BOILERPLATE]
+====
+This should remain if there are any optional requirements
+====
+
+ST authors are free to choose none, some or all SFRs defined in this chapter. Just the fact that a product supports a certain functionality does not mandate to add any SFR defined in this chapter.
+
+[REVIEW]
+====
+This section should contain any SFRs considered "optional" by the iTC. If there are none, then that should be stated (that there are no optional requirements in the cPP). The section should not be removed, but it should be explicitly stated there are no optional requirements.
+====
+
+[appendix]
+== Extended Component Definitions
+This appendix contains the definitions for the extended requirements that are used in the cPP, including those used in <<Consistency Rationale>> and <<Selection-Based Requirements>> .
+
+(Note: formatting conventions for selections and assignments in this chapter are those in <<CC2>>.)
+
+[GUIDANCE]
+====
+If Extended SFRs are created they must be defined here. An example is copied here from the Biometrics Security PP-Module (because it is short).
+====
+
+[REVIEW]
+====
+The entire FIA_MBE_EXT section here is a complete example of an Extended Component Definition. Note the ditaa diagram showing the component levelling. This is a required feature of the ECD and needs to be included for all components.
+
+If extended components are being defined, all sections within the example must be filled out for each requirement.
+====
+
+=== Identification and Authentication (FIA)
+
+==== Mobile biometric enrolment (FIA_MBE_EXT)
+
+===== Family Behaviour
+
+This component defines the requirements for the TSF to be able to enrol a user, create templates of sufficient quality and prevent presentation attacks.
+
+===== Component levelling
+[#img-FIA-MBE-EXT]
+.Component levelling
+[ditaa]
+....
+                                                     +---+
+                                                  +->| 1 |
+                                                  |  +---+
+    +------------------------------------------+  |
+    |                                          |  |  +---+
+    | FIA_MBE_EXT  Mobile biometric enrollment +--+->| 2 |
+    |                                          |  |  +---+
+    +------------------------------------------+  |
+                                                  |  +---+
+                                                  +->| 3 |
+                                                     +---+
+
+....
+
+FIA_MBE_EXT.1 Mobile biometric enrolment requires the TSF to enrol a user.
+
+FIA_MBE_EXT.2 Quality of biometric templates for mobile biometric enrolment requires the TSF to create templates of sufficient quality.
+
+FIA_MBE_EXT.3 Presentation attack detection for mobile biometric enrolment requires the TSF to prevent presentation attacks during the mobile biometric enrolment.
+
+===== Management: FIA_MBE_EXT.1
+
+There are no management activities foreseen.
+
+===== Management: FIA_MBE_EXT.2
+
+The following actions could be considered for the management functions in FMT:
+
+a)	the management of the TSF data (setting threshold values for quality scores to generate templates) by an administrator.
+
+===== Management: FIA_MBE_EXT.3
+The following actions could be considered for the management functions in FMT:
+
+a)	the management of the TSF data (setting values for detecting artificial presentation attack instruments) by an administrator.
+
+===== Audit: FIA_MBE_EXT.1, FIA_MBE_EXT.2
+The following actions should be auditable if FAU_GEN Security audit data generation is included in the PP/ST:
+
+a)	Basic: Success or failure of the mobile biometric enrollment
+
+===== Audit: FIA_MBE_EXT.3
+The following actions should be auditable if FAU_GEN Security audit data generation is included in the PP/ST:
+
+a)	Basic: Detection of presentation attacks
+
+===== FIA_MBE_EXT.1 Mobile biometric enrolment
+Hierarchical to: No other components
+
+Dependencies: No dependencies
+
+*FIA_MBE_EXT.1.1* The TSF shall provide a mechanism to enrol an authenticated user.
+
+*Application Note {counter:appnote_count}*:: User shall be authenticated by the mobile device using the Password Authentication Factor before beginning biometric enrolment.
+
+===== FIA_MBE_EXT.2 Quality of biometric templates for mobile biometric enrolment
+Hierarchical to: No other components
+Dependencies: 	FIA_MBE_EXT.1 Mobile biometric enrolment
+
+*FIA_MBE_EXT.2.1* The TSF shall create templates of sufficient quality.
+
+*Application Note {counter:appnote_count}*:: ST author may refine “sufficient quality” to specify quality standards if the TOE follows such standard.
+
+===== FIA_MBE_EXT.3 Presentation attack detection for mobile biometric enrolment
+
+Hierarchical to: No other components
+Dependencies: FIA_MBE_EXT.1 Mobile biometric enrolment
+
+*FIA_MBE_EXT.3.1* The TSF shall prevent use of artificial presentation attack instruments from being successfully enrolled.
+
+[appendix]
+== Entropy Documentation and Assessment
+
+[REVIEW]
+====
+This section may not always be applicable when talking about PP-Modules (which may rely on entropy from a base PP). This particular section is copied from the NDcPP. If you need an entropy review, it would be simplest to probably leave this intact.
+====
+
+This appendix describes the required supplementary information for each entropy source used by the TOE.
+
+The documentation of the entropy source(s) should be detailed enough that, after reading, the evaluator will thoroughly understand the entropy source and why it can be relied upon to provide sufficient entropy. This documentation should include multiple detailed sections: design description, entropy justification, operating conditions, and health testing. This documentation is not required to be part of the TSS.
+
+=== Design Description
+Documentation shall include the design of each entropy source as a whole, including the interaction of all entropy source components. Any information that can be shared regarding the design should also be included for any third-party entropy sources that are included in the product.
+
+The documentation will describe the operation of the entropy source to include how entropy is produced, and how unprocessed (raw) data can be obtained from within the entropy source for testing purposes. The documentation should walk through the entropy source design indicating
+where the entropy comes from, where the entropy output is passed next, any post-processing of the raw outputs (hash, XOR, etc.), if/where it is stored, and finally, how it is output from the entropy source. Any conditions placed on the process (e.g., blocking) should also be described
+in the entropy source design. Diagrams and examples are encouraged.
+
+This design must also include a description of the content of the security boundary of the entropy source and a description of how the security boundary ensures that an adversary outside the boundary cannot affect the entropy rate.
+
+If implemented, the design description shall include a description of how third-party applications can add entropy to the RBG. A description of any RBG state saving between power-off and power-on shall be included.
+
+=== Entropy Justification
+There should be a technical argument for where the unpredictability in the source comes from and why there is confidence in the entropy source delivering sufficient entropy for the uses made of the RBG output (by this particular TOE). This argument will include a description of the expected min-entropy rate (i.e. the minimum entropy (in bits) per bit or byte of source data) and explain that sufficient entropy is going into the TOE randomizer seeding process. This discussion will be part of a justification for why the entropy source can be relied upon to produce bits with entropy.
+
+The amount of information necessary to justify the expected min-entropy rate depends on the type of entropy source included in the product.
+
+For developer-provided entropy sources, in order to justify the min-entropy rate, it is expected that a large number of raw source bits will be collected, statistical tests will be performed, and the min-entropy rate determined from the statistical tests. While no particular statistical tests are required at this time, it is expected that some testing is necessary in order to determine the amount of min-entropy in each output.
+
+For third-party provided entropy sources, in which the TOE vendor has limited access to the design and raw entropy data of the source, the documentation will indicate an estimate of the amount of min-entropy obtained from this third-party source. It is acceptable for the vendor to
+“assume” an amount of min-entropy, however, this assumption must be clearly stated in the documentation provided. In particular, the min-entropy estimate must be specified and the assumption included in the ST.
+
+Regardless of the type of entropy source, the justification will also include how the DRBG is initialized with the entropy stated in the ST, for example by verifying that the min-entropy rate is multiplied by the amount of source data used to seed the DRBG or that the rate of entropy expected based on the amount of source data is explicitly stated and compared to the statistical rate. If the amount of source data used to seed the DRBG is not clear or the calculated rate is not explicitly related to the seed, the documentation will not be considered complete.
+
+The entropy justification shall not include any data added from any third-party application or from any state saving between restarts.
+
+=== Operating Conditions
+The entropy rate may be affected by conditions outside the control of the entropy source itself. For example, voltage, frequency, temperature, and elapsed time after power-on are just a few of the factors that may affect the operation of the entropy source. As such, documentation will also include the range of operating conditions under which the entropy source is expected to generate random data. Similarly, documentation shall describe the conditions under which the entropy source is no longer guaranteed to provide sufficient entropy. Methods used to detect failure or degradation of the source shall be included.
+
+=== Health Testing
+More specifically, all entropy source health tests and their rationale will be documented. This will include a description of the health tests, the rate and conditions under which each health test is performed (e.g., at start up, continuously, or on-demand), the expected results for each health test, TOE behaviour upon entropy source failure, and rationale indicating why each test is believed to be appropriate for detecting one or more failures in the entropy source.
+
+
+[appendix]
+== Key Management Document
+[GUIDANCE]
+====
+This section can be included to cover information that should not be publically released but which needs to be included in the documentation that is evaluated. In some cases this has been handled by public and proprietary versions of the ST (specifically the TSS), but this information can also be covered in a separate document.
+
+This is not always necessary and depends on the product type. The name of the document can be edited to be appropriate for the iTC, but the purpose is to cover information that would normally be marked as proprietary by a vendor.
+
+The following section has been copied from the current File Encryption PP-Module by NIAP.
+====
+
+The documentation of the product’s encryption key management should be detailed enough that, after reading, the evaluator will thoroughly understand the product’s key management and how it meets the requirements to ensure the keys are adequately protected. This documentation should include an essay and diagram(s). This documentation is not required to be part of the TSS - it can be submitted as a separate document and marked as developer proprietary.
+
+=== Key Management Description
+
+The description will provide the following information for all keys in the key chain:
+
+* The purpose of the key
+* If the key is stored in non-volatile memory
+* How and when the key is protected
+* How and when the key is derived
+* The strength of the key
+* When or if the key would be no longer needed, along with a justification
+* How and when the key may be shared
+
+The description will also describe the following topics:
+
+* A description of all authorization factors that are supported by the product and how each factor is handled, including any conditioning and combining performed.
+* If validation is implemented, the process for validation shall be described, noting what value is used for validation and the process used to perform the validation. It shall describe how this process ensures no keys in the key chain are weakened or exposed by this process.
+* The authorization process that leads to the decryption of the FEK(s). This section shall detail the key chain used by the product. It shall describe which keys are used in the protection of the FEK(s) and how they meet the encryption or derivation requirements including the direct chain from the initial authorization to the FEK(s). It shall also include any values that add into that key chain or interact with the key chain and the protections that ensure those values do not weaken or expose the overall strength of the key chain.
+* The diagram and essay will clearly illustrate the key hierarchy to ensure that at no point the chain could be broken without a cryptographic exhaust or all of the initial authorization values and the effective strength of the FEK(s) is maintained throughout the key chain.
+* A description of the data encryption engine, its components, and details about its implementation (e.g. initialization of the product, drivers, libraries (if applicable), logical interfaces for encryption/decryption, and how resources to be encrypted are identified. The description should also include the data flow from the device’s host interface to the device’s persistent media storing the data, information on those conditions in which the data bypasses the data encryption engine. The description should be detailed enough to verify all platforms ensure that when the user enables encryption, the product encrypts all selected resources.
+* The process for destroying keys when they are no longer needed by describing the storage location of all keys and the protection of all keys stored in non-volatile memory.
+
+
+=== Key Management Diagram:
+
+* The diagram will include all keys from the initial authorization factor(s) to the FEK(s) and any keys or values that contribute into the chain. It must list the cryptographic strength of each key and indicate how each key along the chain is protected with either options from key chaining requirement. The diagram should indicate the input used to derive or decrypt each key in the chain.
+* A functional (block) diagram showing the main components (such as memories and processors) the initial steps needed for the activities the TOE performs to ensure it encrypts the targeted resources when a user or administrator first provisions the product.
+
+[appendix]
+== Consistency Rationale
+[REVIEW]
+====
+These tables need to be completed to show mapping and justification that the threats and assumptions map to the requirements.
+====
+
+.Consistency Rationale for threats and OSPs
+|===
+|Threats/OSPs	|Consistency Rationale
+
+|
+|
+
+|===
+
+.Consistency Rationale for Assumptions
+|===
+|Assumptions	    |Consistency Rationale
+
+|
+|
+
+
+|===
+
+=== Consistency of Objectives
+
+The objectives for the biometric system and its operational environment are consistent with the <<MDFPP>> based on the following rationale:
+
+.Consistency Rationale for TOE Objectives
+|===
+|TOE Objectives	|Consistency Rationale
+
+|
+|
+
+
+|===
+
+.Consistency Rationale for Environmental Objectives
+|===
+|Environmental Objectives	|Consistency Rationale
+
+|
+|
+
+|===
+
+=== Consistency of Requirements
+
+
+[appendix]
+== SFR List
+[GUIDANCE]
+====
+This section is to provide a full list of all SFRs and their inclusion status (mandatory, optional or selection-based) within the cPP.
+====
+
+This table is provided as a reference of all SFRs included in this cPP.
+
+The Type column has the following definitions:
+
+Mandatory:: The requirement is mandatory for inclusion in the ST.
+Optional:: The requirement is optional for inclusion in the ST.
+Selection:: The requirement inclusion is determined by selections in other requirements in the ST.
+
+.Security Functional Requirements
+[Header,cols="4,8,2"]
+|===
+|Requirement Class
+|Requirement Components
+|Type
+
+|Security Audit (FAU)
+|
+|4.3.1	FAU_GEN.1	Audit data generation
+(for O.AUDIT)
+Hierarchical to:	No other components.
+Dependencies: 	FPT_STM.1	Reliable time stamps
+FAU_GEN.1.1	The TSF shall be able to generate an audit record of the following auditable events:
+a)	Start-up and shutdown of the audit functions;
+b)	All auditable events for the not specified level of audit; and
+c)	All auditable events specified in Table 1, [assignment: other specifically defined auditable events].
+
+FAU_GEN.1.2	The TSF shall record within each audit record at least the following information:
+a)	Date and time of the event, type of event, subject identity (if applicable), and the outcome (success or failure) of the event; and
+b)	For each audit event type, based on the auditable event definitions of the functional components included in the PP/ST, additional information specified in Table 1, [assignment: other audit relevant information].
+
+.Table 1 Auditable Events
+|===
+|Auditable event |Relevant SFR |Additional information
+
+|Job completion
+|FDP_ACF.1
+|Type of job
+
+|Unsuccessful User authentication
+|FIA_UAU.1
+|None
+
+|Unsuccessful User identification
+|FIA_UID.1
+|None
+
+|Use of management functions
+|FMT_SMF.1
+|None
+
+|Modification to the group of Users that are part of a role
+|FMT_SMR.1
+|None
+
+|Changes to the time
+|FPT_STM.1
+|None
+
+|Failure to establish session
+|FTP_ITC.1, FTP_TRP.1(a), FTP_TRP.1(b)
+|Reason for failure
+|===
+
+Application Note:
+In cases where user identification events are inseparable from user authentication events, they may be considered to be a single event for audit purposes.
+Regarding FMT_SMR.1, if the relationship between users and roles is not modifiable, its auditable event cannot be generated and the requirement to generate an audit record can be ignored.
+The ST author can include other auditable events directly in the table; they are not limited to the list presented.
+
+FAU_GEN.2	User identity association
+(for O.AUDIT)
+Hierarchical to:	No other components.
+Dependencies:	FAU_GEN.1	Audit data generation
+		FIA_UID.1	Timing of identification
+
+FAU_GEN.2.1	For audit events resulting from actions of identified users, the TSF shall be able to associate each auditable event with the identity of the user that caused the event.
+
+FAU_STG_EXT.1	Extended: External Audit Trail Storage
+(for O.AUDIT)
+Hierarchical to:	No other components.
+Dependencies:	FAU_GEN.1	Audit data generation,
+	FTP_ITC.1	Inter-TSF trusted channel.
+
+FAU_STG_EXT.1.1	The TSF shall be able to transmit the generated audit data to an External IT Entity using a trusted channel according to FTP_ITC.1.
+
+|Cryptograhic Support (FCS)
+|
+|
+
+|User Data Protection (FDP)
+|
+|
+
+|Identification and Authentication (FIA)
+|
+|
+
+|Security Management (FMT)
+|
+|
+
+|Privacy (FPR)
+|
+|
+
+|Protection of the TSF (FPT)
+|
+|
+
+|Resource Utilization (FRU)
+|
+|
+
+|TOE Access (FTA)
+|
+|
+
+|Trusted Channels (FTP)
+|
+|
+|===
+
+[appendix]
+== Glossary
+[REVIEW]
+====
+This should be completed to define all the terms needed to fully understand the content of the cPP.
+====
+For the purpose of this cPP, the following terms and definitions given in _some specific references_ apply. If the same terms and definitions are given in those references, terms and definitions that fit the context of this cPP take precedence.
+
+[glossary]
+Data Encryption Key (DEK)::
+A key used to encrypt data at rest.
+
+[appendix]
+== Acronyms
+.Acronyms
+[%header,cols="1,4"]
+
+|===
+|Acronym |Meaning
+
+|AES
+|Advanced Encryption Standard
+
+|ITSEF
+|IT Security Evaluation Facility
+
+|===
