@@ -1419,7 +1419,6 @@ _The TOE is required to use the IPsec protocol to establish connections used to 
 BRIANV - IMAGE TAG NEEDS TO BE ADDED TO EXTERNAL FILE
 
 _The evaluators shall minimally create a test environment equivalent to the test environment illustrated above. It is expected that the traffic generator is used to construct network packets and will provide the evaluator with the ability manipulate fields in the ICMP, IPv4, IPv6, UDP, and TCP packet headers. The evaluators must provide justification for any differences in the test environment._
---
 
 *FCS_IPSEC_EXT.1.1* The TSF shall implement the IPsec architecture as specified in RFC 4301.
 
