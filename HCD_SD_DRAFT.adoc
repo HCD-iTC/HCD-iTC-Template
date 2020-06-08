@@ -8,7 +8,7 @@
 :imagesdir: images
 :icons: font
 :revnumber: 0.1
-:revdate: 2020-06-06
+:revdate: 2020-06-08
 :xrefstyle: full
 
 :iTC-longname: Hardcopy Devices International Technical Community
@@ -22,6 +22,11 @@
 :pp-date: 2020-06-04
 
 == Foreword
+
+[BOILERPLATE]
+====
+This section is boilerplate and should not need to be edited.
+====
 
 This is a Supporting Document, intended to complement the Common Criteria (CC) version 3 and the associated Common Evaluation Methodology for Information Technology Security Evaluation.
 
@@ -72,19 +77,31 @@ toc::[]
 
 This Supporting Document (SD) is mandatory for evaluations of products that claim conformance to any of the following cPP(s):
 
+[REVIEW]
+====
+Verify version and date information for the PP
+====
+
 * {pp-name}, {pp-version}, {pp-date}
 
 [GUIDANCE]
 ====
-To Do - Need to provide a high level description of the product type being evaluated with this cPP/SD. 
+You need to provide a high level description of the product type being evaluated with this cPP/SD. 
 ====
 
-
-// Boilerplate - This next paragraph is boilerplate.
+[BOILERPLATE]
+====
+This next paragraph is boilerplate.
+====
 
 Although EAs are defined mainly for the evaluator to follow, the definitions in this SD aim to provide a common understanding for developers, evaluators and users as to what aspects of the TOE are tested in an evaluation against {pp-name}, and to what depth the testing is carried out. This common understanding in turn contributes to the goal of ensuring that evaluations against {pp-name} achieve comparable, transparent and repeatable results. In general, the definition of EAs will also help developers to prepare for evaluation by identifying specific requirements for their TOE. The specific requirements in EAs may in some cases clarify the meaning of SFRs, and may identify particular requirements for the content of Security Targets (STs) (especially the TOE Summary Specification (TSS)), AGD guidance, and possibly required supplementary information (e.g. _any examples, such as for entropy analysis or cryptographic key architecture_).
 
 === Structure of the Document
+
+[BOILERPLATE]
+====
+Generally this section should be considered boilerplate.
+====
 
 EAs can be defined for both SFRs and SARs. These are defined in separate sections of this SD.
 
@@ -94,15 +111,24 @@ In general, if all EAs (for both SFRs and SARs) are successfully completed in an
 
 Similarly, at the more granular level of Assurance Components, if the Evaluation Activities for an Assurance Component and all of its related SFR Evaluation Activities are successfully completed in an evaluation then it would be expected that the verdict for the Assurance Component is a 'pass'. To reach a 'fail' verdict for the Assurance Component when these Evaluation Activities have been successfully completed would require a specific justification from the evaluator as to why the Evaluation Activities were not sufficient for that TOE.
 
-// Question - The ND SD contains section 1.3 Application of this Supporting Document. Neither the DSC SD nor the FDE SD contain this section. Do you want to consider adding this section in this SD? 
+[REVIEW]
+====
+The ND SD contains a section named "Application of this Supporting Document. Should we add a similar section to this SD? 
+====
 
 == Evaluation Activities for SFRs
 
 === Structure of EAs
 
-// Question - This section doesn't exist in the ND SD, FDE EE SD, or DSC SD. Does this section provide enough value for us to keep it? 
+[BOILERPLATE]
+====
+Generally this section should be considered boilerplate.
+====
 
-// Boilerplate - Generally this section should be considered boilerplate.
+[REVIEW]
+====
+Other SDs do not contain this section. Should we remove this section? 
+====
 
 All EAs for SFRs defined in this Section include the following items to keep consistency among EAs.
 
@@ -139,12 +165,17 @@ The evaluator uses these criteria to determine whether the EA has demonstrated t
 Specific reporting requirements that support transparency and reproducibility of the Pass/Fail judgement are defined here.
 
 === Justification for EAs for SFRs
+[BOILERPLATE]
+====
+Generally this section should be considered boilerplate.
+====
 
-// Question - This section doesn't exist in the ND SD, FDE EE SD, or DSC SD. Does this section provide enough value for us to keep it? 
+[REVIEW]
+====
+Other SDs do not contain this section. Should we remove this section? 
+====
 
-// Boilerplate - Generally this section should be considered boilerplate
-
-EAs in this SD provide specific or more detailed guidance to evaluate the _type of_ system, however, it is the CEM work units based on which the evaluator shall perform evaluations.
+As in this SD provide specific or more detailed guidance to evaluate the _type of_ system, however, it is the CEM work units based on which the evaluator shall perform evaluations.
 
 This Section explains how EAs for SFRs are derived from the particular CEM work units identified in Assessment Strategy to show the consistency and compatibility between the CEM work units and EAs in this SD.
 
@@ -153,6 +184,13 @@ Assessment Strategy for ASE_TSS requires the evaluator to examine that the TSS p
 Assessment Strategy for AGD_OPE/ADV_FSP requires the evaluator to examine that the AGD guidance provides sufficient information for the administrators/users as it pertains to SFRs, its verdicts will be associated with CEM work units ADV_FSP.1-7, AGD_OPE.1-4, and AGD_OPE.1-5.
 
 Assessment Strategy for ATE_IND requires the evaluator to conduct testing that the iTC has determined that those testing of the TOE in the context of the associated SFR is necessary. While the evaluator is expected to develop tests, there may be instances where it is more practical for the developer to construct tests, or where the developer may have existing tests. Therefore, it is acceptable for the evaluator to witness developer-generated tests in lieu of executing the tests. In this case, the evaluator must ensure the developer's tests are executing both in the manner declared by the developer and as mandated by the EA. The CEM work units that derive those EAs are: ATE_IND.1-3, ATE_IND.1-4, ATE_IND.1-5, ATE_IND.1-6, and ATE_IND.1-7.
+
+[GUIDANCE]
+====
+The following sections have been included from CC Part 2 just as reference. Each section will have to be filled out. If the class isn't needed it can be removed.
+
+An example of headings is provided under FAU.
+====
 
 === Security Audit (FAU)
 
@@ -665,9 +703,12 @@ Further assurance activities are associated with the specific protocols.
 
 == Evaluation Activities for Conditionally Mandatory Requirements 
 
-//- To Do: In the HCD-PP, SFRs are grouped based on functional areas (e.g. B.2 	PSTN Fax-Network Separation). We need to determine if want to something similar in the cPP/SD. 
+[REVIEW]
+====
+JC - In the HCD-PP, conditionally-mandatory SFRs are grouped based on functional areas (e.g. B.2 PSTN Fax-Network Separation). I've grouped them based on functional areas in this SD as well.   
+====
 
-=== Protection of the TSF (FPT)
+=== Confidential Data on Field-Replaceable Nonvolatile Storage Devices
 
 ==== FPT_KYP_EXT.1 Extended: Protection of Key and Key Material 
 
@@ -676,8 +717,6 @@ Further assurance activities are associated with the specific protocols.
 The evaluator shall examine the Key Management Description (KMD) for a description of the methods used to protect keys stored in nonvolatile memory.
 
 The evaluator shall verify the KMD to ensure it describes the storage location of all keys and the protection of all keys stored in nonvolatile memory.
-
-=== Cryptograhic Support (FCS)
 
 ==== FCS_KYC_EXT.1 Extended: Key Chaining 
  
@@ -692,8 +731,6 @@ The evaluator shall examine the KMD to ensure that it describes a high level des
 The evaluator shall examine the KMD to ensure that it describes how the key chain process functions, such that it does not expose any material that might compromise any key in the chain. (e.g. using a key directly as a compare value against a TPM) This description must include a diagram illustrating the key hierarchy implemented and detail where all keys and keying material is stored or what it is derived from.  The evaluator shall examine the key hierarchy to ensure that at no point the chain could be broken without a cryptographic exhaust or the initial authorization value and the effective strength of the BEV is maintained throughout the Key Chain.
 
 The evaluator shall verify the KMD includes a description of the strength of keys throughout the key chain.
-
-=== User Data Protection (FDP)
 
 ==== FDP_DSK_EXT.1 Extended: Protection of Data on Disk 
 
@@ -729,9 +766,9 @@ Test 1. Write data to Storage device: Perform writing to the storage device with
 
 Test 2. Confirm that written data are encrypted: Verify there are no plaintext data present in the encrypted range written by Test 1; and, verify that the data can be decrypted by proper key and key material.
 
-//- To Do: Need to figure out how to indent the tests above. 
-
 All TSFIs for writing User Document Data and Confidential TSF data should be tested by above Test 1 and Test 2.
+
+=== PSTN Fax-Network Separation
 
 ==== FDP_FXS_EXT.1	Extended: Fax separation
 
@@ -757,6 +794,8 @@ The evaluator shall test to ensure that the fax interface can only be used trans
 . Verify that the TOE accepts incoming calls using fax carrier protocols and rejects calls that use data carriers. For example, this may be achieved using a terminal application to issue modem commands directly to the TOE from a PC modem (issue terminal command: ‘ATDT <TOE Fax Number>’) – the TOE should answer the call and disconnect.
 
 . Verify TOE negotiates outgoing calls using fax carrier protocols and rejects negotiation of data carriers. For example, this may be achieved by using a PC modem to attempt to receive a call from the TOE (submit a fax job from the TOE to <PC modem number>, at PC issue terminal command: ‘ATA’) – the TOE should disconnect without negotiating a carrier.
+
+=== Network Communications
 
 ==== FTP_TRP.1(b)	Trusted path (for Non-administrators)
 
@@ -784,7 +823,17 @@ Further assurance activities are associated with the specific protocols.
 
 == Evaluation Activities for Optional Requirements 
 
-=== Security Audit (FAU)
+[GUIDANCE]
+====
+This is the same as the above section, but is specifically for the Optional requirements
+====
+
+[REVIEW]
+====
+JC - In the HCD-PP, conditionally-mandatory SFRs are grouped based on functional areas (e.g. B.2 PSTN Fax-Network Separation). I've grouped them based on functional areas in this SD as well.   
+====
+
+=== Internal Audit Log Storage
 
 ==== FAU_SAR.1	Audit review  
 
@@ -844,25 +893,9 @@ The evaluator shall check to ensure that the operational guidance contains a des
 The evaluator shall also perform the following tests:
 
 . The evaluator generates auditable events after the capacity of audit records becomes full by generating auditable events in accordance with the operational guidance.
-. The evaluator shall check to ensure that audit records are processed in accordance with the definition of the SFR . 
+. The evaluator shall check to ensure that audit records are processed in accordance with the definition of the SFR. 
 
-=== Cryptograhic Support (FCS)
-
-==== FCS _CKM.1(a) Cryptographic Key Generation (for asymmetric keys)
-
-===== TSS
-
-The evaluator shall ensure that the TSS contains a description of how the TSF complies with 800-56A and/or 800-56B, depending on the selections made. This description shall indicate the sections in 800-56A and/or 800-56B that are implemented by the TSF, and the evaluator shall ensure that key establishment is among those sections that the TSF claims to implement.
-
-Any TOE-specific extensions, processing that is not included in the documents, or alternative implementations allowed by the documents that may impact the security requirements the TOE is to enforce shall be described in the TSS.
-
-The TSS may refer to the Key Management Description (KMD), described in Appendix F , that may not be made available to the public.  
-
-===== Tests
-
-The evaluator shall use the key pair generation portions of "The FIPS 186-4 Digital Signature Algorithm Validation System (DSA2VS)", "The FIPS 186-4 Elliptic Curve Digital Signature Algorithm Validation System (ECDSA2VS)", and “The 186-4 RSA Validation System (RSA2VS)” as a guide in testing the requirement above, depending on the selection performed by the ST author. This will require that the evaluator have a trusted reference implementation of the algorithms that can produce test vectors that are verifiable during the test.
-
-=== User Data Protection (FDP)
+=== Image Overwrite
 
 ==== FDP_RIP.1(a)	Subset residual information protection  
 
@@ -878,6 +911,8 @@ The evaluator shall check to ensure that the operational guidance contains instr
 
 The evaluator shall include tests related to this function in the set of tests performed in FMT_SMF.1.
 
+=== Purge Data
+
 ==== FDP_RIP.1(b)	Subset residual information protection
 
 ===== TSS
@@ -892,8 +927,33 @@ The evaluator shall check to ensure that the operational guidance contains instr
 
 The evaluator shall include tests related to this function in the set of tests performed in FMT_SMF.1.
 
+=== Asymmetric Key Generation  
+
+==== FCS _CKM.1(a) Cryptographic Key Generation (for asymmetric keys)
+
+===== TSS
+
+The evaluator shall ensure that the TSS contains a description of how the TSF complies with 800-56A and/or 800-56B, depending on the selections made. This description shall indicate the sections in 800-56A and/or 800-56B that are implemented by the TSF, and the evaluator shall ensure that key establishment is among those sections that the TSF claims to implement.
+
+Any TOE-specific extensions, processing that is not included in the documents, or alternative implementations allowed by the documents that may impact the security requirements the TOE is to enforce shall be described in the TSS.
+
+The TSS may refer to the Key Management Description (KMD), described in Appendix F , that may not be made available to the public.  
+
+===== Tests
+
+The evaluator shall use the key pair generation portions of "The FIPS 186-4 Digital Signature Algorithm Validation System (DSA2VS)", "The FIPS 186-4 Elliptic Curve Digital Signature Algorithm Validation System (ECDSA2VS)", and “The 186-4 RSA Validation System (RSA2VS)” as a guide in testing the requirement above, depending on the selection performed by the ST author. This will require that the evaluator have a trusted reference implementation of the algorithms that can produce test vectors that are verifiable during the test.
 
 == Evaluation Activities for Selection-Based Requirements 
+
+[GUIDANCE]
+====
+This is the same as the above section, but is specifically for the Selection-based requirements
+====
+
+[REVIEW]
+====
+JC - In the HCD-PP, conditionally-mandatory SFRs are grouped based on functional areas (e.g. B.2 PSTN Fax-Network Separation). I've grouped them based on functional areas in this SD as well.   
+====
 
 === Confidential Data on Field-Replaceable Nonvolatile Storage Devices 
 
@@ -943,7 +1003,10 @@ The evaluator shall also test the decrypt functionality for each mode by decrypt
 
 The evaluator shall test the encrypt functionality using a set of 200 plaintext, IV, and key 3-tuples. 100 of these shall use 128 bit keys, and 100 shall use 256 bit keys. The plaintext and IV values shall be 128-bit blocks. For each 3-tuple, 1000 iterations shall be run as follows:
 
-//- To Do - Need to add paragraphs 1104-1111
+[REVIEW]
+====
+JC - Need to add paragraphs 1104-1111 from HCD-PP
+====
 
 The ciphertext computed in the 1000th iteration (i.e., CT[1000]) is the result for that trial. This result shall be compared to the result of running 1000 iterations with the same values using a known good implementation.
 
@@ -1257,7 +1320,12 @@ The evaluator shall check the TSS to ensure that it lists the supported data int
 
 ====== FCS_SSH_EXT.1.7
 
-The evaluator shall ensure that operational guidance contains configuration information that will allow the security administrator to configure the TOE so that all key exchanges for SSH are performed using DH group 14 and any groups specified from the selection in the ST. If this capability is “hard-coded” into the TOE, the evaluator shall check the TSS to ensure that this is stated in the discussion of the SSH protocol. 
+[REVIEW]
+====
+JC - Updated the EA for Guidance Documentation below for TD0494. 
+====
+
+The evaluator shall check the guidance documentation to ensure that it contains instructions to the administrator on how to ensure that only the allowed key exchange algorithms are used in SSH connections with the TOE.
 
 ===== Tests
 
@@ -1291,11 +1359,21 @@ The evaluator shall establish a SSH connection using each of the integrity algor
 
 ====== FCS_SSH_EXT.1.7
 
+[REVIEW]
+====
+JC - Updated the EA for Tests below for TD0494. 
+====
+
 The evaluator shall also perform the following test:
 
-The evaluator shall attempt to perform a diffie-hellman-group1-sha1 key exchange, and observe that the attempt fails. For each allowed key exchange method, the evaluator shall then attempt to perform a key exchange using that method, and observe that the attempt succeeds.
 
-==== FCS_HTTPS_EXT.1 Extended: HTTPS selected    
+. [Conditional: TOE is a client] The evaluator shall configure an SSH server to permit all allowed key exchange methods. For each allowed key exchange method, the evaluator shall attempt to connect from the TOE to the SSH server and observe that the attempt succeeds.
+
+. [Conditional: TOE is a server] The evaluator shall configure an SSH client to only allow the diffie-hellman-group1-sha1 key exchange. The evaluator shall attempt to connect from the SSH client to the TOE and observe that the attempt fails.
+
+. [Conditional: TOE is a server] For each allowed key exchange method, the evaluator shall configure an SSH client to only allow that method for key exchange, attempt to connect from the client to the TOE, and observe that the attempt succeeds.
+
+==== FCS_HTTPS_EXT.1 Extended: HTTPS selected 
 
 ===== TSS
 
@@ -1449,15 +1527,19 @@ When evaluating a Security Target, the evaluator performs the work units as pres
 
 The EAs for this assurance component focus on understanding the interfaces (e.g., application programing interfaces, command line interfaces, graphical user interfaces, network interfaces) described in the AGD documentation, and possibly identified in the TOE Summary Specification (TSS) in response to the SFRs. Specific evaluator actions to be performed against this documentation are identified (where relevant) for each SFR in Section 2 (Evaluation Activities for SFRs), and in EAs for AGD, ATE and AVA SARs in other parts of Section 5.
 
-// Question - Should the last sentence in the paragraph above also mention EAs for the conditionally-mandatory, optional, and selection-based SFRs claimed by the ST and specified in sections 3, 4, and 5? 
+[REVIEW]
+====
+JC - Should the last sentence in the paragraph above also mention EAs for the conditionally-mandatory, optional, and selection-based SFRs claimed by the ST and specified in sections 3, 4, and 5? 
+====
 
 The EAs presented in this section address the CEM work units ADV_FSP.1-1, ADV_FSP.1-2, ADV_FSP.1-3, and ADV_FSP.1-5.
 
-// Note - The HCD-PP specifies the elemements for ADV_FSP.1 from CC Part 2 wherase the SD address certain CEM work units for ADV_FSP.1. Additionally, the HCD-PP specifies an AA for TSS whereas the SD does not. 
+[REVIEW]
+====
+JC- Note: The HCD-PP specifies the elemements for ADV_FSP.1 from CC Part 2 wherase the SD address certain CEM work units for ADV_FSP.1. Additionally, the HCD-PP specifies an AA for TSS whereas the SD does not. 
+====
 
 The EAs are reworded for clarity and interpret the CEM work units such that they will result in more objective and repeatable actions by the evaluator. The EAs in this SD are intended to ensure the evaluators are consistently performing equivalent actions.
-
-// Note - The EAs in the SD reword for clarity and intepret the CEM work units. 
 
 The documents to be examined for this assurance component in an evaluation are therefore the Security Target, AGD documentation, and any required supplementary information required by the cPP: no additional "functional specification" documentation is necessary to satisfy the EAs. The interfaces that need to be evaluated are also identified by reference to the EAs listed for each SFR, and are expected to be identified in the context of the Security Target, AGD documentation, and any required supplementary information defined in the cPP rather than as a separate list specifically for the purposes of CC evaluation. The direct identification of documentation requirements and their assessment as part of the EAs for each SFR also means that the tracing required in ADV_FSP.1.2D (work units ADV_FSP.1-4, ADV_FSP.1-6 and ADV_FSP.1-7) is treated as implicit and no separate mapping information is required for this element.
 
@@ -1541,7 +1623,10 @@ any cryptographic engine associated with the evaluated configuration
 of the TOE. It shall provide a warning to the administrator that use of other cryptographic engines was not evaluated nor tested during the
 CC evaluation of the TOE.
 
-// Note - The item above seems to be redundant as it is already covered by 6.3.1.3. Evaluation Activity. 
+[REVIEW]
+====
+JC - Note: The item above seems to be redundant as it is already covered by 6.3.1.3. Evaluation Activity. 
+====
 
 . The documentation must describe the process for verifying updates to
 the TOE by verifying a digital signature. The evaluator shall verify that
@@ -1608,13 +1693,14 @@ The evaluator performs the CEM work units associated with the ATE_IND.1
 SAR. Specific testing requirements and EAs are captured for each SFR in
 <<Evaluation Activities for SFRs>>, <<Evaluation Activities for Conditionally Mandatory Requirements>>, <<Evaluation Activities for Optional Requirements>>, and <<Evaluation Activities for Selection-Based Requirements>>.
 
-// Note - Added the following from SD for ND cPP
-
+[REVIEW]
+====
+JC - Added the following from ND SD. 
+====
 The evaluator should consult <<Equivalency Considerations>> when determining the appropriate
 strategy for testing multiple variations or models of the TOE that may be under
 evaluation.
 
-// Question - The SD for ND cPP contains information to address distributed TOE. Does the SD for HCD cPP need to address an HCD implemention that contains a distributed TOE? 
 
 [REVIEW]
 ====
@@ -1624,7 +1710,6 @@ An example of this can be found in <<Equivalency Considerations>>.
 ====
 
 === Class AVA: Vulnerability Assessment
-
 [GUIDANCE]
 ====
 The iTC plays a key role in determining the scope of the vulnerability analysis with respect to what is publicly reported. The iTC must perform several activities to complete sections of this Supporting Document in order to ensure the flaws investigated by the evaluation team are meaningful in the context of the cPP and cover the areas of concern by the iTC for this technology.
@@ -1743,11 +1828,17 @@ The evaluator formulates hypotheses in accordance with process defined in Append
 
 == Required Supplementary Information
 
-// Boilerplate - The following paragraph is boilerplate. 
-
 This Supporting Document refers in various places to the possibility that 'required supplementary information' may need to be supplied as part of the deliverables for an evaluation. This term is intended to describe information that is not necessarily included in the Security Target or operational guidance, and that may not necessarily be public. Examples of such information could be entropy analysis, or description of a cryptographic key management architecture used in (or in support of) the TOE. The requirement for any such supplementary information will be identified in the relevant cPP. 
 
-// Note - The text below was added for this SD. 
+[GUIDANCE]
+====
+Add the EAs for Required Supplementary Information, such as a Key Management Description, as defined in the cPP.
+====
+
+[REVIEW]
+====
+JC - Added the text below for this SD. 
+====
 
 The supplementary information required by this SD are:
 
