@@ -1,14 +1,13 @@
 = collaborative Protection Profile for _Hardcopy Devices_
 :showtitle:
-:doctype: book
 :toc: macro
 :toclevels: 7
 :sectnums:
 :sectnumlevels: 7
 :imagesdir: images
 :icons: font
-:revnumber: 0.2
-:revdate: 2019-08-23
+:revnumber: 0.6
+:revdate: 2020-06-08
 
 :iTC-longname: Hardcopy Device
 :iTC-shortname: HCD-iTC
@@ -42,9 +41,9 @@ _Government Agency Names_
 |Date
 |Description
 
-|0.1
-|<DATE>
-|Initial Release for iTC Review
+|0.6
+|8 June 2020
+|Initial Release for HCD iTC Review
 
 |
 |
@@ -408,7 +407,7 @@ The following sections have been included from CC Part 2 just as reference. Incl
 
 === *Security Audit (FAU)*
 
-=== *FAU_GEN.1	Audit data generation*
+==== *FAU_GEN.1	Audit data generation*
 
 ....
 (for O.AUDIT)
@@ -579,26 +578,26 @@ Dependencies:	[FDP_ITC.1 Import of user data without security attributes, or
 
 FCS_COP.1.1(b) Refinement: The TSF shall perform cryptographic signature services in accordance with a [selection:
 
-- Digital Signature Algorithm (DSA) with key sizes (modulus) of  [assignment: 2048 bits or greater],
-- RSA Digital Signature Algorithm (rDSA) with key sizes (modulus) of [assignment: 2048 bits or greater], or
-- Elliptic Curve Digital Signature Algorithm (ECDSA) with key sizes of [assignment: 256 bits or greater]]
+- *_Digital Signature Algorithm (DSA) with key sizes (modulus) of_ [assignment: _2048 bits or greater_],*
+- *_RSA Digital Signature Algorithm (rDSA) with key sizes (modulus) of_ [assignment: _2048 bits or greater_], or*
+- *_Elliptic Curve Digital Signature Algorithm (ECDSA) with key sizes of_ [assignment: _256 bits or greater_]]*
 
-that meets the following [selection:
+that meets the following *[selection:*
 
-Case: Digital Signature Algorithm
+*_Case: Digital Signature Algorithm_*
 
-- FIPS PUB 186-4, “Digital Signature Standard”
+- *_FIPS PUB 186-4, “Digital Signature Standard”_*
 
-Case: RSA Digital Signature Algorithm
+*_Case: RSA Digital Signature Algorithm_*
 
-- FIPS PUB 186-4, “Digital Signature Standard”
+- *_FIPS PUB 186-4, “Digital Signature Standard”_*
 
-Case: Elliptic Curve Digital Signature Algorithm
+*_Case: Elliptic Curve Digital Signature Algorithm_*
 
-- FIPS PUB 186-4, “Digital Signature Standard”
-- The TSF shall implement “NIST curves” P-256, P384 and [selection: P521, no other curves] (as defined in FIPS PUB 186-4, “Digital Signature Standard”).
+- *_FIPS PUB 186-4, “Digital Signature Standard”_*
+- *_The TSF shall implement “NIST curves” P-256, P384 and [selection: P521, no other curves] (as defined in FIPS PUB 186-4, “Digital Signature Standard”)._*
 
-].
+*].*
 
 *_Application Note:_*
 
@@ -970,6 +969,9 @@ Dependencies:	No dependencies.
 
 FMT_SMF.1.1:	The TSF shall be capable of performing the following management functions: [assignment: list of management functions provided by the TSF].
 
+.Application note:
+[NOASDTE]
+====
 Application note:
 
 Regarding “management functions provided by the TSF”, the ST Author should consider management functions that support the security objectives of this protection profile.
@@ -1011,6 +1013,7 @@ For O.STORAGE_ENCRYPTION, O.KEY_MATERIAL:
 
 •	Configuring and/or invoking image overwrite functions
 •	Configuring and/or invoking data purging functions
+====
 
 
 ==== FMT_SMR.1	Security roles
