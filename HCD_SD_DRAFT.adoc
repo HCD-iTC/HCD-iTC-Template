@@ -1,25 +1,22 @@
-= Supporting Document Mandatory Technical Document: Evaluation Activities for collaborative Protection Profile for Hardcopy Devices
+= collaborative Protection Profile for _Hardcopy Devices_
 :showtitle:
 :doctype: book
 :toc: macro
 :toclevels: 7
+:sectnums:
 :sectnumlevels: 7
-:table-caption: Table
 :imagesdir: images
 :icons: font
-:revnumber: 0.1
-:revdate: 2020-06-08
-:xrefstyle: full
+:revnumber: 0.2
+:revdate: 2019-08-23
 
-:iTC-longname: Hardcopy Devices International Technical Community
+:iTC-longname: Hardcopy Device
 :iTC-shortname: HCD-iTC
-:iTC-email: cm-itc-mailing-list@gmail.com
-:iTC-website: https://coffeemaker.github.io/
-:iTC-GitHub: https://github.com/coffeemaker/repository/
-:pp-name: collaborative Protection Profile for Hardcopy Devices
-:pp-shortname: HCDcPP
-:pp-version: 0.1
-:pp-date: 2020-06-04
+:iTC-email: HCD-itc-mailing-list@gmail.com
+:iTC-website: https://HCD.github.io/
+:iTC-GitHub: https://github.com/HCD/repository/
+
+:sectnums!:
 
 == Foreword
 
