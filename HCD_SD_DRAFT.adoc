@@ -198,11 +198,11 @@ An example of headings is provided under FAU.
 
 ===== TSS
 
-The evaluator shall check the TOE Summary Specification (TSS) to ensure that auditable events and its recorded information are consistent with the definition of the SFR. 
+The evaluator shall check the TOE Summary Specification (TSS) to ensure that auditable events and its recorded information are consistent with the definition of the SFR.
 
 ===== Guidance Documentation
 
-The evaluator shall check the guidance documents to ensure that auditable events and its recorded information are consistent with the definition of the SFRs. 
+The evaluator shall check the guidance documents to ensure that auditable events and its recorded information are consistent with the definition of the SFRs.
 
 ===== Tests
 
@@ -216,7 +216,7 @@ The evaluator shall check that FIA_UAU.1 events have been generated for each mec
 
 ==== FAU_GEN.2	User identity association
 
-The EAs for FAU_GEN.1 address this SFR. 
+The EAs for FAU_GEN.1 address this SFR.
 
 ==== FAU_STG_EXT.1	Extended: External Audit Trail Storage
 
@@ -232,9 +232,9 @@ The evaluator shall also examine the operational guidance to ensure it describes
 
 ===== Tests
 
-The evaluator shall perform the following test for this requirement: 
+The evaluator shall perform the following test for this requirement:
 
-Test 1: The evaluator shall establish a session between the TOE and the audit server according to the configuration guidance provided. The evaluator shall then examine the traffic that passes between the audit server and the TOE during several activities of the evaluator’s choice designed to generate audit data to be transferred to the audit server. The evaluator shall observe that these data are not able to be viewed in the clear during this transfer, and that they are successfully received by the audit server. The evaluator shall record the particular software (name, version) used on the audit server during testing. 
+Test 1: The evaluator shall establish a session between the TOE and the audit server according to the configuration guidance provided. The evaluator shall then examine the traffic that passes between the audit server and the TOE during several activities of the evaluator’s choice designed to generate audit data to be transferred to the audit server. The evaluator shall observe that these data are not able to be viewed in the clear during this transfer, and that they are successfully received by the audit server. The evaluator shall record the particular software (name, version) used on the audit server during testing.
 
 === Cryptograhic Support (FCS)
 
@@ -242,7 +242,7 @@ Test 1: The evaluator shall establish a session between the TOE and the audit se
 
 ===== TSS
 
-The evaluator shall review the TSS to determine that it describes how the functionality described by FCS_RBG_EXT.1 is invoked. 
+The evaluator shall review the TSS to determine that it describes how the functionality described by FCS_RBG_EXT.1 is invoked.
 
 ===== KMD
 
@@ -252,15 +252,15 @@ If the TOE is relying on random number generation from a third-party source, the
 
 ===== TSS
 
-The evaluator shall verify the TSS provides a high level description of what it means for keys and key material to be no longer needed and when then should be expected to be destroyed. 
+The evaluator shall verify the TSS provides a high level description of what it means for keys and key material to be no longer needed and when then should be expected to be destroyed.
 
 ===== KMD
 
 The evaluator shall verify the Key Management Description (KMD) includes a description of the areas where keys and key material reside and when the keys and key material are no longer needed.
 
-The evaluator shall verify the KMD includes a key lifecycle, that includes a description where key material reside, how the key material is used, how it is determined that keys and key material are no longer needed, and how the material is destroyed once it is not needed and that the documentation in the KMD follows FCS_CKM.4 for the destruction. 
+The evaluator shall verify the KMD includes a key lifecycle, that includes a description where key material reside, how the key material is used, how it is determined that keys and key material are no longer needed, and how the material is destroyed once it is not needed and that the documentation in the KMD follows FCS_CKM.4 for the destruction.
 
-==== FCS_CKM.4 Cryptographic key destruction 
+==== FCS_CKM.4 Cryptographic key destruction
 
 ===== TSS
 
@@ -280,21 +280,21 @@ The KMD identifies and describes the interface(s) that is used to service comman
 
 ===== Guidance Documentation 
 
-There are a variety of concerns that may prevent or delay key destruction in some cases. The evaluator shall check that the guidance documentation identifies configurations or circumstances that may not strictly conform to the key destruction requirement, and that this description is consistent with the relevant parts of the TSS and any other relevant Required Supplementary Information. The evaluator shall check that the guidance documentation provides guidance on situations where key destruction may be delayed at the physical layer and how such situations can be avoided or mitigated if possible. 
+There are a variety of concerns that may prevent or delay key destruction in some cases. The evaluator shall check that the guidance documentation identifies configurations or circumstances that may not strictly conform to the key destruction requirement, and that this description is consistent with the relevant parts of the TSS and any other relevant Required Supplementary Information. The evaluator shall check that the guidance documentation provides guidance on situations where key destruction may be delayed at the physical layer and how such situations can be avoided or mitigated if possible.
 
-Some examples of what is expected to be in the documentation are provided here. 
+Some examples of what is expected to be in the documentation are provided here.
 
-When the TOE does not have full access to the physical memory, it is possible that the storage may be implementing wear-leveling and garbage collection. This may create additional copies of the key that are logically inaccessible but persist physically. In this case, to mitigate this the drive should support the TRIM command and implements garbage collection to destroy these persistent copies when not actively engaged in other tasks. 
+When the TOE does not have full access to the physical memory, it is possible that the storage may be implementing wear-leveling and garbage collection. This may create additional copies of the key that are logically inaccessible but persist physically. In this case, to mitigate this the drive should support the TRIM command and implements garbage collection to destroy these persistent copies when not actively engaged in other tasks.
 
-Drive vendors implement garbage collection in a variety of different ways, as such there is a variable amount of time until data is truly removed from these solutions. There is a risk that data may persist for a longer amount of time if it is contained in a block with other data not ready for erasure. To reduce this risk, the operating system and file system of the OE should support TRIM, instructing the non-volatile memory to erase copies via garbage collection upon their deletion. If a RAID array is being used, only set-ups that support TRIM are utilized. If the drive is connected via PCI-Express, the operating system supports TRIM over that channel. 
+Drive vendors implement garbage collection in a variety of different ways, as such there is a variable amount of time until data is truly removed from these solutions. There is a risk that data may persist for a longer amount of time if it is contained in a block with other data not ready for erasure. To reduce this risk, the operating system and file system of the OE should support TRIM, instructing the non-volatile memory to erase copies via garbage collection upon their deletion. If a RAID array is being used, only set-ups that support TRIM are utilized. If the drive is connected via PCI-Express, the operating system supports TRIM over that channel.
 
-The drive should be healthy and contains minimal corrupted data and should be end of lifed before a significant amount of damage to drive health occurs, this minimizes the risk that small amounts of potentially recoverable data may remain in damaged areas of the drive.  
+The drive should be healthy and contains minimal corrupted data and should be end of lifed before a significant amount of damage to drive health occurs, this minimizes the risk that small amounts of potentially recoverable data may remain in damaged areas of the drive. 
 
 ===== Tests
 
-For these tests the evaluator shall utilize appropriate development environment (e.g. a Virtual Machine) and development tools (debuggers, simulators, etc.) to test that keys are cleared, including all copies of the key that may have been created internally by the TOE during normal cryptographic processing with that key. 
+For these tests the evaluator shall utilize appropriate development environment (e.g. a Virtual Machine) and development tools (debuggers, simulators, etc.) to test that keys are cleared, including all copies of the key that may have been created internally by the TOE during normal cryptographic processing with that key.
 
-Test 1: Applied to each key held as in volatile memory and subject to destruction by overwrite by the TOE (whether or not the value is subsequently encrypted for storage in volatile or non-volatile memory). In the case where the only selection made for the destruction method key was removal of power, then this test is unnecessary. The evaluator shall: 
+Test 1: Applied to each key held as in volatile memory and subject to destruction by overwrite by the TOE (whether or not the value is subsequently encrypted for storage in volatile or non-volatile memory). In the case where the only selection made for the destruction method key was removal of power, then this test is unnecessary. The evaluator shall:
 
 . Record the value of the key in the TOE subject to clearing.
 . Cause the TOE to perform a normal cryptographic processing with the key from Step #1.
@@ -309,7 +309,7 @@ Test 2: Applied to each key help in non-volatile memory and subject to destructi
 
 . Identify the purpose of the key and what access should fail when it is deleted. (e.g. the data encryption key being deleted would cause data decryption to fail.)
 . Cause the TOE to clear the key.
-. Have the TOE attempt the functionality that the cleared key would be necessary for. The test succeeds if step 3 fails. 
+. Have the TOE attempt the functionality that the cleared key would be necessary for. The test succeeds if step 3 fails.
 
 Test 3: Applied to each key held in non-volatile memory and subject to destruction by overwrite by the TOE. The evaluator shall use special tools (as needed), provided by the TOE developer if necessary, to view the key storage location:
 
@@ -327,31 +327,31 @@ Test 4: Applied to each key held as non-volatile memory and subject to destructi
 
 The test succeeds if correct pattern is used to overwrite the key in the memory location. If the pattern is not found the test fails.
 
-==== FCS_COP.1(a) Cryptographic Operation (Symmetric encryption/decryption) 
+==== FCS_COP.1(a) Cryptographic Operation (Symmetric encryption/decryption)
 
 ===== Tests
 
-The evaluator shall use tests appropriate to the modes selected in the above requirement from "The Advanced Encryption Standard Algorithm Validation Suite (AESAVS)", The CMAC Validation System (CMACVS)", "The Counter with Cipher Block Chaining-Message Authentication Code (CCM) Validation System (CCMVS)", and "The Galois/Counter Mode (GCM) and GMAC Validation System (GCMVS)" (these documents are available from http://csrc.nist.gov/groups/STM/cavp/index.html) as a guide in testing the requirement above. This will require that the evaluator have a reference implementation of the algorithms known to be good that can produce test vectors that are verifiable during the test. 
+The evaluator shall use tests appropriate to the modes selected in the above requirement from "The Advanced Encryption Standard Algorithm Validation Suite (AESAVS)", The CMAC Validation System (CMACVS)", "The Counter with Cipher Block Chaining-Message Authentication Code (CCM) Validation System (CCMVS)", and "The Galois/Counter Mode (GCM) and GMAC Validation System (GCMVS)" (these documents are available from http://csrc.nist.gov/groups/STM/cavp/index.html) as a guide in testing the requirement above. This will require that the evaluator have a reference implementation of the algorithms known to be good that can produce test vectors that are verifiable during the test.
 
-==== FCS_COP.1(b) Cryptographic Operation (for signature generation/verification) 
+==== FCS_COP.1(b) Cryptographic Operation (for signature generation/verification)
 
 ===== Tests
 
-The evaluator shall use the signature generation and signature verification portions of "The Digital Signature Algorithm Validation System” (DSA2VS), "The Elliptic Curve Digital Signature Algorithm Validation System” (ECDSA2VS), and "The RSA Validation System” RSA2VS as a guide in testing the requirement above. The Validation System used shall comply with the conformance standard identified in the ST (i.e., FIPS PUB 186-4). This will require that the evaluator have a reference implementation of the algorithms known to be good that can produce test vectors that are verifiable during the test. 
+The evaluator shall use the signature generation and signature verification portions of "The Digital Signature Algorithm Validation System” (DSA2VS), "The Elliptic Curve Digital Signature Algorithm Validation System” (ECDSA2VS), and "The RSA Validation System” RSA2VS as a guide in testing the requirement above. The Validation System used shall comply with the conformance standard identified in the ST (i.e., FIPS PUB 186-4). This will require that the evaluator have a reference implementation of the algorithms known to be good that can produce test vectors that are verifiable during the test.
 
 ==== FCS_RBG_EXT.1 Extended: Cryptographic Operation (Random Bit Generation)
 
 ===== TSS
 
-For any RBG services provided by a third party, the evaluator shall ensure the TSS includes a statement about the expected amount of entropy received from such a source, and a full description of the processing of the output of the third-party source.  The evaluator shall verify that this statement is consistent with the selection made in FCS_RBG_EXT.1.2 for the seeding of the DRBG.  If the ST specifies more than one DRBG, the evaluator shall examine the TSS to verify that it identifies the usage of each DRBG mechanism. 
+For any RBG services provided by a third party, the evaluator shall ensure the TSS includes a statement about the expected amount of entropy received from such a source, and a full description of the processing of the output of the third-party source.  The evaluator shall verify that this statement is consistent with the selection made in FCS_RBG_EXT.1.2 for the seeding of the DRBG.  If the ST specifies more than one DRBG, the evaluator shall examine the TSS to verify that it identifies the usage of each DRBG mechanism.
 
 ===== Entropy Description 
 
-The evaluator shall ensure the Entropy Description provides all of the required information as described in Appendix E. The evaluator assesses the information provided and ensures the TOE is providing sufficient entropy when it is generating a Random Bit String. 
+The evaluator shall ensure the Entropy Description provides all of the required information as described in Appendix E. The evaluator assesses the information provided and ensures the TOE is providing sufficient entropy when it is generating a Random Bit String.
 
 ===== Guidance Documentation
 
-The evaluator shall verify that the AGD guidance instructs the administrator how to configure the TOE to use the selected DRBG mechanism(s), if necessary. 
+The evaluator shall verify that the AGD guidance instructs the administrator how to configure the TOE to use the selected DRBG mechanism(s), if necessary.
 
 ===== Tests 
 
@@ -359,7 +359,7 @@ The evaluator shall perform 15 trials for the RBG implementation. If the RBG is 
 
 If the RBG has prediction resistance enabled, each trial consists of (1) instantiate DRBG, (2) generate the first block of random bits (3) generate a second block of random bits (4) uninstantiate. The evaluator verifies that the second block of random bits is the expected value. The evaluator shall generate eight input values for each trial. The first is a count (0 – 14). The next three are entropy input, nonce, and personalization string for the instantiate operation. The next two are additional input and entropy input for the first call to generate. The final two are additional input and entropy input for the second call to generate. These values are randomly generated. “Generate one block of random bits” means to generate random bits with number of returned bits equal to the Output Block Length (as defined in NIST SP800-90A).
 
-If the RBG does not have prediction resistance, each trial consists of (1) instantiate DRBG, (2) generate the first block of random bits (3) reseed, (4) generate a second block of random bits (5) uninstantiate. The evaluator verifies that the second block of random bits is the expected value. The evaluator shall generate eight input values for each trial. The first is a count (0 – 14). The next three are entropy input, nonce, and personalization string for the instantiate operation. The fifth value is additional input to the first call to generate. The sixth and seventh are additional input and entropy input to the call to reseed. The final value is additional input to the second generate call. 
+If the RBG does not have prediction resistance, each trial consists of (1) instantiate DRBG, (2) generate the first block of random bits (3) reseed, (4) generate a second block of random bits (5) uninstantiate. The evaluator verifies that the second block of random bits is the expected value. The evaluator shall generate eight input values for each trial. The first is a count (0 – 14). The next three are entropy input, nonce, and personalization string for the instantiate operation. The fifth value is additional input to the first call to generate. The sixth and seventh are additional input and entropy input to the call to reseed. The final value is additional input to the second generate call.
 
 The following paragraphs contain more information on some of the input values to be generated/selected by the evaluator.
 
@@ -375,17 +375,17 @@ Additional input: the additional input bit lengths have the same defaults and re
 
 ==== FDP_ACC.1	Subset access control
 
-It is covered by assurance activities for FDP_ACF.1. 
+It is covered by assurance activities for FDP_ACF.1.
 
-==== FDP_ACF.1	Security attribute based access control 
+==== FDP_ACF.1	Security attribute based access control
 
 ===== TSS
 
-The evaluator shall check to ensure that the TSS describes the functions to realize SFP defined in Table 2 and Table 3. 
+The evaluator shall check to ensure that the TSS describes the functions to realize SFP defined in Table 2 and Table 3.
 
 ==== Guidance Documentation 
 
-The evaluator shall check to ensure that the operational guidance contains a description of the operation to realize the SFP defined in Table 2 and Table 3, which is consistent with the description in the TSS. 
+The evaluator shall check to ensure that the operational guidance contains a description of the operation to realize the SFP defined in Table 2 and Table 3, which is consistent with the description in the TSS.
 
 ==== Tests
 
@@ -399,15 +399,15 @@ The evaluator testing should include the following viewpoints:
 
 === Identification and Authentication (FIA)
 
-==== FIA_AFL.1	Authentication failure handling  
+==== FIA_AFL.1	Authentication failure handling 
 
 ===== TSS
 
-The evaluator shall check to ensure that the TSS contains a description of the actions in the case of authentication failure (types of authentication events, the number of unsuccessful authentication attempts, actions to be conducted), which is consistent with the definition of the SFR. 
+The evaluator shall check to ensure that the TSS contains a description of the actions in the case of authentication failure (types of authentication events, the number of unsuccessful authentication attempts, actions to be conducted), which is consistent with the definition of the SFR.
 
 ===== Guidance Documentation 
 
-The evaluator shall check to ensure that the administrator guidance describes the setting for actions to be taken in the case of authentication failure, if any are defined in the SFR. 
+The evaluator shall check to ensure that the administrator guidance describes the setting for actions to be taken in the case of authentication failure, if any are defined in the SFR.
 
 ===== Tests
 
@@ -419,17 +419,17 @@ The evaluator shall also perform the following tests:
 . The evaluator shall perform the tests 1 and 2 described above for all the targeted authentication methods when there are multiple Internal Authentication methods (e.g., password authentication, biometric authentication).
 . The evaluator shall perform the tests 1 and 2 described above for all interfaces when there are multiple interfaces (e.g., operation panel, Web interfaces) that implement authentication attempts.
 
-==== FIA_ATD.1	User attribute definition 
+==== FIA_ATD.1	User attribute definition
 
 ===== TSS
 
-The evaluator shall check to ensure that the TSS contains a description of the user security attributes that the TOE uses to implement the SFR, which is consistent with the definition of the SFR. 
+The evaluator shall check to ensure that the TSS contains a description of the user security attributes that the TOE uses to implement the SFR, which is consistent with the definition of the SFR.
 
-==== FIA_PMG_EXT.1 Extended: Password Management  
+==== FIA_PMG_EXT.1 Extended: Password Management 
 
 ===== Guidance Documentation 
 
-The evaluator shall examine the operational guidance to determine that it provides guidance to security administrators on the composition of passwords, and that it provides instructions on setting the minimum password length. 
+The evaluator shall examine the operational guidance to determine that it provides guidance to security administrators on the composition of passwords, and that it provides instructions on setting the minimum password length.
 
 ===== Tests
 
@@ -438,7 +438,7 @@ The evaluator shall also perform the following test:
 The evaluator shall compose passwords that either meet the requirements, or fail to meet the requirements, in some way. For each password, the evaluator shall verify that the TOE supports the password. While the evaluator is not required (nor is it feasible) to test all possible compositions of passwords, the evaluator shall ensure that all characters, rule characteristics, and a minimum length listed in the requirement are supported, and justify the subset of those characters chosen for testing.
 
 
-==== FIA_UAU.1	Timing of authentication 
+==== FIA_UAU.1	Timing of authentication
 
 ===== TSS
 
@@ -460,7 +460,7 @@ The evaluator shall also perform the following tests:
 
 . The evaluator shall check to ensure that identification and authentication succeeds, enabling the access to the TOE when using authorized data.
 
-. The evaluator shall check to ensure that identification and authentication fails, disabling the access to the TOE afterwards when using unauthorized data. 
+. The evaluator shall check to ensure that identification and authentication fails, disabling the access to the TOE afterwards when using unauthorized data.
 
 The evaluator shall perform the tests described above for each of the authentication methods that the TOE provides (e.g., External Authentication, Internal Authentication) as well as interfaces (e.g., identification and authentication from operation panel or via Web interfaces).
 
@@ -477,7 +477,7 @@ The evaluator shall also perform the following tests:
 . The evaluator shall check to ensure that only the information defined in the SFR is provided for feedback by attempting identification and authentication.
 . The evaluator shall perform the test 1 described above for all the interfaces that the TOE provides (e.g., operation panel, identification and authentication via Web interface).
 
-==== FIA_UID.1	Timing of identification  
+==== FIA_UID.1	Timing of identification 
 
 It is covered by assurance activities for FIA_UAU.1.
 
@@ -505,7 +505,7 @@ The evaluator shall check to ensure that the TSS identifies interfaces to operat
 
 ===== Guidance Documentation 
 
-The evaluator shall check to ensure that the administrator guidance describes the operation methods for users of the given roles defined in the SFR to operate the management functions. 
+The evaluator shall check to ensure that the administrator guidance describes the operation methods for users of the given roles defined in the SFR to operate the management functions.
 
 ===== Tests
 
@@ -515,7 +515,7 @@ The evaluator shall also perform the following tests:
 . The evaluator shall check to ensure that the operation results are appropriately reflected.
 . The evaluator shall check to ensure that U.NORMAL is not permitted to operate the management functions.
 
-==== FMT_MSA.1	Management of security attributes  
+==== FMT_MSA.1	Management of security attributes 
 
 ===== TSS
 
@@ -535,7 +535,7 @@ The evaluator shall also perform the following tests:
 . The evaluator shall check to ensure that the operation results are appropriately reflected as specified in the administrator guidance.
 . The evaluator shall check to ensure that a user that is not part of an authorized role defined in the SFR is not permitted to perform operations on the security attributes.
 
-===== FMT_MSA.3	Static attribute initialization  
+===== FMT_MSA.3	Static attribute initialization 
 
 ====== TSS
 
@@ -545,7 +545,7 @@ The evaluator shall check to ensure that the TSS describes mechanisms to generat
 
 If U.ADMIN is selected, then testing of this SFR is performed in the tests of FDP_ACF.1.
 
-==== FMT_MTD.1	Management of TSF data    
+==== FMT_MTD.1	Management of TSF data   
 
 ===== Guidance Documentation 
 
@@ -565,21 +565,21 @@ The evaluator shall perform the following tests:
 . The evaluator shall check to ensure that the operation results are appropriately reflected as specified in the administrator guidance.
 . The evaluator shall check to ensure that no users other than users of the given roles defined in the SFR can perform operations to TSF data.
 
-==== FMT_SMF.1	Specification of Management Functions  
+==== FMT_SMF.1	Specification of Management Functions 
 
 ===== TSS
 
-The evaluator shall check the TSS to ensure that the management functions are consistent with the assignment in the SFR. 
+The evaluator shall check the TSS to ensure that the management functions are consistent with the assignment in the SFR.
 
 ===== Guidance Documentation 
 
-The evaluator shall check the guidance documents to ensure that management functions are consistent with the assignment in the SFR, and that their operation is described. 
+The evaluator shall check the guidance documents to ensure that management functions are consistent with the assignment in the SFR, and that their operation is described.
 
-==== FMT_SMR.1	Security roles  
+==== FMT_SMR.1	Security roles 
 
 ===== TSS
 
-The evaluator shall check to ensure that the TSS contains a description of security related roles that the TOE maintains, which is consistent with the definition of the SFR. 
+The evaluator shall check to ensure that the TSS contains a description of security related roles that the TOE maintains, which is consistent with the definition of the SFR.
 
 ===== Tests
 
@@ -593,7 +593,7 @@ As for tests of this SFR, it is performed in the tests of FMT_MOF.1, FMT_MSA.1, 
 
 The evaluator shall examine the TSS to determine that it details how any pre-shared keys, symmetric keys, and private keys are stored and that they are unable to be viewed through an interface designed specifically for that purpose, as outlined in the application note. If these values are not stored in plaintext, the TSS shall describe how they are protected/obscured.
 
-==== FPT_STM.1	Reliable time stamps  
+==== FPT_STM.1	Reliable time stamps 
 
 ===== TSS
 
@@ -610,7 +610,7 @@ The evaluator shall also perform the following tests:
 . The evaluator shall check to ensure that the time is correctly set up in accordance with the guidance or external network services (e.g., NTP).
 . The evaluator shall check to ensure that the time stamps are appropriately provided. 
 
-==== FPT_TST_EXT.1	Extended: TSF testing  
+==== FPT_TST_EXT.1	Extended: TSF testing 
 
 ===== TSS
 
@@ -640,11 +640,11 @@ The evaluator shall also perform the following tests:
 . The evaluator shall check to ensure that the verification of the data for updates of the TOE succeeds using authorized data for updates by means of the operation methods specified by the administrator guidance.
 . The evaluator shall check to ensure that only administrators can implement the application for updates using authorized data for updates.
 . The evaluator shall check to ensure that the updates are correctly performed by obtaining the current version of the TOE after the normal updates finish.
-. The evaluator shall check to ensure that the verification of the data for updates of the TOE fails using unauthorized data for updates by means of the operation methods specified by the administrator guidance. (The evaluator shall also check those cases where hash verification mechanism, if selected in FPT_TUD_EXT.1.3, and digital signature verification mechanism fail.) 
+. The evaluator shall check to ensure that the verification of the data for updates of the TOE fails using unauthorized data for updates by means of the operation methods specified by the administrator guidance. (The evaluator shall also check those cases where hash verification mechanism, if selected in FPT_TUD_EXT.1.3, and digital signature verification mechanism fail.)
 
 === TOE Access (FTA)
 
-==== FTA_SSL.3	TSF-initiated termination  
+==== FTA_SSL.3	TSF-initiated termination
 
 ===== TSS
 
@@ -681,7 +681,7 @@ The evaluator shall also perform the following tests:
 
 Further assurance activities are associated with the specific protocols.  
 
-==== FTP_TRP.1(a)	Trusted path (for Administrators) 
+==== FTP_TRP.1(a)	Trusted path (for Administrators)
 
 ===== TSS
 
@@ -718,11 +718,11 @@ The evaluator shall examine the Key Management Description (KMD) for a descripti
 
 The evaluator shall verify the KMD to ensure it describes the storage location of all keys and the protection of all keys stored in nonvolatile memory.
 
-==== FCS_KYC_EXT.1 Extended: Key Chaining 
- 
+==== FCS_KYC_EXT.1 Extended: Key Chaining
+
 ===== TSS
 
-The evaluator shall verify the TSS contains a high-level description of the BEV sizes – that it supports BEV outputs of no fewer 128 bits for products that support only AES-128, and no fewer than 256 bits for products that support AES-256. 
+The evaluator shall verify the TSS contains a high-level description of the BEV sizes – that it supports BEV outputs of no fewer 128 bits for products that support only AES-128, and no fewer than 256 bits for products that support AES-256.
 
 ===== KMD
 
@@ -732,9 +732,9 @@ The evaluator shall examine the KMD to ensure that it describes how the key chai
 
 The evaluator shall verify the KMD includes a description of the strength of keys throughout the key chain.
 
-==== FDP_DSK_EXT.1 Extended: Protection of Data on Disk 
+==== FDP_DSK_EXT.1 Extended: Protection of Data on Disk
 
-In the assurance activities, below, “Device” refers to the Field-Replaceable Nonvolatile Storage Device from FDP_DSK_EXT.1. If the TOE contains more than one applicable Device, then the assurance activities are performed as necessary on each such Device. 
+In the assurance activities, below, “Device” refers to the Field-Replaceable Nonvolatile Storage Device from FDP_DSK_EXT.1. If the TOE contains more than one applicable Device, then the assurance activities are performed as necessary on each such Device.
 
 ===== TSS
 
@@ -748,15 +748,15 @@ The evaluator shall verify that the TSS describes the initialization of the Devi
 
 ===== Guidance Documentation 
 
-The evaluator shall review the AGD guidance to determine that it describes the initial steps needed to enable the Device encryption function, including any necessary preparatory steps.  The guidance shall provide instructions that are sufficient to ensure that all Devices will be encrypted when encryption is enabled or at shipment of the TOE. 
+The evaluator shall review the AGD guidance to determine that it describes the initial steps needed to enable the Device encryption function, including any necessary preparatory steps.  The guidance shall provide instructions that are sufficient to ensure that all Devices will be encrypted when encryption is enabled or at shipment of the TOE.
 
 ===== KMD
 
-The evaluator shall verify the KMD includes a description of the data encryption engine, its components, and details about its implementation (e.g. for hardware: integrated within the device’s main SOC or separate co-processor, for software: initialization of the Device, drivers, libraries (if applicable), logical interfaces for encryption/decryption, and areas which are not encrypted (e.g. boot loaders, portions that do not contain confidential data, partition tables, etc.)). The evaluator shall verify the KMD provides a functional (block) diagram showing the main components (such as memories and processors) and the data path between, for hardware, the Device’s interface and the Device’s persistent media storing the data, or for software, the initial steps needed to the activities the TOE performs to ensure it encrypts the storage device entirely when a user or administrator first provisions the product. The hardware encryption diagram shall show the location of the data encryption engine within the data path. The evaluator shall validate that the hardware encryption diagram contains enough detail showing the main components within the data path and that it clearly identifies the data encryption engine. 
+The evaluator shall verify the KMD includes a description of the data encryption engine, its components, and details about its implementation (e.g. for hardware: integrated within the device’s main SOC or separate co-processor, for software: initialization of the Device, drivers, libraries (if applicable), logical interfaces for encryption/decryption, and areas which are not encrypted (e.g. boot loaders, portions that do not contain confidential data, partition tables, etc.)). The evaluator shall verify the KMD provides a functional (block) diagram showing the main components (such as memories and processors) and the data path between, for hardware, the Device’s interface and the Device’s persistent media storing the data, or for software, the initial steps needed to the activities the TOE performs to ensure it encrypts the storage device entirely when a user or administrator first provisions the product. The hardware encryption diagram shall show the location of the data encryption engine within the data path. The evaluator shall validate that the hardware encryption diagram contains enough detail showing the main components within the data path and that it clearly identifies the data encryption engine.
 
-The evaluator shall verify the KMD provides sufficient instructions to ensure that when the encryption is enabled, the TOE encrypts all Field-Replaceable Nonvolatile Storage  Devices.  The evaluator shall verify that the KMD describes the data flow from the interface to the Device’s persistent media storing the data. The evaluator shall verify that the KMD provides information on those conditions in which the data bypasses the data encryption engine (e.g. read-write operations to an unencrypted area). 
+The evaluator shall verify the KMD provides sufficient instructions to ensure that when the encryption is enabled, the TOE encrypts all Field-Replaceable Nonvolatile Storage  Devices.  The evaluator shall verify that the KMD describes the data flow from the interface to the Device’s persistent media storing the data. The evaluator shall verify that the KMD provides information on those conditions in which the data bypasses the data encryption engine (e.g. read-write operations to an unencrypted area).
 
-The evaluator shall verify that the KMD provides a description of the boot initialization, the encryption initialization process, and at what moment the product enables the encryption. If encryption can be enabled and disabled, the evaluator shall validate that the product does not allow for the transfer of confidential data before it fully initializes the encryption.  The evaluator shall ensure the software developer provides special tools which allow inspection of the encrypted drive either in-band or out-of-band, and may allow provisioning with a known key. 
+The evaluator shall verify that the KMD provides a description of the boot initialization, the encryption initialization process, and at what moment the product enables the encryption. If encryption can be enabled and disabled, the evaluator shall validate that the product does not allow for the transfer of confidential data before it fully initializes the encryption.  The evaluator shall ensure the software developer provides special tools which allow inspection of the encrypted drive either in-band or out-of-band, and may allow provisioning with a known key.
 
 ===== Tests
 
@@ -835,7 +835,7 @@ JC - In the HCD-PP, conditionally-mandatory SFRs are grouped based on functional
 
 === Internal Audit Log Storage
 
-==== FAU_SAR.1	Audit review  
+==== FAU_SAR.1	Audit review 
 
 ===== TSS
 
@@ -855,13 +855,13 @@ The evaluator shall also perform the following tests:
 . The evaluator shall check to ensure that no users other than an Administrator  can retrieve audit records.
 . The evaluator shall check to ensure that all audit records are retrieved by the operation of retrieving audit records.
 
-==== FAU_SAR.2	Restricted audit review  
+==== FAU_SAR.2	Restricted audit review 
 
 ===== Tests
 
 The evaluator shall include tests related to this function in the set of tests performed in FMT_SMF.1.
 
-==== FAU_STG.1	Protected audit trail storage  
+==== FAU_STG.1	Protected audit trail storage 
 
 ===== TSS
 
@@ -878,7 +878,7 @@ The evaluator shall also perform the following test:
 . The evaluator shall test that an authorized user can access the audit records.
 . The evaluator shall test that a user without authorization for the audit data cannot access the audit records.
 
-==== FAU_STG.4	Prevention of audit data loss  
+==== FAU_STG.4	Prevention of audit data loss 
 
 ===== TSS
 
@@ -897,7 +897,7 @@ The evaluator shall also perform the following tests:
 
 === Image Overwrite
 
-==== FDP_RIP.1(a)	Subset residual information protection  
+==== FDP_RIP.1(a)	Subset residual information protection 
 
 ===== TSS
 
@@ -905,7 +905,7 @@ The evaluator shall examine the TSS to ensure that the description is comprehens
 
 ===== Guidance Documentation 
 
-The evaluator shall check to ensure that the operational guidance contains instructions for enabling the Image Overwrite function. 
+The evaluator shall check to ensure that the operational guidance contains instructions for enabling the Image Overwrite function.
 
 ===== Tests
 
@@ -927,7 +927,7 @@ The evaluator shall check to ensure that the operational guidance contains instr
 
 The evaluator shall include tests related to this function in the set of tests performed in FMT_SMF.1.
 
-=== Asymmetric Key Generation  
+=== Asymmetric Key Generation 
 
 ==== FCS _CKM.1(a) Cryptographic Key Generation (for asymmetric keys)
 
@@ -955,9 +955,9 @@ This is the same as the above section, but is specifically for the Selection-bas
 JC - In the HCD-PP, conditionally-mandatory SFRs are grouped based on functional areas (e.g. B.2 PSTN Fax-Network Separation). I've grouped them based on functional areas in this SD as well.   
 ====
 
-=== Confidential Data on Field-Replaceable Nonvolatile Storage Devices 
+=== Confidential Data on Field-Replaceable Nonvolatile Storage Devices
 
-==== FCS_COP.1(d) Cryptographic operation (AES Data Encryption/Decryption) 
+==== FCS_COP.1(d) Cryptographic operation (AES Data Encryption/Decryption)
 
 ===== TSS
 
@@ -969,7 +969,7 @@ If multiple encryption modes are supported, the evaluator examines the guidance 
 
 ===== Tests
 
-The following tests are conditional based upon the selections made in the SFR. 
+The following tests are conditional based upon the selections made in the SFR.
 
 *AES-CBC Tests*
 
@@ -1114,7 +1114,7 @@ If the KTS-KEM-KWS scheme was selected, the evaluator shall perform the followin
 
 . The evaluator shall trigger all detectable decryption errors and validate that the resulting error codes are the same and that no information is given back to the sender on which type of error occurred. The evaluator shall also validate that no intermediate results from the TOE’s receiver-side operations (in particular, no Z values) are revealed to the sender.
 
-==== FCS_SMC_EXT.1 Extended: Submask Combining  
+==== FCS_SMC_EXT.1 Extended: Submask Combining 
 
 ===== TSS
 
@@ -1142,7 +1142,7 @@ As noted in section 4.4.1 of RFC 4301, the processing of entries in the SPD is n
 
 ====== FCS_IPSEC_EXT.1.2
 
-The evaluator checks the TSS to ensure it states that the VPN can be established to operate in tunnel mode and/or transport mode (as selected).  
+The evaluator checks the TSS to ensure it states that the VPN can be established to operate in tunnel mode and/or transport mode (as selected). 
 
 ====== FCS_IPSEC_EXT.1.3
 
@@ -1240,7 +1240,7 @@ The evaluator shall configure the TOE as indicated in the operational guidance c
 
 ====== FCS_IPSEC_EXT.1.5
 
-(conditional): If IKEv2 is selected, the evaluator shall configure the TOE so that it will perform NAT traversal processing as described in the TSS and RFC 5996, section 2.23.  The evaluator shall initiate an IPsec connection and determine that the NAT is successfully traversed. 
+(conditional): If IKEv2 is selected, the evaluator shall configure the TOE so that it will perform NAT traversal processing as described in the TSS and RFC 5996, section 2.23.  The evaluator shall initiate an IPsec connection and determine that the NAT is successfully traversed.
 
 ====== FCS_IPSEC_EXT.1.6
 
@@ -1274,7 +1274,7 @@ The evaluator shall also perform the following test:
 
 For each supported signature algorithm, the evaluator shall test that peer authentication using that algorithm can be successfully achieved and results in the successful establishment of a connection.
 
-==== FCS_TLS_EXT.1 Extended: TLS selected  
+==== FCS_TLS_EXT.1 Extended: TLS selected 
 
 ===== TSS 
 
@@ -1296,7 +1296,7 @@ The evaluator shall also perform the following test:
 
 .. [Conditional: TOE is a client] Modify a byte in the Server Finished handshake message, and verify that the client sends a fatal alert upon receipt and does not send any application data.
 
-==== FCS_SSH_EXT.1 Extended: SSH selected   
+==== FCS_SSH_EXT.1 Extended: SSH selected 
 
 ===== TSS
 
@@ -1422,7 +1422,7 @@ The evaluator shall also perform the following tests:
 
 ===== TSS
 
-The evaluator shall check that the association of the hash function with other TSF cryptographic functions (for example, the digital signature verification function) is documented in the TSS. 
+The evaluator shall check that the association of the hash function with other TSF cryptographic functions (for example, the digital signature verification function) is documented in the TSS.
 
 ===== Guidance Documentation 
 
