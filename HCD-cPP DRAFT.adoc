@@ -1,14 +1,14 @@
 = collaborative Protection Profile for _Hardcopy Devices_
 :showtitle:
-:doc type: book
+:doc type:book
 :toc: macro
 :toclevels: 7
 :sectnums:
 :sectnumlevels: 7
 :imagesdir: images
 :icons: font
-:revnumber: 0.6
-:revdate: 2020-06-08
+:revnumber: 0.6.1
+:revdate: 2020-06-22
 
 :iTC-longname: Hardcopy Device
 :iTC-shortname: HCD-iTC
@@ -484,7 +484,7 @@ Dependencies:		FAU_GEN.1	Audit data generation
 ....
 (for O.COMMS_PROTECTION, O.STORAGE_ENCRYPTION)
 Hierarchical to:	No other components.
-Dependencies:	[FCS_CKM.2 Cryptographic key distribution, or
+Dependencies:	[[strikeout]FCS_CKM.2 Cryptographic key distribution, or[/strikeout]
 	FCS_COP.1(a) Cryptographic Operation (Symmetric encryption/decryption)
 	FCS_COP.1(d) Cryptographic Operation (AES Data Encryption/Decryption)
 	FCS_COP.1(e) Cryptographic Operation (Key Wrapping)
@@ -549,8 +549,8 @@ _Several selections allow assignment of a ‘value that does not contain any CSP
 ....
 (for O.COMMS_PROTECTION)
 Hierarchical to:	No other components.
-Dependencies:	[FDP_ITC.1 Import of user data without security attributes, or
-	FDP_ITC.2 Import of user data with security attributes, or
+Dependencies:	[[strikeout]FDP_ITC.1 Import of user data without security attributes, or
+	FDP_ITC.2 Import of user data with security attributes, or[/strikeout]
 	FCS_CKM.1(b) Cryptographic key generation (Symmetric Keys)]
 	FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction
 ....
@@ -570,9 +570,9 @@ _For the selection, the ST author should choose the standards that describe the 
 ....
 (for O.UPDATE_VERIFICATION, O.COMMS_PROTECTION)
 Hierarchical to:	No other components.
-Dependencies:	[FDP_ITC.1 Import of user data without security attributes, or
+Dependencies:	[[strikeout]FDP_ITC.1 Import of user data without security attributes, or
 	FDP_ITC.2 Import of user data with security attributes, or
-	FCS_CKM.1 Cryptographic key generation
+	FCS_CKM.1 Cryptographic key generation[/strikeout]
 	FCS_CKM.1(a) Cryptographic Key Generation (for asymmetric keys)]
 	FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction
 ....
@@ -802,9 +802,9 @@ Hierarchical to:	No other components.
 Dependencies:	FIA_UAU.1	Timing of authentication
 ....
 
-*FIA_AFL.1.1* The TSF shall detect when [selection: [assignment: positive integer number], an administrator configurable positive integer within [assignment: range of acceptable values]] unsuccessful authentication attempts occur related to [assignment: list of authentication events].
+*FIA_AFL.1.1* The TSF shall detect when [selection: [assignment: _positive integer number_], an administrator configurable positive integer within [assignment: _range of acceptable values_]] unsuccessful authentication attempts occur related to [assignment: _list of authentication events_].
 
-*FIA_AFL.1.2* When the defined number of unsuccessful authentication attempts has been [selection: met, surpassed], the TSF shall [assignment: list of actions].
+*FIA_AFL.1.2* When the defined number of unsuccessful authentication attempts has been [selection: met, surpassed], the TSF shall [assignment: _list of actions_].
 
 *_Application note:_*
 
@@ -818,7 +818,7 @@ Hierarchical to:	No other components.
 Dependencies:	No dependencies.
 ....
 
-*FIA_ATD.1.1* The TSF shall maintain the following list of security attributes belonging to individual users: [assignment: list of security attributes].
+*FIA_ATD.1.1* The TSF shall maintain the following list of security attributes belonging to individual users: [assignment: _list of security attributes_].
 
 *_Application note:_*
 
@@ -834,7 +834,7 @@ Dependencies:	No dependencies.
 
 *FIA_PMG_EXT.1.1* The TSF shall provide the following password management capabilities for User passwords:
 
-•	Passwords shall be able to be composed of any combination of upper and lower case letters, numbers, and the following special characters: [selection: “!”, “@”, “#”, “$”, “%”, “^”, “&”, “*”, “(“, “)”, [assignment: other characters]];
+•	Passwords shall be able to be composed of any combination of upper and lower case letters, numbers, and the following special characters: [selection: “!”, “@”, “#”, “$”, “%”, “^”, “&”, “*”, “(“, “)”, [assignment: _other characters_]];
 •	Minimum password length shall be settable by an Administrator, and have the capability to require passwords of 15 characters or greater;
 
 *_Application note:_*
@@ -848,7 +848,7 @@ Hierarchical to:	No other components.
 Dependencies:	FIA_UID.1	Timing of identification
 ....
 
-*FIA_UAU.1.1 Refinement:* The TSF shall allow [assignment: list of TSF mediated actions that do not conflict with the User Data Access Control SFP, and do not provide access to D.TSF.CONF, and do not change any TSF data] on behalf of the user to be performed before the user is authenticated.
+*FIA_UAU.1.1 Refinement:* The TSF shall allow [assignment: _list of TSF mediated actions_ *_that do not conflict with the User Data Access Control SFP, and do not provide access to D.TSF.CONF, and do not change any TSF data_*] on behalf of the user to be performed before the user is authenticated.
 
 *FIA_UAU.1.2* The TSF shall require each user to be successfully authenticated before allowing any other TSF-mediated actions on behalf of that user.
 
@@ -863,7 +863,7 @@ Hierarchical to:	No other components.
 Dependencies:	FIA_UAU.1	Timing of authentication
 ....
 
-FIA_UAU.7.1	The TSF shall provide only [assignment: list of feedback] to the user while the authentication is in progress.
+FIA_UAU.7.1	The TSF shall provide only [assignment: _list of feedback_] to the user while the authentication is in progress.
 
 *_Application note:_*
 
@@ -876,7 +876,7 @@ Hierarchical to:	No other components.
 Dependencies:	No dependencies.
 ....
 
-*FIA_UID.1.1 Refinement:* The TSF shall allow [assignment: list of TSF-mediated actions that do not conflict with the User Data Access Control SFP, and do not provide access to D.TSF.CONF, and do not change any TSF data] on behalf of the user to be performed before the user is identified.
+*FIA_UID.1.1 Refinement:* The TSF shall allow [assignment: _list of TSF-mediated actions_ *_that do not conflict with the User Data Access Control SFP, and do not provide access to D.TSF.CONF, and do not change any TSF data_*] on behalf of the user to be performed before the user is identified.
 
 *FIA_UID.1.2* The TSF shall require each user to be successfully identified before allowing any other TSF-mediated actions on behalf of that user.
 
@@ -891,11 +891,11 @@ Hierarchical to:	No other components.
 Dependencies:	FIA_ATD.1	User attribute definition
 ....
 
-*FIA_USB.1.1* The TSF shall associate the following user security attributes with subjects acting on the behalf of that user: [assignment: list of user security attributes].
+*FIA_USB.1.1* The TSF shall associate the following user security attributes with subjects acting on the behalf of that user: [assignment: _list of user security attributes_].
 
-*FIA_USB.1.2* The TSF shall enforce the following rules on the initial association of user security attributes with subjects acting on the behalf of users: [assignment: rules for the initial association of attributes].
+*FIA_USB.1.2* The TSF shall enforce the following rules on the initial association of user security attributes with subjects acting on the behalf of users: [assignment: _rules for the initial association of attributes_].
 
-*FIA_USB.1.3* The TSF shall enforce the following rules governing changes to the user security attributes associated with subjects acting on the behalf of users: [assignment: rules for the changing of attributes].
+*FIA_USB.1.3* The TSF shall enforce the following rules governing changes to the user security attributes associated with subjects acting on the behalf of users: [assignment: _rules for the changing of attributes_].
 
 
 === Security Management (FMT)
@@ -908,20 +908,20 @@ Dependencies:	FMT_SMR.1	Security roles
 	FMT_SMF.1	Specification of Management Functions
 ....
 
-FMT_MOF.1.1 Refinement:	The TSF shall restrict the ability to [selection: determine the behaviour of, disable, enable, modify the behaviour of] the functions [assignment: list of functions] to U.ADMIN.
+FMT_MOF.1.1 Refinement:	The TSF shall restrict the ability to [selection: _determine the behaviour of, disable, enable, modify the behaviour of_] the functions [assignment: _list of functions_] to *U.ADMIN*.
 
 
 ==== FMT_MSA.1	Management of security attributes
 ....
 (for O.ACCESS_CONTROL and O.USER_AUTHORIZATION)
 Hierarchical to:	No other components.
-Dependencies:	[FDP_ACC.1	Subset access control, or
-	FDP_IFC.1 Subset information flow control]
+Dependencies:	[FDP_ACC.1	Subset access control, [strikeout]or
+	FDP_IFC.1 Subset information flow control][/strikeout]
 	FMT_SMR.1	Security roles
 	FMT_SMF.1	Specification of Management Functions
 ....
 
-FMT_MSA.1.1 Refinement:	The TSF shall enforce the User Data Access Control SFP to restrict the ability to [selection: change_default, query, modify, delete, [assignment: other operations]] the security attributes [assignment: list of security attributes] to [assignment: the authorised identified roles].
+FMT_MSA.1.1 Refinement:	The TSF shall enforce the User Data Access Control SFP to restrict the ability to [selection: _change_default, query, modify, delete, [assignment: other operations]_] the security attributes [assignment: _list of security attributes_] to [assignment: _the authorised identified roles_].
 
 
 ==== FMT_MSA.3	Static attribute initialization
@@ -932,9 +932,9 @@ Dependencies:	FMT_MSA.1	Management of security attributes
 	FMT_SMR.1	Security roles
 ....
 
-FMT_MSA.3.1 Refinement:	The TSF shall enforce the User Data Access Control SFP to provide [selection, choose one of: restrictive, permissive, [assignment: other property]] default values for security attributes that are used to enforce the SFP.
+*FMT_MSA.3.1 Refinement:*	The TSF shall enforce the *User Data Access Control SFP* to provide [selection, choose one of: _restrictive, permissive, [assignment: other property]_] default values for security attributes that are used to enforce the SFP.
 
-FMT_MSA.3.2 Refinement:	The TSF shall allow the [selection: U.ADMIN, no role] to specify alternative initial values to override the default values when an object or information is created.
+*FMT_MSA.3.2 Refinement:*	The TSF shall allow the [*_selection: U.ADMIN, no role_*] to specify alternative initial values to override the default values when an object or information is created.
 
 *_Application note:_*
 
@@ -949,7 +949,7 @@ Dependencies:	FMT_SMR.1	Security roles
 	FMT_SMF.1	Specification of Management Functions
 ....
 
-FMT_MTD.1.1 Refinement: The TSF shall restrict the ability to perform the specified operations on the specified TSF Data to the roles specified in Table 4.
+*FMT_MTD.1.1 Refinement:* The TSF shall restrict the ability to *perform the specified operations on the specified TSF Data to the roles specified in Table 4.*
 
 
 Table 4 Management of TSF Data
@@ -968,7 +968,7 @@ Hierarchical to:	No other components.
 Dependencies:	No dependencies.
 ....
 
-FMT_SMF.1.1:	The TSF shall be capable of performing the following management functions: [assignment: list of management functions provided by the TSF].
+*FMT_SMF.1.1:*	The TSF shall be capable of performing the following management functions: [assignment: _list of management functions provided by the TSF_].
 
 .Application note:
 [NOASDTE]
@@ -1024,9 +1024,9 @@ Hierarchical to:	No other components.
 Dependencies:	FIA_UID.1	Timing of identification
 ....
 
-FMT_SMR.1.1	The TSF shall maintain the roles U.ADMIN, U.NORMAL.
+*FMT_SMR.1.1*	The TSF shall maintain the roles *U.ADMIN, U.NORMAL*.
 
-FMT_SMR.1.2	The TSF shall be able to associate users with roles.
+*FMT_SMR.1.2*	The TSF shall be able to associate users with roles.
 
 
 === Privacy (FPR)
@@ -1056,7 +1056,7 @@ Hierarchical to:	No other components.
 Dependencies:	No dependencies.
 ....
 
-FPT_STM.1.1	The TSF shall be able to provide reliable time stamps.
+*FPT_STM.1.1*	The TSF shall be able to provide reliable time stamps.
 
 Application note:
 
@@ -1069,7 +1069,7 @@ Hierarchical to:	No other components.
 Dependencies:	No dependencies.
 ....
 
-FPT_TST_EXT.1.1	The TSF shall run a suite of self-tests during initial start-up (and power on) to demonstrate the correct operation of the TSF.
+*FPT_TST_EXT.1.1*	The TSF shall run a suite of self-tests during initial start-up (and power on) to demonstrate the correct operation of the TSF.
 
 Application note:
 
@@ -1083,11 +1083,11 @@ Dependencies:	FCS_COP.1(b) Cryptographic Operation (for signature generation/ver
 	FCS_COP.1(c) Cryptographic operation (Hash Algorithm).
 ....
 
-FPT_TUD_EXT.1.1	The TSF shall provide authorized administrators the ability to query the current version of the TOE firmware/software.
+*FPT_TUD_EXT.1.1*	The TSF shall provide authorized administrators the ability to query the current version of the TOE firmware/software.
 
-FPT_TUD_EXT.1.2	The TSF shall provide authorized administrators the ability to initiate updates to TOE firmware/software.
+*FPT_TUD_EXT.1.2*	The TSF shall provide authorized administrators the ability to initiate updates to TOE firmware/software.
 
-FPT_TUD_EXT.1.3	The TSF shall provide a means to verify firmware/software updates to the TOE using a digital signature mechanism and [selection: published hash, no other functions] prior to installing those updates.
+*FPT_TUD_EXT.1.3*	The TSF shall provide a means to verify firmware/software updates to the TOE using a digital signature mechanism and [selection: _published hash, no other functions_] prior to installing those updates.
 
 Application note:
 
@@ -1125,7 +1125,7 @@ Dependencies: 	[FCS_IPSEC_EXT.1 Extended: IPsec selected, or
 	FCS_HTTPS_EXT.1 Extended: HTTPS selected].
 ....
 
-*FTP_ITC.1.1 Refinement:* The TSF shall *use [selection: IPsec, SSH, TLS, TLS/HTTPS] to* provide *a trusted* communication channel between itself and *authorized IT entities supporting the following capabilities: [selection: authentication server, [assignment: other capabilities]]* that is logically distinct from other communication channels and provides assured identification of its end points and protection of the channel data from *disclosure and detection of modification of the channel data*.
+*FTP_ITC.1.1 Refinement:* The TSF shall *use [selection: IPsec, SSH, TLS, TLS/HTTPS] to* provide *a trusted* communication channel between itself and *authorized IT entities supporting the following capabilities: [selection: _authentication server, [assignment: other capabilities]_]* that is logically distinct from other communication channels and provides assured identification of its end points and protection of the channel data from *disclosure and detection of modification of the channel data*.
 
 *FTP_ITC.1.2 Refinement:* The TSF shall permit *the TSF, or the authorized IT entities*, to initiate communication via the trusted channel
 
@@ -1319,13 +1319,13 @@ It is likely (though not guaranteed) there will be selection-based requirements.
 ....
  (for O. STORAGE_ENCRYPTION)
 Hierarchical to:	No other components.
-Dependencies:	[FDP_ITC.1 Import of user data without security attributes, or
-	FDP_ITC.2 Import of user data with security attributes, or
+Dependencies:	[[so]FDP_ITC.1 Import of user data without security attributes, or
+	FDP_ITC.2 Import of user data with security attributes, or[/so]
 	FCS_CKM.1(b) Cryptographic key generation (Symmetric Keys)]
 	FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction
 ....
 
-*FCS_COP.1.1(d)*  The TSF shall perform data encryption and decryption in accordance with a specified cryptographic algorithm AES used in [selection: CBC, GCM, XTS] mode and cryptographic key sizes [selection: 128 bits, 256 bits] that meet the following: AES as specified in ISO/IEC 18033-3, [selection: CBC as specified in ISO/IEC 10116, GCM as specified in ISO/IEC 19772, and XTS as specified in IEEE 1619].
+*FCS_COP.1.1(d)*  The TSF shall perform *data encryption and decryption* in accordance with a specified cryptographic algorithm *AES used in [selection: _CBC, GCM, XTS_] mode* and cryptographic key sizes [*selection: _128 bits, 256 bits_*] that meet the following: *AES as specified in ISO/IEC 18033-3, [selection: _CBC as specified in ISO/IEC 10116, GCM as specified in ISO/IEC 19772, and XTS as specified in IEEE 1619_*].
 
 *_Application Note:_*
 
@@ -1339,13 +1339,13 @@ _The intent of this requirement is to specify the approved AES modes that the ST
 ....
 (selected in FCS_KYC_EXT.1.1)
 Hierarchical to:	No other components.
-Dependencies:	[FDP_ITC.1 Import of user data without security attributes, or
-	FDP_ITC.2 Import of user data with security attributes, or
+Dependencies:	[[so]FDP_ITC.1 Import of user data without security attributes, or
+	FDP_ITC.2 Import of user data with security attributes, or[/so]
 	FCS_CKM.1(b) Cryptographic key generation (Symmetric Keys)]
 	FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction
 ....
 
-*FCS_COP.1.1(e) Refinement:* The TSF shall perform key wrapping in accordance with a specified cryptographic algorithm AES in the following modes [selection: KW, KWP,  GCM,  CCM] and the cryptographic key size [selection: 128 bits, 256 bits] that meet the following: [ISO/IEC 18033-3 (AES), [selection: NIST SP 800-38F, ISO/IEC 19772, no other standards]].
+*FCS_COP.1.1(e) Refinement:* The TSF shall perform *key wrapping* in accordance with a specified cryptographic algorithm *AES in the following modes [selection: _KW, KWP, GCM, CCM]_* and the cryptographic key size *[selection: _128 bits, 256 bits_]* that meet the following: [*ISO/IEC 18033-3 (AES), [selection: _NIST SP 800-38F, ISO/IEC 19772, no other standards_*]].
 
 *_Application Note:_*
 
@@ -1355,13 +1355,13 @@ _This requirement is used in the body of the ST if the ST Author chooses to use 
 ....
 (selected from FCS_KYC_EXT.1.1)
 Hierarchical to:	No other components.
-Dependencies:	[FDP_ITC.1 Import of user data without security attributes, or
-	FDP_ITC.2 Import of user data with security attributes, or
+Dependencies:	[[so]FDP_ITC.1 Import of user data without security attributes, or
+	FDP_ITC.2 Import of user data with security attributes, or[/so]
 	FCS_CKM.1(b) Cryptographic key generation (Symmetric Keys)]
 	FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction
 ....
 
-*FCS_COP.1.1(f) Refinement:* The TSF shall perform key encryption and decryption in accordance with a specified cryptographic algorithm AES used in [[selection: CBC, GCM] mode] and cryptographic key sizes [selection: 128 bits, 256 bits] that meet the following: [AES as specified in ISO /IEC 18033-3, [selection: CBC as specified in ISO/IEC 10116, GCM as specified in ISO/IEC 19772].
+*FCS_COP.1.1(f) Refinement:* The TSF shall perform *key encryption and decryption* in accordance with a specified cryptographic algorithm *AES used in [[selection: _CBC, GCM_] mode]* and cryptographic key sizes [*selection: _128 bits, 256 bits_*] that meet the following: [*AES as specified in ISO /IEC 18033-3, [selection: _CBC as specified in ISO/IEC 10116, GCM as specified in ISO/IEC 19772_*].
 
 *_Application Note:_*
 
@@ -1371,13 +1371,13 @@ _This requirement is used in the body of the ST if the ST Author chooses to use 
 ....
 (selected in FCS_KYC_EXT.1.1)
 Hierarchical to:	No other components.
-Dependencies:	[FDP_ITC.1 Import of user data without security attributes, or
-	FDP_ITC.2 Import of user data with security attributes, or
+Dependencies:	[[so]FDP_ITC.1 Import of user data without security attributes, or
+	FDP_ITC.2 Import of user data with security attributes, or[/so]
 	FCS_CKM.1(a) Cryptographic Key Generation (for asymmetric keys)]
 	FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction
 ....
 
-*FCS_COP.1.1(i) Refinement:* The TSF shall perform key transport in accordance with a specified cryptographic algorithm RSA in the following modes [selection: KTS-OAEP, KTS-KEM-KWS] and the cryptographic key size [selection: 2048 bits, 3072 bits] that meet the following: NIST SP 800-56B, Revision 1.
+*FCS_COP.1.1(i) Refinement:* The TSF shall perform *key transport* in accordance with a specified cryptographic algorithm *RSA in the following modes [selection: _KTS-OAEP, KTS-KEM-KWS_]* and the cryptographic key size *[selection: _2048 bits, 3072 bits_]* that meet the following: *NIST SP 800-56B, Revision 1*.
 
 *_Application Note:_*
 
@@ -1390,7 +1390,7 @@ Hierarchical to:	No other components.
 Dependencies:	FCS_COP.1(c) Cryptographic operation (Hash Algorithm)
 ....
 
-FCS_SMC_EXT.1.1 The TSF shall combine submasks using the following method [selection: exclusive OR (XOR), SHA-256, SHA-512] to generate an intermediary key or BEV.
+FCS_SMC_EXT.1.1 The TSF shall combine submasks using the following method [selection: _exclusive OR (XOR), SHA-256, SHA-512_] to generate an intermediary key or BEV.
 
 *_Application Note:_*
 
@@ -1405,7 +1405,7 @@ There are unique requirements associated with each of the protocol suites; these
 ....
 (selected in FTP_ITC.1.1, FTP_TRP.1.1)
 Hierarchical to:	No other components.
-Dependencies:		FPT_ITT.1 Basic internal TSF data transfer protection,
+Dependencies:		[so]FPT_ITT.1 Basic internal TSF data transfer protection,[/so]
 	FIA_PSK_EXT.1 Extended: Pre-Shared Key Composition
 	FCS_CKM.1(a) Cryptographic Key Generation (for asymmetric keys)
 	FCS_COP.1(a) Cryptographic Operation (Symmetric encryption/decryption)
@@ -1433,23 +1433,23 @@ _RFC 4301 calls for an IPsec implementation to protect IP traffic through the us
 
 _While there must be a means to order the rules, a general approach to ordering is not mandated, as long as the SPD can distinguish the IP packets and apply the rules accordingly. There may be multiple SPDs (one for each network interface), but this is not required._
 
-*FCS_IPSEC_EXT.1.2* The TSF shall implement [selection: tunnel mode, transport mode].
+*FCS_IPSEC_EXT.1.2* The TSF shall implement [selection: _tunnel mode, transport mode_].
 
 *FCS_IPSEC_EXT.1.3*  The TSF shall have a nominal, final entry in the SPD that matches anything that is otherwise unmatched, and discards it.
 
-*FCS_IPSEC_EXT.1.4*  The TSF shall implement the IPsec protocol ESP as defined by RFC 4303 using [selection: the cryptographic algorithms AES-CBC-128 (as specified by RFC 3602) together with a Secure Hash Algorithm (SHA)-based HMAC, AES-CBC-256 (as specified by RFC 3602) together with a Secure Hash Algorithm (SHA)-based HMAC, AES-GCM-128 as specified in RFC 4106, AES-GCM-256 as specified in RFC 4106].
+*FCS_IPSEC_EXT.1.4*  The TSF shall implement the IPsec protocol ESP as defined by RFC 4303 using [selection: _the cryptographic algorithms AES-CBC-128 (as specified by RFC 3602) together with a Secure Hash Algorithm (SHA)-based HMAC, AES-CBC-256 (as specified by RFC 3602) together with a Secure Hash Algorithm (SHA)-based HMAC, AES-GCM-128 as specified in RFC 4106, AES-GCM-256 as specified in RFC 4106_].
 
-*FCS_IPSEC_EXT.1.5*  The TSF shall implement the protocol: [selection: IKEv1, using Main Mode for Phase 1 exchanges, as defined in RFCs 2407, 2408, 2409, RFC 4109, [selection: no other RFCs for extended sequence numbers, RFC 4304 for extended sequence numbers], and [selection: no other RFCs for hash functions, RFC 4868 for hash functions]; IKEv2 as defined in RFCs 5996, [selection: with no support for NAT traversal,  with mandatory support for NAT traversal as specified in section 2.23], and [selection: no other RFCs for hash functions, RFC 4868 for hash functions]].
+*FCS_IPSEC_EXT.1.5*  The TSF shall implement the protocol: [selection: _IKEv1, using Main Mode for Phase 1 exchanges, as defined in RFCs 2407, 2408, 2409, RFC 4109_, [selection: _no other RFCs for extended sequence numbers, RFC 4304 for extended sequence numbers_], and [selection: _no other RFCs for hash functions, RFC 4868 for hash functions_]; _IKEv2 as defined in RFCs 5996_, [selection: _with no support for NAT traversal, with mandatory support for NAT traversal as specified in section 2.23_], and [selection: _no other RFCs for hash functions, RFC 4868 for hash functions_]].
 
 *_Application Note:_*
 
 _Either IKEv1 or IKEv2 support must be provided, although conformant TOEs can provide both; the first selection is used to make this choice. For IKEv1, the requirement is to be interpreted as requiring the IKE implementation conforming to RFC 2409 with the additions/modifications as described in RFC 4109.  RFC 4304 identifies support for extended sequence numbers, which compliant TOEs can specify using the second selection. RFC 4868 identifies additional hash functions for use with both IKEv1 and IKEv2; if these functions are implemented, the third (for IKEv1) and fourth (for IKEv2) selection can be used._
 
-*FCS_IPSEC_EXT.1.6* The TSF shall ensure the encrypted payload in the [selection: IKEv1, IKEv2] protocol uses the cryptographic algorithms AES-CBC-128, AES-CBC-256 as specified in RFC 3602 and [selection: AES-GCM-128, AES-GCM-256 as specified in RFC 5282, no other algorithm].
+*FCS_IPSEC_EXT.1.6* The TSF shall ensure the encrypted payload in the [selection: _IKEv1, IKEv2_] protocol uses the cryptographic algorithms AES-CBC-128, AES-CBC-256 as specified in RFC 3602 and [selection: _AES-GCM-128, AES-GCM-256 as specified in RFC 5282, no other algorithm_].
 
 *FCS_IPSEC_EXT.1.7*  The TSF shall ensure that IKEv1 Phase 1 exchanges use only main mode.
 
-*FCS_IPSEC_EXT.1.8*  The TSF shall ensure that [selection: IKEv2 SA lifetimes can be established  based on [selection: number of packets/number of bytes;  length of time, where the time values can be limited to: 24 hours for Phase 1 SAs and 8 hours for Phase 2 SAs]; IKEv1 SA lifetimes can be established based on [selection: number of packets/number of bytes ; length of time, where the time values can be limited to: 24 hours for Phase 1 SAs and 8 hours for Phase 2 SAs]].
+*FCS_IPSEC_EXT.1.8*  The TSF shall ensure that [selection: _IKEv2 SA lifetimes can be established  based on [selection: number of packets/number of bytes;  length of time, where the time values can be limited to: 24 hours for Phase 1 SAs and 8 hours for Phase 2 SAs]; IKEv1 SA lifetimes can be established based on [selection: number of packets/number of bytes ; length of time, where the time values can be limited to: 24 hours for Phase 1 SAs and 8 hours for Phase 2 SAs_]].
 
 *_Application Note:_*
 
@@ -1457,13 +1457,13 @@ _The ST Author is afforded a selection based on the version of IKE in their impl
 
 _As far as SA lifetimes are concerned, the TOE can limit the lifetime based on the number of bytes transmitted, or the number of packets transmitted. Either packet-based or volume-based SA lifetimes are acceptable; the ST author makes the appropriate selection to indicate which type of lifetime limits are supported._
 
-*FCS_IPSEC_EXT.1.9*  The TSF shall ensure that all IKE protocols implement DH Groups 14 (2048-bit MODP), and [selection: 24 (2048-bit MODP with 256-bit POS), 19 (256-bit Random ECP), 20 (384-bit Random ECP, 5 (1536-bit MODP)), [assignment: other DH groups that are implemented by the TOE], no other DH groups].
+*FCS_IPSEC_EXT.1.9*  The TSF shall ensure that all IKE protocols implement DH Groups 14 (2048-bit MODP), and [selection: _24 (2048-bit MODP with 256-bit POS), 19 (256-bit Random ECP), 20 (384-bit Random ECP, 5 (1536-bit MODP))_, [assignment: _other DH groups that are implemented by the TOE_], _no other DH groups_].
 
 *_Application Note:_*
 
 _The above requires that the TOE support DH Group 14.  If other groups are supported, then those should be selected (for groups 24, 19, 20, and 5) or specified in the assignment above; otherwise “no other DH groups” should be selected.  This applies to IKEv1/IKEv2 exchanges._
 
-*FCS_IPSEC_EXT.1.10*  The TSF shall ensure that all IKE protocols perform Peer Authentication using the [selection: RSA, ECDSA] algorithm and Pre-shared Keys.
+*FCS_IPSEC_EXT.1.10*  The TSF shall ensure that all IKE protocols perform Peer Authentication using the [selection: _RSA, ECDSA_] algorithm and Pre-shared Keys.
 
 *_Application Note:_*
 
@@ -1481,17 +1481,17 @@ Dependencies:	FCS_CKM.1(a) Cryptographic Key Generation (for asymmetric keys)
 	FCS_RBG_EXT.1 Extended: Cryptographic Operation (Random Bit Generation).
 ....
 
-*FCS_TLS_EXT.1.1* The TSF shall implement one or more of the following protocols [selection: TLS 1.0 (RFC 2246), TLS 1.1 (RFC 4346), TLS 1.2 (RFC 5246)] supporting the following ciphersuites:
+*FCS_TLS_EXT.1.1* The TSF shall implement one or more of the following protocols [selection: [so]TLS 1.0 (RFC 2246)[/so], TLS 1.1 (RFC 4346), TLS 1.2 (RFC 5246)] supporting the following ciphersuites:
 
-Mandatory Ciphersuites:
+[so]Mandatory Ciphersuites:
 
-•	TLS_RSA_WITH_AES_128_CBC_SHA
+•	TLS_RSA_WITH_AES_128_CBC_SHA[/so]
 
 Optional Ciphersuites:
 
 [selection:
 
-•	None
+•	[so]None[/so]
 •	_TLS_RSA_WITH_AES_128_CBC_SHA_
 •	_TLS_RSA_WITH_AES_256_CBC_SHA_
 •	_TLS_DHE_RSA_WITH_AES_128_CBC_SHA_
@@ -1586,8 +1586,8 @@ _The ST author must provide enough detail to determine how the implementation is
 ....
 (selected with FCS_IPSEC_EXT.1.4)
 Hierarchical to:	No other components.
-Dependencies:	[FDP_ITC.1 Import of user data without security attributes, or
-	FDP_ITC.2 Import of user data with security attributes, or
+Dependencies:	[[so]FDP_ITC.1 Import of user data without security attributes, or
+	FDP_ITC.2 Import of user data with security attributes, or[/so]
 	FCS_CKM.1(b) Cryptographic key generation (Symmetric Keys)]
 	FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction
 	FCS_COP.1(c) Cryptographic operation (Hash Algorithm)
@@ -1614,10 +1614,10 @@ _The requirements below mandate that the TOE must support text-based pre-shared 
 
 *FIA_PSK_EXT.1.2* The TSF shall be able to accept text-based pre-shared keys that are:
 
-•	22 characters in length and  [selection: [assignment: other supported lengths], no other lengths];
+•	22 characters in length and  [selection: [assignment: _other supported lengths_], _no other lengths_];
 •	composed of any combination of upper and lower case letters, numbers, and special characters (that include: “!”, “@”, “#”, “$”, “%”, “^”, “&”, “*”, “(“, and “)”).
 
-*FIA_PSK_EXT.1.3* The TSF shall condition the text-based pre-shared keys by using [selection: SHA-1, SHA-256, SHA-512, [assignment: method of conditioning text string]] and be able to [selection: use no other pre-shared keys; accept bit-based pre-shared keys; generate bit-based pre-shared keys using the random bit generator specified in FCS_RBG_EXT.1].
+*FIA_PSK_EXT.1.3* The TSF shall condition the text-based pre-shared keys by using [selection: _SHA-1, SHA-256, SHA-512_, [assignment: _method of conditioning text string_]] and be able to [selection: _use no other pre-shared keys; accept bit-based pre-shared keys; generate bit-based pre-shared keys using the random bit generator specified in FCS_RBG_EXT.1_].
 
 *_Application Note:_*
 
@@ -1673,8 +1673,8 @@ Dependencies:  FCS_COP.1(h) Cryptographic Operation (for keyed-hash message auth
 ....
 (selected with FCS_PCC_EXT.1, FCS_KDF_EXT.1.1)
 Hierarchical to:	No other components.
-Dependencies:	[FDP_ITC.1 Import of user data without security attributes, or
-	FDP_ITC.2 Import of user data with security attributes, or
+Dependencies:	[[so]FDP_ITC.1 Import of user data without security attributes, or
+	FDP_ITC.2 Import of user data with security attributes, or[/so]
 	FCS_CKM.1(b) Cryptographic key generation (Symmetric Keys)]
 	FCS_COP.1(c) Cryptographic operation (Hash Algorithm),
 	FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction
@@ -1783,7 +1783,7 @@ Hierarchical to: FAU_STG.3 Action in case of possible audit data loss
 Dependencies: FAU_STG.1 Protected audit trail storage
 ....
 
-*FAU_STG.4.1 Refinement:* The TSF shall [selection, choose one of: *_“ignore audited events”_*, _“prevent audited events, except those taken by the authorised user with special rights”, “overwrite the oldest stored audit records”_] and [assignment: _other actions to be taken in case of audit storage failure_] if the audit trail is full.
+*FAU_STG.4.1 Refinement:* The TSF shall [selection, choose one of: *_[so]“ignore audited events”[/so]_*, _“prevent audited events, except those taken by the authorised user with special rights”, “overwrite the oldest stored audit records”_] and [assignment: _other actions to be taken in case of audit storage failure_] if the audit trail is full.
 
 === Image Overwrite
 The SFRs in this section are to be incorporated in the ST to support the optional Image Overwrite function.
@@ -1817,7 +1817,7 @@ The SFR in this section is used if the TOE generates asymmetric key pairs for co
 ....
 (for O.COMMS_PROTECTION)
 Hierarchical to:	No other components.
-Dependencies:	[FCS_CKM.2 Cryptographic key distribution, or
+Dependencies:	[[so]FCS_CKM.2 Cryptographic key distribution, or[/so]
 	FCS_COP.1(b) Cryptographic Operation (for signature generation/ verification)
 	FCS_COP.1(i) Cryptographic operation (Key Transport)]
 	FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction
@@ -2006,7 +2006,7 @@ The following actions should be auditable if FAU_GEN Security Audit Data Generat
 ===== FCS_HTTPS_EXT.1	Extended: HTTPS selected
 ....
 Hierarchical to:	No other components.
-Dependencies:	No dependencies FCS_TLS_EXT.1 Extended: TLS selected
+Dependencies:	[so]No dependencies[/so] FCS_TLS_EXT.1 Extended: TLS selected
 ....
 
 FCS_HTTPS_EXT.1.1	The TSF shall implement the HTTPS protocol that complies with RFC 2818.
@@ -2072,19 +2072,19 @@ FCS_IPSEC_EXT.1.2	The TSF shall implement [selection: tunnel mode, transport mod
 
 FCS_IPSEC_EXT.1.3	The TSF shall have a nominal, final entry in the SPD that matches anything that is otherwise unmatched, and discards it.
 
-FCS_IPSEC_EXT.1.4	The TSF shall implement the IPsec protocol ESP as defined by RFC 4303 using [selection: the cryptographic algorithms AES-CBC-128 (as specified by RFC 3602) together with a Secure Hash Algorithm (SHA)-based HMAC, AES-CBC-256 (as specified by RFC 3602) together with a Secure Hash Algorithm (SHA)-based HMAC, AES-GCM-128 as specified in RFC 4106, AES-GCM-256 as specified in RFC 4106].
+FCS_IPSEC_EXT.1.4	The TSF shall implement the IPsec protocol ESP as defined by RFC 4303 using [selection: _the cryptographic algorithms AES-CBC-128 (as specified by RFC 3602) together with a Secure Hash Algorithm (SHA)-based HMAC, AES-CBC-256 (as specified by RFC 3602) together with a Secure Hash Algorithm (SHA)-based HMAC, AES-GCM-128 as specified in RFC 4106, AES-GCM-256 as specified in RFC 4106_].
 
-FCS_IPSEC_EXT.1.5	The TSF shall implement the protocol: [selection: IKEv1 using Main Mode for Phase 1 exchanges, as defined in RFCs 2407, 2408, 2409, RFC 4109, [selection: no other RFCs for extended sequence numbers, RFC 4304 for extended sequence numbers], and [selection: no other RFCs for hash functions, RFC 4868 for hash functions]; IKEv2 as defined in RFCs 5996 [selection: with no support for NAT traversal, with mandatory support for NAT traversal as specified in section 2.23], and [selection: no other RFCs for hash functions, RFC 4868 for hash functions]].
+FCS_IPSEC_EXT.1.5	The TSF shall implement the protocol: [selection: _IKEv1 using Main Mode for Phase 1 exchanges, as defined in RFCs 2407, 2408, 2409, RFC 4109_, [selection: _no other RFCs for extended sequence numbers, RFC 4304 for extended sequence numbers_], and [selection: _no other RFCs for hash functions, RFC 4868 for hash functions_]; IKEv2 as defined in RFCs 5996 [selection: _with no support for NAT traversal, with mandatory support for NAT traversal as specified in section 2.23_], and [selection: _no other RFCs for hash functions, RFC 4868 for hash functions_]].
 
-FCS_IPSEC_EXT.1.6	The TSF shall ensure the encrypted payload in the [selection: IKEv1, IKEv2] protocol uses the cryptographic algorithms AES-CBC-128, AES-CBC-256 as specified in RFC 3602 and [selection: AES-GCM-128, AES-GCM-256 as specified in RFC 5282, no other algorithm].
+FCS_IPSEC_EXT.1.6	The TSF shall ensure the encrypted payload in the [selection: _IKEv1, IKEv2_] protocol uses the cryptographic algorithms AES-CBC-128, AES-CBC-256 as specified in RFC 3602 and [selection: _AES-GCM-128, AES-GCM-256 as specified in RFC 5282, no other algorithm_].
 
 FCS_IPSEC_EXT.1.7	The TSF shall ensure that IKEv1 Phase 1 exchanges use only main mode.
 
-FCS_IPSEC_EXT.1.8	The TSF shall ensure that [selection: IKEv2 SA lifetimes can be established  based on [selection: number of packets/number of bytes;  length of time, where the time values can be limited to: 24 hours for Phase 1 SAs and 8 hours for Phase 2 SAs]; IKEv1 SA lifetimes can be established based on [selection: number of packets/number of bytes ; length of time, where the time values can be limited to: 24 hours for Phase 1 SAs and 8 hours for Phase 2 SAs]].
+FCS_IPSEC_EXT.1.8	The TSF shall ensure that [selection: _IKEv2 SA lifetimes can be established based on_ [selection: _number of packets/number of bytes;  length of time, where the time values can be limited to: 24 hours for Phase 1 SAs and 8 hours for Phase 2 SAs_]; _IKEv1 SA lifetimes can be established based on_ [selection: _number of packets/number of bytes; length of time, where the time values can be limited to: 24 hours for Phase 1 SAs and 8 hours for Phase 2 SAs_]].
 
-FCS_IPSEC_EXT.1.9	The TSF shall ensure that all IKE protocols implement DH Groups 14 (2048-bit MODP), and [selection: 24 (2048-bit MODP with 256-bit POS), 19 (256-bit Random ECP), 20 (384-bit Random ECP, 5 (1536-bit MODP)), [assignment: other DH groups that are implemented by the TOE], no other DH groups].
+FCS_IPSEC_EXT.1.9	The TSF shall ensure that all IKE protocols implement DH Groups 14 (2048-bit MODP), and [selection: _24 (2048-bit MODP with 256-bit POS), 19 (256-bit Random ECP), 20 (384-bit Random ECP, 5 (1536-bit MODP))_, [assignment: _other DH groups that are implemented by the TOE], no other DH groups_].
 
-FCS_IPSEC_EXT.1.10	The TSF shall ensure that all IKE protocols perform Peer Authentication using the [selection: RSA, ECDSA] algorithm and Pre-shared Keys.
+FCS_IPSEC_EXT.1.10	The TSF shall ensure that all IKE protocols perform Peer Authentication using the [selection: _RSA, ECDSA_] algorithm and Pre-shared Keys.
 
 ===== Rationale
 
@@ -2135,7 +2135,7 @@ Dependencies:  FCS_COP.1(h) Cryptographic Operation (for keyed-hash message auth
 	[if selected: FCS_RBG_EXT.1 Extended: Cryptographic Operation (Random Bit Generation)]
 ....
 
-FCS_KDF_EXT.1.1	The TSF shall accept [selection: a RNG generated submask as specified in FCS_RBG_EXT.1, a conditioned password submask, imported submask] to derive an intermediate key, as defined in [selection: NIST SP 800-108 [selection: KDF in Counter Mode, KDF in Feedback Mode, KDF in Double-Pipeline Iteration Mode], NIST SP 800-132], using the keyed-hash functions specified in FCS_COP.1(h), such that the output is at least of equivalent security strength (in number of bits) to the BEV.
+FCS_KDF_EXT.1.1	The TSF shall accept [selection: _a RNG generated submask as specified in FCS_RBG_EXT.1, a conditioned password submask, imported submask_] to derive an intermediate key, as defined in [selection: _NIST SP 800-108_ [selection: _KDF in Counter Mode, KDF in Feedback Mode, KDF in Double-Pipeline Iteration Mode_], _NIST SP 800-132_], using the keyed-hash functions specified in FCS_COP.1(h), such that the output is at least of equivalent security strength (in number of bits) to the BEV.
 
 ===== Rationale
 
@@ -2186,7 +2186,7 @@ FCS_COP.1(i) Cryptographic operation (Key Transport), FCS_KDF_EXT.1 Cryptographi
 FCS_COP.1(f) Cryptographic operation (Key Encryption)].
 ....
 
-FCS_KYC_EXT.1.1	The TSF shall maintain a key chain of: [selection: one, using a submask as the BEVor DEK; intermediate keys originating from one or more submask(s) to the BEV or DEK using the following method(s): [selection: key wrapping as specified in FCS_COP.1(e), key combining as specified in FCS_SMC_EXT.1, key encryption as specified in FCS_COP.1(f), key derivation as specified in FCS_KDF_EXT.1,  key transport as specified in FCS_COP.1(i)]] while maintaining an effective strength of [selection: 128 bits, 256 bits].
+FCS_KYC_EXT.1.1	The TSF shall maintain a key chain of: [selection: _one, using a submask as the BEVor DEK; intermediate keys originating from one or more submask(s) to the BEV or DEK using the following method(s)_: [selection: _key wrapping as specified in FCS_COP.1(e), key combining as specified in FCS_SMC_EXT.1, key encryption as specified in FCS_COP.1(f), key derivation as specified in FCS_KDF_EXT.1, key transport as specified in FCS_COP.1(i)_]] while maintaining an effective strength of [selection: _128 bits, 256 bits_].
 
 ===== Rationale
 
@@ -2228,7 +2228,7 @@ Hierarchical to:	No other components
 Dependencies:	FCS_COP.1(h) Cryptographic Operation (for keyed-hash message authentication)
 ....
 
-FCS_PCC_EXT.1.1 A password used by the TSF to generate a password authorization factor shall enable up to [assignment: positive integer of 64 or more] characters in the set of {upper case characters, lower case characters, numbers, and [assignment: other supported special characters]} and shall perform Password-based Key Derivation Functions in accordance with a specified cryptographic algorithm [HMAC-[selection: SHA-256, SHA-384, SHA-512]], with [assignment: positive integer of 1000 or more] iterations, and output cryptographic key sizes [selection: 128, 256] bits that meet the following: [assignment: PBKDF recommendation or specification].
+FCS_PCC_EXT.1.1 A password used by the TSF to generate a password authorization factor shall enable up to [assignment: _positive integer of 64 or more_] characters in the set of {upper case characters, lower case characters, numbers, and [assignment: _other supported special characters_]} and shall perform Password-based Key Derivation Functions in accordance with a specified cryptographic algorithm [_HMAC_-[selection: _SHA-256, SHA-384, SHA-512_]], with [assignment: _positive integer of 1000 or more_] iterations, and output cryptographic key sizes [selection: _128, 256_] bits that meet the following: [assignment: _PBKDF recommendation or specification_].
 
 ===== Rationale
 
@@ -2277,9 +2277,9 @@ Hierarchical to:	No other components.
 Dependencies:	No dependencies.
 ....
 
-FCS_RBG_EXT.1.1	The TSF shall perform all deterministic random bit generation services in accordance with [selection: ISO/IEC 18031:2011, NIST SP 800-90A] using [selection: Hash_DRBG (any), HMAC_DRBG (any), CTR_DRBG (AES)].
+FCS_RBG_EXT.1.1	The TSF shall perform all deterministic random bit generation services in accordance with [selection: _ISO/IEC 18031:2011, NIST SP 800-90A_] using [selection: _Hash_DRBG (any), HMAC_DRBG (any), CTR_DRBG (AES)_].
 
-FCS_RBG_EXT.1.2	The deterministic RBG shall be seeded by an entropy source that accumulates entropy from [selection: [assignment: number of software-based sources] software-based noise source(s), [assignment: number of hardware-based sources] hardware-based noise source(s)] with a minimum of [selection: 128 bits, 256 bits] of entropy at least equal to the greatest security strength, according to ISO/IEC 18031:2011 Table C.1 “Security strength table for hash functions”, of the keys and hashes that it will generate.
+FCS_RBG_EXT.1.2	The deterministic RBG shall be seeded by an entropy source that accumulates entropy from [selection: [assignment: _number of software-based sources_] _software-based noise source(s)_, [assignment: _number of hardware-based sources_] _hardware-based noise source(s)_] with a minimum of [selection: _128 bits, 256 bits_] of entropy at least equal to the greatest security strength, according to ISO/IEC 18031:2011 Table C.1 “Security strength table for hash functions”, of the keys and hashes that it will generate.
 
 ===== Rationale
 
@@ -2325,7 +2325,7 @@ Hierarchical to:	No other components.
 Dependencies:	FCS_COP.1(c) Cryptographic operation (Hash Algorithm)
 ....
 
-FCS_SMC_EXT.1.1	The TSF shall combine submasks using the following method [selection: exclusive OR (XOR), SHA-256, SHA-512] to generate an intermediary key or BEV.
+FCS_SMC_EXT.1.1	The TSF shall combine submasks using the following method [selection: _exclusive OR (XOR), SHA-256, SHA-512_] to generate an intermediary key or BEV.
 
 ===== Rationale
 
@@ -2427,7 +2427,7 @@ The following actions should be auditable if FAU_GEN Security Audit Data Generat
 ===== FCS_SSH_EXT.1 	Extended: SSH selected
 ....
 Hierarchical to:	No other components.
-Dependencies:	No dependencies FCS_CKM.1(a) Cryptographic Key Generation (for asymmetric keys)
+Dependencies:	[so]No dependencies[/so] FCS_CKM.1(a) Cryptographic Key Generation (for asymmetric keys)
 	FCS_COP.1(a) Cryptographic Operation (Symmetric encryption/decryption)
 	FCS_COP.1(b) Cryptographic Operation (for signature generation/verification)
 	FCS_COP.1(c) Cryptographic Operation (Hash Algorithm)
@@ -2435,19 +2435,19 @@ Dependencies:	No dependencies FCS_CKM.1(a) Cryptographic Key Generation (for asy
 	FCS_RBG_EXT.1 Extended: Cryptographic Operation (Random Bit Generation).
 ....
 
-FCS_SSH_EXT.1.1	The TSF shall implement the SSH protocol that complies with RFCs 4251, 4252, 4253, 4254, and [selection: 5656, 6668, no other RFCs].
+FCS_SSH_EXT.1.1	The TSF shall implement the SSH protocol that complies with RFCs 4251, 4252, 4253, 4254, and [selection: _5656, 6668, no other RFCs_].
 
 FCS_SSH_EXT.1.2	The TSF shall ensure that the SSH protocol implementation supports the following authentication methods as described in RFC 4252: public key-based, password-based.
 
-FCS_SSH_EXT.1.3	The TSF shall ensure that, as described in RFC 4253, packets greater than [assignment: number of bytes] bytes in an SSH transport connection are dropped.
+FCS_SSH_EXT.1.3	The TSF shall ensure that, as described in RFC 4253, packets greater than [assignment: _number of bytes_] bytes in an SSH transport connection are dropped.
 
-FCS_SSH_EXT.1.4	The TSF shall ensure that the SSH transport implementation uses the following encryption algorithms: AES-CBC-128, AES-CBC-256, [selection: AEAD_AES_128_GCM, AEAD_AES_256_GCM, no other algorithms].
+FCS_SSH_EXT.1.4	The TSF shall ensure that the SSH transport implementation uses the following encryption algorithms: AES-CBC-128, AES-CBC-256, [selection: _AEAD_AES_128_GCM, AEAD_AES_256_GCM, no other algorithms_].
 
-FCS_SSH_EXT.1.5	The TSF shall ensure that the SSH transport implementation uses [selection: SSH_RSA, ecdsa-sha2-nistp256] and [selection: PGP-SIGN-RSA, PGP-SIGN-DSS, ecdsa-sha2-nistp384, no other public key algorithms,] as its public key algorithm(s).
+FCS_SSH_EXT.1.5	The TSF shall ensure that the SSH transport implementation uses [selection: _SSH_RSA, ecdsa-sha2-nistp256_] and [selection: _PGP-SIGN-RSA, PGP-SIGN-DSS, ecdsa-sha2-nistp384, no other public key algorithms_] as its public key algorithm(s).
 
-FCS_SSH_EXT.1.6	The TSF shall ensure that data integrity algorithms used in SSH transport connection is [selection: HMAC-SHA1, HMAC-SHA1-96, HMAC-SHA2-256, HMAC-SHA2-512].
+FCS_SSH_EXT.1.6	The TSF shall ensure that data integrity algorithms used in SSH transport connection is [selection: _HMAC-SHA1, HMAC-SHA1-96, HMAC-SHA2-256, HMAC-SHA2-512_].
 
-FCS_SSH_EXT.1.7	The TSF shall ensure that diffie-hellman-group14-sha1 and [selection: ecdh-sha2-nistp256, ecdh-sha2-nistp384, ecdh-sha2-nistp521, no other methods] are the only allowed key exchange method used for the SSH protocol.
+FCS_SSH_EXT.1.7	The TSF shall ensure that diffie-hellman-group14-sha1 and [selection: _ecdh-sha2-nistp256, ecdh-sha2-nistp384, ecdh-sha2-nistp521, no other methods_] are the only allowed key exchange method used for the SSH protocol.
 
 ===== Rationale
 
@@ -2493,7 +2493,7 @@ The following actions should be auditable if FAU_GEN Security Audit Data Generat
 ===== FCS_TLS_EXT.1	Extended:  TLS selected
 ....
 Hierarchical to:	No other components.
-Dependencies:	No dependencies FCS_CKM.1(a) Cryptographic Key Generation (for asymmetric keys)
+Dependencies:	[so]No dependencies[/so] FCS_CKM.1(a) Cryptographic Key Generation (for asymmetric keys)
 	FCS_COP.1(a) Cryptographic Operation (Symmetric encryption/decryption)
 	FCS_COP.1(b) Cryptographic Operation (for signature generation/verification)
 	FCS_COP.1(c) Cryptographic Operation (Hash Algorithm)
@@ -2501,17 +2501,17 @@ Dependencies:	No dependencies FCS_CKM.1(a) Cryptographic Key Generation (for asy
 	FCS_RBG_EXT.1 Extended: Cryptographic Operation (Random Bit Generation).
 ....
 
-FCS_TLS_EXT.1.1	The TSF shall implement one or more of the following protocols [selection: TLS 1.0 (RFC 2246), TLS 1.1 (RFC 4346), TLS 1.2 (RFC 5246)] supporting the following ciphersuites:
+FCS_TLS_EXT.1.1	The TSF shall implement one or more of the following protocols [selection: [so]TLS 1.0 (RFC 2246),[/so] _TLS 1.1 (RFC 4346), TLS 1.2 (RFC 5246)_] supporting the following ciphersuites:
 
-Mandatory Ciphersuites:
+[so]Mandatory Ciphersuites:
 
-•	TLS_RSA_WITH_AES_128_CBC_SHA
+•	TLS_RSA_WITH_AES_128_CBC_SHA[/so]
 
 Optional Ciphersuites:
 
 [selection:
 
-•	None
+•	[so]None[/so]
 •	TLS_RSA_WITH_AES_128_CBC_SHA
 •	TLS_RSA_WITH_AES_256_CBC_SHA
 •	TLS_DHE_RSA_WITH_AES_128_CBC_SHA
@@ -2589,7 +2589,7 @@ Hierarchical to:	No other components.
 Dependencies:	FCS_COP.1(d) Cryptographic operation (AES Data Encryption/Decryption)
 ....
 
-FDP_DSK_EXT.1.1	The TSF shall [selection: perform encryption in accordance with FCS_COP.1(d), use a self-encrypting Field-Replaceable Nonvolatile Storage Device that is separately CC certified to conform to the FDE EE cPP] such that any Field-Replaceable Nonvolatile Storage Device contains no plaintext User Document Data and no plaintext confidential TSF Data.
+FDP_DSK_EXT.1.1	The TSF shall [selection: _perform encryption in accordance with FCS_COP.1(d), use a self-encrypting Field-Replaceable Nonvolatile Storage Device that is separately CC certified to conform to the FDE EE cPP_] such that any Field-Replaceable Nonvolatile Storage Device contains no plaintext User Document Data and no plaintext confidential TSF Data.
 
 FDP_DSK_EXT.1.2	The TSF shall encrypt all protected data without user intervention.
 
@@ -2700,7 +2700,7 @@ Dependencies:	No dependencies.
 
 FIA_PMG_EXT.1.1	The TSF shall provide the following password management capabilities for User passwords:
 
-•	Passwords shall be able to be composed of any combination of upper and lower case letters, numbers, and the following special characters: [selection: “!”, “@”, “#”, “$”, “%”, “^”, “&”, “*”, “(“, “)”, [assignment: other characters]];
+•	Passwords shall be able to be composed of any combination of upper and lower case letters, numbers, and the following special characters: [selection: _“!”, “@”, “#”, “$”, “%”, “^”, “&”, “*”, “(“, “)”_, [assignment: _other characters_]];
 •	Minimum password length shall be settable by an Administrator, and have the capability to require passwords of 15 characters or greater.
 
 ===== Rationale
@@ -2754,10 +2754,10 @@ FIA_PSK_EXT.1.1	 The TSF shall be able to use pre-shared keys for IPsec.
 
 FIA_PSK_EXT.1.2	 The TSF shall be able to accept text-based pre-shared keys that are:
 
-•	22 characters in length and  [selection: [assignment: other supported lengths], no other lengths];
+•	22 characters in length and  [selection: [assignment: _other supported lengths_], no other lengths];
 •	composed of any combination of upper and lower case letters, numbers, and special characters (that include: “!”, “@”, “#”, “$”, “%”, “^”, “&”, “*”, “(“, and “)”).
 
-FIA_PSK_EXT.1.3	 The TSF shall condition the text-based pre-shared keys by using [selection: SHA-1, SHA-256, SHA-512, [assignment: method of conditioning text string]] and be able to [selection: use no other pre-shared keys; accept bit-based pre-shared keys; generate bit-based pre-shared keys using the random bit generator specified in FCS_RBG_EXT.1].
+FIA_PSK_EXT.1.3	 The TSF shall condition the text-based pre-shared keys by using [selection: _SHA-1, SHA-256, SHA-512_, [assignment: _method of conditioning text string_]] and be able to [selection: _use no other pre-shared keys; accept bit-based pre-shared keys; generate bit-based pre-shared keys using the random bit generator specified in FCS_RBG_EXT.1_].
 
 ===== Rationale
 
