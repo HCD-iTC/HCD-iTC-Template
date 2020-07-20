@@ -7,8 +7,8 @@
 :sectnumlevels: 7
 :imagesdir: images
 :icons: font
-:revnumber: 0.6.1
-:revdate: 2020-06-22
+:revnumber: 0.6.2
+:revdate: 2020-07-14
 
 :iTC-longname: Hardcopy Device
 :iTC-shortname: HCD-iTC
@@ -3214,122 +3214,80 @@ This table is provided as a reference of all SFRs included in this cPP.
 
 The Type column has the following definitions:
 
-Mandatory:: The requirement is mandatory for inclusion in the ST.
-Optional:: The requirement is optional for inclusion in the ST.
-Selection:: The requirement inclusion is determined by selections in other requirements in the ST.
+Mandatory [R] :: The requirement is mandatory for inclusion in the ST.
+Conditionally Mandatory [C] :: The requirement is conditionally mandatory for inclusion in the ST.
+Optional [O] :: The requirement is optional for inclusion in the ST.
+Selection [S] :: The requirement inclusion is determined by selections in other requirements in the ST.
+[U] :: The SFR plays a supporting role to other SFRs.
 
 .Security Functional Requirements
-[Header,cols="4,8,2"]
+
+
 |===
-|Requirement Class
-|Requirement Components
-|Type
-
-|Security Audit (FAU)
-|
-|4.3.1	FAU_GEN.1	Audit data generation
-(for O.AUDIT)
-Hierarchical to:	No other components.
-Dependencies: 	FPT_STM.1	Reliable time stamps
-FAU_GEN.1.1	The TSF shall be able to generate an audit record of the following auditable events:
-a)	Start-up and shutdown of the audit functions;
-b)	All auditable events for the not specified level of audit; and
-c)	All auditable events specified in Table 1, [assignment: other specifically defined auditable events].
-
-FAU_GEN.1.2	The TSF shall record within each audit record at least the following information:
-a)	Date and time of the event, type of event, subject identity (if applicable), and the outcome (success or failure) of the event; and
-b)	For each audit event type, based on the auditable event definitions of the functional components included in the PP/ST, additional information specified in Table 1, [assignment: other audit relevant information].
-
-.Table 1 Auditable Events
+|Objective/SFR |O.ACCESS_CONTROL |O.ADMIN_ROLES |O.AUDIT |O.COMMS_PROTECTION |O.FAX_NET_SEPARATION |O.IMAGE_OVERWRITE |O.KEY_MATERIAL |O.PURGE_DATA |O.STORAGE_ENCRYPTION |O.TSF_SELF_TEST |O.UPDATE_VERIFICATION |O.USER_AUTHORIZATION |O.USER_I&A
+|FAU_GEN.1   | | |R | | | | | | | | | |
+|FAU_GEN.2   | | |R | | | | | | | | | |
+|FAU_SAR.1 | | |O | | | | | | | | | |
+|FAU_SAR.2 | | |O | | | | | | | | | |
+|FAU_STG.1 | | |O | | | | | | | | | |
+|FAU_STG.4 | | |O | | | | | | | | | |
+|FAU_STG_EXT.1  | | |R | | | | | | | | | |
+|FCS_CKM.1(a)    | | | |R | | | | | | | | |
+|FCS_CKM.1(b)  | | | |R | | | | |S | | | |
+|FCS_CKM.4   | | | |U | | | |O |U | | | |
+|FCS_CKM_EXT.4  | | | |U | | | |O |U | | | |
+|FCS_COP.1(a)    | | | |R | | | | | | | | |
+|FCS_COP.1(b)  | | | |S | | | | | | |S | |
+|FCS_COP.1(c)  | | | | | | | | |U | |S | |
+|FCS_COP.1(d)    | | | | | | | | |U | | | |
+|FCS_COP.1(e)    | | | | | | | | |U | | | |
+|FCS_COP.1(f)    | | | | | | | | |U | | | |
+|FCS_COP.1(g)    | | | |S | | | | | | | | |
+|FCS_COP.1(h)    | | | | | | | | |O | | | |
+|FCS_COP.1(i)    | | | | | | | | |U | | | |
+|FCS_HTTPS_EXT.1  | | | |S | | | | | | | | |
+|FCS_IPSEC_EXT.1  | | | |S | | | | | | | | |
+|FCS_KDF_EXT.1   | | | | | | | | |O | | | |
+|FCS_KYC_EXT.1   | | | | | | | | |C | | | |
+|FCS_PCC_EXT.1    | | | | | | | | |O | | | |
+|FCS_RBG_EXT.1  | | | |U | | | | |U | | | |
+|FCS_SMC_EXT.1   | | | | | | | | |S | | | |
+|FCS_SNI_EXT.1   | | | | | | | | |S | | | |
+|FCS_SSH_EXT.1 | | | |S | | | | | | | | |
+|FCS_TLS_EXT.1 | | | |S | | | | | | | | |
+|FDP_ACC.1  |R | | | | | | | | | |R | |
+|FDP_ACF.1  |R | | | | | | | | | |R | |
+|FDP_DSK_EXT.1 | | | | | | | |C | | | | |
+|FDP_FXS_EXT.1 | | | | |C | | | | | | | |
+|FDP_RIP.1(a)  | | | | | |O | | | | | | |
+|FDP_RIP.1(b)  | | | | | | | |O | | | | |
+|FIA_AFL.1    | | | | | | | | | | | |U |
+|FIA_ATD.1    | | | | | | | | | | |U | |
+|FIA_PMG_EXT.1 | | | | | | | | | | | |R |
+|FIA_PSK_EXT.1 | | | |S | | | | | | | | |
+|FIA_UAU.1    | | | | | | | | | | | |R |
+|FIA_UAU.7    | | | | | | | | | | | |R |
+|FIA_UID.1  | | | | | | | | | | | |R |
+|FIA_USB.1    | | | | | | | | | | | |R |
+|FMT_MOF.1    | |R | | | | | | | | | | |
+|FMT_MSA.1  |U | | | | | | | | | |R | |
+|FMT_MSA.3  |U | | | | | | | | | |R | |
+|FMT_MTD.1     |U | | | | | | | | | | | |
+|FMT_SMF.1     |U |R | | | | | | | | |R | |
+|FMT_SMR.1     |U |R | | | | | | | | |R | |
+|FPT_KYP_EXT.1 | | | | | | |C | | | | | |
+|FPT_SKP_EXT.1 | | | |R | | | | | | | | |
+|FPT_STM.1     | | |U | | | | | | | | | |
+|FPT_TST_EXT.1 | | | | | | | | |R | | | |
+|FPT_TUD_EXT.1 | | | | | | | | | |R | | |
+|FTA_SSL.3     | | | | | | | | | | | |R |
+|FTP_ITC.1   | | |U |R | | | | | | | | |
+|FTP_TRP.1(a) | | | |R | | | | | | | | |
+|FTP_TRP.1(b) | | | |R | | | | | | | | |
 |===
-|Auditable event |Relevant SFR |Additional information
 
-|Job completion
-|FDP_ACF.1
-|Type of job
 
-|Unsuccessful User authentication
-|FIA_UAU.1
-|None
 
-|Unsuccessful User identification
-|FIA_UID.1
-|None
-
-|Use of management functions
-|FMT_SMF.1
-|None
-
-|Modification to the group of Users that are part of a role
-|FMT_SMR.1
-|None
-
-|Changes to the time
-|FPT_STM.1
-|None
-
-|Failure to establish session
-|FTP_ITC.1, FTP_TRP.1(a), FTP_TRP.1(b)
-|Reason for failure
-|===
-
-Application Note:
-In cases where user identification events are inseparable from user authentication events, they may be considered to be a single event for audit purposes.
-Regarding FMT_SMR.1, if the relationship between users and roles is not modifiable, its auditable event cannot be generated and the requirement to generate an audit record can be ignored.
-The ST author can include other auditable events directly in the table; they are not limited to the list presented.
-
-FAU_GEN.2	User identity association
-(for O.AUDIT)
-Hierarchical to:	No other components.
-Dependencies:	FAU_GEN.1	Audit data generation
-		FIA_UID.1	Timing of identification
-
-FAU_GEN.2.1	For audit events resulting from actions of identified users, the TSF shall be able to associate each auditable event with the identity of the user that caused the event.
-
-FAU_STG_EXT.1	Extended: External Audit Trail Storage
-(for O.AUDIT)
-Hierarchical to:	No other components.
-Dependencies:	FAU_GEN.1	Audit data generation,
-	FTP_ITC.1	Inter-TSF trusted channel.
-
-FAU_STG_EXT.1.1	The TSF shall be able to transmit the generated audit data to an External IT Entity using a trusted channel according to FTP_ITC.1.
-
-|Cryptograhic Support (FCS)
-|
-|
-
-|User Data Protection (FDP)
-|
-|
-
-|Identification and Authentication (FIA)
-|
-|
-
-|Security Management (FMT)
-|
-|
-
-|Privacy (FPR)
-|
-|
-
-|Protection of the TSF (FPT)
-|
-|
-
-|Resource Utilization (FRU)
-|
-|
-
-|TOE Access (FTA)
-|
-|
-
-|Trusted Channels (FTP)
-|
-|
-|===
 
 [appendix]
 == Glossary
