@@ -18,25 +18,16 @@
 :iTC-GitHub: https://github.com/coffeemaker/repository/
 :pp-name: collaborative Protection Profile for Hardcopy Devices
 :pp-shortname: HCDcPP
-:pp-version: 0.1
-:pp-date: 2020-06-04
+:pp-version: 0.6
+:pp-date: 2020-06-08
 
 == Foreword
 
-[BOILERPLATE]
-====
-This section is boilerplate and should not need to be edited.
-====
-
-This is a Supporting Document, intended to complement the Common Criteria (CC) version 3 and the associated Common Evaluation Methodology for Information Technology Security Evaluation.
+This is a Supporting Document (SD), intended to complement the Common Criteria (CC) version 3 and the associated Common Evaluation Methodology for Information Technology Security Evaluation.
 
 Supporting Documents may be "Guidance Documents", that highlight specific approaches and application of the standard to areas where no mutual recognition of its application is required, and as such, are not of normative nature, or "Mandatory Technical Documents", whose application is mandatory for evaluations whose scope is covered by that of the Supporting Document. The usage of the latter class is not only mandatory, but certificates issued as a result of their application are recognized under the CCRA.
 
-This Supporting Document has been developed by the {iTC-longname} ({iTC-shortname}) and is designed to be used to support the evaluations of TOEs against the cPP identified in <<Technology Area and Scope of Supporting Document>>.
-
-== Acknowledgements
-
-This Supporting Document was developed by the {iTC-longname} international Technical Community with representatives from industry, Government agencies, Common Criteria Test Laboratories, and members of academia.
+This SD has been developed by the {iTC-longname} ({iTC-shortname}) and is designed to be used to support the evaluations of TOEs against the cPP identified in <<Technology Area and Scope of Supporting Document>>.
 
 === Technical Editor
 
@@ -65,7 +56,11 @@ See <<Technology Area and Scope of Supporting Document>>.
 
 === Field of special use
 
-This Supporting Document applies to the evaluation of TOEs claiming conformance with the {pp-name} [HCDcPP].
+This Supporting Document applies to the evaluation of TOEs claiming conformance with the {pp-name} <<HCDcPP>>.
+
+== Acknowledgements
+
+This Supporting Document was developed by the {iTC-shortname} with representatives from industry, Government agencies, Common Criteria Test Laboratories, and members of academia.
 
 toc::[]
 
@@ -75,33 +70,21 @@ toc::[]
 
 === Technology Area and Scope of Supporting Document
 
-This Supporting Document (SD) is mandatory for evaluations of products that claim conformance to any of the following cPP(s):
-
-[REVIEW]
-====
-Verify version and date information for the PP
-====
-
-* {pp-name}, {pp-version}, {pp-date}
+This Supporting Document (SD) defines the Evaluation Activities (EAs) associated
+with the collaborative Protection Profile for Hardcopy Devices <<HCDcPP>>.
 
 [GUIDANCE]
 ====
-You need to provide a high level description of the product type being evaluated with this cPP/SD. 
+To Do - Need to provide a high level description of the product type being evaluated with this cPP/SD. 
 ====
 
-[BOILERPLATE]
-====
-This next paragraph is boilerplate.
-====
+This SD is mandatory for evaluations of products that claim conformance to any of the following cPP(s):
 
-Although EAs are defined mainly for the evaluator to follow, the definitions in this SD aim to provide a common understanding for developers, evaluators and users as to what aspects of the TOE are tested in an evaluation against {pp-name}, and to what depth the testing is carried out. This common understanding in turn contributes to the goal of ensuring that evaluations against {pp-name} achieve comparable, transparent and repeatable results. In general, the definition of EAs will also help developers to prepare for evaluation by identifying specific requirements for their TOE. The specific requirements in EAs may in some cases clarify the meaning of SFRs, and may identify particular requirements for the content of Security Targets (STs) (especially the TOE Summary Specification (TSS)), AGD guidance, and possibly required supplementary information (e.g. _any examples, such as for entropy analysis or cryptographic key architecture_).
+* {pp-name}, {pp-version}, {pp-date}
+
+Although EAs are defined mainly for the evaluator to follow, the definitions in this SD aim to provide a common understanding for developers, evaluators and users as to what aspects of the TOE are tested in an evaluation against the associated cPPs, and to what depth the testing is carried out. This common understanding in turn contributes to the goal of ensuring that evaluations against the cPP achieve comparable, transparent and repeatable results. In general, the definition of EAs will also help developers to prepare for evaluation by identifying specific requirements for their TOE. The specific requirements in EAs may in some cases clarify the meaning of SFRs, and may identify particular requirements for the content of Security Targets (STs) (especially the TOE Summary Specification (TSS)), Administrator Guidance Documentation (AGD), and possibly required supplementary information (e.g. for entropy analysis or cryptographic key management architecture - see <<Required Supplementary Information>>  ).
 
 === Structure of the Document
-
-[BOILERPLATE]
-====
-Generally this section should be considered boilerplate.
-====
 
 EAs can be defined for both SFRs and SARs. These are defined in separate sections of this SD.
 
@@ -109,88 +92,17 @@ If any EA cannot be successfully completed in an evaluation then the overall ver
 
 In general, if all EAs (for both SFRs and SARs) are successfully completed in an evaluation then it would be expected that the overall verdict for the evaluation is a 'pass'. To reach a 'fail' verdict when the EAs have been successfully completed would require a specific justification from the evaluator as to why the EAs were not sufficient for that TOE.
 
-Similarly, at the more granular level of Assurance Components, if the Evaluation Activities for an Assurance Component and all of its related SFR Evaluation Activities are successfully completed in an evaluation then it would be expected that the verdict for the Assurance Component is a 'pass'. To reach a 'fail' verdict for the Assurance Component when these Evaluation Activities have been successfully completed would require a specific justification from the evaluator as to why the Evaluation Activities were not sufficient for that TOE.
-
-[REVIEW]
-====
-The ND SD contains a section named "Application of this Supporting Document. Should we add a similar section to this SD? 
-====
+Similarly, at the more granular level of Assurance Components, if the EAs for an Assurance Component and all of its related SFR EAs are successfully completed in an evaluation then it would be expected that the verdict for the Assurance Component is a 'pass'. To reach a 'fail' verdict for the Assurance Component when these EAs have been successfully completed would require a specific justification from the evaluator as to why the EAs were not sufficient for that TOE.
 
 == Evaluation Activities for SFRs
 
-=== Structure of EAs
+The EAs presented in this section capture the actions the evaluator performs to address technology specific aspects covering specific SARs (e.g.., ASE_TSS.1, ADV_FSP.1, AGD_OPE.1, and ATE_IND.1) - this is in addition to the CEM workunits that are performed in Section 5 (Evaluation Activities for SARs). 
 
-[BOILERPLATE]
-====
-Generally this section should be considered boilerplate.
-====
+Regarding design descriptions (designated by the subsections labelled TSS, as well as any required supplementary material that may be treated as proprietary), the evaluator must ensure there is specific information that satisfies the EA. For findings regarding the TSS section, the evaluator’s verdicts will be associated with the CEM workunit ASE_TSS.1-1. Evaluator verdicts associated with the supplementary evidence will also be associated with ASE_TSS.1-1, since the requirement to provide such evidence is specified in ASE in the cPP. 
 
-[REVIEW]
-====
-Other SDs do not contain this section. Should we remove this section? 
-====
+For ensuring the guidance documentation provides sufficient information for the administrators/users as it pertains to SFRs, the evaluator’s verdicts will be associated with CEM workunits ADV_FSP.1-7, AGD_OPE.1-4, and AGD_OPE.1-5. 
 
-All EAs for SFRs defined in this Section include the following items to keep consistency among EAs.
-
-. Objective of the EA
-+
-Objective defines the goal of the EA. Assessment Strategy describes how the evaluator can achieve this goal in more detail and Pass/Fail criteria defines how the evaluator can determine whether the goal is achieved or not.
-
-. Dependency
-+
-Where the EA depends on completion of another EA then the dependency and the other EA is also identified here.
-
-. Tool types required to perform the EA
-+
-If performing the EA requires any tool types in order to complete the EA then these tool types are defined here.
-
-. Required input from the developer or other entities
-+
-Additional detail is specified here regarding the required format and content of the inputs to the EA.
-
-. Assessment Strategy
-+
-Assessment Strategy provides guidance and details on how to perform the EA. It includes, as appropriate to the content of the EA; 
-
-.. How to assess the input from the developer or other entities for completeness with respect to the EA
-.. How to make use of any tool types required (potentially including guidance for the calibration or setup of the tools)
-.. Guidance on the steps for performing the EA
-
-. Pass/Fail criteria
-+
-The evaluator uses these criteria to determine whether the EA has demonstrated that the TOE has met the relevant requirement or that it has failed to meet the relevant requirement.
-
-. Requirements for reporting
-+
-Specific reporting requirements that support transparency and reproducibility of the Pass/Fail judgement are defined here.
-
-=== Justification for EAs for SFRs
-[BOILERPLATE]
-====
-Generally this section should be considered boilerplate.
-====
-
-[REVIEW]
-====
-Other SDs do not contain this section. Should we remove this section? 
-====
-
-As in this SD provide specific or more detailed guidance to evaluate the _type of_ system, however, it is the CEM work units based on which the evaluator shall perform evaluations.
-
-This Section explains how EAs for SFRs are derived from the particular CEM work units identified in Assessment Strategy to show the consistency and compatibility between the CEM work units and EAs in this SD.
-
-Assessment Strategy for ASE_TSS requires the evaluator to examine that the TSS provides sufficient design descriptions and its verdicts will be associated with the CEM work unit ASE_TSS.1-1. Evaluator verdicts associated with the supplementary information will also be associated with ASE_TSS.1-1, since the requirement to provide such evidence is specified in ASE in the cPP.
-
-Assessment Strategy for AGD_OPE/ADV_FSP requires the evaluator to examine that the AGD guidance provides sufficient information for the administrators/users as it pertains to SFRs, its verdicts will be associated with CEM work units ADV_FSP.1-7, AGD_OPE.1-4, and AGD_OPE.1-5.
-
-Assessment Strategy for ATE_IND requires the evaluator to conduct testing that the iTC has determined that those testing of the TOE in the context of the associated SFR is necessary. While the evaluator is expected to develop tests, there may be instances where it is more practical for the developer to construct tests, or where the developer may have existing tests. Therefore, it is acceptable for the evaluator to witness developer-generated tests in lieu of executing the tests. In this case, the evaluator must ensure the developer's tests are executing both in the manner declared by the developer and as mandated by the EA. The CEM work units that derive those EAs are: ATE_IND.1-3, ATE_IND.1-4, ATE_IND.1-5, ATE_IND.1-6, and ATE_IND.1-7.
-
-[GUIDANCE]
-====
-The following sections have been included from CC Part 2 just as reference. Each section will have to be filled out. If the class isn't needed it can be removed.
-
-An example of headings is provided under FAU.
-====
+Finally, the subsection labelled Tests is where the iTC has determined that testing of the product in the context of the associated SFR is necessary. While the evaluator is expected to develop tests, there may be instances where it is more practical for the developer to construct tests, or where the developer may have existing tests. Therefore, it is acceptable for the evaluator to witness developer-generated tests in lieu of executing the tests. In this case, the evaluator must ensure the developer’s tests are executing both in the manner declared by the developer and as mandated by the EA. The CEM workunits that are associated with the EAs specified in this section are: ATE_IND.1-3, ATE_IND.1-4, ATE_IND.1-5, ATE_IND.1-6, and ATE_IND.1-7. 
 
 === Security Audit (FAU)
 
@@ -224,7 +136,9 @@ The EAs for FAU_GEN.1 address this SFR.
 
 The evaluator shall examine the TSS to ensure it describes the means by which the audit data are transferred to the external audit server, and how the trusted channel is provided. Testing of the trusted channel mechanism will be performed as specified in the associated assurance activities for the particular trusted channel mechanism.
 
-The evaluator shall examine the TSS to ensure it describes the amount of audit data that are stored locally; what happens when the local audit data store is full; and how these records are protected against unauthorized access. The evaluator shall also examine the operational guidance to determine that it describes the relationship between the local audit data and the audit data that are sent to the audit log server. For example, when an audit event is generated, is it simultaneously sent to the external server and the local store, or is the local store used as a buffer and “cleared” periodically by sending the data to the audit server.
+The evaluator shall examine the TSS to ensure it describes the amount of audit data that are stored locally; what happens when the local audit data store is full; and how these records are protected against unauthorized access. 
+
+The evaluator shall also examine the operational guidance to determine that it describes the relationship between the local audit data and the audit data that are sent to the audit log server. For example, when an audit event is generated, is it simultaneously sent to the external server and the local store, or is the local store used as a buffer and “cleared” periodically by sending the data to the audit server.
 
 ===== Guidance Documentation
 
@@ -248,11 +162,13 @@ The evaluator shall review the TSS to determine that it describes how the functi
 
 If the TOE is relying on random number generation from a third-party source, the KMD needs to describe the function call and parameters used when calling the third-party DRBG function.  Also, the KMD needs to include a short description of the vendor's assumption for the amount of entropy seeding the third-party DRBG. The evaluator uses the description of the RBG functionality in FCS_RBG_EXT or the KMD to determine that the key size being requested is identical to the key size and mode to be used for the encryption/decryption of the user data (FCS_COP.1(d)).
 
+The KMD is described in Appendix E of <<HCDcPP>>. 
+
 ==== FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction
 
 ===== TSS
 
-The evaluator shall verify the TSS provides a high level description of what it means for keys and key material to be no longer needed and when then should be expected to be destroyed.
+The evaluator shall verify the TSS provides a high level description of what it means for keys and key material to be no longer needed and when they should be expected to be destroyed.
 
 ===== KMD
 
@@ -305,7 +221,7 @@ Test 1: Applied to each key held as in volatile memory and subject to destructio
 
 Steps 1-6 ensure that the complete key does not exist anywhere in volatile memory. If a copy is found, then the test fails.
 
-Test 2: Applied to each key help in non-volatile memory and subject to destruction by the TOE, except  for replacing a key using the selection [a new value of a key of the same size]. The evaluator shall use special tools (as needed), provided by the TOE developer if necessary, to ensure the tests function as intended.
+Test 2: Applied to each key held in non-volatile memory and subject to destruction by the TOE, except  for replacing a key using the selection [a new value of a key of the same size]. The evaluator shall use special tools (as needed), provided by the TOE developer if necessary, to ensure the tests function as intended.
 
 . Identify the purpose of the key and what access should fail when it is deleted. (e.g. the data encryption key being deleted would cause data decryption to fail.)
 . Cause the TOE to clear the key.
@@ -331,13 +247,13 @@ The test succeeds if correct pattern is used to overwrite the key in the memory 
 
 ===== Tests
 
-The evaluator shall use tests appropriate to the modes selected in the above requirement from "The Advanced Encryption Standard Algorithm Validation Suite (AESAVS)", The CMAC Validation System (CMACVS)", "The Counter with Cipher Block Chaining-Message Authentication Code (CCM) Validation System (CCMVS)", and "The Galois/Counter Mode (GCM) and GMAC Validation System (GCMVS)" (these documents are available from http://csrc.nist.gov/groups/STM/cavp/index.html) as a guide in testing the requirement above. This will require that the evaluator have a reference implementation of the algorithms known to be good that can produce test vectors that are verifiable during the test.
+The evaluator shall use tests appropriate to the modes selected in the above requirement from "The Advanced Encryption Standard Algorithm Validation Suite (AESAVS)", "The CMAC Validation System (CMACVS)", "The Counter with Cipher Block Chaining-Message Authentication Code (CCM) Validation System (CCMVS)", and "The Galois/Counter Mode (GCM) and GMAC Validation System (GCMVS)" (these documents are available from http://csrc.nist.gov/groups/STM/cavp/index.html) as a guide in testing the requirement above. This will require that the evaluator have a reference implementation of the algorithms known to be good that can produce test vectors that are verifiable during the test.
 
 ==== FCS_COP.1(b) Cryptographic Operation (for signature generation/verification)
 
 ===== Tests
 
-The evaluator shall use the signature generation and signature verification portions of "The Digital Signature Algorithm Validation System” (DSA2VS), "The Elliptic Curve Digital Signature Algorithm Validation System” (ECDSA2VS), and "The RSA Validation System” RSA2VS as a guide in testing the requirement above. The Validation System used shall comply with the conformance standard identified in the ST (i.e., FIPS PUB 186-4). This will require that the evaluator have a reference implementation of the algorithms known to be good that can produce test vectors that are verifiable during the test.
+The evaluator shall use the signature generation and signature verification portions of "The Digital Signature Algorithm Validation System” (DSA2VS), "The Elliptic Curve Digital Signature Algorithm Validation System” (ECDSA2VS), and "The RSA Validation System” (RSA2VS) as a guide in testing the requirement above. The Validation System used shall comply with the conformance standard identified in the ST (i.e., FIPS PUB 186-4). This will require that the evaluator have a reference implementation of the algorithms known to be good that can produce test vectors that are verifiable during the test.
 
 ==== FCS_RBG_EXT.1 Extended: Cryptographic Operation (Random Bit Generation)
 
@@ -347,7 +263,7 @@ For any RBG services provided by a third party, the evaluator shall ensure the T
 
 ===== Entropy Description 
 
-The evaluator shall ensure the Entropy Description provides all of the required information as described in Appendix E. The evaluator assesses the information provided and ensures the TOE is providing sufficient entropy when it is generating a Random Bit String.
+The evaluator shall ensure the Entropy Description provides all of the required information as described in Appendix D of <<HCDcPP>>. The evaluator assesses the information provided and ensures the TOE is providing sufficient entropy when it is generating a Random Bit String.
 
 ===== Guidance Documentation
 
@@ -379,9 +295,14 @@ It is covered by assurance activities for FDP_ACF.1.
 
 ==== FDP_ACF.1	Security attribute based access control
 
+[GUIDANCE]
+====
+To Do - Once the table numbering in the cPP is corrected, will need to correct the table numbering in the AEs for this SFR.  
+====
 ===== TSS
 
 The evaluator shall check to ensure that the TSS describes the functions to realize SFP defined in Table 2 and Table 3.
+
 
 ==== Guidance Documentation 
 
@@ -535,13 +456,13 @@ The evaluator shall also perform the following tests:
 . The evaluator shall check to ensure that the operation results are appropriately reflected as specified in the administrator guidance.
 . The evaluator shall check to ensure that a user that is not part of an authorized role defined in the SFR is not permitted to perform operations on the security attributes.
 
-===== FMT_MSA.3	Static attribute initialization 
+==== FMT_MSA.3	Static attribute initialization 
 
-====== TSS
+===== TSS
 
 The evaluator shall check to ensure that the TSS describes mechanisms to generate security attributes which have properties of default values, which are defined in the SFR.
 
-====== Tests
+===== Tests
 
 If U.ADMIN is selected, then testing of this SFR is performed in the tests of FDP_ACF.1.
 
@@ -703,11 +624,6 @@ Further assurance activities are associated with the specific protocols.
 
 == Evaluation Activities for Conditionally Mandatory Requirements 
 
-[REVIEW]
-====
-JC - In the HCD-PP, conditionally-mandatory SFRs are grouped based on functional areas (e.g. B.2 PSTN Fax-Network Separation). I've grouped them based on functional areas in this SD as well.   
-====
-
 === Confidential Data on Field-Replaceable Nonvolatile Storage Devices
 
 ==== FPT_KYP_EXT.1 Extended: Protection of Key and Key Material 
@@ -728,17 +644,17 @@ The evaluator shall verify the TSS contains a high-level description of the BEV 
 
 The evaluator shall examine the KMD to ensure that it describes a high level description of the key hierarchy for all accepted BEVs.  The evaluator shall examine the KMD to ensure it describes the key chain in detail. The description of the key chain shall be reviewed to ensure it maintains a chain of keys using key wrap, submask combining, or key encryption.
 
-The evaluator shall examine the KMD to ensure that it describes how the key chain process functions, such that it does not expose any material that might compromise any key in the chain. (e.g. using a key directly as a compare value against a TPM) This description must include a diagram illustrating the key hierarchy implemented and detail where all keys and keying material is stored or what it is derived from.  The evaluator shall examine the key hierarchy to ensure that at no point the chain could be broken without a cryptographic exhaust or the initial authorization value and the effective strength of the BEV is maintained throughout the Key Chain.
+The evaluator shall examine the KMD to ensure that it describes how the key chain process functions, such that it does not expose any material that might compromise any key in the chain. (e.g. using a key directly as a compare value against a TPM) This description must include a diagram illustrating the key hierarchy implemented and detail where all keys and keying material is stored or what it is derived from.  The evaluator shall examine the key hierarchy to ensure that at no point the chain could be broken without a cryptographic exhaust or the initial authorization value and the effective strength of the BEV is maintained throughout the key chain.
 
 The evaluator shall verify the KMD includes a description of the strength of keys throughout the key chain.
 
 ==== FDP_DSK_EXT.1 Extended: Protection of Data on Disk
 
-In the assurance activities, below, “Device” refers to the Field-Replaceable Nonvolatile Storage Device from FDP_DSK_EXT.1. If the TOE contains more than one applicable Device, then the assurance activities are performed as necessary on each such Device.
+In the EAs, below, “Device” refers to the Field-Replaceable Nonvolatile Storage Device from FDP_DSK_EXT.1. If the TOE contains more than one applicable Device, then the EAs are performed as necessary on each such Device.
 
 ===== TSS
 
-If  the self-encrypting device option is selected, the device must be certified in conformance to the current Full Disk Encryption Protection Profile. The tester shall confirm that the specific SED is listed in the TSS, documented and verified to be CC certified against the FDE EE cPP.
+If  the self-encrypting device option is selected, the Device must be certified in conformance to the current Full Disk Encryption Protection Profile. The tester shall confirm that the specific SED is listed in the TSS, documented and verified to be CC certified against the FDE EE cPP.
 
 The evaluator shall examine the TSS to ensure that the description is comprehensive in how the data is written to the Device and the point at which the encryption function is applied.
 
@@ -819,19 +735,9 @@ The evaluator shall also perform the following tests:
 
 . The evaluator shall ensure, for each method of remote user access, the channel data are not sent in plaintext.
 
-Further assurance activities are associated with the specific protocols.
+Further EAs are associated with the specific protocols.
 
 == Evaluation Activities for Optional Requirements 
-
-[GUIDANCE]
-====
-This is the same as the above section, but is specifically for the Optional requirements
-====
-
-[REVIEW]
-====
-JC - In the HCD-PP, conditionally-mandatory SFRs are grouped based on functional areas (e.g. B.2 PSTN Fax-Network Separation). I've grouped them based on functional areas in this SD as well.   
-====
 
 === Internal Audit Log Storage
 
@@ -937,23 +843,13 @@ The evaluator shall ensure that the TSS contains a description of how the TSF co
 
 Any TOE-specific extensions, processing that is not included in the documents, or alternative implementations allowed by the documents that may impact the security requirements the TOE is to enforce shall be described in the TSS.
 
-The TSS may refer to the Key Management Description (KMD), described in Appendix F , that may not be made available to the public.  
+The TSS may refer to the KMD, described in Appendix E of <<HCDcPP>> , that may not be made available to the public.  
 
 ===== Tests
 
 The evaluator shall use the key pair generation portions of "The FIPS 186-4 Digital Signature Algorithm Validation System (DSA2VS)", "The FIPS 186-4 Elliptic Curve Digital Signature Algorithm Validation System (ECDSA2VS)", and “The 186-4 RSA Validation System (RSA2VS)” as a guide in testing the requirement above, depending on the selection performed by the ST author. This will require that the evaluator have a trusted reference implementation of the algorithms that can produce test vectors that are verifiable during the test.
 
 == Evaluation Activities for Selection-Based Requirements 
-
-[GUIDANCE]
-====
-This is the same as the above section, but is specifically for the Selection-based requirements
-====
-
-[REVIEW]
-====
-JC - In the HCD-PP, conditionally-mandatory SFRs are grouped based on functional areas (e.g. B.2 PSTN Fax-Network Separation). I've grouped them based on functional areas in this SD as well.   
-====
 
 === Confidential Data on Field-Replaceable Nonvolatile Storage Devices
 
@@ -1003,10 +899,17 @@ The evaluator shall also test the decrypt functionality for each mode by decrypt
 
 The evaluator shall test the encrypt functionality using a set of 200 plaintext, IV, and key 3-tuples. 100 of these shall use 128 bit keys, and 100 shall use 256 bit keys. The plaintext and IV values shall be 128-bit blocks. For each 3-tuple, 1000 iterations shall be run as follows:
 
-[REVIEW]
-====
-JC - Need to add paragraphs 1104-1111 from HCD-PP
-====
+....
+# Input: PT, IV, Key
+	for i = 1 to 1000:
+			if i == 1:
+				CT[1] = AES-CBC-Encrypt(Key, IV, PT)
+				PT = IV
+			else:
+				CT[i] = AES-CBC-Encrypt(Key, PT)
+				PT = CT[i-1]
+
+....
 
 The ciphertext computed in the 1000th iteration (i.e., CT[1000]) is the result for that trial. This result shall be compared to the result of running 1000 iterations with the same values using a known good implementation.
 
@@ -1320,11 +1223,6 @@ The evaluator shall check the TSS to ensure that it lists the supported data int
 
 ====== FCS_SSH_EXT.1.7
 
-[REVIEW]
-====
-JC - Updated the EA for Guidance Documentation below for TD0494. 
-====
-
 The evaluator shall check the guidance documentation to ensure that it contains instructions to the administrator on how to ensure that only the allowed key exchange algorithms are used in SSH connections with the TOE.
 
 ===== Tests
@@ -1358,11 +1256,6 @@ The evaluator shall also perform the following test:
 The evaluator shall establish a SSH connection using each of the integrity algorithms specified by the requirement.  It is sufficient to observe (on the wire) the successful negotiation of the algorithm to satisfy the intent of the test.
 
 ====== FCS_SSH_EXT.1.7
-
-[REVIEW]
-====
-JC - Updated the EA for Tests below for TD0494. 
-====
 
 The evaluator shall also perform the following test:
 
@@ -1482,7 +1375,7 @@ Test 3: Ensure that the TOE supports passwords consisting of all characters assi
 
 ===== TSS
 
-The evaluator shall verify the TSS includes a description of the key derivation function and shall verify the key derivation uses an approved derivation mode and key expansion algorithm according to SP 800-108 and SP800-132.
+The evaluator shall verify the TSS includes a description of the key derivation function and shall verify the key derivation uses an approved derivation mode and key expansion algorithm according to SP 800-108 and SP 800-132.
 
 ===== KMD
 
@@ -1508,10 +1401,6 @@ The evaluator shall ensure the TSS describes how nonces are created uniquely and
 
 
 == Evaluation Activities for SARs
-[BOILERPLATE]
-====
-Generally this entire section (except ATE_IND and AVA_VAN) is boilerplate and taken directly from CC. 
-====
 
 The sections below specify EAs for the Security Assurance Requirements (SARs) included in the related cPPs. The EAs in <<Evaluation Activities for SFRs>>, <<Evaluation Activities for Conditionally Mandatory Requirements>>, <<Evaluation Activities for Optional Requirements>>, and <<Evaluation Activities for Selection-Based Requirements>> are an interpretation of the more general CEM assurance requirements as they apply to the specific technology area of the TOE.
 
@@ -1520,24 +1409,12 @@ In this section, each SAR that is contained in the cPP is listed, and the EAs th
 
 === Class ASE: Security Target
 
-When evaluating a Security Target, the evaluator performs the work units as presented in the CEM. In addition, the evaluator ensures the content of the TSS in the ST satisfies the EAs specified in <<Evaluation Activities for SFRs>> as well as the EAs for the conditionally-mandatory, optional and selection-based SFRs claimed by the ST and specified in <<Evaluation Activities for Conditionally Mandatory Requirements>>, <<Evaluation Activities for Optional Requirements>>, and <<Evaluation Activities for Selection-Based Requirements>>.
+When evaluating a Security Target, the evaluator performs the work units as presented in the CEM. In addition, the evaluator ensures the content of the TSS in the ST satisfies the EAs specified in <<Evaluation Activities for SFRs>> as well as the EAs for the conditionally-mandatory, optional, and selection-based SFRs claimed by the ST and specified in <<Evaluation Activities for Conditionally Mandatory Requirements>>, <<Evaluation Activities for Optional Requirements>>, and <<Evaluation Activities for Selection-Based Requirements>>.
 
 === Class ADV: Development
 ==== Basic Functional Specification (ADV_FSP.1)
 
-The EAs for this assurance component focus on understanding the interfaces (e.g., application programing interfaces, command line interfaces, graphical user interfaces, network interfaces) described in the AGD documentation, and possibly identified in the TOE Summary Specification (TSS) in response to the SFRs. Specific evaluator actions to be performed against this documentation are identified (where relevant) for each SFR in Section 2 (Evaluation Activities for SFRs), Section 3 (Evaluation Activities for Conditionally Mandatory Requirements), Section 4 (Evaluation Activities for Optional Requirements), Section 5 (Evaluation Activities for Selection-Based Requirements), and in EAs for AGD, ATE and AVA SARs in other parts of Section 6.
-
-[REVIEW]
-====
-JC - Should the last sentence in the paragraph above also mention EAs for the conditionally-mandatory, optional, and selection-based SFRs claimed by the ST and specified in sections 3, 4, and 5? 
-====
-
-The EAs presented in this section address the CEM work units ADV_FSP.1-1, ADV_FSP.1-2, ADV_FSP.1-3, and ADV_FSP.1-5.
-
-[REVIEW]
-====
-JC- Note: The HCD-PP specifies the elemements for ADV_FSP.1 from CC Part 2 wherase the SD address certain CEM work units for ADV_FSP.1. Additionally, the HCD-PP specifies an AA for TSS whereas the SD does not. 
-====
+The EAs for this assurance component focus on understanding the interfaces (e.g., application programing interfaces, command line interfaces, graphical user interfaces, network interfaces) described in the AGD documentation, and possibly identified in the TOE Summary Specification (TSS) in response to the SFRs. Specific evaluator actions to be performed against this documentation are identified (where relevant) for each SFR in <<Evaluation Activities for SFRs>>, <<Evaluation Activities for Conditionally Mandatory Requirements>>, <<Evaluation Activities for Optional Requirements>>, <<Evaluation Activities for Selection-Based Requirements>>, and in EAs for AGD, ATE and AVA SARs in other parts of <<Evaluation Activities for SARs>>.
 
 The EAs are reworded for clarity and interpret the CEM work units such that they will result in more objective and repeatable actions by the evaluator. The EAs in this SD are intended to ensure the evaluators are consistently performing equivalent actions.
 
@@ -1557,16 +1434,18 @@ The documents to be examined for this assurance component in an evaluation are t
 
 |ADV_FSP.1-3 The evaluator *__shall examine__* the presentation of the TSFI to determine that it identifies all parameters associated with each SFR-enforcing and SFR supporting
 TSFI.
-|<<ADV_FSP.1-3 Evaluation Activity>>: __The evaluator shall check the interface documentation to ensure it identifies and describes the parameters for each TSFI that is identified as being security relevant.__
+|<<Evaluation Activity>>: __The evaluator shall check the interface documentation to ensure it identifies and describes the parameters for each TSFI that is identified as being security relevant.__
 
-|ADV_FSP.1-4 The evaluator shall examine the rationale provided by the developer for the implicit categorisation of interfaces as SFR-non-interfering to determine that it is accurate.	
+|ADV_FSP.1-4 The evaluator *__shall examine__* the rationale provided by the developer for the implicit categorisation of interfaces as SFR-non-interfering to determine that it is accurate.	
 |Paragraph 561 from the CEM: "In the case where the developer has provided adequate documentation to perform the analysis called for by the rest of the work units for this component without explicitly identifying SFR-enforcing and SFR-supporting interfaces, this work unit should be considered satisfied."
+
 Since the rest of the ADV_FSP.1 work units will have been satisfied upon completion of the EAs, it follows that this work unit is satisfied as well.
 
 |ADV_FSP.1-5 The evaluator *__shall check__* that the tracing links the SFRs to the corresponding TSFIs.
 |<<ADV_FSP.1-5 Evaluation Activity>>: _The evaluator shall examine the interface documentation to develop a mapping of the interfaces to SFRs._
 
-|ADV_FSP.1-6 The evaluator *__shall examine__* the functional specification to determine that it is a complete instantiation of the SFRs.	
+|ADV_FSP.1-6 The evaluator *__shall examine__* the functional specification to determine that it is a complete instantiation of the SFRs.
+
 |EAs that are associated with the SFRs in <<Evaluation Activities for SFRs>>, and, if applicable, <<Evaluation Activities for Conditionally Mandatory Requirements>> , <<Evaluation Activities for Optional Requirements>> and <<Evaluation Activities for Selection-Based Requirements>>, are performed to ensure that all the SFRs where the security functionality is externally visible (i.e., at the TSFI) are covered. Therefore, the intent of this work unit is covered.
 
 |ADV_FSP.1-7 The evaluator *__shall examine__* the functional specification to determine that it is an accurate instantiation of the SFRs.	
@@ -1583,16 +1462,23 @@ In this context, TSFI are deemed security relevant if they are used by the admin
 The set of TSFI that are provided as evaluation evidence are contained in the Administrative Guidance and User Guidance. 
 
 ==== ADV_FSP.1-2 Evaluation Activity
+_The evaluator shall examine the interface documentation to ensure it describes the purpose and method of use for each TSFI that is identified as being security relevant._
+
+In this context, TSFI are deemed security relevant if they are used by the administrator to configure the TOE, or to perform other administrative functions (e.g., audit review or performing updates). Additionally, those interfaces that are identified in the ST, or guidance documentation, as adhering to the security policies (as presented in the SFRs), are also considered security relevant. The intent, is that these interfaces will be adequately tested, and having an understanding of how these interfaces are used in the TOE is necessary to ensure proper test coverage is applied.
+
+The set of TSFI that are provided as evaluation evidence are contained in the Administrative Guidance and User Guidance.
+
+==== ADV_FSP.1-3 Evaluation ActivityEvaluation Activity
 _The evaluator shall check the interface documentation to ensure it identifies and describes the parameters for each TSFI that is identified as being security relevant._
 
-==== ADV_FSP.1-3 Evaluation Activity
+==== ADV_FSP.1-5 Evaluation Activity
 _The evaluator shall examine the interface documentation to develop a mapping of the interfaces to SFRs._
 
-The evaluator uses the provided documentation and first identifies, and then examines a representative set of interfaces to perform the EAs presented in <<Evaluation Activities for SFRs>>, including the EAs associated with testing of the interfaces.
+The evaluator uses the provided documentation and first identifies, and then examines a representative set of interfaces to perform the EAs presented in Sections 2 and, if applicable, <<Evaluation Activities for Conditionally Mandatory Requirements>> , <<Evaluation Activities for Optional Requirements>> and <<Evaluation Activities for Selection-Based Requirements>>, including the EAs associated with testing of the interfaces.
 
-It should be noted that there may be some SFRs that do not have an interface that is explicitly "mapped" to invoke the desired functionality. For example, generating a random bit string, destroying a cryptographic key that is no longer needed, or the TSF failing to a secure state, are capabilities that may be specified in SFRs, but are not invoked by an interface. 
+It should be noted that there may be some SFRs that do not have an interface that is explicitly “mapped” to invoke the desired functionality. For example, generating a random bit string, destroying a cryptographic key that is no longer needed, or the TSF failing to a secure state, are capabilities that may be specified in SFRs, but are not invoked by an interface.
 
-However, if the evaluator is unable to perform some other required EA because there is insufficient design and interface information, then the evaluator is entitled to conclude that an adequate functional specification has not been provided, and hence that the verdict for the ADV_FSP.1 assurance component is a 'fail'.
+However, if the evaluator is unable to perform some other required EA because there is insufficient design and interface information, then the evaluator is entitled to conclude that an adequate functional specification has not been provided, and hence that the verdict for the ADV_FSP.1 assurance component is a ‘fail’.
 
 === Class AGD: Guidance Documentation
 
@@ -1623,11 +1509,6 @@ any cryptographic engine associated with the evaluated configuration
 of the TOE. It shall provide a warning to the administrator that use of other cryptographic engines was not evaluated nor tested during the
 CC evaluation of the TOE.
 
-[REVIEW]
-====
-JC - Note: The item above seems to be redundant as it is already covered by 6.3.1.3. Evaluation Activity. 
-====
-
 . The documentation must describe the process for verifying updates to
 the TOE by verifying a digital signature. The evaluator shall verify that
 this process includes the following steps:
@@ -1641,7 +1522,7 @@ validating the hash/digital signature.
 . The TOE will likely contain security functionality that does not fall in
 the scope of evaluation under this cPP. The guidance documentation
 shall make it clear to an administrator which security functionality is
-covered by the Evaluation Activities.
+covered by the EAs.
 
 ==== Preparative Procedures (AGD_PRE.1)
 _The evaluator performs the CEM work units associated with the AGD_PRE.1 SAR. Specific requirements and EAs on the preparative documentation are identified (and where relevant are captured in the Guidance Documentation portions of the EAs) in the individual EAs for each SFR._
@@ -1685,29 +1566,15 @@ When evaluating the developer's coverage of the TOE in their CM system, the eval
 
 ==== Independent Testing - Conformance (ATE_IND.1)
 
-The focus of the testing is to confirm that the requirements specified in the SFRs are being met. Additionally, testing is performed to confirm the
-functionality described in the TSS, as well as the dependencies on the
-Operational guidance documentation is accurate.
+The focus of the testing is to confirm that the requirements specified in the SFRs are being met. Additionally, testing is performed to confirm the functionality described in the TSS, as well as the dependencies on the Operational guidance documentation is accurate.
 
 The evaluator performs the CEM work units associated with the ATE_IND.1
 SAR. Specific testing requirements and EAs are captured for each SFR in
 <<Evaluation Activities for SFRs>>, <<Evaluation Activities for Conditionally Mandatory Requirements>>, <<Evaluation Activities for Optional Requirements>>, and <<Evaluation Activities for Selection-Based Requirements>>.
 
-[REVIEW]
-====
-JC - Added the following from ND SD. 
-====
 The evaluator should consult <<Equivalency Considerations>> when determining the appropriate
 strategy for testing multiple variations or models of the TOE that may be under
 evaluation.
-
-
-[REVIEW]
-====
-Equivalency arguments may be made here (pointing to documentation about how to handle multiple versions of the TOE and what needs to be tested).
-
-An example of this can be found in <<Equivalency Considerations>>.
-====
 
 === Class AVA: Vulnerability Assessment
 [GUIDANCE]
@@ -1830,21 +1697,11 @@ The evaluator formulates hypotheses in accordance with process defined in Append
 
 This Supporting Document refers in various places to the possibility that 'required supplementary information' may need to be supplied as part of the deliverables for an evaluation. This term is intended to describe information that is not necessarily included in the Security Target or operational guidance, and that may not necessarily be public. Examples of such information could be entropy analysis, or description of a cryptographic key management architecture used in (or in support of) the TOE. The requirement for any such supplementary information will be identified in the relevant cPP. 
 
-[GUIDANCE]
-====
-Add the EAs for Required Supplementary Information, such as a Key Management Description, as defined in the cPP.
-====
-
-[REVIEW]
-====
-JC - Added the text below for this SD. 
-====
-
 The supplementary information required by this SD are:
 
-* Entropy Documentation, which is evaluated against the guidance specified in Appendix D of [HCDcPP].
+* Entropy Documentation, which is evaluated against the guidance specified in Appendix D of <<HCDcPP>>.
 
-* A Key Management Description (KMD), which is evaluated against guidance specified in Appendix E of [HCDcPP] and all relevant KMD Evaluation Activities in this SD.
+* A Key Management Description (KMD), which is evaluated against guidance specified in Appendix E of <<HCDcPP>> and all relevant KMD Evaluation Activities in this SD.
 
 == References
 [REVIEW]
@@ -1858,7 +1715,7 @@ Update the references below. If there is anything needed beyond the cPP then it 
 * [#CC3]#[CC3]#	Common Criteria for Information Technology Security Evaluation, Part 3: Security Assurance Components, CCMB-2017-04-003, Version 3.1 Revision 5, April 2017.
 * [#CEM]#[CEM]#	Common Methodology for Information Technology Security Evaluation, Evaluation Methodology, CCMB-2017-04-004, Version 3.1 Revision 5, April 2017.
 * [#addenda]#[addenda]# CC and CEM addenda, Exact Conformance, Selection-Based SFRs, Optional SFRs, Version 0.5, May 2017
-* [#cPP]#[HCDcPP]# {pp-name}, {pp-version}, {pp-date}
+* [#HCDcPP]#[HCDcPP]# {pp-name}, {pp-version}, {pp-date}
 
 [appendix]
 == Vulnerability Analysis
