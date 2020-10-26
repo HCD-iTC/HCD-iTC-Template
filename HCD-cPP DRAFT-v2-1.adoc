@@ -636,7 +636,7 @@ Dependencies:	[FCS_CKM.1(a) Cryptographic Key Generation (for asymmetric keys), 
 
 *FCS_CKM.4.1 Refinement:* The TSF shall destroy cryptographic keys in accordance with a specified cryptographic key destruction method [*selection:*
 
-*_For volatile memory, the destruction shall be executed by a [selection: single overwrite consisting of [selection: a pseudo-random pattern using the TSF’s RBG, zeroes, ones, a new value of a key, [assignment: any value that does not contain any CSP]], removal of power to the memory, destruction of reference to the key directly followed by a request for garbage collection];_*
+*_For volatile memory, the destruction shall be executed by a [selection: single overwrite consisting of [selection: a pseudo-random pattern using the TSF’s RBG, zeroes, ones, a new value of a key, [assignment: any value that does not contain any CSP]], removal of power to the memory, destruction of reference to the key directly followed by a request for garbage collection or memory management];_*
 
 *_For nonvolatile memory, the destruction shall be executed by a [selection: [selection: single, [assignment: ST author defined multi-pass]] overwrite consisting of [selection: zeroes, ones, pseudo-random pattern, a new value of a key of the same size, [assignment: any value that does not contain any CSP]], block erase];_*
 
