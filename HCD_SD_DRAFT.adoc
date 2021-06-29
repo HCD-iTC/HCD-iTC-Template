@@ -49,7 +49,7 @@ Hardcopy Device International Technical Community (HCD-iTC)
 
 |0.87
 |2021-06-28
-|Second release for HCD iTC review
+|Third release for HCD iTC review
 
 |===
 
