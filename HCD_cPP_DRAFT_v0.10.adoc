@@ -3069,10 +3069,14 @@ Hierarchical to:
 	No other components.
 Dependencies: [
 	FCS_IPSEC_EXT.1 Extended: IPsec selected, or
-	FCS_TLS_EXT.1 Extended: TLS selected, or
-	FCS_SSH_EXT.1 Extended: SSH selected, or
+	FCS_TLSC_EXT TLS Client Protocol and/or FCS_TLSS_EXT TLS Server Protocol, or
+	FCS_SSHC_EXT SSH Client Protocol or FCS_SSHS_EXT SSH Server Protocol, or
 	FCS_HTTPS_EXT.1 Extended: HTTPS selected ].
 ....
+
+
+
+
 
 *FTP_TRP.1.1/NonAdmin Refinement:* The TSF shall use [selection, choose at least one of: IPsec, SSH, TLS, TLS/HTTPS] to provide a trusted communication path between itself and remote users that is logically distinct from other communication paths and provides assured identification of its end points and protection of the communicated data from disclosure and detection of modification of the communicated data.
 
@@ -3444,7 +3448,7 @@ Dependencies: [
 
 FCS_HTTPS_EXT.1.1 The TSF shall implement the HTTPS protocol that complies with RFC 2818.
 
-FCS_HTTPS_EXT.1.2 The TSF shall implement HTTPS using TLS as specified in FCS_TLS_EXT.1.
+FCS_HTTPS_EXT.1.2 The TSF shall implement HTTPS using TLS as specified in FCS_TLSC_EXT.1 and/or FCS_TLSS_EXT.1.
 
 *Rationale*
 
