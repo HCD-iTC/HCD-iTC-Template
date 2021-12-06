@@ -1,0 +1,87 @@
+= deltest
+:showtitle:
+:doc type:book
+:toc: macro
+:toclevels: 7
+:sectnums:
+:sectnumlevels: 7
+:imagesdir: images
+:icons: font
+:revnumber: 0.9
+:revdate: 2021-08-16
+
+:sectnums!:
+
+:xrefstyle: full
+
+
+
+:sectnums:
+
+== PP Introduction
+
+=== PP Reference Identification
+- PP Reference: {doctitle}
+- PP Version: {revnumber}
+- PP Date: {revdate}
+
+=== TOE Overview
+
+The Target of Evaluation in this cPP is an HCD. HCDs support job functions to convert hardcopy documents into digital form (scanning), convert digital documents into hardcopy form (printing), duplicate hardcopy documents (copying), or transmit documents over a Public Switched Telephone Network (PSTN) connection (PSTN faxing). Hardcopy documents typically take the form of paper, but can take other forms (e.g. transparencies).
+
+For the purpose of this cPP, a conforming HCD must support at least one of the job functions printing, scanning, or copying and must support the functions network communications and administration.
+
+The job functions supported by the HCD and the network communications and administration functions are “Required Uses” of a conforming HCD and are mandatory functions. A conforming HCD may also support “Conditionally Mandatory Uses” as well as "Optional Uses". Conditionally Mandatory Uses are optional functions, the presence of which in a HCD is not required for conformance, but which must meet conditionally mandatory requirements if they are present in a HCD.  "Optional Uses" are optional functions that may, but need not, be evaluated.
+
+=== TOE Design
+
+<del>del test 1</del>
+
++++<del>del test 2</del>+++
+
+****
+in a splat block
+
+no break
+<del>del test 3</del>
+no break
+
++++<del>del test 4</del>+++
+
+bottom
+****
+
+out of block
+
+....
+in a dot block
+
+<del>del test 3</del>
+
+no break
++++<del>del test 4</del>+++
+no break
+
+bottom
+....
+
+out of block
+
+
+
+====
+in a equal block
+
+<del>del test 3</del>
+
+no break
++++<del>del test 4</del>+++
+no break
+
+bottom
+====
+
+
+
+are not security relevant, such as finishers, do not need to be included in the TOE. If it is
+possible for users to connect personal storage devices (such as portable flash memory
