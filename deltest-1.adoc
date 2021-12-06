@@ -56,11 +56,13 @@ out of block
 ....
 in a dot block
 
-<del>del test 3</del>
+<del>del test 5</del>
 
 no break
-+++<del>del test 4</del>+++
++++<del>del test 6</del>+++
 no break
+
++++<del>del test 7</del>+++
 
 bottom
 ....
@@ -72,10 +74,10 @@ out of block
 ====
 in a equal block
 
-<del>del test 3</del>
+<del>del test 8</del>
 
 no break
-+++<del>del test 4</del>+++
++++<del>del test 9</del>+++
 no break
 
 bottom
