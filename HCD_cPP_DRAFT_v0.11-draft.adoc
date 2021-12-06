@@ -222,7 +222,7 @@ If a conforming HCD has a PSTN fax function, PSTN fax-network separation ensures
 
 ===== Data Clearing and Purging
 
-Optionally, an HCD may provide functions that actively overwrite image data, or that purge all customer-supplied information at the request of an authorized Administrator. These are discussed in Appendix C.
+Optionally, an HCD may provide functions that actively overwrite image data, or that purge all customer-supplied information at the request of an authorized Administrator. These are discussed in <<appendix-optional>>.
 
 
 
@@ -254,7 +254,7 @@ Conformance to this Protection Profile: To claim conformance to this Protection 
 
 4. The selected communications protocol(s) must be evaluated conforming to the corresponding selection-based protocol requirements in <<appendix-a-protected-communications>>.
 
-5. The Security Target author may choose to include for evaluation any of the Optional Uses described in <<USE CASE 3: Optional Use Cases>>. The vendor may choose to evaluate those optional functions as described in Appendix C.
+5. The Security Target author may choose to include for evaluation any of the Optional Uses described in <<USE CASE 3: Optional Use Cases>>. The vendor may choose to evaluate those optional functions as described in <<appendix-optional>>.
 
 6. The TOE must demonstrate Exact Conformance. Exact Conformance, as a subset of Strict Conformance as defined in Annex D.2 of CC Part 1 (CCMB-2012-09-001), is defined as the ST meeting all of the previous conformance rules. While iteration is allowed, no additional requirements (from the CC parts 2 or 3) are allowed to be included in the ST.
 
@@ -703,7 +703,6 @@ Dependencies:
 Hierarchical to:
 	No other components.
 Dependencies:
-	[<del>FCS_CKM.2 Cryptographic Key Establishment, or</del>]
 	FCS_COP.1/DataEncryption Cryptographic Operation (Symmetric encryption/decryption)
 	FCS_COP.1/StorageEncryption Cryptographic Operation (Data Encryption/Decryption)
 	FCS_COP.1/KeyWrap Cryptographic Operation (Key Wrapping)
@@ -1688,9 +1687,9 @@ After the ST has been approved for evaluation, the ITSEF (IT Security Evaluation
 
 The ST is evaluated as per ASE activities defined in the <<CEM>>. In addition, there may be Evaluation Activities specified within the <<SD>> that call for necessary descriptions to be included in the TSS that are specific to the TOE technology type.
 
-Appendix E provides a description of the information expected to be provided regarding the quality of entropy in the random bit generator.
+<<appendix-entropy>> provides a description of the information expected to be provided regarding the quality of entropy in the random bit generator.
 
-Given the criticality of the key management scheme, this cPP requires the developer to provide a detailed description of their key management implementation. This information can be submitted as an appendix to the ST and marked proprietary, as this level of detailed information is not expected to be made publicly available. See Appendix F for details on the expectation of the developer’s Key Management Description.
+Given the criticality of the key management scheme, this cPP requires the developer to provide a detailed description of their key management implementation. This information can be submitted as an appendix to the ST and marked proprietary, as this level of detailed information is not expected to be made publicly available. See <<appendix-kmd>> for details on the expectation of the developer’s Key Management Description.
 
 
 === ADV: Development
@@ -1815,7 +1814,7 @@ Case: SEED algorithm
 
 Case: HIGHT algorithm
 
-* HIGHT as specified in ISO/IEC 18033-3, [selection: CBC as specified in ISO/IEC 10116, CFB as specified in ISO/IEC 10116, OFB as specified in ISO/IEC 10116, CTR as specified in ISO/IEC 10116],
+* HIGHT as specified in ISO/IEC 18033-3:2010, [selection: CBC as specified in ISO/IEC 10116:2017 (clause 7), CFB as specified in ISO/IEC 10116:2017 (clause 8), OFB as specified in ISO/IEC 10116:2017 (clause 9), CTR as specified in ISO/IEC 10116:2017 (clause 10)],
 
 Case: LEA algorithm
 
@@ -2094,10 +2093,12 @@ _Supported peer certificate algorithms are the same as FCS_IPSEC_EXT.1.13_
 
 
 
-
+[id=selection-tls]
 ==== FCS_TLSC_EXT & FCS_TLSS_EXT TLS Protocol
 
-TLS is not a required component of this cPP. If a TOE implements TLS, a corresponding selection in FTP_ITC.1 or FTP_TRP.1/Admin should be made to define what the TLS protocol is implemented to protect. If a corresponding option to support TLS has been selected in at least one of the SFRs named above, the corresponding selection-based TLS-related SFRs should be added to the ST from chap. B.3.1.6 (i.e. FCS_TLSC_EXT.1 and/or FCS_TLSS_EXT.1). The SFRs therein cover only the minimum TLS-related requirements without support for mutual authentication. The support for mutual authentication is optional when using TLS. If a TOE implements TLS with mutual authentication the corresponding optional SFRs should be added to the ST from chap. A.7.1.2 (i.e. FCS_TLSC_EXT.2 and/or FCS_TLSS_EXT.2) in addition to the corresponding SFRs from chap. B.3.1.6.
+TLS is not a required component of this cPP. If a TOE implements TLS, a corresponding selection in FTP_ITC.1, FTP_TRP.1/Admin, and/or FTP_TRP.1/NonAdmin should be made to define what the TLS protocol is implemented to protect. If a corresponding option to support TLS has been selected in at least one of the SFRs named above, the corresponding selection-based TLS-related SFRs should be added to the ST from <<selection-tls>> (i.e. FCS_TLSC_EXT.1 and/or FCS_TLSS_EXT.1).
+
+The support for mutual authentication is optional when using TLS. If a TOE implements TLS with mutual authentication the corresponding optional SFRs should be added to the ST from chap. <<optional-tls>> (i.e. FCS_TLSC_EXT.2 and/or FCS_TLSS_EXT.2) in addition to the corresponding SFRs from <<selection-tls>>.
 
 A TOE may act as the client, the server, or both in TLS sessions. The requirement has been separated into TLS Client (FCS_TLSC_EXT) and TLS Server (FCS_TLSS_EXT) requirements to allow for these differences. If the TOE acts as the client during the claimed TLS sessions, the ST author should claim the corresponding FCS_TLSC_EXT requirements. If the TOE acts as the server during the claimed TLS sessions, the ST author should claim the corresponding FCS_TLSS_EXT requirements. If the TOE acts as both a client and server during the claimed TLS sessions, the ST author should claim the corresponding FCS_TLSC_EXT and FCS_TLSS_EXT requirements.
 
@@ -2167,7 +2168,7 @@ _In a future version of this cPP TLS v1.2 will be required for all TOEs._
 
 *_Application Note:_*
 
-_Where TLS is used for connections to/from non-TOE entities (relevant to FTP_ITC and FTP_TRP), the ST author shall select RFC 6125. For distributed TOEs (TLS connections relevant to FPT_ITT), the ST author may select either RFC 6125 or RFC 5280.  If RFC 5280 is selected, the selection is completed by listing the AttributeType (e.g. ‘id-at-serialNumber’) as defined in RFC 5280 Appendix A. The selection should only list those attributes that are significant (i.e. those which are used by the client for reference identifier matching), though the Subject field (DN) may contain other attribute types that are not significant for the purpose of reference identifier matching. In the TSS the ST author describes which attribute type, or combination of attributes types, are used by the client to match the presented identifier with the configured identifier. The ST author selects “the reference identifier per RFC 6125 section 6” for TOEs that support FQDN, SRV, and URI identifiers._
+_Where TLS is used for connections to/from non-TOE entities (relevant to FTP_ITC and FTP_TRP), the ST author shall select RFC 6125. If RFC 5280 is selected, the selection is completed by listing the AttributeType (e.g. ‘id-at-serialNumber’) as defined in RFC 5280 Appendix A. The selection should only list those attributes that are significant (i.e. those which are used by the client for reference identifier matching), though the Subject field (DN) may contain other attribute types that are not significant for the purpose of reference identifier matching. In the TSS the ST author describes which attribute type, or combination of attributes types, are used by the client to match the presented identifier with the configured identifier. The ST author selects “the reference identifier per RFC 6125 section 6” for TOEs that support FQDN, SRV, and URI identifiers._
 
 _The ST author selects “IPv4…” and/or “IPv6…” based on the IP versions the TOE supports. The ST author selects “CN or SAN” when IP addresses are supported in the “CN” or “SAN” when the TOE mandates the presence of the SAN. When “CN or SAN” is selected, the TOE only checks the CN when the certificate does not contain the SAN extension._
 
@@ -2246,7 +2247,7 @@ _If the TOE does not support session resumption or session tickets, select 'no s
 
 ==== FCS_SSHC_EXT & FCS_SSHS_EXT SSH Protocol
 
-SSH is not a required component of this cPP. If a TOE implements SSH, a corresponding selection in FTP_ITC.1 and/or FTP_TRP.1/Admin should have been made that defines what the SSH protocol is implemented to protect.
+SSH is not a required component of this cPP. If a TOE implements SSH, a corresponding selection in FTP_ITC.1, FTP_TRP.1/Admin, and/or FTP_TRP.1/NonAdmin should have been made that defines what the SSH protocol is implemented to protect.
 
 A TOE may act as the client or the server in an SSH session. The requirement has been
 separated into SSH Client (FCS_SSHC_EXT) and SSH Server (FCS_SSHS_EXT)
@@ -2503,7 +2504,7 @@ _The ST author must provide enough detail to determine how the implementation is
 
 *_Application Note:_*
 
-If HTTPS is selected in FTP_TRP.1/Admin or FTP_ITC.1 then validity is determined by the identifier verification, certification path, the expiration date, and the revocation status in accordance with RFC 5280. Certificate validity is tested in accordance with testing performed for FIA_X509_EXT.1/Rev.
+If HTTPS is selected in FTP_ITC.1, FTP_TRP.1/Admin and/or FTP_TRP.1/NonAdmin then validity is determined by the identifier verification, certification path, the expiration date, and the revocation status in accordance with RFC 5280. Certificate validity is tested in accordance with testing performed for FIA_X509_EXT.1/Rev.
 
 
 
@@ -2560,10 +2561,12 @@ _For the length of the text-based pre-shared keys, a common length (22 character
 
 _In the second selection for FIA_PSK_EXT.1.3, the ST author fills in the method by which the text string entered by the administrator is “conditioned” into the bit string used as the key.  This can be done by using one of the specified hash functions, or some other method through the assignment statement. If “bit-based pre-shared keys” is selected, the ST author specifies whether the TSF merely accepts bit-based pre-shared keys, or is capable of generating them.  If it generates them, the requirement specified that they must be generated using the RBG specified by the requirements.  If the use of bit-based pre-shared keys is not supported, the ST author chooses “use no other pre-shared keys”._
 
-
+[id=selection-dtls]
 ==== FCS_DTLSC_EXT & FCS_DTLSS_EXT DTLS Protocol
 
-Datagram TLS (DTLS) is not a required component of the cPP. If a TOE implements DTLS, a corresponding selection in FTP_ITC.1, FTP_TRP.1/Admin, or FTP_TRP.1/NonAdmin should be made to define what the DTLS protocol is implemented to protect. If a corresponding option to support DTLS has been selected in at least one of the SFRs named above, the corresponding selection-based DTLS-related SFRs should be added to the ST from chap. B.3.1.1 (i.e. FCS_DTLSC_EXT.1 and/or FCS_DTLSS_EXT.1). The SFRs therein cover only the minimum DTLS-related requirements without support for mutual authentication. The support for mutual authentication is optional when using DTLS. If a TOE implements DTLS with mutual authentication the corresponding optional SFRs should be added to the ST from chap. A.7.1.1 (i.e. FCS_DTLSC_EXT.2 and/or FCS_DTLSS_EXT.2) in addition to the corresponding SFRs from chap.B.3.1.1.
+Datagram TLS (DTLS) is not a required component of the cPP. If a TOE implements DTLS, a corresponding selection in FTP_ITC.1, FTP_TRP.1/Admin, and/or FTP_TRP.1/NonAdmin should be made to define what the DTLS protocol is implemented to protect. If a corresponding option to support DTLS has been selected in at least one of the SFRs named above, the corresponding selection-based DTLS-related SFRs should be added to the ST from <<selection-dtls>> (i.e. FCS_DTLSC_EXT.1 and/or FCS_DTLSS_EXT.1).
+
+The support for mutual authentication is optional when using DTLS. If a TOE implements DTLS with mutual authentication the corresponding optional SFRs should be added to the ST from <<optional-dtls>> (i.e. FCS_DTLSC_EXT.2 and/or FCS_DTLSS_EXT.2) in addition to the corresponding SFRs from <<selection-dtls>>.
 
 The decision whether to include the support for protocol-level mutual authentication in the scope of the evaluation is regarded as part of the TOE boundary definition. These SFRs can be included in a conforming ST at the discretion of the ST author, even if the conformance statement of the cPP requires exact conformance. It is not mandatory to implement mutually authenticated DTLS in order to conform to this cPP.
 
@@ -2573,7 +2576,7 @@ If the TOE acts as the client during the claimed DTLS sessions, the ST author sh
 
 To ensure audit requirements are properly met, a DTLS receiver may need to monitor the DTLS connection state at the application layer. When no data is received from a DTLS connection for a long time (where the application decides what ‘long’ means), the receiver should send a close_notify alert message and close the connection.
 
-If the TOE acts as the server during the claimed DTLS sessions, the ST author should claim the corresponding FCS_DTLSS_EXT requirements. In this case the TOE needs to claim at least the FCS_DTLSS_EXT.1 requirements in chap. B.3.1.1 (no support for mutual authentication). If the TOE acts as DTLS server and in addition also supports mutual authentication, the FCS_DTLSS_EXT.2 requirements in chap. A.7.1.1 need to be claimed in addition. If the TOE acts as both a client and server during the claimed DTLS sessions, the ST author should claim the corresponding FCS_DTLSC_EXT and FCS_DTLSS_EXT requirements.
+If the TOE acts as the server during the claimed DTLS sessions, the ST author should claim the corresponding FCS_DTLSS_EXT requirements. In this case the TOE needs to claim at least the FCS_DTLSS_EXT.1 requirements in <<selection-dtls>> (no support for mutual authentication). If the TOE acts as DTLS server and in addition also supports mutual authentication, the FCS_DTLSS_EXT.2 requirements in <<optional-tls>> need to be claimed in addition. If the TOE acts as both a client and server during the claimed DTLS sessions, the ST author should claim the corresponding FCS_DTLSC_EXT and FCS_DTLSS_EXT requirements.
 
 ===== FCS_DTLSC_EXT.1 DTLS Client Protocol Without Mutual Authentication
 
@@ -2602,7 +2605,7 @@ Dependencies:
 
 *_Application Note:_*
 
-_The ciphersuites to be tested in the evaluated configuration are limited by this requirement and must be selected from the ciphersuites defined in List 1, chap..B.3.1.6. The ST author should select the ciphersuites that are supported. Even though RFC 5246 and RFC 6347 mandate implementation of specific ciphers, there is no requirement to implement TLS_RSA_WITH_AES_128_CBC_SHA in order to claim conformance to this cPP._
+_The ciphersuites to be tested in the evaluated configuration are limited by this requirement and must be selected from the ciphersuites defined in <<selection-tls>>. The ST author should select the ciphersuites that are supported. Even though RFC 5246 and RFC 6347 mandate implementation of specific ciphers, there is no requirement to implement TLS_RSA_WITH_AES_128_CBC_SHA in order to claim conformance to this cPP._
 
 _These requirements will be revisited as new DTLS versions are standardized by the IETF._
 
@@ -2614,7 +2617,7 @@ _FCS_DTLSC_EXT.1 should only be used if the TOE transmits application-layer data
 
 *_Application Note:_*
 
-_Where DTLS is used for connections to or from non-TOE entities (relevant to FTP_ITC and FTP_TRP) the ST author shall select RFC 6125. For distributed TOEs (DTLS connections relevant to FPT_ITT), the ST author may select either RFC 6125 or RFC 5280. If RFC 5280 is selected, the selection is completed by listing the AttributeType (e.g. ‘id-at-serialNumber’) as defined in RFC 5280 Appendix A. The selection should only list those attributes that are significant (i.e. those which are used by the client for reference identifier matching), though the Subject field (DN) may contain other attribute types that are not significant for the purpose of reference identifier matching. In the TSS, the ST author describes which attribute type, or combination of attributes types, are used by the client to match the presented identifier with the configured identifier. The ST author selects “the reference identifier per RFC 6125 section 6” for TOEs that support FQDN, SRV, and URI identifiers._
+_Where DTLS is used for connections to or from non-TOE entities (relevant to FTP_ITC and FTP_TRP) the ST author shall select RFC 6125. If RFC 5280 is selected, the selection is completed by listing the AttributeType (e.g. ‘id-at-serialNumber’) as defined in RFC 5280 Appendix A. The selection should only list those attributes that are significant (i.e. those which are used by the client for reference identifier matching), though the Subject field (DN) may contain other attribute types that are not significant for the purpose of reference identifier matching. In the TSS, the ST author describes which attribute type, or combination of attributes types, are used by the client to match the presented identifier with the configured identifier. The ST author selects “the reference identifier per RFC 6125 section 6” for TOEs that support FQDN, SRV, and URI identifiers._
 
 _The ST author selects “IPv4…” and/or “IPv6…” based on the IP versions the TOE supports. The ST author selects “CN or SAN” when IP addresses are supported in the “CN” or “SAN” when the TOE mandates the presence of the SAN. When “CN or SAN” is selected, the TOE only checks the CN when the certificate does not contain the SAN extension._
 
@@ -2657,11 +2660,11 @@ _If ciphersuites with DHE key agreement were selected FCS_DTLSC_EXT.1.1 and the 
 
 [selection:
 
-- select supported ciphersuites from List 1] and no other ciphersuites.
+- select supported ciphersuites from List] and no other ciphersuites.
 
 *_Application Note:_*
 
-_The ciphersuites to be tested in the evaluated configuration are limited by this requirement and must be selected from the ciphersuites defined in List 1, chap. B.3.1.6. The ST author should select the ciphersuites that are supported. Even though RFC 5246 and RFC 6347 mandate implementation of specific ciphers, there is no requirement to implement TLS_RSA_WITH_AES_128_CBC_SHA in order to claim conformance to this cPP._
+_The ciphersuites to be tested in the evaluated configuration are limited by this requirement and must be selected from the ciphersuites defined in <<selection-tls>>. The ST author should select the ciphersuites that are supported. Even though RFC 5246 and RFC 6347 mandate implementation of specific ciphers, there is no requirement to implement TLS_RSA_WITH_AES_128_CBC_SHA in order to claim conformance to this cPP._
 
 _These requirements will be revisited as new DTLS versions are standardized by the IETF._
 
@@ -2829,7 +2832,7 @@ _The requirement for GCM in FCS_SNI_EXT.1.3 is reflective of the requirements in
 
 ==== Authentication using X.509 certificates (Extended – FIA_X509_EXT)
 
-X.509 certificate-based authentication is required if IPsec or TLS communications are claimed for FPT_ITT, FTP_ITC.1 or FTP_TRP. If SSH client communications are claimed and any x509 algorithms are claimed in FCS_SSHC_EXT.1.5 or FCS_SSHS_EXT.1.5, these SFRs are required. In the case of the TOE only acting as the SSH server or acting as the client, but not claiming any x509 algorithms in FCS_SSHC_EXT.1.5 or FCS_SSHS_EXT.1.5, these SFRs are optional.
+X.509 certificate-based authentication is required if IPsec or TLS communications are claimed for FTP_ITC.1 or FTP_TRP. If SSH client communications are claimed and any x509 algorithms are claimed in FCS_SSHC_EXT.1.5 or FCS_SSHS_EXT.1.5, these SFRs are required. In the case of the TOE only acting as the SSH server or acting as the client, but not claiming any x509 algorithms in FCS_SSHC_EXT.1.5 or FCS_SSHS_EXT.1.5, these SFRs are optional.
 
 Although the functionality in FIA_X509_EXT.1/Rev and FIA_X509_EXT.2 is always required when using X.509 certificate-based authentication, the TOE only needs to be able to generate a Certification Request if the TOE needs to present an X.509 certificate to another endpoint via the TSF for authentication (i.e. if at least one of the following SFRs is included in the ST: FCS_DTLSC_EXT.2, FCS_DTLSS_EXT.1, FCS_DTLSS_EXT.2, FCS_IPSEC_EXT.1, FCS_SSHC_EXT.1.5 (applicable only if at least one of the x509v3-* ciphers is selected), FCS_SSHS_EXT.1.5 (applicable only if at least one of the x509v3-* ciphers is selected), FCS_TLSC_EXT.2, FCS_TLSS_EXT.1, FCS_TLSS_EXT.2).. Therefore FIA_X509_EXT.3 only needs to be added to the ST in this case. If the TOE does not need to present an X.509 certificate to another endpoint via the TSF for authentication (e.g. a client not supporting mutual authentication) the use of FIA_X509_EXT.3 is optional.
 
@@ -2841,8 +2844,6 @@ Hierarchical to:
 Dependencies:
 	FIA_X509_EXT.2 X.509 Certificate Authentication
 ....
-
-FIA_X509_EXT.1/Rev X.509 Certificate Validation
 
 *FIA_X509_EXT.1.1/Rev* The TSF shall validate certificates in accordance with the following rules:
 
@@ -2880,7 +2881,7 @@ _If the TOE implements mutual authentication or acts as a server, there is no ex
 
 _FIA_X509_EXT.1.2/Rev applies to certificates that are used and processed by the TSF and restricts the certificates that may be added as trusted CA certificates._
 
-_The ST author must include FIA_X509_EXT.1/Rev in all instances except when only SSH is selected within FTP_ITC.1, and implementation is limited to public-key authentication that does not rely on X.509 certificates. Additionally, FIA_X509_EXT.1/Rev must also be included if FPT_TUD_EXT is included in the ST._
+_The ST author must include FIA_X509_EXT.1/Rev in all instances except when only SSH is selected within FTP_ITC.1, and implementation is limited to public-key authentication that does not rely on X.509 certificates. Additionally, FIA_X509_EXT.1/Rev must also be included if "X.509 Certificate" is selected in FPT_TUD_EXT.1.3._
 
 ===== FIA_X509_EXT.2 X.509 Certificate Authentication
 ....
@@ -2912,7 +2913,7 @@ Dependencies:
 	FIA_X509_EXT.1 X.509 Certificate Validation
 ....
 
-Although the functionality in FIA_X509_EXT.1/Rev and FIA_X509_EXT.2 is always required when using X.509 certificate-based authentication, the TOE only needs to be able to generate a Certification Request if the TOE needs to present an X.509 certificate to another endpoint via the TSF for authentication (i.e. if at least one of the following SFRs is included in the ST: FCS_DTLSC_EXT.2, FCS_DTLSS_EXT.1, FCS_DTLSS_EXT.2, FCS_IPSEC_EXT.1, FCS_SSHC_EXT.1.5 (applicable only if at least one of the x509v3-* ciphers is selected), FCS_SSHS_EXT.1.5 (applicable only if at least one of the x509v3-* ciphers is selected), FCS_TLSC_EXT.2, FCS_TLSS_EXT.1, FCS_TLSS_EXT.2). Therefore FIA_X509_EXT.3 only needs to be added to the ST in this case. If the TOE does not need to present an X.509 certificate to another endpoint via the TSF for authentication (e.g. a client not supporting mutual authentication) the use of FIA_X509_EXT.3 is optional. This element must be included in the ST if X.509 certificates are used as part of FTP_ITC.1 or FTP_TRP.1/Admin where the TOE authenticating itself to external IT entities, administrators, or distributed components.
+Although the functionality in FIA_X509_EXT.1/Rev and FIA_X509_EXT.2 is always required when using X.509 certificate-based authentication, the TOE only needs to be able to generate a Certification Request if the TOE needs to present an X.509 certificate to another endpoint via the TSF for authentication (i.e. if at least one of the following SFRs is included in the ST: FCS_DTLSC_EXT.2, FCS_DTLSS_EXT.1, FCS_DTLSS_EXT.2, FCS_IPSEC_EXT.1, FCS_SSHC_EXT.1.5 (applicable only if at least one of the x509v3-* ciphers is selected), FCS_SSHS_EXT.1.5 (applicable only if at least one of the x509v3-* ciphers is selected), FCS_TLSC_EXT.2, FCS_TLSS_EXT.1, FCS_TLSS_EXT.2). Therefore FIA_X509_EXT.3 only needs to be added to the ST in this case. If the TOE does not need to present an X.509 certificate to another endpoint via the TSF for authentication (e.g. a client not supporting mutual authentication) the use of FIA_X509_EXT.3 is optional. This element must be included in the ST if X.509 certificates are used as part of FTP_ITC.1, FTP_TRP.1/Admin, and/or FTP_TRP.1/NonAdmin where the TOE authenticating itself to external IT entities, administrators, or distributed components.
 
 *FIA_X509_EXT.3.1* The TSF shall generate a Certificate Request as specified by RFC 2986 and be able to provide the following information in the request: public key and [selection: _device-specific information, Common Name, Organization, Organizational Unit, Country_].
 
@@ -2988,7 +2989,7 @@ Dependencies:
 
 *FPT_KYP_EXT.1.1 Refinement:* The TSF shall [selection:
 
-* not store keys in non-volatile storage
+* not store keys in non-volatile memory
 * only store keys in non-volatile memory when wrapped, as specified in FCS_COP.1/KeyWrap, or encrypted, as specified in FCS_COP.1/KeyEnc or FCS_COP.1/KeyTransport
 * only store keys that meet any one of the following criteria [selection:
 ** the key is protected by another key that is not part of the key chain as specified in FCS_KYC_EXT.1,
@@ -3005,14 +3006,19 @@ Dependencies:
 *** encrypted as specified in FCS_COP.1/KeyEnc or FCS_COP.1/KeyTransport]
 ** the non-volatile memory the key is stored on is located in a protected storage device]].
 
-
-
 *_Application Note:_*
 
-_The keys must be protected from unauthorized access and must not be stored on any non-volatile storage device without protection. If the keys exist within protected memory that is not user accessible on the TOE or OE, the only methods that allow it to play a security relevant role for protecting the BEV or the DEK are if it is a key protected by another key that is not a part of the key chain or a key split or providing additional layers of wrapping or encryption on keys that have already been protected or the nonvolatile memory the key is stored on is located in a protected storage device and protected from unauthorized access._
+_The keys must be protected from unauthorized access and must not be stored on any nonvolatile storage device without protection. If the keys exist within protected memory that is not user accessible on the TOE or OE, the key can be used to protect the BEV or the DEK only if the key is:_
 
-_The third selection is used to protect the initial value of the key chain. If "the key is protected by another key that is not part of the key chain as specified in FCS_KYC_EXT.1" is selected, vendors will explain the another key that is not in the key chain and how to use, for example, a public key used for encryption, keys only used within protected storage device or separate co-processor, or others. The protected storage device can protect stored data from unauthorized  access and the nonvolatile memory in it is not accessible from outside of TOE. Examples of protected storage device include Secure Elements (SE), Trusted Platform Modules (TPM), Hardware Security Modules (HSM), Trusted Execution Environments (TEE), Secure Enclave Processors (SEP), and so on._
+1. _a key that is protected by another key that is not a part of the key chain or;_
+2. _a key split or provides additional layers of wrapping or encryption on keys that have already been protected or_
+3. _the nonvolatile memory the key is stored on is located in a protected storage device and the key is protected from unauthorized access._
 
+_Any one of the criteria in the third selection option 3. in FPT_KYP_EXT.1.1 above is used to protect the initial value of the key chain. If "the key is protected by another key that is not part of the key chain as specified in FCS_KYC_EXT.1" selection option is selected, vendors will need to explain what the other key is that is not in the key chain and how the “other key” is used to protect the key (for example, a public key used for encryption, keys only used within a protected storage device or separate co-processor)._
+
+_An example of another key that is not a part of the key chain is as follows. In a protected storage device or separate co-processor, if the key is generated, stored, used, protected from disclosure, and the key is not exportable as a plaintext key, then the key is considered as not belonging to the key chain._
+
+_The protected storage device can protect stored data from unauthorized access and the nonvolatile memory in it is not accessible from outside of the TOE. Examples of protected storage devices include Secure Elements (SE), Trusted Platform Modules (TPM), Hardware Security Modules (HSM), Trusted Execution Environments (TEE), Secure Enclave Processors (SEP), and so on._
 
 
 
@@ -3045,7 +3051,7 @@ _Multiple key chains to the BEV are allowed, as long as all chains meet the key 
 
 _Once the ST Author has selected a method to create the chain (either by unwrapping or encrypting keys), they pull the appropriate requirement out of this appendix. It is allowable for an implementation to use for any or all methods._
 
-_The method the TOE uses to chain keys and manage/protect them is described in the Key Management Description; see Key Management Description for more information._
+_The method the TOE uses to chain keys and manage/protect them is described in the Key Management Description; see <<appendix-kmd>> for more information._
 
 
 ==== FDP_DSK_EXT.1 Extended: Protection of Data on Disk
@@ -3103,6 +3109,7 @@ Dependencies: [
 	FCS_IPSEC_EXT.1 Extended: IPsec selected, or
 	FCS_TLSC_EXT Extended: TLS Client Protocol and/or FCS_TLSS_EXT Extended: TLS Server Protocol, or
 	FCS_SSHC_EXT Extended: SSH Client Protocol or FCS_SSHS_EXT Extended: SSH Server Protocol, or
+	FCS_DTLSC_EXT Extended: DTLS Client Protocol and/or FCS_DTLSS_EXT Extended: Server DTLS Protocol, or
 	FCS_HTTPS_EXT.1 Extended: HTTPS selected ].
 ....
 
@@ -3110,7 +3117,7 @@ Dependencies: [
 
 
 
-*FTP_TRP.1.1/NonAdmin Refinement:* The TSF shall use [selection, choose at least one of: IPsec, SSH, TLS, TLS/HTTPS] to provide a trusted communication path between itself and remote users that is logically distinct from other communication paths and provides assured identification of its end points and protection of the communicated data from disclosure and detection of modification of the communicated data.
+*FTP_TRP.1.1/NonAdmin Refinement:* The TSF shall use [selection, choose at least one of: IPsec, SSH, TLS, DTLS, TLS/HTTPS] to provide a trusted communication path between itself and remote users that is logically distinct from other communication paths and provides assured identification of its end points and protection of the communicated data from disclosure and detection of modification of the communicated data.
 
 *FTP_TRP.1.2/NonAdmin Refinement:* The TSF shall permit [selection: the TSF, remote users] to initiate communication via the trusted path
 
@@ -3130,7 +3137,7 @@ _This requirement ensures that authorized remote users initiate all communicatio
 
 
 
-
+[id=appendix-optional]
 [appendix]
 == Optional Requirements
 
@@ -3149,7 +3156,15 @@ Dependencies:
 	No dependencies.
 ....
 
-*FDP_RIP.1.1/Overwrite Refinement:* The TSF shall ensure that any previous information content of a resource is made unavailable *by overwriting data* upon the *deallocation of the resource from* the following objects: *D.USER.DOC*.
+*FDP_RIP.1.1/Overwrite Refinement:* The TSF shall ensure that any previous information content of a resource is made unavailable [selection: *by overwriting data*, *by destroying its cryptographic key*] upon the *deallocation of the resource from* the following objects: *D.USER.DOC*.
+
+*_Application Note:_*
+
+_The timing of overwriting or cryptographic key destruction is when completion or cancellation of a Document Processing job, periodically, or when requested by an authorized administrator. In the TSS the ST author will describe which timing is used._
+
+
+
+
 
 === Purge Data
 The SFRs in this section are to be incorporated in the ST to support the optional Purge Data function.
@@ -3173,9 +3188,12 @@ Dependencies:
 
 === Protected Communications (FCS)
 
+[id=optional-dtls]
 ==== FCS_DTLSC_EXT & FCS_DTLSS_EXT DTLS Protocol
 
-Datagram TLS (DTLS) is not a required component of the HCDcPP. If a TOE implements DTLS, a corresponding selection in FTP_ITC.1 or FTP_TRP.1/Admin should be made to define what the DTLS protocol is implemented to protect. If a corresponding option to support DTLS has been selected in at least one of the SFRs named above, the corresponding selection-based DTLS-related SFRs should be added to the ST from chap. B.3.1.1 (i.e. FCS_DTLSC_EXT.1 and/or FCS_DTLSS_EXT.1). The SFRs therein cover only the minimum DTLS-related requirements without support for mutual authentication. The support for mutual authentication is optional when using DTLS. If a TOE implements DTLS with mutual authentication the corresponding optional SFRs should be added to the ST from chap. A.7.1.1 (i.e. FCS_DTLSC_EXT.2 and/or FCS_DTLSS_EXT.2) in addition to the corresponding SFRs from chap.B.3.1.1.
+Datagram TLS (DTLS) is not a required component of the HCDcPP. If a TOE implements DTLS, a corresponding selection in FTP_ITC.1, FTP_TRP.1/Admin, and/or FTP_TRP.1/NonAdmin should be made to define what the DTLS protocol is implemented to protect. If a corresponding option to support DTLS has been selected in at least one of the SFRs named above, the corresponding selection-based DTLS-related SFRs should be added to the ST from chap. <<selection-dtls>> (i.e. FCS_DTLSC_EXT.1 and/or FCS_DTLSS_EXT.1).
+
+The support for mutual authentication is optional when using DTLS. If a TOE implements DTLS with mutual authentication the corresponding optional SFRs should be added to the ST from <<optional-dtls>> (i.e. FCS_DTLSC_EXT.2 and/or FCS_DTLSS_EXT.2) in addition to the corresponding SFRs from <<selection-dtls>>.
 
 A TOE may act as the client, the server, or both in DTLS sessions. The requirement has been separated into DTLS Client (FCS_DTLSC_EXT) and DTLS Server (FCS_DTLSS_EXT) requirements to allow for these differences.
 
@@ -3183,7 +3201,7 @@ If the TOE acts as the client during the claimed DTLS sessions, the ST author sh
 
 To ensure audit requirements are properly met, a DTLS receiver may need to monitor the DTLS connection state at the application layer. When no data is received from a DTLS connection for a long time (where the application decides what "long" means), the receiver should send a close_notify alert message and close the connection.
 
-If the TOE acts as the server during the claimed DTLS sessions, the ST author should claim the corresponding FCS_DTLSS_EXT requirements. In this case the TOE needs to claim at least the FCS_DTLSS_EXT.1 requirements in chap. B.3.1.1 (no support for mutual authentication). If the TOE acts as DTLS server and in addition also supports mutual authentication, the FCS_DTLSS_EXT.2 requirements in chap. A.7.1.1 also need to be claimed in addition. If the TOE acts as both a client and server during the claimed TLS sessions, the ST author should claim the corresponding FCS_TLSC_EXT and FCS_TLSS_EXT requirements.
+If the TOE acts as the server during the claimed DTLS sessions, the ST author should claim the corresponding FCS_DTLSS_EXT requirements. In this case the TOE needs to claim at least the FCS_DTLSS_EXT.1 requirements in <<selection-dtls>> (no support for mutual authentication). If the TOE acts as DTLS server and in addition also supports mutual authentication, the FCS_DTLSS_EXT.2 requirements in <<optional-dtls>> also need to be claimed in addition. If the TOE acts as both a client and server during the claimed TLS sessions, the ST author should claim the corresponding FCS_TLSC_EXT and FCS_TLSS_EXT requirements.
 
 
 ===== FCS_DTLSC_EXT.2 DTLS Client Support for Mutual Authentication
@@ -3254,10 +3272,12 @@ _If DTLS is selected in FTP_ITC, then certificate validity is tested in accordan
 
 _The client identifier may be in the Subject field or the Subject Alternative Name extension of the certificate. The expected identifier may either be configured, may be compared to the Domain Name, IP address, username, or email address used by the peer, or may be passed to a directory server for comparison._
 
-
+[id=optional-tls]
 ==== FCS_TLSC_EXT & FCS_TLSS_EXT TLS Protocol
 
-TLS is not a required component of this cPP. If a TOE implements TLS, a corresponding selection in FTP_ITC.1 or FTP_TRP.1/Admin should be made to define what the TLS protocol is implemented to protect. If a corresponding option to support TLS has been selected in at least one of the SFRs named above, the corresponding selection-based TLS related SFRs should be added to the ST from chap. B.3.1.6 (i.e. FCS_TLSC_EXT.1 and/or FCS_TLSS_EXT.1). The SFRs therein cover only the minimum TLS-related requirements without support for mutual authentication. The support for mutual authentication is optional when using TLS. If a TOE implements TLS with mutual authentication, the corresponding optional SFRs should be added to the ST from chap. A.7.1.1 (i.e. FCS_TLSC_EXT.2 and/or FCS_TLSS_EXT.2) in addition to the corresponding SFRs from chap. B.3.1.6.
+TLS is not a required component of this cPP. If a TOE implements TLS, a corresponding selection in FTP_ITC.1, FTP_TRP.1/Admin, and/or FTP_TRP.1/NonAdmin should be made to define what the TLS protocol is implemented to protect. If a corresponding option to support TLS has been selected in at least one of the SFRs named above, the corresponding selection-based TLS related SFRs should be added to the ST from <<selection-tls>> (i.e. FCS_TLSC_EXT.1 and/or FCS_TLSS_EXT.1).
+
+The support for mutual authentication is optional when using TLS. If a TOE implements TLS with mutual authentication, the corresponding optional SFRs should be added to the ST from <<optional-tls>> (i.e. FCS_TLSC_EXT.2 and/or FCS_TLSS_EXT.2) in addition to the corresponding SFRs from <<selection-tls>>.
 
 A TOE may act as the client, the server, or both in TLS sessions. The requirement has been separated into TLS Client (FCS_TLSC_EXT) and TLS Server (FCS_TLSS_EXT) requirements to allow for these differences. If the TOE acts as the client during the claimed TLS sessions, the ST author should claim the corresponding FCS_TLSC_EXT requirements. If the TOE acts as the server during the claimed TLS sessions, the ST author should claim the corresponding FCS_TLSS_EXT requirements. If the TOE acts as both a client and server during the claimed TLS sessions, the ST author should claim the corresponding FCS_TLSC_EXT and FCS_TLSS_EXT requirements.
 
@@ -3729,7 +3749,7 @@ Dependencies: [
 	FCS_COP.1/KeyTransport Cryptographic operation (Key Transport) ].
 ....
 
-FCS_KYC_EXT.1.1 The TSF shall maintain a key chain of: [selection: _one, using a submask as the BEVor DEK; intermediate keys originating from one or more submask(s) to the BEV or DEK using the following method(s)_: [selection: _key wrapping as specified in FCS_COP.1/KeyWrap, key combining as specified in FCS_SMC_EXT.1, key encryption as specified in FCS_COP.1/KeyEnc, key derivation as specified in FCS_KDF_EXT.1, key transport as specified in FCS_COP.1/KeyTransport_]] while maintaining an effective strength of [selection: _128 bits, 256 bits_].
+FCS_KYC_EXT.1.1 The TSF shall maintain a key chain of: [selection: _one, using a submask as the BEV or DEK; intermediate keys originating from one or more submask(s) to the BEV or DEK using the following method(s)_: [selection: _key wrapping as specified in FCS_COP.1/KeyWrap, key combining as specified in FCS_SMC_EXT.1, key encryption as specified in FCS_COP.1/KeyEnc, key derivation as specified in FCS_KDF_EXT.1, key transport as specified in FCS_COP.1/KeyTransport_]] while maintaining an effective strength of [selection: _128 bits, 256 bits_].
 
 *Rationale*
 
@@ -4673,15 +4693,31 @@ Dependencies:
 	FIA_X509_EXT.2 X.509 Certificate Authentication
 ....
 
-*FIA_X509_EXT.1.1* The TSF shall validate certificates in accordance with the following rules:
+*FIA_X509_EXT.1.1/Rev* The TSF shall validate certificates in accordance with the following rules:
 
-•	RFC 5280 certificate validation and certification path validation.
+•	RFC 5280 certificate validation and certification path validation *supporting a minimum path length of three certificates.*
 •	The certification path must terminate with a trusted CA certificate designated as a trust anchor.
 •	The TSF shall validate a certification path by ensuring that all CA certificates in the certification path contain the basicConstraints extension with the CA flag set to TRUE.
-•	The TSF shall validate the revocation status of the certificate using [selection: _the Online Certificate Status Protocol (OCSP) as specified in RFC 6960, a Certificate Revocation List (CRL) as specified in RFC 5280 Section 6.3, Certificate Revocation List (CRL) as specified in RFC 5759 Section 5, no revocation method_]
-•	The TSF shall validate the extendedKeyUsage field according to the following rules: [_assignment: rules that govern contents of the extendedKeyUsage field that need to be verified_].
+•	The TSF shall validate the revocation status of the certificate using [selection: _the Online Certificate Status Protocol (OCSP) as specified in RFC 6960, a Certificate Revocation List (CRL) as specified in RFC 5280 Section 6.3, Certificate Revocation List (CRL) as specified in RFC 5759 Section 5_].
+•	The TSF shall validate the extendedKeyUsage field according to the following rules:
 
-*FIA_X509_EXT.1.2* The TSF shall only treat a certificate as a CA certificate if the basicConstraints extension is present and the CA flag is set to TRUE.
+....
+	•	_Certificates used for trusted updates and executable code integrity verification shall have the Code Signing purpose (id-kp 3 with OID 1.3.6.1.5.5.7.3.3) in the extendedKeyUsage field._
+	•	_Server certificates presented for TLS shall have the Server Authentication purpose (id-kp 1 with OID 1.3.6.1.5.5.7.3.1) in the extendedKeyUsage field._
+	•	_Client certificates presented for TLS shall have the Client Authentication purpose (id-kp 2 with OID 1.3.6.1.5.5.7.3.2) in the extendedKeyUsage field._
+	•	_OCSP certificates presented for OCSP responses shall have the OCSP Signing purpose (id-kp 9 with OID 1.3.6.1.5.5.7.3.9) in the extendedKeyUsage field._
+....
+
+*FIA_X509_EXT.1.2/Rev* The TSF shall only treat a certificate as a CA certificate if the basicConstraints extension is present and the CA flag is set to TRUE.
+
+
+
+
+
+
+
+
+
 
 ===== FIA_X509_EXT.2 X509 Certificate Authentication
 ....
@@ -4823,7 +4859,28 @@ Dependencies:
 	FCS_KYC_EXT.1 Extended: Key Chaining
 ....
 
-FPT_KYP_EXT.1.1 The TSF shall not store plaintext keys that are part of the keychain specified by FCS_KYC_EXT.1 in any Nonvolatile Storage Device, and not store any such plaintext key on a device that uses the key for its encryption.
+FPT_KYP_EXT.1.1 Refinement: The TSF shall [selection:
+
+* not store keys in non-volatile memory
+* only store keys in non-volatile memory when wrapped, as specified in FCS_COP.1/KeyWrap, or encrypted, as specified in FCS_COP.1/KeyEnc or FCS_COP.1/KeyTransport
+* only store keys that meet any one of the following criteria [selection:
+** the key is protected by another key that is not part of the key chain as specified in FCS_KYC_EXT.1,
+** the key will no longer provide access to the encrypted data after initial provisioning,
+** the key is a key split that is combined as specified in FCS_SMC_EXT.1, and the other half of the key split is [selection:
+*** wrapped as specified in FCS_COP.1/KeyWrap,
+*** encrypted as specified in FCS_COP.1/KeyEnc or FCS_COP.1/KeyTransport,
+*** derived and not stored in non-volatile memory],
+** the key is [selection:
+*** used to wrap a key as specified in FCS_COP.1/KeyWrap,
+*** used to encrypt a key as specified in FCS_COP.1/KeyEnc or FCS_COP.1/KeyTransport]
+** that is already [selection:
+*** wrapped as specified in FCS_COP.1/KeyWrap,
+*** encrypted as specified in FCS_COP.1/KeyEnc or FCS_COP.1/KeyTransport]
+** the non-volatile memory the key is stored on is located in a protected storage device]].
+
+
+
+
 
 *Rationale*
 
@@ -4991,7 +5048,7 @@ This extended component protects the TOE, and it is therefore placed in the FPT 
 
 
 
-
+[id=appendix-entropy]
 [appendix]
 == Entropy Documentation and Assessment
 
@@ -5027,6 +5084,7 @@ The entropy rate may be affected by conditions outside the control of the entrop
 More specifically, all entropy source health tests and their rationale will be documented. This will include a description of the health tests, the rate and conditions under which each health test is performed (e.g., at start up, continuously, or on-demand), the expected results for each health test, TOE behavior upon entropy source failure, and rationale indicating why each test is believed to be appropriate for detecting one or more failures in the entropy source.
 
 
+[id=appendix-kmd]
 [appendix]
 == Key Management Document
 
