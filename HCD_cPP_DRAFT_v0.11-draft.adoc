@@ -7,7 +7,7 @@
 :sectnumlevels: 7
 :imagesdir: images
 :icons: font
-:revnumber: 0.9
+:revnumber: 0.11.3
 :revdate: 2021-08-16
 
 :iTC-longname: Hardcopy Device
@@ -49,7 +49,7 @@ _Government Agency Names_
 | 0.8 | 9 June 2021 | Draft
 | 0.9 | 16 August 2021 | Draft
 | 0.10 | 30 August 2021 | Public Draft 1
-| 0.11 | TBD | Public Draft 2
+| 0.11.3 | TBD | Public Draft 2
 
 |===
 
@@ -566,13 +566,14 @@ The following conventions are used for the completion of operations:
 
 ==== FAU_GEN.1 Audit data generation
 
-....
+======
 (for O.AUDIT)
-Hierarchical to:
+*Hierarchical to:* +
 	No other components.
-Dependencies:
+
+*Dependencies:* +
 	FPT_STM.1 Reliable time stamps
-....
+======
 
 *FAU_GEN.1.1* The TSF shall be able to generate an audit record of the following auditable events:
 
@@ -611,14 +612,15 @@ _The ST author can include other auditable events directly in the table; they ar
 
 ==== FAU_GEN.2 User identity association
 
-....
-(for O.AUDIT)
-Hierarchical to:
+======
+(for O.AUDIT) +
+*Hierarchical to:* +
 	No other components.
-Dependencies:
-	FAU_GEN.1 Audit data generation
+
+*Dependencies:* +
+	FAU_GEN.1 Audit data generation +
 	FIA_UID.1	Timing of identification
-....
+======
 
 *FAU_GEN.2.1* For audit events resulting from actions of identified users, the TSF shall be able to associate each auditable event with the identity of the user that caused the event.
 
@@ -626,70 +628,69 @@ Dependencies:
 
 
 ==== FAU_SAR.1 Audit review
-....
-(for O.AUDIT)
-Hierarchical to:
+======
+(for O.AUDIT) +
+*Hierarchical to:* +
 	No other components.
-Dependencies:
+
+*Dependencies:* +
 	FAU_GEN.1 Audit data generation
-....
+======
 
 *FAU_SAR.1.1* The TSF shall provide [assignment: *_an Administrator_*] with the capability to read *all records* from the audit records.
 
 *FAU_SAR.1.2* The TSF shall provide the audit records in a manner suitable for the user to interpret the information.
 
 ==== FAU_SAR.2 Restricted audit review
-....
-(for O.AUDIT)
-Hierarchical to:
+======
+(for O.AUDIT) +
+*Hierarchical to:* +
 	No other components.
-Dependencies:
+
+*Dependencies:* +
 	FAU_SAR.1 Audit review
-....
+======
 
 *FAU_SAR.2.1* The TSF shall prohibit all users read access to the audit records, except those users that have been granted explicit read-access.
 
 ==== FAU_STG.1 Protected audit trail storage
-....
-(for O.AUDIT)
-Hierarchical to:
+======
+(for O.AUDIT) +
+*Hierarchical to:* +
 	No other components.
-Dependencies:
+
+*Dependencies:* +
 	FAU_GEN.1 Audit data generation
-....
+======
 
 *FAU_STG.1.1* The TSF shall protect the stored audit records in the audit trail from unauthorized deletion.
 
 *FAU_STG.1.2* The TSF shall be able to *prevent* unauthorized modifications to the stored audit records in the audit trail.
 
 ==== FAU_STG.4 Prevention of audit data loss
-....
-(for O.AUDIT)
-Hierarchical to:
+======
+(for O.AUDIT) +
+*Hierarchical to:* +
 	FAU_STG.3 Action in case of possible audit data loss
-Dependencies:
+
+*Dependencies:* +
 	FAU_STG.1 Protected audit trail storage
-....
+======
 
-*FAU_STG.4.1 Refinement:* The TSF shall [selection, choose one of: *_<del>“ignore audited events”</del>_*, _“prevent audited events, except those taken by the authorized user with special rights”, “overwrite the oldest stored audit records”_] and [assignment: _other actions to be taken in case of audit storage failure_] if the audit trail is full.
-
-
-
-
-
-
+*FAU_STG.4.1 Refinement:* The TSF shall [selection, choose one of: *_+++<del>“ignore audited events”</del>+++_*,_“prevent audited events, except those taken by the authorized user with special rights”, “overwrite the oldest stored audit records”_] and [assignment: _other actions to be taken in case of audit storage failure_] if the audit trail is full.
 
 
 ==== FAU_STG_EXT.1 Extended: External Audit Trail Storage
 
-....
-(for O.AUDIT)
-Hierarchical to:
+======
+(for O.AUDIT) +
+*Hierarchical to:* +
 	No other components.
-Dependencies:
-	FAU_GEN.1 Audit data generation,
+
+*Dependencies:* +
+	FAU_GEN.1 Audit data generation, +
 	FTP_ITC.1 Inter-TSF trusted channel.
-....
+======
 
 *FAU_STG_EXT.1.1* The TSF shall be able to transmit the generated audit data to an External IT Entity using a trusted channel according to FTP_ITC.1.
 
@@ -698,20 +699,21 @@ Dependencies:
 
 ==== FCS_CKM.1/SKG Cryptographic Key Generation (Symmetric Keys)
 
-....
-(for O.COMMS_PROTECTION, O.STORAGE_ENCRYPTION)
-Hierarchical to:
+======
+(for O.COMMS_PROTECTION, O.STORAGE_ENCRYPTION) +
+*Hierarchical to:* +
 	No other components.
-Dependencies:
-	FCS_COP.1/DataEncryption Cryptographic Operation (Symmetric encryption/decryption)
-	FCS_COP.1/StorageEncryption Cryptographic Operation (Data Encryption/Decryption)
-	FCS_COP.1/KeyWrap Cryptographic Operation (Key Wrapping)
-	FCS_COP.1/KeyEnc Cryptographic operation (Key Encryption)
-	FCS_COP.1/KeyedHash Cryptographic Operation (for keyed-hash message authentication)
-	FCS_COP.1/CMAC Cryptographic Operation (for keyed-hash message authentication)]
-	FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction
+
+*Dependencies:* +
+	FCS_COP.1/DataEncryption Cryptographic Operation (Symmetric encryption/decryption) +
+	FCS_COP.1/StorageEncryption Cryptographic Operation (Data Encryption/Decryption) +
+	FCS_COP.1/KeyWrap Cryptographic Operation (Key Wrapping) +
+	FCS_COP.1/KeyEnc Cryptographic operation (Key Encryption) +
+	FCS_COP.1/KeyedHash Cryptographic Operation (for keyed-hash message authentication) +
+	FCS_COP.1/CMAC Cryptographic Operation (for keyed-hash message authentication)] +
+	FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction +
 	FCS_RBG_EXT.1 Extended: Cryptographic Operation (Random Bit Generation)
-....
+======
 
 *FCS_CKM.1.1/SKG Refinement:* The TSF shall generate *symmetric* cryptographic keys *using a Random Bit Generator as specified in FCS_RBG_EXT.1 and specified cryptographic key sizes [selection: _128 bits, 192 bits, 256 bits_] that meet the following: [selection: _ISO/IEC 18031:2011 (Clause 9) [DRBG], NIST SP 800-133 Rev.2 Section [selection: 6.1, 6.3]]_.*
 
@@ -722,14 +724,15 @@ _Symmetric keys may be used to generate keys along the key chain._
 
 ==== FCS_CKM.2 Cryptographic Key Establishment (Refinement)
 
-....
-(for O.COMMS_PROTECTION)
-Hierarchical to:
+======
+(for O.COMMS_PROTECTION) +
+*Hierarchical to:* +
 	No other components.
-Dependencies:
-	FCS_CKM.1 Cryptographic Key Generation
+
+*Dependencies:* +
+	FCS_CKM.1 Cryptographic Key Generation +
 	FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction
-....
+======
 
 *FCS_CKM.2.1* The TSF shall *perform* cryptographic *key establishment* in accordance with a specified cryptographic key *establishment* method: [selection:
 
@@ -738,7 +741,7 @@ Dependencies:
 •	_Finite field-based key establishment schemes that meet the following: NIST Special Publication 800-56A Revision 3, “Recommendation for Pair-Wise Key Establishment Schemes Using Discrete Logarithm Cryptography”;_
 •	_FFC Schemes using “safe-prime” groups that meet the following: ‘NIST Special Publication 800-56A Revision 3, “Recommendation for Pair-Wise Key Establishment Schemes Using Discrete Logarithm Cryptography” and [selection: RFC 3526, RFC 7919]._
 
-] <strike>that meets the following: [assignment: list of standards]</strike>.
+] +++<del>that meets the following: [assignment: list of standards]</del>+++.
 
 *_Application Note:_*
 
@@ -765,16 +768,17 @@ _The domain parameters used for the finite field-based key establishment scheme 
 
 ==== FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction
 
-....
-(for O.COMMS_PROTECTION, O.STORAGE_ENCRYPTION, O.PURGE_DATA)
-Hierarchical to:
+======
+(for O.COMMS_PROTECTION, O.STORAGE_ENCRYPTION, O.PURGE_DATA) +
+*Hierarchical to:* +
 	No other components.
-Dependencies:	[
-	FCS_CKM.1/AKG Cryptographic Key Generation (Asymmetric Keys), or
-	FCS_CKM.1/SKG Cryptographic Key Generation (Symmetric Keys) ],
-	FCS_CKM.2 Cryptographic Key Establishment
+
+*Dependencies:* +
+  [	FCS_CKM.1/AKG Cryptographic Key Generation (Asymmetric Keys), or +
+	FCS_CKM.1/SKG Cryptographic Key Generation (Symmetric Keys) ], +
+	FCS_CKM.2 Cryptographic Key Establishment +
 	FCS_CKM.4 Cryptographic key destruction
-....
+======
 
 *FCS_CKM_EXT.4.1* The TSF shall destroy all plaintext secret and private cryptographic keys and cryptographic critical security parameters when no longer needed.
 
@@ -785,14 +789,15 @@ _“Cryptographic Critical Security Parameters” are defined in FIPS 140-2 as �
 _Keys, including intermediate keys and key material that are no longer needed are destroyed by using an approved method, FCS_CKM.4.1.   Examples of keys are intermediate keys, submasks, and BEV.  There may be instances where keys or key material that are contained in persistent storage are no longer needed and require destruction.  Based on their implementation, vendors will explain when certain keys are no longer needed.  There are multiple situations in which key material is no longer necessary, for example, a wrapped key may need to be destroyed when a password is changed.  However, there are instances when keys are allowed to remain in memory, for example, a device identification key._
 
 ==== FCS_CKM.4 Cryptographic key destruction
-....
-(for O.COMMS_PROTECTION, O.STORAGE_ENCRYPTION, O.PURGE_DATA)
-Hierarchical to:
+======
+(for O.COMMS_PROTECTION, O.STORAGE_ENCRYPTION, O.PURGE_DATA) +
+*Hierarchical to:* +
 	No other components.
-Dependencies:	[
-	FCS_CKM.1/AKG Cryptographic Key Generation (Asymmetric Keys), or
+
+*Dependencies:* +
+  [	FCS_CKM.1/AKG Cryptographic Key Generation (Asymmetric Keys), or +
 	FCS_CKM.1/SKG Cryptographic Key Generation (Symmetric Keys) ]
-....
+======
 
 *FCS_CKM.4.1 Refinement:* The TSF shall destroy cryptographic keys in accordance with a specified cryptographic key destruction method [*selection:*
 
@@ -822,14 +827,15 @@ _Examples of protected storage device include Secure Elements (SE), Trusted Plat
 
 
 ==== FCS_COP.1/DataEncryption Cryptographic Operation (Data Encryption/Decryption)
-....
-(for O.COMMS_PROTECTION, O.STORAGE_ENCRYPTION)
-Hierarchical to:
+======
+(for O.COMMS_PROTECTION, O.STORAGE_ENCRYPTION) +
+*Hierarchical to:* +
 	No other components.
-Dependencies:
-	FCS_CKM.1 Cryptographic Key Generation
+
+*Dependencies:* +
+	FCS_CKM.1 Cryptographic Key Generation +
 	FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction
-....
+======
 
 *FCS_COP.1.1/DataEncryption* The TSF shall perform _encryption/decryption_ in accordance with specified cryptographic algorithms [selection:
 
@@ -923,14 +929,15 @@ _If either SEED in GCM mode with non-repeating IVs or LEA in GCM mode with non-r
 
 
 ==== FCS_COP.1/SigGen Cryptographic Operation (Signature Generation and Verification)
-....
-(for O.UPDATE_VERIFICATION, O.COMMS_PROTECTION)
-Hierarchical to:
+======
+(for O.UPDATE_VERIFICATION, O.COMMS_PROTECTION) +
+*Hierarchical to:* +
 	No other components.
-Dependencies:
-	FCS_CKM.1/AKG Cryptographic Key Generation (Asymmetric Keys),
+
+*Dependencies:* +
+	FCS_CKM.1/AKG Cryptographic Key Generation (Asymmetric Keys), +
 	FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction
-....
+======
 
 *FCS_COP.1.1/SigGen* The TSF shall perform _cryptographic signature services (generation and verification)_ in accordance with a specified cryptographic algorithm [selection:
 
@@ -970,14 +977,15 @@ _The ST Author chooses the algorithm(s) implemented to perform digital signature
 
 
 ==== FCS_COP.1/Hash Cryptographic Operation (Hash Algorithm)
-....
-(for O.UPDATE_VERIFICATION, O.FW_INTEGRITY, O.STORAGE_ENCRYPTION, O.COMMS_PROTECTION)
-Hierarchical to:
+======
+(for O.UPDATE_VERIFICATION, O.FW_INTEGRITY, O.STORAGE_ENCRYPTION, O.COMMS_PROTECTION) +
+*Hierarchical to:* +
 	No other components.
-Dependencies:
+
+*Dependencies:* +
 	No dependencies.
-....
-*FCS_COP.1.1/Hash* The TSF shall perform cryptographic hashing services in accordance with a specified cryptographic algorithm [selection: _SHA-1, SHA-256, SHA-384, SHA-512_] <strike>and cryptographic key sizes [assignment: cryptographic key sizes]</strike> and *message digest sizes [selection: 160, 256, 384, 512] bits* that meet the following: _ISO/IEC 10118-3:2004_.
+======
+*FCS_COP.1.1/Hash* The TSF shall perform cryptographic hashing services in accordance with a specified cryptographic algorithm [selection: _SHA-1, SHA-256, SHA-384, SHA-512_] +++<del>and cryptographic key sizes [assignment: cryptographic key sizes]</del>+++ and *message digest sizes [selection: 160, 256, 384, 512] bits* that meet the following: _ISO/IEC 10118-3:2004_.
 
 *_Application Note:_*
 
@@ -992,13 +1000,14 @@ _The hash selection should be consistent with the overall strength of the algori
 
 
 ==== FCS_RBG_EXT.1 Random Bit Generation
-....
-(for O.STORAGE_ENCRYPTION and O.COMMS_PROTECTION)
-Hierarchical to:
+======
+(for O.STORAGE_ENCRYPTION and O.COMMS_PROTECTION) +
+*Hierarchical to:* +
 	No other components.
-Dependencies:
+
+*Dependencies:* +
 	No dependencies.
-....
+======
 
 *FCS_RBG_EXT.1.1* The TSF shall perform all deterministic random bit generation services in accordance with ISO/IEC 18031:2011 using [selection: _Hash_DRBG (any), HMAC_DRBG (any), CTR_DRBG ([selection: AES, SEED, HIGHT, LEA])_].
 
@@ -1025,25 +1034,27 @@ _If the key length for the AES implementation used here is different than that u
 _The User Data Access Control SFP is composed of Table 4, Table 5, FDP_ACC.1, FDP_ACF.1, FMT_MSA.1, and FMT_MSA.3._
 
 ==== FDP_ACC.1 Subset access control
-....
-(for O.ACCESS_CONTROL and O.USER_AUTHORIZATION)
-Hierarchical to:
+======
+(for O.ACCESS_CONTROL and O.USER_AUTHORIZATION) +
+*Hierarchical to:* +
 	No other components.
-Dependencies:
+
+*Dependencies:* +
 	FDP_ACF.1 Security attribute based access control
-....
+======
 
 *FDP_ACC.1.1 Refinement:* The TSF shall enforce the *User Data Access Control SFP* on subjects, objects, and operations among subjects and objects specified in *Table 4 and Table 5*.
 
 ==== FDP_ACF.1 Security attribute based access control
-....
-(for O.ACCESS_CONTROL and O.USER_AUTHORIZATION)
-Hierarchical to:
+======
+(for O.ACCESS_CONTROL and O.USER_AUTHORIZATION) +
+*Hierarchical to:* +
 	No other components.
-Dependencies:
+
+*Dependencies:* +
 	FDP_ACC.1 Subset access control
 	FMT_MSA.3 Static attribute initialization
-....
+======
 
 *FDP_ACF.1.1 Refinement:* The TSF shall enforce the *User Data Access Control SFP* to objects based on the following: subjects, objects, and attributes specified in *Table 4 and Table 5*.
 
@@ -1157,7 +1168,7 @@ Dependencies:
 
 |====
 | "STORAGE/RETRIEVAL" | "Create" * | "Read" | "Modify" | "Delete"
-| Operation: | Create storage / retrieval job | View storage / retrieval log | Modify storage / retrieval log | Cancel storage / retrieval log
+| Operation: | Create storage / retrieval log | View storage / retrieval log | Modify storage / retrieval log | Cancel storage / retrieval log
 | Job owner | (note 1) | | |
 | U.ADMIN | | | |
 | U.NORMAL | | | denied | denied
@@ -1190,13 +1201,14 @@ _See also the following Notes that are referenced in Table 4 and Table 5:_
 === Identification and Authentication (FIA)
 
 ==== FIA_AFL.1 Authentication failure handling
-....
-(for O.USER_I&A)
-Hierarchical to:
+======
+(for O.USER_I&A) +
+*Hierarchical to:* +
 	No other components.
-Dependencies:
+
+*Dependencies:* +
 	FIA_UAU.1 Timing of authentication
-....
+======
 
 *FIA_AFL.1.1* The TSF shall detect when [selection: [assignment: _positive integer number_], an administrator configurable positive integer within [assignment: _range of acceptable values_]] unsuccessful authentication attempts occur related to [assignment: _list of authentication events_].
 
@@ -1208,13 +1220,14 @@ _This SFR applies only to internal identification and authentication._
 
 
 ==== FIA_ATD.1 User attribute definition
-....
-(for O.USER_AUTHORIZATION)
-Hierarchical to:
+======
+(for O.USER_AUTHORIZATION) +
+*Hierarchical to:* +
 	No other components.
-Dependencies:
+
+*Dependencies:* +
 	No dependencies.
-....
+======
 
 *FIA_ATD.1.1* The TSF shall maintain the following list of security attributes belonging to individual users: [assignment: _list of security attributes_].
 
@@ -1224,13 +1237,14 @@ The list of security attributes should be the union of all attributes for each o
 
 
 ==== FIA_PMG_EXT.1 Extended: Password Management
-....
-(for O.USER_I&A)
-Hierarchical to:
+======
+(for O.USER_I&A) +
+*Hierarchical to:* +
 	No other components.
-Dependencies:
+
+*Dependencies:* +
 	No dependencies.
-....
+======
 
 *FIA_PMG_EXT.1.1* The TSF shall provide the following password management capabilities for User passwords:
 
@@ -1242,13 +1256,14 @@ Dependencies:
 _This SFR applies only to password-based single-factor Internal Authentication._
 
 ==== FIA_UAU.1 Timing of authentication
-....
-(for O.USER_I&A)
-Hierarchical to:
+======
+(for O.USER_I&A) +
+*Hierarchical to:* +
 	No other components.
-Dependencies:
+
+*Dependencies:* +
 	FIA_UID.1 Timing of identification
-....
+======
 
 *FIA_UAU.1.1 Refinement:* The TSF shall allow [assignment: _list of TSF mediated actions_ *_that do not conflict with the User Data Access Control SFP, and do not provide access to D.TSF.CONF, and do not change any TSF data_*] on behalf of the user to be performed before the user is authenticated.
 
@@ -1259,13 +1274,14 @@ Dependencies:
 _User authentication may be performed internally by the TOE or externally by an External IT Entity._
 
 ==== FIA_UAU.7 Protected authentication feedback
-....
-(for O.USER_I&A)
-Hierarchical to:
+======
+(for O.USER_I&A) +
+*Hierarchical to:* +
 	No other components.
-Dependencies:
+
+*Dependencies:* +
 	FIA_UAU.1 Timing of authentication
-....
+======
 
 *FIA_UAU.7.1* The TSF shall provide only [assignment: _list of feedback_] to the user while the authentication is in progress.
 
@@ -1274,13 +1290,14 @@ Dependencies:
 _FIA_UAU.7 applies only to authentication processes in which the User interacts with the TOE._
 
 ==== FIA_UID.1 Timing of identification
-....
-(for O.USER_I&A and O.ADMIN_ROLES)
-Hierarchical to:
+======
+(for O.USER_I&A and O.ADMIN_ROLES) +
+*Hierarchical to:* +
 	No other components.
-Dependencies:
+
+*Dependencies:* +
 	No dependencies.
-....
+======
 
 *FIA_UID.1.1 Refinement:* The TSF shall allow [assignment: _list of TSF-mediated actions_ *_that do not conflict with the User Data Access Control SFP, and do not provide access to D.TSF.CONF, and do not change any TSF data_*] on behalf of the user to be performed before the user is identified.
 
@@ -1291,13 +1308,14 @@ Dependencies:
 _User identification may be performed internally by the TOE or externally by an External IT Entity._
 
 ==== FIA_USB.1 User-subject binding
-....
-(for O.USER_I&A)
-Hierarchical to:
+======
+(for O.USER_I&A) +
+*Hierarchical to:* +
 	No other components.
-Dependencies:
+
+*Dependencies:* +
 	FIA_ATD.1 User attribute definition
-....
+======
 
 *FIA_USB.1.1* The TSF shall associate the following user security attributes with subjects acting on the behalf of that user: [assignment: _list of user security attributes_].
 
@@ -1309,42 +1327,44 @@ Dependencies:
 === Security Management (FMT)
 
 ==== FMT_MOF.1 Management of security functions behavior
-....
-(for O.ADMIN_ROLES)
-Hierarchical to:
+======
+(for O.ADMIN_ROLES) +
+*Hierarchical to:* +
 	No other components.
-Dependencies:
+
+*Dependencies:* +
 	FMT_SMR.1 Security roles
 	FMT_SMF.1 Specification of Management Functions
-....
+======
 
 *FMT_MOF.1.1 Refinement:* The TSF shall restrict the ability to [selection: _determine the behaviour of, disable, enable, modify the behaviour of_] the functions [assignment: _list of functions_] to *U.ADMIN*.
 
 
 ==== FMT_MSA.1 Management of security attributes
-....
-(for O.ACCESS_CONTROL and O.USER_AUTHORIZATION)
-Hierarchical to:
+======
+(for O.ACCESS_CONTROL and O.USER_AUTHORIZATION) +
+*Hierarchical to:* +
 	No other components.
-Dependencies:	[
-	FDP_ACC.1 Subset access control, [strikeout]or
-	FDP_IFC.1 Subset information flow control][/strikeout]
-	FMT_SMR.1 Security roles
+
+*Dependencies:* +
+  [	FDP_ACC.1 Subset access control, +++<del>or FDP_IFC.1 Subset information flow control</del>+++ ] +
+	FMT_SMR.1 Security roles +
 	FMT_SMF.1 Specification of Management Functions
-....
+======
 
 *FMT_MSA.1.1 Refinement:* The TSF shall enforce the *User Data Access Control SFP* to restrict the ability to [selection: __change_default, query, modify, delete, [assignment: other operations]__] the security attributes [assignment: _list of security attributes_] to [assignment: _the authorized identified roles_].
 
 
 ==== FMT_MSA.3 Static attribute initialization
-....
-(for O.ACCESS_CONTROL and O.USER_AUTHORIZATION)
-Hierarchical to:
+======
+(for O.ACCESS_CONTROL and O.USER_AUTHORIZATION) +
+*Hierarchical to:* +
 	No other components.
-Dependencies:
-	FMT_MSA.1 Management of security attributes
+
+*Dependencies:* +
+	FMT_MSA.1 Management of security attributes +
 	FMT_SMR.1 Security roles
-....
+======
 
 *FMT_MSA.3.1 Refinement:* The TSF shall enforce the *User Data Access Control SFP* to provide [selection, choose one of: _restrictive, permissive, [assignment: other property]_] default values for security attributes that are used to enforce the SFP.
 
@@ -1356,14 +1376,15 @@ FMT_MSA.3.2 applies only to security attributes whose default values can be over
 
 
 ==== FMT_MTD.1 Management of TSF data
-....
-(for O.ACCESS CONTROL)
-Hierarchical to:
+======
+(for O.ACCESS CONTROL) +
+*Hierarchical to:* +
 	No other components.
-Dependencies:
-	FMT_SMR.1 Security roles
+
+*Dependencies:* +
+	FMT_SMR.1 Security roles +
 	FMT_SMF.1 Specification of Management Functions
-....
+======
 
 *FMT_MTD.1.1 Refinement:* The TSF shall restrict the ability to *perform the specified operations on the specified TSF Data to the roles specified in Table 6.*
 
@@ -1378,13 +1399,14 @@ Dependencies:
 
 
 ==== FMT_SMF.1 Specification of Management Functions
-....
-(for O.USER_AUTHORIZATION, O.ACCESS_CONTROL, and O.ADMIN_ROLES)
-Hierarchical to:
+======
+(for O.USER_AUTHORIZATION, O.ACCESS_CONTROL, and O.ADMIN_ROLES) +
+*Hierarchical to:* +
 	No other components.
-Dependencies:
+
+*Dependencies:* +
 	No dependencies.
-....
+======
 
 *FMT_SMF.1.1:* The TSF shall be capable of performing the following management functions: [assignment: _list of management functions provided by the TSF_].
 
@@ -1432,13 +1454,14 @@ For O.STORAGE_ENCRYPTION, O.KEY_MATERIAL:
 
 
 ==== FMT_SMR.1 Security roles
-....
-(for O.ACCESS_CONTROL, O.USER_AUTHORIZATION, and O.ADMIN_ROLES)
-Hierarchical to:
+======
+(for O.ACCESS_CONTROL, O.USER_AUTHORIZATION, and O.ADMIN_ROLES) +
+*Hierarchical to:* +
 	No other components.
-Dependencies:
+
+*Dependencies:* +
 	FIA_UID.1 Timing of identification
-....
+======
 
 *FMT_SMR.1.1* The TSF shall maintain the roles *U.ADMIN, U.NORMAL*.
 
@@ -1453,23 +1476,24 @@ There are no class FPR requirements.
 === Protection of the TSF (FPT)
 
 ==== FPT_SBT_EXT.1 Extended: Secure Boot
-....
-(for O.FW_INTEGRITY)
-Hierarchical to:
+======
+(for O.FW_INTEGRITY) +
+*Hierarchical to:* +
 	No other components.
-Dependencies:
-	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm)
-	FCS_COP.1/SigGen Cryptographic Operation (for signature generation/verification)
-	FCS_COP.1/KeyedHash Cryptographic Operation (for keyed-hash message authentication)
-	FCS_COP.1/DataEncryption Cryptographic Operation (Symmetric encryption/decryption)
-	FCS_COP.1/StorageEncryption Cryptographic operation (Data Encryption/Decryption)
+
+*Dependencies:* +
+	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm) +
+	FCS_COP.1/SigGen Cryptographic Operation (for signature generation/verification) +
+	FCS_COP.1/KeyedHash Cryptographic Operation (for keyed-hash message authentication) +
+	FCS_COP.1/DataEncryption Cryptographic Operation (Symmetric encryption/decryption) +
+	FCS_COP.1/StorageEncryption Cryptographic operation (Data Encryption/Decryption) +
 	FCS_COP.1/CMAC Cryptographic Operation (for keyed-hash message authentication)
-....
+======
 
 *FPT_SBT_EXT.1.1* The TSF shall contain one or more chains of trust with each chain of trust anchored in
 a Root of Trust that is implemented in immutable code.
 
-*FPT_SBT_EXT.1.2* The TSF shall use the chain(s) of trust to confirm integrity of its firmware/software at boot time using a [selection: _hash, digital signature, message authentication_] verification method.
+*FPT_SBT_EXT.1.2* At boot time the TSF shall use the chain(s) of trust to confirm integrity of its firmware/software at boot time using a [selection: _hash, digital signature, message authentication_] verification method.
 
 *FPT_SBT_EXT.1.3* The TSF shall [selection: _enter maintenance mode, halt boot process, reboot the device, [assignment: another behavior of TOE]_] in the event of a boot time verification failure so that the corrupted firmware/software isn't executed.
 
@@ -1489,13 +1513,14 @@ _The ‘contact vendor support’ may be selected to allow for the vendor to dia
 
 
 ==== FPT_SKP_EXT.1  Extended: Protection of TSF Data
-....
-(for O.COMMS_PROTECTION)
-Hierarchical to:
+======
+(for O.COMMS_PROTECTION) +
+*Hierarchical to:* +
 	No other components.
-Dependencies:
+
+*Dependencies:* +
 	No dependencies.
-....
+======
 
 *FPT_SKP_EXT.1.1* The TSF shall prevent reading of all pre-shared keys, symmetric keys, and private keys.
 
@@ -1504,13 +1529,14 @@ Dependencies:
 The intent of the requirement is that an administrator is unable to read or view the identified keys (stored or ephemeral) through “normal” interfaces. While it is understood that the administrator could directly read memory to view these keys, doing so is not a trivial task and may require substantial work on the part of an administrator. Since the administrator is considered a trusted agent, it is assumed they would not engage in such an activity.
 
 ==== FPT_STM.1 Reliable time stamps
-....
-(for O.AUDIT)
-Hierarchical to:
+======
+(for O.AUDIT) +
+*Hierarchical to:* +
 	No other components.
-Dependencies:
+
+*Dependencies:* +
 	No dependencies.
-....
+======
 
 *FPT_STM.1.1* The TSF shall be able to provide reliable time stamps.
 
@@ -1519,13 +1545,14 @@ Dependencies:
 The time may be set by a trusted administrator or by a network service (e.g., NTP) from a trusted External IT Entity.
 
 ==== FPT_TST_EXT.1 Extended: TSF testing
-....
-(for O.TSF_SELF_TEST)
-Hierarchical to:
+======
+(for O.TSF_SELF_TEST) +
+*Hierarchical to:* +
 	No other components.
-Dependencies:
+
+*Dependencies:* +
 	No dependencies.
-....
+======
 
 *FPT_TST_EXT.1.1* The TSF shall run a suite of self-tests during initial start-up (and power on) to demonstrate the correct operation of the TSF.
 
@@ -1533,15 +1560,19 @@ Dependencies:
 
 Power-on self-tests may take place before the TSF is operational, in which case this SFR can be satisfied by verifying the TSF image by digital signature as specified in FCS_COP.1/SigGen, or by hash specified in FCS_COP.1/Hash.
 
+Self-test is intended to detect malfunctions which may compromise the TSF. Since the integrity of the firmware/software is guaranteed by FPT_SBT_EXT, the function for FPT_TST_EXT should address the malfunction detection like DRBG self-test defined in ISO/IEC 18031:2011.
+
+
 ==== FPT_TUD_EXT.1 Extended: Trusted Update
-....
-(for O.UPDATE_VERIFICATION)
-Hierarchical to:
+======
+(for O.UPDATE_VERIFICATION) +
+*Hierarchical to:* +
 	No other components.
-Dependencies:
-	FCS_COP.1/SigGen Cryptographic Operation (for signature generation/verification),
+
+*Dependencies:* +
+	FCS_COP.1/SigGen Cryptographic Operation (for signature generation/verification), +
 	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm).
-....
+======
 
 *FPT_TUD_EXT.1.1* The TSF shall provide authorized administrators the ability to query the current version of the TOE firmware/software.
 
@@ -1563,13 +1594,14 @@ There are no class FRU requirements.
 === TOE Access (FTA)
 
 ==== FTA_SSL.3 TSF-initiated termination
-....
-(for O.USER_I&A)
-Hierarchical to:
+======
+(for O.USER_I&A) +
+*Hierarchical to:* +
 	No other components.
-Dependencies:
+
+*Dependencies:* +
 	No dependencies.
-....
+======
 
 *FTA_SSL.3.1* The TSF shall terminate an interactive session after a [assignment: _time interval of user inactivity_].
 
@@ -1578,17 +1610,18 @@ Dependencies:
 === Trusted Paths/Channels (FTP)
 
 ==== FTP_ITC.1 Inter-TSF trusted channel
-....
-(for O.COMMS_PROTECTION, O.AUDIT)
-Hierarchical to:
+======
+(for O.COMMS_PROTECTION, O.AUDIT) +
+*Hierarchical to:* +
 	No other components.
-Dependencies: [
-	FCS_IPSEC_EXT.1 Extended: IPsec selected, or
-	FCS_TLSC_EXT Extended: TLS Client Protocol and/or FCS_TLSS_EXT Extended: TLS Server Protocol, or
-	FCS_SSHC_EXT Extended: SSH Client Protocol or FCS_SSHS_EXT Extended: SSH Server Protocol, or
-	FCS_DTLSC_EXT Extended: DTLS Client Protocol and/or FCS_DTLSS_EXT Extended: DTLS Server Protocol, or
+
+*Dependencies:* +
+	[ FCS_IPSEC_EXT.1 Extended: IPsec selected, or +
+	FCS_TLSC_EXT Extended: TLS Client Protocol and/or FCS_TLSS_EXT Extended: TLS Server Protocol, or +
+	FCS_SSHC_EXT Extended: SSH Client Protocol or FCS_SSHS_EXT Extended: SSH Server Protocol, or +
+	FCS_DTLSC_EXT Extended: DTLS Client Protocol and/or FCS_DTLSS_EXT Extended: DTLS Server Protocol, or +
 	FCS_HTTPS_EXT.1 Extended: HTTPS selected ].
-....
+======
 
 *FTP_ITC.1.1 Refinement:* The TSF shall *use [selection: IPsec, SSH, TLS, DTLS, TLS/HTTPS] to* provide *a trusted* communication channel between itself and *authorized IT entities supporting the following capabilities: [selection: _authentication server, [assignment: other capabilities]_]* that is logically distinct from other communication channels and provides assured identification of its end points and protection of the channel data from *disclosure and detection of modification of the channel data*.
 
@@ -1607,17 +1640,18 @@ _While there are no requirements on the party initiating the communication, the 
 _The requirement implies that not only are communications protected when they are initially established, but also on resumption after an outage. It may be the case that some part of the TOE setup involves manually setting up tunnels to protect other communication, and if after an outage the TOE attempts to re-establish the communication automatically with (the necessary) manual intervention, there may be a window created where an attacker might be able to gain critical information or compromise a connection._
 
 ==== FTP_TRP.1/Admin Trusted path (for Administrators)
-....
-(for O.COMMS_PROTECTION)
-Hierarchical to:
+======
+(for O.COMMS_PROTECTION) +
+*Hierarchical to:* +
 	No other components.
-Dependencies: [
-	FCS_IPSEC_EXT.1 Extended: IPsec selected, or
-	FCS_TLSC Extended: TLS Client Protocol and/or FCS_TLSS_EXT Extended: TLS Server Protocol, or
-	FCS_SSHC_EXT Extended: SSH Client Protocol or FCS_SSHS_EXT Extended: SSH Server Protocol, or
-	FCS_DTLSC_EXT Extended: DTLS Client Protocol and/or FCS_DTLSS_EXT Extended: Server DTLS Protocol, or
+
+*Dependencies:* +
+	[ FCS_IPSEC_EXT.1 Extended: IPsec selected, or +
+	FCS_TLSC Extended: TLS Client Protocol and/or FCS_TLSS_EXT Extended: TLS Server Protocol, or +
+	FCS_SSHC_EXT Extended: SSH Client Protocol or FCS_SSHS_EXT Extended: SSH Server Protocol, or +
+	FCS_DTLSC_EXT Extended: DTLS Client Protocol and/or FCS_DTLSS_EXT Extended: Server DTLS Protocol, or +
 	FCS_HTTPS_EXT.1 Extended: HTTPS selected ].
-....
+======
 
 *FTP_TRP.1.1/Admin Refinement:* The TSF shall *use [selection, choose at least one of: IPsec, SSH, TLS, DTLS, TLS/HTTPS] to* provide *a trusted* communication path between itself and *remote administrators* that is logically distinct from other communication paths and provides assured identification of its end points and protection of the communicated data from *disclosure and detection of modification of the communicated data*.
 
@@ -1748,15 +1782,16 @@ For the first generation of this cPP, the iTC is expected to survey open sources
 === Confidential Data on Nonvolatile Storage Devices
 
 ==== FCS_COP.1/StorageEncryption Cryptographic operation (Data Encryption/Decryption)
-....
-(for O.STORAGE_ENCRYPTION)
-Hierarchical to:
-	No other components.
-Dependencies:	[<del>FDP_ITC.1 Import of user data without security attributes, or
-	FDP_ITC.2 Import of user data with security attributes, or</del>
-	FCS_CKM.1/SKG Cryptographic Key Generation (Symmetric Keys)]
-	FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction
-....
+======
+(for O.STORAGE_ENCRYPTION) +
+*Hierarchical to:* +
+No other components.
+
+*Dependencies:* +
+[ +++<del>FDP_ITC.1 Import of user data without security attributes, or FDP_ITC.2 Import of user data with security attributes, or</del>+++ +
+FCS_CKM.1/SKG Cryptographic Key Generation (Symmetric Keys)] +
+FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction
+======
 
 *FCS_COP.1.1/StorageEncryption*  The TSF shall perform *data encryption and decryption* in accordance with a specified cryptographic algorithm [selection:
 
@@ -1834,14 +1869,16 @@ _If either SEED in GCM mode with non-repeating IVs or LEA in GCM mode with non-r
 _The intent of this requirement is to specify the approved modes that the ST Author may select for encryption of the appropriate information on the Nonvolatile Storage Device.  For the first selection, the ST author should indicate the mode or modes supported by the TOE implementation.  The second selection indicates the key size to be used, which is identical to that specified for FCS_CKM.1/SKG.  The third selection must agree with the mode or modes chosen in the first selection.  If multiple modes are supported, it may be clearer in the ST if this component was iterated._
 
 ==== FCS_COP.1/KeyWrap Cryptographic operation (Key Wrapping)
-....
-(selected in FCS_KYC_EXT.1.1)
-Hierarchical to:	No other components.
-Dependencies:	[<del>FDP_ITC.1 Import of user data without security attributes, or
-	FDP_ITC.2 Import of user data with security attributes, or</del>
-	FCS_CKM.1/SKG Cryptographic Key Generation (Symmetric Keys)]
-	FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction
-....
+======
+(selected in FCS_KYC_EXT.1.1) +
+*Hierarchical to:* +
+No other components. +
+
+*Dependencies:* +
+[ +++<del>FDP_ITC.1 Import of user data without security attributes, or FDP_ITC.2 Import of user data with security attributes, or</del>+++ +
+FCS_CKM.1/SKG Cryptographic Key Generation (Symmetric Keys) ] +
+FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction
+======
 
 *FCS_COP.1.1/KeyWrap Refinement:* The TSF shall perform *key wrapping* in accordance with a specified cryptographic algorithm [selection: *AES in the following modes [selection: _KW, KWP, GCM, CCM_], SEED in the following modes [selection: Key Wrap, KWP, GCM, CCM], LEA in the following modes [selection: Key Wrap, KWP, GCM, CCM]]* and the cryptographic key size *[selection: _128 bits (AES, SEED, LEA), 192 bits (AES, LEA), 256 bits (AES, LEA)_]* that meet the following: [selection:
 
@@ -1865,15 +1902,16 @@ Case: LEA algorithm
 _This requirement is used in the body of the ST if the ST Author chooses to use key wrapping in the key chaining approach that is specified in FCS_KYC_EXT.1._
 
 ==== FCS_COP.1/KeyEnc Cryptographic operation (Key Encryption)
-....
-(selected from FCS_KYC_EXT.1.1)
-Hierarchical to:
+======
+(selected from FCS_KYC_EXT.1.1) +
+*Hierarchical to:* +
 	No other components.
-Dependencies:	[<del>FDP_ITC.1 Import of user data without security attributes, or
-	FDP_ITC.2 Import of user data with security attributes, or</del>
-	FCS_CKM.1/SKG Cryptographic Key Generation (Symmetric Keys)]
+
+*Dependencies:* +
+	[ +++<del>FDP_ITC.1 Import of user data without security attributes, or FDP_ITC.2 Import of user data with security attributes, or</del>+++ +
+	FCS_CKM.1/SKG Cryptographic Key Generation (Symmetric Keys)] +
 	FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction
-....
+======
 
 *FCS_COP.1.1/KeyEnc Refinement:* The TSF shall perform *key encryption and decryption* in accordance with a specified cryptographic algorithm [selection:
 
@@ -1899,14 +1937,16 @@ Case: LEA algorithm
 _This requirement is used in the body of the ST if the ST Author chooses to use AES encryption/decryption for protecting the keys as part of the key chaining approach that is specified in FCS_KYC_EXT.1._
 
 ==== FCS_COP.1/KeyTransport Cryptographic operation (Key Transport)
-....
-(selected in FCS_KYC_EXT.1.1)
-Hierarchical to:	No other components.
-Dependencies:	[<del>FDP_ITC.1 Import of user data without security attributes, or
-	FDP_ITC.2 Import of user data with security attributes, or</del>
-	FCS_CKM.1/AKG Cryptographic Key Generation (Asymmetric Keys)]
+======
+(selected in FCS_KYC_EXT.1.1) +
+*Hierarchical to:* +
+No other components.
+
+*Dependencies:* +
+	[ +++<del>FDP_ITC.1 Import of user data without security attributes, or FDP_ITC.2 Import of user data with security attributes, or</del>+++ +
+	FCS_CKM.1/AKG Cryptographic Key Generation (Asymmetric Keys)] +
 	FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction
-....
+======
 
 *FCS_COP.1.1/KeyTransport Refinement:* The TSF shall perform *key transport* in accordance with a specified cryptographic algorithm *RSA in the following modes [selection: _KTS-OAEP, KTS-KEM-KWS_]* and the cryptographic key size *[selection: _2048 bits, 3072 bits, 4096 bits, 6144 bits, 8192 bits_]* that meet the following: *NIST SP 800-56B, Revision 1*.
 
@@ -1915,11 +1955,14 @@ Dependencies:	[<del>FDP_ITC.1 Import of user data without security attributes, o
 _This requirement is used in the body of the ST if the ST Author chooses to use key transport in the key chaining approach that is specified in FCS_KYC_EXT.1._
 
 ==== FCS_SMC_EXT.1 Extended: Submask Combining
-....
-(selected in FCS_KYC_EXT.1.1)
-Hierarchical to:	No other components.
-Dependencies:	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm)
-....
+======
+(selected in FCS_KYC_EXT.1.1) +
+*Hierarchical to:* +
+No other components.
+
+*Dependencies:* +
+FCS_COP.1/Hash Cryptographic operation (Hash Algorithm)
+======
 
 FCS_SMC_EXT.1.1 The TSF shall combine submasks using the following method [selection: _exclusive OR (XOR), SHA-256, SHA-512_] to generate an intermediary key or BEV.
 
@@ -1934,20 +1977,21 @@ As indicated in the FTP requirements, there are several methods by which conform
 There are unique requirements associated with each of the protocol suites; these are specified in below. Depending on the selections for the FTP_ITC.1 and FTP_TRP.1 components, the ST author will need to include the associated SFRs and Assurance Activities in the ST.
 
 ==== FCS_IPSEC_EXT.1 Extended: IPsec selected
-....
-(selected in FTP_ITC.1.1, FTP_TRP.1.1/Admin, FTP_TRP.1.1/NonAdmin)
-Hierarchical to:
-	No other components.
-Dependencies:
-	<del>FPT_ITT.1 Basic internal TSF data transfer protection,</del>
-	FIA_PSK_EXT.1 Extended: Pre-Shared Key Composition,
-	FCS_CKM.1/AKG Cryptographic Key Generation (Asymmetric Keys),
-	FCS_COP.1/DataEncryption Cryptographic Operation (Symmetric encryption/decryption),
-	FCS_COP.1/SigGen Cryptographic Operation (for signature generation/verification),
-	FCS_COP.1/Hash Cryptographic Operation (Hash Algorithm),
-	FCS_COP.1/KeyedHash Cryptographic Operation (for keyed-hash message authentication),
+=====
+(selected in FTP_ITC.1.1, FTP_TRP.1.1/Admin, FTP_TRP.1.1/NonAdmin) +
+*Hierarchical to:* +
+	No other components. +
+
+*Dependencies:* +
+	+++<del>FPT_ITT.1 Basic internal TSF data transfer protection,</del>+++ +
+	FIA_PSK_EXT.1 Extended: Pre-Shared Key Composition, +
+	FCS_CKM.1/AKG Cryptographic Key Generation (Asymmetric Keys), +
+	FCS_COP.1/DataEncryption Cryptographic Operation (Symmetric encryption/decryption), +
+	FCS_COP.1/SigGen Cryptographic Operation (for signature generation/verification), +
+	FCS_COP.1/Hash Cryptographic Operation (Hash Algorithm), +
+	FCS_COP.1/KeyedHash Cryptographic Operation (for keyed-hash message authentication), +
 	FCS_RBG_EXT.1 Extended: Cryptographic Operation (Random Bit Generation)
-....
+=====
 
 *_Application Note:_*
 
@@ -2135,20 +2179,21 @@ List 1: List of supported TLS-related ciphersuites
 
 ===== FCS_TLSC_EXT.1 TLS Client Protocol Without Mutual Authentication
 
-....
-Hierarchical to:
-	No other components
-Dependencies:
-	FCS_CKM.1 Cryptographic Key Generation
-	FCS_CKM.2 Cryptographic Key Establishment
-	FCS_COP.1/DataEncryption Cryptographic operation (Data Encryption/decryption)
-	FCS_COP.1/SigGen Cryptographic operation (Signature Generation and Verification)
-	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm)
-	FCS_COP.1/KeyedHash Cryptographic operation (Keyed Hash Algorithm)
-	FCS_RBG_EXT.1 Random Bit Generation
-	FIA_X509_EXT.1 X.509 Certificate Validation
+======
+*Hierarchical to:* +
+	No other components +
+
+*Dependencies:* +
+	FCS_CKM.1 Cryptographic Key Generation +
+	FCS_CKM.2 Cryptographic Key Establishment +
+	FCS_COP.1/DataEncryption Cryptographic operation (Data Encryption/decryption) +
+	FCS_COP.1/SigGen Cryptographic operation (Signature Generation and Verification) +
+	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm) +
+	FCS_COP.1/KeyedHash Cryptographic operation (Keyed Hash Algorithm) +
+	FCS_RBG_EXT.1 Random Bit Generation +
+	FIA_X509_EXT.1 X.509 Certificate Validation +
 	FIA_X509_EXT.2 X.509 Certificate Authentication
-....
+======
 
 *FCS_TLSC_EXT.1.1* The TSF shall implement [selection: TLS 1.2 (RFC 5246), TLS 1.1 (RFC 4346)] and reject all other TLS and SSL versions.  The TLS implementation will support the following ciphersuites:
 
@@ -2255,18 +2300,19 @@ requirements to allow for these differences.
 
 ===== FCS_SSHC_EXT.1 SSH Client Protocol
 
-....
-Hierarchical to:
-	No other components
-Dependencies:
-	FCS_CKM.1 Cryptographic Key Generation
-	FCS_CKM.2 Cryptographic Key Establishment
-	FCS_COP.1/DataEncryption Cryptographic operation (Data Encryption/decryption)
-	FCS_COP.1/SigGen Cryptographic operation (Signature Generation and Verification)
-	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm)
-	FCS_COP.1/KeyedHash Cryptographic operation (Keyed Hash Algorithm)
+======
+*Hierarchical to:* +
+	No other components +
+
+*Dependencies:* +
+	FCS_CKM.1 Cryptographic Key Generation +
+	FCS_CKM.2 Cryptographic Key Establishment +
+	FCS_COP.1/DataEncryption Cryptographic operation (Data Encryption/decryption) +
+	FCS_COP.1/SigGen Cryptographic operation (Signature Generation and Verification) +
+	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm) +
+	FCS_COP.1/KeyedHash Cryptographic operation (Keyed Hash Algorithm) +
 	FCS_RBG_EXT.1 Random Bit Generation
-....
+======
 
 
 *FCS_SSHC_EXT.1.1* The TSF shall implement the SSH protocol in accordance with: RFCs
@@ -2483,14 +2529,15 @@ or the TOE must not accept values beyond the thresholds specified in this SFR._
 
 
 ==== FCS_HTTPS_EXT.1 Extended: HTTPS selected
-....
-(selected in FTP_ITC.1.1, FTP_TRP.1.1)
-Hierarchical to:
-	No other components.
-Dependencies: [
-	FCS_TLSC_EXT Extended: TLS Client Protocol, and/or
+======
+(selected in FTP_ITC.1.1, FTP_TRP.1.1) +
+*Hierarchical to:* +
+	No other components. +
+
+*Dependencies:* +
+  [ FCS_TLSC_EXT Extended: TLS Client Protocol, and/or +
 	FCS_TLSS_EXT Extended: TLS Server Protocol ]
-....
+======
 
 *FCS_HTTPS_EXT.1.1* The TSF shall implement the HTTPS protocol that complies with RFC 2818.
 
@@ -2512,15 +2559,16 @@ If HTTPS is selected in FTP_ITC.1, FTP_TRP.1/Admin and/or FTP_TRP.1/NonAdmin the
 
 
 ==== FCS_COP.1/KeyedHash Cryptographic Operation (Keyed Hash Algorithm)
-....
-(selected with FCS_IPSEC_EXT.1.4)
-Hierarchical to: No other components.
-Dependencies:	FCS_RBG_EXT.1 Extended: Cryptographic Operation (Random Bit Generation)
-	FTP_ITC.1 or
-	FTP_ITC.2 or
-	FCS_CKM.1
+======
+(selected with FCS_IPSEC_EXT.1.4) +
+*Hierarchical to:* +
+No other components. +
+
+*Dependencies:* +
+  FCS_RBG_EXT.1 Extended: Cryptographic Operation (Random Bit Generation) +
+	FTP_ITC.1 or FTP_ITC.2 or FCS_CKM.1 +
 	FCS_CKM.4
-....
+======
 
 
 *FCS_COP.1.1/KeyedHash* The TSF shall perform _keyed-hash message authentication_ in accordance with a specified cryptographic algorithm [selection: _HMAC-SHA-1, HMAC-SHA-256, HMAC-SHA-384, HMAC-SHA-512, implicit_] and cryptographic key sizes [_assignment: key size (in bits) used in HMAC_] *and message digest sizes [selection: 160, 256, 384, 512] bits* that meet the following: _ISO/IEC 9797-2:2011, Section 7 “MAC Algorithm 2”_.
@@ -2532,11 +2580,14 @@ _The key size [k] in the assignment falls into a range between L1 and L2 (define
 
 
 ==== FIA_PSK_EXT.1 Extended: Pre-Shared Key Composition
-....
-(selected with FCS_IPSEC_EXT.1.4)
-Hierarchical to: No other components.
-Dependencies:	FCS_RBG_EXT.1 Extended: Cryptographic Operation (Random Bit Generation)
-....
+======
+(selected with FCS_IPSEC_EXT.1.4) +
+*Hierarchical to:* +
+No other components.
+
+*Dependencies:* +
+FCS_RBG_EXT.1 Extended: Cryptographic Operation (Random Bit Generation)
+======
 
 *_Application Note:_*
 
@@ -2580,20 +2631,21 @@ If the TOE acts as the server during the claimed DTLS sessions, the ST author sh
 
 ===== FCS_DTLSC_EXT.1 DTLS Client Protocol Without Mutual Authentication
 
-....
-Hierarchical to:
-	No other components
-Dependencies:
-	FCS_CKM.1 Cryptographic Key Generation
-	FCS_CKM.2 Cryptographic Key Establishment
-	FCS_COP.1/DataEncryption Cryptographic operation (Data Encryption/decryption)
-	FCS_COP.1/SigGen Cryptographic operation (Signature Generation and Verification)
-	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm)
-	FCS_COP.1/KeyedHash Cryptographic operation (Keyed Hash Algorithm)
-	FCS_RBG_EXT.1 Random Bit Generation
-	FIA_X509_EXT.1 X.509 Certificate Validation
+======
+*Hierarchical to:* +
+	No other components +
+
+*Dependencies:* +
+	FCS_CKM.1 Cryptographic Key Generation +
+	FCS_CKM.2 Cryptographic Key Establishment +
+	FCS_COP.1/DataEncryption Cryptographic operation (Data Encryption/decryption) +
+	FCS_COP.1/SigGen Cryptographic operation (Signature Generation and Verification) +
+	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm) +
+	FCS_COP.1/KeyedHash Cryptographic operation (Keyed Hash Algorithm) +
+	FCS_RBG_EXT.1 Random Bit Generation +
+	FIA_X509_EXT.1 X.509 Certificate Validation +
 	FIA_X509_EXT.2 X.509 Certificate Authentication
-....
+======
 
 *FCS_DTLSC_EXT.1.1* The TSF shall implement [selection: DTLS 1.2 (RFC 6347), DTLS 1.0 (RFC 4347)] supporting the following ciphersuites:
 
@@ -2721,13 +2773,14 @@ _If the TOE does not support session resumption or session tickets, select 'no s
 The SFRs in this section are to be incorporated in the ST to support the optional Passphrase-based Key Entry function.
 
 ==== FCS_PCC_EXT.1 Extended: Cryptographic Password Construct and Conditioning
-....
-(for O.STORAGE_ENCRYPTION)
-Hierarchical to:
-	No other components
-Dependencies:
+======
+(for O.STORAGE_ENCRYPTION) +
+*Hierarchical to:* +
+	No other components +
+
+*Dependencies:* +
 	FCS_COP.1/CMAC Cryptographic Operation (for keyed-hash message authentication)
-....
+======
 
 *FCS_PCC_EXT.1.1* A password used by the TSF to generate a password authorization factor shall enable up to [assignment: _positive integer of 64 or more_] characters in the set of {upper case characters, lower case characters, numbers, and [assignment: _other supported special characters_]} and shall perform Password-based Key Derivation Functions in accordance with a specified cryptographic algorithm [HMAC-[selection: _SHA-256, SHA-384, SHA-512_]], with [assignment: _positive integer of 1000 or more_] iterations, and output cryptographic key sizes [selection: _128, 256_] bits that meet the following: [*NIST SP 800-132*].
 
@@ -2736,30 +2789,31 @@ Dependencies:
 _This SFR is conditionally required if the manual entry of a drive encryption passphrase is supported by the TOE._
 
 ==== FCS_KDF_EXT Extended: Cryptographic Key Derivation
-....
-(selected in FCS_KYC_EXT.1.1, for O.STORAGE_ENCRYPTION)
-Hierarchical to:
-	No other components
-Dependencies:
-	FCS_COP.1/CMAC Cryptographic Operation (for keyed-hash message authentication),
-	FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction,
+======
+(selected in FCS_KYC_EXT.1.1, for O.STORAGE_ENCRYPTION) +
+*Hierarchical to:* +
+	No other components +
+
+*Dependencies:* +
+	FCS_COP.1/CMAC Cryptographic Operation (for keyed-hash message authentication), +
+	FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction, +
 	[if selected: FCS_RBG_EXT.1 Extended: Cryptographic Operation (Random Bit Generation)]
-....
+======
 
 *FCS_KDF_EXT.1.1* The TSF shall accept [selection: _a RNG generated submask as specified in FCS_RBG_EXT.1, a conditioned password submask, imported submask_] to derive an intermediate key, as defined in [selection: _NIST SP 800-108 [selection: KDF in Counter Mode, KDF in Feedback Mode, KDF in Double-Pipeline Iteration Mode], NIST SP 800-132, ISO/IEC 11770-6:2016 [selection: KPF2, KPF3, KPF4]_], using the keyed-hash functions specified in FCS_COP.1/CMAC, such that the output is at least of equivalent security strength (in number of bits) to the BEV.
 
 ==== FCS_COP.1/CMAC Cryptographic Operation (for cipher-based message authentication)
-....
-(selected with FCS_PCC_EXT.1, FCS_KDF_EXT.1.1, FPT_SBT_EXT.1.2)
-Hierarchical to:
-	No other components.
-Dependencies:
-	[<del>FDP_ITC.1 Import of user data without security attributes, or
-	FDP_ITC.2 Import of user data with security attributes, or</del>
-	FCS_CKM.1/SKG Cryptographic Key Generation (Symmetric Keys)]
-	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm),
+======
+(selected with FCS_PCC_EXT.1, FCS_KDF_EXT.1.1, FPT_SBT_EXT.1.2) +
+*Hierarchical to:* +
+	No other components. +
+
+*Dependencies:* +
+	[+++<del>FDP_ITC.1 Import of user data without security attributes, or FDP_ITC.2 Import of user data with security attributes, or</del>+++ +
+	FCS_CKM.1/SKG Cryptographic Key Generation (Symmetric Keys)] +
+	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm), +
 	FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction
-....
+======
 
 *FCS_COP.1.1/CMAC Refinement*: The TSF shall perform cryptographic [*message authentication*] in accordance with a specified cryptographic algorithm [*selection: _HMAC-SHA-256, HMAC-SHA-384, HMAC-SHA-512, CMAC-AES-128, CMAC-AES-192, CMAC-AES-256, CMAC-SEED-128, CMAC-HIGHT-128, CMAC-LEA-128, CMAC-LEA-192, CMAC-LEA-256_] and cryptographic key sizes [assignment: *_key size (in bits) used in [selection: HMAC, AES, CMAC]_*] that meet the following: [selection:
 
@@ -2799,13 +2853,14 @@ _For the assignment, the key size will fall into a range between 128 and 256._
 
 
 ==== FCS_SNI_EXT.1 Extended: Cryptographic Operation (Salt, Nonce, and Initialization Vector Generation)
-....
-(selected with FCS_PCC_EXT.1, FCS_KDF_EXT.1.1)
-Hierarchical to:
-	No other components
-Dependencies:
+======
+(selected with FCS_PCC_EXT.1, FCS_KDF_EXT.1.1) +
+*Hierarchical to:* +
+	No other components +
+
+*Dependencies:* +
 	FCS_RBG_EXT.1 Extended: Cryptographic Operation (Random Bit Generation)
-....
+======
 
 *FCS_SNI_EXT.1.1* The TSF shall only use salts that are generated by a RNG as specified in FCS_RBG_EXT.1.
 
@@ -2838,12 +2893,13 @@ Although the functionality in FIA_X509_EXT.1/Rev and FIA_X509_EXT.2 is always re
 
 ===== FIA_X509_EXT.1 X.509 Certificate Validation
 
-....
-Hierarchical to:
-	No other components
-Dependencies:
+======
+*Hierarchical to:* +
+	No other components +
+
+*Dependencies:* +
 	FIA_X509_EXT.2 X.509 Certificate Authentication
-....
+======
 
 *FIA_X509_EXT.1.1/Rev* The TSF shall validate certificates in accordance with the following rules:
 
@@ -2852,12 +2908,12 @@ Dependencies:
 •	The TSF shall validate a certification path by ensuring that all CA certificates in the certification path contain the basicConstraints extension with the CA flag set to TRUE.
 •	The TSF shall validate the revocation status of the certificate using [selection: _the Online Certificate Status Protocol (OCSP) as specified in RFC 6960, a Certificate Revocation List (CRL) as specified in RFC 5280 Section 6.3, Certificate Revocation List (CRL) as specified in RFC 5759 Section 5_].
 •	The TSF shall validate the extendedKeyUsage field according to the following rules:
-....
+======
 	•	_Certificates used for trusted updates and executable code integrity verification shall have the Code Signing purpose (id-kp 3 with OID 1.3.6.1.5.5.7.3.3) in the extendedKeyUsage field._
 	•	_Server certificates presented for TLS shall have the Server Authentication purpose (id-kp 1 with OID 1.3.6.1.5.5.7.3.1) in the extendedKeyUsage field._
 	•	_Client certificates presented for TLS shall have the Client Authentication purpose (id-kp 2 with OID 1.3.6.1.5.5.7.3.2) in the extendedKeyUsage field._
 	•	_OCSP certificates presented for OCSP responses shall have the OCSP Signing purpose (id-kp 9 with OID 1.3.6.1.5.5.7.3.9) in the extendedKeyUsage field._
-....
+======
 
 *FIA_X509_EXT.1.2/Rev* The TSF shall only treat a certificate as a CA certificate if the basicConstraints extension is present and the CA flag is set to TRUE.
 
@@ -2884,13 +2940,14 @@ _FIA_X509_EXT.1.2/Rev applies to certificates that are used and processed by the
 _The ST author must include FIA_X509_EXT.1/Rev in all instances except when only SSH is selected within FTP_ITC.1, and implementation is limited to public-key authentication that does not rely on X.509 certificates. Additionally, FIA_X509_EXT.1/Rev must also be included if "X.509 Certificate" is selected in FPT_TUD_EXT.1.3._
 
 ===== FIA_X509_EXT.2 X.509 Certificate Authentication
-....
-Hierarchical to:
-	No other components
-Dependencies:
-	FCS_CKM.1 Cryptographic Key Generation
+======
+*Hierarchical to:* +
+	No other components +
+
+*Dependencies:* +
+	FCS_CKM.1 Cryptographic Key Generation +
 	FIA_X509_EXT.1 X.509 Certificate Validation
-....
+======
 
 *FIA_X509_EXT.2.1* The TSF shall use X.509v3 certificates as defined by RFC 5280 to support authentication for [selection: _DTLS, HTTPS, IPsec, SSH, TLS, no protocols_] and [selection: _code signing for system firmware/software updates[assignment: other uses], no additional uses_].
 
@@ -2902,16 +2959,17 @@ _In FIA_X509_EXT.2.1, the ST author’s selection includes IPsec, TLS, or HTTPS 
 
 _Often a connection must be established to check the revocation status of a certificate - either to download a CRL or to perform a lookup using OCSP. In FIA_X509_EXT.2.2 the selection is used to describe the behaviour in the event that such a connection cannot be established (for example, due to a network error). If the TOE has determined the certificate is valid according to all other rules in FIA_X509_EXT.1/Rev, the behaviour indicated in the selection determines the validity. The TOE must not accept the certificate if it fails any of the other validation rules in FIA_X509_EXT.1/Rev. If the Administrator-configured option is selected by the ST Author, the ST Author also selects the corresponding function in FMT_SMF.1. The selection should be consistent with the validation requirements in FCS_IPSEC_EXT.1.14, FCS_TLSC_EXT.1.3 and FCS_TLSC_EXT.2.3._
 
-_The ST author must include FIA_X509_EXT.2 in all instances except when only SSH is selected within FTP_ITC.1 and ssh-rsa, ecdsa-sha2-nistp256, ecdsa-sha2-nistp384, and/or ecdsa-sha2-nistp521 authentication is also selected._
+_The ST author must include FIA_X509_EXT.2 in all instances except when only SSH is selected within FTP_ITC.1 and ssh-rsa, ecdsa-sha2-nistp256, ecdsa-sha2-nistp384, and/or ecdsa-sha2-nistp521 authentication is also selected. Additionally, FIA_X509_EXT.2 must also be included if "X.509 certificate" is selected in FPT_TUD_EXT.1.3._
 
 ===== FIA_X509_EXT.3 X.509 Certificate Requests
-....
-Hierarchical to:
+======
+*Hierarchical to:* +
 	No other components
-Dependencies:
-	FCS_CKM.1 Cryptographic Key Generation
+
+*Dependencies:* +
+	FCS_CKM.1 Cryptographic Key Generation +
 	FIA_X509_EXT.1 X.509 Certificate Validation
-....
+======
 
 Although the functionality in FIA_X509_EXT.1/Rev and FIA_X509_EXT.2 is always required when using X.509 certificate-based authentication, the TOE only needs to be able to generate a Certification Request if the TOE needs to present an X.509 certificate to another endpoint via the TSF for authentication (i.e. if at least one of the following SFRs is included in the ST: FCS_DTLSC_EXT.2, FCS_DTLSS_EXT.1, FCS_DTLSS_EXT.2, FCS_IPSEC_EXT.1, FCS_SSHC_EXT.1.5 (applicable only if at least one of the x509v3-* ciphers is selected), FCS_SSHS_EXT.1.5 (applicable only if at least one of the x509v3-* ciphers is selected), FCS_TLSC_EXT.2, FCS_TLSS_EXT.1, FCS_TLSS_EXT.2). Therefore FIA_X509_EXT.3 only needs to be added to the ST in this case. If the TOE does not need to present an X.509 certificate to another endpoint via the TSF for authentication (e.g. a client not supporting mutual authentication) the use of FIA_X509_EXT.3 is optional. This element must be included in the ST if X.509 certificates are used as part of FTP_ITC.1, FTP_TRP.1/Admin, and/or FTP_TRP.1/NonAdmin where the TOE authenticating itself to external IT entities, administrators, or distributed components.
 
@@ -2942,15 +3000,16 @@ The following are security functional requirements that are mandatory if the TOE
 The SFR in this section is used if the TOE generates asymmetric key pairs for communications.
 
 ==== FCS_CKM.1/AKG Cryptographic Key Generation (Asymmetric Keys)
-....
-(for O.COMMS_PROTECTION)
-Hierarchical to:
+======
+(for O.COMMS_PROTECTION) +
+*Hierarchical to:* +
 	No other components.
-Dependencies: [
-  FCS_CKM.2 Cryptographic Key Establishment (Refinement), or
-  FCS_COP.1/SigGen Cryptographic Operation (for signature generation/verification) ],
+
+*Dependencies:* +
+  [ FCS_CKM.2 Cryptographic Key Establishment (Refinement), or +
+  FCS_COP.1/SigGen Cryptographic Operation (for signature generation/verification) ], +
   FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction
-....
+======
 
 *FCS_CKM.1.1/AKG* The TSF shall generate *asymmetric* cryptographic keys in accordance with a specified cryptographic key generation algorithm: [selection:
 
@@ -2961,7 +3020,7 @@ Dependencies: [
 * _KCDSA-based key establishment schemes using key size of [selection: (2048, 224) bit, (2048, 256) bit]: ISO/IEC 14888-3:2018, (Subclause 6.3) “KCDSA”_
 * _EC-KCDSA-based key establishment schemes using NIST curve of [selection: P-224, P-256, B-233, B-283, K-233, K-283]: ISO/IEC 14888-3:2018, (Subclause 6.7) “EC-KCDSA”_
 
-] <del>and specified cryptographic key sizes [assignment: cryptographic key sizes] that meet the following: [assignment: list of standards]</del>.
+] +++<del>and specified cryptographic key sizes [assignment: cryptographic key sizes] that meet the following: [assignment: list of standards]</del>+++.
 
 *_Application Note:_*
 
@@ -2979,13 +3038,14 @@ _In a distributed TOE, if the TOE component acts as a receiver in the key establ
 === Confidential Data on Nonvolatile Storage Devices
 
 ==== FPT_KYP_EXT.1 Extended: Protection of Key and Key Material
-....
-(for O.KEY_MATERIAL)
-Hierarchical to:
+======
+(for O.KEY_MATERIAL) +
+*Hierarchical to:* +
 	No other components.
-Dependencies:
+
+*Dependencies:* +
 	FCS_KYC_EXT.1 Extended: Key Chaining
-....
+======
 
 *FPT_KYP_EXT.1.1 Refinement:* The TSF shall [selection:
 
@@ -3023,19 +3083,20 @@ _The protected storage device can protect stored data from unauthorized access a
 
 
 ==== FCS_KYC_EXT.1 Extended: Key Chaining
-....
-(for O.STORAGE_ENCRYPTION)
-Hierarchical to:
+======
+(for O.STORAGE_ENCRYPTION) +
+*Hierarchical to:* +
 	No other components.
-Dependencies:	[
-	FCS_COP.1/KeyWrap Cryptographic operation (Key Wrapping),
-	FCS_SMC_EXT.1 Extended: Submask Combining,
-	FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction,
-	FCS_COP.1/KeyEnc Cryptographic operation (Key Encryption),
-	FCS_KDF_EXT.1 Cryptographic Operation (Key Derivation),
-		and/or
+
+*Dependencies:* +
+  [	FCS_COP.1/KeyWrap Cryptographic operation (Key Wrapping), +
+	FCS_SMC_EXT.1 Extended: Submask Combining, +
+	FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction, +
+	FCS_COP.1/KeyEnc Cryptographic operation (Key Encryption), +
+	FCS_KDF_EXT.1 Cryptographic Operation (Key Derivation), +
+		and/or +
 	FCS_COP.1/KeyTransport Cryptographic operation (Key Transport) ]
-....
+======
 
 *_Application Note:_*
 
@@ -3055,13 +3116,14 @@ _The method the TOE uses to chain keys and manage/protect them is described in t
 
 
 ==== FDP_DSK_EXT.1 Extended: Protection of Data on Disk
-....
-(for O.STORAGE_ENCRYPTION)
-Hierarchical to:
+======
+(for O.STORAGE_ENCRYPTION) +
+*Hierarchical to:* +
 	No other components.
-Dependencies:
+
+*Dependencies:* +
 	FCS_COP.1/StorageEncryption Cryptographic operation (Data Encryption/Decryption).
-....
+======
 
 *FDP_DSK_EXT.1.1* The TSF shall [selection: perform encryption in accordance with FCS_COP.1/StorageEncryption, use a self-encrypting Nonvolatile Storage Device that is separately CC certified to conform to the FDE EE cPP], such that any Nonvolatile Storage Device contains no plaintext User Document Data and no plaintext Confidential TSF Data.
 
@@ -3083,13 +3145,14 @@ _The TSS, KMD, and test sections only apply to parts of the TOE which fall under
 === PSTN Fax-Network Separation
 
 ==== FDP_FXS_EXT.1 Extended: Fax separation
-....
-(for O.FAX_NET_SEPARATION)
-Hierarchical to:
+======
+(for O.FAX_NET_SEPARATION) +
+*Hierarchical to:* +
 	No other components.
-Dependencies:
+
+*Dependencies:* +
 	No dependencies.
-....
+======
 
 *FDP_FXS_EXT.1.1* The TSF shall prohibit communication via the fax interface, except transmitting or receiving User Data using fax protocols.
 
@@ -3101,17 +3164,18 @@ _FDP_FXS.EXT.1 is required if fax-net separation is performed by the TSF._
 === Network Communications
 
 ==== FTP_TRP.1/NonAdmin Trusted path (for Non-administrators)
-....
-(for O.COMMS_PROTECTION)
-Hierarchical to:
+======
+(for O.COMMS_PROTECTION) +
+*Hierarchical to:* +
 	No other components.
-Dependencies: [
-	FCS_IPSEC_EXT.1 Extended: IPsec selected, or
-	FCS_TLSC_EXT Extended: TLS Client Protocol and/or FCS_TLSS_EXT Extended: TLS Server Protocol, or
-	FCS_SSHC_EXT Extended: SSH Client Protocol or FCS_SSHS_EXT Extended: SSH Server Protocol, or
-	FCS_DTLSC_EXT Extended: DTLS Client Protocol and/or FCS_DTLSS_EXT Extended: Server DTLS Protocol, or
+
+*Dependencies:* +
+  [	FCS_IPSEC_EXT.1 Extended: IPsec selected, or +
+	FCS_TLSC_EXT Extended: TLS Client Protocol and/or FCS_TLSS_EXT Extended: TLS Server Protocol, or +
+	FCS_SSHC_EXT Extended: SSH Client Protocol or FCS_SSHS_EXT Extended: SSH Server Protocol, or +
+	FCS_DTLSC_EXT Extended: DTLS Client Protocol and/or FCS_DTLSS_EXT Extended: Server DTLS Protocol, or +
 	FCS_HTTPS_EXT.1 Extended: HTTPS selected ].
-....
+======
 
 
 
@@ -3148,13 +3212,14 @@ ST authors are free to choose none, some or all SFRs defined in this chapter. Ju
 The SFRs in this section are to be incorporated in the ST to support the optional Image Overwrite function.
 
 ==== FDP_RIP.1/Overwrite Subset residual information protection
-....
-(for O.IMAGE_OVERWRITE)
-Hierarchical to:
+======
+(for O.IMAGE_OVERWRITE) +
+*Hierarchical to:* +
 	No other components.
-Dependencies:
+
+*Dependencies:* +
 	No dependencies.
-....
+======
 
 *FDP_RIP.1.1/Overwrite Refinement:* The TSF shall ensure that any previous information content of a resource is made unavailable [selection: *by overwriting data*, *by destroying its cryptographic key*] upon the *deallocation of the resource from* the following objects: *D.USER.DOC*.
 
@@ -3170,13 +3235,14 @@ _The timing of overwriting or cryptographic key destruction is when completion o
 The SFRs in this section are to be incorporated in the ST to support the optional Purge Data function.
 
 ==== FDP_RIP.1/Purge Subset residual information protection
-....
-(for O.PURGE_DATA)
-Hierarchical to:
+======
+(for O.PURGE_DATA) +
+*Hierarchical to:* +
 	No other components.
-Dependencies:
+
+*Dependencies:* +
 	No dependencies.
-....
+======
 
 *FDP_RIP.1.1/Purge Refinement*: The TSF shall ensure that any previous *customer-supplied* information content of a resource is made unavailable upon the *request of an Administrator to* the following objects: *D.USER*, *D.TSF*.
 
@@ -3205,21 +3271,22 @@ If the TOE acts as the server during the claimed DTLS sessions, the ST author sh
 
 
 ===== FCS_DTLSC_EXT.2 DTLS Client Support for Mutual Authentication
-....
-Hierarchical to:
+======
+*Hierarchical to:* +
 	No other components
-Dependencies:
-	FCS_CKM.1/DataEncryption Cryptographic Key Generation
-	FCS_CKM.2 Cryptographic Key Establishment
-	FCS_COP.1/DataEncryption Cryptographic operation (Data Encryption/decryption)
-	FCS_COP.1/SigGen Cryptographic operation (Signature Generation and Verification)
-	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm)
-	FCS_COP.1/KeyedHash Cryptographic operation (Keyed Hash Algorithm)
-	FCS_RBG_EXT.1 Random Bit Generation
-	FCS_DTLSC_EXT.1 DTLS Client Protocol
-	FIA_X509_EXT.1 X.509 Certificate Validation
+
+*Dependencies:* +
+	FCS_CKM.1/DataEncryption Cryptographic Key Generation +
+	FCS_CKM.2 Cryptographic Key Establishment +
+	FCS_COP.1/DataEncryption Cryptographic operation (Data Encryption/decryption) +
+	FCS_COP.1/SigGen Cryptographic operation (Signature Generation and Verification) +
+	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm) +
+	FCS_COP.1/KeyedHash Cryptographic operation (Keyed Hash Algorithm) +
+	FCS_RBG_EXT.1 Random Bit Generation +
+	FCS_DTLSC_EXT.1 DTLS Client Protocol +
+	FIA_X509_EXT.1 X.509 Certificate Validation +
 	FIA_X509_EXT.2 X.509 Certificate Authentication
-....
+======
 
 *FCS_DTLSC_EXT.2.1* The TSF shall support mutual authentication using X.509v3 certificates.
 
@@ -3282,21 +3349,22 @@ The support for mutual authentication is optional when using TLS. If a TOE imple
 A TOE may act as the client, the server, or both in TLS sessions. The requirement has been separated into TLS Client (FCS_TLSC_EXT) and TLS Server (FCS_TLSS_EXT) requirements to allow for these differences. If the TOE acts as the client during the claimed TLS sessions, the ST author should claim the corresponding FCS_TLSC_EXT requirements. If the TOE acts as the server during the claimed TLS sessions, the ST author should claim the corresponding FCS_TLSS_EXT requirements. If the TOE acts as both a client and server during the claimed TLS sessions, the ST author should claim the corresponding FCS_TLSC_EXT and FCS_TLSS_EXT requirements.
 
 ===== FCS_TLSC_EXT.2 TLS Client Support for Mutual Authentication
-....
-Hierarchical to:
+======
+*Hierarchical to:* +
 	No other components
-Dependencies:
-	FCS_CKM.1 Cryptographic Key Generation
-	FCS_CKM.2 Cryptographic Key Establishment
-	FCS_COP.1/DataEncryption Cryptographic operation (Data Encryption/decryption)
-	FCS_COP.1/SigGen Cryptographic operation (Signature Generation and Verification)
-	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm)
-	FCS_COP.1/KeyedHash Cryptographic operation (Keyed Hash Algorithm)
-	FCS_RBG_EXT.1 Random Bit Generation
-	FCS_TLSC_EXT.1 TLS Client Protocol without mutual authentication
-	FIA_X509_EXT.1 X.509 Certificate Validation
+
+*Dependencies:* +
+	FCS_CKM.1 Cryptographic Key Generation +
+	FCS_CKM.2 Cryptographic Key Establishment +
+	FCS_COP.1/DataEncryption Cryptographic operation (Data Encryption/decryption) +
+	FCS_COP.1/SigGen Cryptographic operation (Signature Generation and Verification) +
+	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm) +
+	FCS_COP.1/KeyedHash Cryptographic operation (Keyed Hash Algorithm) +
+	FCS_RBG_EXT.1 Random Bit Generation +
+	FCS_TLSC_EXT.1 TLS Client Protocol without mutual authentication +
+	FIA_X509_EXT.1 X.509 Certificate Validation +
 	FIA_X509_EXT.2 X.509 Certificate Authentication
-....
+======
 
 *FCS_TLSC_EXT.2.1* The TSF shall support TLS communication with mutual authentication using X.509v3 certificates.
 
@@ -3360,13 +3428,13 @@ This family defines requirements for the TSF to ensure that secure transmission 
 [#img-FAU_STG_EXT]
 .Component Levelling
 [ditaa]
-....
+======
     +------------------------------------------+
     |                                          |     +---+
     | FAU_STG_EXT External Audit Trail Storage +---->| 1 |
     |                                          |     +---+
     +------------------------------------------+
-....
+======
 
 *FAU_STG_EXT.1* External Audit Trail Storage requires the TSF to use a trusted channel implementing a secure protocol.
 
@@ -3383,13 +3451,14 @@ The following actions should be auditable if FAU_GEN Security Audit Data Generat
 • There are no auditable events foreseen.
 
 ===== FAU_STG_EXT.1 Extended: Protected Audit Trail Storage
-....
-Hierarchical to:
+======
+*Hierarchical to:* +
 	No other components.
-Dependencies:
-	FAU_GEN.1 Audit data generation,
+
+*Dependencies:* +
+	FAU_GEN.1 Audit data generation, +
 	FTP_ITC.1 Inter-TSF trusted channel
-....
+======
 
 FAU_STG_EXT.1.1 The TSF shall be able to transmit the generated audit data to an External IT Entity using a trusted channel according to FTP_ITC.1.
 
@@ -3414,13 +3483,13 @@ This family addresses the management aspects of cryptographic keys. Especially, 
 [#img-FCS_CKM_EXT]
 .Component Levelling
 [ditaa]
-....
+======
     +------------------------------------------+
     |                                          |     +---+
     | FCS_CKM_EXT Cryptographic Key Management +---->| 4 |
     |                                          |     +---+
     +------------------------------------------+
-....
+======
 
 FCS_CKM_EXT.4 Cryptographic Key Material Destruction ensures not only keys but also key materials that are no longer needed are destroyed by using an approved method.
 
@@ -3437,14 +3506,15 @@ The following actions should be auditable if FAU_GEN Security Audit Data Generat
 • There are no auditable events foreseen.
 
 ===== FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction
-....
-Hierarchical to:
+======
+*Hierarchical to:* +
 	No other components.
-Dependencies:	[
-	FCS_CKM.1/AKG Cryptographic Key Generation (Asymmetric Keys), or
-	FCS_CKM.1/SKG Cryptographic Key Generation (Symmetric Keys)],
+
+*Dependencies:* +
+  [	FCS_CKM.1/AKG Cryptographic Key Generation (Asymmetric Keys), or +
+	FCS_CKM.1/SKG Cryptographic Key Generation (Symmetric Keys)], +
 	FCS_CKM.4 Cryptographic key destruction
-....
+======
 
 FCS_CKM_EXT.4.1 The TSF shall destroy all plaintext secret and private cryptographic keys and cryptographic critical security parameters when no longer needed.
 
@@ -3464,13 +3534,13 @@ Components in this family define requirements for protecting remote management s
 [#img-FCS_HTTPS_EXT]
 .Component Levelling
 [ditaa]
-....
+======
     +------------------------------------------+
     |                                          |     +---+
     | FCS_HTTPS_EXT HTTPS selected             +---->| 1 |
     |                                          |     +---+
     +------------------------------------------+
-....
+======
 
 
 
@@ -3490,13 +3560,14 @@ The following actions should be auditable if FAU_GEN Security Audit Data Generat
 • Failure of HTTPS session establishment
 
 ===== FCS_HTTPS_EXT.1 Extended: HTTPS selected
-....
-Hierarchical to:
+======
+*Hierarchical to:* +
 	No other components.
-Dependencies: [
-	FCS_TLSC_EXT Extended: TLS Client Protocol, and/or
+
+*Dependencies:* +
+  [	FCS_TLSC_EXT Extended: TLS Client Protocol, and/or +
 	FCS_TLSS_EXT Extended: TLS Server Protocol ]
-....
+======
 
 FCS_HTTPS_EXT.1.1 The TSF shall implement the HTTPS protocol that complies with RFC 2818.
 
@@ -3521,13 +3592,13 @@ This family addresses requirements for protecting communications using IPsec.
 [#img-FCS_IPSEC_EXT]
 .Component Levelling
 [ditaa]
-....
+======
     +------------------------------------------+
     |                                          |     +---+
     | FCS_IPSEC_EXT IPsec                      +---->| 1 |
     |                                          |     +---+
     +------------------------------------------+
-....
+======
 
 
 
@@ -3547,18 +3618,19 @@ The following actions should be auditable if FAU_GEN Security Audit Data Generat
 • Failure to establish an IPsec SA
 
 ===== FCS_IPSEC_EXT.1 Extended: IPsec selected
-....
-Hierarchical to:
+======
+*Hierarchical to:* +
 	No other components.
-Dependencies:
-	FCS_CKM.1 Cryptographic Key Generation
-	FCS_CKM.2 Cryptographic Key Establishment
-	FCS_COP.1/DataEncryption Cryptographic operation (Data Encryption/decryption)
-	FCS_COP.1/SigGen Cryptographic operation (Signature Generation and Verification)
-	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm)
-	FCS_COP.1/KeyedHash Cryptographic operation (Keyed Hash Algorithm)
+
+*Dependencies:* +
+	FCS_CKM.1 Cryptographic Key Generation +
+	FCS_CKM.2 Cryptographic Key Establishment +
+	FCS_COP.1/DataEncryption Cryptographic operation (Data Encryption/decryption) +
+	FCS_COP.1/SigGen Cryptographic operation (Signature Generation and Verification) +
+	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm) +
+	FCS_COP.1/KeyedHash Cryptographic operation (Keyed Hash Algorithm) +
 	FCS_RBG_EXT.1 Random Bit Generation
-....
+======
 
 *FCS_IPSEC_EXT.1.1* The TSF shall implement the IPsec architecture as specified in RFC 4301.
 
@@ -3661,13 +3733,13 @@ This family specifies the means by which an intermediate key is derived from a s
 [#img-FCS_KDF_EXT]
 .Component Levelling
 [ditaa]
-....
+======
     +------------------------------------------+
     |                                          |     +---+
     | FCS_KDF_EXT Cryptographic Key Derivation +---->| 1 |
     |                                          |     +---+
     +------------------------------------------+
-....
+======
 
 FCS_KDF_EXT.1 Cryptographic Key Derivation requires the TSF to derive intermediate keys from submasks using the specified hash functions.
 
@@ -3684,14 +3756,15 @@ The following actions should be auditable if FAU_GEN Security Audit Data Generat
 • There are no auditable events foreseen.
 
 ===== FCS_KDF_EXT.1  Extended: Cryptographic Key Derivation
-....
-Hierarchical to:
+======
+*Hierarchical to:* +
 	No other components
-Dependencies:
-	FCS_COP.1/CMAC Cryptographic Operation (for keyed-hash message authentication),
-	FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction
+
+*Dependencies:* +
+	FCS_COP.1/CMAC Cryptographic Operation (for keyed-hash message authentication), +
+	FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction +
 	[if selected: FCS_RBG_EXT.1 Extended: Cryptographic Operation (Random Bit Generation)]
-....
+======
 
 FCS_KDF_EXT.1.1 The TSF shall accept [selection: _a RNG generated submask as specified in FCS_RBG_EXT.1, a conditioned password submask, imported submask_] to derive an intermediate key, as defined in [selection: _NIST SP 800-108_ [selection: _KDF in Counter Mode, KDF in Feedback Mode, KDF in Double-Pipeline Iteration Mode_], _NIST SP 800-132, ISO/IEC 11770-6:2016 [selection: KPF2, KPF3, KPF4]_], using the keyed-hash functions specified in FCS_COP.1/CMAC, such that the output is at least of equivalent security strength (in number of bits) to the BEV.
 
@@ -3711,13 +3784,13 @@ This family provides the specification to be used for using multiple layers of e
 [#img-FCS_KYC_EXT]
 .Component Levelling
 [ditaa]
-....
+======
     +------------------------------------------+
     |                                          |     +---+
     | FCS_KYC_EXT Key Chaining                 +---->| 1 |
     |                                          |     +---+
     +------------------------------------------+
-....
+======
 
 
 
@@ -3737,17 +3810,19 @@ The following actions should be auditable if FAU_GEN Security Audit Data Generat
 • There are no auditable events foreseen.
 
 ===== FCS_KYC_EXT.1 Extended: Key Chaining
-....
-Hierarchical to: No other components.
-Dependencies: [
-	FCS_COP.1/KeyWrap Cryptographic operation (Key Wrapping),
-	FCS_SMC_EXT.1 Extended: Submask Combining,
-	FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction,
-	FCS_COP.1/KeyEnc Cryptographic operation (Key Encryption),
-	FCS_KDF_EXT.1 Cryptographic Operation (Key Derivation),
-	and/or
+======
+*Hierarchical to:* +
+No other components.
+
+*Dependencies:* +
+ [ FCS_COP.1/KeyWrap Cryptographic operation (Key Wrapping), +
+	FCS_SMC_EXT.1 Extended: Submask Combining, +
+	FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction, +
+	FCS_COP.1/KeyEnc Cryptographic operation (Key Encryption), +
+	FCS_KDF_EXT.1 Cryptographic Operation (Key Derivation), +
+	and/or +
 	FCS_COP.1/KeyTransport Cryptographic operation (Key Transport) ].
-....
+======
 
 FCS_KYC_EXT.1.1 The TSF shall maintain a key chain of: [selection: _one, using a submask as the BEV or DEK; intermediate keys originating from one or more submask(s) to the BEV or DEK using the following method(s)_: [selection: _key wrapping as specified in FCS_COP.1/KeyWrap, key combining as specified in FCS_SMC_EXT.1, key encryption as specified in FCS_COP.1/KeyEnc, key derivation as specified in FCS_KDF_EXT.1, key transport as specified in FCS_COP.1/KeyTransport_]] while maintaining an effective strength of [selection: _128 bits, 256 bits_].
 
@@ -3767,13 +3842,13 @@ This family ensures that passwords used to produce the BEV are robust (in terms 
 [#img-FCS_PCC_EXT]
 .Component Levelling
 [ditaa]
-....
+======
     +------------------------------------------------------------------+
     |                                                                  |     +---+
     | FCS_PCC_EXT Cryptographic Password Construction and Conditioning +---->| 1 |
     |                                                                  |     +---+
     +------------------------------------------------------------------+
-....
+======
 
 FCS_PCC_EXT.1 Cryptographic Password Construction and Conditioning, requires the TSF to accept passwords of a certain composition and condition them appropriately.
 
@@ -3786,12 +3861,13 @@ No specific management functions are identified
 There are no auditable events foreseen.
 
 ===== FCS_PCC_EXT.1 Extended: Cryptographic Password Construction and Conditioning
-....
-Hierarchical to:
+======
+*Hierarchical to:* +
 	No other components
-Dependencies:
+
+*Dependencies:* +
 	FCS_COP.1/CMAC Cryptographic Operation (for keyed-hash message authentication)
-....
+======
 
 FCS_PCC_EXT.1.1 A password used by the TSF to generate a password authorization factor shall enable up to [assignment: _positive integer of 64 or more_] characters in the set of {upper case characters, lower case characters, numbers, and [assignment: _other supported special characters_]} and shall perform Password-based Key Derivation Functions in accordance with a specified cryptographic algorithm [_HMAC_-[selection: _SHA-256, SHA-384, SHA-512_]], with [assignment: _positive integer of 1000 or more_] iterations, and output cryptographic key sizes [selection: _128, 256_] bits that meet the following: [assignment: _PBKDF recommendation or specification_].
 
@@ -3815,13 +3891,13 @@ Components in this family address the requirements for random bit/number generat
 [#img-FCS_RBG_EXT]
 .Component Levelling
 [ditaa]
-....
+======
     +------------------------------------------+
     |                                          |     +---+
     | FCS_RBG_EXT Random Bit Generation        +---->| 1 |
     |                                          |     +---+
     +------------------------------------------+
-....
+======
 
 
 
@@ -3841,12 +3917,13 @@ The following actions should be auditable if FAU_GEN Security Audit Data Generat
 • Minimal: failure of the randomization process
 
 ===== FCS_RBG_EXT.1 Extended: Random Bit Generation
-....
-Hierarchical to:
+======
+*Hierarchical to:* +
 	No other components.
-Dependencies:
+
+*Dependencies:* +
 	No dependencies.
-....
+======
 
 *FCS_RBG_EXT.1.1* The TSF shall perform all deterministic random bit generation services in accordance with ISO/IEC 18031:2011 using [selection: _Hash_DRBG (any), HMAC_DRBG (any), CTR_DRBG ([selection: AES, SEED, HIGHT, LEA])_].
 
@@ -3869,13 +3946,13 @@ This family defines the means by which submasks are combined, if the TOE support
 [#img-FCS_SMC_EXT]
 .Component Levelling
 [ditaa]
-....
+======
     +------------------------------------------+
     |                                          |     +---+
     | FCS_SMC_EXT Submask combining            +---->| 1 |
     |                                          |     +---+
     +------------------------------------------+
-....
+======
 
 FCS_SMC_EXT.1 Submask combining requires the TSF to combine the submasks in a predictable fashion.
 
@@ -3892,12 +3969,13 @@ The following actions should be auditable if FAU_GEN Security Audit Data Generat
 • There are no auditable events foreseen.
 
 ===== FCS_SMC_EXT.1 Extended: Submask Combining
-....
-Hierarchical to:
+======
+*Hierarchical to:* +
 	No other components.
-Dependencies:
+
+*Dependencies:* +
 	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm)
-....
+======
 
 FCS_SMC_EXT.1.1 The TSF shall combine submasks using the following method [selection: _exclusive OR (XOR), SHA-256, SHA-512_] to generate an intermediary key or BEV.
 
@@ -3917,13 +3995,13 @@ This family ensures that salts, nonces, and IVs are well formed.
 [#img-FCS_SNI_EXT]
 .Component Levelling
 [ditaa]
-....
+======
     +-----------------------------------------------------------------------------------------+
     |                                                                                         |     +---+
     | FCS_SNI_EXT Cryptographic Operation (Salt, Nonce, and Initialization Vector Generation) +---->| 1 |
     |                                                                                         |     +---+
     +-----------------------------------------------------------------------------------------+
-....
+======
 
 FCS_SNI_EXT.1 Cryptographic Operation (Salt, Nonce, and Initialization Vector Generation), requires the generation of salts, nonces, and IVs to be used by the cryptographic components of the TOE to be performed in the specified manner.
 
@@ -3936,12 +4014,13 @@ No specific management functions are identified
 There are no auditable events foreseen.
 
 ===== FCS_SNI_EXT.1 Extended: Cryptographic Operation (Salt, Nonce, and Initialization Vector Generation)
-....
-Hierarchical to:
+======
+*Hierarchical to:* +
 	No other components
-Dependencies:
+
+*Dependencies:* +
 	FCS_RBG_EXT.1 Extended: Cryptographic Operation (Random Bit Generation)
-....
+======
 
 FCS_SNI_EXT.1.1 The TSF shall only use salts that are generated by a RNG as specified in FCS_RBG_EXT.1.
 
@@ -3994,18 +4073,19 @@ The following actions should be considered for audit if FAU_GEN Security audit d
 
 ===== FCS_SSHC_EXT.1
 
-....
-Hierarchical to:
+======
+*Hierarchical to:* +
 	No other components
-Dependencies:
-	FCS_CKM.1 Cryptographic Key Generation
-	FCS_CKM.2 Cryptographic Key Establishment
-	FCS_COP.1/DataEncryption Cryptographic operation (Data Encryption/decryption)
-	FCS_COP.1/SigGen Cryptographic operation (Signature Generation and Verification)
-	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm)
-	FCS_COP.1/KeyedHash Cryptographic operation (Keyed Hash Algorithm)
+
+*Dependencies:* +
+	FCS_CKM.1 Cryptographic Key Generation +
+	FCS_CKM.2 Cryptographic Key Establishment +
+	FCS_COP.1/DataEncryption Cryptographic operation (Data Encryption/decryption) +
+	FCS_COP.1/SigGen Cryptographic operation (Signature Generation and Verification) +
+	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm) +
+	FCS_COP.1/KeyedHash Cryptographic operation (Keyed Hash Algorithm) +
 	FCS_RBG_EXT.1 Random Bit Generation
-....
+======
 
 *FCS_SSHC_EXT.1.1* The TSF shall implement the SSH protocol in accordance with: RFCs 4251, 4252, 4253, 4254, [selection: 4256, 4344, 5647, 5656, 6187, 6668, 8268, 8308 section 3.1, 8332].
 
@@ -4047,18 +4127,19 @@ The following actions should be considered for audit if FAU_GEN Security audit d
 • SSH session termination
 
 ===== FCS_SSHS_EXT.1
-....
-Hierarchical to:
+======
+*Hierarchical to:* +
 	No other components
-Dependencies:
-	FCS_CKM.1 Cryptographic Key Generation
-	FCS_CKM.2 Cryptographic Key Establishment
-	FCS_COP.1/DataEncryption Cryptographic operation (Data Encryption/decryption)
-	FCS_COP.1/SigGen Cryptographic operation (Signature Generation and Verification)
-	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm)
-	FCS_COP.1/KeyedHash Cryptographic operation (Keyed Hash Algorithm)
+
+*Dependencies:* +
+	FCS_CKM.1 Cryptographic Key Generation +
+	FCS_CKM.2 Cryptographic Key Establishment +
+	FCS_COP.1/DataEncryption Cryptographic operation (Data Encryption/decryption) +
+	FCS_COP.1/SigGen Cryptographic operation (Signature Generation and Verification) +
+	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm) +
+	FCS_COP.1/KeyedHash Cryptographic operation (Keyed Hash Algorithm) +
 	FCS_RBG_EXT.1 Random Bit Generation
-....
+======
 
 *FCS_SSHS_EXT.1.1* The TSF shall implement the SSH protocol in accordance with: RFCs 4251, 4252, 4253, 4254, [selection: 4256, 4344, 5647, 5656, 6187, 6668, 8268, 8308 section 3.1, 8332].
 
@@ -4110,20 +4191,21 @@ The following actions should be considered for audit if FAU_GEN Security audit d
 - TLS session termination
 
 ===== FCS_TLSC_EXT.1 TLS Client Protocol without Mutual Authentication
-....
-Hierarchical to:
+======
+*Hierarchical to:* +
 	No other components
-Dependencies:
-	FCS_CKM.1 Cryptographic Key Generation
-	FCS_CKM.2 Cryptographic Key Establishment
-	FCS_COP.1/DataEncryption Cryptographic operation (Data Encryption/decryption)
-	FCS_COP.1/SigGen Cryptographic operation (Signature Generation and Verification)
-	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm)
-	FCS_COP.1/KeyedHash Cryptographic operation (Keyed Hash Algorithm)
-	FCS_RBG_EXT.1 Random Bit Generation
-	FIA_X509_EXT.1 X.509 Certificate Validation
+
+*Dependencies:* +
+	FCS_CKM.1 Cryptographic Key Generation +
+	FCS_CKM.2 Cryptographic Key Establishment +
+	FCS_COP.1/DataEncryption Cryptographic operation (Data Encryption/decryption) +
+	FCS_COP.1/SigGen Cryptographic operation (Signature Generation and Verification) +
+	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm) +
+	FCS_COP.1/KeyedHash Cryptographic operation (Keyed Hash Algorithm) +
+	FCS_RBG_EXT.1 Random Bit Generation +
+	FIA_X509_EXT.1 X.509 Certificate Validation +
 	FIA_X509_EXT.2 X.509 Certificate Authentication
-....
+======
 
 *FCS_TLSC_EXT.1.1* The TSF shall implement [selection: TLS 1.2 (RFC 5246), TLS 1.1 (RFC 4346)] and reject all other TLS and SSL versions.  The TLS implementation will support the following ciphersuites:
 
@@ -4142,21 +4224,22 @@ Dependencies:
 
 
 ===== FCS_TLSC_EXT.2 TLS Client Support for Mutual Authentication
-....
-Hierarchical to:
+======
+*Hierarchical to:* +
 	No other components
-Dependencies:
-	FCS_CKM.1 Cryptographic Key Generation
-	FCS_CKM.2 Cryptographic Key Establishment
-	FCS_COP.1/DataEncryption Cryptographic operation (Data Encryption/decryption)
-	FCS_COP.1/SigGen Cryptographic operation (Signature Generation and Verification)
-	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm)
-	FCS_COP.1/KeyedHash Cryptographic operation (Keyed Hash Algorithm)
-	FCS_RBG_EXT.1 Random Bit Generation
-	FCS_TLSC_EXT.1 TLS Client Protocol without mutual authentication
-	FIA_X509_EXT.1 X.509 Certificate Validation
+
+*Dependencies:* +
+	FCS_CKM.1 Cryptographic Key Generation +
+	FCS_CKM.2 Cryptographic Key Establishment +
+	FCS_COP.1/DataEncryption Cryptographic operation (Data Encryption/decryption) +
+	FCS_COP.1/SigGen Cryptographic operation (Signature Generation and Verification) +
+	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm) +
+	FCS_COP.1/KeyedHash Cryptographic operation (Keyed Hash Algorithm) +
+	FCS_RBG_EXT.1 Random Bit Generation +
+	FCS_TLSC_EXT.1 TLS Client Protocol without mutual authentication +
+	FIA_X509_EXT.1 X.509 Certificate Validation +
 	FIA_X509_EXT.2 X.509 Certificate Authentication
-....
+======
 
 *FCS_TLSC_EXT.2.1* The TSF shall support TLS communication with mutual authentication using X.509v3 certificates.
 
@@ -4188,20 +4271,21 @@ The following actions should be considered for audit if FAU_GEN Security audit d
 
 
 ===== FCS_TLSS_EXT.1 TLS Server Protocol without Mutual Authentication
-....
-Hierarchical to:
+======
+*Hierarchical to:* +
 	No other components
-Dependencies:
- 	FCS_CKM.1 Cryptographic Key Generation
-	FCS_CKM.2 Cryptographic Key Establishment
-	FCS_COP.1/DataEncryption Cryptographic operation (Data Encryption/decryption)
-	FCS_COP.1/SigGen Cryptographic operation (Signature Generation and Verification)
-	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm)
-	FCS_COP.1/KeyedHash Cryptographic operation (Keyed Hash Algorithm)
-	FCS_RBG_EXT.1 Random Bit Generation
-	FIA_X509_EXT.1 X.509 Certificate Validation
+
+*Dependencies:* +
+ 	FCS_CKM.1 Cryptographic Key Generation +
+	FCS_CKM.2 Cryptographic Key Establishment +
+	FCS_COP.1/DataEncryption Cryptographic operation (Data Encryption/decryption) +
+	FCS_COP.1/SigGen Cryptographic operation (Signature Generation and Verification) +
+	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm) +
+	FCS_COP.1/KeyedHash Cryptographic operation (Keyed Hash Algorithm) +
+	FCS_RBG_EXT.1 Random Bit Generation +
+	FIA_X509_EXT.1 X.509 Certificate Validation +
 	FIA_X509_EXT.2 X.509 Certificate Authentication
-....
+======
 
 *FCS_TLSS_EXT.1.1* The TSF shall implement [selection: TLS 1.2 (RFC 5246), TLS 1.1 (RFC 4346)] and reject all other TLS and SSL versions.  The TLS implementation will support the following ciphersuites:
 
@@ -4215,21 +4299,22 @@ Dependencies:
 
 
 ===== FCS_TLSS_EXT.2 TLS Server Support for Mutual Authentication
-....
-Hierarchical to:
+======
+*Hierarchical to:* +
 	No other components
-Dependencies:
-	FCS_CKM.1 Cryptographic Key Generation
-	FCS_CKM.2 Cryptographic Key Establishment
-	FCS_COP.1/DataEncryption Cryptographic operation (Data Encryption/decryption)
-	FCS_COP.1/SigGen Cryptographic operation (Signature Generation and Verification)
-	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm)
-	FCS_COP.1/KeyedHash Cryptographic operation (Keyed Hash Algorithm)
-	FCS_RBG_EXT.1 Random Bit Generation
-	FCS_TLSS_EXT.1 TLS Server Protocol without mutual authentication
-	FIA_X509_EXT.1 X.509 Certificate Validation
-	FIA_X509_EXT.2 X.509 Certificate Authentication
-....
+
+*Dependencies:* +
+	FCS_CKM.1 Cryptographic Key Generation +
+	FCS_CKM.2 Cryptographic Key Establishment +
+	FCS_COP.1/DataEncryption Cryptographic operation (Data Encryption/decryption) +
+	FCS_COP.1/SigGen Cryptographic operation (Signature Generation and Verification) +
+	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm) +
+	FCS_COP.1/KeyedHash Cryptographic operation (Keyed Hash Algorithm) +
+	FCS_RBG_EXT.1 Random Bit Generation +
+	FCS_TLSS_EXT.1 TLS Server Protocol without mutual authentication +
+	FIA_X509_EXT.1 X.509 Certificate Validation +
+	FIA_X509_EXT.2 X.509 Certificate Authentication +
+======
 
 *FCS_TLSS_EXT.2.1* The TSF shall support TLS communication with mutual authentication of TLS clients using X.509v3 certificates.
 
@@ -4276,20 +4361,21 @@ The following actions should be considered for audit if FAU_GEN Security audit d
 
 
 ===== FCS_DTLSC_EXT.1 DTLS Client Protocol
-....
-Hierarchical to:
+======
+*Hierarchical to:* +
 	No other components
-Dependencies:
-	FCS_CKM.1 Cryptographic Key Generation
-	FCS_CKM.2 Cryptographic Key Establishment
-	FCS_COP.1/DataEncryption Cryptographic operation (Data Encryption/decryption)
-	FCS_COP.1/SigGen Cryptographic operation (Signature Generation and Verification)
-	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm)
-	FCS_COP.1/KeyedHash Cryptographic operation (Keyed Hash Algorithm)
-	FCS_RBG_EXT.1 Random Bit Generation
-	FIA_X509_EXT.1 X.509 Certificate Validation
+
+*Dependencies:* +
+	FCS_CKM.1 Cryptographic Key Generation +
+	FCS_CKM.2 Cryptographic Key Establishment +
+	FCS_COP.1/DataEncryption Cryptographic operation (Data Encryption/decryption) +
+	FCS_COP.1/SigGen Cryptographic operation (Signature Generation and Verification) +
+	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm) +
+	FCS_COP.1/KeyedHash Cryptographic operation (Keyed Hash Algorithm) +
+	FCS_RBG_EXT.1 Random Bit Generation +
+	FIA_X509_EXT.1 X.509 Certificate Validation +
 	FIA_X509_EXT.2 X.509 Certificate Authentication
-....
+======
 
 *FCS_DTLSC_EXT.1.1* The TSF shall implement [selection: DTLS 1.2 (RFC 6347), DTLS 1.0 (RFC 4347)] supporting the following ciphersuites:
 
@@ -4308,21 +4394,22 @@ Dependencies:
 
 
 ===== FCS_DTLSC_EXT.2 DTLS Client Support for Mutual Authentication
-....
-Hierarchical to:
+======
+*Hierarchical to:* +
 	No other components
-Dependencies:
-	FCS_CKM.1/DataEncryption Cryptographic Key Generation
-	FCS_CKM.2 Cryptographic Key Establishment
-	FCS_COP.1/DataEncryption Cryptographic operation (Data Encryption/decryption)
-	FCS_COP.1/SigGen Cryptographic operation (Signature Generation and Verification)
-	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm)
-	FCS_COP.1/KeyedHash Cryptographic operation (Keyed Hash Algorithm)
-	FCS_RBG_EXT.1 Random Bit Generation
-	FCS_DTLSC_EXT.1 DTLS Client Protocol
-	FIA_X509_EXT.1 X.509 Certificate Validation
+
+*Dependencies:* +
+	FCS_CKM.1/DataEncryption Cryptographic Key Generation +
+	FCS_CKM.2 Cryptographic Key Establishment +
+	FCS_COP.1/DataEncryption Cryptographic operation (Data Encryption/decryption) +
+	FCS_COP.1/SigGen Cryptographic operation (Signature Generation and Verification) +
+	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm) +
+	FCS_COP.1/KeyedHash Cryptographic operation (Keyed Hash Algorithm) +
+	FCS_RBG_EXT.1 Random Bit Generation +
+	FCS_DTLSC_EXT.1 DTLS Client Protocol +
+	FIA_X509_EXT.1 X.509 Certificate Validation +
 	FIA_X509_EXT.2 X.509 Certificate Authentication
-....
+======
 
 *FCS_DTLSC_EXT.2.1* The TSF shall support mutual authentication using X.509v3 certificates.
 
@@ -4365,20 +4452,21 @@ The following actions should be considered for audit if FAU_GEN Security audit d
 
 
 ===== FCS_DTLSS_EXT.1 DTLS Server Protocol
-....
-Hierarchical to:
+======
+*Hierarchical to:* +
 	No other components
-Dependencies:
-	FCS_CKM.1 Cryptographic Key Generation
-	FCS_CKM.2 Cryptographic Key Establishment
-	FCS_COP.1/DataEncryption Cryptographic operation (Data Encryption/decryption)
-	FCS_COP.1/SigGen Cryptographic operation (Signature Generation and Verification)
-	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm)
-	FCS_COP.1/KeyedHash Cryptographic operation (Keyed Hash Algorithm)
-	FCS_RBG_EXT.1 Random Bit Generation
-	FIA_X509_EXT.1 X.509 Certificate Validation
+
+*Dependencies:* +
+	FCS_CKM.1 Cryptographic Key Generation +
+	FCS_CKM.2 Cryptographic Key Establishment +
+	FCS_COP.1/DataEncryption Cryptographic operation (Data Encryption/decryption) +
+	FCS_COP.1/SigGen Cryptographic operation (Signature Generation and Verification) +
+	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm) +
+	FCS_COP.1/KeyedHash Cryptographic operation (Keyed Hash Algorithm) +
+	FCS_RBG_EXT.1 Random Bit Generation +
+	FIA_X509_EXT.1 X.509 Certificate Validation +
 	FIA_X509_EXT.2 X.509 Certificate Authentication
-....
+======
 
 *FCS_DTLSS_EXT.1.1* The TSF shall implement [selection: DTLS 1.2 (RFC 6347), DTLS 1.0 (RFC 4347)] supporting the following ciphersuites:
 
@@ -4400,19 +4488,20 @@ Dependencies:
 *FCS_DTLSS_EXT.1.7* The TSF shall support [selection: no session resumption or session tickets, session resumption based on session IDs according to RFC 4346 (TLS1.1) or RFC 5246 (TLS1.2), session resumption based on session tickets according to RFC 5077].
 
 ===== FCS_DTLSS_EXT.2 DTLS Server Support for Mutual Authentication
-....
-Hierarchical to:
+======
+*Hierarchical to:* +
 	No other components
-Dependencies:
-	FCS_CKM.1 Cryptographic Key Generation
-	FCS_CKM.2 Cryptographic Key Establishment
-	FCS_COP.1/DataEncryption Cryptographic operation (Data Encryption/decryption)
-	FCS_COP.1/SigGen Cryptographic operation (Signature Generation and Verification)
-	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm)
-	FCS_COP.1/KeyedHash Cryptographic operation (Keyed Hash Algorithm)
-	FCS_RBG_EXT.1 Random Bit Generation
+
+*Dependencies:* +
+	FCS_CKM.1 Cryptographic Key Generation +
+	FCS_CKM.2 Cryptographic Key Establishment +
+	FCS_COP.1/DataEncryption Cryptographic operation (Data Encryption/decryption) +
+	FCS_COP.1/SigGen Cryptographic operation (Signature Generation and Verification) +
+	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm) +
+	FCS_COP.1/KeyedHash Cryptographic operation (Keyed Hash Algorithm) +
+	FCS_RBG_EXT.1 Random Bit Generation +
 	FCS_DTLSS_EXT.1 DTLS Server Protocol
-....
+======
 
 *FCS_DTLSS_EXT.2.1* The TSF shall support mutual authentication of DTLS clients using X.509v3 certificates.
 
@@ -4441,13 +4530,13 @@ This family is to mandate the encryption of all protected data written to the st
 [#img-FDP_DSK_EXT]
 .Component Levelling
 [ditaa]
-....
+======
     +------------------------------------------+
     |                                          |     +---+
     | FDP_DSK_EXT Protection of Data on Disk   +---->| 1 |
     |                                          |     +---+
     +------------------------------------------+
-....
+======
 
 
 
@@ -4466,12 +4555,13 @@ The following actions should be auditable if FAU_GEN Security Audit Data Generat
 • There are no auditable events foreseen.
 
 ===== FDP_DSK_EXT.1 Extended: Protection of Data on Disk
-....
-Hierarchical to:
+======
+*Hierarchical to:* +
 	No other components.
-Dependencies:
+
+*Dependencies:* +
 	FCS_COP.1/StorageEncryption Cryptographic operation (Data Encryption/Decryption)
-....
+======
 
 FDP_DSK_EXT.1.1 The TSF shall [selection: _perform encryption in accordance with FCS_COP.1/StorageEncryption, use a self-encrypting Nonvolatile Storage Device that is separately CC certified to conform to the FDE EE cPP_] such that any Nonvolatile Storage Device contains no plaintext User Document Data and no plaintext confidential TSF Data.
 
@@ -4493,13 +4583,13 @@ This family addresses the requirements for separation between Fax PSTN line and 
 [#img-FDP_FXS_EXT]
 .Component Levelling
 [ditaa]
-....
+======
     +------------------------------------------+
     |                                          |     +---+
     | FDP_FXS_EXT Fax Separation               +---->| 1 |
     |                                          |     +---+
     +------------------------------------------+
-....
+======
 
 
 
@@ -4519,12 +4609,13 @@ The following actions should be auditable if FAU_GEN Security Audit Data Generat
 • There are no auditable events foreseen.
 
 ===== FDP_FXS_EXT.1 Extended: Fax separation
-....
-Hierarchical to:
+======
+*Hierarchical to:* +
 	No other components.
-Dependencies:
+
+*Dependencies:* +
 	No dependencies.
-....
+======
 
 FDP_FXS_EXT.1.1 The TSF shall prohibit communication via the fax interface, except transmitting or receiving User Data using fax protocols.
 
@@ -4553,13 +4644,13 @@ This family defines requirements for the attributes of passwords used by adminis
 [#img-FIA_PMG_EXT]
 .Component Levelling
 [ditaa]
-....
+======
     +------------------------------------------+
     |                                          |     +---+
     | FIA_PMG_EXT Password management          +---->| 1 |
     |                                          |     +---+
     +------------------------------------------+
-....
+======
 
 
 
@@ -4579,12 +4670,13 @@ The following actions should be auditable if FAU_GEN Security Audit Data Generat
 • There are no auditable events foreseen.
 
 ===== FIA_PMG_EXT.1 Extended: Password management
-....
-Hierarchical to:
+======
+*Hierarchical to:* +
 	No other components.
-Dependencies:
+
+*Dependencies:* +
 	No dependencies.
-....
+======
 
 FIA_PMG_EXT.1.1 The TSF shall provide the following password management capabilities for User passwords:
 
@@ -4607,13 +4699,13 @@ This family defines requirements for the TSF to ensure the ability to use pre-sh
 [#img-FIA_PSK_EXT]
 .Component Levelling
 [ditaa]
-....
+======
     +------------------------------------------+
     |                                          |     +---+
     | FIA_PSK_EXT Pre-Shared Key Composition   +---->| 1 |
     |                                          |     +---+
     +------------------------------------------+
-....
+======
 
 
 
@@ -4633,12 +4725,13 @@ The following actions should be auditable if FAU_GEN Security Audit Data Generat
 • There are no auditable events foreseen.
 
 ===== FIA_PSK_EXT.1 Extended: Pre-Shared Key Composition
-....
-Hierarchical to:
+======
+*Hierarchical to:* +
 	No other components.
-Dependencies:
+
+*Dependencies:* +
 	FCS_RBG_EXT.1 Extended: Cryptographic Operation (Random Bit Generation).
-....
+======
 
 FIA_PSK_EXT.1.1 The TSF shall be able to use pre-shared keys for IPsec.
 
@@ -4686,12 +4779,13 @@ The following actions should be auditable if FAU_GEN Security audit data generat
 
 ===== FIA_X509_EXT.1 X.509 Certificate Validation
 
-....
-Hierarchical to:
+======
+*Hierarchical to:* +
 	No other components
-Dependencies:
+
+*Dependencies:* +
 	FIA_X509_EXT.2 X.509 Certificate Authentication
-....
+======
 
 *FIA_X509_EXT.1.1/Rev* The TSF shall validate certificates in accordance with the following rules:
 
@@ -4701,12 +4795,12 @@ Dependencies:
 •	The TSF shall validate the revocation status of the certificate using [selection: _the Online Certificate Status Protocol (OCSP) as specified in RFC 6960, a Certificate Revocation List (CRL) as specified in RFC 5280 Section 6.3, Certificate Revocation List (CRL) as specified in RFC 5759 Section 5_].
 •	The TSF shall validate the extendedKeyUsage field according to the following rules:
 
-....
+======
 	•	_Certificates used for trusted updates and executable code integrity verification shall have the Code Signing purpose (id-kp 3 with OID 1.3.6.1.5.5.7.3.3) in the extendedKeyUsage field._
 	•	_Server certificates presented for TLS shall have the Server Authentication purpose (id-kp 1 with OID 1.3.6.1.5.5.7.3.1) in the extendedKeyUsage field._
 	•	_Client certificates presented for TLS shall have the Client Authentication purpose (id-kp 2 with OID 1.3.6.1.5.5.7.3.2) in the extendedKeyUsage field._
 	•	_OCSP certificates presented for OCSP responses shall have the OCSP Signing purpose (id-kp 9 with OID 1.3.6.1.5.5.7.3.9) in the extendedKeyUsage field._
-....
+======
 
 *FIA_X509_EXT.1.2/Rev* The TSF shall only treat a certificate as a CA certificate if the basicConstraints extension is present and the CA flag is set to TRUE.
 
@@ -4720,25 +4814,27 @@ Dependencies:
 
 
 ===== FIA_X509_EXT.2 X509 Certificate Authentication
-....
-Hierarchical to:
+======
+*Hierarchical to:* +
 	No other components
-Dependencies:
+
+*Dependencies:* +
 	FIA_X509_EXT.1 X.509 Certificate Validation
-....
+======
 
 *FIA_X509_EXT.2.1* The TSF shall use X.509v3 certificates as defined by RFC 5280 to support authentication for [selection: _DTLS, HTTPS, IPsec, TLS, SSH, [assignment: other protocols], no protocols_], and [selection: _code signing for system firmware/software updates [assignment: other uses], no additional uses_].
 
 *FIA_X509_EXT.2.2* When the TSF cannot establish a connection to determine the validity of a certificate, the TSF shall [selection: _allow the Administrator to choose whether to accept the certificate in these cases, accept the certificate, not accept the certificate_].
 
 ===== FIA_X509_EXT.3 X.509 Certificate Requests
-....
-Hierarchical to:
+======
+*Hierarchical to:* +
 	No other components
-Dependencies:
-	FCS_CKM.1 Cryptographic Key Generation
+
+*Dependencies:* +
+	FCS_CKM.1 Cryptographic Key Generation +
 	FIA_X509_EXT.1 X.509 Certificate Validation
-....
+======
 
 *FIA_X509_EXT.3.1* The TSF shall generate a Certificate Request as specified by RFC 2986 and be able to provide the following information in the request: public key and [selection: _device-specific information, Common Name, Organization, Organizational Unit, Country, [assignment: other information]_].
 
@@ -4760,13 +4856,13 @@ This family addresses the requirements for verifying firmware/software integrity
 [#img-FPT_SBT_EXT]
 .Component Levelling
 [ditaa]
-....
+======
     +------------------------------------------+
     |                                          |     +---+
     | FPT_SBT_EXT Secure Boot                  +---->| 1 |
     |                                          |     +---+
     +------------------------------------------+
-....
+======
 
 FPT_SBT_EXT.1 Secure Boot, uses a Root of Trust to confirm the integrity of the device's firmware/software at boot time.
 
@@ -4783,22 +4879,23 @@ The following actions should be auditable if FAU_GEN Security Audit Data Generat
 	• There are no auditable events foreseen.
 
 ===== FPT_SBT_EXT.1 Extended: Secure Boot
-....
-Hierarchical to:
+======
+*Hierarchical to:* +
 	No other components.
-Dependencies:
-	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm)
-	FCS_COP.1/SigGen Cryptographic Operation (for signature generation/verification)
-	FCS_COP.1/KeyedHash Cryptographic Operation (for keyed-hash message authentication)
-	FCS_COP.1/DataEncryption Cryptographic Operation (Symmetric encryption/decryption)
-	FCS_COP.1/StorageEncryption Cryptographic operation (Data Encryption/Decryption)
+
+*Dependencies:* +
+	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm) +
+	FCS_COP.1/SigGen Cryptographic Operation (for signature generation/verification) +
+	FCS_COP.1/KeyedHash Cryptographic Operation (for keyed-hash message authentication) +
+	FCS_COP.1/DataEncryption Cryptographic Operation (Symmetric encryption/decryption) +
+	FCS_COP.1/StorageEncryption Cryptographic operation (Data Encryption/Decryption) +
 	FCS_COP.1/CMAC Cryptographic Operation (for keyed-hash message authentication)
-....
+======
 
 *FPT_SBT_EXT.1.1* The TSF shall contain one or more chains of trust with each chain of trust anchored in
 a Root of Trust that is implemented in immutable code.
 
-*FPT_SBT_EXT.1.2* The TSF shall use the chain(s) of trust to confirm integrity of its firmware/software at boot time using a [selection: _hash, digital signature, message authentication_] verification method.
+*FPT_SBT_EXT.1.2* At boot time the TSF shall use the chain(s) of trust to confirm integrity of its firmware/software at boot time using a [selection: _hash, digital signature, message authentication_] verification method.
 
 *FPT_SBT_EXT.1.3* The TSF shall [selection: _enter maintenance mode, halt boot process, reboot the device, [assignment: another behavior of TOE]_] in the event of a boot time verification failure so that the corrupted firmware/software isn't executed.
 
@@ -4829,13 +4926,13 @@ This family addresses the requirements for keys and key materials to be protecte
 [#img-FPT_KYP_EXT]
 .Component Levelling
 [ditaa]
-....
+======
     +------------------------------------------------+
     |                                                |     +---+
     | FPT_KYP_EXT Protection of key and key material +---->| 1 |
     |                                                |     +---+
     +------------------------------------------------+
-....
+======
 
 FPT_KYP_EXT.1 Extended: Protection of key and key material, requires the TSF to ensure that no plaintext key or key materials are written to nonvolatile storage.
 
@@ -4852,12 +4949,13 @@ The following actions should be auditable if FAU_GEN Security Audit Data Generat
 • There are no auditable events foreseen.
 
 ===== FPT_KYP_EXT.1 Extended: Protection of Key and Key Material
-....
-Hierarchical to:
+======
+*Hierarchical to:* +
 	No other components.
-Dependencies:
+
+*Dependencies:* +
 	FCS_KYC_EXT.1 Extended: Key Chaining
-....
+======
 
 FPT_KYP_EXT.1.1 Refinement: The TSF shall [selection:
 
@@ -4898,13 +4996,13 @@ This family addresses the requirements for managing and protecting the TSF data,
 [#img-FPT_SKP_EXT]
 .Component Levelling
 [ditaa]
-....
+======
     +------------------------------------------+
     |                                          |     +---+
     | FPT_SKP_EXT Protection of TSF Data       +---->| 1 |
     |                                          |     +---+
     +------------------------------------------+
-....
+======
 
 
 
@@ -4924,12 +5022,13 @@ The following actions should be auditable if FAU_GEN Security Audit Data Generat
 • There are no auditable events foreseen.
 
 ===== FPT_SKP_EXT.1 Extended: Protection of TSF Data
-....
-Hierarchical to:
+======
+*Hierarchical to:* +
 	No other components.
-Dependencies:
+
+*Dependencies:* +
 	No dependencies.
-....
+======
 
 FPT_SKP_EXT.1.1 The TSF shall prevent reading of all pre-shared keys, symmetric keys, and private keys.
 
@@ -4949,13 +5048,13 @@ This family addresses the requirements for self-testing the TSF for selected cor
 [#img-FPT_TST_EXT]
 .Component Levelling
 [ditaa]
-....
+======
     +------------------------------------------+
     |                                          |     +---+
     | FPT_TST_EXT TSF testing                  +---->| 1 |
     |                                          |     +---+
     +------------------------------------------+
-....
+======
 
 
 
@@ -4975,12 +5074,13 @@ The following actions should be auditable if FAU_GEN Security Audit Data Generat
 • There are no auditable events foreseen.
 
 ===== FPT_TST_EXT.1 Extended: TSF testing
-....
-Hierarchical to:
+======
+*Hierarchical to:* +
 	No other components.
-Dependencies:
+
+*Dependencies:* +
 	No dependencies.
-....
+======
 
 FPT_TST_EXT.1.1 The TSF shall run a suite of self-tests during initial start-up (and power on) to demonstrate the correct operation of the TSF.
 
@@ -5000,13 +5100,13 @@ This family defines requirements for the TSF to ensure that only administrators 
 [#img-FPT_TUD_EXT]
 .Component Levelling
 [ditaa]
-....
+======
     +------------------------------------------+
     |                                          |     +---+
     | FPT_TUD_EXT Trusted Update               +---->| 1 |
     |                                          |     +---+
     +------------------------------------------+
-....
+======
 
 
 
@@ -5025,13 +5125,14 @@ The following actions should be auditable if FAU_GEN Security Audit Data Generat
 • There are no auditable events foreseen.
 
 ===== FPT_TUD_EXT.1 Trusted Update
-....
-Hierarchical to:
+======
+*Hierarchical to:* +
 	No other components.
-Dependencies:	[
-	FCS_COP.1/SigGen Cryptographic Operation (for signature generation/verification),
+
+*Dependencies:* +
+  [	FCS_COP.1/SigGen Cryptographic Operation (for signature generation/verification), +
 	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm) ].
-....
+======
 
 FPT_TUD_EXT.1.1 The TSF shall provide authorized administrators the ability to query the current version of the TOE firmware/software.
 
