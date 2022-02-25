@@ -1621,6 +1621,10 @@ The evaluator shall examine the TSS to ensure that it details the self-tests tha
 
 The evaluator shall also ensure that the operational guidance describes the possible errors that may result from such tests, and actions the administrator should take in response; these possible errors shall correspond to those described in the TSS.
 
+===== Tests
+
+Evaluator shall confirm that when an error in the self-test results is induced into the TOE, the TOE no longer enters into operational mode. For example, DRGB self-test is a self-test function.
+
 ==== FPT_TUD_EXT.1 Extended: Trusted Update
 
 ===== TSS
