@@ -7,19 +7,19 @@
 :table-caption: Table
 :imagesdir: images
 :icons: font
-:revnumber: 0.99
-:revdate: 2022-07-29
+:revnumber: 1.0
+:revdate: 31 October 2022
 :xrefstyle: full
 
-:iTC-longname: Hardcopy Devices International Technical Community
+:iTC-longname: Hardcopy Devices
 :iTC-shortname: HCD-iTC
-:iTC-email: cm-itc-mailing-list@gmail.com
-:iTC-website: https://coffeemaker.github.io/
-:iTC-GitHub: https://github.com/coffeemaker/repository/
+:iTC-email: hcd-itc@googlegroups.com
+:iTC-website: https://hcd-itc.github.io
+:iTC-GitHub: https://github.com/HCD-iTC
 :pp-name: collaborative Protection Profile for Hardcopy Devices
 :pp-shortname: HCDcPP
-:pp-version: 0.13
-:pp-date: 2022-07-25
+:pp-version: 1.0
+:pp-date: 31 October 2022
 
 == Foreword
 
@@ -38,22 +38,10 @@ Hardcopy Device International Technical Community (HCD-iTC)
 .Revision history
 |===
 |Version |Date |Description
-
-|0.4
-|2020-08-26
-|Initial release for internal review
-
-|0.8
-|2020-11-18
-|Second release for HCD iTC review
-
-|0.87
-|2021-06-28
-|Third release for HCD iTC review
-| 0.9 | 16 August 2021 | Draft
-| 0.91 | 8 October 2021 | Draft
-| 0.98 | 24 February 2022 | Draft
-| 0.99 | 29 July 2022 | Final Public Draft
+| 0.91 | 8 October 2021 | Public Review Draft 1
+| 0.98 | 24 February 2022 | Public Review Draft 2
+| 0.99 | 29 July 2022 | Final Public Review Draft
+| 1.0  | 31 October 2022 | Initial release for use
 |===
 
 === General Purpose
@@ -66,7 +54,7 @@ This Supporting Document applies to the evaluation of TOEs claiming conformance 
 
 == Acknowledgements
 
-This Supporting Document was developed by the {iTC-shortname} with representatives from industry, Government agencies, Common Criteria Test Laboratories, and members of academia.
+This Supporting Document (SD) was developed by the {iTC-longname} international Technical Community (iTC) also known as {iTC-shortname} with representatives from industry, Government agencies, Common Criteria Test Laboratories, and members of academia.
 
 toc::[]
 
@@ -1920,7 +1908,7 @@ The evaluator shall examine the TSS and verify it identifies the methods used to
 
 ===== KMD
 
-The evaluator shall verify the KMD to ensure it describes the storage location of all keys and the protection of all keys stored in non-volatile memory. The description of the key chain shall be reviewed to ensure the selected method is followed for the storage of wrapped or encrypted keys in non-volatile memory and plaintext keys in non-volatile memory meet one of the criteria for storage.
+The evaluator shall verify the KMD to ensure it describes the storage location of all keys and the protection of all keys stored in non-volatile memory. The description of the key chain shall be reviewed to ensure the selected method is followed for the storage of wrapped or encrypted keys in non-volatile memory and plaintext keys in non-volatile memory meet one of the exemptions under the selection “only store plaintext keys that meet any one of the following criteria”.
 
 ==== FCS_KYC_EXT.1 Key Chaining
 
@@ -1930,11 +1918,13 @@ The evaluator shall verify that the TSS contains a high-level description of the
 
 ===== KMD
 
-The evaluator shall examine the KMD to ensure that it describes a high level description of the key hierarchy for all accepted BEVs.  The evaluator shall examine the KMD to ensure it describes the key chain in detail. The description of the key chain shall be reviewed to ensure it maintains a chain of keys using key wrap, submask combining, or key encryption.
+The evaluator shall examine the KMD to ensure that it describes a high level description of the key hierarchy for all accepted BEVs. The evaluator shall examine the KMD to ensure it describes the key chain in detail. The description of the key chain shall be reviewed to ensure it maintains a chain of keys using key wrap, submask combining, or key encryption.
 
-The evaluator shall examine the KMD to ensure that it describes how the key chain process functions, such that it does not expose any material that might compromise any key in the chain. (e.g., using a key directly as a compare value against a TPM) This description must include a diagram illustrating the key hierarchy implemented and detail where all keys and keying material is stored or what it is derived from.  The evaluator shall examine the key hierarchy to ensure that at no point the chain could be broken without a cryptographic exhaust or the initial authorization value and the effective strength of the BEV is maintained throughout the key chain.
+The evaluator shall examine the KMD to ensure that it describes how the key chain process functions, such that it does not expose any material that might compromise any key in the chain. (e.g., using a key directly as a compare value against a TPM) This description must include a diagram illustrating the key hierarchy implemented and detail where all keys and keying material is stored or what it is derived from. The evaluator shall examine the key hierarchy to ensure that at no point the chain could be broken without a cryptographic exhaust or the initial authorization value and the effective strength of the BEV is maintained throughout the key chain.
 
 The evaluator shall verify the KMD includes a description of the strength of keys throughout the key chain.
+
+The evaluator shall verify the KMD description describes how the start (or root) of key chain is protected if it is protected by another key that is not in the key chain or a protected storage device. One approach the evaluator can take is to make sure that the device, which protects the start (or root) of key chain, is a protected storage device or separate co-processor by inspection of type identifier of the device or published document referred from KMD. But the evaluator does not need to verify the protection method in detail for the start (or root) of key chain if the key to protect is not in the key chain specified in FCS_KYC_EXT.1. Also the evaluator does not need to verify the protection method implemented in the protected storage device if the key is stored in the protected storage device.
 
 ==== FDP_DSK_EXT.1 Protection of Data on Disk
 
