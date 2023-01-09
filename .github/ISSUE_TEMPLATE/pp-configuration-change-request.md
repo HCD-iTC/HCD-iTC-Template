@@ -2,7 +2,7 @@
 name: PP-Configuration change request
 about: Suggest an idea for this project
 title: "[PPC CHANGE] "
-labels: PP-Config, enhancement
+labels: enhancement, PP-Config
 assignees: ''
 
 ---

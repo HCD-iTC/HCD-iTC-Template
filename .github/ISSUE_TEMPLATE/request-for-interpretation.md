@@ -16,19 +16,22 @@ If your issue arises from a currently active CC evaluation then please tick the 
 [ ] On-going certification
 [ ] Preparatory/Other
 
+**Document Affected**
+Indicate what document (either HCD cPP or HCD SD) and version the Issue pertains to
+
 **Certification Deadline Dates:**
 If your product is in an on-going CC effort please include any scheme deadlines above.
 
-**SFR or Section of cPP/SD in question:**
+**Section of HCD cPP/HCD SD in question (reference to SFR or subchapter in the HCD cPP or HCD SD):**
 Specify where the IT should review.
 
 **Supporting Document testing in question:**
 Specify the evaluation activity the IT should review.
 
 **Issue:**
-State the concern here. Please limit to one question per form. Please review Published Technical Decisions to ensure this question has not already been addressed. Poorly formed questions or questions which have been addressed in previous Technical Decisions will be rejected.
+State the concern or question here. Please limit to one question per form. Please review Published Technical Decisions to ensure this question has not already been addressed. Poorly formed questions or questions which have been addressed in previous Technical Decisions will be rejected.
 
-**Proposed Resolution:**
+**Proposed Resolution(if any):**
 State the resolution you would like to see.
 
 **Rationale:**

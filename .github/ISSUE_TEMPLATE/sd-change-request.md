@@ -2,7 +2,7 @@
 name: SD change request
 about: Suggest an idea for this project
 title: "[SD CHANGE] "
-labels: SD, enhancement
+labels: enhancement, SD
 assignees: ''
 
 ---
