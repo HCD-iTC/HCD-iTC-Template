@@ -41,6 +41,7 @@ This collaborative Protection Profile (cPP) was developed by the {iTC-longname} 
 | 0.11 | 14 December 2021 | Public Draft 2
 | 0.13 | 25 July 2022 | Final Public Draft
 | 1.0 | 31 October 2022 | Initial release for use
+| 1.1-bv.2 | 10 October 2023 | HIT issue #5
 
 |===
 
@@ -641,6 +642,8 @@ The following conventions are used for the completion of operations:
 
 * [text within square brackets] indicates the completion of a selection.
 
+* *_+++<del>text that has been struck out</del>+++_* indicates text removed, such as in a selection, and should not be included by the ST author.
+
 * Iteration: indicated by adding a string starting with “/” (e.g. “FCS_COP.1/Hash”).
 
 * Extended SFRs are identified by having a label “EXT” at the end of the SFR name.
@@ -726,7 +729,7 @@ _The ST author can include other auditable events directly in the table; they ar
 	FAU_GEN.1 Audit data generation
 ======
 
-*FAU_SAR.1.1* The TSF shall provide [assignment: *_an Administrator_*] with the capability to read *all records* from the audit records.
+*FAU_SAR.1.1* The TSF shall provide [*an Administrator*] with the capability to read [*all records*] from the audit records.
 
 *FAU_SAR.1.2* The TSF shall provide the audit records in a manner suitable for the user to interpret the information.
 
@@ -962,7 +965,7 @@ _Examples of protected storage device include Secure Elements (SE), Trusted Plat
 	FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction
 ======
 
-*FCS_COP.1.1/DataEncryption* The TSF shall perform _encryption/decryption_ in accordance with specified cryptographic algorithms [selection:
+*FCS_COP.1.1/DataEncryption* The TSF shall perform [*encryption/decryption*] in accordance with specified cryptographic algorithms [selection:
 
 *	_AES used in_ [selection: _CBC, CTR, GCM_] _mode_,
 * SEED operating in [selection:
@@ -1064,7 +1067,7 @@ _If either SEED in GCM mode with non-repeating IVs or LEA in GCM mode with non-r
 	FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction
 ======
 
-*FCS_COP.1.1/SigGen* The TSF shall perform _cryptographic signature services (generation and verification)_ in accordance with a specified cryptographic algorithm [selection:
+*FCS_COP.1.1/SigGen* The TSF shall perform [*cryptographic signature services (generation and verification)*] in accordance with a specified cryptographic algorithm [selection:
 
 * _RSA Digital Signature Algorithm and cryptographic key sizes (modulus) [assignment: 2048 bits or greater],_
 * _Elliptic Curve Digital Signature Algorithm and cryptographic key sizes [assignment: 256 bits or greater],_
@@ -1110,7 +1113,7 @@ _The ST Author chooses the algorithm(s) implemented to perform digital signature
 *Dependencies:* +
 	No dependencies.
 ======
-*FCS_COP.1.1/Hash* The TSF shall perform cryptographic hashing services in accordance with a specified cryptographic algorithm [selection: _SHA-1, SHA-256, SHA-384, SHA-512_] +++<del>and cryptographic key sizes [assignment: cryptographic key sizes]</del>+++ and *message digest sizes [selection: 160, 256, 384, 512] bits* that meet the following: _ISO/IEC 10118-3:2004_.
+*FCS_COP.1.1/Hash* The TSF shall perform [*cryptographic hashing services*] in accordance with a specified cryptographic algorithm [selection: _SHA-1, SHA-256, SHA-384, SHA-512_] +++<del>and cryptographic key sizes [assignment: cryptographic key sizes]</del>+++ and *message digest sizes [selection: 160, 256, 384, 512] bits* that meet the following: [*ISO/IEC 10118-3:2004*].
 
 *_Application Note:_*
 
@@ -1183,7 +1186,7 @@ _The User Data Access Control SFP is composed of Table 4, Table 5, FDP_ACC.1, FD
 
 *FDP_ACF.1.1 Refinement:* The TSF shall enforce the *User Data Access Control SFP* to objects based on the following: subjects, objects, and attributes specified in *Table 4 and Table 5*.
 
-*FDP_ACF.1.2 Refinement:* The TSF shall enforce the following rules to determine if an operation among controlled subjects and controlled objects is allowed: *_rules governing access among controlled subjects and controlled objects using controlled operations on controlled objects specified in Table 4 and Table 5_*.
+*FDP_ACF.1.2 Refinement:* The TSF shall enforce the following rules to determine if an operation among controlled subjects and controlled objects is allowed: [*rules governing access among controlled subjects and controlled objects using controlled operations on controlled objects specified in Table 4 and Table 5*].
 
 *FDP_ACF.1.3 Refinement:* The TSF shall explicitly authorise access of subjects to objects based on the following additional rules: [assignment: _rules *that do not conflict with the User Data Access Control SFP*, based on security attributes, that explicitly authorise access of subjects to objects_].
 
@@ -1444,7 +1447,7 @@ _User identification may be performed internally by the TOE or externally by an 
 	FMT_SMF.1 Specification of Management Functions
 ======
 
-*FMT_MOF.1.1 Refinement:* The TSF shall restrict the ability to [selection: _determine the behaviour of, disable, enable, modify the behaviour of_] the functions [assignment: _list of functions_] to *U.ADMIN*.
+*FMT_MOF.1.1 Refinement:* The TSF shall restrict the ability to [selection: _determine the behaviour of, disable, enable, modify the behaviour of_] the functions [assignment: _list of functions_] to [*U.ADMIN*].
 
 
 ==== FMT_MSA.1 Management of security attributes
@@ -1459,7 +1462,7 @@ _User identification may be performed internally by the TOE or externally by an 
 	FMT_SMF.1 Specification of Management Functions
 ======
 
-*FMT_MSA.1.1 Refinement:* The TSF shall enforce the *User Data Access Control SFP* to restrict the ability to [selection: __change_default, query, modify, delete, [assignment: other operations]__] the security attributes [assignment: _list of security attributes_] to [assignment: _the authorized identified roles_].
+*FMT_MSA.1.1 Refinement:* The TSF shall enforce the [*User Data Access Control SFP*] to restrict the ability to [selection: __change_default, query, modify, delete, [assignment: other operations]__] the security attributes [assignment: _list of security attributes_] to [assignment: _the authorized identified roles_].
 
 
 ==== FMT_MSA.3 Static attribute initialization
@@ -1570,7 +1573,7 @@ For O.STORAGE_ENCRYPTION, O.KEY_MATERIAL:
 	FIA_UID.1 Timing of identification
 ======
 
-*FMT_SMR.1.1* The TSF shall maintain the roles *U.ADMIN, U.NORMAL*.
+*FMT_SMR.1.1* The TSF shall maintain the roles [*U.ADMIN, U.NORMAL*].
 
 *FMT_SMR.1.2* The TSF shall be able to associate users with roles.
 
@@ -1763,7 +1766,7 @@ _The requirement implies that not only are communications protected when they ar
 
 *FTP_TRP.1.2/Admin Refinement:* The TSF shall permit *remote administrators* to initiate communication via the trusted path
 
-*FTP_TRP.1.3/Admin Refinement:* The TSF shall require the use of the trusted path for *initial administrator authentication and all remote administration actions*.
+*FTP_TRP.1.3/Admin Refinement:* The TSF shall require the use of the trusted path for [*initial administrator authentication and all remote administration actions*].
 
 *_Application Note:_*
 
@@ -1919,7 +1922,7 @@ FCS_CKM.1/SKG Cryptographic Key Generation (Symmetric Keys)] +
 FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction
 ======
 
-*FCS_COP.1.1/StorageEncryption*  The TSF shall perform *data encryption and decryption* in accordance with a specified cryptographic algorithm [selection:
+*FCS_COP.1.1/StorageEncryption*  The TSF shall perform [*data encryption and decryption*] in accordance with a specified cryptographic algorithm [selection:
 
 *	_AES used in_ [selection: _CBC, GCM, XTS_] _mode_,
 
@@ -2006,7 +2009,7 @@ FCS_CKM.1/SKG Cryptographic Key Generation (Symmetric Keys) ] +
 FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction
 ======
 
-*FCS_COP.1.1/KeyWrap Refinement:* The TSF shall perform *key wrapping* in accordance with a specified cryptographic algorithm [selection: *AES in the following modes [selection: _KW, KWP, GCM, CCM_], SEED in the following modes [selection: Key Wrap, KWP, GCM, CCM], LEA in the following modes [selection: Key Wrap, KWP, GCM, CCM]]* and the cryptographic key size *[selection: _128 bits (AES, SEED, LEA), 192 bits (AES, LEA), 256 bits (AES, LEA)_]* that meet the following: [selection:
+*FCS_COP.1.1/KeyWrap Refinement:* The TSF shall perform [*key wrapping*] in accordance with a specified cryptographic algorithm [selection: *AES in the following modes [selection: _KW, KWP, GCM, CCM_], SEED in the following modes [selection: Key Wrap, KWP, GCM, CCM], LEA in the following modes [selection: Key Wrap, KWP, GCM, CCM]]* and the cryptographic key size *[selection: _128 bits (AES, SEED, LEA), 192 bits (AES, LEA), 256 bits (AES, LEA)_]* that meet the following: [selection:
 
 Case: AES algorithm
 
@@ -2039,7 +2042,7 @@ _This requirement is used in the body of the ST if the ST Author chooses to use 
 	FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction
 ======
 
-*FCS_COP.1.1/KeyEnc Refinement:* The TSF shall perform *key encryption and decryption* in accordance with a specified cryptographic algorithm [selection:
+*FCS_COP.1.1/KeyEnc Refinement:* The TSF shall perform [*key encryption and decryption*] in accordance with a specified cryptographic algorithm [selection:
 
 Case: AES algorithm
 
@@ -2074,7 +2077,7 @@ No other components.
 	FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction
 ======
 
-*FCS_COP.1.1/KeyTransport Refinement:* The TSF shall perform *key transport* in accordance with a specified cryptographic algorithm *RSA in the following modes [selection: _KTS-OAEP, KTS-KEM-KWS_]* and the cryptographic key size *[selection: _2048 bits, 3072 bits, 4096 bits, 6144 bits, 8192 bits_]* that meet the following: *NIST SP 800-56B, Revision 1*.
+*FCS_COP.1.1/KeyTransport Refinement:* The TSF shall perform [*key transport*] in accordance with a specified cryptographic algorithm *RSA in the following modes [selection: _KTS-OAEP, KTS-KEM-KWS_]* and the cryptographic key size *[selection: _2048 bits, 3072 bits, 4096 bits, 6144 bits, 8192 bits_]* that meet the following: [*NIST SP 800-56B, Revision 1*].
 
 *_Application Note:_*
 
@@ -2710,7 +2713,7 @@ No other components. +
 ======
 
 
-*FCS_COP.1.1/KeyedHash* The TSF shall perform _keyed-hash message authentication_ in accordance with a specified cryptographic algorithm [selection: _HMAC-SHA-1, HMAC-SHA-256, HMAC-SHA-384, HMAC-SHA-512, implicit_] and cryptographic key sizes [_assignment: key size (in bits) used in HMAC_] *and message digest sizes [selection: 160, 256, 384, 512] bits* that meet the following: _ISO/IEC 9797-2:2011, Section 7 “MAC Algorithm 2”_.
+*FCS_COP.1.1/KeyedHash* The TSF shall perform [*keyed-hash message authentication*] in accordance with a specified cryptographic algorithm [selection: _HMAC-SHA-1, HMAC-SHA-256, HMAC-SHA-384, HMAC-SHA-512, implicit_] and cryptographic key sizes [_assignment: key size (in bits) used in HMAC_] *and message digest sizes [selection: 160, 256, 384, 512] bits* that meet the following: _ISO/IEC 9797-2:2011, Section 7 “MAC Algorithm 2”_.
 
 *_Application Note:_*
 
@@ -2946,7 +2949,7 @@ _This SFR is conditionally required if the manual entry of a drive encryption pa
 	FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction
 ======
 
-*FCS_COP.1.1/CMAC Refinement*: The TSF shall perform cryptographic [*message authentication*] in accordance with a specified cryptographic algorithm [*selection: _HMAC-SHA-256, HMAC-SHA-384, HMAC-SHA-512, CMAC-AES-128, CMAC-AES-192, CMAC-AES-256, CMAC-SEED-128, CMAC-HIGHT-128, CMAC-LEA-128, CMAC-LEA-192, CMAC-LEA-256_*] and cryptographic key sizes [*assignment: _key size (in bits)_*] used in [*selection: _HMAC, AES, CMAC_*] that meet the following: [selection:
+*FCS_COP.1.1/CMAC Refinement*: The TSF shall perform [*cryptographic message authentication*] in accordance with a specified cryptographic algorithm [*selection: _HMAC-SHA-256, HMAC-SHA-384, HMAC-SHA-512, CMAC-AES-128, CMAC-AES-192, CMAC-AES-256, CMAC-SEED-128, CMAC-HIGHT-128, CMAC-LEA-128, CMAC-LEA-192, CMAC-LEA-256_*] and cryptographic key sizes [*assignment: _key size (in bits)_*] *used in* [*selection: _HMAC, AES, CMAC_*] that meet the following: [selection:
 
 * ISO/IEC 9797-2:2011, Section 7 “MAC Algorithm 2”,
 * NIST SP 800-38B,
@@ -3278,7 +3281,7 @@ _FDP_FXS.EXT.1 is required if fax-net separation is performed by the TSF._
 
 *FTP_TRP.1.2/NonAdmin Refinement:* The TSF shall permit [selection: the TSF, remote users] to initiate communication via the trusted path
 
-*FTP_TRP.1.3/NonAdmin Refinement:* The TSF shall require the use of the trusted path for initial user authentication and all remote user actions.
+*FTP_TRP.1.3/NonAdmin Refinement:* The TSF shall require the use of the trusted path for [*initial user authentication and all remote user actions*].
 
 *_Application Note:_*
 
