@@ -41,7 +41,7 @@ This collaborative Protection Profile (cPP) was developed by the {iTC-longname} 
 | 0.11 | 14 December 2021 | Public Draft 2
 | 0.13 | 25 July 2022 | Final Public Draft
 | 1.0 | 31 October 2022 | Initial release for use
-| 1.1-bv.2 | 10 October 2023 | HIT issue #5
+| 1.1-bv.2 | 10 October 2023 | HIT issue #5 (assignments)
 
 |===
 
