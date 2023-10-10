@@ -41,6 +41,7 @@ This collaborative Protection Profile (cPP) was developed by the {iTC-longname} 
 | 0.11 | 14 December 2021 | Public Draft 2
 | 0.13 | 25 July 2022 | Final Public Draft
 | 1.0 | 31 October 2022 | Initial release for use
+| 1.1-pre.1 | 9 October 2023 | HIT issue #15
 
 |===
 
@@ -835,7 +836,7 @@ _If the TOE acts as a receiver in the key establishment schemes and is not confi
 	FCS_COP.1/KeyWrap Cryptographic Operation (Key Wrapping) +
 	FCS_COP.1/KeyEnc Cryptographic operation (Key Encryption) +
 	FCS_COP.1/KeyedHash Cryptographic Operation (for keyed-hash message authentication) +
-	FCS_COP.1/CMAC Cryptographic Operation (for keyed-hash message authentication)] +
+	FCS_COP.1/CMAC Cryptographic Operation (for cipher-based message authentication)] +
 	FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction +
 	FCS_RBG_EXT.1 Extended: Cryptographic Operation (Random Bit Generation)
 ======
@@ -1594,7 +1595,7 @@ There are no class FPR requirements.
 	FCS_COP.1/KeyedHash Cryptographic Operation (for keyed-hash message authentication) +
 	FCS_COP.1/DataEncryption Cryptographic Operation (Symmetric encryption/decryption) +
 	FCS_COP.1/StorageEncryption Cryptographic operation (Data Encryption/Decryption) +
-	FCS_COP.1/CMAC Cryptographic Operation (for keyed-hash message authentication)
+	FCS_COP.1/CMAC Cryptographic Operation (for cipher-based message authentication)
 ======
 
 *FPT_SBT_EXT.1.1* The TSF shall contain one or more chains of trust with each chain of trust anchored in a Root of Trust that is implemented in immutable code or a HW-based write-protection mechanism.
@@ -2910,7 +2911,7 @@ The SFRs in this section are to be incorporated in the ST to support the optiona
 	No other components +
 
 *Dependencies:* +
-	FCS_COP.1/CMAC Cryptographic Operation (for keyed-hash message authentication)
+	FCS_COP.1/CMAC Cryptographic Operation (for cipher-based message authentication)
 ======
 
 *FCS_PCC_EXT.1.1* A password used by the TSF to generate a password authorization factor shall enable up to [assignment: _positive integer of 64 or more_] characters in the set of {upper case characters, lower case characters, numbers, and [assignment: _other supported special characters_]} and shall perform Password-based Key Derivation Functions in accordance with a specified cryptographic algorithm [HMAC-[selection: _SHA-256, SHA-384, SHA-512_]], with [assignment: _positive integer of 1000 or more_] iterations, and output cryptographic key sizes [selection: _128, 256_] bits that meet the following: [*NIST SP 800-132*].
@@ -2926,12 +2927,12 @@ _This SFR is conditionally required if the manual entry of a drive encryption pa
 	No other components +
 
 *Dependencies:* +
-	FCS_COP.1/CMAC Cryptographic Operation (for keyed-hash message authentication), +
+	FCS_COP.1/CMAC Cryptographic Operation (for cipher-based message authentication), +
 	FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction, +
 	[if selected: FCS_RBG_EXT.1 Extended: Cryptographic Operation (Random Bit Generation)]
 ======
 
-*FCS_KDF_EXT.1.1* The TSF shall accept [selection: _a RNG generated submask as specified in FCS_RBG_EXT.1, a conditioned password submask, imported submask_] to derive an intermediate key, as defined in [selection: _NIST SP 800-108 [selection: KDF in Counter Mode, KDF in Feedback Mode, KDF in Double-Pipeline Iteration Mode], NIST SP 800-132, ISO/IEC 11770-6:2016 [selection: KPF2, KPF3, KPF4]_], using the keyed-hash functions specified in FCS_COP.1/CMAC, such that the output is at least of equivalent security strength (in number of bits) to the BEV or the DEK.
+*FCS_KDF_EXT.1.1* The TSF shall accept [selection: _a RNG generated submask as specified in FCS_RBG_EXT.1, a conditioned password submask, imported submask_] to derive an intermediate key, as defined in [selection: _NIST SP 800-108 [selection: KDF in Counter Mode, KDF in Feedback Mode, KDF in Double-Pipeline Iteration Mode], NIST SP 800-132, ISO/IEC 11770-6:2016 [selection: KPF2, KPF3, KPF4]_], using the cipher-based functions specified in FCS_COP.1/CMAC, such that the output is at least of equivalent security strength (in number of bits) to the BEV or the DEK.
 
 ==== FCS_COP.1/CMAC Cryptographic Operation (for cipher-based message authentication)
 ======
@@ -3908,12 +3909,12 @@ The following actions should be auditable if FAU_GEN Security Audit Data Generat
 	No other components
 
 *Dependencies:* +
-	FCS_COP.1/CMAC Cryptographic Operation (for keyed-hash message authentication), +
+	FCS_COP.1/CMAC Cryptographic Operation (for cipher-based message authentication), +
 	FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction +
 	[if selected: FCS_RBG_EXT.1 Extended: Cryptographic Operation (Random Bit Generation)]
 ======
 
-FCS_KDF_EXT.1.1 The TSF shall accept [selection: _a RNG generated submask as specified in FCS_RBG_EXT.1, a conditioned password submask, imported submask_] to derive an intermediate key, as defined in [selection: _NIST SP 800-108_ [selection: _KDF in Counter Mode, KDF in Feedback Mode, KDF in Double-Pipeline Iteration Mode_], _NIST SP 800-132, ISO/IEC 11770-6:2016 [selection: KPF2, KPF3, KPF4]_], using the keyed-hash functions specified in FCS_COP.1/CMAC, such that the output is at least of equivalent security strength (in number of bits) to the BEV or the DEK.
+FCS_KDF_EXT.1.1 The TSF shall accept [selection: _a RNG generated submask as specified in FCS_RBG_EXT.1, a conditioned password submask, imported submask_] to derive an intermediate key, as defined in [selection: _NIST SP 800-108_ [selection: _KDF in Counter Mode, KDF in Feedback Mode, KDF in Double-Pipeline Iteration Mode_], _NIST SP 800-132, ISO/IEC 11770-6:2016 [selection: KPF2, KPF3, KPF4]_], using the cipher-based functions specified in FCS_COP.1/CMAC, such that the output is at least of equivalent security strength (in number of bits) to the BEV or the DEK.
 
 *Rationale*
 
@@ -4013,7 +4014,7 @@ There are no auditable events foreseen.
 	No other components
 
 *Dependencies:* +
-	FCS_COP.1/CMAC Cryptographic Operation (for keyed-hash message authentication)
+	FCS_COP.1/CMAC Cryptographic Operation (for cipher-based message authentication)
 ======
 
 FCS_PCC_EXT.1.1 A password used by the TSF to generate a password authorization factor shall enable up to [assignment: _positive integer of 64 or more_] characters in the set of {upper case characters, lower case characters, numbers, and [assignment: _other supported special characters_]} and shall perform Password-based Key Derivation Functions in accordance with a specified cryptographic algorithm [_HMAC_-[selection: _SHA-256, SHA-384, SHA-512_]], with [assignment: _positive integer of 1000 or more_] iterations, and output cryptographic key sizes [selection: _128, 256_] bits that meet the following: [assignment: _NIST SP 800-132_].
@@ -5167,7 +5168,7 @@ The following actions should be auditable if FAU_GEN Security Audit Data Generat
 	FCS_COP.1/KeyedHash Cryptographic Operation (for keyed-hash message authentication) +
 	FCS_COP.1/DataEncryption Cryptographic Operation (Symmetric encryption/decryption) +
 	FCS_COP.1/StorageEncryption Cryptographic operation (Data Encryption/Decryption) +
-	FCS_COP.1/CMAC Cryptographic Operation (for keyed-hash message authentication)
+	FCS_COP.1/CMAC Cryptographic Operation (for cipher-based message authentication)
 ======
 
 *FPT_SBT_EXT.1.1* The TSF shall contain one or more chains of trust with each chain of trust anchored in
