@@ -41,6 +41,8 @@ This collaborative Protection Profile (cPP) was developed by the {iTC-longname} 
 | 0.11 | 14 December 2021 | Public Draft 2
 | 0.13 | 25 July 2022 | Final Public Draft
 | 1.0 | 31 October 2022 | Initial release for use
+| 1.0-issue-10 | 16 October 2023 | HIT issue #10
+
 
 |===
 
@@ -1620,7 +1622,7 @@ _The ‘contact vendor support’ may be selected to allow for the vendor to dia
 
 ==== FPT_SKP_EXT.1  Extended: Protection of TSF Data
 ======
-(for O.COMMS_PROTECTION) +
+(for O.KEY_MATERIAL, O.COMMS_PROTECTION) +
 *Hierarchical to:* +
 	No other components.
 
@@ -5297,6 +5299,7 @@ The following actions should be auditable if FAU_GEN Security Audit Data Generat
 
 ===== FPT_SKP_EXT.1 Extended: Protection of TSF Data
 ======
+(for O.KEY_MATERIAL) +
 *Hierarchical to:* +
 	No other components.
 
@@ -6496,6 +6499,7 @@ Authorized Users are trained to use the TOE according to site security policies.
 | |FDP_DSK_EXT.1 |This requirement defines the rules for the protection of user and TSF data stored on the TOE.
 
 |*O.KEY_MATERIAL* |FPT_KYP_EXT.1 |This requirement defines the rules for the protection of cryptographic keys and key material.
+| |FPT_SKP_EXT.1 |This requirement prevents the reading (unauthorized access) of symmetric and private keys, which could contribute to the creation of encryption keys for storage of User Document Data or Confidential TSF Data in Nonvolatile Storage Devices.
 
 |*O.FAX_NET_SEPARATION* (conditionally mandatory) |FDP_FXS_EXT.1  |This requirement enforces the prohibition of communication via the fax interface, except for transmitting or receiving User Data using fax protocols.
 
