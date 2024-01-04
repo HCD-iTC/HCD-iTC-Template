@@ -42,7 +42,7 @@ Hardcopy Device International Technical Community (HCD-iTC)
 | 0.98 | 24 February 2022 | Public Review Draft 2
 | 0.99 | 29 July 2022 | Final Public Review Draft
 | 1.0  | 31 October 2022 | Initial release for use
-| 1.0-Issue-9 | 4 January 2024 | HIT Issue #19 
+| 1.0-Issue-9 | 4 January 2024 | HIT Issue #9 
 |===
 
 === General Purpose
