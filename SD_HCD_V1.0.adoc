@@ -46,6 +46,7 @@ Hardcopy Device International Technical Community (HCD-iTC)
 | 1.0-Issue-9 | 4 January 2024 | HIT Issue #19 
 | 1.0-Issue-16 | 5 January 2024 | HIT Issue #16
 | 1.0-Issue-18 | 5 January 2024 | HIT Issue #18
+| 1.0-Issue-19 | 4 January 2024 | HIT Issue #19
 |===
 
 === General Purpose
@@ -418,9 +419,6 @@ Test 1 [conditional]: Applied to each key held as in volatile memory and subject
 . Search the content of the binary file created in Step #5 for instances of the known key value from Step #1.
 
 Steps 1-6 ensure that the complete key does not exist anywhere in volatile memory. If a copy is found, then the test fails.
-
-The following tests apply only to selection volatile memory), since the TOE in this instance has more visibility into what is happening within the underlying platform (e.g., a logical view of the media). In selection non-volatile storage), the TOE has no visibility into the inner workings and completely relies on the underlying platform, so there is no reason to test the TOE beyond test 1.
-For selection volatile memory), the following tests are used to determine the TOE is able to request the platform to overwrite the key with a TOE supplied pattern.
 
 Test 2: Applied to each key held in nonvolatile memory and subject to destruction by the TOE, except  for replacing a key using the selection [a new value of a key of the same size]. The evaluator shall use special tools (as needed), provided by the TOE developer if necessary, to ensure the tests function as intended.
 
