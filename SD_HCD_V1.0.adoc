@@ -42,6 +42,7 @@ Hardcopy Device International Technical Community (HCD-iTC)
 | 0.98 | 24 February 2022 | Public Review Draft 2
 | 0.99 | 29 July 2022 | Final Public Review Draft
 | 1.0  | 31 October 2022 | Initial release for use
+| 1.0-Issue-2 | 4 January 2024 | HIT Issue #2
 |===
 
 === General Purpose
@@ -454,6 +455,8 @@ how to configure the TOE to use the selected mode(s) and key size(s) defined
 in the Security Target supported by the TOE for data encryption/decryption.
 
 ===== Tests
+
+Note: The tests detailed below are not required to be performed for cryptographic functions implemented in the Root of Trust for Secure Boot (FPT_SBT_EXT.1).
 
 *AES-CBC Known Answer Tests*
 
@@ -1273,6 +1276,8 @@ The evaluator shall produce test documentation for test cases of FCS_COP.1/SigGe
 
 Each section below contains tests the evaluators shall perform for each selected digital signature scheme. Based on the assignments and selections in the requirement, the evaluators choose the specific activities that correspond to those selections.
 
+Note: The tests detailed below are not required to be performed for cryptographic functions implemented in the Root of Trust for Secure Boot (FPT_SBT_EXT.1).
+
 *ECDSA Algorithm Tests*
 
 *_ECDSA FIPS 186-4 Signature Generation Test_*
@@ -1369,6 +1374,8 @@ for the bit-oriented vs. the byte-oriented test mode.
 
 The evaluator shall perform all of the following tests for each hash algorithm
 implemented by the TSF and used to satisfy the requirements of this cPP.
+
+Note: The tests detailed below are not required to be performed for cryptographic functions implemented in the Root of Trust for Secure Boot (FPT_SBT_EXT.1).
 
 *Short Messages Test - Bit-oriented Mode*
 
@@ -2552,6 +2559,8 @@ If multiple encryption modes are supported, the evaluator examines the guidance 
 ===== Tests
 
 The following tests are conditional based upon the selections made in the SFR.
+
+Note: The tests detailed below are not required to be performed for cryptographic functions implemented in the Root of Trust for Secure Boot (FPT_SBT_EXT.1).
 
 *AES-CBC Tests*
 
@@ -3976,6 +3985,8 @@ in the Security Target supported by the TOE for keyed hash function.
 
 ===== Tests
 
+Note: The tests detailed below are not required to be performed for cryptographic functions implemented in the Root of Trust for Secure Boot (FPT_SBT_EXT.1).
+
 For each of the supported parameter sets, the evaluator shall compose 15 sets
 of test data. Each set shall consist of a key and message data. The evaluator
 shall have the TSF generate HMAC tags for these sets of test data. The
@@ -4116,6 +4127,8 @@ There are no AGD evaluation activities for this SFR.
 There are no KMD evaluation activities for this SFR.
 
 ===== Tests
+
+Note: The tests detailed below are not required to be performed for cryptographic functions implemented in the Root of Trust for Secure Boot (FPT_SBT_EXT.1).
 
 If HMAC was selected:
 For each of the supported parameter sets, the evaluator shall compose 15 sets of test data. Each set shall consist of a key and message data. The evaluator shall have the TSF generate HMAC tags for these sets of test data. The resulting MAC tags shall be compared to the result of generating HMAC tags with the same key using a known good implementation.
