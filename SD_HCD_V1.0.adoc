@@ -48,6 +48,7 @@ Hardcopy Device International Technical Community (HCD-iTC)
 | 1.0-Issue-18 | 5 January 2024 | HIT Issue #18
 | 1.0-Issue-19 | 4 January 2024 | HIT Issue #19
 | 1.0-Issue-21 | 5 January 2024 | HIT Issue #21
+| 1.0-Issue-22  | 4 January 2024 | HIT Issue #22
 |===
 
 === General Purpose
@@ -1818,7 +1819,15 @@ The evaluator shall also ensure that the operational guidance describes the poss
 
 ===== Tests
 
-The evaluator with assistance from the vendor (if needed) shall confirm that when an error in the self-test results is induced into the TOE, the TOE no longer enters into operational mode. For example, DRGB self-test is a self-test function.
+Self-test is intended to detect malfunctions which may compromise the TSF. Since the integrity of the firmware/software is guaranteed by FPT_SBT_EXT, the function for FPT_TST_EXT should address the malfunction detection like DRBG self-test defined in ISO/IEC 18031:2011.
+
+Although formal compliance is not mandated, the self-tests performed should aim for a level of confidence comparable to:
+
+* [FIPS 140-2], chap. 4.9.1, Cryptographic algorithm test for the verification of the correct operation of cryptographic functions. 
+Alternatively, national requirements of any CCRA member state for the security evaluation of cryptographic functions should be considered as appropriate.
+The evaluator shall either verify that the self-tests described above are carried out during initial start-up or that the developer has justified any deviation from this.
+
+The evaluator shall either verify that the self-tests described above are carried out during initial start-up or that the developer has justified any deviation from this.
 
 ==== FPT_TUD_EXT.1 Trusted Update
 
