@@ -1961,11 +1961,11 @@ The evaluator shall verify that the KMD provides a description of the boot initi
 
 The evaluator shall perform the following tests:
 
-Test 1. Write data to Storage device: Perform writing to the storage device with operating TSFI which enforce write process of User documents and Confidential TSF data.
+Test 1. Write data to Storage device: Perform writing to the storage device with operating TSFI which enforce write process of D.USER.DOC and D.TSF.CONF.
 
 Test 2. Confirm that written data are encrypted: Verify there are no plaintext data present in the encrypted range written by Test 1; and, verify that the data can be decrypted by proper key and key material.
 
-All TSFIs for writing User Document Data and Confidential TSF data should be tested by above Test 1 and Test 2.
+All TSFIs for writing D.USER.DOC and D.TSF.CONF should be tested by above Test 1 and Test 2.
 
 Test 3. (If data other than D.USER.DOC and D.TSF.CONF are encrypted,) write the data to the storage device with operating TSFI which enforce write process of the data.
 
