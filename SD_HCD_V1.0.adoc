@@ -42,6 +42,7 @@ Hardcopy Device International Technical Community (HCD-iTC)
 | 0.98 | 24 February 2022 | Public Review Draft 2
 | 0.99 | 29 July 2022 | Final Public Review Draft
 | 1.0  | 31 October 2022 | Initial release for use
+| 1.0-Issue-16 | 5 January 2024 | HIT Issue #16
 |===
 
 === General Purpose
@@ -2198,8 +2199,6 @@ The evaluator shall also confirm that all protocols listed in the TSS in support
 
 The evaluator shall confirm that the operational guidance contains instructions for establishing the remote user sessions for each supported method.
 
-The evaluator shall check to ensure that the operational guidance describes the type(s) of overwrite (e.g., single overwrite with zeros) of user document data that the TOE performs.
-
 ===== Tests
 
 The evaluator shall also perform the following tests:
@@ -2216,7 +2215,7 @@ Further EAs are associated with the specific protocols.
 
 === USER.DOC Unavailability
 
-==== FDP_UDU_EXT USER.DOC Unavailability
+==== FDP_UDU_EXT Document Unavailability
 
 ===== TSS
 
@@ -3757,8 +3756,6 @@ Test 1: For each claimed public-key authentication method, the evaluator shall c
 
 Test 2: [Conditional] If password-based authentication method has been selected in the FCS_SSHC_EXT.1.2, then following the guidance documentation the evaluator shall configure the TOE to perform password-based authentication with a remote SSH server to demonstrate that the TOE can successfully authenticate using a password as an authentication method.
 
-Now the HCD iTC has taken the text of the FCS_SSHC_EXT SFR from the ND SD v2.2 completely verbatim to form the FCS_SSHC_EXT SD text in the latest version of the HCD SD. Therefore, these AA changes should apply equally to the same SSHC AAs in the HCD SD as they do in the ND SD given that the AA text in both SDs are the same. As a result, the TSS, Guidance and Test changes for FCS_SSHC_EXT.1.2 and FCS_SSHC_EXT.1.5 should be made in Section 5.2.5 in the HCD SD.
-
 ====== FCS_SSHC_EXT.1.3
 
 The evaluator shall demonstrate that if the TOE receives a packet larger than that specified in this component, that packet is dropped.
@@ -4613,7 +4610,7 @@ The evaluators shall produce two reports on the testing effort; one that is publ
 
 The public-facing report contains:
 
-* The flaw identifiers returned when the procedures for searching public sources were followed according to instructions in the Supporting Document per <<Type1Hypotheses>>;
+* The terms and sources used when the procedures for searching public sources were followed according to instructions in the Supporting Document per <<Type1Hypotheses>>;
 
 * A statement that the evaluators have examined the Type 1 flaw hypotheses specified in this Supporting Document in <<Type1Hypotheses>> (i.e., the flaws listed in the previous bullet) and the Type 2 flaw hypotheses specified in this Supporting Document by the iTC in <<Type2Hypotheses>>.
 
