@@ -42,7 +42,7 @@ Hardcopy Device International Technical Community (HCD-iTC)
 | 0.98 | 24 February 2022 | Public Review Draft 2
 | 0.99 | 29 July 2022 | Final Public Review Draft
 | 1.0  | 31 October 2022 | Initial release for use
-| 1.0-Issue-19 | 4 January 2024 | HIT Issue #19
+| 1.0-Issue-21 | 5 January 2024 | HIT Issue #21
 |===
 
 === General Purpose
@@ -1970,9 +1970,9 @@ Test 2. Confirm that written data are encrypted: Verify there are no plaintext d
 
 All TSFIs for writing D.USER.DOC and D.TSF.CONF should be tested by above Test 1 and Test 2.
 
-Test 3. (If data other than D.USER.DOC and D.TSF.CONF are encrypted,) write the data to the storage device with operating TSFI which enforce write process of the data.
+Test 3. [Conditional: If the ST author claims FPT_WIPE_EXT.1 with cryptographic erase, and if data other than D.USER.DOC and D.TSF.CONF are encrypted] Write the data to the storage device with operating TSFI which enforce write process of the data.
 
-Test 4. (If data other than D.USER.DOC and D.TSF.CONF are encrypted,) verify that the data written in Test 3 is not in plaintext form; and verify that the data can be decrypted by proper key and key material.
+Test 4. [Conditional: If the ST author claims FPT_WIPE_EXT.1 with cryptographic erase, and if data other than D.USER.DOC and D.TSF.CONF are encrypted] Verify that the data written in Test 3 is not in plaintext form; and verify that the data can be decrypted by proper key and key material.
 
 Test 5. [Conditional: If any D.USER.DOC or D.TSF.CONF are transparently encrypted and written to disk via mechanisms other than operating TSFI] Using a special tooling that the developer shall provide, the evaluator shall write the known data to the storage through transparent encryption.
 
