@@ -42,7 +42,7 @@ Hardcopy Device International Technical Community (HCD-iTC)
 | 0.98 | 24 February 2022 | Public Review Draft 2
 | 0.99 | 29 July 2022 | Final Public Review Draft
 | 1.0  | 31 October 2022 | Initial release for use
-| 1.0-Issue-2 | 4 January 2024 | HIT Issue #2
+| 1.0-Issue-9 | 4 January 2024 | HIT Issue #9 
 |===
 
 === General Purpose
@@ -1949,6 +1949,8 @@ The evaluator shall verify that the TSS describes the initialization of the Devi
 
 If data (e.g., D.USER.JOB, D.TSF.PROT) other than D.USER.DOC and D.TSF.CONF are encrypted, the evaluator shall verify that TSS identifies all such data and states that no other customer-supplied data are encrypted.
 
+If any D.USER.DOC or D.TSF.CONF are transparently encrypted and written to disk via mechanisms other than operating TSFI, the evaluator shall verify that the TSS identifies those mechanisms and describes at a high level how the associated data are encrypted. The swap files and core dump may potentially contain D.USER.DOC or D.TSF.CONF should be considered.
+
 ===== Guidance Documentation
 
 The evaluator shall review the AGD guidance to determine that it describes the initial steps needed to enable the Device encryption function, including any necessary preparatory steps. The guidance shall provide instructions that are sufficient to ensure that all Devices will be encrypted when encryption is enabled or at shipment of the TOE. If the TOE supports multiple Device encryptions, the evaluator shall examine the administration guidance to ensure the initialization procedure encrypts all Devices.
@@ -1965,16 +1967,21 @@ The evaluator shall verify that the KMD provides a description of the boot initi
 
 The evaluator shall perform the following tests:
 
-Test 1. Write data to Storage device: Perform writing to the storage device with operating TSFI which enforce write process of User documents and Confidential TSF data.
+Test 1. Write data to Storage device: Perform writing to the storage device with operating TSFI which enforce write process of D.USER.DOC and D.TSF.CONF.
 
 Test 2. Confirm that written data are encrypted: Verify there are no plaintext data present in the encrypted range written by Test 1; and, verify that the data can be decrypted by proper key and key material.
 
-All TSFIs for writing User Document Data and Confidential TSF data should be tested by above Test 1 and Test 2.
+All TSFIs for writing D.USER.DOC and D.TSF.CONF should be tested by above Test 1 and Test 2.
 
 Test 3. (If data other than D.USER.DOC and D.TSF.CONF are encrypted,) write the data to the storage device with operating TSFI which enforce write process of the data.
 
 Test 4. (If data other than D.USER.DOC and D.TSF.CONF are encrypted,) verify that the data written in Test 3 is not in plaintext form; and verify that the data can be decrypted by proper key and key material.
 
+Test 5. [Conditional: If any D.USER.DOC or D.TSF.CONF are transparently encrypted and written to disk via mechanisms other than operating TSFI] Using a special tooling that the developer shall provide, the evaluator shall write the known data to the storage through transparent encryption.
+
+Test 6. [Conditional: If any D.USER.DOC or D.TSF.CONF are transparently encrypted and written to disk via mechanisms other than operating TSFI] Verify that the data written in Test 5 is not in plaintext form; and verify that the data can be decrypted by proper key and key material.
+
+Test 5 and Test 6 should be performed for each mechanism not involving the operation of TSFIs described in the TSS.
 
 === PSTN Fax-Network Separation
 
