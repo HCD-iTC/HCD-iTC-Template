@@ -3558,7 +3558,7 @@ _The client identifier may be in the Subject field or the Subject Alternative Na
 == Extended Component Definitions
 This appendix contains the definitions for the extended requirements that are used in the cPP, including those used in <<Consistency Rationale>> and <<Selection-Based Requirements>> .
 
-(Note: formatting conventions for selections and assignments in this chapter are those in <<CC2>>.)
+Note that several of the extended requirements used for this cPP have dependencies on SFRs that are iterated in the cPP (e.g. FCS_COP.1/DataEncryption). The reader is advised that the SFR names for these dependencies may differ if the same extended components are used in other Protection Profiles.
 
 
 === Security Audit (FAU)
