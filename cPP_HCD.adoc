@@ -1665,9 +1665,7 @@ The time may be set by a trusted administrator or by a network service (e.g., NT
 
 *_Application Note:_*
 
-Power-on self-tests may take place before the TSF is operational, in which case this SFR can be satisfied by verifying the TSF image by digital signature as specified in FCS_COP.1/SigGen, or by hash specified in FCS_COP.1/Hash.
-
-Self-test is intended to detect malfunctions which may compromise the TSF. Since the integrity of the firmware/software is guaranteed by FPT_SBT_EXT, the function for FPT_TST_EXT should address the malfunction detection like DRBG self-test defined in ISO/IEC 18031:2011.
+Power-on self-tests may take place before the TSF is operational.
 
 
 ==== FPT_TUD_EXT.1 Extended: Trusted Update
