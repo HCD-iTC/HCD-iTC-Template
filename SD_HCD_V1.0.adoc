@@ -1825,7 +1825,6 @@ Although formal compliance is not mandated, the self-tests performed should aim 
 
 * [FIPS 140-2], chap. 4.9.1, Cryptographic algorithm test for the verification of the correct operation of cryptographic functions. 
 Alternatively, national requirements of any CCRA member state for the security evaluation of cryptographic functions should be considered as appropriate.
-The evaluator shall either verify that the self-tests described above are carried out during initial start-up or that the developer has justified any deviation from this.
 
 The evaluator shall either verify that the self-tests described above are carried out during initial start-up or that the developer has justified any deviation from this.
 
