@@ -43,8 +43,6 @@ FCS_COP.1/CMAC Cryptographic Operation (for keyed-hash message authentication)
 
 The Root of Trust (FPT_SBT_EXT.1.1) shall be implemented in immutable code or be protected by a HW-based protection mechanism. As a result, it would be difficult to perform cryptographic algorithm validation testing of the cryptographic algorithm(s) implemented in the Root of Trust, and therefore, should be avoided.
 
-link:https://github.com/HCD-iTC/HCD-IT/issues/2[Issue #2]
-
 // Provide the resolution agreed upon by the HIT for this Issue
 == Resolution
 
@@ -118,5 +116,6 @@ The following tests are conditional based upon the selections made in the SFR.
 
 
 //Include a pointer to the file that contains the actual fix for this TD
-== File Reference
-A pointer to the file that contains the fix would be inserted here
+== Tracking
+
+link:https://github.com/HCD-iTC/HCD-IT/issues/2[Issue #2]
