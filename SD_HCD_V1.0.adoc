@@ -1943,7 +1943,7 @@ The evaluator shall verify that the TSS describes the initialization of the Devi
 
 If data (e.g., D.USER.JOB, D.TSF.PROT) other than D.USER.DOC and D.TSF.CONF are encrypted, the evaluator shall verify that TSS identifies all such data and states that no other customer-supplied data are encrypted.
 
-If any D.USER.DOC or D.TSF.CONF are transparently encrypted and written to disk via mechanisms other than operating TSFI, the evaluator shall verify that the TSS identifies those mechanisms and describes at a high level how the associated data are encrypted. The swap files and core dump may potentially contain D.USER.DOC or D.TSF.CONF should be considered.
+If any D.USER.DOC or D.TSF.CONF are transparently encrypted and written to disk via mechanisms other than operating TSFI, the evaluator shall verify that the TSS identifies those mechanisms and describes at a high level how the associated data are encrypted. The swap files and core dump may potentially contain D.USER.DOC or D.TSF.CONF and should be considered.
 
 ===== Guidance Documentation
 
@@ -1965,7 +1965,7 @@ Test 1. Write data to Storage device: Perform writing to the storage device with
 
 Test 2. Confirm that written data are encrypted: Verify there are no plaintext data present in the encrypted range written by Test 1; and, verify that the data can be decrypted by proper key and key material.
 
-All TSFIs for writing D.USER.DOC and D.TSF.CONF should be tested by above Test 1 and Test 2.
+All TSFIs for writing D.USER.DOC and D.TSF.CONF should be tested by Test 1 and Test 2 above.
 
 Test 3. (If data other than D.USER.DOC and D.TSF.CONF are encrypted,) write the data to the storage device with operating TSFI which enforce write process of the data.
 
