@@ -46,11 +46,15 @@ The SD is updated as follows (yellow highlights for additions, strikethrough for
 
 *2.2.1.1. TSS*
 
-The evaluator shall review the TSS to determine that it describes how the functionality described by
-FCS_RBG_EXT.1 is invoked and how the TOE obtains a symmetric key through direct generation
-from a random bit generator as specified in FCS_RBG_EXT.1 #or by combining one or more symmetric keys and other data#.
+
+
+#Note: The tests detailed below are not required to be performed for cryptographic functions implemented in the Root of Trust for Secure Boot (FPT_SBT_EXT.1).#
+
+
+
+
 
 //Include a pointer to the file that contains the actual fix for this TD
 == Tracking
 
-link:https://github.com/HCD-iTC/HCD-IT/issues/18[Issue #18]
+link:https://github.com/HCD-iTC/HCD-IT/issues/2[Issue #2]
