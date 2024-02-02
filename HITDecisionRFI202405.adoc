@@ -57,8 +57,8 @@ The SD is updated as follows (yellow highlights for additions, strikethrough for
 The evaluator shall confirm that the operational guidance contains instructions for establishing the
 remote user sessions for each supported method.
 
-[line-through]#The evaluator shall check to ensure that the operational guidance describes the type(s) of overwrite
-(e.g., single overwrite with zeros) of user document data that the TOE performs.#
++++<del>The evaluator shall check to ensure that the operational guidance describes the type(s) of overwrite
+(e.g., single overwrite with zeros) of user document data that the TOE performs.</del>+++
 
 *5.2.6.3.1. FCS_SSHC_EXT.1.2*
 
@@ -77,11 +77,11 @@ FCS_SSHC_EXT.1.2, then following the guidance documentation the evaluator shall 
 TOE to perform password-based authentication with a remote SSH server to demonstrate that the
 TOE can successfully authenticate using a password as an authentication method.
 
-[line-through]#Now the HCD iTC has taken the text of the FCS_SSHC_EXT SFR from the ND SD v2.2 completely
++++<del>Now the HCD iTC has taken the text of the FCS_SSHC_EXT SFR from the ND SD v2.2 completely
 verbatim to form the FCS_SSHC_EXT SD text in the latest version of the HCD SD. Therefore, these AA
 changes should apply equally to the same SSHC AAs in the HCD SD as they do in the ND SD given
 that the AA text in both SDs are the same. As a result, the TSS, Guidance and Test changes for
-FCS_SSHC_EXT.1.2 and FCS_SSHC_EXT.1.5 should be made in Section 5.2.5 in the HCD SD.#
+FCS_SSHC_EXT.1.2 and FCS_SSHC_EXT.1.5 should be made in Section 5.2.5 in the HCD SD.</del>+++
 
 *A.3. Reporting* 
 
@@ -91,8 +91,8 @@ Report (ETR)), and the complete ETR that is delivered to the overseeing CB.
 
 The public-facing report contains:
 
-* [line-through]#The flaw identifiers returned when the procedures for searching public sources were followed according to instructions in the Supporting Document per Section A.1.1, “Type 1 Hypotheses -
-Public-Vulnerability-based”;#
+* +++<del>The flaw identifiers returned when the procedures for searching public sources were followed according to instructions in the Supporting Document per Section A.1.1, “Type 1 Hypotheses -
+Public-Vulnerability-based”;</del>+++
 
 * #The terms and sources used when the procedures for searching public sources were followed according to instructions in the Supporting Document per Section A.1.1, “Type 1 Hypotheses -
 Public-Vulnerability-based”;#
