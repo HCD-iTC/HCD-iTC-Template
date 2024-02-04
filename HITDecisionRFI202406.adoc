@@ -1,0 +1,56 @@
+// The Number will be the next sequential TD number of the form HCDxxxx starting with HCD0001
+// The Title will be the title of the GitHub Issue that was generated for this problem, question, etc. that resulted in this TD being generated
+= HCD0006 - Technical issue in TSS assurace activity for FCS_CKM.1/SKG Cryptographic key generation (Symmetric Keys)
+:showtitle:
+:imagesdir: images
+:icons: font
+// revnumber and revdate should be the number and date of the revision of this version of the TD
+:revnumber: 1
+:revdate: 2024-02-02
+:linkattrs:
+
+:iTC-longname: Hardcopy Device
+:iTC-shortname: HCD-iTC
+:iTC-email: iTC-HCD@niap-ccevs.org
+:iTC-website: https://hcd-iTC.github.io/
+// Provide the link here to either the HCD cPP and/or the HCD SD as applicable
+:iTC-GitHub: https://github.com/HCD-iTC/cPP/
+
+Version: {revnumber}, Published: {revdate}
+
+== Impacted Documents
+
+CPP_HCD_V1.0_supporting_doc
+
+// Reference the applicable Section/paragraph number for the HCD cPP SFR(s) / SARs or HCD SD Assurace Activities that this TD pertains to
+== References
+
+FCS_CKM.1/SKG Cryptographic Key Generation (Symmetric Keys)
+
+// Provide the issue description extracted from the Issue that was generated for this problem, question, etc. that resulted in this TD being generated.
+// Include the Issue Number
+== Issue Description
+
+The TSS assurance activity does not cover the selection of section 6.3 of NIST SP 800-133 Rev.2 in the FCS_CKM.1/SKG Cryptographic Key Generation (Symmetric Keys) SFR. 
+
+// Provide the resolution agreed upon by the HIT for this Issue
+== Resolution
+
+Update the TSS assurance activity to cover the generation of symmetric keys by combining one or more keys and other data in accordance with section 6.3 of NIST SP 800-133 Rev.2. 
+
+
+// Provide here the specific change(s) by Document, Section number, paragraph and line that is to be made to the HCD cPP and/or HCD SD to resolve this issue
+== CPP_HCD_V1.0_supporting_doc
+
+The SD is updated as follows (yellow highlights for additions, strikethrough for deletions) per section that is being updated:
+
+*2.2.1.1. TSS*
+
+The evaluator shall review the TSS to determine that it describes how the functionality described by
+FCS_RBG_EXT.1 is invoked and how the TOE obtains a symmetric key through direct generation
+from a random bit generator as specified in FCS_RBG_EXT.1 #or by combining one or more symmetric keys and other data#.
+
+//Include a pointer to the file that contains the actual fix for this TD
+== Tracking
+
+link:https://github.com/HCD-iTC/HCD-IT/issues/18[Issue #18]
