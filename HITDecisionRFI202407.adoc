@@ -31,7 +31,7 @@ FCS_CKM.4 Cryptographic key destruction
 // Include the Issue Number
 == Issue Description
 
-The Tests assurance activity contains a paragraph that originates from CPP_FDE_AA_V2.0E_supporting_doc. Due to the differences between Full Drive Encryption Authorization Acquisition technology type and Hardcopy Devices technology type, this paragraph cannot be applied to Hardcopy Devices. 
+The Tests assurance activity contains a paragraph that originates from "CPP_FDE_AA_V2.0E_supporting_doc". Due to the differences between Full Drive Encryption Authorization Acquisition technology type and Hardcopy Devices technology type, this paragraph cannot be applied to Hardcopy Devices. 
 
 // Provide the resolution agreed upon by the HIT for this Issue
 == Resolution
