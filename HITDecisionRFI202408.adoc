@@ -1,12 +1,12 @@
 // The Number will be the next sequential TD number of the form HCDxxxx starting with HCD0001
 // The Title will be the title of the GitHub Issue that was generated for this problem, question, etc. that resulted in this TD being generated
-= HCD0006 - Technical issue in Tests assurace activity for FCS_CKM.4 Cryptographic key destruction
+= HCD0008 - Clarification on applicability of tests 3 and 4 for FDP_DSK_EXT.1 Protection of Data on Disk
 :showtitle:
 :imagesdir: images
 :icons: font
 // revnumber and revdate should be the number and date of the revision of this version of the TD
 :revnumber: 1
-:revdate: 2024-02-04
+:revdate: 2024-02-05
 :linkattrs:
 
 :iTC-longname: Hardcopy Device
@@ -25,18 +25,18 @@ CPP_HCD_V1.0_supporting_doc
 // Reference the applicable Section/paragraph number for the HCD cPP SFR(s) / SARs or HCD SD Assurace Activities that this TD pertains to
 == References
 
-FCS_CKM.4 Cryptographic key destruction
+FDP_DSK_EXT Extended: Protection of Data on Disk
 
 // Provide the issue description extracted from the Issue that was generated for this problem, question, etc. that resulted in this TD being generated.
 // Include the Issue Number
 == Issue Description
 
-The Tests assurance activity contains a paragraph that originates from CPP_FDE_AA_V2.0E_supporting_doc. This is paragraph 45 in the CPP_FDE_AA_V2.0E_supporting_doc. Due to the differences between Full Drive Encryption Authorization Acquisition technology type and Hardcopy Devices technology type, this paragraph cannot be applied to Hardcopy Devices. 
+Tests 3 and 4 for FDP_DSK_EXT.1 Protection of Data on Disk are only applicable when the ST author claims FPT_WIPE_EXT.1 Data Wiping. 
 
 // Provide the resolution agreed upon by the HIT for this Issue
 == Resolution
 
-Delete the paragraph originating from CPP_FDE_AA_V2.0E_supporting_doc from the Tests assurance activity.  
+Update tests 3 and 4 for FDP_DSK_EXT.1 Protection of Data on Disk to clarify the tests are only applicable when the ST author claims FPT_WIPE_EXT.1 Data Wiping.
 
 
 // Provide here the specific change(s) by Document, Section number, paragraph and line that is to be made to the HCD cPP and/or HCD SD to resolve this issue
@@ -44,29 +44,27 @@ Delete the paragraph originating from CPP_FDE_AA_V2.0E_supporting_doc from the T
 
 The SD is updated as follows (yellow highlights for additions, strikethrough for deletions) per section that is being updated:
 
-*2.2.4.4. Tests*
+*3.1.3.4. Tests*
 
-For these tests the evaluator shall utilize appropriate development environment (e.g., a Virtual Machine) and development tools (debuggers, simulators, etc.) to test that keys are cleared, including all copies of the key that may have been created internally by the TOE during normal cryptographic processing with that key.
+The evaluator shall perform the following tests:
 
-Test 1 [conditional]: Applied to each key held as in volatile memory and subject to destruction by overwrite by the TOE (whether or not the value is subsequently encrypted for storage in volatile or nonvolatile memory). In the case where the only selection made for the key destruction method was removal of power, destruction of reference to the key directly followed by a request for garbage collection, or memory management, then this test is unnecessary. The evaluator shall:
+Test 1. Write data to Storage device: Perform writing to the storage device with operating TSFI
+which enforce write process of User documents and Confidential TSF data.
 
-. Record the value of the key in the TOE subject to clearing.
-. Cause the TOE to perform a normal cryptographic processing with the key from Step #1.
-. Cause the TOE to clear the key.
-. Cause the TOE to stop the execution but not exit.
-. Cause the TOE to dump the entire memory of the TOE into a binary file.
-. Search the content of the binary file created in Step #5 for instances of the known key value from Step #1.
+Test 2. Confirm that written data are encrypted: Verify there are no plaintext data present in the
+encrypted range written by Test 1; and, verify that the data can be decrypted by proper key and key
+material.
 
-Steps 1-6 ensure that the complete key does not exist anywhere in volatile memory. If a copy is found, then the test fails.
+All TSFIs for writing User Document Data and Confidential TSF data should be tested by above Test
+1 and Test 2.
 
-+++<del>The following tests apply only to selection volatile memory), since the TOE in this instance has more
-visibility into what is happening within the underlying platform (e.g., a logical view of the media).
-In selection non-volatile storage), the TOE has no visibility into the inner workings and completely
-relies on the underlying platform, so there is no reason to test the TOE beyond test 1. For selection
-volatile memory), the following tests are used to determine the TOE is able to request the platform
-to overwrite the key with a TOE supplied pattern.</del>+++
+Test 3. +++<del>(If data other than D.USER.DOC and D.TSF.CONF are encrypted,) write</del>+++ #[Conditional: If the ST author claims FPT_WIPE_EXT.1 with cryptographic erase, and if data other than D.USER.DOC and D.TSF.CONF are encrypted] Write# the data to the storage
+device with operating TSFI which enforce write process of the data.
+
+Test 4. +++<del>(If data other than D.USER.DOC and D.TSF.CONF are encrypted,) verify</del>+++ #[Conditional: If the ST author claims FPT_WIPE_EXT.1 with cryptographic erase, and if data other than D.USER.DOC and D.TSF.CONF are encrypted] Verify# that the data written in Test 3 is not in plaintext form; and verify that the data can be decrypted by proper key and key
+material.
 
 //Include a pointer to the file that contains the actual fix for this TD
 == Tracking
 
-link:https://github.com/HCD-iTC/HCD-IT/issues/19[Issue #19]
+link:https://github.com/HCD-iTC/HCD-IT/issues/21[Issue #21]
