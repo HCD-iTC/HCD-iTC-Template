@@ -1,6 +1,6 @@
 // The Number will be the next sequential TD number of the form HCDxxxx starting with HCD0001
 // The Title will be the title of the GitHub Issue that was generated for this problem, question, etc. that resulted in this TD being generated
-= HCD0006 - Technical issue in Tests assurace activity for FCS_CKM.4 Cryptographic key destruction
+= HCD0007 - Technical issue in Tests assurace activity for FCS_CKM.4 Cryptographic key destruction
 :showtitle:
 :imagesdir: images
 :icons: font
