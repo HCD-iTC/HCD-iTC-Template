@@ -1,4 +1,4 @@
-= Supporting Document Mandatory Technical Document: Evaluation Activities for collaborative Protection Profile for Hardcopy Devices
+= Supporting Document Mandatory Technical Document: Evaluation Activities for collaborative Protection Profile for Hardcopy Devices [DRAFT]
 :showtitle:
 :doctype: book
 :toc: macro
@@ -7,8 +7,8 @@
 :table-caption: Table
 :imagesdir: images
 :icons: font
-:revnumber: 1.0
-:revdate: 31 October 2022
+:revnumber: 1.0e-DRAFT
+:revdate: 06 February 2024
 :xrefstyle: full
 
 :iTC-longname: Hardcopy Devices
@@ -18,8 +18,8 @@
 :iTC-GitHub: https://github.com/HCD-iTC
 :pp-name: collaborative Protection Profile for Hardcopy Devices
 :pp-shortname: HCDcPP
-:pp-version: 1.0
-:pp-date: 31 October 2022
+:pp-version: 1.0e-DRAFT
+:pp-date: 17 January 2024
 
 == Foreword
 
@@ -42,13 +42,7 @@ Hardcopy Device International Technical Community (HCD-iTC)
 | 0.98 | 24 February 2022 | Public Review Draft 2
 | 0.99 | 29 July 2022 | Final Public Review Draft
 | 1.0  | 31 October 2022 | Initial release for use
-| 1.0-Issue-2 | 4 January 2024 | HIT Issue #2
-| 1.0-Issue-9 | 4 January 2024 | HIT Issue #19 
-| 1.0-Issue-16 | 5 January 2024 | HIT Issue #16
-| 1.0-Issue-18 | 5 January 2024 | HIT Issue #18
-| 1.0-Issue-19 | 4 January 2024 | HIT Issue #19
-| 1.0-Issue-21 | 5 January 2024 | HIT Issue #21
-| 1.0-Issue-22  | 4 January 2024 | HIT Issue #22
+| 1.0e-DRAFT | 06 February 2024 | DRAFT release
 |===
 
 === General Purpose
