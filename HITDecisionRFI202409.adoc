@@ -1,12 +1,12 @@
 // The Number will be the next sequential TD number of the form HCDxxxx starting with HCD0001
 // The Title will be the title of the GitHub Issue that was generated for this problem, question, etc. that resulted in this TD being generated
-= HCD0006 - Technical issue in Tests assurace activity for FCS_CKM.4 Cryptographic key destruction
+= HCD0009 - Clarification on Tests assurance activity for FPT_TST_EXT.1 TSF testing
 :showtitle:
 :imagesdir: images
 :icons: font
 // revnumber and revdate should be the number and date of the revision of this version of the TD
 :revnumber: 1
-:revdate: 2024-02-04
+:revdate: 2024-02-05
 :linkattrs:
 
 :iTC-longname: Hardcopy Device
@@ -25,18 +25,18 @@ CPP_HCD_V1.0_supporting_doc
 // Reference the applicable Section/paragraph number for the HCD cPP SFR(s) / SARs or HCD SD Assurace Activities that this TD pertains to
 == References
 
-FCS_CKM.4 Cryptographic key destruction
+FPT_TST_EXT.1 TSF testing
 
 // Provide the issue description extracted from the Issue that was generated for this problem, question, etc. that resulted in this TD being generated.
 // Include the Issue Number
 == Issue Description
 
-The Tests assurance activity contains a paragraph that originates from CPP_FDE_AA_V2.0E_supporting_doc. This is paragraph 45 in the CPP_FDE_AA_V2.0E_supporting_doc. Due to the differences between Full Drive Encryption Authorization Acquisition technology type and Hardcopy Devices technology type, this paragraph cannot be applied to Hardcopy Devices. 
+The Tests assurance activity for FPT_TST_EXT.1 TSF testing lacks clarification and context to avoid overlap with the Tests assurance activity for FPT_SBT_EXT.1 Secure Boot and limit the scope to verifying the execution of self-tests. 
 
 // Provide the resolution agreed upon by the HIT for this Issue
 == Resolution
 
-Delete the paragraph originating from CPP_FDE_AA_V2.0E_supporting_doc from the Tests assurance activity.  
+Update Tests assurance activity for FPT_TST_EXT.1 TSF testing to avoid overlap with the Tests assurance activity for FPT_SBT_EXT.1 Secure Boot and limit the scope to verifying the execution of self-tests. 
 
 
 // Provide here the specific change(s) by Document, Section number, paragraph and line that is to be made to the HCD cPP and/or HCD SD to resolve this issue
@@ -44,29 +44,18 @@ Delete the paragraph originating from CPP_FDE_AA_V2.0E_supporting_doc from the T
 
 The SD is updated as follows (yellow highlights for additions, strikethrough for deletions) per section that is being updated:
 
-*2.2.4.4. Tests*
+*2.6.4.3. Tests*
 
-For these tests the evaluator shall utilize appropriate development environment (e.g., a Virtual Machine) and development tools (debuggers, simulators, etc.) to test that keys are cleared, including all copies of the key that may have been created internally by the TOE during normal cryptographic processing with that key.
++++<del>The evaluator with assistance from the vendor (if needed) shall confirm that when an error in the self-test results is induced into the TOE, the TOE no longer enters into operational mode. For example, DRGB self-test is a self-test function.</del>+++
 
-Test 1 [conditional]: Applied to each key held as in volatile memory and subject to destruction by overwrite by the TOE (whether or not the value is subsequently encrypted for storage in volatile or nonvolatile memory). In the case where the only selection made for the key destruction method was removal of power, destruction of reference to the key directly followed by a request for garbage collection, or memory management, then this test is unnecessary. The evaluator shall:
+#Although formal compliance is not mandated, the self-tests performed should aim for a level of confidence comparable to:#
 
-. Record the value of the key in the TOE subject to clearing.
-. Cause the TOE to perform a normal cryptographic processing with the key from Step #1.
-. Cause the TOE to clear the key.
-. Cause the TOE to stop the execution but not exit.
-. Cause the TOE to dump the entire memory of the TOE into a binary file.
-. Search the content of the binary file created in Step #5 for instances of the known key value from Step #1.
+* #[FIPS 140-2], chap. 4.9.1, Cryptographic algorithm test for the verification of the correct operation of cryptographic functions. 
+Alternatively, national requirements of any CCRA member state for the security evaluation of cryptographic functions should be considered as appropriate.#
 
-Steps 1-6 ensure that the complete key does not exist anywhere in volatile memory. If a copy is found, then the test fails.
-
-+++<del>The following tests apply only to selection volatile memory), since the TOE in this instance has more
-visibility into what is happening within the underlying platform (e.g., a logical view of the media).
-In selection non-volatile storage), the TOE has no visibility into the inner workings and completely
-relies on the underlying platform, so there is no reason to test the TOE beyond test 1. For selection
-volatile memory), the following tests are used to determine the TOE is able to request the platform
-to overwrite the key with a TOE supplied pattern.</del>+++
+#The evaluator shall either verify that the self-tests described above are carried out during initial start-up or that the developer has justified any deviation from this.# 
 
 //Include a pointer to the file that contains the actual fix for this TD
 == Tracking
 
-link:https://github.com/HCD-iTC/HCD-IT/issues/19[Issue #19]
+link:https://github.com/HCD-iTC/HCD-IT/issues/22[Issue #22]
