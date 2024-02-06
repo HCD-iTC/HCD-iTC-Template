@@ -25,7 +25,7 @@ CPP_HCD_V1.0_supporting_doc
 // Reference the applicable Section/paragraph number for the HCD cPP SFR(s) / SARs or HCD SD Assurace Activities that this TD pertains to
 == References
 
-FDP_DSK_EXT.1 Extended: Protection of Data on Disk
+FDP_DSK_EXT.1 Protection of Data on Disk
 
 // Provide the issue description extracted from the Issue that was generated for this problem, question, etc. that resulted in this TD being generated.
 // Include the Issue Number
