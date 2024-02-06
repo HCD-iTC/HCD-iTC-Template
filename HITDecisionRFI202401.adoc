@@ -25,17 +25,17 @@ CPP_HCD_V1.0_supporting_doc
 // Reference the applicable Section/paragraph number for the HCD cPP SFR(s) / SARs or HCD SD Assurace Activities that this TD pertains to
 == References
 
-FCS_COP.1/Hash Cryptographic operation (Hash Algorithm)
+FCS_COP.1/Hash Cryptographic Operation (Hash Algorithm)
 
-FCS_COP.1/SigGen Cryptographic Operation (for signature generation/verification)
+FCS_COP.1/SigGen Cryptographic Operation (Signature Generation and Verification)
 
-FCS_COP.1/KeyedHash Cryptographic Operation (for keyed-hash message authentication)
+FCS_COP.1/KeyedHash Cryptographic Operation (Keyed Hash Algorithm)
 
 FCS_COP.1/DataEncryption Cryptographic Operation (Symmetric encryption/decryption)
 
 FCS_COP.1/StorageEncryption Cryptographic operation (Data Encryption/Decryption)
 
-FCS_COP.1/CMAC Cryptographic Operation (for keyed-hash message authentication)
+FCS_COP.1/CMAC Cryptographic Operation (for cipher-based message authentication)
 
 // Provide the issue description extracted from the Issue that was generated for this problem, question, etc. that resulted in this TD being generated.
 // Include the Issue Number
@@ -48,17 +48,17 @@ The Root of Trust (FPT_SBT_EXT.1.1) shall be implemented in immutable code or be
 
 In cPP_HCD_V1.0, the following SFRs are listed as dependencies for FPT_SBT_EXT.1:
 
-* FCS_COP.1/Hash Cryptographic operation (Hash Algorithm)
+* FCS_COP.1/Hash Cryptographic Operation (Hash Algorithm)
 
-* FCS_COP.1/SigGen Cryptographic Operation (for signature generation/verification)
+* FCS_COP.1/SigGen Cryptographic Operation (Signature Generation and Verification)
 
-* FCS_COP.1/KeyedHash Cryptographic Operation (for keyed-hash message authentication)
+* FCS_COP.1/KeyedHash Cryptographic Operation (Keyed Hash Algorithm)
 
 * FCS_COP.1/DataEncryption Cryptographic Operation (Symmetric encryption/decryption)
 
 * FCS_COP.1/StorageEncryption Cryptographic operation (Data Encryption/Decryption)
 
-* FCS_COP.1/CMAC Cryptographic Operation (for keyed-hash message authentication)
+* FCS_COP.1/CMAC Cryptographic Operation (for cipher-based message authentication)
 
 In CPP_HCD_V1.0_supporting_doc, add the following note in the Test section for each FCS_COP.1 SFR above:
 
