@@ -1,0 +1,86 @@
+// The Number will be the next sequential TD number of the form HCDxxxx starting with HCD0001
+// The Title will be the title of the GitHub Issue that was generated for this problem, question, etc. that resulted in this TD being generated
+= HCD0010 - APE_SPD.1-2 requirements are not met for Threats defined in Section I.3
+:showtitle:
+:imagesdir: images
+:icons: font
+// revnumber and revdate should be the number and date of the revision of this version of the TD
+:revnumber: 1
+:revdate: 2024-02-06
+:linkattrs:
+
+:iTC-longname: Hardcopy Device
+:iTC-shortname: HCD-iTC
+:iTC-email: iTC-HCD@niap-ccevs.org
+:iTC-website: https://hcd-iTC.github.io/
+// Provide the link here to either the HCD cPP and/or the HCD SD as applicable
+:iTC-GitHub: https://github.com/HCD-iTC/cPP/
+
+Version: {revnumber}, Published: {revdate}
+
+== Impacted Documents
+
+CPP_HCD_V1.0
+
+// Reference the applicable Section/paragraph number for the HCD cPP SFR(s) / SARs or HCD SD Assurace Activities that this TD pertains to
+== References
+
+Appendix I.3 Threat Definitions
+
+// Provide the issue description extracted from the Issue that was generated for this problem, question, etc. that resulted in this TD being generated.
+// Include the Issue Number
+== Issue Description
+
+HDcPP Section I.3 does not define the following threats in terms of an asset (as defined in I.2) in the threat definition.  CEM v3.1r5 APE_SPD.1.2C - "All threats shall be described in terms of a threat agent, an asset, and an adverse action."
+
+- T.TSF_FAILURE.
+- T.UNAUTHORIZED_UPDATE.
+- T.WEAK_CRYPTO.
+
+
+// Provide the resolution agreed upon by the HIT for this Issue
+== Resolution
+
+Update Threat Definitions. 
+
+// Provide here the specific change(s) by Document, Section number, paragraph and line that is to be made to the HCD cPP and/or HCD SD to resolve this issue
+
+
+== cPP_HCD_V1.0
+
+The cPP is updated as follows (yellow highlights for additions, strikethrough for deletions) per section that is being updated:
+
+*I.3 Threat Definitions*
+
+Threats are defined by a threat agent that performs an action resulting in an outcome that has the potential to violate TOE security policies.
+
+_Table 15. Threats_
+[%header,cols="1,3"]
+|===
+|Designation |Definition
+
+|*T.UNAUTHORIZED_ACCESS*
+|An attacker may access (read, modify, or delete) User Document Data or change (modify or delete) User Job Data in the TOE through one of the TOE’s interfaces or the physical Nonvolatile Storage component.
+
+|*T.TSF_COMPROMISE*
+|An attacker may gain Unauthorized Access to TSF Data in the TOE through one of the TOE’s interfaces or the physical Nonvolatile Storage component.
+
+|*T.TSF_FAILURE*
+|A malfunction of the TSF may #compromise the device# +++<del>cause loss of</del>+++ security #status# if the TOE is permitted to operate.
+
+|*T.UNAUTHORIZED_UPDATE*
+|An attacker may +++<del>cause the installation of</del>+++ #install# unauthorized firmware/software on the TOE #to modify the Device security status#.
+
+|*T.NET_COMPROMISE*
+|An attacker may access data in transit or otherwise compromise the security of the TOE by monitoring or manipulating network communication.
+
+|*T.WEAK_CRYPTO*
+|An attacker may exploit poorly chosen cryptographic algorithms, random bit generators, ciphers or key sizes #to access (read, modify, or delete) TSF and User data#.
+|===
+
+
+
+//Include a pointer to the file that contains the actual fix for this TD
+== Tracking
+
+link:https://github.com/HCD-iTC/HCD-IT/issues/12[Issue #12]

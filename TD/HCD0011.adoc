@@ -1,0 +1,66 @@
+// The Number will be the next sequential TD number of the form HCDxxxx starting with HCD0001
+// The Title will be the title of the GitHub Issue that was generated for this problem, question, etc. that resulted in this TD being generated
+= HCD0011 - NIAP APE Evaluation Comments (various issues)
+:showtitle:
+:imagesdir: images
+:icons: font
+// revnumber and revdate should be the number and date of the revision of this version of the TD
+:revnumber: 1
+:revdate: 2024-02-06
+:linkattrs:
+
+:iTC-longname: Hardcopy Device
+:iTC-shortname: HCD-iTC
+:iTC-email: iTC-HCD@niap-ccevs.org
+:iTC-website: https://hcd-iTC.github.io/
+// Provide the link here to either the HCD cPP and/or the HCD SD as applicable
+:iTC-GitHub: https://github.com/HCD-iTC/cPP/
+
+Version: {revnumber}, Published: {revdate}
+
+== Impacted Documents
+
+CPP_HCD_V1.0
+
+// Reference the applicable Section/paragraph number for the HCD cPP SFR(s) / SARs or HCD SD Assurace Activities that this TD pertains to
+== References
+
+All sections.
+
+// Provide the issue description extracted from the Issue that was generated for this problem, question, etc. that resulted in this TD being generated.
+// Include the Issue Number
+== Issue Description
+
+As part of NIAP’s review process of the HCD cPP, an evaluation of the APE work units identified several needing correction.
+
+- APE_ECD.1-5, The evaluator shall examine the extended components definition to determine that each extended functional component uses the existing CC Part 2 components as a model for presentation.
+- APE_REQ.2-5, The evaluator shall examine the statement of security requirements to determine that all assignment operations are performed correctly.
+- APE_REQ.2-8, The evaluator shall examine the statement of security requirements to determine that all refinement operations are performed correctly. 
+- APE_REQ.2-7, The evaluator shall examine the statement of security requirements to determine that all selection operations are performed correctly.
+
+// Provide the resolution agreed upon by the HIT for this Issue
+== Resolution
+
+Correct typographical/convention inconsistencies as they relate to assignments, selections, and refinements.  Correct Extended Component Definitions to remove dependencies on cPP refinements to extent possible.
+
+
+// Provide here the specific change(s) by Document, Section number, paragraph and line that is to be made to the HCD cPP and/or HCD SD to resolve this issue
+
+
+== cPP_HCD_V1.0
+
+The extent of changes is too great to properly show in the TD.  Please see the following diff for the complete set of changes:
+
+https://github.com/HCD-iTC/HCD-iTC-Template/commit/9c2d81486ff468d6622eda50ad09347cecce1c23
+
+
+//Include a pointer to the file that contains the actual fix for this TD
+== Tracking
+
+link:https://github.com/HCD-iTC/HCD-IT/issues/4[Issue #4]
+
+link:https://github.com/HCD-iTC/HCD-IT/issues/5[Issue #5]
+
+link:https://github.com/HCD-iTC/HCD-IT/issues/6[Issue #6]
+
+link:https://github.com/HCD-iTC/HCD-IT/issues/7[Issue #7]
