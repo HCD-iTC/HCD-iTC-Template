@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<!-- saved from url=(0103)file:///C:/Users/brian/AppData/Roaming/Brackets/extensions/data.nerk.asciidoc-preview/tmp/exported.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><!--<base href="file://C:/Users/brian/Documents/GitHub/HCD-iTC-Template/TD/">--><base href=".">
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.7">
+<title>HCD0007 - Technical issue in Tests assurace activity for FCS_CKM.4 Cryptographic key destruction</title>
+<link rel="stylesheet" href="./HCD_files/asciidoctor.css">
+<link rel="stylesheet" href="./HCD_files/font-awesome.min.css">
+</head>
+<body class="article data-line-1">
+<div id="header">
+<h1>HCD0007 - Technical issue in Tests assurace activity for FCS_CKM.4 Cryptographic key destruction</h1>
+<div class="details">
+<span id="revnumber">version 1,</span>
+<span id="revdate">2024-02-04</span>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph data-line-19">
+<p>Version: 1, Published: 2024-02-04</p>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-21">
+<h2 id="_impacted_documents">Impacted Documents</h2>
+<div class="sectionbody">
+<div class="paragraph data-line-23">
+<p>CPP_HCD_V1.0_supporting_doc</p>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-26">
+<h2 id="_references">References</h2>
+<div class="sectionbody">
+<div class="paragraph data-line-28">
+<p>FCS_CKM.4 Cryptographic key destruction</p>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-32">
+<h2 id="_issue_description">Issue Description</h2>
+<div class="sectionbody">
+<div class="paragraph data-line-34">
+<p>The Tests assurance activity contains a paragraph that originates from CPP_FDE_AA_V2.0E_supporting_doc. Due to the differences between Full Drive Encryption Authorization Acquisition technology type and Hardcopy Devices technology type, this paragraph cannot be applied to Hardcopy Devices.</p>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-37">
+<h2 id="_resolution">Resolution</h2>
+<div class="sectionbody">
+<div class="paragraph data-line-39">
+<p>Delete the paragraph originating from CPP_FDE_AA_V2.0E_supporting_doc from the Tests assurance activity.</p>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-42">
+<h2 id="_cpp_hcd_v1_0_supporting_doc">CPP_HCD_V1.0_supporting_doc</h2>
+<div class="sectionbody">
+<div class="paragraph data-line-44">
+<p>The SD is updated as follows (yellow highlights for additions, strikethrough for deletions) per section that is being updated:</p>
+</div>
+<div class="paragraph data-line-46">
+<p><strong>2.2.4.4. Tests</strong></p>
+</div>
+<div class="paragraph data-line-48">
+<p>For these tests the evaluator shall utilize appropriate development environment (e.g., a Virtual Machine) and development tools (debuggers, simulators, etc.) to test that keys are cleared, including all copies of the key that may have been created internally by the TOE during normal cryptographic processing with that key.</p>
+</div>
+<div class="paragraph data-line-50">
+<p>Test 1 [conditional]: Applied to each key held as in volatile memory and subject to destruction by overwrite by the TOE (whether or not the value is subsequently encrypted for storage in volatile or nonvolatile memory). In the case where the only selection made for the key destruction method was removal of power, destruction of reference to the key directly followed by a request for garbage collection, or memory management, then this test is unnecessary. The evaluator shall:</p>
+</div>
+<div class="olist arabic data-line-52">
+<ol class="arabic">
+<li class="data-line-52">
+<p>Record the value of the key in the TOE subject to clearing.</p>
+</li>
+<li class="data-line-53">
+<p>Cause the TOE to perform a normal cryptographic processing with the key from Step #1.</p>
+</li>
+<li class="data-line-54">
+<p>Cause the TOE to clear the key.</p>
+</li>
+<li class="data-line-55">
+<p>Cause the TOE to stop the execution but not exit.</p>
+</li>
+<li class="data-line-56">
+<p>Cause the TOE to dump the entire memory of the TOE into a binary file.</p>
+</li>
+<li class="data-line-57">
+<p>Search the content of the binary file created in Step #5 for instances of the known key value from Step #1.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph data-line-59">
+<p>Steps 1-6 ensure that the complete key does not exist anywhere in volatile memory. If a copy is found, then the test fails.</p>
+</div>
+<div class="paragraph data-line-61">
+<p><del>The following tests apply only to selection volatile memory), since the TOE in this instance has more
+visibility into what is happening within the underlying platform (e.g., a logical view of the media).
+In selection non-volatile storage), the TOE has no visibility into the inner workings and completely
+relies on the underlying platform, so there is no reason to test the TOE beyond test 1. For selection
+volatile memory), the following tests are used to determine the TOE is able to request the platform
+to overwrite the key with a TOE supplied pattern.</del></p>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-69">
+<h2 id="_tracking">Tracking</h2>
+<div class="sectionbody">
+<div class="paragraph data-line-71">
+<p><a href="https://github.com/HCD-iTC/HCD-IT/issues/19">Issue #19</a></p>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Version 1<br>
+Last updated 2024-02-08 19:31:58 -0800
+</div>
+</div>
+<link rel="stylesheet" href="./HCD_files/github.min.css">
+<script src="./HCD_files/highlight.min.js.download"></script>
+<script>hljs.initHighlighting()</script>
+<script>    links = document.querySelectorAll("a[href]");    for (var i = 0, n = links.length; i < n; i++) {        var href = links[i].getAttribute("href");        if (href.match(/^#/)) {           links[i].setAttribute("href", "javascript:;");           links[i].setAttribute("onclick", "document.location.hash='" + href.replace(/^#/, "") + "';");        }    }</script>
+</body></html>

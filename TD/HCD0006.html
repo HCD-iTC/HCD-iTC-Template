@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<!-- saved from url=(0103)file:///C:/Users/brian/AppData/Roaming/Brackets/extensions/data.nerk.asciidoc-preview/tmp/exported.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><!--<base href="file://C:/Users/brian/Documents/GitHub/HCD-iTC-Template/TD/">--><base href=".">
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.7">
+<title>HCD0006 - Technical issue in TSS assurace activity for FCS_CKM.1/SKG Cryptographic key generation (Symmetric Keys)</title>
+<link rel="stylesheet" href="./HCD_files/asciidoctor.css">
+<link rel="stylesheet" href="./HCD_files/font-awesome.min.css">
+</head>
+<body class="article data-line-1">
+<div id="header">
+<h1>HCD0006 - Technical issue in TSS assurace activity for FCS_CKM.1/SKG Cryptographic key generation (Symmetric Keys)</h1>
+<div class="details">
+<span id="revnumber">version 1,</span>
+<span id="revdate">2024-02-02</span>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph data-line-19">
+<p>Version: 1, Published: 2024-02-02</p>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-21">
+<h2 id="_impacted_documents">Impacted Documents</h2>
+<div class="sectionbody">
+<div class="paragraph data-line-23">
+<p>CPP_HCD_V1.0_supporting_doc</p>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-26">
+<h2 id="_references">References</h2>
+<div class="sectionbody">
+<div class="paragraph data-line-28">
+<p>FCS_CKM.1/SKG Cryptographic Key Generation (Symmetric Keys)</p>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-32">
+<h2 id="_issue_description">Issue Description</h2>
+<div class="sectionbody">
+<div class="paragraph data-line-34">
+<p>The TSS assurance activity does not cover the selection of section 6.3 of NIST SP 800-133 Rev.2 in the FCS_CKM.1/SKG Cryptographic Key Generation (Symmetric Keys) SFR.</p>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-37">
+<h2 id="_resolution">Resolution</h2>
+<div class="sectionbody">
+<div class="paragraph data-line-39">
+<p>Update the TSS assurance activity to cover the generation of symmetric keys by combining one or more keys and other data in accordance with section 6.3 of NIST SP 800-133 Rev.2.</p>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-43">
+<h2 id="_cpp_hcd_v1_0_supporting_doc">CPP_HCD_V1.0_supporting_doc</h2>
+<div class="sectionbody">
+<div class="paragraph data-line-45">
+<p>The SD is updated as follows (yellow highlights for additions, strikethrough for deletions) per section that is being updated:</p>
+</div>
+<div class="paragraph data-line-47">
+<p><strong>2.2.1.1. TSS</strong></p>
+</div>
+<div class="paragraph data-line-49">
+<p>The evaluator shall review the TSS to determine that it describes how the functionality described by
+FCS_RBG_EXT.1 is invoked and how the TOE obtains a symmetric key through direct generation
+from a random bit generator as specified in FCS_RBG_EXT.1 <mark>or by combining one or more symmetric keys and other data</mark>.</p>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-54">
+<h2 id="_tracking">Tracking</h2>
+<div class="sectionbody">
+<div class="paragraph data-line-56">
+<p><a href="https://github.com/HCD-iTC/HCD-IT/issues/18">Issue #18</a></p>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Version 1<br>
+Last updated 2024-02-08 19:31:16 -0800
+</div>
+</div>
+<link rel="stylesheet" href="./HCD_files/github.min.css">
+<script src="./HCD_files/highlight.min.js.download"></script>
+<script>hljs.initHighlighting()</script>
+<script>    links = document.querySelectorAll("a[href]");    for (var i = 0, n = links.length; i < n; i++) {        var href = links[i].getAttribute("href");        if (href.match(/^#/)) {           links[i].setAttribute("href", "javascript:;");           links[i].setAttribute("onclick", "document.location.hash='" + href.replace(/^#/, "") + "';");        }    }</script>
+</body></html>

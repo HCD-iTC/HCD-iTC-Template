@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<!-- saved from url=(0103)file:///C:/Users/brian/AppData/Roaming/Brackets/extensions/data.nerk.asciidoc-preview/tmp/exported.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><!--<base href="file://C:/Users/brian/Documents/GitHub/HCD-iTC-Template/TD/">--><base href=".">
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.7">
+<title>HCD0002 - APE_SPD.1-2 requirements are not met for Threats defined in Section I.3</title>
+<link rel="stylesheet" href="./HCD_files/asciidoctor.css">
+<link rel="stylesheet" href="./HCD_files/font-awesome.min.css">
+</head>
+<body class="article data-line-1">
+<div id="header">
+<h1>HCD0002 - APE_SPD.1-2 requirements are not met for Threats defined in Section I.3</h1>
+<div class="details">
+<span id="revnumber">version 1,</span>
+<span id="revdate">2024-02-06</span>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph data-line-19">
+<p>Version: 1, Published: 2024-02-06</p>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-21">
+<h2 id="_impacted_documents">Impacted Documents</h2>
+<div class="sectionbody">
+<div class="paragraph data-line-23">
+<p>CPP_HCD_V1.0</p>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-26">
+<h2 id="_references">References</h2>
+<div class="sectionbody">
+<div class="paragraph data-line-28">
+<p>Appendix I.3 Threat Definitions</p>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-32">
+<h2 id="_issue_description">Issue Description</h2>
+<div class="sectionbody">
+<div class="paragraph data-line-34">
+<p>HDcPP Section I.3 does not define the following threats in terms of an asset (as defined in I.2) in the threat definition.  CEM v3.1r5 APE_SPD.1.2C - "All threats shall be described in terms of a threat agent, an asset, and an adverse action."</p>
+</div>
+<div class="ulist data-line-36">
+<ul>
+<li class="data-line-36">
+<p>T.TSF_FAILURE.</p>
+</li>
+<li class="data-line-37">
+<p>T.UNAUTHORIZED_UPDATE.</p>
+</li>
+<li class="data-line-38">
+<p>T.WEAK_CRYPTO.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-42">
+<h2 id="_resolution">Resolution</h2>
+<div class="sectionbody">
+<div class="paragraph data-line-44">
+<p>Update Threat Definitions.</p>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-49">
+<h2 id="_cpp_hcd_v1_0">cPP_HCD_V1.0</h2>
+<div class="sectionbody">
+<div class="paragraph data-line-51">
+<p>The cPP is updated as follows (yellow highlights for additions, strikethrough for deletions) per section that is being updated:</p>
+</div>
+<div class="paragraph data-line-53">
+<p><strong>I.3 Threat Definitions</strong></p>
+</div>
+<div class="paragraph data-line-55">
+<p>Threats are defined by a threat agent that performs an action resulting in an outcome that has the potential to violate TOE security policies.</p>
+</div>
+<div class="paragraph data-line-57">
+<p><em>Table 15. Threats</em></p>
+</div>
+<table class="tableblock frame-all grid-all stretch data-line-59">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Designation</th>
+<th class="tableblock halign-left valign-top">Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>T.UNAUTHORIZED_ACCESS</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An attacker may access (read, modify, or delete) User Document Data or change (modify or delete) User Job Data in the TOE through one of the TOE’s interfaces or the physical Nonvolatile Storage component.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>T.TSF_COMPROMISE</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An attacker may gain Unauthorized Access to TSF Data in the TOE through one of the TOE’s interfaces or the physical Nonvolatile Storage component.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>T.TSF_FAILURE</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A malfunction of the TSF may <mark>compromise the device</mark> <del>cause loss of</del> security <mark>status</mark> if the TOE is permitted to operate.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>T.UNAUTHORIZED_UPDATE</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An attacker may <del>cause the installation of</del> <mark>install</mark> unauthorized firmware/software on the TOE <mark>to modify the Device security status</mark>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>T.NET_COMPROMISE</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An attacker may access data in transit or otherwise compromise the security of the TOE by monitoring or manipulating network communication.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>T.WEAK_CRYPTO</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An attacker may exploit poorly chosen cryptographic algorithms, random bit generators, ciphers or key sizes <mark>to access (read, modify, or delete) TSF and User data</mark>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1 data-line-84">
+<h2 id="_tracking">Tracking</h2>
+<div class="sectionbody">
+<div class="paragraph data-line-86">
+<p><a href="https://github.com/HCD-iTC/HCD-IT/issues/12">Issue #12</a></p>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Version 1<br>
+Last updated 2024-02-08 19:28:00 -0800
+</div>
+</div>
+<link rel="stylesheet" href="./HCD_files/github.min.css">
+<script src="./HCD_files/highlight.min.js.download"></script>
+<script>hljs.initHighlighting()</script>
+<script>    links = document.querySelectorAll("a[href]");    for (var i = 0, n = links.length; i < n; i++) {        var href = links[i].getAttribute("href");        if (href.match(/^#/)) {           links[i].setAttribute("href", "javascript:;");           links[i].setAttribute("onclick", "document.location.hash='" + href.replace(/^#/, "") + "';");        }    }</script>
+</body></html>

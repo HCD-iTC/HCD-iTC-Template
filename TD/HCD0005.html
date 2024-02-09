@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<!-- saved from url=(0103)file:///C:/Users/brian/AppData/Roaming/Brackets/extensions/data.nerk.asciidoc-preview/tmp/exported.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><!--<base href="file://C:/Users/brian/Documents/GitHub/HCD-iTC-Template/TD/">--><base href=".">
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.7">
+<title>HCD0005 - CCMB review</title>
+<link rel="stylesheet" href="./HCD_files/asciidoctor.css">
+<link rel="stylesheet" href="./HCD_files/font-awesome.min.css">
+</head>
+<body class="article data-line-1">
+<div id="header">
+<h1>HCD0005 - CCMB review</h1>
+<div class="details">
+<span id="revnumber">version 1,</span>
+<span id="revdate">2024-02-02</span>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph data-line-19">
+<p>Version: 1, Published: 2024-02-02</p>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-21">
+<h2 id="_impacted_documents">Impacted Documents</h2>
+<div class="sectionbody">
+<div class="paragraph data-line-23">
+<p>CPP_HCD_V1.0_supporting_doc</p>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-26">
+<h2 id="_references">References</h2>
+<div class="sectionbody">
+<div class="paragraph data-line-28">
+<p>FTP_TRP.1/Admin Trusted path (for Administrators)</p>
+</div>
+<div class="paragraph data-line-30">
+<p>FCS_SSHC_EXT.1.2</p>
+</div>
+<div class="paragraph data-line-32">
+<p>A.3. Reporting</p>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-36">
+<h2 id="_issue_description">Issue Description</h2>
+<div class="sectionbody">
+<div class="ulist data-line-38">
+<ul>
+<li class="data-line-38">
+<p>In section 3.4.1.2, the second paragraph is not relevant to FTP_TRP.1/Admin Trusted path (for Administrators).</p>
+</li>
+<li class="data-line-39">
+<p>In section 5.2.6.3.1, the last paragrah is metadata that should not be present.</p>
+</li>
+<li class="data-line-40">
+<p>In section A.3, the first bullet point mentions that flaw identifiers returned from searches of public sources should be listed in public-facing reports. These raw search results are typically low quality information that may not be helpful to reproduce and thus should not be included in public-facing reports.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-44">
+<h2 id="_resolution">Resolution</h2>
+<div class="sectionbody">
+<div class="ulist data-line-46">
+<ul>
+<li class="data-line-46">
+<p>In section 3.4.1.2, delete the second paragraph.</p>
+</li>
+<li class="data-line-47">
+<p>In section 5.2.6.3.1, delete the last paragrah.</p>
+</li>
+<li class="data-line-48">
+<p>In section A.3, replace the statement in the first bullet point with a statement to list in the public-facing reports the terms and sources that were used for searching public sources following the instructions in section A.1.1, “Type 1 Hypotheses - Public-Vulnerability-based”.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-51">
+<h2 id="_cpp_hcd_v1_0_supporting_doc">CPP_HCD_V1.0_supporting_doc</h2>
+<div class="sectionbody">
+<div class="paragraph data-line-53">
+<p>The SD is updated as follows (yellow highlights for additions, strikethrough for deletions) per section that is being updated:</p>
+</div>
+<div class="paragraph data-line-55">
+<p><strong>3.4.1.2. Guidance Documentation</strong></p>
+</div>
+<div class="paragraph data-line-57">
+<p>The evaluator shall confirm that the operational guidance contains instructions for establishing the
+remote user sessions for each supported method.</p>
+</div>
+<div class="paragraph data-line-60">
+<p><del>The evaluator shall check to ensure that the operational guidance describes the type(s) of overwrite
+(e.g., single overwrite with zeros) of user document data that the TOE performs.</del></p>
+</div>
+<div class="paragraph data-line-63">
+<p><strong>5.2.6.3.1. FCS_SSHC_EXT.1.2</strong></p>
+</div>
+<div class="paragraph data-line-65">
+<p>Test objective: The purpose of these tests is to check the authentication of the client to the server
+using each claimed authentication method.</p>
+</div>
+<div class="paragraph data-line-68">
+<p>Test 1: For each claimed public-key authentication method, the evaluator shall configure the TOE to
+present a public key corresponding to that authentication method (e.g., 2048-bit RSA key when
+using ssh-rsa public key). The evaluator shall establish sufficient separate SSH connections with an
+appropriately configured remote non-TOE SSH server to demonstrate the use of all claimed public
+key algorithms. It is sufficient to observe the successful completion of the SSH Authentication
+Protocol to satisfy the intent of this test.</p>
+</div>
+<div class="paragraph data-line-75">
+<p>Test 2: [Conditional] If password-based authentication method has been selected in the
+FCS_SSHC_EXT.1.2, then following the guidance documentation the evaluator shall configure the
+TOE to perform password-based authentication with a remote SSH server to demonstrate that the
+TOE can successfully authenticate using a password as an authentication method.</p>
+</div>
+<div class="paragraph data-line-80">
+<p><del>Now the HCD iTC has taken the text of the FCS_SSHC_EXT SFR from the ND SD v2.2 completely
+verbatim to form the FCS_SSHC_EXT SD text in the latest version of the HCD SD. Therefore, these AA
+changes should apply equally to the same SSHC AAs in the HCD SD as they do in the ND SD given
+that the AA text in both SDs are the same. As a result, the TSS, Guidance and Test changes for
+FCS_SSHC_EXT.1.2 and FCS_SSHC_EXT.1.5 should be made in Section 5.2.5 in the HCD SD.</del></p>
+</div>
+<div class="paragraph data-line-86">
+<p><strong>A.3. Reporting</strong></p>
+</div>
+<div class="paragraph data-line-88">
+<p>The evaluators shall produce two reports on the testing effort; one that is public-facing (that is,
+included in the non-proprietary evaluation report, which is a subset of the Evaluation Technical
+Report (ETR)), and the complete ETR that is delivered to the overseeing CB.</p>
+</div>
+<div class="paragraph data-line-92">
+<p>The public-facing report contains:</p>
+</div>
+<div class="ulist data-line-94">
+<ul>
+<li class="data-line-94">
+<p><del>The flaw identifiers returned when the procedures for searching public sources were followed according to instructions in the Supporting Document per Section A.1.1, “Type 1 Hypotheses -
+Public-Vulnerability-based”;</del></p>
+</li>
+<li class="data-line-97">
+<p><mark>The terms and sources used when the procedures for searching public sources were followed according to instructions in the Supporting Document per Section A.1.1, “Type 1 Hypotheses -
+Public-Vulnerability-based”;</mark></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-101">
+<h2 id="_tracking">Tracking</h2>
+<div class="sectionbody">
+<div class="paragraph data-line-103">
+<p><a href="https://github.com/HCD-iTC/HCD-IT/issues/16">Issue #16</a></p>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Version 1<br>
+Last updated 2024-02-08 19:30:31 -0800
+</div>
+</div>
+<link rel="stylesheet" href="./HCD_files/github.min.css">
+<script src="./HCD_files/highlight.min.js.download"></script>
+<script>hljs.initHighlighting()</script>
+<script>    links = document.querySelectorAll("a[href]");    for (var i = 0, n = links.length; i < n; i++) {        var href = links[i].getAttribute("href");        if (href.match(/^#/)) {           links[i].setAttribute("href", "javascript:;");           links[i].setAttribute("onclick", "document.location.hash='" + href.replace(/^#/, "") + "';");        }    }</script>
+</body></html>

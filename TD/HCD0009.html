@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<!-- saved from url=(0103)file:///C:/Users/brian/AppData/Roaming/Brackets/extensions/data.nerk.asciidoc-preview/tmp/exported.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><!--<base href="file://C:/Users/brian/Documents/GitHub/HCD-iTC-Template/TD/">--><base href=".">
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.7">
+<title>HCD0009 - Clarification on Tests assurance activity for FPT_TST_EXT.1 TSF testing</title>
+<link rel="stylesheet" href="./HCD_files/asciidoctor.css">
+<link rel="stylesheet" href="./HCD_files/font-awesome.min.css">
+</head>
+<body class="article data-line-1">
+<div id="header">
+<h1>HCD0009 - Clarification on Tests assurance activity for FPT_TST_EXT.1 TSF testing</h1>
+<div class="details">
+<span id="revnumber">version 1,</span>
+<span id="revdate">2024-02-05</span>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph data-line-19">
+<p>Version: 1, Published: 2024-02-05</p>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-21">
+<h2 id="_impacted_documents">Impacted Documents</h2>
+<div class="sectionbody">
+<div class="ulist data-line-23">
+<ul>
+<li class="data-line-23">
+<p>CPP_HCD_V1.0,</p>
+</li>
+<li class="data-line-24">
+<p>CPP_HCD_V1.0_supporting_doc</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-27">
+<h2 id="_references">References</h2>
+<div class="sectionbody">
+<div class="paragraph data-line-29">
+<p>FPT_TST_EXT.1 TSF testing</p>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-33">
+<h2 id="_issue_description">Issue Description</h2>
+<div class="sectionbody">
+<div class="paragraph data-line-35">
+<p>The Tests assurance activity for FPT_TST_EXT.1 TSF testing lacks clarification and context to avoid overlap with the Tests assurance activity for FPT_SBT_EXT.1 Secure Boot and limit the scope to verifying the execution of self-tests.</p>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-38">
+<h2 id="_resolution">Resolution</h2>
+<div class="sectionbody">
+<div class="paragraph data-line-40">
+<p>Update Tests assurance activity for FPT_TST_EXT.1 TSF testing to avoid overlap with the Tests assurance activity for FPT_SBT_EXT.1 Secure Boot and limit the scope to verifying the execution of self-tests.</p>
+</div>
+<div class="paragraph data-line-42">
+<p>Update FPT_TST_EXT.1.1 Application Note to make consistent.</p>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-45">
+<h2 id="_cpp_hcd_v1_0_supporting_doc">CPP_HCD_V1.0_supporting_doc</h2>
+<div class="sectionbody">
+<div class="paragraph data-line-47">
+<p>The SD is updated as follows (yellow highlights for additions, strikethrough for deletions) per section that is being updated:</p>
+</div>
+<div class="paragraph data-line-49">
+<p><strong>2.6.4.3. Tests</strong></p>
+</div>
+<div class="paragraph data-line-51">
+<p><del>The evaluator with assistance from the vendor (if needed) shall confirm that when an error in the self-test results is induced into the TOE, the TOE no longer enters into operational mode. For example, DRGB self-test is a self-test function.</del></p>
+</div>
+<div class="paragraph data-line-53">
+<p><mark>Although formal compliance is not mandated, the self-tests performed should aim for a level of confidence comparable to:</mark></p>
+</div>
+<div class="ulist data-line-55">
+<ul>
+<li class="data-line-55">
+<p><mark>[FIPS 140-2], chap. 4.9.1, Cryptographic algorithm test for the verification of the correct operation of cryptographic functions.
+Alternatively, national requirements of any CCRA member state for the security evaluation of cryptographic functions should be considered as appropriate.</mark></p>
+</li>
+</ul>
+</div>
+<div class="paragraph data-line-58">
+<p><mark>The evaluator shall either verify that the self-tests described above are carried out during initial start-up or that the developer has justified any deviation from this.</mark></p>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-60">
+<h2 id="_cpp_hcd_v1_0">CPP_HCD_V1.0</h2>
+<div class="sectionbody">
+<div class="paragraph data-line-62">
+<p>The cPP is updated as follows (yellow highlights for additions, strikethrough for deletions) per section that is being updated:</p>
+</div>
+<div class="paragraph data-line-64">
+<p><strong>5.8.4. Application Note</strong></p>
+</div>
+<div class="paragraph data-line-66">
+<p>Power-on self-tests may take place before the TSF is operational<del>, in which case this SFR can be satisfied by verifying the TSF image by digital signature as specified in FCS_COP.1/SigGen, or by hash specified in FCS_COP.1/Hash</del>.</p>
+</div>
+<div class="paragraph data-line-68">
+<p><del>Self-test is intended to detect malfunctions which may compromise the TSF. Since the integrity of the firmware/software is guaranteed by FPT_SBT_EXT, the function for FPT_TST_EXT should address the malfunction detection like DRBG self-test defined in ISO/IEC 18031:2011.</del></p>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-72">
+<h2 id="_tracking">Tracking</h2>
+<div class="sectionbody">
+<div class="paragraph data-line-74">
+<p><a href="https://github.com/HCD-iTC/HCD-IT/issues/22">Issue #22</a></p>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Version 1<br>
+Last updated 2024-02-08 19:32:59 -0800
+</div>
+</div>
+<link rel="stylesheet" href="./HCD_files/github.min.css">
+<script src="./HCD_files/highlight.min.js.download"></script>
+<script>hljs.initHighlighting()</script>
+<script>    links = document.querySelectorAll("a[href]");    for (var i = 0, n = links.length; i < n; i++) {        var href = links[i].getAttribute("href");        if (href.match(/^#/)) {           links[i].setAttribute("href", "javascript:;");           links[i].setAttribute("onclick", "document.location.hash='" + href.replace(/^#/, "") + "';");        }    }</script>
+</body></html>

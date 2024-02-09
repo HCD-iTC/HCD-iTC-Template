@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<!-- saved from url=(0103)file:///C:/Users/brian/AppData/Roaming/Brackets/extensions/data.nerk.asciidoc-preview/tmp/exported.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><!--<base href="file://C:/Users/brian/Documents/GitHub/HCD-iTC-Template/TD/">--><base href=".">
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.7">
+<title>HCD0008 - Clarification on applicability of tests 3 and 4 for FDP_DSK_EXT.1 Protection of Data on Disk</title>
+<link rel="stylesheet" href="./HCD_files/asciidoctor.css">
+<link rel="stylesheet" href="./HCD_files/font-awesome.min.css">
+</head>
+<body class="article data-line-1">
+<div id="header">
+<h1>HCD0008 - Clarification on applicability of tests 3 and 4 for FDP_DSK_EXT.1 Protection of Data on Disk</h1>
+<div class="details">
+<span id="revnumber">version 1,</span>
+<span id="revdate">2024-02-05</span>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph data-line-19">
+<p>Version: 1, Published: 2024-02-05</p>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-21">
+<h2 id="_impacted_documents">Impacted Documents</h2>
+<div class="sectionbody">
+<div class="paragraph data-line-23">
+<p>CPP_HCD_V1.0_supporting_doc</p>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-26">
+<h2 id="_references">References</h2>
+<div class="sectionbody">
+<div class="paragraph data-line-28">
+<p>FDP_DSK_EXT.1 Protection of Data on Disk</p>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-32">
+<h2 id="_issue_description">Issue Description</h2>
+<div class="sectionbody">
+<div class="paragraph data-line-34">
+<p>Tests 3 and 4 for FDP_DSK_EXT.1 Protection of Data on Disk are only applicable when the ST author claims FPT_WIPE_EXT.1 Data Wiping.</p>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-37">
+<h2 id="_resolution">Resolution</h2>
+<div class="sectionbody">
+<div class="paragraph data-line-39">
+<p>Update tests 3 and 4 for FDP_DSK_EXT.1 Protection of Data on Disk to clarify the tests are only applicable when the ST author claims FPT_WIPE_EXT.1 Data Wiping.</p>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-43">
+<h2 id="_cpp_hcd_v1_0_supporting_doc">CPP_HCD_V1.0_supporting_doc</h2>
+<div class="sectionbody">
+<div class="paragraph data-line-45">
+<p>The SD is updated as follows (yellow highlights for additions, strikethrough for deletions) per section that is being updated:</p>
+</div>
+<div class="paragraph data-line-47">
+<p><strong>3.1.3.4. Tests</strong></p>
+</div>
+<div class="paragraph data-line-49">
+<p>The evaluator shall perform the following tests:</p>
+</div>
+<div class="paragraph data-line-51">
+<p>Test 1. Write data to Storage device: Perform writing to the storage device with operating TSFI
+which enforce write process of User documents and Confidential TSF data.</p>
+</div>
+<div class="paragraph data-line-54">
+<p>Test 2. Confirm that written data are encrypted: Verify there are no plaintext data present in the
+encrypted range written by Test 1; and, verify that the data can be decrypted by proper key and key
+material.</p>
+</div>
+<div class="paragraph data-line-58">
+<p>All TSFIs for writing User Document Data and Confidential TSF data should be tested by above Test
+1 and Test 2.</p>
+</div>
+<div class="paragraph data-line-61">
+<p>Test 3. <del>(If data other than D.USER.DOC and D.TSF.CONF are encrypted,) write</del> <mark>[Conditional: If the ST author claims FPT_WIPE_EXT.1 with cryptographic erase, and if data other than D.USER.DOC and D.TSF.CONF are encrypted] Write</mark> the data to the storage
+device with operating TSFI which enforce write process of the data.</p>
+</div>
+<div class="paragraph data-line-64">
+<p>Test 4. <del>(If data other than D.USER.DOC and D.TSF.CONF are encrypted,) verify</del> <mark>[Conditional: If the ST author claims FPT_WIPE_EXT.1 with cryptographic erase, and if data other than D.USER.DOC and D.TSF.CONF are encrypted] Verify</mark> that the data written in Test 3 is not in plaintext form; and verify that the data can be decrypted by proper key and key
+material.</p>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-68">
+<h2 id="_tracking">Tracking</h2>
+<div class="sectionbody">
+<div class="paragraph data-line-70">
+<p><a href="https://github.com/HCD-iTC/HCD-IT/issues/21">Issue #21</a></p>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Version 1<br>
+Last updated 2024-02-08 19:32:29 -0800
+</div>
+</div>
+<link rel="stylesheet" href="./HCD_files/github.min.css">
+<script src="./HCD_files/highlight.min.js.download"></script>
+<script>hljs.initHighlighting()</script>
+<script>    links = document.querySelectorAll("a[href]");    for (var i = 0, n = links.length; i < n; i++) {        var href = links[i].getAttribute("href");        if (href.match(/^#/)) {           links[i].setAttribute("href", "javascript:;");           links[i].setAttribute("onclick", "document.location.hash='" + href.replace(/^#/, "") + "';");        }    }</script>
+</body></html>
