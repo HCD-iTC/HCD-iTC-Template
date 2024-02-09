@@ -66,7 +66,7 @@ _Table 15. Threats_
 |An attacker may gain Unauthorized Access to TSF Data in the TOE through one of the TOE’s interfaces or the physical Nonvolatile Storage component.
 
 |*T.TSF_FAILURE*
-|A malfunction of the TSF may #compromise the device# +++<del>cause loss of</del>+++ security [big red yellow-background]status if the TOE is permitted to operate.
+|A malfunction of the TSF may #compromise the device# +++<del>cause loss of</del>+++ security +++<font color="green">status</font>+++ if the TOE is permitted to operate.
 
 |*T.UNAUTHORIZED_UPDATE*
 |An attacker may +++<del>cause the installation of</del>+++ #install# unauthorized firmware/software on the TOE #to modify the Device security status#.
