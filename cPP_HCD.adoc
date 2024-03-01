@@ -42,6 +42,7 @@ This collaborative Protection Profile (cPP) was developed by the {iTC-longname} 
 | 0.13 | 25 July 2022 | Final Public Draft
 | 1.0 | 31 October 2022 | Initial release for use
 | 1.0e-DRAFT | 17 January 2024 | DRAFT Release
+| 1.0e-DRAFT2 | 29 February 2024 | DRAFT 2 Release
 |===
 
 toc::[]
@@ -849,7 +850,7 @@ _If the TOE acts as a receiver in the key establishment schemes and is not confi
 _Symmetric keys may be used to generate keys along the key chain._
 
 
-==== FCS_CKM.2 Cryptographic Key Establishment (Refinement)
+==== FCS_CKM.2 Cryptographic Key Establishment
 
 ======
 (for O.COMMS_PROTECTION, O.STRONG_CRYPTO) +
@@ -861,14 +862,14 @@ _Symmetric keys may be used to generate keys along the key chain._
 	FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction
 ======
 
-*FCS_CKM.2.1 Refinement* The TSF shall *perform* cryptographic *key establishment* in accordance with a specified cryptographic key *establishment* method: [selection:
+*FCS_CKM.2.1 Refinement* The TSF shall *perform* cryptographic *key establishment* in accordance with a specified cryptographic key *establishment* method: [*selection:*
 
-•	_RSA-based key establishment schemes that meet the following: RSAES-PKCS1-v1_5 as specified in Section 7.2 of RFC 8017, “Public-Key Cryptography Standards (PKCS) #1: RSA Cryptography Specifications Version 2.2”;_
-•	_Elliptic curve-based key establishment schemes that meet the following: NIST Special Publication 800-56A Revision 3, “Recommendation for Pair-Wise Key Establishment Schemes Using Discrete Logarithm Cryptography”;_
-•	_Finite field-based key establishment schemes that meet the following: NIST Special Publication 800-56A Revision 3, “Recommendation for Pair-Wise Key Establishment Schemes Using Discrete Logarithm Cryptography”;_
-•	_FFC Schemes using “safe-prime” groups that meet the following: ‘NIST Special Publication 800-56A Revision 3, “Recommendation for Pair-Wise Key Establishment Schemes Using Discrete Logarithm Cryptography” and [selection: RFC 3526, RFC 7919]._
+•	*_RSA-based key establishment schemes that meet the following: RSAES-PKCS1-v1_5 as specified in Section 7.2 of RFC 8017, “Public-Key Cryptography Standards (PKCS) #1: RSA Cryptography Specifications Version 2.2”;_*
+•	*_Elliptic curve-based key establishment schemes that meet the following: NIST Special Publication 800-56A Revision 3, “Recommendation for Pair-Wise Key Establishment Schemes Using Discrete Logarithm Cryptography”;_*
+•	*_Finite field-based key establishment schemes that meet the following: NIST Special Publication 800-56A Revision 3, “Recommendation for Pair-Wise Key Establishment Schemes Using Discrete Logarithm Cryptography”;_*
+•	*_FFC Schemes using “safe-prime” groups that meet the following: ‘NIST Special Publication 800-56A Revision 3, “Recommendation for Pair-Wise Key Establishment Schemes Using Discrete Logarithm Cryptography” and [selection: RFC 3526, RFC 7919]._*
 
-] +++<del>that meets the following: [assignment: list of standards]</del>+++.
+] *+++<del>that meets the following: [assignment: list of standards]</del>+++*.
 
 *_Application Note:_*
 
@@ -928,12 +929,12 @@ _Keys, including intermediate keys and key material that are no longer needed ar
 
 *FCS_CKM.4.1 Refinement* The TSF shall destroy cryptographic keys in accordance with a specified cryptographic key destruction method [*selection:*
 
-* _For volatile memory, the destruction shall be executed by a [selection: single overwrite consisting of [selection: a pseudo-random pattern using the TSF’s RBG, zeroes, ones, a new value of a key, [assignment: any value that does not contain any CSP]], removal of power to the memory, destruction of reference to the key directly followed by a request for garbage collection or memory management_];
+* *_For volatile memory, the destruction shall be executed by a [selection: single overwrite consisting of [selection: a pseudo-random pattern using the TSF’s RBG, zeroes, ones, a new value of a key, [assignment: any value that does not contain any CSP]], removal of power to the memory, destruction of reference to the key directly followed by a request for garbage collection or memory management_*];
 
-* _For non-volatile storage that consists of the invocation of an interface provided by the underlying platform that [selection:_
+* *_For non-volatile storage that consists of the invocation of an interface provided by the underlying platform that [selection:_*
 
-** _logically addresses the storage location of the key and performs a [selection: [selection: single, [assignment: ST author defined multi-pass]] overwrite consisting of [selection: zeroes, ones, pseudo-random pattern, a new value of a key of the same size, [assignment: any value that does not contain any CSP]], block erase]_;
-** _instructs the underlying platform to destroy the abstraction that represents the key_
+** *_logically addresses the storage location of the key and performs a [selection: [selection: single, [assignment: ST author defined multi-pass]] overwrite consisting of [selection: zeroes, ones, pseudo-random pattern, a new value of a key of the same size, [assignment: any value that does not contain any CSP]], block erase]_;*
+** *_instructs the underlying platform to destroy the abstraction that represents the key_*
 
 ] that meets the following: [*no standard*].
 
@@ -1476,7 +1477,7 @@ _User identification may be performed internally by the TOE or externally by an 
 
 *FMT_MSA.3.1 Refinement:* The TSF shall enforce the *User Data Access Control SFP* to provide [selection, choose one of: _restrictive, permissive, [assignment: other property]_] default values for security attributes that are used to enforce the SFP.
 
-*FMT_MSA.3.2:* The TSF shall allow the *[selection: _U.ADMIN, no role_]* to specify alternative initial values to override the default values when an object or information is created.
+*FMT_MSA.3.2 Refinement:* The TSF shall allow the *[selection: _U.ADMIN, no role_]* to specify alternative initial values to override the default values when an object or information is created.
 
 *_Application Note:_*
 
@@ -1732,7 +1733,7 @@ There are no class FRU requirements.
 
 *FTP_ITC.1.2 Refinement:* The TSF shall permit [selection: _the TSF,_ *_or the authorized IT entities_*] to initiate communication via the trusted channel.
 
-*FTP_ITC.1.3 Refinement:* The TSF shall initiate communication via the trusted channel for *remote audit* [assignment: and *_list of services for which the TSF is able to initiate communications_*].
+*FTP_ITC.1.3 Refinement:* The TSF shall initiate communication via the trusted channel for *remote audit* [assignment: *_and list of services for which the TSF is able to initiate communications_*].
 
 *_Application Note:_*
 
@@ -3032,7 +3033,7 @@ Although the functionality in FIA_X509_EXT.1/Rev and FIA_X509_EXT.2 is always re
 	FIA_X509_EXT.2 X.509 Certificate Authentication
 ======
 
-*FIA_X509_EXT.1.1/Rev* The TSF shall validate certificates in accordance with the following rules:
+*FIA_X509_EXT.1.1/Rev Refinement* The TSF shall validate certificates in accordance with the following rules:
 
 •	RFC 5280 certificate validation and certification path validation *supporting a minimum path length of three certificates.*
 •	The certification path must terminate with a trusted CA certificate designated as a trust anchor.
@@ -3275,7 +3276,7 @@ _FDP_FXS.EXT.1 is required if fax-net separation is performed by the TSF._
 
 *FTP_TRP.1.1/NonAdmin Refinement:* The TSF shall *use [selection, choose at least one of: _IPsec, SSH, TLS, DTLS, TLS/HTTPS_] to provide a trusted* communication path between itself and [remote] users that is logically distinct from other communication paths and provides assured identification of its end points and protection of the communicated data from [disclosure *and detection of modification of the communicated data*].
 
-*FTP_TRP.1.2/NonAdmin Refinement:* The TSF shall permit [selection: _the TSF, remote users_] to initiate communication via the trusted path
+*FTP_TRP.1.2/NonAdmin Refinement:* The TSF shall permit [selection: _the TSF, *+++<del>local users,</del>+++* remote users_] to initiate communication via the trusted path
 
 *FTP_TRP.1.3/NonAdmin Refinement:* The TSF shall require the use of the trusted path for [*initial user authentication and all remote user actions*].
 
