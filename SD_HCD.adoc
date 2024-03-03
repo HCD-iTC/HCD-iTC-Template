@@ -1,4 +1,4 @@
-= Supporting Document Mandatory Technical Document: Evaluation Activities for collaborative Protection Profile for Hardcopy Devices [DRAFT]
+= Supporting Document Mandatory Technical Document: Evaluation Activities for collaborative Protection Profile for Hardcopy Devices [DRAFT2]
 :showtitle:
 :doctype: book
 :toc: macro
@@ -7,8 +7,8 @@
 :table-caption: Table
 :imagesdir: images
 :icons: font
-:revnumber: 1.0e-DRAFT
-:revdate: 06 February 2024
+:revnumber: 1.0e-DRAFT2
+:revdate: 03 March 2024
 :xrefstyle: full
 
 :iTC-longname: Hardcopy Devices
@@ -18,8 +18,8 @@
 :iTC-GitHub: https://github.com/HCD-iTC
 :pp-name: collaborative Protection Profile for Hardcopy Devices
 :pp-shortname: HCDcPP
-:pp-version: 1.0e-DRAFT
-:pp-date: 17 January 2024
+:pp-version: 1.0e-DRAFT2
+:pp-date: 29 February 2024
 
 == Foreword
 
@@ -43,6 +43,7 @@ Hardcopy Device International Technical Community (HCD-iTC)
 | 0.99 | 29 July 2022 | Final Public Review Draft
 | 1.0  | 31 October 2022 | Initial release for use
 | 1.0e-DRAFT | 06 February 2024 | DRAFT release
+| 1.0e-DRAFT2 | 03 March 2024 | DRAFT 2 release 
 |===
 
 === General Purpose
@@ -453,7 +454,7 @@ in the Security Target supported by the TOE for data encryption/decryption.
 
 ===== Tests
 
-Note: The tests detailed below are not required to be performed for cryptographic functions implemented in the Root of Trust for Secure Boot (FPT_SBT_EXT.1).
+Note: Testing of cryptographic functions implemented in the Root of Trust for Secure Boot (FPT_SBT_EXT.1) may not be feasible and independent testing may not be available. In this situation, contact the CC Scheme.
 
 *AES-CBC Known Answer Tests*
 
@@ -1273,7 +1274,7 @@ The evaluator shall produce test documentation for test cases of FCS_COP.1/SigGe
 
 Each section below contains tests the evaluators shall perform for each selected digital signature scheme. Based on the assignments and selections in the requirement, the evaluators choose the specific activities that correspond to those selections.
 
-Note: The tests detailed below are not required to be performed for cryptographic functions implemented in the Root of Trust for Secure Boot (FPT_SBT_EXT.1).
+Note: Testing of cryptographic functions implemented in the Root of Trust for Secure Boot (FPT_SBT_EXT.1) may not be feasible and independent testing may not be available. In this situation, contact the CC Scheme.
 
 *ECDSA Algorithm Tests*
 
@@ -1372,7 +1373,7 @@ for the bit-oriented vs. the byte-oriented test mode.
 The evaluator shall perform all of the following tests for each hash algorithm
 implemented by the TSF and used to satisfy the requirements of this cPP.
 
-Note: The tests detailed below are not required to be performed for cryptographic functions implemented in the Root of Trust for Secure Boot (FPT_SBT_EXT.1).
+Note: Testing of cryptographic functions implemented in the Root of Trust for Secure Boot (FPT_SBT_EXT.1) may not be feasible and independent testing may not be available. In this situation, contact the CC Scheme.
 
 *Short Messages Test - Bit-oriented Mode*
 
@@ -2569,7 +2570,7 @@ If multiple encryption modes are supported, the evaluator examines the guidance 
 
 The following tests are conditional based upon the selections made in the SFR.
 
-Note: The tests detailed below are not required to be performed for cryptographic functions implemented in the Root of Trust for Secure Boot (FPT_SBT_EXT.1).
+Note: Testing of cryptographic functions implemented in the Root of Trust for Secure Boot (FPT_SBT_EXT.1) may not be feasible and independent testing may not be available. In this situation, contact the CC Scheme.
 
 *AES-CBC Tests*
 
@@ -3992,7 +3993,7 @@ in the Security Target supported by the TOE for keyed hash function.
 
 ===== Tests
 
-Note: The tests detailed below are not required to be performed for cryptographic functions implemented in the Root of Trust for Secure Boot (FPT_SBT_EXT.1).
+Note: Testing of cryptographic functions implemented in the Root of Trust for Secure Boot (FPT_SBT_EXT.1) may not be feasible and independent testing may not be available. In this situation, contact the CC Scheme.
 
 For each of the supported parameter sets, the evaluator shall compose 15 sets
 of test data. Each set shall consist of a key and message data. The evaluator
@@ -4135,7 +4136,7 @@ There are no KMD evaluation activities for this SFR.
 
 ===== Tests
 
-Note: The tests detailed below are not required to be performed for cryptographic functions implemented in the Root of Trust for Secure Boot (FPT_SBT_EXT.1).
+Note: Testing of cryptographic functions implemented in the Root of Trust for Secure Boot (FPT_SBT_EXT.1) may not be feasible and independent testing may not be available. In this situation, contact the CC Scheme.
 
 If HMAC was selected:
 For each of the supported parameter sets, the evaluator shall compose 15 sets of test data. Each set shall consist of a key and message data. The evaluator shall have the TSF generate HMAC tags for these sets of test data. The resulting MAC tags shall be compared to the result of generating HMAC tags with the same key using a known good implementation.
