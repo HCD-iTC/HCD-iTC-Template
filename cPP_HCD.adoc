@@ -1,4 +1,4 @@
-= collaborative Protection Profile for Hardcopy Devices [DRAFT]
+= collaborative Protection Profile for Hardcopy Devices
 :showtitle:
 :doc type:book
 :toc: macro
@@ -7,8 +7,8 @@
 :sectnumlevels: 7
 :imagesdir: images
 :icons: font
-:revnumber: 1.0e-DRAFT2
-:revdate: 29 February 2024
+:revnumber: 1.0e
+:revdate: 4 March 2024
 
 :iTC-longname: Hardcopy Devices
 :iTC-shortname: HCD-iTC
@@ -41,8 +41,7 @@ This collaborative Protection Profile (cPP) was developed by the {iTC-longname} 
 | 0.11 | 14 December 2021 | Public Draft 2
 | 0.13 | 25 July 2022 | Final Public Draft
 | 1.0 | 31 October 2022 | Initial release for use
-| 1.0e-DRAFT | 17 January 2024 | DRAFT Release
-| 1.0e-DRAFT2 | 29 February 2024 | DRAFT 2 Release
+| 1.0e | 4 March 2024 | Errata version
 |===
 
 toc::[]
