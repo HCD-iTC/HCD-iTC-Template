@@ -1,4 +1,4 @@
-= Supporting Document Mandatory Technical Document: Evaluation Activities for collaborative Protection Profile for Hardcopy Devices [DRAFT2]
+= Supporting Document Mandatory Technical Document: Evaluation Activities for collaborative Protection Profile for Hardcopy Devices
 :showtitle:
 :doctype: book
 :toc: macro
@@ -7,8 +7,8 @@
 :table-caption: Table
 :imagesdir: images
 :icons: font
-:revnumber: 1.0e-DRAFT2
-:revdate: 03 March 2024
+:revnumber: 1.0e
+:revdate: 4 March 2024
 :xrefstyle: full
 
 :iTC-longname: Hardcopy Devices
@@ -18,8 +18,8 @@
 :iTC-GitHub: https://github.com/HCD-iTC
 :pp-name: collaborative Protection Profile for Hardcopy Devices
 :pp-shortname: HCDcPP
-:pp-version: 1.0e-DRAFT2
-:pp-date: 29 February 2024
+:pp-version: 1.0e
+:pp-date: 4 March 2024
 
 == Foreword
 
@@ -42,8 +42,7 @@ Hardcopy Device International Technical Community (HCD-iTC)
 | 0.98 | 24 February 2022 | Public Review Draft 2
 | 0.99 | 29 July 2022 | Final Public Review Draft
 | 1.0  | 31 October 2022 | Initial release for use
-| 1.0e-DRAFT | 06 February 2024 | DRAFT release
-| 1.0e-DRAFT2 | 03 March 2024 | DRAFT 2 release 
+| 1.0e | 4 March 2024 | Errata version. 
 |===
 
 === General Purpose
@@ -2877,8 +2876,8 @@ Test that the implementation detects invalid ICV2 values by encrypting any plain
 Generate one ciphertext using algorithm KWP-AE with substring `[len(P)/8]`~32~ of S replaced by each of the following 32-bit values, where `len(P)` is the length of P in bits and `[]`~32~ denotes representation of an integer in 32 bits:
 
 ∙ `[0]`~32~ +
-∙ `[len(P)/8 – 8]`~32~ +
-∙ `[len(P)/8 + 8]`~32~ +
+∙ `[len(P)/8--8]`~32~ +
+∙ `[len(P)/8+8]`~32~ +
 ∙ `[513]`~32~ +
 
 Verify that the implementation of KWP-AD in the TOE outputs FAIL on those inputs.
@@ -2906,11 +2905,11 @@ Refer to FCS_COP.1/StorageEncryption for the required SEED-CCM testing. Each dis
 
 *LEA-KW [SP 800-38F, sec. 6.2]*
 
-Refer to [SEED-KW] for the required LEA-KW testing. The evaluator shall test the authenticated encryption functionality using the same test as SEED-KW Tests, replacing SEED algorithm with LEA algorithm as PRF. In the LEA-KW testing, supported key lengths should be selected in the ST (e.g., 128bits, 192bits, 256bits).
+Refer to SEED-KW [SP 800-38F, sec. 6.2] for the required LEA-KW testing. The evaluator shall test the authenticated encryption functionality using the same test as SEED-KW Tests, replacing SEED algorithm with LEA algorithm as PRF. In the LEA-KW testing, supported key lengths should be selected in the ST (e.g., 128bits, 192bits, 256bits).
 
 *LEA-KWP [SP 800-38F, sec. 6.3]*
 
-Refer to [SEED-KWP] for the required LEA-KWP testing. The evaluator shall test the authenticated encryption functionality using the same test as SEED-KWP Tests, replacing SEED algorithm with LEA algorithm as PRF. In the LEA-KWP testing, supported key lengths should be selected in the ST (e.g., 128bits, 192bits, 256bits).
+Refer to SEED-KWP [SP 800-38F, sec. 6.3] for the required LEA-KWP testing. The evaluator shall test the authenticated encryption functionality using the same test as SEED-KWP Tests, replacing SEED algorithm with LEA algorithm as PRF. In the LEA-KWP testing, supported key lengths should be selected in the ST (e.g., 128bits, 192bits, 256bits).
 
 *LEA-GCM [ISO 19772, clause 11]*
 
