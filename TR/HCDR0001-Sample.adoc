@@ -1,10 +1,10 @@
-// The Number will be the next sequential TD number of the form HCDxxxx starting with HCD0001
-// The Title will be the title of the GitHub Issue that was generated for this problem, question, etc. that resulted in this TD being generated
-= HCD0001 - Clarification is needed about algorithm verification of Root of Trust in the Test Assurance activities for the Secure Boot SFR
+// The Number will be the next sequential TR number of the form HCDRxxxx starting with HCDR0001
+// The Title will be the title of the GitHub Issue that was generated for this problem, question, etc. that resulted in this TR being generated
+= HCDR0001 - Clarification is needed about algorithm verification of Root of Trust in the Test Assurance activities for the Secure Boot SFR
 :showtitle:
 :imagesdir: images
 :icons: font
-// revnumber and revdate should be the number and date of the revision of this version of the TD
+// revnumber and revdate should be the number and date of the revision of this version of the TR
 :revnumber: 1
 :revdate: 2024-01-12
 :linkattrs:
@@ -22,7 +22,7 @@ Version: {revnumber}, Published: {revdate}
 
 CPP_HCD_V1.0_supporting_doc
 
-// Reference the applicable Section/paragraph number for the HCD cPP SFR(s) / SARs or HCD SD Assurace Activities that this TD pertains to
+// Reference the applicable Section/paragraph number for the HCD cPP SFR(s) / SARs or HCD SD Assurace Activities that this TR pertains to
 == References
 
 FCS_COP.1/Hash Cryptographic Operation (Hash Algorithm)
@@ -37,14 +37,14 @@ FCS_COP.1/StorageEncryption Cryptographic operation (Data Encryption/Decryption)
 
 FCS_COP.1/CMAC Cryptographic Operation (for cipher-based message authentication)
 
-// Provide the issue description extracted from the Issue that was generated for this problem, question, etc. that resulted in this TD being generated.
+// Provide the issue description extracted from the Issue that was generated for this problem, question, etc. that resulted in this TR being generated.
 // Include the Issue Number
 == Issue Description
 
 The Root of Trust (FPT_SBT_EXT.1.1) shall be implemented in immutable code or be protected by a HW-based protection mechanism. As a result, it would be difficult to perform cryptographic algorithm validation testing of the cryptographic algorithm(s) implemented in the Root of Trust, and therefore, should be avoided.
 
-// Provide the resolution agreed upon by the HIT for this Issue
-== Resolution
+// Provide the proposed resolution agreed upon by the HIT for this Issue that is being recommended to the full HCD iTC for approval
+== Proposed Resolution
 
 In cPP_HCD_V1.0, the following SFRs are listed as dependencies for FPT_SBT_EXT.1:
 
@@ -65,10 +65,15 @@ In CPP_HCD_V1.0_supporting_doc, add the following note in the Test section for e
 Note: The tests detailed below are not required to be performed for cryptographic functions implemented in the Root of Trust for Secure Boot (FPT_SBT_EXT.1).
 
 
-// Provide here the specific change(s) by Document, Section number, paragraph and line that is to be made to the HCD cPP and/or HCD SD to resolve this issue
+// Provide here the specific change(s) by Document, Section number, paragraph and line that is proposed to be made to the HCD cPP and/or HCD SD to resolve this issue. Include separate lists for the HCD cPP and HCD SD. For each documnent that is to be updated, include only the proposed updates for that document. 
+
+== Document(s) To be Updated
+
 == CPP_HCD_V1.0_supporting_doc
 
-The SD is updated as follows (yellow highlights for additions, strikethrough for deletions) per section that is being updated:
+== Proposed Updates
+
+The SD is to be updated as follows (yellow highlights for additions, strikethrough for deletions) per section that is being updated:
 
 *2.2.5.3 Tests*
 
@@ -113,9 +118,9 @@ The following tests are conditional based upon the selections made in the SFR.
 
 #Note: The tests detailed below are not required to be performed for cryptographic functions implemented in the Root of Trust for Secure Boot (FPT_SBT_EXT.1).#
 
-
-
-//Include a pointer to the file that contains the actual fix for this TD
+//Include a pointer to the file that contains the actual fix(es) associated with this TR for review by the HCD iTC
 == Tracking
+
+
 
 link:https://github.com/HCD-iTC/HCD-IT/issues/2[Issue #2]
