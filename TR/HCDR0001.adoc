@@ -91,4 +91,4 @@ anchored in an immutable Root of Trust.
 
 
 
-link:https://github.com/HCD-iTC/HCD-IT/issues/2[Issue #2]
+link:https://github.com/HCD-iTC/HCD-IT/issues/25[Issue #25]
