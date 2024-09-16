@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><base href="file://C:/Users/colunga/Documents/GitHub/HCD-iTC-Template/TR/">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.7">
+<title>HCDR0001 - Clarification is needed for FPT_SBT_EXT.1 Root of Trust</title>
+<link rel="stylesheet" href="file://C:/Users/colunga/AppData/Roaming/Brackets/extensions/user/nerk.asciidoc-preview/node_modules/@asciidoctor/core/dist/css/asciidoctor.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body class="article data-line-1">
+<div id="header">
+<h1>HCDR0001 - Clarification is needed for FPT_SBT_EXT.1 Root of Trust</h1>
+<div class="details">
+<span id="revnumber">version 1,</span>
+<span id="revdate">2024-07-01</span>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph data-line-19">
+<p>Version: 1, Published: 2024-07-01</p>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-21">
+<h2 id="_impacted_documents">Impacted Documents</h2>
+<div class="sectionbody">
+<div class="ulist data-line-23">
+<ul>
+<li class="data-line-23">
+<p>CPP_HCD_V1.0e,</p>
+</li>
+<li class="data-line-24">
+<p>SD_HCD_V1.0e</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-28">
+<h2 id="_references">References</h2>
+<div class="sectionbody">
+<div class="paragraph data-line-30">
+<p>CPP, SD: FPT_SBT_EXT.1 Extended: Secure Boot</p>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-36">
+<h2 id="_issue_description">Issue Description</h2>
+<div class="sectionbody">
+<div class="paragraph data-line-38">
+<p>FPT_SBT_EXT.1 states that Root of Trust is implemented in immutable code or a HW-based write-protection mechanism. HCD cPP provides no further description or additional detail on the definition for the Root of Trust in terms of its protection. “Appendix G: Glossary” also fails to provide further information on this matter.</p>
+</div>
+<div class="paragraph data-line-40">
+<p>SD includes a requirement that the TSS shall describe how the Root of Trust is immutable. However, HCD cPP is not clear on how the immutable code or HW-based write-protection is defined. The SD does not provide clear guidance on the level of assurance the evaluator shall take into consideration to confirm a compliant Root of Trust protection mechanism.</p>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-44">
+<h2 id="_proposed_resolution">Proposed Resolution</h2>
+<div class="sectionbody">
+<div class="ulist data-line-46">
+<ul>
+<li class="data-line-46">
+<p>Define "Immutable" term in Glossary consistent with definition in NIST SP800-193, "Platform Firmware Resiliency Guidelines".</p>
+</li>
+<li class="data-line-48">
+<p>Modify FPT_SBT_EXT.1 SFR to remove "HW-based write protection mechanism", relying on newly added immutable definition.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-54">
+<h2 id="_documents_to_be_updated">Document(s) To be Updated</h2>
+<div class="sectionbody">
+<div class="ulist data-line-56">
+<ul>
+<li class="data-line-56">
+<p>CPP_HCD_V1.0e,</p>
+</li>
+<li class="data-line-57">
+<p>SD_HCD_V1.0e</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-59">
+<h2 id="_proposed_updates">Proposed Updates</h2>
+<div class="sectionbody">
+<div class="paragraph data-line-62">
+<p>The cPP and SD are to be updated as follows:</p>
+</div>
+<div class="ulist data-line-64">
+<ul>
+<li class="data-line-64">
+<p>Add "Immutable" definition to cPP Appendix G: Glossary,</p>
+</li>
+<li class="data-line-65">
+<p>Add "Immutable" definition to SD Appendix C: Glossary</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all fit-content data-line-68">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Immutable</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Unchangeable. In the context of this document, this refers only to the
+inability to make changes in the field through manufacturer intended
+mechanisms and/or defined interfaces. Note that a platform or
+device manufacturer may still be able to make changes through
+manufacturing or service tools directly connected to a locally
+(physically) present platform or device.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="ulist data-line-77">
+<ul>
+<li class="data-line-77">
+<p>Modify cPP FPT_SBT_EXT.1 SFR to remove "HW-based write protection mechanism":</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all fit-content data-line-80">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Old:</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FPT_SBT_EXT.1.1 The TSF shall contain one or more chains of trust with each chain of trust
+anchored in a Root of Trust that is implemented in immutable code or a HW-based write-protection
+mechanism.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">New:</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FPT_SBT_EXT.1.1 The TSF shall contain one or more chains of trust with each chain of trust
+anchored in an immutable Root of Trust.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1 data-line-90">
+<h2 id="_tracking">Tracking</h2>
+<div class="sectionbody">
+<div class="paragraph data-line-94">
+<p><a href="https://github.com/HCD-iTC/HCD-IT/issues/25">Issue #25</a></p>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Version 1<br>
+Last updated 2024-09-16 14:50:29 -0600
+</div>
+</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+<script>hljs.initHighlighting()</script>
+<script>    links = document.querySelectorAll("a[href]");    for (var i = 0, n = links.length; i < n; i++) {        var href = links[i].getAttribute("href");        if (href.match(/^#/)) {           links[i].setAttribute("href", "javascript:;");           links[i].setAttribute("onclick", "document.location.hash='" + href.replace(/^#/, "") + "';");        }    }</script></body>
+</html>
