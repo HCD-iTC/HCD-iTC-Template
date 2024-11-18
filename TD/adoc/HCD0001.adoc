@@ -1,12 +1,12 @@
 // The Number will be the next sequential TD number of the form HCDxxxx starting with HCD0001
 // The Title will be the title of the GitHub Issue that was generated for this problem, question, etc. that resulted in this TD being generated
-= HCD0001 - Clarification is needed about algorithm verification of Root of Trust in the Test Assurance activities for the Secure Boot SFR
+= HCD0001 - Clarification on FPT_SBT_EXT.1 Root of Trust
 :showtitle:
 :imagesdir: images
 :icons: font
 // revnumber and revdate should be the number and date of the revision of this version of the TD
 :revnumber: 1
-:revdate: 2024-01-12
+:revdate: 2024-09-09
 :linkattrs:
 
 :iTC-longname: Hardcopy Device
@@ -20,102 +20,74 @@ Version: {revnumber}, Published: {revdate}
 
 == Impacted Documents
 
-CPP_HCD_V1.0_supporting_doc
+* CPP_HCD_V1.0e,
+* SD_HCD_V1.0e
 
 // Reference the applicable Section/paragraph number for the HCD cPP SFR(s) / SARs or HCD SD Assurace Activities that this TD pertains to
 == References
 
-FCS_COP.1/Hash Cryptographic Operation (Hash Algorithm)
-
-FCS_COP.1/SigGen Cryptographic Operation (Signature Generation and Verification)
-
-FCS_COP.1/KeyedHash Cryptographic Operation (Keyed Hash Algorithm)
-
-FCS_COP.1/DataEncryption Cryptographic Operation (Symmetric encryption/decryption)
-
-FCS_COP.1/StorageEncryption Cryptographic operation (Data Encryption/Decryption)
-
-FCS_COP.1/CMAC Cryptographic Operation (for cipher-based message authentication)
+CPP, SD: FPT_SBT_EXT.1 Extended: Secure Boot
 
 // Provide the issue description extracted from the Issue that was generated for this problem, question, etc. that resulted in this TD being generated.
 // Include the Issue Number
 == Issue Description
 
-The Root of Trust (FPT_SBT_EXT.1.1) shall be implemented in immutable code or be protected by a HW-based protection mechanism. As a result, it would be difficult to perform cryptographic algorithm validation testing of the cryptographic algorithm(s) implemented in the Root of Trust, and therefore, should be avoided.
+FPT_SBT_EXT.1 states that Root of Trust is implemented in immutable code or a HW-based write-protection mechanism. HCD cPP provides no further description or additional detail on the definition for the Root of Trust in terms of its protection. “Appendix G: Glossary” also fails to provide further information on this matter.
+
+SD includes a requirement that the TSS shall describe how the Root of Trust is immutable. However, HCD cPP is not clear on how the immutable code or HW-based write-protection is defined. The SD does not provide clear guidance on the level of assurance the evaluator shall take into consideration to confirm a compliant Root of Trust protection mechanism.
 
 // Provide the resolution agreed upon by the HIT for this Issue
 == Resolution
 
-In cPP_HCD_V1.0, the following SFRs are listed as dependencies for FPT_SBT_EXT.1:
+* Define "Immutable" term in Glossary consistent with definition in NIST SP800-193, "Platform Firmware Resiliency Guidelines".
 
-* FCS_COP.1/Hash Cryptographic Operation (Hash Algorithm)
+* Modify FPT_SBT_EXT.1 SFR to remove "HW-based write protection mechanism", relying on newly added immutable definition.
 
-* FCS_COP.1/SigGen Cryptographic Operation (Signature Generation and Verification)
-
-* FCS_COP.1/KeyedHash Cryptographic Operation (Keyed Hash Algorithm)
-
-* FCS_COP.1/DataEncryption Cryptographic Operation (Symmetric encryption/decryption)
-
-* FCS_COP.1/StorageEncryption Cryptographic operation (Data Encryption/Decryption)
-
-* FCS_COP.1/CMAC Cryptographic Operation (for cipher-based message authentication)
-
-In CPP_HCD_V1.0_supporting_doc, add the following note in the Test section for each FCS_COP.1 SFR above:
-
-Note: The tests detailed below are not required to be performed for cryptographic functions implemented in the Root of Trust for Secure Boot (FPT_SBT_EXT.1).
 
 
 // Provide here the specific change(s) by Document, Section number, paragraph and line that is to be made to the HCD cPP and/or HCD SD to resolve this issue
-== CPP_HCD_V1.0_supporting_doc
+== CPP_HCD_V1.0e,
 
-The SD is updated as follows (yellow highlights for additions, strikethrough for deletions) per section that is being updated:
+* Add "Immutable" definition to cPP Appendix G: Glossary:
 
-*2.2.5.3 Tests*
+[%autowidth]
+|====
+| Immutable | Unchangeable. In the context of this document, this refers only to the
+inability to make changes in the field through manufacturer intended
+mechanisms and/or defined interfaces. Note that a platform or
+device manufacturer may still be able to make changes through
+manufacturing or service tools directly connected to a locally
+(physically) present platform or device.
+|====
 
-#Note: The tests detailed below are not required to be performed for cryptographic functions implemented in the Root of Trust for Secure Boot (FPT_SBT_EXT.1).#
+* Modify cPP FPT_SBT_EXT.1 SFR to remove "HW-based write protection mechanism":
 
-*2.2.6.3. Tests*
+[%autowidth]
+|====
+| Old: | FPT_SBT_EXT.1.1 The TSF shall contain one or more chains of trust with each chain of trust
+anchored in a Root of Trust that is implemented in immutable code or a HW-based write-protection
+mechanism.
+| New: | FPT_SBT_EXT.1.1 The TSF shall contain one or more chains of trust with each chain of trust
+anchored in an immutable Root of Trust.
+|====
 
-The evaluator shall include test cases of FCS_COP.1/SigGen to the test subset. Note that FCS_COP.1/SigGen may be not mapped to the specific interface(s) after evaluator’s analysis during ADV_FSP.1.
+== SD_HCD_V1.0e,
 
-The evaluator shall produce test documentation for test cases of FCS_COP.1/SigGen. If there is no explicit external interface(s) mapped to FCS_COP.1/SigGen, the evaluator shall employ an alternative test approach (refer to CEM, section 15.2.2.).
+* Add "Immutable" definition to SD Appendix C: Glossary:
 
-Each section below contains tests the evaluators shall perform for each selected digital signature scheme. Based on the assignments and selections in the requirement, the evaluators choose the specific activities that correspond to those selections.
-
-#Note: The tests detailed below are not required to be performed for cryptographic functions implemented in the Root of Trust for Secure Boot (FPT_SBT_EXT.1).#
-
-*2.2.7.3. Tests*
-
-The TSF hashing functions can be implemented in one of two modes. The first
-mode is the byte-oriented mode. In this mode the TSF only hashes messages
-that are an integral number of bytes in length; i.e., the length (in bits) of the
-message to be hashed is divisible by 8. The second mode is the bit-oriented
-mode. In this mode the TSF hashes messages of arbitrary length. As there are
-different tests for each mode, an indication is given in the following sections
-for the bit-oriented vs. the byte-oriented test mode.
-
-The evaluator shall perform all of the following tests for each hash algorithm
-implemented by the TSF and used to satisfy the requirements of this cPP.
-
-#Note: The tests detailed below are not required to be performed for cryptographic functions implemented in the Root of Trust for Secure Boot (FPT_SBT_EXT.1).#
-
-*5.1.1.3. Tests*
-
-The following tests are conditional based upon the selections made in the SFR.
-
-#Note: The tests detailed below are not required to be performed for cryptographic functions implemented in the Root of Trust for Secure Boot (FPT_SBT_EXT.1).#
-
-*5.2.9.3. Tests*
-
-#Note: The tests detailed below are not required to be performed for cryptographic functions implemented in the Root of Trust for Secure Boot (FPT_SBT_EXT.1).#
-
-*5.3.3.4. Tests*
-
-#Note: The tests detailed below are not required to be performed for cryptographic functions implemented in the Root of Trust for Secure Boot (FPT_SBT_EXT.1).#
+[%autowidth]
+|====
+| Immutable | Unchangeable. In the context of this document, this refers only to the
+inability to make changes in the field through manufacturer intended
+mechanisms and/or defined interfaces. Note that a platform or
+device manufacturer may still be able to make changes through
+manufacturing or service tools directly connected to a locally
+(physically) present platform or device.
+|====
 
 
 
 //Include a pointer to the file that contains the actual fix for this TD
 == Tracking
 
-link:https://github.com/HCD-iTC/HCD-IT/issues/2[Issue #2]
+link:https://github.com/HCD-iTC/HCD-IT/issues/25[Issue #25]
