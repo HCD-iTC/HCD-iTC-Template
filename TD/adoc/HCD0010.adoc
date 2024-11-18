@@ -1,0 +1,93 @@
+// The Number will be the next sequential TD number of the form HCDxxxx starting with HCD0001
+// The Title will be the title of the GitHub Issue that was generated for this problem, question, etc. that resulted in this TD being generated
+= HCD0010 - Clarification on FPT_SBT_EXT.1 Root of Trust
+:showtitle:
+:imagesdir: images
+:icons: font
+// revnumber and revdate should be the number and date of the revision of this version of the TD
+:revnumber: 1
+:revdate: 2024-09-09
+:linkattrs:
+
+:iTC-longname: Hardcopy Device
+:iTC-shortname: HCD-iTC
+:iTC-email: iTC-HCD@niap-ccevs.org
+:iTC-website: https://hcd-iTC.github.io/
+// Provide the link here to either the HCD cPP and/or the HCD SD as applicable
+:iTC-GitHub: https://github.com/HCD-iTC/cPP/
+
+Version: {revnumber}, Published: {revdate}
+
+== Impacted Documents
+
+* CPP_HCD_V1.0e,
+* SD_HCD_V1.0e
+
+// Reference the applicable Section/paragraph number for the HCD cPP SFR(s) / SARs or HCD SD Assurace Activities that this TD pertains to
+== References
+
+CPP, SD: FPT_SBT_EXT.1 Extended: Secure Boot
+
+// Provide the issue description extracted from the Issue that was generated for this problem, question, etc. that resulted in this TD being generated.
+// Include the Issue Number
+== Issue Description
+
+FPT_SBT_EXT.1 states that Root of Trust is implemented in immutable code or a HW-based write-protection mechanism. HCD cPP provides no further description or additional detail on the definition for the Root of Trust in terms of its protection. “Appendix G: Glossary” also fails to provide further information on this matter.
+
+SD includes a requirement that the TSS shall describe how the Root of Trust is immutable. However, HCD cPP is not clear on how the immutable code or HW-based write-protection is defined. The SD does not provide clear guidance on the level of assurance the evaluator shall take into consideration to confirm a compliant Root of Trust protection mechanism.
+
+// Provide the resolution agreed upon by the HIT for this Issue
+== Resolution
+
+* Define "Immutable" term in Glossary consistent with definition in NIST SP800-193, "Platform Firmware Resiliency Guidelines".
+
+* Modify FPT_SBT_EXT.1 SFR to remove "HW-based write protection mechanism", relying on newly added immutable definition.
+
+
+
+// Provide here the specific change(s) by Document, Section number, paragraph and line that is to be made to the HCD cPP and/or HCD SD to resolve this issue
+== CPP_HCD_V1.0e
+
+* Add "Immutable" definition to cPP Appendix G: Glossary:
+
+[%autowidth]
+|====
+| Immutable | Unchangeable. In the context of this document, this refers only to the
+inability to make changes in the field through manufacturer intended
+mechanisms and/or defined interfaces. Note that a platform or
+device manufacturer may still be able to make changes through
+manufacturing or service tools directly connected to a locally
+(physically) present platform or device.
+|====
+
+* Modify cPP FPT_SBT_EXT.1 SFR to remove "HW-based write protection mechanism":
+
+[%autowidth]
+|====
+| Old: | FPT_SBT_EXT.1.1 The TSF shall contain one or more chains of trust with each chain of trust
+anchored in a Root of Trust that is implemented in immutable code or a HW-based write-protection
+mechanism.
+| New: | FPT_SBT_EXT.1.1 The TSF shall contain one or more chains of trust with each chain of trust
+anchored in an immutable Root of Trust.
+|====
+
+== SD_HCD_V1.0e:
+
+* Add "Immutable" definition to SD Appendix C: Glossary:
+
+[%autowidth]
+|====
+| Immutable | Unchangeable. In the context of this document, this refers only to the
+inability to make changes in the field through manufacturer intended
+mechanisms and/or defined interfaces. Note that a platform or
+device manufacturer may still be able to make changes through
+manufacturing or service tools directly connected to a locally
+(physically) present platform or device.
+|====
+
+
+
+//Include a pointer to the file that contains the actual fix for this TD
+== Tracking
+
+link:https://github.com/HCD-iTC/HCD-IT/issues/25[Issue #25]
