@@ -46,7 +46,7 @@ SD includes a requirement that the TSS shall describe how the Root of Trust is i
 
 
 // Provide here the specific change(s) by Document, Section number, paragraph and line that is to be made to the HCD cPP and/or HCD SD to resolve this issue
-== CPP_HCD_V1.0e,
+== CPP_HCD_V1.0e
 
 * Add "Immutable" definition to cPP Appendix G: Glossary:
 
@@ -71,7 +71,7 @@ mechanism.
 anchored in an immutable Root of Trust.
 |====
 
-== SD_HCD_V1.0e,
+== SD_HCD_V1.0e:
 
 * Add "Immutable" definition to SD Appendix C: Glossary:
 
