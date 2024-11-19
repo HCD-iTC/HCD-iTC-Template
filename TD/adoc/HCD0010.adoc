@@ -6,7 +6,7 @@
 :icons: font
 // revnumber and revdate should be the number and date of the revision of this version of the TD
 :revnumber: 1
-:revdate: 2024-09-09
+:revdate: 2024-11-18
 :linkattrs:
 
 :iTC-longname: Hardcopy Device
