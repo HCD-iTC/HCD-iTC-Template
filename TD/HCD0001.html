@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<!-- saved from url=(0103)file:///C:/Users/brian/AppData/Roaming/Brackets/extensions/data.nerk.asciidoc-preview/tmp/exported.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><!--<base href="file://C:/Users/brian/Documents/GitHub/HCD-iTC-Template/TD/">--><base href=".">
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.7">
+<title>HCD0001 - Clarification is needed about algorithm verification of Root of Trust in the Test Assurance activities for the Secure Boot SFR</title>
+<link rel="stylesheet" href="./HCD_files/asciidoctor.css">
+<link rel="stylesheet" href="./HCD_files/font-awesome.min.css">
+</head>
+<body class="article data-line-1">
+<div id="header">
+<h1>HCD0001 - Clarification is needed about algorithm verification of Root of Trust in the Test Assurance activities for the Secure Boot SFR</h1>
+<div class="details">
+<span id="revnumber">version 1,</span>
+<span id="revdate">2024-01-12</span>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph data-line-19">
+<p>Version: 1, Published: 2024-01-12</p>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-21">
+<h2 id="_impacted_documents">Impacted Documents</h2>
+<div class="sectionbody">
+<div class="paragraph data-line-23">
+<p>CPP_HCD_V1.0_supporting_doc</p>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-26">
+<h2 id="_references">References</h2>
+<div class="sectionbody">
+<div class="paragraph data-line-28">
+<p>FCS_COP.1/Hash Cryptographic Operation (Hash Algorithm)</p>
+</div>
+<div class="paragraph data-line-30">
+<p>FCS_COP.1/SigGen Cryptographic Operation (Signature Generation and Verification)</p>
+</div>
+<div class="paragraph data-line-32">
+<p>FCS_COP.1/KeyedHash Cryptographic Operation (Keyed Hash Algorithm)</p>
+</div>
+<div class="paragraph data-line-34">
+<p>FCS_COP.1/DataEncryption Cryptographic Operation (Symmetric encryption/decryption)</p>
+</div>
+<div class="paragraph data-line-36">
+<p>FCS_COP.1/StorageEncryption Cryptographic operation (Data Encryption/Decryption)</p>
+</div>
+<div class="paragraph data-line-38">
+<p>FCS_COP.1/CMAC Cryptographic Operation (for cipher-based message authentication)</p>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-42">
+<h2 id="_issue_description">Issue Description</h2>
+<div class="sectionbody">
+<div class="paragraph data-line-44">
+<p>The Root of Trust (FPT_SBT_EXT.1.1) shall be implemented in immutable code or be protected by a HW-based protection mechanism. As a result, it would be difficult to perform cryptographic algorithm validation testing of the cryptographic algorithm(s) implemented in the Root of Trust, and therefore, should be avoided.</p>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-47">
+<h2 id="_resolution">Resolution</h2>
+<div class="sectionbody">
+<div class="paragraph data-line-49">
+<p>In cPP_HCD_V1.0, the following SFRs are listed as dependencies for FPT_SBT_EXT.1:</p>
+</div>
+<div class="ulist data-line-51">
+<ul>
+<li class="data-line-51">
+<p>FCS_COP.1/Hash Cryptographic Operation (Hash Algorithm)</p>
+</li>
+<li class="data-line-53">
+<p>FCS_COP.1/SigGen Cryptographic Operation (Signature Generation and Verification)</p>
+</li>
+<li class="data-line-55">
+<p>FCS_COP.1/KeyedHash Cryptographic Operation (Keyed Hash Algorithm)</p>
+</li>
+<li class="data-line-57">
+<p>FCS_COP.1/DataEncryption Cryptographic Operation (Symmetric encryption/decryption)</p>
+</li>
+<li class="data-line-59">
+<p>FCS_COP.1/StorageEncryption Cryptographic operation (Data Encryption/Decryption)</p>
+</li>
+<li class="data-line-61">
+<p>FCS_COP.1/CMAC Cryptographic Operation (for cipher-based message authentication)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph data-line-63">
+<p>In CPP_HCD_V1.0_supporting_doc, add the following note in the Test section for each FCS_COP.1 SFR above:</p>
+</div>
+<div class="paragraph data-line-65">
+<p>Note: The tests detailed below are not required to be performed for cryptographic functions implemented in the Root of Trust for Secure Boot (FPT_SBT_EXT.1).</p>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-69">
+<h2 id="_cpp_hcd_v1_0_supporting_doc">CPP_HCD_V1.0_supporting_doc</h2>
+<div class="sectionbody">
+<div class="paragraph data-line-71">
+<p>The SD is updated as follows (yellow highlights for additions, strikethrough for deletions) per section that is being updated:</p>
+</div>
+<div class="paragraph data-line-73">
+<p><strong>2.2.5.3 Tests</strong></p>
+</div>
+<div class="paragraph data-line-75">
+<p><mark>Note: The tests detailed below are not required to be performed for cryptographic functions implemented in the Root of Trust for Secure Boot (FPT_SBT_EXT.1).</mark></p>
+</div>
+<div class="paragraph data-line-77">
+<p><strong>2.2.6.3. Tests</strong></p>
+</div>
+<div class="paragraph data-line-79">
+<p>The evaluator shall include test cases of FCS_COP.1/SigGen to the test subset. Note that FCS_COP.1/SigGen may be not mapped to the specific interface(s) after evaluator’s analysis during ADV_FSP.1.</p>
+</div>
+<div class="paragraph data-line-81">
+<p>The evaluator shall produce test documentation for test cases of FCS_COP.1/SigGen. If there is no explicit external interface(s) mapped to FCS_COP.1/SigGen, the evaluator shall employ an alternative test approach (refer to CEM, section 15.2.2.).</p>
+</div>
+<div class="paragraph data-line-83">
+<p>Each section below contains tests the evaluators shall perform for each selected digital signature scheme. Based on the assignments and selections in the requirement, the evaluators choose the specific activities that correspond to those selections.</p>
+</div>
+<div class="paragraph data-line-85">
+<p><mark>Note: The tests detailed below are not required to be performed for cryptographic functions implemented in the Root of Trust for Secure Boot (FPT_SBT_EXT.1).</mark></p>
+</div>
+<div class="paragraph data-line-87">
+<p><strong>2.2.7.3. Tests</strong></p>
+</div>
+<div class="paragraph data-line-89">
+<p>The TSF hashing functions can be implemented in one of two modes. The first
+mode is the byte-oriented mode. In this mode the TSF only hashes messages
+that are an integral number of bytes in length; i.e., the length (in bits) of the
+message to be hashed is divisible by 8. The second mode is the bit-oriented
+mode. In this mode the TSF hashes messages of arbitrary length. As there are
+different tests for each mode, an indication is given in the following sections
+for the bit-oriented vs. the byte-oriented test mode.</p>
+</div>
+<div class="paragraph data-line-97">
+<p>The evaluator shall perform all of the following tests for each hash algorithm
+implemented by the TSF and used to satisfy the requirements of this cPP.</p>
+</div>
+<div class="paragraph data-line-100">
+<p><mark>Note: The tests detailed below are not required to be performed for cryptographic functions implemented in the Root of Trust for Secure Boot (FPT_SBT_EXT.1).</mark></p>
+</div>
+<div class="paragraph data-line-102">
+<p><strong>5.1.1.3. Tests</strong></p>
+</div>
+<div class="paragraph data-line-104">
+<p>The following tests are conditional based upon the selections made in the SFR.</p>
+</div>
+<div class="paragraph data-line-106">
+<p><mark>Note: The tests detailed below are not required to be performed for cryptographic functions implemented in the Root of Trust for Secure Boot (FPT_SBT_EXT.1).</mark></p>
+</div>
+<div class="paragraph data-line-108">
+<p><strong>5.2.9.3. Tests</strong></p>
+</div>
+<div class="paragraph data-line-110">
+<p><mark>Note: The tests detailed below are not required to be performed for cryptographic functions implemented in the Root of Trust for Secure Boot (FPT_SBT_EXT.1).</mark></p>
+</div>
+<div class="paragraph data-line-112">
+<p><strong>5.3.3.4. Tests</strong></p>
+</div>
+<div class="paragraph data-line-114">
+<p><mark>Note: The tests detailed below are not required to be performed for cryptographic functions implemented in the Root of Trust for Secure Boot (FPT_SBT_EXT.1).</mark></p>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-119">
+<h2 id="_tracking">Tracking</h2>
+<div class="sectionbody">
+<div class="paragraph data-line-121">
+<p><a href="https://github.com/HCD-iTC/HCD-IT/issues/2">Issue #2</a></p>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Version 1<br>
+Last updated 2024-02-08 19:25:48 -0800
+</div>
+</div>
+<link rel="stylesheet" href="./HCD_files/github.min.css">
+<script src="./HCD_files/highlight.min.js.download"></script>
+<script>hljs.initHighlighting()</script>
+<script>    links = document.querySelectorAll("a[href]");    for (var i = 0, n = links.length; i < n; i++) {        var href = links[i].getAttribute("href");        if (href.match(/^#/)) {           links[i].setAttribute("href", "javascript:;");           links[i].setAttribute("onclick", "document.location.hash='" + href.replace(/^#/, "") + "';");        }    }</script>
+</body></html>
