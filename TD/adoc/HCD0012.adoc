@@ -1,0 +1,85 @@
+// The Number will be the next sequential TD number of the form HCDxxxx starting with HCD0001
+// The Title will be the title of the GitHub Issue that was generated for this problem, question, etc. that resulted in this TD being generated
+= HCD0012 - FCS_SSHC_EXT.1.8 and FCS_SSHS_EXT.1.8 Time based test case as optional
+:showtitle:
+:imagesdir: images
+:icons: font
+// revnumber and revdate should be the number and date of the revision of this version of the TD
+:revnumber: 1
+:revdate: 2025-05-DD
+:linkattrs:
+
+:iTC-longname: Hardcopy Device
+:iTC-shortname: HCD-iTC
+:iTC-email: iTC-HCD@niap-ccevs.org
+:iTC-website: https://hcd-iTC.github.io/
+// Provide the link here to either the HCD cPP and/or the HCD SD as applicable
+:iTC-GitHub: https://github.com/HCD-iTC/cPP/
+
+Version: {revnumber}, Published: {revdate}
+
+== Impacted Documents
+
+- CPP_HCD_V1.0e_supporting_doc
+
+// Reference the applicable Section/paragraph number for the HCD cPP SFR(s) / SARs or HCD SD Assurace Activities that this TD pertains to
+== References
+
+- FCS_SSHC_EXT.1.8
+- FCS_SSHS_EXT.1.8
+
+// Provide the issue description extracted from the Issue that was generated for this problem, question, etc. that resulted in this TD being generated.
+// Include the Issue Number
+== Issue Description
+
+The test assurance activity for FCS_SSHC_EXT.1.8 and FCS_SSHS_EXT.1.8 requires testing the time-based threshold option to verify that the TOE initiates rekeying before reaching the threshold. However, due to limitations in the TOE or its hardware, reaching the threshold might not always be feasible. 
+
+// Provide the resolution agreed upon by the HIT for this Issue
+== Resolution
+
+Update the TSS assurance activity for FCS_SSHC_EXT.1.8 and FCS_SSHS_EXT.1.8 to require a description of any TOE and/or hardware limitations that prevent the time-based threshold from being reached. Also, update the test assurance activity for FCS_SSHC_EXT.1.8 and FCS_SSHS_EXT.1.8 to omit testing of the time-based threshold option when such limitations make it infeasible. 
+
+// Provide here the specific change(s) by Document, Section number, paragraph and line that is to be made to the HCD cPP and/or HCD SD to resolve this issue
+== CPP_HCD_V1.0_supporting_doc
+
+The SD is updated as follows (yellow highlights for additions, strikethrough for deletions) per section that is being updated:
+
+*5.2.6.1.7. FCS_SSHC_EXT.1.8*
+
+#In cases where TOE limitation will prevent reaching data transfer threshold in less than one hour, the evaluator shall check the TSS to ensure it contains:# 
+
+.. #An argument describing this TOE limitation and# 
+.. #Identification of the hardware components (if any) that form the basis of the such argument.# 
+
+#For example, if specific Ethernet Controller or Wi-Fi radio chip is the root cause of such limitation, these subsystems shall be identified.#
+
+*5.2.6.3.7. FCS_SSHC_EXT.1.8*
+
+In cases where data transfer threshold could not be reached due to TOE limitations it is acceptable to omit testing of this (SSH rekeying based on data transfer threshold) threshold #.# +++<del> if both the following conditions are met:+++
+
+.. +++<del>An argument is present in the TSS section describing this hardware-based limitation and+++
+
+.. +++<del>All hardware components that are the basis of such argument are definitively identified in the ST. For example, if specific Ethernet Controller or WiFi radio chip is the root cause of such limitation, these chips must be identified.+++
+
+*5.2.7.1.7. FCS_SSHS_EXT.1.8* 
+
+#In cases where TOE limitation will prevent reaching data transfer threshold in less than one hour, the evaluator shall check the TSS to ensure it contains:# 
+
+.. #An argument describing this TOE limitation and# 
+.. #Identification of the hardware components (if any) that form the basis of the such argument.# 
+
+#For example, if specific Ethernet Controller or Wi-Fi radio chip is the root cause of such limitation, these subsystems shall be identified.# 
+
+*5.2.7.3.7. FCS_SSHS_EXT.1.8*
+
+In cases where data transfer threshold could not be reached due to TOE limitations it is acceptable to omit testing of this (SSH rekeying based on data transfer threshold) threshold #.# +++<del> if both the following conditions are met:+++
+
+.. +++<del> An argument is present in the TSS section describing this hardware-based limitation and+++
+
+.. +++<del> All hardware components that are the basis of such argument are definitively identified in the ST. For example, if specific Ethernet Controller or WiFi radio chip is the root cause of such limitation, these chips must be identified.+++
+
+
+//Include a pointer to the file that contains the actual fix for this TD
+== Tracking
+
+link:https://github.com/HCD-iTC/HCD-iTC-Template/issues/363[Issue #363]
