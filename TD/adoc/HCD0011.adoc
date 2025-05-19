@@ -1,0 +1,111 @@
+// The Number will be the next sequential TD number of the form HCDxxxx starting with HCD0001
+// The Title will be the title of the GitHub Issue that was generated for this problem, question, etc. that resulted in this TD being generated
+= HCD0011 - Clarification on FPT_KYP_EXT.1 when using TPM like device
+:showtitle:
+:imagesdir: images
+:icons: font
+// revnumber and revdate should be the number and date of the revision of this version of the TD
+:revnumber: 1
+:revdate: 2025-05-19
+:linkattrs:
+
+:iTC-longname: Hardcopy Device
+:iTC-shortname: HCD-iTC
+:iTC-email: iTC-HCD@niap-ccevs.org
+:iTC-website: https://hcd-iTC.github.io/
+// Provide the link here to either the HCD cPP and/or the HCD SD as applicable
+:iTC-GitHub: https://github.com/HCD-iTC/cPP/
+
+Version: {revnumber}, Published: {revdate}
+
+== Impacted Documents
+
+* CPP_HCD_V1.0e
+
+// Reference the applicable Section/paragraph number for the HCD cPP SFR(s) / SARs or HCD SD Assurace Activities that this TD pertains to
+== References
+
+CPP:
+
+* B.1.1 FPT_KYP_EXT.1 Extended: Protection of Key and Key Material
+* D.5.3.1 FPT_KYP_EXT.1 Extended: Protection of Key and Key Material
+
+
+// Provide the issue description extracted from the Issue that was generated for this problem, question, etc. that resulted in this TD being generated.
+// Include the Issue Number
+== Issue Description
+
+In the application accepting process by JISEC, JISEC person asked me to clarify which selection should be choosed for the case of the start point of the key chain is protected by TPM like device.
+
+He was confused by the last sentence of Application Note of FPT_KYP_EXT.1. The sentence is:
+"In the case where a encrypted key is stored on media that is decrypted by a key stored in a protected
+storage device, the selection for encrypting or wrapping a key that is already encrypted or wrapped
+should be used."
+
+JBMIA members proposed the description for Application Note of FPT_KYP_EXT.1 so that TOE can protect the start point of the key chain by a TPM like device without any encryption algorhythm verification. And the proposed Application Note didn't include the last sentence of the current version.
+
+The sentence has been added after v0.9.1(25 August 2021).
+
+This sentence seems to require ST authors to choose the 4th selection in the case of only store plaintext keys.
+
+"the key is [selection: used to wrap a key as specified in FCS_COP.1/KeyWrap, used to encrypt a key as specified in FCS_COP.1/KeyEnc or FCS_COP.1/KeyTransport] that is already [selection: wrapped as specified in FCS_COP.1/KeyWrap, encrypted as specified in FCS_COP.1/KeyEnc or
+FCS_COP.1/KeyTransport]"
+
+But JISEC have a concern that the encryption algorithm verification is required when we choose this selection even if TPM like device is used for the encryption of the start point of the key chain.
+
+This issue should be related to the issue #8. I've stored a slide decribing JBMIA intention for FPT_KYP_EXT.1 definition before. The slide should work for this discussion.
+
+
+// Provide the resolution agreed upon by the HIT for this Issue
+== Resolution
+
+* Modify FPT_KYP_EXT.1 SFR with updated selections and update Application Note to provide clarification.
+
+
+
+// Provide here the specific change(s) by Document, Section number, paragraph and line that is to be made to the HCD cPP and/or HCD SD to resolve this issue
+== CPP_HCD_V1.0e
+
+* Modify FPT_KYP_EXT.1 and Application Note (Appendix B, Appendix D):
+
+
+*FPT_KYP_EXT.1.1* The TSF shall [selection:
+
+* _not store keys in non-volatile memory,_
+* _only store keys in non-volatile memory when #[selection: "# wrapped, as specified in FCS_COP.1/KeyWrap, or encrypted, as specified in FCS_COP.1/KeyEnc or FCS_COP.1/KeyTransport #", "encrypted or wrapped within a protected storage device using a key stored within that device”],#_
+* _only store plaintext keys that meet any one of the following criteria [selection:_
+** #_+++<del>the key is protected by another key that is not part of the key chain as specified in FCS_KYC_EXT.1,</del>+++_#
+** _the key will no longer provide access to the encrypted data after initial provisioning,_
+** _the key is a key split that is combined as specified in FCS_SMC_EXT.1, and the other half of the key split is [selection:_
+*** _wrapped as specified in FCS_COP.1/KeyWrap,_
+*** _encrypted as specified in FCS_COP.1/KeyEnc or FCS_COP.1/KeyTransport,_
+*** _derived and not stored in non-volatile memory],_
+** _the key is [selection: used to wrap a key as specified in FCS_COP.1/KeyWrap, used to encrypt a key as specified in FCS_COP.1/KeyEnc or FCS_COP.1/KeyTransport] that is already [selection: wrapped as specified in FCS_COP.1/KeyWrap, encrypted as specified in FCS_COP.1/KeyEnc or FCS_COP.1/KeyTransport],_
+
+** _the non-volatile memory #where# the key is stored on is located in a protected storage device_]
+
+].
+
+*_Application Note:_*
+
+_The keys must be protected from unauthorized access and must not be stored on any nonvolatile storage device without protection. If the keys exist within protected memory that is not user accessible on the TOE or OE, the key can be used to protect the BEV or the DEK only if the key is:_
+
+1. _#+++<del>a key that is protected by another key that is not a part of the key chain or;</del>+++#_
+2. _a key split or #a key# provides additional layers of wrapping or encryption on keys that have already been protected or_
+3. _the nonvolatile memory the key is stored on is located in a protected storage device and the key is protected from unauthorized access._
+
+_The selection “the non-volatile memory the key is stored on is located in a protected storage device” #+++<del>and “the key is protected by another key that is not part of the key chain as specified in FCS_KYC_EXT.1”</del>+++# should be applied to the start (or root) of a key chain, not for intermediate of the key chain. #+++<del>If "the key is protected by another key that is not part of the key chain as specified in FCS_KYC_EXT.1" selection option is selected, vendors will need to explain what the other key is that is not in the key chain and how the “other key” is used to protect the key (for example, a public key used for encryption, keys only used within a protected storage device or separate coprocessor).</del>+++#_
+
+_#+++<del>An example of another key that is not a part of the key chain is as follows. In a protected storage device or separate co-processor, if the key is generated, stored, used, protected from disclosure, and the key is not exportable as a plaintext key, then the key is considered as not belonging to the key chain.</del>+++#_
+
+_The protected storage device can protect stored data from unauthorized access and the nonvolatile memory in it is not accessible from outside of the TOE. Examples of protected storage devices include Secure Elements (SE), Trusted Platform Modules (TPM), Hardware Security Modules (HSM), Trusted Execution Environments (TEE), Secure Enclave Processors (SEP), and so on._
+
+_In the case where a encrypted key is stored on media that is decrypted by a key stored in a protected storage device, the selection for encrypting or wrapping a key that is #+++<del>already</del>+++# encrypted or wrapped #within a protected storage device using a key stored within that device# should be used. #In this case, the key that the protected storage device generates and stores internally is considered to be the starting point of the key chain, so “the non-volatile memory where the key is stored on is located in a protected storage device” must also be selected as a means of protecting that key.#_
+
+_#Testing of cryptographic functions implemented in the protected storage device may not be feasible and independent testing may not be available. In this situation, contact the CC Scheme.#_
+
+
+//Include a pointer to the file that contains the actual fix for this TD
+== Tracking
+
+link:https://github.com/HCD-iTC/HCD-IT/issues/29[Issue #29]
