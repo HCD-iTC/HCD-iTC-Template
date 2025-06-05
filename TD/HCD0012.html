@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><base href="file://C:/Users/colunga/Documents/GitHub/HCD-iTC-Template/TD/adoc/">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.7">
+<title>HCD0012 - FCS_SSHC_EXT.1.8 and FCS_SSHS_EXT.1.8 Time based test case as optional</title>
+<link rel="stylesheet" href="file://C:/Users/colunga/AppData/Roaming/Brackets/extensions/user/nerk.asciidoc-preview/node_modules/@asciidoctor/core/dist/css/asciidoctor.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body class="article data-line-1">
+<div id="header">
+<h1>HCD0012 - FCS_SSHC_EXT.1.8 and FCS_SSHS_EXT.1.8 Time based test case as optional</h1>
+<div class="details">
+<span id="revnumber">version 1,</span>
+<span id="revdate">2025-06-05</span>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph data-line-19">
+<p>Version: 1, Published: 2025-06-05</p>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-21">
+<h2 id="_impacted_documents">Impacted Documents</h2>
+<div class="sectionbody">
+<div class="ulist data-line-23">
+<ul>
+<li class="data-line-23">
+<p>CPP_HCD_V1.0e_supporting_doc</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-26">
+<h2 id="_references">References</h2>
+<div class="sectionbody">
+<div class="ulist data-line-28">
+<ul>
+<li class="data-line-28">
+<p>FCS_SSHC_EXT.1.8</p>
+</li>
+<li class="data-line-29">
+<p>FCS_SSHS_EXT.1.8</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-33">
+<h2 id="_issue_description">Issue Description</h2>
+<div class="sectionbody">
+<div class="paragraph data-line-35">
+<p>The test assurance activity for FCS_SSHC_EXT.1.8 and FCS_SSHS_EXT.1.8 requires testing the time-based threshold option to verify that the TOE initiates rekeying before reaching the threshold. However, due to limitations in the TOE or its hardware, reaching the threshold might not always be feasible.</p>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-38">
+<h2 id="_resolution">Resolution</h2>
+<div class="sectionbody">
+<div class="paragraph data-line-40">
+<p>Update the TSS assurance activity for FCS_SSHC_EXT.1.8 and FCS_SSHS_EXT.1.8 to require a description of any TOE and/or hardware limitations that prevent the time-based threshold from being reached. Also, update the test assurance activity for FCS_SSHC_EXT.1.8 and FCS_SSHS_EXT.1.8 to omit testing of the time-based threshold option when such limitations make it infeasible.</p>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-43">
+<h2 id="_cpp_hcd_v1_0_supporting_doc">CPP_HCD_V1.0_supporting_doc</h2>
+<div class="sectionbody">
+<div class="paragraph data-line-45">
+<p>The SD is updated as follows (yellow highlights for additions, strikethrough for deletions) per section that is being updated:</p>
+</div>
+<div class="paragraph data-line-47">
+<p><strong>5.2.6.1.7. FCS_SSHC_EXT.1.8</strong></p>
+</div>
+<div class="paragraph data-line-49">
+<p><mark>In cases where TOE limitation will prevent reaching data transfer threshold in less than one hour, the evaluator shall check the TSS to ensure it contains:</mark></p>
+</div>
+<div class="olist loweralpha data-line-51">
+<ol class="loweralpha" type="a">
+<li class="data-line-51">
+<p><mark>An argument describing this TOE limitation and</mark></p>
+</li>
+<li class="data-line-52">
+<p><mark>Identification of the hardware components (if any) that form the basis of the such argument.</mark></p>
+</li>
+</ol>
+</div>
+<div class="paragraph data-line-54">
+<p><mark>For example, if specific Ethernet Controller or Wi-Fi radio chip is the root cause of such limitation, these subsystems shall be identified.</mark></p>
+</div>
+<div class="paragraph data-line-56">
+<p><strong>5.2.6.3.7. FCS_SSHC_EXT.1.8</strong></p>
+</div>
+<div class="paragraph data-line-58">
+<p>In cases where data transfer threshold could not be reached due to TOE limitations it is acceptable to omit testing of this (SSH rekeying based on data transfer threshold) threshold <mark>.</mark> <del> if both the following conditions are met:</p>
+</div>
+<div class="olist loweralpha data-line-60">
+<ol class="loweralpha" type="a">
+<li class="data-line-60">
+<p><del>An argument is present in the TSS section describing this hardware-based limitation and</p>
+</li>
+<li class="data-line-62">
+<p><del>All hardware components that are the basis of such argument are definitively identified in the ST. For example, if specific Ethernet Controller or WiFi radio chip is the root cause of such limitation, these chips must be identified.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph data-line-64">
+<p><strong>5.2.7.1.7. FCS_SSHS_EXT.1.8</strong></p>
+</div>
+<div class="paragraph data-line-66">
+<p><mark>In cases where TOE limitation will prevent reaching data transfer threshold in less than one hour, the evaluator shall check the TSS to ensure it contains:</mark></p>
+</div>
+<div class="olist loweralpha data-line-68">
+<ol class="loweralpha" type="a">
+<li class="data-line-68">
+<p><mark>An argument describing this TOE limitation and</mark></p>
+</li>
+<li class="data-line-69">
+<p><mark>Identification of the hardware components (if any) that form the basis of the such argument.</mark></p>
+</li>
+</ol>
+</div>
+<div class="paragraph data-line-71">
+<p><mark>For example, if specific Ethernet Controller or Wi-Fi radio chip is the root cause of such limitation, these subsystems shall be identified.</mark></p>
+</div>
+<div class="paragraph data-line-73">
+<p><strong>5.2.7.3.7. FCS_SSHS_EXT.1.8</strong></p>
+</div>
+<div class="paragraph data-line-75">
+<p>In cases where data transfer threshold could not be reached due to TOE limitations it is acceptable to omit testing of this (SSH rekeying based on data transfer threshold) threshold <mark>.</mark> <del> if both the following conditions are met:</p>
+</div>
+<div class="olist loweralpha data-line-77">
+<ol class="loweralpha" type="a">
+<li class="data-line-77">
+<p><del> An argument is present in the TSS section describing this hardware-based limitation and</p>
+</li>
+<li class="data-line-79">
+<p><del> All hardware components that are the basis of such argument are definitively identified in the ST. For example, if specific Ethernet Controller or WiFi radio chip is the root cause of such limitation, these chips must be identified.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1 data-line-83">
+<h2 id="_tracking">Tracking</h2>
+<div class="sectionbody">
+<div class="paragraph data-line-85">
+<p><a href="https://github.com/HCD-iTC/HCD-iTC-Template/issues/363">Issue #363</a></p>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Version 1<br>
+Last updated 2025-06-05 07:33:07 -0600
+</div>
+</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+<script>hljs.initHighlighting()</script>
+<script>    links = document.querySelectorAll("a[href]");    for (var i = 0, n = links.length; i < n; i++) {        var href = links[i].getAttribute("href");        if (href.match(/^#/)) {           links[i].setAttribute("href", "javascript:;");           links[i].setAttribute("onclick", "document.location.hash='" + href.replace(/^#/, "") + "';");        }    }</script></body>
+</html>
