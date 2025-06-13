@@ -1,6 +1,6 @@
 // The Number will be the next sequential TD number of the form HCDxxxx starting with HCD0001
 // The Title will be the title of the GitHub Issue that was generated for this problem, question, etc. that resulted in this TD being generated
-= HCD0011 - Clarification on FPT_KYP_EXT.1 when using TPM like device
+= HCD0011 - Clarification on FPT_KYP_EXT.1 when using TPM-like device
 :showtitle:
 :imagesdir: images
 :icons: font
@@ -34,26 +34,13 @@ CPP:
 // Provide the issue description extracted from the Issue that was generated for this problem, question, etc. that resulted in this TD being generated.
 // Include the Issue Number
 == Issue Description
+The appropriate option for the case of the start point of the key chain being protected by a TPM-like device is not clear.
 
-In the application accepting process by JISEC, JISEC person asked me to clarify which selection should be choosed for the case of the start point of the key chain is protected by TPM like device.
+The last sentence (*) in Application Note appears to conflict with the intention of the option "the key is protected by another key that is not part of the key chain as specified in FCS_KYC_EXT.1" which was intended to avoid cryptographic verification of the cryptographic functions provided by a TPM-like device.
 
-He was confused by the last sentence of Application Note of FPT_KYP_EXT.1. The sentence is:
-"In the case where a encrypted key is stored on media that is decrypted by a key stored in a protected
-storage device, the selection for encrypting or wrapping a key that is already encrypted or wrapped
-should be used."
+(*) "In the case where a encrypted key is stored on media that is decrypted by a key stored in a protected storage device, the selection for encrypting or wrapping a key that is already encrypted or wrapped should be used."
 
-JBMIA members proposed the description for Application Note of FPT_KYP_EXT.1 so that TOE can protect the start point of the key chain by a TPM like device without any encryption algorhythm verification. And the proposed Application Note didn't include the last sentence of the current version.
-
-The sentence has been added after v0.9.1(25 August 2021).
-
-This sentence seems to require ST authors to choose the 4th selection in the case of only store plaintext keys.
-
-"the key is [selection: used to wrap a key as specified in FCS_COP.1/KeyWrap, used to encrypt a key as specified in FCS_COP.1/KeyEnc or FCS_COP.1/KeyTransport] that is already [selection: wrapped as specified in FCS_COP.1/KeyWrap, encrypted as specified in FCS_COP.1/KeyEnc or
-FCS_COP.1/KeyTransport]"
-
-But JISEC have a concern that the encryption algorithm verification is required when we choose this selection even if TPM like device is used for the encryption of the start point of the key chain.
-
-This issue should be related to the issue #8. I've stored a slide decribing JBMIA intention for FPT_KYP_EXT.1 definition before. The slide should work for this discussion.
+We need to clarify which option should be selected for the case of the start point of the key chain is protected by a TPM-like device.
 
 
 // Provide the resolution agreed upon by the HIT for this Issue
