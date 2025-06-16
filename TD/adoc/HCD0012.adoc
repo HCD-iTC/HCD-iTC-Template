@@ -40,7 +40,7 @@ The test assurance activity for FCS_SSHC_EXT.1.8 and FCS_SSHS_EXT.1.8 requires t
 Update the TSS assurance activity for FCS_SSHC_EXT.1.8 and FCS_SSHS_EXT.1.8 to require a description of any TOE and/or hardware limitations that prevent the time-based threshold from being reached. Also, update the test assurance activity for FCS_SSHC_EXT.1.8 and FCS_SSHS_EXT.1.8 to omit testing of the time-based threshold option when such limitations make it infeasible. 
 
 // Provide here the specific change(s) by Document, Section number, paragraph and line that is to be made to the HCD cPP and/or HCD SD to resolve this issue
-== CPP_HCD_V1.0_supporting_doc
+== CPP_HCD_V1.0e_supporting_doc
 
 The SD is updated as follows (yellow highlights for additions, strikethrough for deletions) per section that is being updated:
 
