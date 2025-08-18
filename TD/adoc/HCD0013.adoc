@@ -1,0 +1,87 @@
+// The Number will be the next sequential TD number of the form HCDxxxx starting with HCD0001
+// The Title will be the title of the GitHub Issue that was generated for this problem, question, etc. that resulted in this TD being generated
+= HCD00XX - Remove FCS_CKM.1/SKG dependency of FCS_COP.1/CMAC when used in Secure Boot
+:showtitle:
+:imagesdir: images
+:icons: font
+// revnumber and revdate should be the number and date of the revision of this version of the TD
+:revnumber: 1
+:revdate: 2025-02-11
+:linkattrs:
+
+:iTC-longname: Hardcopy Device
+:iTC-shortname: HCD-iTC
+:iTC-email: iTC-HCD@niap-ccevs.org
+:iTC-website: https://hcd-iTC.github.io/
+// Provide the link here to either the HCD cPP and/or the HCD SD as applicable
+:iTC-GitHub: https://github.com/HCD-iTC/cPP/
+
+Version: {revnumber}, Published: {revdate}
+
+== Impacted Documents
+
+* CPP_HCD_V1.0e
+
+// Reference the applicable Section/paragraph number for the HCD cPP SFR(s) / SARs or HCD SD Assurace Activities that this TD pertains to
+== References
+
+CPP:
+
+* A.4.3. FCS_COP.1/CMAC Cryptographic Operation (for cipher-based message authentication)
+* D.5.2. FPT_KYP_EXT Extended: Secure Boot
+* I.10. Security Functional Requirements Dependencies Analysis
+
+
+// Provide the issue description extracted from the Issue that was generated for this problem, question, etc. that resulted in this TD being generated.
+// Include the Issue Number
+== Issue Description
+HCD cPP v1.0e includes FCS_CKM.1/SKG (symmetric key generation) as a dependency of FCS_COP.1/CMAC.  When the CMAC's symmetric key is implemented in the Root of Trust statically it is unnecessary to claim FCS_CKM.1/SKG.
+
+ASE_REQ.1-9 mentions as follows:
+
+A justification that a dependency is not met should address either:
+
+* why the dependency is not necessary or useful, in which case no further information is required; or
+* That the dependency has been addressed by the operational environment of the TOE, in which case the justification should describe how the security objectives for the operational environment address this dependency.
+
+By modifying cPP, eliminate FCS_CKM.1/SKG from the FCS_COP.1/CMAC dependency under certain conditions.
+
+
+// Provide the resolution agreed upon by the HIT for this Issue
+== Resolution
+
+* Eliminate FCS_CKM.1/SKG from the FCS_COP.1/CMAC dependency under certain conditions
+* Update SFR Dependencies Analysis
+
+
+// Provide here the specific change(s) by Document, Section number, paragraph and line that is to be made to the HCD cPP and/or HCD SD to resolve this issue
+== CPP_HCD_V1.0e
+
+* *Modify FCS_COP.1/CMAC's Application Note*: 
+
+*FCS_COP.1/CMAC*
+
+*Application Note:*
+
+_If one or more HMAC algorithms are selected, the ST author selects “HMAC” in the second selection and “ISO/IEC 9797-2:2011, Section 7 ‘MAC Algorithm 2’”in the third selection. For the assignment, the key size [k] falls into a range between L1 and L2 (defined in ISO/IEC 10118 for the appropriate hash function). For example, for SHA-256, L1 = 512 and L2 = 256 where L2 ≤ k ≤ L1 for HMAC, and the size is either 128, 192, or 256 bits for CMAC._
+
+_For the assignment, the key size will fall into a range between 128 and 256._
+
+_#When CMAC is used in FPT_SBT_EXT.1, the dependency on FCS_CKM.1/SKG, FCS_CKM_EXT.4 can be removed for the symmetric key used for message authentication. This is because in other standards (*) that specify security requirements for cryptographic modules, public verification key or keyed message authentication key is allowed to be placed in the module code and is not CSP. Such a key can be considered as not needing to rely on the requirements for key generation and key destruction.#_
+
+_#(*) ISO/IEC 19790 "Security requirements for cryptographic modules" 7.5 Software Firmware Security#_
+
+
+* *Modify I.10. Security Functional Requirements Dependencies Analysis*:
+
+|===
+| *SFR* | *Dependencies* | *Rationale Statement*
+| FCS_COP.1/CMAC | FCS_CKM.1/SKG, FCS_COP.1/Hash, FCS_CKM_EXT.4 | FCS_CKM.1/SKG included, FCS_COP.1/Hash included, FCS_CKM_EXT.4 included
+
+#When FCS_COP.1/CMAC is applied to keys used in FPT_SBT_EXT.1, the key-based message authentication key is not CSP, so dependencies on FCS_CKM.1/SKG and FCS_CKM_EXT.4 can be removed.#
+|===
+
+//Include a pointer to the file that contains the actual fix for this TD
+== Tracking
+
+link:https://github.com/HCD-iTC/HCD-IT/issues/27[Issue #27]
