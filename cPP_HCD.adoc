@@ -1160,7 +1160,7 @@ _The hash selection should be consistent with the overall strength of the algori
 	+++<del>[FCS_RBG.2 Random bit generation (external seeding), or</del>+++ +
     +++<del>FCS_RBG.3 Random bit generation (internal seeding – single source)]</del>+++ +
     +++<del>FPT_FLS.1 Failure with preservation of secure state</del>+++ +
-    FPT_TST.1 TSF self-testing
+    FPT_TST_EXT.1 TSF self-testing
 ======
 
 *FCS_RBG.1.1* The TSF shall perform deterministic random bit generation services using [assignment: _DRBG algorithm_] in accordance with [assignment: _list of standards_] after initialization.
@@ -1195,7 +1195,7 @@ The situation “on the condition” allows the PP/ST author to specify applicat
 
 The list of standards should specify the reseed interval, and procedures for uninstantiating and reseeding. This assignment should be “None” if the situation is “never.”
 
-Health tests for the RBG are specified in FPT_TST.1.
+Health tests for the RBG are specified in *FPT_TST_EXT.1*.
 
 NOTE - If a TOE needs to protect the DRBG state to avoid the possibility that knowledge of this state can compromise a key or keying material derived from its output, then the PP/ST author will include DRBG entropy input, seed input, and internal state of the DRBG in the assignment in an instance of FCS_CKM.6.1. This applies particularly where neither ‘reseeding’ nor ‘re-instantiating’ apply in the last selection of FCS_RBG.1.3 (and therefore where a different method of destruction needs to be specified).
 
@@ -3443,7 +3443,7 @@ The SFRs in this section are to be incorporated in the ST to support the optiona
 
 *_Application Note:_*
 
-_In this context, “cryptographic erase” encompasses any method that destroys the decryption key or the key that protects the decryption key while leaving encrypted D.USER and/or D.TSF on the storage media. This would include, for example, some ATA commands that only destroy the key. Note that key destruction is a mandatory requirement covered by FCS_CKM.6. cryptographic erase also uses the method described in FCS_CKM.6 for key destruction._
+_In this context, “cryptographic erase” encompasses any method that destroys the decryption key or the key that protects the decryption key while leaving encrypted D.USER and/or D.TSF on the storage media. This would include, for example, some ATA commands that only destroy the key. Note that key destruction is a mandatory requirement covered by FCS_CKM.6. Cryptographic erase also uses the method described in FCS_CKM.6 for key destruction._
 
 _Cryptographic erase covers D.USER.DOC and D.TSF.CONF (as per requirement of FDP_DSK_EXT.1). Encryption of additional data types is optional; therefore, cryptographic erase may not apply to additional data types._
 
@@ -6407,7 +6407,7 @@ The dependencies between SFRs implemented by the TOE are addressed as follows.
 | FAU_SAR.2 | FAU_SAR.1 | FAU_SAR.1 included
 | FAU_STG.1 | FAU_GEN.1, FTP_ITC.1 | FAU_GEN.1 included, FTP_ITC.1 as a secure channel that could be used for export of audit data
 | FAU_STG.2 | FAU_GEN.1 | FAU_GEN.1 included
-| FAU_STG.5 | FAU_STG.2 | FAU_STG.2 included
+| FAU_STG.5 | FAU_STG.2, FAU_GEN.1 | FAU_STG.2 included, FAU_GEN.1 included
 
 | FCS_CKM.1/AKG | FCS_CKM.2 or FCS_COP.1/SigGen, FCS_CKM.6 | FCS_CKM.2 and FCS_COP.1/SigGen included, FCS_CKM.6 included
 | FCS_CKM.1/SKG | FCS_COP.1/DataEncryption, FCS_COP.1/StorageEncryption, FCS_COP.1/KeyWrap, FCS_COP.1/KeyEnc, FCS_COP.1/KeyedHash, FCS_COP.1/CMAC, FCS_CKM.6, FCS_RBG.1 | FCS_COP.1/DataEncryption included, FCS_CKM.6 included, FCS_RBG.1 included, FCS_COP.1/StorageEncryption and FCS_COP.1/KeyWrap and FCS_COP.1/KeyEnc and FCS_COP.1/KeyedHash and FCS_COP.1/CMAC included as selection-based SFRs
@@ -6417,7 +6417,7 @@ The dependencies between SFRs implemented by the TOE are addressed as follows.
 | FCS_COP.1/DataEncryption | FCS_CKM.1/SKG, FCS_CKM.6 | FCS_CKM.1/SKG included, FCS_CKM.6 included
 | FCS_COP.1/SigGen | FCS_CKM.1/AKG, FCS_CKM.6 | FCS_CKM.1/AKG included, FCS_CKM.6 included
 | FCS_COP.1/Hash | None |
-| FCS_RBG.1 | FPT_TST.1 |
+| FCS_RBG.1 | FPT_TST_EXT.1 |
 
 | FDP_ACC.1 | FDP_ACF.1 | FDP_ACF.1 included
 | FDP_ACF.1 | FDP_ACC.1, FMT_MSA.3 | FDP_ACC.1 included, FMT_MSA.3 included
