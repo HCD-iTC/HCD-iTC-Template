@@ -7,8 +7,8 @@
 :sectnumlevels: 7
 :imagesdir: images
 :icons: font
-:revnumber: 1.0e+2022.2
-:revdate: 5 September 2025
+:revnumber: 1.1 DRAFT #1
+:revdate: 15 September 2025
 
 :iTC-longname: Hardcopy Devices
 :iTC-shortname: HCD-iTC
@@ -42,7 +42,7 @@ This collaborative Protection Profile (cPP) was developed by the {iTC-longname} 
 | 0.13 | 25 July 2022 | Final Public Draft
 | 1.0 | 31 October 2022 | Initial release for use
 | 1.0e | 4 March 2024 | Errata version
-| 1.0e+2022.2 | 5 September 2025 | CC2022 pre-release v0.2
+| 1.1 DRAFT #1 | 15 September 2025 | CC:2022 + TD0926, TD0927 draft
 |===
 
 toc::[]
