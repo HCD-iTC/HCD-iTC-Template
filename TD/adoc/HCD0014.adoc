@@ -1,6 +1,6 @@
 // The Number will be the next sequential TD number of the form HCDxxxx starting with HCD0001
 // The Title will be the title of the GitHub Issue that was generated for this problem, question, etc. that resulted in this TD being generated
-= HCD0014 - Permit use of FIPS 186-5 Digital Signature Standard algorithms in FCS_COP.1/Sig
+= HCD0014 - Permit use of FIPS 186-5 Digital Signature Standard algorithms in FCS_COP.1/SigGen
 :showtitle:
 :imagesdir: images
 :icons: font
@@ -32,13 +32,13 @@ CPP:
 // Provide the issue description extracted from the Issue that was generated for this problem, question, etc. that resulted in this TD being generated.
 // Include the Issue Number
 == Issue Description
-HCDcPP v1.0e references the now withdrawn (February 3, 2024) FIPS 186-4 Digital Signature Standard for RSA digital signatures.  NIAP TD0937 (published August 5, 2025) clarifies stricter NIAP PCL requirements making 3072-bit modulus RSA keys the minimum (and effectively only) length permitted.  FIPS 186-5 provides for additional keylengths to meet NIAP TD0937 requirements.
-
-Future revisions of the HCDcPP will replace FIPS 186-4 with FIPS 186-5.  The intent of the change is to permit, rather than require, FIPS 186-5 implementations in HCDcPP v1.0e for evaluations requiring NIAP PCL listing.
+HCDcPP v1.0e references the now withdrawn (February 3, 2024) FIPS 186-4 Digital Signature Standard for RSA digital signatures.  NIAP TD0937 (published August 5, 2025) clarifies stricter NIAP PCL requirements making 3072-bit modulus RSA keys the minimum, and effectively only, length available.  FIPS 186-5 provides for additional keylengths to meet NIAP TD0937 requirements.
 
 
 // Provide the resolution agreed upon by the HIT for this Issue
 == Resolution
+
+Future revisions of the HCDcPP will replace FIPS 186-4 with FIPS 186-5.  The intent of the change is to permit, rather than require, FIPS 186-5 implementations in HCDcPP v1.0e for evaluations requiring NIAP PCL listing.
 
 * Add FIPS PUB 186-5 to permitted standards for RSA schemes to FCS_COP.1.1/SigGen based on List of Standards expected in the upcoming Common Criteria Crypto Catalog.
 
