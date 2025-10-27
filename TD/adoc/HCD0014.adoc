@@ -40,7 +40,7 @@ HCDcPP v1.0e references the now withdrawn (February 3, 2024) FIPS 186-4 Digital 
 
 Future revisions of the HCDcPP will replace FIPS 186-4 with FIPS 186-5.  The intent of the change is to permit, rather than require, FIPS 186-5 implementations in HCDcPP v1.0e for evaluations requiring NIAP PCL listing.
 
-* Add FIPS PUB 186-5 to permitted standards for RSA schemes to FCS_COP.1.1/SigGen based on List of Standards expected in the upcoming Common Criteria Crypto Catalog.
+* Add RFC 8017 and FIPS PUB 186-5 to permitted standards for RSA schemes to FCS_COP.1.1/SigGen based on List of Standards expected in the upcoming Common Criteria Crypto Catalog.
 
 
 // Provide here the specific change(s) by Document, Section number, paragraph and line that is to be made to the HCD cPP and/or HCD SD to resolve this issue
