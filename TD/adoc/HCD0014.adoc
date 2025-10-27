@@ -1,0 +1,66 @@
+// The Number will be the next sequential TD number of the form HCDxxxx starting with HCD0001
+// The Title will be the title of the GitHub Issue that was generated for this problem, question, etc. that resulted in this TD being generated
+= HCD0014 - Permit use of FIPS 186-5 Digital Signature Standard algorithms in FCS_COP.1/Sig
+:showtitle:
+:imagesdir: images
+:icons: font
+// revnumber and revdate should be the number and date of the revision of this version of the TD
+:revnumber: 1
+:revdate: 2025-10-27
+:linkattrs:
+
+:iTC-longname: Hardcopy Device
+:iTC-shortname: HCD-iTC
+:iTC-email: iTC-HCD@niap-ccevs.org
+:iTC-website: https://hcd-iTC.github.io/
+// Provide the link here to either the HCD cPP and/or the HCD SD as applicable
+:iTC-GitHub: https://github.com/HCD-iTC/cPP/
+
+Version: {revnumber}, Published: {revdate}
+
+== Impacted Documents
+
+* CPP_HCD_V1.0e
+
+// Reference the applicable Section/paragraph number for the HCD cPP SFR(s) / SARs or HCD SD Assurace Activities that this TD pertains to
+== References
+
+CPP:
+
+* 5.3.7. FCS_COP.1/SigGen Cryptographic Operation (Signature Generation and Verification)
+
+// Provide the issue description extracted from the Issue that was generated for this problem, question, etc. that resulted in this TD being generated.
+// Include the Issue Number
+== Issue Description
+HCDcPP v1.0e references the now withdrawn (February 3, 2024) FIPS 186-4 Digital Signature Standard for RSA digital signatures.  NIAP TD0937 (published August 5, 2025) clarifies stricter NIAP PCL requirements making 3072-bit modulus RSA keys the minimum (and effectively only) length permitted.  FIPS 186-5 provides for additional keylengths to meet NIAP TD0937 requirements.
+
+Future revisions of the HCDcPP will replace FIPS 186-4 with FIPS 186-5.  The intent of the change is to permit, rather than require, FIPS 186-5 implementations in HCDcPP v1.0e for evaluations requiring NIAP PCL listing.
+
+
+// Provide the resolution agreed upon by the HIT for this Issue
+== Resolution
+
+* Add FIPS PUB 186-5 to permitted standards for RSA schemes to FCS_COP.1.1/SigGen based on List of Standards expected in the upcoming Common Criteria Crypto Catalog.
+
+
+// Provide here the specific change(s) by Document, Section number, paragraph and line that is to be made to the HCD cPP and/or HCD SD to resolve this issue
+== CPP_HCD_V1.0e
+
+* *Modify FCS_COP.1.1/SigGen*:
+
+*FCS_COP.1.1/SigGen*
+
+that meet the following: [selection:
+
+Case: RSA schemes
+
+* _FIPS PUB 186-4, “Digital Signature Standard (DSS)”, Section 5.5, using PKCS #1 v2.1 Signature Schemes RSASSA-PSS and/or RSASSA-PKCS1v1_5; ISO/IEC 9796-2, Digital signature scheme 2 or Digital Signature scheme 3; ##RFC 8017 (Section 8.2) [PKCS #1 v2.2], FIPS PUB 186-5 (Section 5.4) [RSASSA-PKCS1-v1_5]##._
+
+
+
+
+
+//Include a pointer to the file that contains the actual fix for this TD
+== Tracking
+
+link:https://github.com/HCD-iTC/HCD-iTC-Template/issues/366[Issue #366]
