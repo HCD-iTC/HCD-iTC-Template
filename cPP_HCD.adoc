@@ -928,18 +928,18 @@ _The domain parameters used for the finite field-based key establishment scheme 
     +++<del>FCS_CKM_EXT.8 Password-based key derivation</del>+++]
 ======
 
-*FCS_CKM.6.1* The TSF shall destroy [assignment: _list of cryptographic keys (including keying material)_] when [selection: _no longer needed, [assignment: other circumstances for key or keying material destruction]_].
+*FCS_CKM.6.1 Refinement* The TSF shall destroy [*_plaintext cryptographic keys (including keying material)_*] when [selection: _no longer needed, [assignment: other circumstances for key or keying material destruction]_].
 
 *_Application Note:_*
 
-The TOE will have mechanisms to destroy keys, including intermediate keys and key material, by using an approved method as specified in FCS_CKM.6.2. Examples of keys include intermediate keys, leaf keys, encryption keys, and signing keys. Key material includes seeds, authentication secrets, passwords, PINs, and other secret values used to derive keys. The ST Author shall list all such keys and keying material that are subject to destruction in the first assignment.
+The TOE will have mechanisms to destroy keys, including intermediate keys and key material, by using an approved method as specified in FCS_CKM.6.2. Examples of keys include intermediate keys, leaf keys, encryption keys, and signing keys. Key material includes seeds, authentication secrets, passwords, PINs, and other secret values used to derive keys.
 
 This SFR does not apply to the public component of asymmetric key pairs or to keys that are permitted to remain stored, such as device identification keys.
 
-*FCS_CKM.6.2* The TSF shall destroy cryptographic keys and keying material specified by FCS_CKM.6.1 in accordance with a specified cryptographic key destruction method [selection:
+*FCS_CKM.6.2* The TSF shall destroy *plaintext* cryptographic keys and keying material specified by FCS_CKM.6.1 in accordance with a specified cryptographic key destruction method [selection:
 
 [no-bullet]
-. 1. For volatile memory, the destruction shall be executed by a [_selection:_
+. 1. For volatile storage, the destruction shall be executed by a [_selection:_
 [no-bullet]
 .. a. single overwrite consisting of [selection:
 [no-bullet]
@@ -950,13 +950,22 @@ This SFR does not apply to the public component of asymmetric key pairs or to ke
 ... v. [assignment: some value that does not contain any CSP]],
 .. b. removal of power to the memory,
 .. c. removal of all references to the key directly followed by a request for garbage collection];
-. 2. For non-volatile memory [selection:
+
+. 2. For non-volatile storage [selection:
 [no-bullet]
-.. a. that employs a wear-leveling algorithm, the destruction shall be executed by a [selection:
+.. a. that consists of an invocation of an interface provided by a part of the TSF, the destruction shall be executed by: [selection:
+
+... logically addressing the storage location of the key and performing a [selection: single, [assignment: number of passes]-pass] overwrite consisting of [selection: a pseudo-random pattern using the TSF’s RBG (as specified in FCS_RBG.1), zeroes, ones, a new value of the key, [assignment: a static or dynamic value that does not contain any CSP]];
+
+... instructing a part of the TSF to destroy the abstraction that represents the key]
+
+
+
+.. b. that employs a wear-leveling algorithm, the destruction shall be executed by a [selection:
 [no-bullet]
 ... i. single overwrite consisting of [selection: zeroes, ones, pseudo-random pattern, a new value of a key of the same size, [assignment: some value that does not contain any CSP]], 
 ... ii. block erase];
-.. b. that does not employ a wear-leveling algorithm, the destruction shall be executed by a [selection:
+.. c. that does not employ a wear-leveling algorithm, the destruction shall be executed by a [selection:
 [no-bullet]
 ... i. [selection: single, [assignment: ST author defined multi-pass]] overwrite consisting of [selection: zeros, ones, pseudo-random pattern, a new value of a key of the same size, [assignment: some value that does not contain any CSP]] followed by a read-verify. If the read-verification of the overwritten data fails, the process shall be repeated up to [assignment: number of times to attempt overwrite] times, whereupon an error is returned.
 ... ii. block erase]
