@@ -43,6 +43,8 @@ This collaborative Protection Profile (cPP) was developed by the {iTC-longname} 
 | 1.0 | 31 October 2022 | Initial release for use
 | 1.0e | 4 March 2024 | Errata version
 | 1.1 DRAFT #1 | 15 September 2025 | CC:2022 + TD0926, TD0927 draft
+| 1.1 DRAFT #1b| 15 September 2025 | Issue #391
+
 |===
 
 toc::[]
@@ -61,11 +63,23 @@ The target audiences of this cPP are developers, CC consumers, system integrator
 Although the cPP and SD may contain minor editorial errors, the cPP is recognized as living document and the iTC is dedicated to ongoing updates and revisions. Please report any issues to the {iTC-shortname}.
 
 [bibliography]
-* [#CC1]#[CC1]# Common Criteria for Information Technology Security Evaluation, Part 1: Introduction and General Model, CCMB-2017-04-001, Version 3.1 Revision 5, April 2017.
-* [#CC2]#[CC2]# Common Criteria for Information Technology Security Evaluation, Part 2: Security Functional Components, CCMB-2017-04-002, Version 3.1 Revision 5, April 2017.
-* [#CC3]#[CC3]# Common Criteria for Information Technology Security Evaluation, Part 3: Security Assurance Components, CCMB-2017-04-003, Version 3.1 Revision 5, April 2017.
-* [#CEM]#[CEM]# Common Methodology for Information Technology Security Evaluation, Evaluation Methodology, CCMB-2017-04-004, Version 3.1 Revision 5, April 2017.
-* [#SD]#[SD]# Supporting Document Mandatory Technical Document: Evaluation Activities for collaborative Protection Profile for Hardcopy Devices, v1.0, 31 October 2022.
+* [#CC1]#[CC1]# Common Criteria for Information Technology Security Evaluation, Part 1: Introduction and general model, CCMB-2022-11-001, CC:2022 Revision 1, November 2022.
+
+* [#CC2]#[CC2]# Common Criteria for Information Technology Security Evaluation, Part 2: Security functional components, CCMB-2022-11-002, CC:2022 Revision 1, November 2022.
+
+* [#CC3]#[CC3]# Common Criteria for Information Technology Security Evaluation, Part 3: Security assurance components, CCMB-2022-11-003, CC:2022 Revision 1, November 2022.
+
+* [#CC4]#[CC4]# Common Criteria for Information Technology Security Evaluation, Part 4: Framework for the specification of evaluation methods and activities, CCMB-2022-11-004, CC:2022 Revision 1, November 2022.
+
+* [#CC5]#[CC5]# Common Criteria for Information Technology Security Evaluation, Part 5: Pre-defined packages of security requirements, CCMB-2022-11-003, CC:2022 Revision 1, November 2022.
+
+* [#CEM]#[CEM]# Common Methodology for Information Technology Security Evaluation, Evaluation methodology, CCMB-2022-11-006, CC:2022 Revision 1, November 2022.
+
+* [#CC-E&I]#[CC-E&I]# Errata and Interpretation for CC:2022 (Release 1) and CEM:2022 (Release 1), 002, Version 1.1, July 22, 2024
+
+* [#SFR-CRYPTO]#[SFR-CRYPTO]# Specification of Functional Requirements for Cryptography, Version 1.0, January 31, 2025
+
+* [#SD]#[SD]# Supporting Document Mandatory Technical Document: Evaluation Activities for collaborative Protection Profile for Hardcopy Devices, v1.1, 19 December 2025.
 
 For more see the http://www.commoncriteriaportal.org/[Common Criteria Portal].
 
@@ -219,12 +233,11 @@ Optionally, an HCD may provide functions that actively overwrite image data, or 
 
 
 == CC Conformance Claims
-As defined by the references <<CC1>>, <<CC2>> and <<CC3>>, this cPP:
+As defined by the references <<CC1>>, <<CC2>>, <<CC3>>, <<CC-E&I>>, and <<SFR-CRYPTO>> this cPP:
 
-* conforms to the requirements of Common Criteria v3.1, Revision 5,
-* is Part 2 extended,
-* is Part 3 conformant,
-* does not claim conformance to any other security functional requirement packages.
+* conforms to the requirements of Common Criteria CC:2022, Revision 1,
+* Errata and Interpretation for CC:2022 (Release 1) and CEM:2022 (Release 1), 002, Version 1.1,
+* Specification of Functional Requirements for Cryptography, Version 1.0
 
 Conformance to this Protection Profile: To claim conformance to this Protection Profile, the conforming Security Target must comply with all of the following rules:
 
@@ -238,7 +251,7 @@ Conformance to this Protection Profile: To claim conformance to this Protection 
 
 5. The Security Target author may choose to include for evaluation any of the Optional Uses described in <<USE CASE 3: Optional Use Cases>>. The vendor may choose to evaluate those optional functions as described in <<appendix-optional>>.
 
-6. The TOE must demonstrate Exact Conformance. Exact Conformance, as a subset of Strict Conformance as defined in <<CC1>>, Annex D.2, is defined as the ST meeting all of the previous conformance rules. While iteration is allowed, no additional requirements (from the CC parts 2 or 3) are allowed to be included in the ST.
+6. The Security Target must conform to this Protection Profile as Exact Conformance.
 
 
 
@@ -1850,9 +1863,9 @@ After the ST has been approved for evaluation, the ITSEF (IT Security Evaluation
 
 |ST introduction (ASE_INT.1)
 
-|Security objectives for the operational environment (ASE_OBJ.1)
+|Security objectives (ASE_OBJ.2)
 
-|Stated security requirements (ASE_REQ.1)
+|Derived security requirements (ASE_REQ.2)
 
 |Security Problem Definition (ASE_SPD.1)
 
