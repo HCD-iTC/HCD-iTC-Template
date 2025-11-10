@@ -856,10 +856,10 @@ _If the TOE acts as a receiver in the key establishment schemes and is not confi
 	FCS_COP.1/KeyedHash Cryptographic Operation (for keyed-hash message authentication) +
 	FCS_COP.1/CMAC Cryptographic Operation (for keyed-hash message authentication)] +
 	FCS_CKM.6 Timing and event of cryptographic key destruction +
-	FCS_RBG.1 Random bit generation (RBG))
+	FCS_RBG_EXT.1 Random bit generation (RBG))
 ======
 
-*FCS_CKM.1.1/SKG Refinement:* The TSF shall generate *symmetric* cryptographic keys *using a Random Bit Generator as specified in FCS_RBG.1* and specified cryptographic key sizes [selection: _128 bits, 192 bits, 256 bits_] that meet the following: [selection: _ISO/IEC 18031:2011 (Clause 9) [DRBG], NIST SP 800-133 Rev.2 Section [selection: 6.1, 6.3]_].
+*FCS_CKM.1.1/SKG Refinement:* The TSF shall generate *symmetric* cryptographic keys *using a Random Bit Generator as specified in FCS_RBG_EXT.1* and specified cryptographic key sizes [selection: _128 bits, 192 bits, 256 bits_] that meet the following: [selection: _ISO/IEC 18031:2011 (Clause 9) [DRBG], NIST SP 800-133 Rev.2 Section [selection: 6.1, 6.3]_].
 
 *_Application Note:_*
 
@@ -979,7 +979,7 @@ the mappings of logical addresses to the erased memory locations are erased, as 
 itself.
 
 Some selections allow the assignment of “some value that does not contain any CSP.” This means
-that the TOE uses some specified data not drawn from an RBG meeting FCS_RBG requirements,
+that the TOE uses some specified data not drawn from an RBG meeting FCS_RBG_EXT requirements,
 and not being any of the values listed as other selection options. The point of the phrase “does not
 contain any CSP” is to ensure that the overwritten data is carefully selected, and not taken from a
 general pool that might contain data that itself requires confidentiality protection. 
@@ -1160,57 +1160,32 @@ _The hash selection should be consistent with the overall strength of the algori
 
 
 
-
-
-
-==== FCS_RBG.1 Random bit generation (RBG)
+==== FCS_RBG_EXT.1 Random Bit Generation
 ======
 (for O.STORAGE_ENCRYPTION, O.COMMS_PROTECTION, O.STRONG_CRYPTO) +
 *Hierarchical to:* +
 	No other components.
 
 *Dependencies:* +
-	+++<del>[FCS_RBG.2 Random bit generation (external seeding), or</del>+++ +
-    +++<del>FCS_RBG.3 Random bit generation (internal seeding – single source)]</del>+++ +
-    +++<del>FPT_FLS.1 Failure with preservation of secure state</del>+++ +
-    FPT_TST_EXT.1 TSF self-testing
+	No dependencies.
 ======
 
-*FCS_RBG.1.1* The TSF shall perform deterministic random bit generation services using [assignment: _DRBG algorithm_] in accordance with [assignment: _list of standards_] after initialization.
+*FCS_RBG_EXT.1.1* The TSF shall perform all deterministic random bit generation services in accordance with ISO/IEC 18031:2011 using [selection: _Hash_DRBG (any), HMAC_DRBG (any), CTR_DRBG ([selection: AES, SEED, HIGHT, LEA])_].
 
-*FCS_RBG.1.2* The TSF shall use a [selection: _TSF entropy source [assignment: name of entropy source], TSF interface for obtaining entropy_] for initialization and reseeding.
-
-*FCS_RBG.1.3* The TSF shall update the DRBG state by [selection: _reseeding, uninstantiating and re-instantiating_] using a [selection: _TSF entropy source [assignment: name of entropy source], TSF interface for obtaining entropy [assignment: name of the interface]_] in the following situations: [selection:
-
-* _never;_
-* _on demand;_
-* _on the condition: [assignment: condition];_
-* _after [assignment: time]_]
-
-in accordance with [assignment: _list of standards_].
-
+*FCS_RBG_EXT.1.2* The deterministic RBG shall be seeded by at least one entropy source that accumulates entropy from [selection: [_assignment: number of firmware/software-based sources_] _firmware/software-based noise source,_ [_assignment: number of hardware-based sources_] _hardware-based noise source_] with a minimum of [selection: _128 bits, 192 bits, 256 bits_] of entropy at least equal to the greatest security strength, according to ISO/IEC 18031:2011 Table C.1 “Security Strength Table for Hash Functions”, of the keys and hashes that it will generate.
 
 *_Application Note:_*
 
-For FCS_RBG.1, these dependencies shall always be met.
+_For the first selection in FCS_RBG_EXT.1.2, the ST author selects at least one of the types of noise sources. If the TOE contains multiple noise sources of the same type, the ST author fills the assignment with the appropriate number for each type of source (e.g., 2 firmware/software-based noise sources, 1 hardware-based noise source). The documentation and tests required in the Evaluation Activity for this element should be repeated to cover each source indicated in the ST._
 
-CC Part 1, 8.3 c) allows a justification to be provided if a dependency is not met is not allowed for this component.
+_ISO/IEC 18031:2011 contains three different methods of generating random numbers; each of these, in turn, depends on underlying cryptographic primitives (hash functions/ciphers). The ST author will select the function used and include the specific underlying cryptographic primitives used in the requirement. While any of the identified hash functions (SHA-1, SHA-224, SHA-256, SHA-384, SHA-512) are allowed for Hash_DRBG or HMAC_DRBG, any of the block ciphers-based (AES, SEED, HIGHT, LEA) implementations for CTR_DRBG are allowed._
 
-Reseeding is the typical mechanism for updating RBG state. If reseeding is not feasible, the TSF should uninstantiate RBGs rather than produce output that is of insufficient quality.
+_If the key length for the AES implementation used here is different than that used to encrypt the user data, then FCS_COP.1/DataEncryption may have to be adjusted or iterated to reflect the different key length. For the selection in FCS_RBG_EXT.1.2, the ST author selects the minimum number of bits of entropy that is used to seed the RBG, which must be equal or greater than the security strength of any key generated by the TOE._
 
-“Uninstantiate” means that the internal state of the RBG is no longer available for use.
 
-The situation “never” should be selected only if the RBG cannot be reseeded or uninstantiated.
 
-The situation “on demand” indicates that there is an interface to trigger reseeding or uninstantiating of the RBG, whether internal to the TOE or presented as a TSFI (e.g. an API call).
 
-The situation “on the condition” allows the PP/ST author to specify application-specific conditions for reseeding.
 
-The list of standards should specify the reseed interval, and procedures for uninstantiating and reseeding. This assignment should be “None” if the situation is “never.”
-
-Health tests for the RBG are specified in *FPT_TST_EXT.1*.
-
-NOTE - If a TOE needs to protect the DRBG state to avoid the possibility that knowledge of this state can compromise a key or keying material derived from its output, then the PP/ST author will include DRBG entropy input, seed input, and internal state of the DRBG in the assignment in an instance of FCS_CKM.6.1. This applies particularly where neither ‘reseeding’ nor ‘re-instantiating’ apply in the last selection of FCS_RBG.1.3 (and therefore where a different method of destruction needs to be specified).
 
 
 
@@ -2180,7 +2155,7 @@ There are unique requirements associated with each of the protocol suites; these
 	FCS_COP.1/SigGen Cryptographic Operation (for signature generation/verification), +
 	FCS_COP.1/Hash Cryptographic Operation (Hash Algorithm), +
 	FCS_COP.1/KeyedHash Cryptographic Operation (for keyed-hash message authentication), +
-	FCS_RBG.1 Random bit generation (RBG)
+	FCS_RBG_EXT.1 Random Bit Generation (RBG)
 =====
 
 *_Application Note:_*
@@ -2264,7 +2239,7 @@ _The ST author chooses either the IKEv1 requirements or IKEv2 requirements (or b
 
 _The ST author chooses either the IKEv1 requirements or IKEv2 requirements (or both, depending on the selection in FCS_IPSEC_EXT.1.5). The ST author chooses either volume-based lifetimes or time-based lifetimes (or a combination). This requirement must be accomplished by providing Security Administrator-configurable lifetimes (with appropriate instructions in documents mandated by AGD_OPE). Hardcoded limits do not meet this requirement. In general, instructions for setting the parameters of the implementation, including lifetime of the SAs, should be included in the guidance documentation generated for AGD_OPE._
 
-*FCS_IPSEC_EXT.1.9* The TSF shall generate the secret value x used in the IKE Diffie-Hellman key exchange (“x” in g^x mod p) using the random bit generator specified in FCS_RBG.1, and having a length of at least [assignment: _(one or more) number(s) of bits that is at least twice the security strength of the negotiated Diffie-Hellman group_] bits.
+*FCS_IPSEC_EXT.1.9* The TSF shall generate the secret value x used in the IKE Diffie-Hellman key exchange (“x” in g^x mod p) using the random bit generator specified in FCS_RBG_EXT.1, and having a length of at least [assignment: _(one or more) number(s) of bits that is at least twice the security strength of the negotiated Diffie-Hellman group_] bits.
 
 *_Application Note:_*
 
@@ -2382,7 +2357,7 @@ List 1: List of supported TLS-related ciphersuites
 	FCS_COP.1/SigGen Cryptographic operation (Signature Generation and Verification) +
 	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm) +
 	FCS_COP.1/KeyedHash Cryptographic operation (Keyed Hash Algorithm) +
-	FCS_RBG.1 Random Bit Generation +
+	FCS_RBG_EXT.1 Random Bit Generation +
 	FIA_X509_EXT.1 X.509 Certificate Validation +
 	FIA_X509_EXT.2 X.509 Certificate Authentication
 ======
@@ -2498,7 +2473,7 @@ requirements to allow for these differences.
 	FCS_COP.1/SigGen Cryptographic operation (Signature Generation and Verification) +
 	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm) +
 	FCS_COP.1/KeyedHash Cryptographic operation (Keyed Hash Algorithm) +
-	FCS_RBG.1 Random Bit Generation
+	FCS_RBG_EXT.1 Random Bit Generation
 ======
 
 
@@ -2768,7 +2743,7 @@ If HTTPS is selected in FTP_ITC.1, FTP_TRP.1/Admin and/or FTP_TRP.1/NonAdmin the
 No other components. +
 
 *Dependencies:* +
-  FCS_RBG.1 Random bit generation (RBG) +
+  FCS_RBG_EXT.1 Random bit generation (RBG) +
 	FTP_ITC.1 or FCS_CKM.1/AKG +
 	FCS_CKM.6 Timing and event of cryptographic key destruction
 ======
@@ -2789,7 +2764,7 @@ _The key size [k] in the assignment falls into a range between L1 and L2 (define
 No other components.
 
 *Dependencies:* +
-FCS_RBG.1 Random bit generation (RBG)
+FCS_RBG_EXT.1 Random bit generation (RBG)
 ======
 
 *_Application Note:_*
@@ -2807,7 +2782,7 @@ _The requirements below mandate that the TOE must support text-based pre-shared 
 • 22 characters in length and [selection: _[assignment: other supported lengths], no other lengths];_
 • composed of any combination of upper and lower case letters, numbers, and special characters (that include: “!”, “@”, “#”, “$”, “%”, “^”, “&”, “*”, “(“, and “)”).
 
-*FIA_PSK_EXT.1.3* The TSF shall condition the text-based pre-shared keys by using [selection: _SHA-1, SHA-256, SHA-512_, [assignment: _method of conditioning text string_]] and be able to [selection: _use no other pre-shared keys; accept bit-based pre-shared keys; generate bit-based pre-shared keys using the random bit generator specified in FCS_RBG.1_].
+*FIA_PSK_EXT.1.3* The TSF shall condition the text-based pre-shared keys by using [selection: _SHA-1, SHA-256, SHA-512_, [assignment: _method of conditioning text string_]] and be able to [selection: _use no other pre-shared keys; accept bit-based pre-shared keys; generate bit-based pre-shared keys using the random bit generator specified in FCS_RBG_EXT.1_].
 
 *_Application Note:_*
 
@@ -2847,7 +2822,7 @@ If the TOE acts as the server during the claimed DTLS sessions, the ST author sh
 	FCS_COP.1/SigGen Cryptographic operation (Signature Generation and Verification) +
 	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm) +
 	FCS_COP.1/KeyedHash Cryptographic operation (Keyed Hash Algorithm) +
-	FCS_RBG.1 Random Bit Generation +
+	FCS_RBG_EXT.1 Random Bit Generation +
 	FIA_X509_EXT.1 X.509 Certificate Validation +
 	FIA_X509_EXT.2 X.509 Certificate Authentication
 ======
@@ -3077,10 +3052,10 @@ _For the assignment, the key size will fall into a range between 128 and 256._
 	No other components +
 
 *Dependencies:* +
-	FCS_RBG.1 Random bit generation (RBG)
+	FCS_RBG_EXT.1 Random bit generation (RBG)
 ======
 
-*FCS_SNI_EXT.1.1* The TSF shall only use salts that are generated by a RNG as specified in FCS_RBG.1.
+*FCS_SNI_EXT.1.1* The TSF shall only use salts that are generated by a RNG as specified in FCS_RBG_EXT.1.
 
 *FCS_SNI_EXT.1.2* The TSF shall only use unique nonces with a minimum size of [64] bits.
 
@@ -3511,7 +3486,7 @@ If the TOE acts as the server during the claimed DTLS sessions, the ST author sh
 	FCS_COP.1/SigGen Cryptographic operation (Signature Generation and Verification) +
 	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm) +
 	FCS_COP.1/KeyedHash Cryptographic operation (Keyed Hash Algorithm) +
-	FCS_RBG.1 Random Bit Generation +
+	FCS_RBG_EXT.1 Random Bit Generation +
 	FCS_DTLSC_EXT.1 DTLS Client Protocol +
 	FIA_X509_EXT.1 X.509 Certificate Validation +
 	FIA_X509_EXT.2 X.509 Certificate Authentication
@@ -3591,7 +3566,7 @@ A TOE may act as the client, the server, or both in TLS sessions. The requiremen
 	FCS_COP.1/SigGen Cryptographic operation (Signature Generation and Verification) +
 	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm) +
 	FCS_COP.1/KeyedHash Cryptographic operation (Keyed Hash Algorithm) +
-	FCS_RBG.1 Random Bit Generation +
+	FCS_RBG_EXT.1 Random Bit Generation +
 	FCS_TLSC_EXT.1 TLS Client Protocol without mutual authentication +
 	FIA_X509_EXT.1 X.509 Certificate Validation +
 	FIA_X509_EXT.2 X.509 Certificate Authentication
@@ -3752,7 +3727,7 @@ The following actions should be auditable if FAU_GEN Security Audit Data Generat
 	FCS_COP.1/SigGen Cryptographic operation (Signature Generation and Verification) +
 	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm) +
 	FCS_COP.1/KeyedHash Cryptographic operation (Keyed Hash Algorithm) +
-	FCS_RBG.1 Random Bit Generation
+	FCS_RBG_EXT.1 Random Bit Generation
 ======
 
 *FCS_IPSEC_EXT.1.1* The TSF shall implement the IPsec architecture as specified in RFC 4301.
@@ -3800,7 +3775,7 @@ mandatory support for NAT traversal as specified in RFC 5996, section 2.23)], an
 
 ].
 
-*FCS_IPSEC_EXT.1.9* The TSF shall generate the secret value x used in the IKE Diffie-Hellman key exchange (“x” in gx mod p) using the random bit generator specified in FCS_RBG.1, and having a length of at least [assignment: (one or more) number(s) of bits that is at least twice the security strength of the negotiated Diffie-Hellman group] bits.
+*FCS_IPSEC_EXT.1.9* The TSF shall generate the secret value x used in the IKE Diffie-Hellman key exchange (“x” in gx mod p) using the random bit generator specified in FCS_RBG_EXT.1, and having a length of at least [assignment: (one or more) number(s) of bits that is at least twice the security strength of the negotiated Diffie-Hellman group] bits.
 
 *FCS_IPSEC_EXT.1.10* The TSF shall generate nonces used in [selection: _IKEv1, IKEv2_] exchanges of length [selection:
 
@@ -3947,6 +3922,72 @@ The TSF is required to ensure that passwords used to produce the BEV or the DEK 
 This extended component protects the Data Encryption Keys using cryptographic algorithms and Robust BEV in the maintained key chains, and it is therefore placed in the FCS class with a single component.
 
 
+
+
+
+==== FCS_RBG_EXT Extended: Cryptographic Operation (Random Bit Generation)
+
+*Family Behaviour*
+
+Components in this family address the requirements for random bit/number generation. This is a new family defined for the FCS class.
+
+*Component Levelling*
+[#img-FCS_RBG_EXT]
+.Component Levelling
+[ditaa]
+======
+    +------------------------------------------+
+    |                                          |     +---+
+    | FCS_RBG_EXT Random Bit Generation        +---->| 1 |
+    |                                          |     +---+
+    +------------------------------------------+
+======
+
+
+
+
+FCS_RBG_EXT.1 Random Bit Generation requires random bit generation to be performed in accordance with selected standards and seeded by an entropy source.
+
+*Management*
+
+The following actions could be considered for the management functions in FMT:
+
+• There are no management actions foreseen.
+
+*Audit*
+
+The following actions should be auditable if FAU_GEN Security Audit Data Generation is included in the PP/ST:
+
+• Minimal: failure of the randomization process
+
+===== FCS_RBG_EXT.1 Extended: Random Bit Generation
+======
+*Hierarchical to:* +
+	No other components.
+
+*Dependencies:* +
+	No dependencies.
+======
+
+*FCS_RBG_EXT.1.1* The TSF shall perform all deterministic random bit generation services in accordance with ISO/IEC 18031:2011 using [selection: _Hash_DRBG (any), HMAC_DRBG (any), CTR_DRBG ([selection: AES, SEED, HIGHT, LEA])_].
+
+*FCS_RBG_EXT.1.2* The deterministic RBG shall be seeded by at least one entropy source that accumulates entropy from [selection: _[assignment: number of firmware/software-based sources] firmware/software-based noise source, [assignment: number of hardware-based sources] hardware-based noise source_] with a minimum of [selection: _128 bits, 192 bits, 256 bits_] of entropy at least equal to the greatest security strength, according to ISO/IEC 18vv031:2011 Table C.1 “Security Strength Table for Hash Functions”, of the keys and hashes that it will generate.
+
+
+*Rationale*
+
+Random bits/number will be used by the SFRs for key generation and destruction, and the Common Criteria does not provide a suitable SFR for the random bit generation.
+
+This extended component ensures the strength of encryption keys, and it is therefore placed in the FCS class with a single component.
+
+
+
+
+
+
+
+
+
 ==== FCS_SMC_EXT Extended: Submask Combining
 
 *Family Behaviour*
@@ -4031,10 +4072,10 @@ There are no auditable events foreseen.
 	No other components
 
 *Dependencies:* +
-	FCS_RBG.1 Random bit generation (RBG)
+	FCS_RBG_EXT.1 Random bit generation (RBG)
 ======
 
-FCS_SNI_EXT.1.1 The TSF shall only use salts that are generated by a RNG as specified in FCS_RBG.1.
+FCS_SNI_EXT.1.1 The TSF shall only use salts that are generated by a RNG as specified in FCS_RBG_EXT.1.
 
 FCS_SNI_EXT.1.2 The TSF shall only use unique nonces with a minimum size of [64] bits.
 
@@ -4097,7 +4138,7 @@ The following actions should be considered for audit if FAU_GEN Security audit d
 	FCS_COP.1/SigGen Cryptographic operation (Signature Generation and Verification) +
 	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm) +
 	FCS_COP.1/KeyedHash Cryptographic operation (Keyed Hash Algorithm) +
-	FCS_RBG.1 Random Bit Generation
+	FCS_RBG_EXT.1 Random Bit Generation
 ======
 
 *FCS_SSHC_EXT.1.1* The TSF shall implement the SSH protocol in accordance with: RFCs 4251, 4252, 4253, 4254, [selection: _4256, 4344, 5647, 5656, 6187, 6668, 8268, 8308 section 3.1, 8332_].
@@ -4152,7 +4193,7 @@ The following actions should be considered for audit if FAU_GEN Security audit d
 	FCS_COP.1/SigGen Cryptographic operation (Signature Generation and Verification) +
 	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm) +
 	FCS_COP.1/KeyedHash Cryptographic operation (Keyed Hash Algorithm) +
-	FCS_RBG.1 Random Bit Generation
+	FCS_RBG_EXT.1 Random Bit Generation
 ======
 
 *FCS_SSHS_EXT.1.1* The TSF shall implement the SSH protocol in accordance with: RFCs 4251, 4252, 4253, 4254, [selection: _4256, 4344, 5647, 5656, 6187, 6668, 8268, 8308 section 3.1, 8332_].
@@ -4217,7 +4258,7 @@ The following actions should be considered for audit if FAU_GEN Security audit d
 	FCS_COP.1/SigGen Cryptographic operation (Signature Generation and Verification) +
 	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm) +
 	FCS_COP.1/KeyedHash Cryptographic operation (Keyed Hash Algorithm) +
-	FCS_RBG.1 Random Bit Generation +
+	FCS_RBG_EXT.1 Random Bit Generation +
 	FIA_X509_EXT.1 X.509 Certificate Validation +
 	FIA_X509_EXT.2 X.509 Certificate Authentication
 ======
@@ -4249,7 +4290,7 @@ The following actions should be considered for audit if FAU_GEN Security audit d
 	FCS_COP.1/SigGen Cryptographic operation (Signature Generation and Verification) +
 	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm) +
 	FCS_COP.1/KeyedHash Cryptographic operation (Keyed Hash Algorithm) +
-	FCS_RBG.1 Random Bit Generation +
+	FCS_RBG_EXT.1 Random Bit Generation +
 	FCS_TLSC_EXT.1 TLS Client Protocol without mutual authentication +
 	FIA_X509_EXT.1 X.509 Certificate Validation +
 	FIA_X509_EXT.2 X.509 Certificate Authentication
@@ -4297,7 +4338,7 @@ The following actions should be considered for audit if FAU_GEN Security audit d
 	FCS_COP.1/SigGen Cryptographic operation (Signature Generation and Verification) +
 	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm) +
 	FCS_COP.1/KeyedHash Cryptographic operation (Keyed Hash Algorithm) +
-	FCS_RBG.1 Random Bit Generation +
+	FCS_RBG_EXT.1 Random Bit Generation +
 	FIA_X509_EXT.1 X.509 Certificate Validation +
 	FIA_X509_EXT.2 X.509 Certificate Authentication
 ======
@@ -4324,7 +4365,7 @@ The following actions should be considered for audit if FAU_GEN Security audit d
 	FCS_COP.1/SigGen Cryptographic operation (Signature Generation and Verification) +
 	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm) +
 	FCS_COP.1/KeyedHash Cryptographic operation (Keyed Hash Algorithm) +
-	FCS_RBG.1 Random Bit Generation +
+	FCS_RBG_EXT.1 Random Bit Generation +
 	FCS_TLSS_EXT.1 TLS Server Protocol without mutual authentication +
 	FIA_X509_EXT.1 X.509 Certificate Validation +
 	FIA_X509_EXT.2 X.509 Certificate Authentication +
@@ -4387,7 +4428,7 @@ The following actions should be considered for audit if FAU_GEN Security audit d
 	FCS_COP.1/SigGen Cryptographic operation (Signature Generation and Verification) +
 	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm) +
 	FCS_COP.1/KeyedHash Cryptographic operation (Keyed Hash Algorithm) +
-	FCS_RBG.1 Random Bit Generation +
+	FCS_RBG_EXT.1 Random Bit Generation +
 	FIA_X509_EXT.1 X.509 Certificate Validation +
 	FIA_X509_EXT.2 X.509 Certificate Authentication
 ======
@@ -4419,7 +4460,7 @@ The following actions should be considered for audit if FAU_GEN Security audit d
 	FCS_COP.1/SigGen Cryptographic operation (Signature Generation and Verification) +
 	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm) +
 	FCS_COP.1/KeyedHash Cryptographic operation (Keyed Hash Algorithm) +
-	FCS_RBG.1 Random Bit Generation +
+	FCS_RBG_EXT.1 Random Bit Generation +
 	FCS_DTLSC_EXT.1 DTLS Client Protocol +
 	FIA_X509_EXT.1 X.509 Certificate Validation +
 	FIA_X509_EXT.2 X.509 Certificate Authentication
@@ -4478,7 +4519,7 @@ The following actions should be considered for audit if FAU_GEN Security audit d
 	FCS_COP.1/SigGen Cryptographic operation (Signature Generation and Verification) +
 	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm) +
 	FCS_COP.1/KeyedHash Cryptographic operation (Keyed Hash Algorithm) +
-	FCS_RBG.1 Random Bit Generation +
+	FCS_RBG_EXT.1 Random Bit Generation +
 	FIA_X509_EXT.1 X.509 Certificate Validation +
 	FIA_X509_EXT.2 X.509 Certificate Authentication
 ======
@@ -4513,7 +4554,7 @@ The following actions should be considered for audit if FAU_GEN Security audit d
 	FCS_COP.1/SigGen Cryptographic operation (Signature Generation and Verification) +
 	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm) +
 	FCS_COP.1/KeyedHash Cryptographic operation (Keyed Hash Algorithm) +
-	FCS_RBG.1 Random Bit Generation +
+	FCS_RBG_EXT.1 Random Bit Generation +
 	FCS_DTLSS_EXT.1 DTLS Server Protocol
 ======
 
@@ -4791,7 +4832,7 @@ The following actions should be auditable if FAU_GEN Security Audit Data Generat
 	No other components.
 
 *Dependencies:* +
-	FCS_RBG.1 Random bit generation (RBG).
+	FCS_RBG_EXT.1 Random bit generation (RBG).
 ======
 
 FIA_PSK_EXT.1.1 The TSF shall be able to use pre-shared keys for IPsec.
@@ -4801,7 +4842,7 @@ FIA_PSK_EXT.1.2 The TSF shall be able to accept text-based pre-shared keys that 
 • 22 characters in length and  [selection: _[assignment: other supported lengths], no other lengths_];
 • composed of any combination of upper and lower case letters, numbers, and special characters (that include: “!”, “@”, “#”, “$”, “%”, “^”, “&”, “*”, “(“, and “)”).
 
-FIA_PSK_EXT.1.3 The TSF shall condition the text-based pre-shared keys by using [selection: _SHA-1, SHA-256, SHA-512, [assignment: method of conditioning text string]]_ and be able to [selection: _use no other pre-shared keys; accept bit-based pre-shared keys; generate bit-based pre-shared keys using the random bit generator specified in FCS_RBG.1_].
+FIA_PSK_EXT.1.3 The TSF shall condition the text-based pre-shared keys by using [selection: _SHA-1, SHA-256, SHA-512, [assignment: method of conditioning text string]]_ and be able to [selection: _use no other pre-shared keys; accept bit-based pre-shared keys; generate bit-based pre-shared keys using the random bit generator specified in FCS_RBG_EXT.1_].
 
 *Rationale*
 
@@ -6303,7 +6344,7 @@ Authorized Users are trained to use the TOE according to site security policies.
 | |FCS_COP.1/DataEncryption	|This requirement defines the cryptographic algorithms that must be applied to encrypt/decrypt data that is to be transmitted to/from the TOE.
 | |FCS_COP.1/SigGen	|This requirement defines the cryptographic algorithms that must be applied to generate digital signatures that help to verify the integrity of data transmitted to/from the TOE.
 | |FCS_COP.1/Hash	|This requirement ensures the use of strong hash mechanisms.
-| |FCS_RBG.1	|This requirement defines the random bit generation mechanisms that must be applied to generate cryptographic keys and cryptographic critical security parameters.
+| |FCS_RBG_EXT.1	|This requirement defines the random bit generation mechanisms that must be applied to generate cryptographic keys and cryptographic critical security parameters.
 | |FPT_SKP_EXT.1	|This requirement enforces the prevention of reading all pre-shared keys, symmetric keys, and private keys.
 | |FTP_ITC.1	|This requirement provides for a trusted communications channel to transmit the user and TSF data between the TOE and a trusted external IT entity.
 | |FTP_TRP.1/Admin	|This requirement provides for a trusted communications path between the TOE and the admin
@@ -6341,7 +6382,7 @@ Authorized Users are trained to use the TOE according to site security policies.
 | |FCS_CKM.6	|This requirement enforces that all plaintext secret and private cryptographic keys and cryptographic critical security parameters must be destroyed, and the method used, when no longer needed.
 | |FCS_COP.1/Hash	|This requirement defines the cryptographic algorithms that must be applied to generate cryptographic hash values that are used verify the integrity of user and TSF data stored on the TOE.
 | |FCS_COP.1/DataEncryption	|This requirement defines the cryptographic algorithms that must be applied to encrypt/decrypt user and TSF data.
-| |FCS_RBG.1	|This requirement defines the random bit generation mechanisms that must be applied to generate cryptographic keys and cryptographic critical security parameters used to protect the confidentiality and integrity of user and TSF data stored on the TOE.
+| |FCS_RBG_EXT.1	|This requirement defines the random bit generation mechanisms that must be applied to generate cryptographic keys and cryptographic critical security parameters used to protect the confidentiality and integrity of user and TSF data stored on the TOE.
 | |FCS_COP.1/StorageEncryption	|This requirement defines the cryptographic algorithms that must be applied to encrypt/decrypt user and TSF data stored on the TOE.
 | |FCS_COP.1/KeyWrap	|This requirement defines the cryptographic algorithms that must be applied to perform key wrapping of a cryptographic key in support of key chaining.
 | |FCS_COP.1/KeyEnc	|This requirement defines the cryptographic algorithms that must be applied to perform key encryption and decryption.
@@ -6373,7 +6414,7 @@ Authorized Users are trained to use the TOE according to site security policies.
 | |FCS_COP.1/DataEncryption	|This requirement ensures the use of strong methods to perform data encryption/decryption.
 | |FCS_COP.1/SigGen	|This requirement ensures the use of strong digital signature services.
 | |FCS_COP.1/Hash	|This requirement ensures the use of strong hash mechanisms.
-| |FCS_RBG.1	|This requirement ensures the use of strong random bit generation mechanisms.
+| |FCS_RBG_EXT.1	|This requirement ensures the use of strong random bit generation mechanisms.
 | |FPT_STM.1	|This requirement provides reliable system time services that may be used as inputs to cryptographic functions.
 | |FCS_COP.1/StorageEncryption	|This requirement ensures the use of strong methods to perform data encryption/decryption.
 | |FCS_COP.1/KeyWrap	|This requirement ensures the use of strong methods to perform key wrapping.
@@ -6424,14 +6465,14 @@ The dependencies between SFRs implemented by the TOE are addressed as follows.
 | FAU_STG.5 | FAU_STG.2, FAU_GEN.1 | FAU_STG.2 included, FAU_GEN.1 included
 
 | FCS_CKM.1/AKG | FCS_CKM.2 or FCS_COP.1/SigGen, FCS_CKM.6 | FCS_CKM.2 and FCS_COP.1/SigGen included, FCS_CKM.6 included
-| FCS_CKM.1/SKG | FCS_COP.1/DataEncryption, FCS_COP.1/StorageEncryption, FCS_COP.1/KeyWrap, FCS_COP.1/KeyEnc, FCS_COP.1/KeyedHash, FCS_COP.1/CMAC, FCS_CKM.6, FCS_RBG.1 | FCS_COP.1/DataEncryption included, FCS_CKM.6 included, FCS_RBG.1 included, FCS_COP.1/StorageEncryption and FCS_COP.1/KeyWrap and FCS_COP.1/KeyEnc and FCS_COP.1/KeyedHash and FCS_COP.1/CMAC included as selection-based SFRs
+| FCS_CKM.1/SKG | FCS_COP.1/DataEncryption, FCS_COP.1/StorageEncryption, FCS_COP.1/KeyWrap, FCS_COP.1/KeyEnc, FCS_COP.1/KeyedHash, FCS_COP.1/CMAC, FCS_CKM.6, FCS_RBG_EXT.1 | FCS_COP.1/DataEncryption included, FCS_CKM.6 included, FCS_RBG_EXT.1 included, FCS_COP.1/StorageEncryption and FCS_COP.1/KeyWrap and FCS_COP.1/KeyEnc and FCS_COP.1/KeyedHash and FCS_COP.1/CMAC included as selection-based SFRs
 | FCS_CKM.2 | FCS_CKM.1/AKG, FCS_CKM.6 | FCS_CKM.1/AKG included, FCS_CKM.6 included
 | FCS_CKM.6 | FCS_CKM.1/AKG or FCS_CKM.1/SKG, FCS_CKM.2, FCS_CKM.6 | FCS_CKM.1/AKG and FCS_CKM.1/SKG included, FCS_CKM.2 included, FCS_CKM.6 included
 | FCS_CKM.6 | FCS_CKM.1/AKG or FCS_CKM.1/SKG | FCS_CKM.1/AKG and FCS_CKM.1/SKG included
 | FCS_COP.1/DataEncryption | FCS_CKM.1/SKG, FCS_CKM.6 | FCS_CKM.1/SKG included, FCS_CKM.6 included
 | FCS_COP.1/SigGen | FCS_CKM.1/AKG, FCS_CKM.6 | FCS_CKM.1/AKG included, FCS_CKM.6 included
 | FCS_COP.1/Hash | None |
-| FCS_RBG.1 | FPT_TST_EXT.1 |
+| FCS_RBG_EXT.1 | FPT_TST_EXT.1 |
 
 | FDP_ACC.1 | FDP_ACF.1 | FDP_ACF.1 included
 | FDP_ACF.1 | FDP_ACC.1, FMT_MSA.3 | FDP_ACC.1 included, FMT_MSA.3 included
@@ -6476,27 +6517,27 @@ The dependencies between SFRs implemented by the TOE are addressed as follows.
 | FCS_COP.1/KeyTransport | FCS_CKM.1/AKG, FCS_CKM.6 | FCS_CKM.1/AKG included, FCS_CKM.6 included
 | FCS_SMC_EXT.1 | FCS_COP.1/Hash | FCS_COP.1/Hash included
 
-| FCS_IPSEC_EXT.1 | FIA_PSK_EXT.1, FCS_CKM.1/AKG, FCS_COP.1/DataEncryption, FCS_COP.1/SigGen, FCS_COP.1/Hash, FCS_COP.1/KeyedHash, FCS_RBG.1 | FCS_COP.1/AKG included, FCS_COP.1/DataEncryption included, FCS_COP.1/SigGen included, FCS_COP.1/Hash included, FCS_RBG.1 included, FIA_PSK_EXT.1 and FCS_COP.1/KeyedHash included as selection-based SFRs
+| FCS_IPSEC_EXT.1 | FIA_PSK_EXT.1, FCS_CKM.1/AKG, FCS_COP.1/DataEncryption, FCS_COP.1/SigGen, FCS_COP.1/Hash, FCS_COP.1/KeyedHash, FCS_RBG_EXT.1 | FCS_COP.1/AKG included, FCS_COP.1/DataEncryption included, FCS_COP.1/SigGen included, FCS_COP.1/Hash included, FCS_RBG_EXT.1 included, FIA_PSK_EXT.1 and FCS_COP.1/KeyedHash included as selection-based SFRs
 
 
-| FCS_TLSC_EXT.1 | FCS_CKM.1/AKG, FCS_CKM.1/SKG, FCS_CKM.2, FCS_COP.1/DataEncryption, FCS_COP.1/SigGen, FCS_COP.1/Hash, FCS_COP.1/KeyedHash, FCS_RBG.1, FIA_X509_EXT.1, FIA_X509_EXT.2 | FCS_COP.1/AKG included, FCS_COP.1/SKG included, FCS_CKM.2 included, FCS_COP.1/DataEncryption included, FCS_COP.1/SigGen included, FCS_COP.1/Hash included, FCS_RBG.1 included, FCS_COP.1/KeyedHash and FIA_X509_EXT.1 and FIA_X509_EXT.2 included as selection-based SFRs
-| FCS_TLSS_EXT.1 | FCS_CKM.1/AKG, FCS_CKM.1/SKG, FCS_CKM.2, FCS_COP.1/DataEncryption, FCS_COP.1/SigGen, FCS_COP.1/Hash, FCS_COP.1/KeyedHash, FCS_RBG.1, FIA_X509_EXT.1, FIA_X509_EXT.2 | FCS_COP.1/AKG included, FCS_COP.1/SKG included, FCS_CKM.2 included, FCS_COP.1/DataEncryption included, FCS_COP.1/SigGen included, FCS_COP.1/Hash included, FCS_RBG.1 included, FCS_COP.1/KeyedHash and FIA_X509_EXT.1 and FIA_X509_EXT.2 included as selection-based SFRs
+| FCS_TLSC_EXT.1 | FCS_CKM.1/AKG, FCS_CKM.1/SKG, FCS_CKM.2, FCS_COP.1/DataEncryption, FCS_COP.1/SigGen, FCS_COP.1/Hash, FCS_COP.1/KeyedHash, FCS_RBG_EXT.1, FIA_X509_EXT.1, FIA_X509_EXT.2 | FCS_COP.1/AKG included, FCS_COP.1/SKG included, FCS_CKM.2 included, FCS_COP.1/DataEncryption included, FCS_COP.1/SigGen included, FCS_COP.1/Hash included, FCS_RBG_EXT.1 included, FCS_COP.1/KeyedHash and FIA_X509_EXT.1 and FIA_X509_EXT.2 included as selection-based SFRs
+| FCS_TLSS_EXT.1 | FCS_CKM.1/AKG, FCS_CKM.1/SKG, FCS_CKM.2, FCS_COP.1/DataEncryption, FCS_COP.1/SigGen, FCS_COP.1/Hash, FCS_COP.1/KeyedHash, FCS_RBG_EXT.1, FIA_X509_EXT.1, FIA_X509_EXT.2 | FCS_COP.1/AKG included, FCS_COP.1/SKG included, FCS_CKM.2 included, FCS_COP.1/DataEncryption included, FCS_COP.1/SigGen included, FCS_COP.1/Hash included, FCS_RBG_EXT.1 included, FCS_COP.1/KeyedHash and FIA_X509_EXT.1 and FIA_X509_EXT.2 included as selection-based SFRs
 
-| FCS_SSHC_EXT.1 | FCS_CKM.1/AKG, FCS_CKM.1/SKG, FCS_CKM.2, FCS_COP.1/DataEncryption, FCS_COP.1/SigGen, FCS_COP.1/Hash, FCS_COP.1/KeyedHash, FCS_RBG.1 | FCS_COP.1/AKG included, FCS_COP.1/SKG included, FCS_CKM.2 included, FCS_COP.1/DataEncryption included, FCS_COP.1/SigGen included, FCS_COP.1/Hash included, FCS_RBG.1 included, FCS_COP.1/KeyedHash included as selection-based SFRs
-| FCS_SSHS_EXT.1 | FCS_CKM.1/AKG, FCS_CKM.1/SKG, FCS_CKM.2, FCS_COP.1/DataEncryption, FCS_COP.1/SigGen, FCS_COP.1/Hash, FCS_COP.1/KeyedHash, FCS_RBG.1 | FCS_COP.1/AKG included, FCS_COP.1/SKG included, FCS_CKM.2 included, FCS_COP.1/DataEncryption included, FCS_COP.1/SigGen included, FCS_COP.1/Hash included, FCS_RBG.1 included, FCS_COP.1/KeyedHash included as selection-based SFRs
+| FCS_SSHC_EXT.1 | FCS_CKM.1/AKG, FCS_CKM.1/SKG, FCS_CKM.2, FCS_COP.1/DataEncryption, FCS_COP.1/SigGen, FCS_COP.1/Hash, FCS_COP.1/KeyedHash, FCS_RBG_EXT.1 | FCS_COP.1/AKG included, FCS_COP.1/SKG included, FCS_CKM.2 included, FCS_COP.1/DataEncryption included, FCS_COP.1/SigGen included, FCS_COP.1/Hash included, FCS_RBG_EXT.1 included, FCS_COP.1/KeyedHash included as selection-based SFRs
+| FCS_SSHS_EXT.1 | FCS_CKM.1/AKG, FCS_CKM.1/SKG, FCS_CKM.2, FCS_COP.1/DataEncryption, FCS_COP.1/SigGen, FCS_COP.1/Hash, FCS_COP.1/KeyedHash, FCS_RBG_EXT.1 | FCS_COP.1/AKG included, FCS_COP.1/SKG included, FCS_CKM.2 included, FCS_COP.1/DataEncryption included, FCS_COP.1/SigGen included, FCS_COP.1/Hash included, FCS_RBG_EXT.1 included, FCS_COP.1/KeyedHash included as selection-based SFRs
 
 | FCS_HTTPS_EXT.1 | FCS_TLSC_EXT, and/or FCS_TLSS_EXT | FCS_TLSC_EXT.1 and FCS_TLSS_EXT.1 included as selection-based SFRs
-| FCS_COP.1/KeyedHash | FCS_RBG.1, FTP_ITC.1 or FCS_CKM.1/AKG, FCS_CKM.6 | FCS_RBG.1 included, FTP_ITC.1 and FCS_CKM.1/AKG included, FCS_CKM.6 included
+| FCS_COP.1/KeyedHash | FCS_RBG_EXT.1, FTP_ITC.1 or FCS_CKM.1/AKG, FCS_CKM.6 | FCS_RBG_EXT.1 included, FTP_ITC.1 and FCS_CKM.1/AKG included, FCS_CKM.6 included
 
-| FIA_PSK_EXT.1 | FCS_RBG.1 | FCS_RBG.1 included
+| FIA_PSK_EXT.1 | FCS_RBG_EXT.1 | FCS_RBG_EXT.1 included
 
-| FCS_DTLSC_EXT.1 | FCS_CKM.1/AKG, FCS_CKM.1/SKG, FCS_CKM.2, FCS_COP.1/DataEncryption, FCS_COP.1/SigGen, FCS_COP.1/Hash, FCS_COP.1/KeyedHash, FCS_RBG.1, FIA_X509_EXT.1, FIA_X509_EXT.2 | FCS_COP.1/AKG included, FCS_COP.1/SKG included, FCS_CKM.2 included, FCS_COP.1/DataEncryption included, FCS_COP.1/SigGen included, FCS_COP.1/Hash included, FCS_RBG.1 included, FCS_COP.1/KeyedHash and FIA_X509_EXT.1 and FIA_X509_EXT.2 included as selection-based SFRs
-| FCS_DTLSS_EXT.1 | FCS_CKM.1/AKG, FCS_CKM.1/SKG, FCS_CKM.2, FCS_COP.1/DataEncryption, FCS_COP.1/SigGen, FCS_COP.1/Hash, FCS_COP.1/KeyedHash, FCS_RBG.1, FIA_X509_EXT.1, FIA_X509_EXT.2 | FCS_COP.1/AKG included, FCS_COP.1/SKG included, FCS_CKM.2 included, FCS_COP.1/DataEncryption included, FCS_COP.1/SigGen included, FCS_COP.1/Hash included, FCS_RBG.1 included, FCS_COP.1/KeyedHash and FIA_X509_EXT.1 and FIA_X509_EXT.2 included as selection-based SFRs
+| FCS_DTLSC_EXT.1 | FCS_CKM.1/AKG, FCS_CKM.1/SKG, FCS_CKM.2, FCS_COP.1/DataEncryption, FCS_COP.1/SigGen, FCS_COP.1/Hash, FCS_COP.1/KeyedHash, FCS_RBG_EXT.1, FIA_X509_EXT.1, FIA_X509_EXT.2 | FCS_COP.1/AKG included, FCS_COP.1/SKG included, FCS_CKM.2 included, FCS_COP.1/DataEncryption included, FCS_COP.1/SigGen included, FCS_COP.1/Hash included, FCS_RBG_EXT.1 included, FCS_COP.1/KeyedHash and FIA_X509_EXT.1 and FIA_X509_EXT.2 included as selection-based SFRs
+| FCS_DTLSS_EXT.1 | FCS_CKM.1/AKG, FCS_CKM.1/SKG, FCS_CKM.2, FCS_COP.1/DataEncryption, FCS_COP.1/SigGen, FCS_COP.1/Hash, FCS_COP.1/KeyedHash, FCS_RBG_EXT.1, FIA_X509_EXT.1, FIA_X509_EXT.2 | FCS_COP.1/AKG included, FCS_COP.1/SKG included, FCS_CKM.2 included, FCS_COP.1/DataEncryption included, FCS_COP.1/SigGen included, FCS_COP.1/Hash included, FCS_RBG_EXT.1 included, FCS_COP.1/KeyedHash and FIA_X509_EXT.1 and FIA_X509_EXT.2 included as selection-based SFRs
 
 | FCS_PCC.EXT.1 | FCS_COP.1/CMAC | FCS_COP.1/CMAC included as selection-based SFR
 | FCS_CKM.5 | FCS_CKM.2 or FCS_COP.1/CMAC, FCS_CKM.6 | FCS_COP.1/CMAC included as selection-based SFR
 | FCS_COP.1/CMAC | FCS_CKM.1/SKG, FCS_COP.1/Hash, FCS_CKM.6 | FCS_CKM.1/SKG included, FCS_COP.1/Hash included, FCS_CKM.6 included
-| FCS_SNI_EXT.1 | FCS_RBG.1 | FCS_RBG.1 included
+| FCS_SNI_EXT.1 | FCS_RBG_EXT.1 | FCS_RBG_EXT.1 included
 
 | FIA_X509_EXT.1 | FCS_X509_EXT.2 | FIA_X509_EXT.2 included as selection-based SFR
 | FIA_X509_EXT.2 | FCS_CKM.1/AKG, FCS_CKM.1/SKG, FIA_X509_EXT.1 | FCS_COP.1/AKG included, FCS_COP.1/SKG included, FIA_X509_EXT.1 included as selection-based SFR
@@ -6527,9 +6568,9 @@ The dependencies between SFRs implemented by the TOE are addressed as follows.
 
 | FDP_UDU_EXT.1 | None |
 | FPT_WIPE_EXT.1 | None |
-| FCS_DTLSC_EXT.2 | FCS_CKM.1/AKG, FCS_CKM.1/SKG, FCS_CKM.2, FCS_COP.1/DataEncryption, FCS_COP.1/SigGen, FCS_COP.1/Hash, FCS_COP.1/KeyedHash, FCS_RBG.1, FCS_DTLSC_EXT.1, FIA_X509_EXT.1, FIA_X509_EXT.2 | FCS_COP.1/AKG included, FCS_COP.1/SKG included, FCS_CKM.2 included, FCS_COP.1/DataEncryption included, FCS_COP.1/SigGen included, FCS_COP.1/Hash included, FCS_RBG.1 included, FCS_COP.1/KeyedHash and FCS_DTLSC_EXT.1 and FIA_X509_EXT.1 and FIA_X509_EXT.2 included as selection-based SFRs
-| FCS_DTLSS_EXT.2 | FCS_CKM.1/AKG, FCS_CKM.1/SKG, FCS_CKM.2, FCS_COP.1/DataEncryption, FCS_COP.1/SigGen, FCS_COP.1/Hash, FCS_COP.1/KeyedHash, FCS_RBG.1, FCS_DTLSS_EXT.1, FIA_X509_EXT.1, FIA_X509_EXT.2 | FCS_COP.1/AKG included, FCS_COP.1/SKG included, FCS_CKM.2 included, FCS_COP.1/DataEncryption included, FCS_COP.1/SigGen included, FCS_COP.1/Hash included, FCS_RBG.1 included, FCS_COP.1/KeyedHash and FCS_DTLSS_EXT.1 and FIA_X509_EXT.1 and FIA_X509_EXT.2 included as selection-based SFRs
-| FCS_TLSC_EXT.2 | FCS_CKM.1/AKG, FCS_CKM.1/SKG, FCS_CKM.2, FCS_COP.1/DataEncryption, FCS_COP.1/SigGen, FCS_COP.1/Hash, FCS_COP.1/KeyedHash, FCS_RBG.1, FCS_TLSC_EXT.1, FIA_X509_EXT.1, FIA_X509_EXT.2 | FCS_COP.1/AKG included, FCS_COP.1/SKG included, FCS_CKM.2 included, FCS_COP.1/DataEncryption included, FCS_COP.1/SigGen included, FCS_COP.1/Hash included, FCS_RBG.1 included, FCS_COP.1/KeyedHash and FCS_TLSC_EXT.1 and FIA_X509_EXT.1 and FIA_X509_EXT.2 included as selection-based SFRs
-| FCS_TLSS_EXT.2 | FCS_CKM.1/AKG, FCS_CKM.1/SKG, FCS_CKM.2, FCS_COP.1/DataEncryption, FCS_COP.1/SigGen, FCS_COP.1/Hash, FCS_COP.1/KeyedHash, FCS_RBG.1, FCS_TLSS_EXT.1, FIA_X509_EXT.1, FIA_X509_EXT.2 | FCS_COP.1/AKG included, FCS_COP.1/SKG included, FCS_CKM.2 included, FCS_COP.1/DataEncryption included, FCS_COP.1/SigGen included, FCS_COP.1/Hash included, FCS_RBG.1 included, FCS_COP.1/KeyedHash and FCS_TLSS_EXT.1 and FIA_X509_EXT.1 and FIA_X509_EXT.2 included as selection-based SFRs
+| FCS_DTLSC_EXT.2 | FCS_CKM.1/AKG, FCS_CKM.1/SKG, FCS_CKM.2, FCS_COP.1/DataEncryption, FCS_COP.1/SigGen, FCS_COP.1/Hash, FCS_COP.1/KeyedHash, FCS_RBG_EXT.1, FCS_DTLSC_EXT.1, FIA_X509_EXT.1, FIA_X509_EXT.2 | FCS_COP.1/AKG included, FCS_COP.1/SKG included, FCS_CKM.2 included, FCS_COP.1/DataEncryption included, FCS_COP.1/SigGen included, FCS_COP.1/Hash included, FCS_RBG_EXT.1 included, FCS_COP.1/KeyedHash and FCS_DTLSC_EXT.1 and FIA_X509_EXT.1 and FIA_X509_EXT.2 included as selection-based SFRs
+| FCS_DTLSS_EXT.2 | FCS_CKM.1/AKG, FCS_CKM.1/SKG, FCS_CKM.2, FCS_COP.1/DataEncryption, FCS_COP.1/SigGen, FCS_COP.1/Hash, FCS_COP.1/KeyedHash, FCS_RBG_EXT.1, FCS_DTLSS_EXT.1, FIA_X509_EXT.1, FIA_X509_EXT.2 | FCS_COP.1/AKG included, FCS_COP.1/SKG included, FCS_CKM.2 included, FCS_COP.1/DataEncryption included, FCS_COP.1/SigGen included, FCS_COP.1/Hash included, FCS_RBG_EXT.1 included, FCS_COP.1/KeyedHash and FCS_DTLSS_EXT.1 and FIA_X509_EXT.1 and FIA_X509_EXT.2 included as selection-based SFRs
+| FCS_TLSC_EXT.2 | FCS_CKM.1/AKG, FCS_CKM.1/SKG, FCS_CKM.2, FCS_COP.1/DataEncryption, FCS_COP.1/SigGen, FCS_COP.1/Hash, FCS_COP.1/KeyedHash, FCS_RBG_EXT.1, FCS_TLSC_EXT.1, FIA_X509_EXT.1, FIA_X509_EXT.2 | FCS_COP.1/AKG included, FCS_COP.1/SKG included, FCS_CKM.2 included, FCS_COP.1/DataEncryption included, FCS_COP.1/SigGen included, FCS_COP.1/Hash included, FCS_RBG_EXT.1 included, FCS_COP.1/KeyedHash and FCS_TLSC_EXT.1 and FIA_X509_EXT.1 and FIA_X509_EXT.2 included as selection-based SFRs
+| FCS_TLSS_EXT.2 | FCS_CKM.1/AKG, FCS_CKM.1/SKG, FCS_CKM.2, FCS_COP.1/DataEncryption, FCS_COP.1/SigGen, FCS_COP.1/Hash, FCS_COP.1/KeyedHash, FCS_RBG_EXT.1, FCS_TLSS_EXT.1, FIA_X509_EXT.1, FIA_X509_EXT.2 | FCS_COP.1/AKG included, FCS_COP.1/SKG included, FCS_CKM.2 included, FCS_COP.1/DataEncryption included, FCS_COP.1/SigGen included, FCS_COP.1/Hash included, FCS_RBG_EXT.1 included, FCS_COP.1/KeyedHash and FCS_TLSS_EXT.1 and FIA_X509_EXT.1 and FIA_X509_EXT.2 included as selection-based SFRs
 
 |===
