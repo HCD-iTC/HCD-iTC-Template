@@ -799,7 +799,7 @@ _The ST author can include other auditable events directly in the table; they ar
     FAU_GEN.1 Audit data generation
 ======
 
-*FAU_STG.5.1* The TSF shall [selection: _ignore audited events, “prevent audited events, except those taken by the authorized user with special rights”, overwrite the oldest stored audit records_],  [assignment: _other actions to be taken in case of audit storage failure and conditions for the actions_] if the audit data storage is full.
+*FAU_STG.5.1 Refinement* The TSF shall [selection: *_+++<del>ignore audited events</del>+++*, “prevent audited events, except those taken by the authorized user with special rights”, overwrite the oldest stored audit records_],  [assignment: _other actions to be taken in case of audit storage failure and conditions for the actions_] if the audit data storage is full.
 
 
 
@@ -824,7 +824,7 @@ _The ST author can include other auditable events directly in the table; they ar
 * _ECC schemes using ‘NIST curves’ [selection: P-256, P-384, P-521] that meet the following: FIPS PUB 186-4, “Digital Signature Standard (DSS)”, Appendix B.4;_
 * _FFC schemes using cryptographic key sizes of 2048-bit or greater that meet the following: FIPS PUB 186-4, “Digital Signature Standard (DSS)”, Appendix B.1_
 * _FFC Schemes using ‘safe-prime’ groups that meet the following: “NIST Special Publication 800-56A Revision 3, Recommendation for Pair-Wise Key Establishment Schemes Using Discrete Logarithm Cryptography” and [selection: RFC 3526, RFC 7919]._
-* _KCDSA-based key establishment schemes using key size of [selection: (2048, 224) bit, (2048, 256) bit]: ISO/IEC 14888-3:2018, (Subclause 6.3) “KCDSA”_
+* _KCDSA-based key establishment schemes using key size of [selection: (2048, 224) bit, (2048, 256) bit, (3072, 256) bit]: ISO/IEC 14888-3:2018, (Subclause 6.3) “KCDSA”_
 * _EC-KCDSA-based key establishment schemes using NIST curve of [selection: P-224, P-256, B-233, B-283, K-233, K-283]: ISO/IEC 14888-3:2018, (Subclause 6.7) “EC-KCDSA”_
 
 ] +++<del>and specified cryptographic key sizes [assignment: cryptographic key sizes] that meet the following: [assignment: list of standards]</del>+++.
@@ -854,7 +854,7 @@ _If the TOE acts as a receiver in the key establishment schemes and is not confi
 	FCS_COP.1/KeyWrap Cryptographic Operation (Key Wrapping), or +
 	FCS_COP.1/KeyEnc Cryptographic operation (Key Encryption), or +
 	FCS_COP.1/KeyedHash Cryptographic Operation (for keyed-hash message authentication), or +
-	FCS_COP.1/CMAC Cryptographic Operation (for keyed-hash message authentication)] +
+	FCS_COP.1/CMAC Cryptographic Operation (for cipher-based message authentication)] +
 	FCS_CKM.6 Timing and event of cryptographic key destruction +
 	FCS_RBG_EXT.1 Random bit generation (RBG)
 ======
@@ -922,10 +922,10 @@ _The domain parameters used for the finite field-based key establishment scheme 
     [+++<del>FDP_ITC.1 Import of user data without security attributes, or</del>+++ +
     +++<del>FDP_ITC.2 Import of user data with security attributes, or</del>+++ +
     FCS_CKM.1 Cryptographic key generation, or +
-    FCS_CKM_EXT.3 Cryptographic key access, or +
-    FCS_CKM.5 Cryptographic key derivation, or +
-    FCS_CKM_EXT.7 Cryptographic key agreement, or +
-    FCS_CKM_EXT.8 Password-based key derivation]
+    +++<del>FCS_CKM_EXT.3 Cryptographic key access, or</del>+++ +
+    FCS_CKM.5 Cryptographic key derivation+++<del>, or</del>+++ +
+    +++<del>FCS_CKM_EXT.7 Cryptographic key agreement, or</del>+++ +
+    +++<del>FCS_CKM_EXT.8 Password-based key derivation</del>+++]
 ======
 
 *FCS_CKM.6.1* The TSF shall destroy [assignment: _list of cryptographic keys (including keying material)_] when [selection: _no longer needed, [assignment: other circumstances for key or keying material destruction]_].
@@ -1106,8 +1106,11 @@ _If either SEED in GCM mode with non-repeating IVs or LEA in GCM mode with non-r
 *FCS_COP.1.1/SigGen* The TSF shall perform [*cryptographic signature services (generation and verification)*] in accordance with a specified cryptographic algorithm [selection:
 
 * _RSA Digital Signature Algorithm and cryptographic key sizes (modulus) [assignment: 2048 bits or greater],_
+
 * _Elliptic Curve Digital Signature Algorithm and cryptographic key sizes [assignment: 256 bits or greater],_
-* _Korean Certificate-based Digital Signature Algorithm (KCDSA) using [selection: SHA-224, SHA-256] with key size of 2048 bits,_
+
+* _Korean Certificate-based Digital Signature Algorithm (KCDSA) using [selection: SHA-224, SHA-256, SHA-384, SHA-512] with key size of 2048 bits,_
+
 * _Elliptic Curve KCDSA (EC-KCDSA) on [selection: NIST P-224, NIST P-256, NIST B-233, NIST B-283, NIST K-233, NIST K-283] using [selection: SHA-224, SHA-256] with key size of [selection: 224 bits, 256 bits]]_
 
 that meet the following: [selection:
@@ -1635,7 +1638,7 @@ There are no class FPR requirements.
 	FCS_COP.1/KeyedHash Cryptographic Operation (for keyed-hash message authentication) +
 	FCS_COP.1/DataEncryption Cryptographic Operation (Symmetric encryption/decryption) +
 	FCS_COP.1/StorageEncryption Cryptographic operation (Data Encryption/Decryption) +
-	FCS_COP.1/CMAC Cryptographic Operation (for keyed-hash message authentication)
+	FCS_COP.1/CMAC Cryptographic Operation (for cipher-based message authentication)
 ======
 
 *FPT_SBT_EXT.1.1* The TSF shall contain one or more chains of trust with each chain of trust anchored in an immutable Root of Trust.
@@ -2949,7 +2952,7 @@ The SFRs in this section are to be incorporated in the ST to support the optiona
 	No other components +
 
 *Dependencies:* +
-	FCS_COP.1/CMAC Cryptographic Operation (for keyed-hash message authentication)
+	FCS_COP.1/CMAC Cryptographic Operation (for cipher-based message authentication)
 ======
 
 *FCS_PCC_EXT.1.1* A password used by the TSF to generate a password authorization factor shall enable up to [assignment: _positive integer of 64 or more_] characters in the set of {upper case characters, lower case characters, numbers, and [assignment: _other supported special characters_]} and shall perform Password-based Key Derivation Functions in accordance with a specified cryptographic algorithm [HMAC-[selection: _SHA-256, SHA-384, SHA-512_]], with [assignment: _positive integer of 1000 or more_] iterations, and output cryptographic key sizes [selection: _128, 256_] bits that meet the following: [*NIST SP 800-132*].
@@ -3026,6 +3029,9 @@ _For the assignment, the key size [k] falls into a range between L1 and L2 (defi
 
 _For the assignment, the key size will fall into a range between 128 and 256._
 
+_When CMAC is used in FPT_SBT_EXT.1, the dependency on FCS_CKM.1/SKG, FCS_CKM_EXT.4 can be removed for the symmetric key used for message authentication. This is because in other standards (*) that specify security requirements for cryptographic modules, public verification key or keyed message authentication key is allowed to be placed in the module code and is not CSP. Such a key can be considered as not needing to rely on the requirements for key generation and key destruction._
+
+_(*) ISO/IEC 19790 "Security requirements for cryptographic modules" 7.5 Software Firmware Security_
 
 
 
@@ -3268,7 +3274,7 @@ _Once the ST Author has selected a method to create the chain (either by unwrapp
 _The method the TOE uses to chain keys and manage/protect them is described in the Key Management Description; see <<appendix-kmd>> for more information._
 
 
-==== FDP_DSK_EXT.1 Extended: Protection of Data on Disk
+==== FDP_DSK_EXT.1 Extended: Protection of Data on Storage Devices
 ======
 (for O.STORAGE_ENCRYPTION) +
 *Hierarchical to:* +
@@ -3910,7 +3916,7 @@ There are no auditable events foreseen.
 	No other components
 
 *Dependencies:* +
-	FCS_COP.1/CMAC Cryptographic Operation (for keyed-hash message authentication)
+	FCS_COP.1/CMAC Cryptographic Operation (for cipher-based message authentication)
 ======
 
 FCS_PCC_EXT.1.1 A password used by the TSF to generate a password authorization factor shall enable up to [assignment: _positive integer of 64 or more_] characters in the set of {upper case characters, lower case characters, numbers, and [assignment: _other supported special characters_]} and shall perform Password-based Key Derivation Functions in accordance with a specified cryptographic algorithm [_HMAC_-[selection: _SHA-256, SHA-384, SHA-512_]], with [assignment: _positive integer of 1000 or more_] iterations, and output cryptographic key sizes [selection: _128, 256_] bits that meet the following: [assignment: _list of standards_].
@@ -4575,7 +4581,7 @@ The following actions should be considered for audit if FAU_GEN Security audit d
 === User Data Protection (FDP)
 
 
-==== FDP_DSK_EXT Extended: Protection of Data on Disk
+==== FDP_DSK_EXT Extended: Protection of Data on Storage Devices
 
 *Family Behaviour*
 
@@ -4586,16 +4592,16 @@ This family is to mandate the encryption of all protected data written to the st
 .Component Levelling
 [ditaa]
 ======
-    +------------------------------------------+
-    |                                          |     +---+
-    | FDP_DSK_EXT Protection of Data on Disk   +---->| 1 |
-    |                                          |     +---+
-    +------------------------------------------+
+    +---------------------------------------------------+
+    |                                                   |     +---+
+    | FDP_DSK_EXT Protection of Data on Storage Devices +---->| 1 |
+    |                                                   |     +---+
+    +---------------------------------------------------+
 ======
 
 
 
-FDP_DSK_EXT.1 Protection of Data on Disk, requires the TSF to encrypt all the Confidential TSF and User Data stored on the Nonvolatile Storage Devices in order to avoid storing these data in plaintext on the devices.
+FDP_DSK_EXT.1 Protection of Data on Storage Devices, requires the TSF to encrypt all the Confidential TSF and User Data stored on the Nonvolatile Storage Devices in order to avoid storing these data in plaintext on the devices.
 
 *Management*
 
@@ -4609,7 +4615,7 @@ The following actions should be auditable if FAU_GEN Security Audit Data Generat
 
 • There are no auditable events foreseen.
 
-===== FDP_DSK_EXT.1 Extended: Protection of Data on Disk
+===== FDP_DSK_EXT.1 Extended: Protection of Data on Storage Devices
 ======
 *Hierarchical to:* +
 	No other components.
@@ -4624,9 +4630,9 @@ FDP_DSK_EXT.1.2 The TSF shall encrypt all protected data without user interventi
 
 *Rationale*
 
-Extended: Protection of Data on Disk is to specify that encryption of any confidential data without user intervention, and the Common Criteria does not provide a suitable SFR for the Protection of Data on Disk.
+Extended: Protection of Data on Storage Devices is to specify that encryption of any confidential data without user intervention, and the Common Criteria does not provide a suitable SFR for the Protection of Data on Storage Devices.
 
-This extended component protects the Data on Disk, and it is therefore placed in the FDP class with a single component.
+This extended component protects the Data on Storage Devices, and it is therefore placed in the FDP class with a single component.
 
 ==== FDP_FXS_EXT Extended: Fax Separation
 
@@ -4727,7 +4733,7 @@ The following actions should be auditable if FAU_GEN Security Audit Data Generat
 
 *Rationale*
 
-Extended: Document Unavailability specifies the overwrite of or destruction of cryptographic keys for User Document Data stored on either wear-leveling or non-wear-leveling storage devices after completion or cancellation of the job without user intervention, and the Common Criteria does not provide a suitable SFR for this requirement. This extended component protects User Document Data on Disk, and it is therefore placed in the FDP class with a single component.  
+Extended: Document Unavailability specifies the overwrite of or destruction of cryptographic keys for User Document Data stored on either wear-leveling or non-wear-leveling storage devices after completion or cancellation of the job without user intervention, and the Common Criteria does not provide a suitable SFR for this requirement. This extended component protects User Document Data on Storage Devices, and it is therefore placed in the FDP class with a single component.  
 
 
 
@@ -5067,7 +5073,7 @@ The following actions should be auditable if FAU_GEN Security Audit Data Generat
 	FCS_COP.1/KeyedHash Cryptographic Operation (for keyed-hash message authentication) +
 	FCS_COP.1/DataEncryption Cryptographic Operation (Symmetric encryption/decryption) +
 	FCS_COP.1/StorageEncryption Cryptographic operation (Data Encryption/Decryption) +
-	FCS_COP.1/CMAC Cryptographic Operation (for keyed-hash message authentication)
+	FCS_COP.1/CMAC Cryptographic Operation (for cipher-based message authentication)
 ======
 
 *FPT_SBT_EXT.1.1* The TSF shall contain one or more chains of trust with each chain of trust anchored in a Root of Trust that is implemented in immutable code or a HW-based write-protection mechanism.
@@ -5515,6 +5521,9 @@ A User who has permission to control a Job and access its documents. Typically, 
 
 KDF::
 Key Derivation Functions
+
+Leaf Key::
+An encryption key that is wrapped by either a root key or intermediate key. In an HCD the Leaf Key commonly acts as a DEK. 
 
 Local Area Network::
 A non-public data network in which serial transmission is used without store and forward techniques for direct data communication among data stations located on the User's premises. [8802-6]
@@ -6389,7 +6398,7 @@ Authorized Users are trained to use the TOE according to site security policies.
 | |FCS_SMC_EXT.1	|This requirement defines the methods for combining submasks to generate an intermediary key.
 | |FCS_CKM.5 |This requirement defines the methods for generating an intermediary key.
 | |FCS_PCC_EXT.1 |This requirement defines the cryptographic algorithms that must be applied to construct cryptographic passwords.
-| |FCS_COP.1/CMAC	|This requirement defines the cryptographic algorithms that must be applied to perform message authentication.
+| |FCS_COP.1/CMAC	|This requirement defines the cryptographic algorithms that must be applied to perform cipher-based message authentication.
 | |FCS_SNI_EXT.1 |This requirement defines the creation and usage of salts, nonces and IVs.
 | |FCS_KYC_EXT.1 |This requirement defines the rules for creating a key chain to unlock  a self-encrypting drive.
 | |FDP_DSK_EXT.1 |This requirement defines the rules for the protection of user and TSF data stored on the TOE.
@@ -6431,7 +6440,7 @@ Authorized Users are trained to use the TOE according to site security policies.
 | |FCS_DTLSS_EXT.1	|This requirement defines the implementation of DTLS acting as a server without mutual authentication using strong cryptography.
 | |FCS_PCC_EXT.1 |This requirement ensures the use of strong methods to generate cryptographic passwords.
 | |FCS_CKM.5 |This requirement ensures the use of strong methods for performing cryptographic key derivation.
-| |FCS_COP.1/CMAC	|This requirement ensures the use of strong methods to perform message authentication.
+| |FCS_COP.1/CMAC	|This requirement ensures the use of strong methods to perform cipher-based message authentication.
 | |FCS_SNI_EXT.1 |This requirement ensures that salts and nonces used by the TOE do not negatively impact key strength.
 | |FCS_CKM.1/AKG	|This requirement ensures the generation of strong asymmetric keys.
 | |FPT_KYP_EXT.1 |This requirement ensures the use of strong methods to protection of key and key material.
@@ -6534,7 +6543,9 @@ The dependencies between SFRs implemented by the TOE are addressed as follows.
 
 | FCS_PCC.EXT.1 | FCS_COP.1/CMAC | FCS_COP.1/CMAC included as selection-based SFR
 | FCS_CKM.5 | FCS_CKM.2 or FCS_COP.1/CMAC, FCS_CKM.6 | FCS_COP.1/CMAC included as selection-based SFR
-| FCS_COP.1/CMAC | FCS_CKM.1/SKG, FCS_COP.1/Hash, FCS_CKM.6 | FCS_CKM.1/SKG included, FCS_COP.1/Hash included, FCS_CKM.6 included
+| FCS_COP.1/CMAC | FCS_CKM.1/SKG, FCS_COP.1/Hash, FCS_CKM.6 | FCS_CKM.1/SKG included, FCS_COP.1/Hash included, FCS_CKM.6 included.
+
+When FCS_COP.1/CMAC is applied to keys used in FPT_SBT_EXT.1, the key-based message authentication key is not CSP, so dependencies on FCS_CKM.1/SKG and FCS_CKM_EXT.4 can be removed.
 | FCS_SNI_EXT.1 | FCS_RBG_EXT.1 | FCS_RBG_EXT.1 included
 
 | FIA_X509_EXT.1 | FCS_X509_EXT.2 | FIA_X509_EXT.2 included as selection-based SFR
