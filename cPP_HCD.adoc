@@ -849,14 +849,14 @@ _If the TOE acts as a receiver in the key establishment schemes and is not confi
 	No other components.
 
 *Dependencies:* +
-	FCS_COP.1/DataEncryption Cryptographic Operation (Symmetric encryption/decryption) +
-	FCS_COP.1/StorageEncryption Cryptographic Operation (Data Encryption/Decryption) +
-	FCS_COP.1/KeyWrap Cryptographic Operation (Key Wrapping) +
-	FCS_COP.1/KeyEnc Cryptographic operation (Key Encryption) +
-	FCS_COP.1/KeyedHash Cryptographic Operation (for keyed-hash message authentication) +
+	[FCS_COP.1/DataEncryption Cryptographic Operation (Symmetric encryption/decryption), or +
+	FCS_COP.1/StorageEncryption Cryptographic Operation (Data Encryption/Decryption), or +
+	FCS_COP.1/KeyWrap Cryptographic Operation (Key Wrapping), or +
+	FCS_COP.1/KeyEnc Cryptographic operation (Key Encryption), or +
+	FCS_COP.1/KeyedHash Cryptographic Operation (for keyed-hash message authentication), or +
 	FCS_COP.1/CMAC Cryptographic Operation (for keyed-hash message authentication)] +
 	FCS_CKM.6 Timing and event of cryptographic key destruction +
-	FCS_RBG_EXT.1 Random bit generation (RBG))
+	FCS_RBG_EXT.1 Random bit generation (RBG)
 ======
 
 *FCS_CKM.1.1/SKG Refinement:* The TSF shall generate *symmetric* cryptographic keys *using a Random Bit Generator as specified in FCS_RBG_EXT.1* and specified cryptographic key sizes [selection: _128 bits, 192 bits, 256 bits_] that meet the following: [selection: _ISO/IEC 18031:2011 (Clause 9) [DRBG], NIST SP 800-133 Rev.2 Section [selection: 6.1, 6.3]_].
@@ -3929,7 +3929,7 @@ This extended component protects the Data Encryption Keys using cryptographic al
 
 *Family Behaviour*
 
-Components in this family address the requirements for random bit/number generation. This is a new family defined for the FCS class.
+Components in this family address the requirements for random bit/number generation.
 
 *Component Levelling*
 [#img-FCS_RBG_EXT]
@@ -6381,7 +6381,6 @@ Authorized Users are trained to use the TOE according to site security policies.
 |*O.STORAGE_ENCRYPTION* |FCS_CKM.1/SKG	|This requirement generates the symmetric keys needed to encrypt data being stored on the TOE.
 | |FCS_CKM.6	|This requirement enforces that all plaintext secret and private cryptographic keys and cryptographic critical security parameters must be destroyed, and the method used, when no longer needed.
 | |FCS_COP.1/Hash	|This requirement defines the cryptographic algorithms that must be applied to generate cryptographic hash values that are used verify the integrity of user and TSF data stored on the TOE.
-| |FCS_COP.1/DataEncryption	|This requirement defines the cryptographic algorithms that must be applied to encrypt/decrypt user and TSF data.
 | |FCS_RBG_EXT.1	|This requirement defines the random bit generation mechanisms that must be applied to generate cryptographic keys and cryptographic critical security parameters used to protect the confidentiality and integrity of user and TSF data stored on the TOE.
 | |FCS_COP.1/StorageEncryption	|This requirement defines the cryptographic algorithms that must be applied to encrypt/decrypt user and TSF data stored on the TOE.
 | |FCS_COP.1/KeyWrap	|This requirement defines the cryptographic algorithms that must be applied to perform key wrapping of a cryptographic key in support of key chaining.
@@ -6467,8 +6466,7 @@ The dependencies between SFRs implemented by the TOE are addressed as follows.
 | FCS_CKM.1/AKG | FCS_CKM.2 or FCS_COP.1/SigGen, FCS_CKM.6 | FCS_CKM.2 and FCS_COP.1/SigGen included, FCS_CKM.6 included
 | FCS_CKM.1/SKG | FCS_COP.1/DataEncryption, FCS_COP.1/StorageEncryption, FCS_COP.1/KeyWrap, FCS_COP.1/KeyEnc, FCS_COP.1/KeyedHash, FCS_COP.1/CMAC, FCS_CKM.6, FCS_RBG_EXT.1 | FCS_COP.1/DataEncryption included, FCS_CKM.6 included, FCS_RBG_EXT.1 included, FCS_COP.1/StorageEncryption and FCS_COP.1/KeyWrap and FCS_COP.1/KeyEnc and FCS_COP.1/KeyedHash and FCS_COP.1/CMAC included as selection-based SFRs
 | FCS_CKM.2 | FCS_CKM.1/AKG, FCS_CKM.6 | FCS_CKM.1/AKG included, FCS_CKM.6 included
-| FCS_CKM.6 | FCS_CKM.1/AKG or FCS_CKM.1/SKG, FCS_CKM.2, FCS_CKM.6 | FCS_CKM.1/AKG and FCS_CKM.1/SKG included, FCS_CKM.2 included, FCS_CKM.6 included
-| FCS_CKM.6 | FCS_CKM.1/AKG or FCS_CKM.1/SKG | FCS_CKM.1/AKG and FCS_CKM.1/SKG included
+| FCS_CKM.6 | FCS_CKM.1 or FCS_CKM_EXT.3 or FCS_CKM.5 or FCS_CKM_EXT.7 or FCS_CKM_EXT.8 | FCS_CKM.1 and FCS_CKM_EXT.3 and FCS_CKM.5 and FCS_CKM_EXT.7 and FCS_CKM_EXT.8 included as selection-based SFRs
 | FCS_COP.1/DataEncryption | FCS_CKM.1/SKG, FCS_CKM.6 | FCS_CKM.1/SKG included, FCS_CKM.6 included
 | FCS_COP.1/SigGen | FCS_CKM.1/AKG, FCS_CKM.6 | FCS_CKM.1/AKG included, FCS_CKM.6 included
 | FCS_COP.1/Hash | None |
