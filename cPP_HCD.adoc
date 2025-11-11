@@ -922,8 +922,9 @@ _The domain parameters used for the finite field-based key establishment scheme 
     [+++<del>FDP_ITC.1 Import of user data without security attributes, or</del>+++ +
     +++<del>FDP_ITC.2 Import of user data with security attributes, or</del>+++ +
     FCS_CKM.1 Cryptographic key generation, or +
+    FCS_KDF_EXT.1 Cryptographic key derivation
     +++<del>FCS_CKM_EXT.3 Cryptographic key access, or</del>+++ +
-    FCS_CKM.5 Cryptographic key derivation+++<del>, or</del>+++ +
+    +++<del>FCS_CKM.5 Cryptographic key derivation, or</del>+++ +
     +++<del>FCS_CKM_EXT.7 Cryptographic key agreement, or</del>+++ +
     +++<del>FCS_CKM_EXT.8 Password-based key derivation</del>+++]
 ======
@@ -2975,31 +2976,23 @@ _This SFR is conditionally required if the manual entry of a drive encryption pa
 
 
 
-==== FCS_CKM.5 Cryptographic key derivation
+
+==== FCS_KDF_EXT Extended: Cryptographic Key Derivation
 ======
 (selected in FCS_KYC_EXT.1.1 for O.STORAGE_ENCRYPTION, O.STRONG_CRYPTO) +
 *Hierarchical to:* +
 	No other components +
 
 *Dependencies:* +
-    [FCS_CKM.2 Cryptographic key distribution, or +
-    FCS_COP.1 Cryptographic operation] +
-    FCS_CKM.6 Timing and event of cryptographic key destruction
+	FCS_COP.1/CMAC Cryptographic Operation (for keyed-hash message authentication), +
+	FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction, +
+	[if selected: FCS_RBG_EXT.1 Extended: Cryptographic Operation (Random Bit Generation)]
 ======
 
-*FCS_CKM.5.1* The TSF shall derive cryptographic keys [assignment: _key type_] from [assignment: _input parameters_] in accordance with a specified key derivation algorithm [assignment: _key derivation algorithm_] and specified cryptographic key sizes [assignment: _list of key sizes_] that meet the following: [assignment: _list of standards_].
+*FCS_KDF_EXT.1.1* The TSF shall accept [selection: _a RNG generated submask as specified in FCS_RBG_EXT.1, a conditioned password submask, imported submask_] to derive an intermediate key, as defined in [selection: _NIST SP 800-108 [selection: KDF in Counter Mode, KDF in Feedback Mode, KDF in Double-Pipeline Iteration Mode], NIST SP 800-132, ISO/IEC 11770-6:2016 [selection: KPF2, KPF3, KPF4]_], using the keyed-hash functions specified in FCS_COP.1/CMAC, such that the output is at least of equivalent security strength (in number of bits) to the BEV or the DEK.
 
-*_Application Note:_*
 
-The author of the ST should specify the type of cryptographic key to be derived.
 
-The author of the ST should specify input parameters associated with the key derivation for a specified type of key.
-
-The author of the ST should specify key derivation algorithm to be used.
-
-The author of the ST should specify the cryptographic key sizes to be derived. The key sizes specified should be appropriate for the algorithm and its intended use.
-
-The author of the ST should specify the assigned standard that documents the method used to derive cryptographic keys. The assigned standard may comprise none, one or more actual standards publications, for example, from international, national, industry or organizational standards.
 
 
 
@@ -3062,7 +3055,7 @@ _(*) ISO/IEC 19790 "Security requirements for cryptographic modules" 7.5 Softwar
 
 ==== FCS_SNI_EXT.1 Extended: Cryptographic Operation (Salt, Nonce, and Initialization Vector Generation)
 ======
-(selected with FCS_PCC_EXT.1, FCS_CKM.5.1, for O.STORAGE_ENCRYPTION, O.STRONG_CRYPTO) +
+(selected with FCS_PCC_EXT.1, FCS_KDF_EXT.1.1, for O.STORAGE_ENCRYPTION, O.STRONG_CRYPTO) +
 *Hierarchical to:* +
 	No other components +
 
@@ -3261,7 +3254,7 @@ _Testing of cryptographic functions implemented in the protected storage device 
 	FCS_SMC_EXT.1 Extended: Submask Combining, +
 	FCS_CKM.6 Timing and event of cryptographic key destruction, +
 	FCS_COP.1/KeyEnc Cryptographic operation (Key Encryption), +
-	FCS_CKM.5 Cryptographic key derivation, +
+	FCS_KDF_EXT.1 Cryptographic key derivation, +
 		and/or +
 	FCS_COP.1/KeyTransport Cryptographic operation (Key Transport) ]
 ======
@@ -3270,7 +3263,7 @@ _Testing of cryptographic functions implemented in the protected storage device 
 
 _This SFR forms a keychain that terminates either with a DEK or a BEV to unlock a self-encrypting drive. If passwords are not used, it can be a keychain of one, with no intermediate keys forming the DEK or BEV, provided that key is protected. For example, if the DEK for an SED is not stored on the SED and is released on power-up, a keychain of one is allowed._
 
-*FCS_KYC_EXT.1.1* The TSF shall maintain a key chain of: [selection: _one, using a submask as the BEV or DEK; intermediate keys originating from one or more submask(s) to the BEV or DEK using the following method(s): [selection: key wrapping as specified in FCS_COP.1/KeyWrap, key combining as specified in FCS_SMC_EXT.1, key encryption as specified in FCS_COP.1/KeyEnc, key derivation as specified in FCS_CKM.5, key transport as specified in FCS_COP.1/KeyTransport]] while maintaining an effective strength of [selection: 128 bits, 256 bits_].
+*FCS_KYC_EXT.1.1* The TSF shall maintain a key chain of: [selection: _one, using a submask as the BEV or DEK; intermediate keys originating from one or more submask(s) to the BEV or DEK using the following method(s): [selection: key wrapping as specified in FCS_COP.1/KeyWrap, key combining as specified in FCS_SMC_EXT.1, key encryption as specified in FCS_COP.1/KeyEnc, key derivation as specified in FCS_KDF_EXT.1, key transport as specified in FCS_COP.1/KeyTransport]] while maintaining an effective strength of [selection: 128 bits, 256 bits_].
 
 *_Application Note:_*
 
@@ -3813,20 +3806,71 @@ mandatory support for NAT traversal as specified in RFC 5996, section 2.23)], an
 *FCS_IPSEC_EXT.1.14* The TSF shall only establish a trusted channel if the presented identifier in the received certificate matches the configured reference identifier, where the presented and reference identifiers are of the following fields and types: [selection: _SAN: IP address, SAN: Fully Qualified Domain Name (FQDN), SAN: user FQDN, CN: IP address, CN: Fully Qualified Domain Name (FQDN), CN: user FQDN, Distinguished Name (DN)_] and [selection: _no other reference identifier type, [assignment: other supported reference identifier types]_].
 
 
-
-
-
-
-
-
-
-
-
 *Rationale*
 
 IPsec is one of the secure communication protocols, and the Common Criteria does not provide a suitable SFR for the communication protocols using cryptographic algorithms.
 
 This extended component protects the communication data using cryptographic algorithms, and it is therefore placed in the FCS class with a single component.
+
+
+
+
+==== FCS_KDF_EXT Extended: Cryptographic Key Derivation
+
+*Family Behaviour*
+
+This family specifies the means by which an intermediate key is derived from a specified set of submasks.
+
+*Component Levelling*
+[#img-FCS_KDF_EXT]
+.Component Levelling
+[ditaa]
+======
+    +------------------------------------------+
+    |                                          |     +---+
+    | FCS_KDF_EXT Cryptographic Key Derivation +---->| 1 |
+    |                                          |     +---+
+    +------------------------------------------+
+======
+
+FCS_KDF_EXT.1 Cryptographic Key Derivation requires the TSF to derive intermediate keys from submasks using the specified hash functions.
+
+*Management*
+
+The following actions could be considered for the management functions in FMT:
+
+• There are no management actions foreseen.
+
+*Audit*
+
+The following actions should be auditable if FAU_GEN Security Audit Data Generation is included in the PP/ST:
+
+• There are no auditable events foreseen.
+
+===== FCS_KDF_EXT.1  Extended: Cryptographic Key Derivation
+======
+*Hierarchical to:* +
+	No other components
+
+*Dependencies:* +
+	FCS_COP.1/CMAC Cryptographic Operation (for keyed-hash message authentication), +
+	FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction +
+	[if selected: FCS_RBG_EXT.1 Extended: Cryptographic Operation (Random Bit Generation)]
+======
+
+FCS_KDF_EXT.1.1 The TSF shall accept [selection: _a RNG generated submask as specified in FCS_RBG_EXT.1, a conditioned password submask, imported submask_] to derive an intermediate key, as defined in [selection: _NIST SP 800-108_ [selection: _KDF in Counter Mode, KDF in Feedback Mode, KDF in Double-Pipeline Iteration Mode_], _NIST SP 800-132, ISO/IEC 11770-6:2016 [selection: KPF2, KPF3, KPF4]_], using the keyed-hash functions specified in FCS_COP.1/CMAC, such that the output is at least of equivalent security strength (in number of bits) to the BEV or the DEK.
+
+*Rationale*
+
+The TSF is required to specify the means by which an intermediate key is derived from a specified set of submasks using the specified hash functions.
+
+This extended component protects the Data Encryption Keys using cryptographic algorithms in the maintained key chains, and it is therefore placed in the FCS class with a single component.
+
+
+
+
+
+
 
 
 
@@ -3878,12 +3922,12 @@ No other components.
 	FCS_SMC_EXT.1 Extended: Submask Combining, +
 	FCS_CKM.6 Timing and event of cryptographic key destruction, +
 	FCS_COP.1/KeyEnc Cryptographic operation (Key Encryption), +
-	FCS_CKM.5 Cryptographic key derivation, +
+	FCS_KDF_EXT.1 Cryptographic key derivation, +
 	and/or +
 	FCS_COP.1/KeyTransport Cryptographic operation (Key Transport) ].
 ======
 
-FCS_KYC_EXT.1.1 The TSF shall maintain a key chain of: [selection: _one, using a submask as the BEV or DEK; intermediate keys originating from one or more submask(s) to the BEV or DEK using the following method(s)_: [selection: _key wrapping as specified in FCS_COP.1/KeyWrap, key combining as specified in FCS_SMC_EXT.1, key encryption as specified in FCS_COP.1/KeyEnc, key derivation as specified in FCS_CKM.5, key transport as specified in FCS_COP.1/KeyTransport_]] while maintaining an effective strength of [selection: _128 bits, 256 bits_].
+FCS_KYC_EXT.1.1 The TSF shall maintain a key chain of: [selection: _one, using a submask as the BEV or DEK; intermediate keys originating from one or more submask(s) to the BEV or DEK using the following method(s)_: [selection: _key wrapping as specified in FCS_COP.1/KeyWrap, key combining as specified in FCS_SMC_EXT.1, key encryption as specified in FCS_COP.1/KeyEnc, key derivation as specified in FCS_KDF_EXT.1, key transport as specified in FCS_COP.1/KeyTransport_]] while maintaining an effective strength of [selection: _128 bits, 256 bits_].
 
 *Rationale*
 
@@ -6405,7 +6449,7 @@ Authorized Users are trained to use the TOE according to site security policies.
 | |FCS_COP.1/KeyEnc	|This requirement defines the cryptographic algorithms that must be applied to perform key encryption and decryption.
 | |FCS_COP.1/KeyTransport	|This requirement defines the cryptographic algorithms that must be applied to transfer a key and other keying material from an entity that either owns the key or generates the key to another entity that is intended to use the key.
 | |FCS_SMC_EXT.1	|This requirement defines the methods for combining submasks to generate an intermediary key.
-| |FCS_CKM.5 |This requirement defines the methods for generating an intermediary key.
+| |FCS_KDF_EXT.1 |This requirement defines the methods for generating an intermediary key.
 | |FCS_PCC_EXT.1 |This requirement defines the cryptographic algorithms that must be applied to construct cryptographic passwords.
 | |FCS_COP.1/CMAC	|This requirement defines the cryptographic algorithms that must be applied to perform cipher-based message authentication.
 | |FCS_SNI_EXT.1 |This requirement defines the creation and usage of salts, nonces and IVs.
@@ -6448,7 +6492,7 @@ Authorized Users are trained to use the TOE according to site security policies.
 | |FCS_DTLSC_EXT.1	|This requirement defines the implementation of DTLS acting as a client without mutual authentication using strong cryptography.
 | |FCS_DTLSS_EXT.1	|This requirement defines the implementation of DTLS acting as a server without mutual authentication using strong cryptography.
 | |FCS_PCC_EXT.1 |This requirement ensures the use of strong methods to generate cryptographic passwords.
-| |FCS_CKM.5 |This requirement ensures the use of strong methods for performing cryptographic key derivation.
+| |FCS_KDF_EXT.1 |This requirement ensures the use of strong methods for performing cryptographic key derivation.
 | |FCS_COP.1/CMAC	|This requirement ensures the use of strong methods to perform cipher-based message authentication.
 | |FCS_SNI_EXT.1 |This requirement ensures that salts and nonces used by the TOE do not negatively impact key strength.
 | |FCS_CKM.1/AKG	|This requirement ensures the generation of strong asymmetric keys.
@@ -6484,7 +6528,7 @@ The dependencies between SFRs implemented by the TOE are addressed as follows.
 | FCS_CKM.1/AKG | FCS_CKM.2 or FCS_COP.1/SigGen, FCS_CKM.6 | FCS_CKM.2 and FCS_COP.1/SigGen included, FCS_CKM.6 included
 | FCS_CKM.1/SKG | FCS_COP.1/DataEncryption, FCS_COP.1/StorageEncryption, FCS_COP.1/KeyWrap, FCS_COP.1/KeyEnc, FCS_COP.1/KeyedHash, FCS_COP.1/CMAC, FCS_CKM.6, FCS_RBG_EXT.1 | FCS_COP.1/DataEncryption included, FCS_CKM.6 included, FCS_RBG_EXT.1 included, FCS_COP.1/StorageEncryption and FCS_COP.1/KeyWrap and FCS_COP.1/KeyEnc and FCS_COP.1/KeyedHash and FCS_COP.1/CMAC included as selection-based SFRs
 | FCS_CKM.2 | FCS_CKM.1/AKG, FCS_CKM.6 | FCS_CKM.1/AKG included, FCS_CKM.6 included
-| FCS_CKM.6 | FCS_CKM.1 or FCS_CKM_EXT.3 or FCS_CKM.5 or FCS_CKM_EXT.7 or FCS_CKM_EXT.8 | FCS_CKM.1 and FCS_CKM_EXT.3 and FCS_CKM.5 and FCS_CKM_EXT.7 and FCS_CKM_EXT.8 included as selection-based SFRs
+| FCS_CKM.6 | FCS_CKM.1 or FCS_KDF_EXT.1 | FCS_CKM.1 and FCS_KDF_EXT.1 included as selection-based SFRs
 | FCS_COP.1/DataEncryption | FCS_CKM.1/SKG, FCS_CKM.6 | FCS_CKM.1/SKG included, FCS_CKM.6 included
 | FCS_COP.1/SigGen | FCS_CKM.1/AKG, FCS_CKM.6 | FCS_CKM.1/AKG included, FCS_CKM.6 included
 | FCS_COP.1/Hash | None |
@@ -6551,7 +6595,7 @@ The dependencies between SFRs implemented by the TOE are addressed as follows.
 | FCS_DTLSS_EXT.1 | FCS_CKM.1/AKG, FCS_CKM.1/SKG, FCS_CKM.2, FCS_COP.1/DataEncryption, FCS_COP.1/SigGen, FCS_COP.1/Hash, FCS_COP.1/KeyedHash, FCS_RBG_EXT.1, FIA_X509_EXT.1, FIA_X509_EXT.2 | FCS_COP.1/AKG included, FCS_COP.1/SKG included, FCS_CKM.2 included, FCS_COP.1/DataEncryption included, FCS_COP.1/SigGen included, FCS_COP.1/Hash included, FCS_RBG_EXT.1 included, FCS_COP.1/KeyedHash and FIA_X509_EXT.1 and FIA_X509_EXT.2 included as selection-based SFRs
 
 | FCS_PCC.EXT.1 | FCS_COP.1/CMAC | FCS_COP.1/CMAC included as selection-based SFR
-| FCS_CKM.5 | FCS_CKM.2 or FCS_COP.1/CMAC, FCS_CKM.6 | FCS_COP.1/CMAC included as selection-based SFR
+| FCS_KDF_EXT | FCS_COP.1/CMAC, FCS_CKM_EXT.4, if selected FCS_RBG_EXT.1 | FCS_COP.1/CMAC included as selection-based SFR, FCS_CKM_EXT.4 included, if selected - FCS_RBG_EXT.1 included
 | FCS_COP.1/CMAC | FCS_CKM.1/SKG, FCS_COP.1/Hash, FCS_CKM.6 | FCS_CKM.1/SKG included, FCS_COP.1/Hash included, FCS_CKM.6 included.
 
 When FCS_COP.1/CMAC is applied to keys used in FPT_SBT_EXT.1, the key-based message authentication key is not CSP, so dependencies on FCS_CKM.1/SKG and FCS_CKM_EXT.4 can be removed.
@@ -6571,7 +6615,7 @@ When FCS_COP.1/CMAC is applied to keys used in FPT_SBT_EXT.1, the key-based mess
 | *SFR* | *Dependencies* | *Rationale Statement*
 
 | FPT_KYP_EXT.1 | FCS_KYC_EXT.1 | FCS_KYC_EXT.1 included as conditionally-mandatory SFR
-| FCS_KYC_EXT.1 | FCS_COP.1/KeyWrap, FCS_SMC_EXT.1, FCS_CKM.6, FCS_COP.1/KeyEnc, FCS_CKM.5, and/or FCS_COP.1/KeyTransport | FCS_CKM.6 included, FCS_COP.1/KeyWrap and FCS_SMC_EXT.1 and FCS_COP.1/KeyEnc and FCS_CKM.5 and FCS_COP.1/KeyTransport included as selection-based SFRs
+| FCS_KYC_EXT.1 | FCS_COP.1/KeyWrap, FCS_SMC_EXT.1, FCS_CKM.6, FCS_COP.1/KeyEnc, FCS_KDF_EXT.1, and/or FCS_COP.1/KeyTransport | FCS_CKM.6 included, FCS_COP.1/KeyWrap and FCS_SMC_EXT.1 and FCS_COP.1/KeyEnc and FCS_KDF_EXT.1 and FCS_COP.1/KeyTransport included as selection-based SFRs
 | FDP_DSK_EXT.1 | FCS_COP.1/StorageEncryption | FCS_COP.1/StorageEncryption included
 | FDP_FXS_EXT.1 | None |
 | FTP_TRP.1/NonAdmin | FCS_IPSEC_EXT.1, or FCS_TLSC_EXT and/or FCS_TLSS_EXT, or FCS_SSHC_EXT or FCS_SSHS_EXT, or FCS_DTLSC_EXT and/or FCS_DTLSS_EXT, or FCS_HTTPS_EXT.1 | FCS_IPSEC_EXT.1 and FCS_TLSC_EXT.1 and FCS_TLSS_EXT.1 and FCS_SSHC_EXT.1 and FCS_SSHS_EXT.1 and FCS_DTLSC_EXT.1 and FCS_DTLSS_EXT.1 and FCS_HTTPS_EXT.1 included as selection-based SFRs
