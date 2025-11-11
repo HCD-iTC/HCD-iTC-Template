@@ -3213,7 +3213,7 @@ The following are security functional requirements that are mandatory if the TOE
 *FPT_KYP_EXT.1.1* The TSF shall [selection:
 
 * _not store keys in non-volatile memory,_
-* _only store keys in non-volatile memory when [selection: "wrapped, as specified in FCS_COP.1/KeyWrap, or encrypted, as specified in FCS_COP.1/KeyEnc or FCS_COP.1/KeyTransport", "encrypted or wrapped within a protected storage device using a key stored within that device"]_
+* _only store keys in non-volatile memory when wrapped, as specified in FCS_COP.1/KeyWrap, or encrypted, as specified in FCS_COP.1/KeyEnc or FCS_COP.1/KeyTransport_
 * _only store plaintext keys that meet any one of the following criteria [selection:_
 ** _the key will no longer provide access to the encrypted data after initial provisioning,_
 ** _the key is a key split that is combined as specified in FCS_SMC_EXT.1, and the other half of the key split is [selection:_
@@ -3237,7 +3237,7 @@ _The selection “the non-volatile memory the key is stored on is located in a p
 
 _The protected storage device can protect stored data from unauthorized access and the nonvolatile memory in it is not accessible from outside of the TOE. Examples of protected storage devices include Secure Elements (SE), Trusted Platform Modules (TPM), Hardware Security Modules (HSM), Trusted Execution Environments (TEE), Secure Enclave Processors (SEP), and so on._
 
-_In the case where a encrypted key is stored on media that is decrypted by a key stored in a protected storage device, the selection for encrypting or wrapping a key that is encrypted or wrapped within a protected storage device using a key stored within that device should be used. In this case, the key that the protected storage device generates and stores internally is considered to be the starting point of the key chain, so "the non-volatile memory where the key is stored on is located in a protected storage device" must also be selected as a means of protecting that key._
+_In the case where an encrypted key is stored on media that is decrypted by a key stored in a protected storage device, the selection for "only store keys in non-volatile memory when wrapped, as specified in FCS_COP.1/KeyWrap, or encrypted, as specified in FCS_COP.1/KeyEnc or FCS_COP.1/KeyTransport" should be used. In this case, the key that the protected storage device generates and stores internally is considered to be the starting point of the key chain, so "the non-volatile memory where the key is stored on is located in a protected storage device" must also be selected as a means of protecting that key._
 
 _Testing of cryptographic functions implemented in the protected storage device may not be feasible and independent testing may not be available. In this situation, contact the CC Scheme._
 
@@ -5198,7 +5198,6 @@ FPT_KYP_EXT.1.1 The TSF shall [selection:
 * _not store keys in non-volatile memory_
 * _only store keys in non-volatile memory when wrapped, as specified in FCS_COP.1/KeyWrap, or encrypted, as specified in FCS_COP.1/KeyEnc or FCS_COP.1/KeyTransport_
 * _only store plaintext keys that meet any one of the following criteria [selection:_
-** _the key is protected by another key that is not part of the key chain as specified in FCS_KYC_EXT.1,_
 ** _the key will no longer provide access to the encrypted data after initial provisioning,_
 ** _the key is a key split that is combined as specified in FCS_SMC_EXT.1, and the other half of the key split is [selection:_
 *** _wrapped as specified in FCS_COP.1/KeyWrap,_
@@ -5207,7 +5206,7 @@ FPT_KYP_EXT.1.1 The TSF shall [selection:
 
 ** _the key is [selection: used to wrap a key as specified in FCS_COP.1/KeyWrap, used to encrypt a key as specified in FCS_COP.1/KeyEnc or FCS_COP.1/KeyTransport] that is already [selection: wrapped as specified in FCS_COP.1/KeyWrap, encrypted as specified in FCS_COP.1/KeyEnc or FCS_COP.1/KeyTransport],_
 
-** _the non-volatile memory the key is stored on is located in a protected storage device]_
+** _the non-volatile memory where the key is stored on is located in a protected storage device]_
 
 ].
 
