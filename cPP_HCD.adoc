@@ -7,8 +7,8 @@
 :sectnumlevels: 7
 :imagesdir: images
 :icons: font
-:revnumber: 1.1 DRAFT #1
-:revdate: 15 September 2025
+:revnumber: 1.1 DRAFT #1.5
+:revdate: 10 November 2025
 
 :iTC-longname: Hardcopy Devices
 :iTC-shortname: HCD-iTC
