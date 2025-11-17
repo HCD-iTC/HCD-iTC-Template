@@ -7,8 +7,8 @@
 :sectnumlevels: 7
 :imagesdir: images
 :icons: font
-:revnumber: 1.1 DRAFT #1.5
-:revdate: 10 November 2025
+:revnumber: 1.1 DRAFT #2
+:revdate: 17 November 2025
 
 :iTC-longname: Hardcopy Devices
 :iTC-shortname: HCD-iTC
@@ -33,17 +33,9 @@ This collaborative Protection Profile (cPP) was developed by the {iTC-longname} 
 |Date
 |Description
 
-// | 0.6 | 8 June 2020 | Initial Release for HCD iTC Review
-// | 0.7 | 21 July 2020 | Draft
-// | 0.8 | 9 June 2021 | Draft
-// | 0.9 | 16 August 2021 | Draft
-| 0.10 | 30 August 2021 | Public Draft 1
-| 0.11 | 14 December 2021 | Public Draft 2
-| 0.13 | 25 July 2022 | Final Public Draft
 | 1.0 | 31 October 2022 | Initial release for use
 | 1.0e | 4 March 2024 | Errata version
-| 1.1 DRAFT #1 | 15 September 2025 | CC:2022 + TD0926, TD0927 draft
-| 1.1 DRAFT #1.5 | 10 November 2025 | Prelimary draft 2
+| 1.1 DRAFT #2 | 17 November 2025 | Draft #2 - CC:2022 update
 
 |===
 
@@ -951,7 +943,7 @@ This SFR does not apply to the public component of asymmetric key pairs or to ke
 ***    removal of all references to the key directly followed by a request for garbage collection
 * ];
 
-* For non-volatile storage [selection:
+* For nonvolatile storage [selection:
 ***    that consists of an invocation of an interface provided by a part of the TSF, the destruction shall be executed by: [selection:
 *****        logically addressing the storage location of the key and performing a [selection: single, [assignment: number of passes]-pass] overwrite consisting of [selection: a pseudo-random pattern using the TSF’s RBG (as specified in FCS_RBG.1), zeroes, ones, a new value of the key, [assignment: a static or dynamic value that does not contain any CSP]];
 *****        instructing a part of the TSF to destroy the abstraction that represents the key]
@@ -974,7 +966,7 @@ addresses (which frees the relevant physical addresses holding the old data) and
 the platform to ensure that the data in the physical addresses is no longer available for reading (i.e.
 the “garbage collection” referred to in the SFR text).
 
-The selection for destruction of data in non-volatile memory includes block erase as an option,
+The selection for destruction of data in nonvolatile memory includes block erase as an option,
 and this option applies only to flash memory. A block erase does not require a read verify, since
 the mappings of logical addresses to the erased memory locations are erased, as well as the data
 itself.
@@ -1122,7 +1114,7 @@ that meet the following: [selection:
 
 Case: RSA schemes
 
-*	_FIPS PUB 186-4, “Digital Signature Standard (DSS)”, Section 5.5, using PKCS #1 v2.1 Signature Schemes RSASSA-PSS and/or RSASSA-PKCS1v1_5; ISO/IEC 9796-2, Digital signature scheme 2 or Digital Signature scheme 3,_
+*	_FIPS PUB 186-4, “Digital Signature Standard (DSS)”, Section 5.5, using PKCS #1 v2.1 Signature Schemes RSASSA-PSS and/or RSASSA-PKCS1v1_5; ISO/IEC 9796-2, Digital signature scheme 2 or Digital Signature scheme 3; RFC 8017 (Section 8.2) [PKCS #1 v2.2], FIPS PUB 186-5 (Section 5.4) [RSASSA-PKCS1-v1_5]._
 
 Case: Elliptic Curve Digital Signature Algorithm schemes
 
@@ -3207,17 +3199,17 @@ The following are security functional requirements that are mandatory if the TOE
 
 *FPT_KYP_EXT.1.1* The TSF shall [selection:
 
-* _not store keys in non-volatile memory,_
-* _only store keys in non-volatile memory when wrapped, as specified in FCS_COP.1/KeyWrap, or encrypted, as specified in FCS_COP.1/KeyEnc or FCS_COP.1/KeyTransport_
+* _not store keys in nonvolatile memory,_
+* _only store keys in nonvolatile memory when wrapped, as specified in FCS_COP.1/KeyWrap, or encrypted, as specified in FCS_COP.1/KeyEnc or FCS_COP.1/KeyTransport_
 * _only store plaintext keys that meet any one of the following criteria [selection:_
 ** _the key will no longer provide access to the encrypted data after initial provisioning,_
 ** _the key is a key split that is combined as specified in FCS_SMC_EXT.1, and the other half of the key split is [selection:_
 *** _wrapped as specified in FCS_COP.1/KeyWrap,_
 *** _encrypted as specified in FCS_COP.1/KeyEnc or FCS_COP.1/KeyTransport,_
-*** _derived and not stored in non-volatile memory],_
+*** _derived and not stored in nonvolatile memory],_
 ** _the key is [selection: used to wrap a key as specified in FCS_COP.1/KeyWrap, used to encrypt a key as specified in FCS_COP.1/KeyEnc or FCS_COP.1/KeyTransport] that is already [selection: wrapped as specified in FCS_COP.1/KeyWrap, encrypted as specified in FCS_COP.1/KeyEnc or FCS_COP.1/KeyTransport],_
 
-** _the non-volatile memory where the key is stored on is located in a protected storage device_]
+** _the nonvolatile memory where the key is stored on is located in a protected storage device_]
 
 ].
 
@@ -3228,11 +3220,11 @@ _The keys must be protected from unauthorized access and must not be stored on a
 1. _a key split or a key provides additional layers of wrapping or encryption on keys that have already been protected or_
 2. _the nonvolatile memory the key is stored on is located in a protected storage device and the key is protected from unauthorized access._
 
-_The selection “the non-volatile memory the key is stored on is located in a protected storage device” should be applied to the start (or root) of a key chain, not for intermediate keys of the key chain._
+_The selection “the nonvolatile memory the key is stored on is located in a protected storage device” should be applied to the start (or root) of a key chain, not for intermediate keys of the key chain._
 
 _The protected storage device can protect stored data from unauthorized access and the nonvolatile memory in it is not accessible from outside of the TOE. Examples of protected storage devices include Secure Elements (SE), Trusted Platform Modules (TPM), Hardware Security Modules (HSM), Trusted Execution Environments (TEE), Secure Enclave Processors (SEP), and so on._
 
-_In the case where an encrypted key is stored on media that is decrypted by a key stored in a protected storage device, the selection for "only store keys in non-volatile memory when wrapped, as specified in FCS_COP.1/KeyWrap, or encrypted, as specified in FCS_COP.1/KeyEnc or FCS_COP.1/KeyTransport" should be used. In this case, the key that the protected storage device generates and stores internally is considered to be the starting point of the key chain, so "the non-volatile memory where the key is stored on is located in a protected storage device" must also be selected as a means of protecting that key._
+_In the case where an encrypted key is stored on media that is decrypted by a key stored in a protected storage device, the selection for "only store keys in nonvolatile memory when wrapped, as specified in FCS_COP.1/KeyWrap, or encrypted, as specified in FCS_COP.1/KeyEnc or FCS_COP.1/KeyTransport" should be used. In this case, the key that the protected storage device generates and stores internally is considered to be the starting point of the key chain, so "the nonvolatile memory where the key is stored on is located in a protected storage device" must also be selected as a means of protecting that key._
 
 _Testing of cryptographic functions implemented in the protected storage device may not be feasible and independent testing may not be available. In this situation, contact the CC Scheme._
 
@@ -3419,7 +3411,7 @@ The SFRs in this section are to be incorporated in the ST to support the optiona
 	No dependencies.
 ======
 
-*FPT_WIPE_EXT.1.1* The TSF shall ensure that any previous customer-supplied information content of a resource in non-volatile storage is made unavailable upon the request of an Administrator to the following objects: [*D.USER, D.TSF*] using the following method(s): cryptographic erase and [selection:
+*FPT_WIPE_EXT.1.1* The TSF shall ensure that any previous customer-supplied information content of a resource in nonvolatile storage is made unavailable upon the request of an Administrator to the following objects: [*D.USER, D.TSF*] using the following method(s): cryptographic erase and [selection:
 
 * _logically addresses the storage location of the data and performs a [selection: single, [assignment: ST author defined multi-pass]] overwrite consisting of [selection: zeroes, ones, pseudo-random pattern, any value that does not contain any CSPs],_
 * _block erase,_
@@ -5046,7 +5038,7 @@ The following actions should be auditable if FAU_GEN Security Audit Data Generat
   No dependencies.
 ======
 
-*FPT_WIPE_EXT.1.1* The TSF shall ensure that any previous customer-supplied information content of a resource in non-volatile storage is made unavailable upon the request of an Administrator to the following objects: [assignment: _list of objects_] using the following method(s): cryptographic erase and [selection:
+*FPT_WIPE_EXT.1.1* The TSF shall ensure that any previous customer-supplied information content of a resource in nonvolatile storage is made unavailable upon the request of an Administrator to the following objects: [assignment: _list of objects_] using the following method(s): cryptographic erase and [selection:
 
 * _logically addresses the storage location of the data and performs a [selection: single, [assignment: ST author defined multi-pass]] overwrite consisting of [selection: zeroes, ones, pseudo-random pattern, any value that does not contain any CSPs],_
 * _block erase,_
@@ -5190,18 +5182,18 @@ The following actions should be auditable if FAU_GEN Security Audit Data Generat
 
 FPT_KYP_EXT.1.1 The TSF shall [selection:
 
-* _not store keys in non-volatile memory_
-* _only store keys in non-volatile memory when wrapped, as specified in FCS_COP.1/KeyWrap, or encrypted, as specified in FCS_COP.1/KeyEnc or FCS_COP.1/KeyTransport_
+* _not store keys in nonvolatile memory_
+* _only store keys in nonvolatile memory when wrapped, as specified in FCS_COP.1/KeyWrap, or encrypted, as specified in FCS_COP.1/KeyEnc or FCS_COP.1/KeyTransport_
 * _only store plaintext keys that meet any one of the following criteria [selection:_
 ** _the key will no longer provide access to the encrypted data after initial provisioning,_
 ** _the key is a key split that is combined as specified in FCS_SMC_EXT.1, and the other half of the key split is [selection:_
 *** _wrapped as specified in FCS_COP.1/KeyWrap,_
 *** _encrypted as specified in FCS_COP.1/KeyEnc or FCS_COP.1/KeyTransport,_
-*** _derived and not stored in non-volatile memory],_
+*** _derived and not stored in nonvolatile memory],_
 
 ** _the key is [selection: used to wrap a key as specified in FCS_COP.1/KeyWrap, used to encrypt a key as specified in FCS_COP.1/KeyEnc or FCS_COP.1/KeyTransport] that is already [selection: wrapped as specified in FCS_COP.1/KeyWrap, encrypted as specified in FCS_COP.1/KeyEnc or FCS_COP.1/KeyTransport],_
 
-** _the non-volatile memory where the key is stored on is located in a protected storage device]_
+** _the nonvolatile memory where the key is stored on is located in a protected storage device]_
 
 ].
 
@@ -5420,7 +5412,7 @@ More specifically, all entropy source health tests and their rationale will be d
 The description will provide the following information for all keys in the key chain:
 
 * The purpose of the key
-* If the key is stored in non-volatile memory
+* If the key is stored in nonvolatile memory
 * How and when the key is protected
 * How and when the key is derived
 * The strength of the key
@@ -5435,7 +5427,7 @@ The description will also describe the following topics:
 * The authorization process that leads to the decryption of the BEV or DEK. This section shall detail the key chain used by the product. It shall describe which keys are used in the protection of the BEV or DEK and how they meet the encryption or derivation requirements including the direct chain from the initial authorization to the BEV or DEK. It shall also include any values that add into that key chain or interact with the key chain and the protections that ensure those values do not weaken or expose the overall strength of the key chain.
 * The diagram and essay will clearly illustrate the key hierarchy to ensure that at no point the chain could be broken without a cryptographic exhaust or all of the initial authorization values and the effective strength of the BEV or DEK is maintained throughout the key chain.
 * A description of the data encryption engine, its components, and details about its implementation (e.g. initialization of the product, drivers, libraries (if applicable), logical interfaces for encryption/decryption, and how resources to be encrypted are identified). The description should also include the data flow from the device’s host interface to the device’s persistent media storing the data, information on those conditions in which the data bypasses the data encryption engine. The description should be detailed enough to verify all platforms ensure that when the user enables encryption, the product encrypts all selected resources.
-* The process for destroying keys when they are no longer needed by describing the storage location of all keys and the protection of all keys stored in non-volatile memory.
+* The process for destroying keys when they are no longer needed by describing the storage location of all keys and the protection of all keys stored in nonvolatile memory.
 
 
 === Key Management Diagram:

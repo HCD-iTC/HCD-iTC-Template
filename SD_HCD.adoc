@@ -7,7 +7,7 @@
 :table-caption: Table
 :imagesdir: images
 :icons: font
-:revnumber: 1.1 draft #1
+:revnumber: 1.1 DRAFT #1
 :revdate: 17 November 2025
 :xrefstyle: full
 
@@ -18,7 +18,7 @@
 :iTC-GitHub: https://github.com/HCD-iTC
 :pp-name: collaborative Protection Profile for Hardcopy Devices
 :pp-shortname: HCDcPP
-:pp-version: 1.1 draft #2
+:pp-version: 1.1 DRAFT #2
 :pp-date: 17 November 2025
 
 == Foreword
@@ -43,7 +43,7 @@ Hardcopy Device International Technical Community (HCD-iTC)
 | 0.99 | 29 July 2022 | Final Public Review Draft
 | 1.0  | 31 October 2022 | Initial release for use
 | 1.0e | 4 March 2024 | Errata version.
-| 1.1 draft #1 | 17 November 2025 | Draft #1 for CC:2022 update.
+| 1.1 DRAFT #1 | 17 November 2025 | Draft #1 - CC:2022 update
 |===
 
 === General Purpose
@@ -364,7 +364,7 @@ group that each protocol uses.
 
 The evaluator shall verify the TSS provides a high level description of what keys and key material are destroyed, under what conditions they are destroyed, and how they are destroyed.
 
-The evaluator shall check to ensure the TSS lists each type of key that is stored in non-volatile memory, and identifies how the TOE interacts with the underlying platform to manage keys (e.g., store, retrieve, destroy). The description includes details on the method of how the TOE interacts with the platform, including an identification and description of the interfaces it uses to manage keys (e.g., file system APIs, platform key store APIs).
+The evaluator shall check to ensure the TSS lists each type of key that is stored in nonvolatile memory, and identifies how the TOE interacts with the underlying platform to manage keys (e.g., store, retrieve, destroy). The description includes details on the method of how the TOE interacts with the platform, including an identification and description of the interfaces it uses to manage keys (e.g., file system APIs, platform key store APIs).
 
 If the ST makes use of the open assignment and fills in the type of pattern that is used, the evaluator examines the TSS to ensure it describes how that pattern is obtained and used. The evaluator shall verify that the pattern does not contain any CSPs.
 
@@ -372,7 +372,7 @@ The evaluator shall check that the TSS identifies any configurations or circumst
 
 ===== KMD
 
-The evaluator shall verify the Key Management Description (KMD) includes a key lifecycle that describes the purpose of the key and how it is used, where the keys and key material reside (i.e. volatile or non-volatile storage), how each identified key is introduced into storage (e.g., by derivation from user input, or by unwrapping a wrapped key stored in non-volatile storage), how it is determined that keys and key material are no longer needed, and how the material is destroyed once it is not needed and that the documentation in the KMD follows FCS_CKM.6 for the destruction.
+The evaluator shall verify the Key Management Description (KMD) includes a key lifecycle that describes the purpose of the key and how it is used, where the keys and key material reside (i.e. volatile or nonvolatile storage), how each identified key is introduced into storage (e.g., by derivation from user input, or by unwrapping a wrapped key stored in nonvolatile storage), how it is determined that keys and key material are no longer needed, and how the material is destroyed once it is not needed and that the documentation in the KMD follows FCS_CKM.6 for the destruction.
 
 The KMD identifies and describes the interface(s) that are used to service commands to read/write memory/storage. The evaluator examines the interface description for each different media type to ensure that the interface supports the selection(s) made by the ST Author.
 
@@ -416,7 +416,7 @@ Test 3: Applied to each key held in nonvolatile memory and subject to destructio
 . Cause the TOE to clear the key.
 . Search the nonvolatile memory the key was stored in for instances of the known key value from Step #1. If a copy is found, then the test fails.
 
-Test 4: Applied to each key held as nonvolatile memory and subject to destruction by overwrite by the TOE. The evaluator shall use special tools (as needed), provided by the TOE developer if necessary, to view the key storage location:
+Test 4: Applied to each key held in nonvolatile memory and subject to destruction by overwrite by the TOE. The evaluator shall use special tools (as needed), provided by the TOE developer if necessary, to view the key storage location:
 
 . Record the storage location of the key in the TOE subject to clearing.
 . Cause the TOE to perform a normal cryptographic processing with the key from Step #1.
@@ -1902,11 +1902,11 @@ Further assurance activities are associated with the specific protocols.
 
 ===== TSS
 
-The evaluator shall examine the TSS and verify it identifies the methods used to protect keys stored in non-volatile memory.
+The evaluator shall examine the TSS and verify it identifies the methods used to protect keys stored in nonvolatile memory.
 
 ===== KMD
 
-The evaluator shall verify the KMD to ensure it describes the storage location of all keys and the protection of all keys stored in non-volatile memory. The description of the key chain shall be reviewed to ensure the selected method is followed for the storage of wrapped or encrypted keys in non-volatile memory and plaintext keys in non-volatile memory meet one of the exemptions under the selection “only store plaintext keys that meet any one of the following criteria”.
+The evaluator shall verify the KMD to ensure it describes the storage location of all keys and the protection of all keys stored in nonvolatile memory. The description of the key chain shall be reviewed to ensure the selected method is followed for the storage of wrapped or encrypted keys in nonvolatile memory and plaintext keys in nonvolatile memory meet one of the exemptions under the selection “only store plaintext keys that meet any one of the following criteria”.
 
 ==== FCS_KYC_EXT.1 Key Chaining
 
@@ -2271,7 +2271,7 @@ The evaluator shall check to ensure that the operational guidance describes the 
 
 _Tests activities consists of the six tests below. Test 2 and 6 are mandatory in all cases. Tests 3, 4, and 5 are conditional on the wipe method selected by the ST author._
 
-Test 1: [Conditional: D.USER can be stored in non-volatile memory] Cause the TOE to contain and retain some type of D.USER containing known text strings or byte array in non-volatile memory (e.g., submit a print job when no paper is loaded in the HCD. This will ensure that the job will remain in the HCD for reference in Test 6). Verify that the D.USER data is present on the TOE. For example, it is sufficient to verify that a print job is on the HCD.
+Test 1: [Conditional: D.USER can be stored in nonvolatile memory] Cause the TOE to contain and retain some type of D.USER containing known text strings or byte array in nonvolatile memory (e.g., submit a print job when no paper is loaded in the HCD. This will ensure that the job will remain in the HCD for reference in Test 6). Verify that the D.USER data is present on the TOE. For example, it is sufficient to verify that a print job is on the HCD.
 
 Test 2: The evaluator shall perform the following steps to verify that a wipe function can be initiated by an authorized administrator and that the TOE provides feedback about the status of the wipe operation.
 
@@ -2330,7 +2330,7 @@ a| . First 2049 logical sectors of the disk
 
 Test 5: [Conditional: The case cryptographic erase is selected] The evaluator shall verify that the appropriate key(s) according to the KMD description required by FCS_CKM_EXT.4 has been destroyed in the method described in the Test Assurance Activity for FCS_CKM.4.
 
-Test 6: The evaluator shall verify that known text strings or byte array for D.USER and D.TSF are not found on the non-volatile storage media after wipe has been performed. In some cases, cryptographic erase would make unable to read data from the storage media. In that case, “failed to read data with error” can be considered as “not found”. This test may require special tools to be installed on the TOE, or for the storage media to be moved to a separate system equipped with special tools provided by the TOE developer as necessary. The evaluator shall examine the storage media as specified in the following table for the indicated search patterns. This test is not applicable to protected storage devices (e.g., TPMs) that do not provide direct access to their storage.
+Test 6: The evaluator shall verify that known text strings or byte array for D.USER and D.TSF are not found on the nonvolatile storage media after wipe has been performed. In some cases, cryptographic erase would make unable to read data from the storage media. In that case, “failed to read data with error” can be considered as “not found”. This test may require special tools to be installed on the TOE, or for the storage media to be moved to a separate system equipped with special tools provided by the TOE developer as necessary. The evaluator shall examine the storage media as specified in the following table for the indicated search patterns. This test is not applicable to protected storage devices (e.g., TPMs) that do not provide direct access to their storage.
 
 [cols="1,1"]
 |===
@@ -2339,7 +2339,7 @@ Test 6: The evaluator shall verify that known text strings or byte array for D.U
 |D.USER
 a| Known text strings or byte array from Test 1 that was stored on the TOE prior to the wipe being performed.
 
-Note: If the TOE does not store D.USER data in non-volatile memory (reference Test 1) the non-existence of this D.USER data does not have to be verified.
+Note: If the TOE does not store D.USER data in nonvolatile memory (reference Test 1) the non-existence of this D.USER data does not have to be verified.
 
 |D.TSF
 a| . The text representation of the IP address assigned to the TOE when it was in operation
@@ -2797,7 +2797,7 @@ The evaluator shall perform the following tests or witness respective tests exec
 . Specification of wrapping keys as input parameter to the function to be tested
 . Specification of further required input parameters if required
 . Specification of keys to be wrapped (plaintext, as function’s argument)
-. Direct access to wrapped key (ciphertext), e.g. in the non-volatile memory
+. Direct access to wrapped key (ciphertext), e.g. in the nonvolatile memory
 
 *AES-KW, AES-KWP, AES-GCM, AES-CCM*
 
