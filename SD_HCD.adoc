@@ -147,6 +147,26 @@ The evaluator shall also perform the following tests:
 
 The evaluator shall include test 2 related to this function in the set of tests performed in FAU_SAR.1.
 
+==== FAU_STG.1 Audit data storage location
+
+===== TSS
+
+The evaluator shall examine the TSS to ensure it describes the means by which the audit data are transferred to the external audit server, and how the trusted channel is provided.
+
+The evaluator shall examine the TSS to ensure it describes the amount of audit data that are stored locally; what happens when the local audit data store is full; and how these records are protected against unauthorized access.
+
+===== Guidance Documentation
+
+The evaluator shall also examine the operational guidance to determine that it describes the relationship between the local audit data and the audit data that are sent to the audit log server. For example, when an audit event is generated, is it simultaneously sent to the external server and the local store, or is the local store used as a buffer and “cleared” periodically by sending the data to the audit server.
+
+The evaluator shall also examine the operational guidance to ensure it describes how to establish the trusted channel to the audit server, as well as describe any requirements on the audit server (particular audit server protocol, version of the protocol required, etc.), as well as configuration of the TOE needed to communicate with the audit server.
+
+===== Tests
+
+Testing of the trusted channel mechanism will be performed as specified in the associated assurance activities for the particular trusted channel mechanism. The evaluator shall perform the following test for this requirement:
+
+Test 1: The evaluator shall establish a session between the TOE and the audit server according to the configuration guidance provided. The evaluator shall then examine the traffic that passes between the audit server and the TOE during several activities of the evaluator’s choice designed to generate audit data to be transferred to the audit server. The evaluator shall observe that these data are not able to be viewed in the clear during this transfer, and that they are successfully received by the audit server. The evaluator shall record the particular software (name, version) used on the audit server during testing. The evaluator shall verify that the TOE is capable of transferring audit data to an external audit server automatically without administrator intervention.
+
 ==== FAU_STG.2 Protected audit trail storage
 
 ===== TSS
@@ -180,26 +200,6 @@ The evaluator shall also perform the following tests:
 
 . The evaluator generates auditable events after the capacity of audit records becomes full by generating auditable events in accordance with the operational guidance.
 . The evaluator shall check to ensure that audit records are processed in accordance with the definition of the SFR.
-
-==== FAU_STG_EXT.1 External Audit Trail Storage
-
-===== TSS
-
-The evaluator shall examine the TSS to ensure it describes the means by which the audit data are transferred to the external audit server, and how the trusted channel is provided.
-
-The evaluator shall examine the TSS to ensure it describes the amount of audit data that are stored locally; what happens when the local audit data store is full; and how these records are protected against unauthorized access.
-
-===== Guidance Documentation
-
-The evaluator shall also examine the operational guidance to determine that it describes the relationship between the local audit data and the audit data that are sent to the audit log server. For example, when an audit event is generated, is it simultaneously sent to the external server and the local store, or is the local store used as a buffer and “cleared” periodically by sending the data to the audit server.
-
-The evaluator shall also examine the operational guidance to ensure it describes how to establish the trusted channel to the audit server, as well as describe any requirements on the audit server (particular audit server protocol, version of the protocol required, etc.), as well as configuration of the TOE needed to communicate with the audit server.
-
-===== Tests
-
-Testing of the trusted channel mechanism will be performed as specified in the associated assurance activities for the particular trusted channel mechanism. The evaluator shall perform the following test for this requirement:
-
-Test 1: The evaluator shall establish a session between the TOE and the audit server according to the configuration guidance provided. The evaluator shall then examine the traffic that passes between the audit server and the TOE during several activities of the evaluator’s choice designed to generate audit data to be transferred to the audit server. The evaluator shall observe that these data are not able to be viewed in the clear during this transfer, and that they are successfully received by the audit server. The evaluator shall record the particular software (name, version) used on the audit server during testing. The evaluator shall verify that the TOE is capable of transferring audit data to an external audit server automatically without administrator intervention.
 
 === Cryptographic Support (FCS)
 
@@ -358,25 +358,13 @@ selected in FTP_TRP.1/Admin, FTP_TRP.1/NonAdmin and FTP_ITC.1 that uses safe-pri
 group that each protocol uses.
 
 
-==== FCS_CKM_EXT.4 Cryptographic Key Material Destruction
+==== FCS_CKM.6 Timing and event of cryptographic key destruction
 
 ===== TSS
 
-The evaluator shall verify the TSS provides a high level description of what it means for keys and key material to be no longer needed and when they should be expected to be destroyed.
+The evaluator shall verify the TSS provides a high level description of what keys and key material are destroyed, under what conditions they are destroyed, and how they are destroyed.
 
-===== KMD
-
-The evaluator shall verify the Key Management Description (KMD) includes a description of the areas where keys and key material reside and when the keys and key material are no longer needed.
-
-The evaluator shall verify the KMD includes a key lifecycle, that includes a description where key material reside, how the key material is used, how it is determined that keys and key material are no longer needed, and how the material is destroyed once it is not needed and that the documentation in the KMD follows FCS_CKM.4 for the destruction.
-
-==== FCS_CKM.4 Cryptographic key destruction
-
-===== TSS
-
-The evaluator shall verify the TSS provides a high level description of how keys and key material are destroyed.
-
-The evaluator shall check to ensure the TSS lists each type of key that is stored in in non-volatile memory, and identifies how the TOE interacts with the underlying platform to manage keys (e.g., store, retrieve, destroy). The description includes details on the method of how the TOE interacts with the platform, including an identification and description of the interfaces it uses to manage keys (e.g., file system APIs, platform key store APIs).
+The evaluator shall check to ensure the TSS lists each type of key that is stored in non-volatile memory, and identifies how the TOE interacts with the underlying platform to manage keys (e.g., store, retrieve, destroy). The description includes details on the method of how the TOE interacts with the platform, including an identification and description of the interfaces it uses to manage keys (e.g., file system APIs, platform key store APIs).
 
 If the ST makes use of the open assignment and fills in the type of pattern that is used, the evaluator examines the TSS to ensure it describes how that pattern is obtained and used. The evaluator shall verify that the pattern does not contain any CSPs.
 
@@ -384,11 +372,9 @@ The evaluator shall check that the TSS identifies any configurations or circumst
 
 ===== KMD
 
-The evaluator examines the KMD to ensure it describes how the keys are managed in volatile memory. This description includes details of how each identified key is introduced into volatile memory (e.g., by derivation from user input, or by unwrapping a wrapped key stored in nonvolatile memory) and how they are overwritten.
+The evaluator shall verify the Key Management Description (KMD) includes a key lifecycle that describes the purpose of the key and how it is used, where the keys and key material reside (i.e. volatile or non-volatile storage), how each identified key is introduced into storage (e.g., by derivation from user input, or by unwrapping a wrapped key stored in non-volatile storage), how it is determined that keys and key material are no longer needed, and how the material is destroyed once it is not needed and that the documentation in the KMD follows FCS_CKM.6 for the destruction.
 
-The evaluator shall check to ensure the KMD lists each type of key that is stored in nonvolatile memory, and identifies the memory type (volatile or nonvolatile) where key material is stored.
-
-The KMD identifies and describes the interface(s) that is used to service commands to read/write memory. The evaluator examines the interface description for each different media type to ensure that the  interface supports the selection(s) made by the ST Author.
+The KMD identifies and describes the interface(s) that are used to service commands to read/write memory/storage. The evaluator examines the interface description for each different media type to ensure that the interface supports the selection(s) made by the ST Author.
 
 ===== Guidance Documentation
 
@@ -3168,11 +3154,7 @@ Each of the following tests shall be performed for each version of IKE selected 
 
 ====== FCS_IPSEC_EXT.1.10
 
-Each of the following tests shall be performed for each version of IKE selected in the FCS_IPSEC_EXT.1.5 protocol selection:
-
-.. Test 1: If the first selection is chosen, the evaluator shall check to ensure that, for each DH group supported, the TSS describes the process for generating each nonce. The evaluator shall verify that the TSS indicates that the random number generated that meets the requirements in this cPP is used, and that the length of the nonces meet the stipulations in the requirement.
-
-.. Test 2: If the second selection is chosen, the evaluator shall check to ensure that, for each PRF hash supported, the TSS describes the process for generating each nonce. The evaluator shall verify that the TSS indicates that the random number generated that meets the requirements in this cPP is used, and that the length of the nonces meet the stipulations in the requirement.
+None.
 
 ====== FCS_IPSEC_EXT.1.11
 
@@ -3740,6 +3722,20 @@ The evaluator shall check that the TSS specifies the following:
 
 .. Rekeying is performed upon reaching the threshold that is hit first.
 
+In cases where TOE limitations prevent reaching the time threshold, the evaluator shall check the TSS to ensure it contains:
+
+.. An argument describing this TOE limitation and
+.. Identification of the hardware components (if any) that form the basis of the such argument.
+
+For example, if a specific Ethernet Controller or Wi-Fi radio chip is the root cause of such limitation, these subsystems shall be identified.
+
+In cases where TOE limitations prevent reaching the data transfer threshold, the evaluator shall check the TSS to ensure it contains:
+
+.. An argument describing this TOE limitation and
+.. Identification of the hardware components (if any) that form the basis of the such argument.
+
+For example, if a specific Ethernet Controller or Wi-Fi radio chip is the root cause of such limitation, these subsystems shall be identified.
+
 ===== Guidance Documentation
 
 ====== FCS_SSHC_EXT.1.2
@@ -3820,11 +3816,9 @@ Testing does not necessarily have to be performed with the threshold configured 
 
 If one or more thresholds that are checked by the TOE to fulfil the SFR are configurable, the evaluator needs to verify that the threshold(s) can be configured as described in the guidance documentation and the evaluator needs to test that modification of the thresholds is restricted to Security Administrators (as required by FMT_MOF.1).
 
-In cases where data transfer threshold could not be reached due to hardware limitations it is acceptable to omit testing of this (SSH rekeying based on data transfer threshold) threshold if both the following conditions are met:
+In cases where time threshold could not be reached due to TOE limitations, it is acceptable to omit testing of this (SSH rekeying based on data transfer threshold) threshold.
 
-.. An argument is present in the TSS section describing this hardware-based limitation and
-
-.. All hardware components that are the basis of such argument are definitively identified in the ST. For example, if specific Ethernet Controller or WiFi radio chip is the root cause of such limitation, these chips must be identified.
+In cases where data transfer threshold could not be reached due to TOE limitations, it is acceptable to omit testing of this (SSH rekeying based on data transfer threshold) threshold.
 
 ====== FCS_SSHC_EXT.1.9
 
@@ -3869,6 +3863,22 @@ The evaluator shall check that the TSS specifies the following:
 .. Both thresholds are checked by the TOE.
 
 .. Rekeying is performed upon reaching the threshold that is hit first.
+
+In cases where TOE limitations prevent reaching the time threshold, the evaluator shall check the TSS to ensure it contains:
+
+An argument describing this TOE limitation and
+
+Identification of the hardware components (if any) that form the basis of the such argument.
+
+For example, if a specific Ethernet Controller or Wi-Fi radio chip is the root cause of such limitation, these subsystems shall be identified.
+
+In cases where TOE limitations prevent reaching the data transfer threshold, the evaluator shall check the TSS to ensure it contains:
+
+An argument describing this TOE limitation and
+
+Identification of the hardware components (if any) that form the basis of the such argument.
+
+For example, if a specific Ethernet Controller or Wi-Fi radio chip is the root cause of such limitation, these subsystems shall be identified.
 
 ===== Guidance Documentation
 
@@ -3949,11 +3959,9 @@ Testing does not necessarily have to be performed with the threshold configured 
 
 If one or more thresholds that are checked by the TOE to fulfil the SFR are configurable, the evaluator needs to verify that the threshold(s) can be configured as described in the guidance documentation and the evaluator needs to test that modification of the thresholds is restricted to Security Administrators (as required by FMT_MOF.1/Functions).
 
-In cases where data transfer threshold could not be reached due to hardware limitations it is acceptable to omit testing of this (SSH rekeying based on data transfer threshold) threshold if both the following conditions are met:
+In cases where the time threshold could not be reached due to TOE limitations, it is acceptable to omit testing of this (SSH rekeying based on data transfer threshold) threshold.
 
-.. An argument is present in the TSS section describing this hardware-based limitation and
-
-.. All hardware components that are the basis of such argument are definitively identified in the ST. For example, if specific Ethernet Controller or WiFi radio chip is the root cause of such limitation, these chips must be identified.
+In cases where the data transfer threshold could not be reached due to TOE limitations, it is acceptable to omit testing of this (SSH rekeying based on data transfer threshold) threshold.
 
 ==== FCS_HTTPS_EXT.1 HTTPS selected
 
@@ -4842,6 +4850,9 @@ Identification and authentication mechanism that uses services of External IT En
 
 Hardcopy Device::
 A system producing or utilizing a physical embodiment of an electronic document or image. These systems include printers, scanners, fax machines, digital copiers, MFPs (multifunction peripherals), MFDs (multifunction devices), “all-in-ones” and other similar products.[2600]
+
+Immutable::
+Unchangeable. In the context of this document, this refers only to the inability to make changes in the field through manufacturer intended mechanisms and/or defined interfaces. Note that a platform or device manufacturer may still be able to make changes through manufacturing or service tools directly connected to a locally (physically) present platform or device.
 
 Intermediate Key::
 A key used in a point between the initial user authorization and the DEK. [CPP_FDE_EE_V2.0]
