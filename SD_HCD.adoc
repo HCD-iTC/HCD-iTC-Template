@@ -2,13 +2,13 @@
 :showtitle:
 :doctype: book
 :toc: macro
-:toclevels: 7
+:toclevels: 3
 :sectnumlevels: 7
 :table-caption: Table
 :imagesdir: images
 :icons: font
-:revnumber: 1.0e
-:revdate: 4 March 2024
+:revnumber: 1.1 draft #1
+:revdate: 17 November 2025
 :xrefstyle: full
 
 :iTC-longname: Hardcopy Devices
@@ -18,12 +18,12 @@
 :iTC-GitHub: https://github.com/HCD-iTC
 :pp-name: collaborative Protection Profile for Hardcopy Devices
 :pp-shortname: HCDcPP
-:pp-version: 1.0e
-:pp-date: 4 March 2024
+:pp-version: 1.1 draft #2
+:pp-date: 17 November 2025
 
 == Foreword
 
-This is a Supporting Document (SD), intended to complement the Common Criteria (CC) version 3 and the associated Common Evaluation Methodology for Information Technology Security Evaluation.
+This is a Supporting Document (SD), intended to complement the Common Criteria (CC) version CC:2022 Revision 1 and the associated Common Evaluation Methodology for Information Technology Security Evaluation.
 
 Supporting Documents may be "Guidance Documents", that highlight specific approaches and application of the standard to areas where no mutual recognition of its application is required, and as such, are not of normative nature, or "Mandatory Technical Documents", whose application is mandatory for evaluations whose scope is covered by that of the Supporting Document. The usage of the latter class is not only mandatory, but certificates issued as a result of their application are recognized under the CCRA.
 
@@ -42,7 +42,8 @@ Hardcopy Device International Technical Community (HCD-iTC)
 | 0.98 | 24 February 2022 | Public Review Draft 2
 | 0.99 | 29 July 2022 | Final Public Review Draft
 | 1.0  | 31 October 2022 | Initial release for use
-| 1.0e | 4 March 2024 | Errata version. 
+| 1.0e | 4 March 2024 | Errata version.
+| 1.1 draft #1 | 17 November 2025 | Draft #1 for CC:2022 update.
 |===
 
 === General Purpose
@@ -146,7 +147,7 @@ The evaluator shall also perform the following tests:
 
 The evaluator shall include test 2 related to this function in the set of tests performed in FAU_SAR.1.
 
-==== FAU_STG.1 Protected audit trail storage
+==== FAU_STG.2 Protected audit trail storage
 
 ===== TSS
 
@@ -163,7 +164,7 @@ The evaluator shall also perform the following test:
 . The evaluator shall test that an authorized user can access the audit records.
 . The evaluator shall test that a user without authorization for the audit data cannot access the audit records.
 
-==== FAU_STG.4 Prevention of audit data loss
+==== FAU_STG.5 Prevention of audit data loss
 
 ===== TSS
 
@@ -4541,12 +4542,12 @@ Appendix A.3.
 * [#2600]#[2600]# IEEE Std. 2600™-2008 “IEEE Standard for Information Technology: Hardcopy Device and System Security”
 * [#2600.1]#[2600.1]# IEEE Std. 2600.1™-2009 “IEEE Standard for a Protection Profile in Operational Environment A”
 * [#610.12]#[610.12]#  IEEE Std 610.12-1990 “IEEE Standard Glossary of Software Engineering Terminology”
-* [#8802-6]#[8802-6]# ISO /IEC 8802-6:1994 “Information technology – Telecommunications and information exchange between systems – Local and metropolitan area networks – Specific requirements – Part 6”
-* [#CC1]#[CC1]# Common Criteria for Information Technology Security Evaluation, Part 1: Introduction and General Model, CCMB-2017-04-001, Version 3.1 Revision 5, April 2017.
-* [#CC2]#[CC2]# Common Criteria for Information Technology Security Evaluation, Part 2: Security Functional Components, CCMB-2017-04-002, Version 3.1 Revision 5, April 2017.
-* [#CC3]#[CC3]# Common Criteria for Information Technology Security Evaluation, Part 3: Security Assurance Components, CCMB-2017-04-003, Version 3.1 Revision 5, April 2017.
-* [#CEM]#[CEM]# Common Methodology for Information Technology Security Evaluation, Evaluation Methodology, CCMB-2017-04-004, Version 3.1 Revision 5, April 2017.
-* [#addenda]#[addenda]# CC and CEM addenda, Exact Conformance, Selection-Based SFRs, Optional SFRs, Version 0.5, May 2017
+* [#8802-6]#[8802-6]# ISO/IEC 8802-6:1994 “Information technology – Telecommunications and information exchange between systems – Local and metropolitan area networks – Specific requirements – Part 6”
+* [#CC1]#[CC1]# Common Criteria for Information Technology Security Evaluation, Part 1: Introduction and general model, CCMB-2022-11-001, CC:2022 Revision 1, November 2022.
+* [#CC2]#[CC2]# Common Criteria for Information Technology Security Evaluation, Part 2: Security functional components, CCMB-2022-11-002, CC:2022 Revision 1, November 2022.
+* [#CC3]#[CC3]# Common Criteria for Information Technology Security Evaluation, Part 3: Security assurance components, CCMB-2022-11-003, CC:2022 Revision 1, November 2022.
+* [#CEM]#[CEM]# Common Methodology for Information Technology Security Evaluation, Evaluation methodology, CCMB-2022-11-006, CC:2022 Revision 1, November 2022.
+* [#addenda]#[addenda]# Errata and Interpretation for CC:2022 (Release 1) and CEM:2022 (Release 1), 002, Version 1.1, July 22, 2024.
 * [#HCDcPP]#[HCDcPP]# {pp-name}, {pp-version}, {pp-date}
 
 [appendix]

@@ -2,7 +2,7 @@
 :showtitle:
 :doc type:book
 :toc: macro
-:toclevels: 7
+:toclevels: 3
 :sectnums:
 :sectnumlevels: 7
 :imagesdir: images
@@ -75,9 +75,9 @@ Although the cPP and SD may contain minor editorial errors, the cPP is recognize
 
 * [#CEM]#[CEM]# Common Methodology for Information Technology Security Evaluation, Evaluation methodology, CCMB-2022-11-006, CC:2022 Revision 1, November 2022.
 
-* [#CC-E&I]#[CC-E&I]# Errata and Interpretation for CC:2022 (Release 1) and CEM:2022 (Release 1), 002, Version 1.1, July 22, 2024
+* [#CC-E&I]#[CC-E&I]# Errata and Interpretation for CC:2022 (Release 1) and CEM:2022 (Release 1), 002, Version 1.1, July 22, 2024.
 
-* [#SFR-CRYPTO]#[SFR-CRYPTO]# Specification of Functional Requirements for Cryptography, Version 1.0, January 31, 2025
+* [#SFR-CRYPTO]#[SFR-CRYPTO]# Specification of Functional Requirements for Cryptography, Version 1.0, January 31, 2025.
 
 * [#SD]#[SD]# Supporting Document Mandatory Technical Document: Evaluation Activities for collaborative Protection Profile for Hardcopy Devices, v1.1, 19 December 2025.
 
@@ -785,7 +785,7 @@ _The ST author can include other auditable events directly in the table; they ar
 
 *FAU_STG.2.1* The TSF shall protect the stored audit data in the audit trail from unauthorized deletion.
 
-*FAU_STG.2.2* The TSF shall be able to [selection, choose one of: _prevent, detect_] unauthorized modifications to the stored audit data in the audit trail.
+*FAU_STG.2.2* The TSF shall be able to [prevent] unauthorized modifications to the stored audit data in the audit trail.
 
 
 ==== FAU_STG.5 Prevention of audit data loss
@@ -994,9 +994,13 @@ and not being any of the values listed as other selection options. The point of 
 contain any CSP” is to ensure that the overwritten data is carefully selected, and not taken from a
 general pool that might contain data that itself requires confidentiality protection. 
 
-
-
-
+The interface provided by the underlying platform referenced in the requirement could take different forms,
+such as a application programming interface to an OS kernel, a flash driver, a protected storage device, etc.
+As an illustrative example, the protected storage device is capable of destroying keys/secrets in the protected
+storage device upon request that is authorized by the protected storage device. The level of detail to which
+the TOE has access will be reflected in the TSS section of the ST. Examples of a protected storage device include
+Secure Elements (SE), Trusted Platform Modules (TPM), Hardware Security Modules (HSM), Trusted Execution 
+Environments (TEE), Secure Enclave Processors (SEP), and so on.
 
 
 
@@ -6531,7 +6535,7 @@ The dependencies between SFRs implemented by the TOE are addressed as follows.
 | FCS_COP.1/DataEncryption | FCS_CKM.1/SKG, FCS_CKM.6 | FCS_CKM.1/SKG included, FCS_CKM.6 included
 | FCS_COP.1/SigGen | FCS_CKM.1/AKG, FCS_CKM.6 | FCS_CKM.1/AKG included, FCS_CKM.6 included
 | FCS_COP.1/Hash | None |
-| FCS_RBG_EXT.1 | FPT_TST_EXT.1 |
+| FCS_RBG_EXT.1 | None |
 
 | FDP_ACC.1 | FDP_ACF.1 | FDP_ACF.1 included
 | FDP_ACF.1 | FDP_ACC.1, FMT_MSA.3 | FDP_ACC.1 included, FMT_MSA.3 included
@@ -6597,7 +6601,7 @@ The dependencies between SFRs implemented by the TOE are addressed as follows.
 | FCS_KDF_EXT | FCS_COP.1/CMAC, FCS_CKM_EXT.4, if selected FCS_RBG_EXT.1 | FCS_COP.1/CMAC included as selection-based SFR, FCS_CKM_EXT.4 included, if selected - FCS_RBG_EXT.1 included
 | FCS_COP.1/CMAC | FCS_CKM.1/SKG, FCS_COP.1/Hash, FCS_CKM.6 | FCS_CKM.1/SKG included, FCS_COP.1/Hash included, FCS_CKM.6 included.
 
-When FCS_COP.1/CMAC is applied to keys used in FPT_SBT_EXT.1, the key-based message authentication key is not CSP, so dependencies on FCS_CKM.1/SKG and FCS_CKM_EXT.4 can be removed.
+When FCS_COP.1/CMAC is applied to keys used in FPT_SBT_EXT.1, the key-based message authentication key is not CSP, so dependencies on FCS_CKM.1/SKG and FCS_CKM_EXT.6 can be removed.
 | FCS_SNI_EXT.1 | FCS_RBG_EXT.1 | FCS_RBG_EXT.1 included
 
 | FIA_X509_EXT.1 | FCS_X509_EXT.2 | FIA_X509_EXT.2 included as selection-based SFR
