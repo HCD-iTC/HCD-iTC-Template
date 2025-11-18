@@ -5007,5 +5007,4 @@ The Asset that consists of the information contained in a User’s Document. Thi
 |VPN|Virtual Private Network
 |XPN|eXtended Packet Number
 |XTS|XEX-based tweaked-codebook mode with ciphertext stealing
-|
 |===
