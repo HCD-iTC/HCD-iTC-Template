@@ -18,7 +18,7 @@
 :iTC-GitHub: https://github.com/HCD-iTC
 :pp-name: collaborative Protection Profile for Hardcopy Devices
 :pp-shortname: HCDcPP
-:pp-version: 1.1 DRAFT #2
+:pp-version: 1.1 DRAFT #1
 :pp-date: 17 November 2025
 
 == Foreword
