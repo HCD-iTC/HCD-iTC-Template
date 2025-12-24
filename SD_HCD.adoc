@@ -7,8 +7,8 @@
 :table-caption: Table
 :imagesdir: images
 :icons: font
-:revnumber: 1.1 DRAFT #1
-:revdate: 17 November 2025
+:revnumber: 1.1
+:revdate: 29 December 2025
 :xrefstyle: full
 
 :iTC-longname: Hardcopy Devices
@@ -3151,7 +3151,22 @@ Each of the following tests shall be performed for each version of IKE selected 
 
 ====== FCS_IPSEC_EXT.1.10
 
-None.
+The following tests shall be performed.
+
+.. Test 1: If IKEv1 is supported, Configure the TOE to use IKEv1:
+
+* Test 1.a: If “according to the security strength associated with the negotiated DiffieHellman group” has been selected, for each supported authentication methods and DH
+groups, demonstrate the TOE uses phase 1 and phase 2 nonces meeting the strength
+requirement defined in NIST SP 800-57 for the appropriate DH group.
+
+* Test 1.b: If “at least 128 bits in size and at least half the output size of the negotiated
+pseudorandom function (PRF) hash” has been selected, for each supported
+authentication method and PRF hash, demonstrate the TOE uses phase 1 and phase 2
+nonces suitable for the selected PRF.
+
+.. Test 2: If IKEv2 is supported, configure the TOE to use IKEv2:
+
+For each supported DH group, demonstrate the TOE uses IKE_SA_INIT and CREATE_CHILD_SA nonces suitable for the selected PRF. 
 
 ====== FCS_IPSEC_EXT.1.11
 
