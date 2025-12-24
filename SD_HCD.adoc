@@ -18,8 +18,8 @@
 :iTC-GitHub: https://github.com/HCD-iTC
 :pp-name: collaborative Protection Profile for Hardcopy Devices
 :pp-shortname: HCDcPP
-:pp-version: 1.1 DRAFT #1
-:pp-date: 17 November 2025
+:pp-version: 1.1
+:pp-date: 29 December 2025
 
 == Foreword
 
@@ -38,12 +38,9 @@ Hardcopy Device International Technical Community (HCD-iTC)
 .Revision history
 |===
 |Version |Date |Description
-| 0.91 | 8 October 2021 | Public Review Draft 1
-| 0.98 | 24 February 2022 | Public Review Draft 2
-| 0.99 | 29 July 2022 | Final Public Review Draft
 | 1.0  | 31 October 2022 | Initial release for use
 | 1.0e | 4 March 2024 | Errata version.
-| 1.1 DRAFT #1 | 17 November 2025 | Draft #1 - CC:2022 update
+| 1.1  | 29 December 2025 | CC:2022 update
 |===
 
 === General Purpose
