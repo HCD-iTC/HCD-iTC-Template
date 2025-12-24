@@ -122,13 +122,13 @@ The EAs for FAU_GEN.1 address this SFR.
 
 ===== TSS
 
-The evaluator shall check to ensure that the TSS contains a description that audit records can be viewed only by an Administrator  and functions to view audit records.
+The evaluator shall check to ensure that the TSS describes that audit records can be read only by an Administrator and that the TSS describes the functions used to read audit records.
 
 The evaluator shall check to ensure that the TSS contains a description of the methods of using interfaces that retrieve audit records (e.g., methods for user identification and authentication, authorization, and retrieving audit records).
 
 ===== Guidance Documentation
 
-The evaluator shall check to ensure that the operational guidance appropriately describes the ways of viewing audit records and forms of viewing.
+The evaluator shall check to ensure that the operational guidance appropriately describes the methods and formats by which audit records can be read.
 
 ===== Tests
 
