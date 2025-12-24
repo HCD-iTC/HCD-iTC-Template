@@ -7,8 +7,8 @@
 :sectnumlevels: 7
 :imagesdir: images
 :icons: font
-:revnumber: 1.1 DRAFT #2
-:revdate: 17 November 2025
+:revnumber: 1.1
+:revdate: 29 December 2025
 
 :iTC-longname: Hardcopy Devices
 :iTC-shortname: HCD-iTC
@@ -35,7 +35,7 @@ This collaborative Protection Profile (cPP) was developed by the {iTC-longname} 
 
 | 1.0 | 31 October 2022 | Initial release for use
 | 1.0e | 4 March 2024 | Errata version
-| 1.1 DRAFT #2 | 17 November 2025 | Draft #2 - CC:2022 update
+| 1.1 | 29 December 2025 | CC:2022 update
 
 |===
 
@@ -55,17 +55,17 @@ The target audiences of this cPP are developers, CC consumers, system integrator
 Although the cPP and SD may contain minor editorial errors, the cPP is recognized as living document and the iTC is dedicated to ongoing updates and revisions. Please report any issues to the {iTC-shortname}.
 
 [bibliography]
-* [#CC1]#[CC1]# Common Criteria for Information Technology Security Evaluation, Part 1: Introduction and general model, CCMB-2022-11-001, CC:2022 Revision 1, November 2022.
+* [#CC1]#[CC1]# Common Criteria for Information Technology Security Evaluation, Part 1: Introduction and general model, CCMB-2022-11-001, CC:2022 Release 1, November 2022.
 
-* [#CC2]#[CC2]# Common Criteria for Information Technology Security Evaluation, Part 2: Security functional components, CCMB-2022-11-002, CC:2022 Revision 1, November 2022.
+* [#CC2]#[CC2]# Common Criteria for Information Technology Security Evaluation, Part 2: Security functional components, CCMB-2022-11-002, CC:2022 Release 1, November 2022.
 
-* [#CC3]#[CC3]# Common Criteria for Information Technology Security Evaluation, Part 3: Security assurance components, CCMB-2022-11-003, CC:2022 Revision 1, November 2022.
+* [#CC3]#[CC3]# Common Criteria for Information Technology Security Evaluation, Part 3: Security assurance components, CCMB-2022-11-003, CC:2022 Release 1, November 2022.
 
-* [#CC4]#[CC4]# Common Criteria for Information Technology Security Evaluation, Part 4: Framework for the specification of evaluation methods and activities, CCMB-2022-11-004, CC:2022 Revision 1, November 2022.
+* [#CC4]#[CC4]# Common Criteria for Information Technology Security Evaluation, Part 4: Framework for the specification of evaluation methods and activities, CCMB-2022-11-004, CC:2022 Release 1, November 2022.
 
-* [#CC5]#[CC5]# Common Criteria for Information Technology Security Evaluation, Part 5: Pre-defined packages of security requirements, CCMB-2022-11-003, CC:2022 Revision 1, November 2022.
+* [#CC5]#[CC5]# Common Criteria for Information Technology Security Evaluation, Part 5: Pre-defined packages of security requirements, CCMB-2022-11-003, CC:2022 Release 1, November 2022.
 
-* [#CEM]#[CEM]# Common Methodology for Information Technology Security Evaluation, Evaluation methodology, CCMB-2022-11-006, CC:2022 Revision 1, November 2022.
+* [#CEM]#[CEM]# Common Methodology for Information Technology Security Evaluation, Evaluation methodology, CCMB-2022-11-006, CC:2022 Release 1, November 2022.
 
 * [#CC-E&I]#[CC-E&I]# Errata and Interpretation for CC:2022 (Release 1) and CEM:2022 (Release 1), 002, Version 1.1, July 22, 2024.
 
@@ -225,11 +225,10 @@ Optionally, an HCD may provide functions that actively overwrite image data, or 
 
 
 == CC Conformance Claims
-As defined by the references <<CC1>>, <<CC2>>, <<CC3>>, <<CC-E&I>>, and <<SFR-CRYPTO>> this cPP:
+As defined by the references <<CC1>>, <<CC2>>, <<CC3>>, and <<CC-E&I>> this cPP:
 
-* conforms to the requirements of Common Criteria CC:2022, Revision 1,
-* Errata and Interpretation for CC:2022 (Release 1) and CEM:2022 (Release 1), 002, Version 1.1,
-* Specification of Functional Requirements for Cryptography, Version 1.0
+* conforms to the requirements of Common Criteria CC:2022, Release 1,
+* Errata and Interpretation for CC:2022 (Release 1) and CEM:2022 (Release 1), 002, Version 1.1
 
 Conformance to this Protection Profile: To claim conformance to this Protection Profile, the conforming Security Target must comply with all of the following rules:
 
@@ -244,6 +243,8 @@ Conformance to this Protection Profile: To claim conformance to this Protection 
 5. The Security Target author may choose to include for evaluation any of the Optional Uses described in <<USE CASE 3: Optional Use Cases>>. The vendor may choose to evaluate those optional functions as described in <<appendix-optional>>.
 
 6. The Security Target must conform to this Protection Profile as Exact Conformance.
+
+7. This Protection Profile requires the use of evaluation activities defined in <<SD>>.
 
 
 
@@ -762,7 +763,7 @@ _The ST author can include other auditable events directly in the table; they ar
 	FTP_ITC.1 Inter-TSF trusted channel
 ======
 
-*FAU_STG.1.1* The TSF shall be able to store generated audit data on the [selection: _TOE itself, transmit the generated audit data to an external IT entity using a trusted channel according to FTP_ITC, [assignment: other storage location(s)]_.]
+*FAU_STG.1.1* The TSF shall be able to store generated audit data on the [TOE itself, transmit the generated audit data to an external IT entity using a trusted channel according to FTP_ITC].
 
 
 ==== FAU_STG.2 Protected audit data storage
@@ -2247,7 +2248,7 @@ _For DH groups 19 and 20, the ‘x’ value is the point multiplier for the gene
 
 _Since the implementation may allow different Diffie-Hellman groups to be negotiated for use in forming the SAs, the assignment in FCS_IPSEC_EXT.1.9 may contain multiple values. For each DH group supported, the ST author consults Table 2 in NIST SP 800-57 “Recommendation for Key Management –Part 1: General” to determine the security strength (‘bits of security’) associated with the DH group. Each unique value is then used to fill in the assignment for this element. For example, suppose the implementation supports DH group 14 (2048-bit MODP) and group 20 (ECDH using NIST curve P-384). From Table 2, the bits of security value for group 14 is 112, and for group 20 is 192._
 
-*FCS_IPSEC_EXT.1.10* The TSF shall generate nonces used in [selection: _IKEv1, IKEv2_] exchanges of length [selection:
+*FCS_IPSEC_EXT.1.10* The TSF shall generate nonces used in [selection: _IKEv1, IKEv2_] protocol exchanges of length [selection:
 
 • _according to the security strength associated with the negotiated Diffie-Hellman group;_
 
@@ -2257,9 +2258,11 @@ _Since the implementation may allow different Diffie-Hellman groups to be negoti
 
 *_Application Note:_*
 
-_The ST author must select the second option for nonce lengths if IKEv2 is also selected (as this is mandated in RFC 5996). The ST author may select either option for IKEv1._
+_This SFR is for the IKEv1 (phase 1 and phase 2) and IKEv2 (IKE_AUTH and CREATE_CHILD_SA) protocol exchanges._
 
-_For the first option for nonce lengths, since the implementation may allow different Diffie-Hellman groups to be negotiated for use in forming the SAs, the assignment in FCS_IPSEC_EXT.1.10 may contain multiple values. For each DH group supported, the ST author consults Table 2 in NIST SP 800-57 “Recommendation for Key Management –Part 1: General” to determine the security strength (“bits of security”) associated with the DH group. Each unique value is then used to fill in the assignment for this element. For example, suppose the implementation supports DH group 14 (2048-bit MODP) and group 20 (ECDH using NIST curve P-384). From Table 2, the bits of security value for group 14 is 112, and for group 20 it is 192._
+_The ST author must select the second option for nonce lengths if IKEv2 is selected (as this is mandated in RFC 7296). The ST author may select either option for IKEv1._
+
+_The security strengths of DH groups are defined in NIST SP 800-57._
 
 _Because nonces may be exchanged before the DH group is negotiated, the nonce used should be large enough to support all TOE-chosen proposals in the exchange._
 
@@ -2972,7 +2975,7 @@ _This SFR is conditionally required if the manual entry of a drive encryption pa
 
 *Dependencies:* +
 	FCS_COP.1/CMAC Cryptographic Operation (for keyed-hash message authentication), +
-	FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction, +
+	FCS_CKM.6 Timing and event of cryptographic key destruction, +
 	[if selected: FCS_RBG_EXT.1 Random Bit Generation]
 ======
 
@@ -3018,7 +3021,7 @@ _For the assignment, the key size [k] falls into a range between L1 and L2 (defi
 
 _For the assignment, the key size will fall into a range between 128 and 256._
 
-_When CMAC is used in FPT_SBT_EXT.1, the dependency on FCS_CKM.1/SKG, FCS_CKM_EXT.4 can be removed for the symmetric key used for message authentication. This is because in other standards (*) that specify security requirements for cryptographic modules, public verification key or keyed message authentication key is allowed to be placed in the module code and is not CSP. Such a key can be considered as not needing to rely on the requirements for key generation and key destruction._
+_When CMAC is used in FPT_SBT_EXT.1, the dependency on FCS_CKM.1/SKG, FCS_CKM.6 can be removed for the symmetric key used for message authentication. This is because in other standards (*) that specify security requirements for cryptographic modules, public verification key or keyed message authentication key is allowed to be placed in the module code and is not CSP. Such a key can be considered as not needing to rely on the requirements for key generation and key destruction._
 
 _(*) ISO/IEC 19790 "Security requirements for cryptographic modules" 7.5 Software Firmware Security_
 
@@ -3841,7 +3844,7 @@ The following actions should be auditable if FAU_GEN Security Audit Data Generat
 
 *Dependencies:* +
 	FCS_COP.1/CMAC Cryptographic Operation (for keyed-hash message authentication), +
-	FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction +
+	FCS_CKM.6 Timing and event of cryptographic key destruction +
 	[if selected: FCS_RBG_EXT.1 Random Bit Generation]
 ======
 
@@ -6581,10 +6584,10 @@ The dependencies between SFRs implemented by the TOE are addressed as follows.
 | FCS_DTLSS_EXT.1 | FCS_CKM.1/AKG, FCS_CKM.1/SKG, FCS_CKM.2, FCS_COP.1/DataEncryption, FCS_COP.1/SigGen, FCS_COP.1/Hash, FCS_COP.1/KeyedHash, FCS_RBG_EXT.1, FIA_X509_EXT.1, FIA_X509_EXT.2 | FCS_COP.1/AKG included, FCS_COP.1/SKG included, FCS_CKM.2 included, FCS_COP.1/DataEncryption included, FCS_COP.1/SigGen included, FCS_COP.1/Hash included, FCS_RBG_EXT.1 included, FCS_COP.1/KeyedHash and FIA_X509_EXT.1 and FIA_X509_EXT.2 included as selection-based SFRs
 
 | FCS_PCC.EXT.1 | FCS_COP.1/CMAC | FCS_COP.1/CMAC included as selection-based SFR
-| FCS_KDF_EXT | FCS_COP.1/CMAC, FCS_CKM_EXT.4, if selected FCS_RBG_EXT.1 | FCS_COP.1/CMAC included as selection-based SFR, FCS_CKM_EXT.4 included, if selected - FCS_RBG_EXT.1 included
+| FCS_KDF_EXT | FCS_COP.1/CMAC, FCS_CKM.6, if selected FCS_RBG_EXT.1 | FCS_COP.1/CMAC included as selection-based SFR, FCS_CKM.6 included, if selected - FCS_RBG_EXT.1 included
 | FCS_COP.1/CMAC | FCS_CKM.1/SKG, FCS_COP.1/Hash, FCS_CKM.6 | FCS_CKM.1/SKG included, FCS_COP.1/Hash included, FCS_CKM.6 included.
 
-When FCS_COP.1/CMAC is applied to keys used in FPT_SBT_EXT.1, the key-based message authentication key is not CSP, so dependencies on FCS_CKM.1/SKG and FCS_CKM_EXT.6 can be removed.
+When FCS_COP.1/CMAC is applied to keys used in FPT_SBT_EXT.1, the key-based message authentication key is not CSP, so dependencies on FCS_CKM.1/SKG and FCS_CKM.6 can be removed.
 | FCS_SNI_EXT.1 | FCS_RBG_EXT.1 | FCS_RBG_EXT.1 included
 
 | FIA_X509_EXT.1 | FCS_X509_EXT.2 | FIA_X509_EXT.2 included as selection-based SFR
