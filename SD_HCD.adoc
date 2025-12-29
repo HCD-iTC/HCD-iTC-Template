@@ -3166,7 +3166,7 @@ nonces suitable for the selected PRF.
 
 .. Test 2: If IKEv2 is supported, configure the TOE to use IKEv2:
 
-For each supported DH group, demonstrate the TOE uses IKE_SA_INIT and CREATE_CHILD_SA nonces suitable for the selected PRF. 
+* For each supported DH group, demonstrate the TOE uses IKE_SA_INIT and CREATE_CHILD_SA nonces suitable for the selected PRF. 
 
 ====== FCS_IPSEC_EXT.1.11
 
