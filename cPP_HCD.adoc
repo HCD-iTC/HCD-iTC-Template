@@ -71,7 +71,7 @@ Although the cPP and SD may contain minor editorial errors, the cPP is recognize
 
 * [#SFR-CRYPTO]#[SFR-CRYPTO]# Specification of Functional Requirements for Cryptography, Version 1.0, January 31, 2025.
 
-* [#SD]#[SD]# Supporting Document Mandatory Technical Document: Evaluation Activities for collaborative Protection Profile for Hardcopy Devices, v1.1, 19 December 2025.
+* [#SD]#[SD]# Supporting Document Mandatory Technical Document: Evaluation Activities for collaborative Protection Profile for Hardcopy Devices, v1.1, 29 December 2025.
 
 For more see the http://www.commoncriteriaportal.org/[Common Criteria Portal].
 
@@ -316,6 +316,7 @@ An attacker may access (read, modify, or delete) User Document Data or change (m
 ==== Unauthorized Access to TSF Data
 An attacker may gain Unauthorized Access to TSF Data in the TOE through one of the TOE’s interfaces [T.TSF_COMPROMISE]. For example, depending on the design of the TOE, the attacker might use Unauthorized Access to TSF Data to elevate their own privileges, alter an Address Book to redirect output to a different destination, or use the TOE’s Credentials to gain access to an external server.
 
+==== Installation of Unauthorized Firmware/Software
 An attacker may cause the installation of unauthorized firmware/software on the TOE [T.UNAUTHORIZED_UPDATE]. For example, unauthorized firmware/software could be used to gain access to information that is processed by the TOE, or to attack other systems on the LAN.
 
 ==== Network Communication Attacks
@@ -1631,11 +1632,9 @@ There are no class FPR requirements.
 	No other components.
 
 *Dependencies:* +
-	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm) +
-	FCS_COP.1/SigGen Cryptographic Operation (for signature generation/verification) +
-	FCS_COP.1/KeyedHash Cryptographic Operation (for keyed-hash message authentication) +
-	FCS_COP.1/DataEncryption Cryptographic Operation (Symmetric encryption/decryption) +
-	FCS_COP.1/StorageEncryption Cryptographic operation (Data Encryption/Decryption) +
+	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm), and/or +
+	FCS_COP.1/SigGen Cryptographic Operation (for signature generation/verification), and/or +
+	FCS_COP.1/KeyedHash Cryptographic Operation (for keyed-hash message authentication), and/or +
 	FCS_COP.1/CMAC Cryptographic Operation (for cipher-based message authentication)
 ======
 
