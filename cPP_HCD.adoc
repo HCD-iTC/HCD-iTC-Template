@@ -789,7 +789,7 @@ _The ST author can include other auditable events directly in the table; they ar
 === Cryptographic Support (FCS)
 
 
-==== FCS_CKM.1/AKG Cryptographic Key Generation (Asymmetric Keys)
+==== FCS_CKM.1/AKG Cryptographic Key Generation – Asymmetric Keys
 ======
 (for O.COMMS_PROTECTION, O.STRONG_CRYPTO) +
 *Hierarchical to:* +
@@ -801,22 +801,66 @@ _The ST author can include other auditable events directly in the table; they ar
   FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction
 ======
 
-*FCS_CKM.1.1/AKG Refinement:* The TSF shall generate *asymmetric* cryptographic keys in accordance with a specified cryptographic key generation algorithm: [selection:
+*FCS_CKM.1/AKG Cryptographic Key Generation – Asymmetric Key*
 
-* _RSA schemes using cryptographic key sizes of 2048-bit or greater that meet the following: FIPS PUB 186-4, “Digital Signature Standard (DSS)”, Appendix B.3;_
-* _ECC schemes using ‘NIST curves’ [selection: P-256, P-384, P-521] that meet the following: FIPS PUB 186-4, “Digital Signature Standard (DSS)”, Appendix B.4;_
-* _FFC schemes using cryptographic key sizes of 2048-bit or greater that meet the following: FIPS PUB 186-4, “Digital Signature Standard (DSS)”, Appendix B.1_
-* _FFC Schemes using ‘safe-prime’ groups that meet the following: “NIST Special Publication 800-56A Revision 3, Recommendation for Pair-Wise Key Establishment Schemes Using Discrete Logarithm Cryptography” and [selection: RFC 3526, RFC 7919]._
-* _KCDSA-based key establishment schemes using key size of [selection: (2048, 224) bit, (2048, 256) bit]: ISO/IEC 14888-3:2018, (Subclause 6.3) “KCDSA”_
-* _EC-KCDSA-based key establishment schemes using NIST curve of [selection: P-224, P-256, B-233, B-283, K-233, K-283]: ISO/IEC 14888-3:2018, (Subclause 6.7) “EC-KCDSA”_
+*FCS_CKM.1.1/AKG* The TSF shall generate *asymmetric* cryptographic keys in accordance with a specified cryptographic key generation algorithm: [selection: _cryptographic key generation algorithm_] and specified cryptographic *algorithm parameters* +++<del>+++key sizes+++</del>+++ [selection: _cryptographic algorithm parameters_] that meet the following: [selection: _list of standards_].
 
-] +++<del>and specified cryptographic key sizes [assignment: cryptographic key sizes] that meet the following: [assignment: list of standards]</del>+++.
+The following table provides the allowed choices for completion of the selection operations of FCS_CKM.1.1/AKG.
 
-*_Application Note:_*
+[cols=",,,",options="header",]
+|===
+|*Identifier* |*Cryptographic Key Generation Algorithm* |*Cryptographic Algorithm Parameters* |*List of Standards*
+|RSA|RSA|Modulus of size [selection: _2048, 3072, 4096, 6144, 8192_] bits |NIST FIPS PUB 186-5 (Section A.1.1)
+|ECC-ERB|ECC-ERB - Extra Random Bits|Elliptic Curve [selection: _P-256, P-384, P-521_] |NIST FIPS PUB 186-5 (Section A.2.1), NIST SP 800-186 (Section 3) [NIST Curves]
 
-_The ST author selects all key generation schemes used for key establishment (including generation of ephemeral keys) and device authentication. When key generation is used for key establishment, the schemes in FCS_CKM.2.1 and selected cryptographic protocols must match the selection. When key generation is used for device authentication, other than SSH-RSA, ECDSA-SHA2-NISTP256, ECDSA-SHA2-NISTP384 and ECDSA-SHA2-NISTP521, the public key is expected to be associated with an X.509v3 certificate._
+|ECC-RS|ECC-RS - Rejection Sampling|Elliptic Curve [selection: _P-256, P-384, P-521_] |NIST FIPS PUB 186-5 (Section A.2.2), NIST SP 800-186 (Section 3) [NIST Curves]
 
-_If the TOE acts as a receiver in the key establishment schemes and is not configured to support mutual authentication, the TOE does not need to implement key generation._
+|FFC-ERB|FFC-ERB - Extra Random Bits a|Static domain parameters approved for [selection:
+
+* _IKE Groups [selection:  MODP-2048, MODP-3072, MODP-4096, MODP-6144, MODP-8192_], 
+
+* _TLS Groups [selection:  ffdhe-2048, ffdhe-3072, ffdhe-4096, ffdhe-6144, ffdhe-8192_]]|NIST SP 800-56A Revision 3 (Section 5.6.1.1.3), [selection: _RFC 3526_ [IKE groups], _RFC 7919_ [TLS groups]
+]
+
+|FFC-RS|FFC-RS - Rejection Sampling a|Static domain parameters approved for [selection:
+
+* _IKE Groups [selection:  MODP-2048, MODP-3072, MODP-4096, MODP-6144, MODP-8192_], 
+
+* _TLS Groups [selection: ffdhe-2048, ffdhe-3072, ffdhe-4096, ffdhe-6144, ffdhe-8192_]]|NIST SP 800-56A Revision 3 (Section 5.6.1.1.3), [selection: _RFC 3526_ [IKE groups], _RFC 7919_ [TLS groups]
+]
+
+
+|KCDSA|KCDSA a|Domain parameters generation with (L, N) = [selection: (2048, 224), (2048, 256), (3076, 256)] bits|ISO/IEC 14888-3:2018 (Subclause 6.3) [KCDSA]
+
+|EC-KCDSA|EC-KCDSA a|Elliptic Curves [selection: P-224, B-233, K-233, P-256, B-283, K-283]|ISO/IEC 14888-3:2018 (Subclause 6.7) [EC-KCDSA],
+
+NIST SP800-186 (Section 3) [NIST Curves]
+
+
+
+|ML-KEM|ML-KEM|Parameter set = ML-KEM-1024|NIST FIPS PUB 203
+|ML-DSA|ML-DSA|Parameter set = ML-DSA-87|NIST FIPS PUB 204
+|===
+
+[[table-3-fcs-ckm11-akg]]_Table 3: Allowed choices for FCS_CKM.1.1/AKG_
+
+*_Application Note {counter:appnote_count}_*
+
+_The ST author selects all key generation algorithms used for key agreement (including generation of ephemeral keys) and device authentication._
+
+_For RSA the choice of the modulus implies the resulting key sizes of the public and private keys generated using the specified standard methods._
+
+_When generating ECC keys pairs for key agreement and if “ECDH” is claimed in FCS_CKM_EXT.7, then “ECC–ERB” or “ECC–RS” must be claimed. The sizes of the private key, which is a scalar, and the public key, which is a point on the elliptic curve, are determined by the choice of the curve._
+
+_For Finite Field Cryptography (FFC), “FFC-ERB” or “FFC–RS” may be claimed only for generating private and public keys when “DH” is claimed in FCS_CKM_EXT.7._
+
+_The MODP Diffie-Hellman groups do not necessarily adhere to the protocol restrictions specified as IKE groups.  MODP Diffie-Hellman groups may also be used in other protocols such as TLS 1.2._
+
+_When generating ECC key pairs for digital signature generation and if “ECDSA” or "EC-KCDSA" are claimed in FCS_COP.1/SigGen, then “ECC–ERB” or “ECC–RS” must be claimed. The sizes of the private key, which is a scalar, and the public key, which is a point on the elliptic curve, are determined by the choice of the curve._ 
+
+_When key generation is used for device authentication, other than non-X.509 SSH authentication algorithm, the public key is expected to be associated with an X.509v3 certificate._
+
+
 
 
 
@@ -837,12 +881,12 @@ _If the TOE acts as a receiver in the key establishment schemes and is not confi
 	FCS_COP.1/KeyWrap Cryptographic Operation (Key Wrapping) +
 	FCS_COP.1/KeyEnc Cryptographic operation (Key Encryption) +
 	FCS_COP.1/KeyedHash Cryptographic Operation (for keyed-hash message authentication) +
-	FCS_COP.1/CMAC Cryptographic Operation (for keyed-hash message authentication)] +
+	FCS_COP.1/CMAC Cryptographic Operation (for cipher-based message authentication)] +
 	FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction +
 	FCS_RBG_EXT.1 Extended: Cryptographic Operation (Random Bit Generation)
 ======
 
-*FCS_CKM.1.1/SKG Refinement:* The TSF shall generate *symmetric* cryptographic keys *using a Random Bit Generator as specified in FCS_RBG_EXT.1* and specified cryptographic key sizes [selection: _128 bits, 192 bits, 256 bits_] that meet the following: [selection: _ISO/IEC 18031:2011 (Clause 9) [DRBG], NIST SP 800-133 Rev.2 Section [selection: 6.1, 6.3]_].
+*FCS_CKM.1.1/SKG Refinement:* The TSF shall generate *symmetric* cryptographic keys *using a Random Bit Generator as specified in FCS_RBG_EXT.1* and specified cryptographic key sizes [selection: _128 bits, 192 bits, 256 bits, 512 bits_] that meet the following: [selection: _ISO/IEC 18031:2011 (Clause 9) [DRBG], NIST SP 800-133 Rev.2 Section [selection: 6.1, 6.3]_].
 
 *_Application Note:_*
 
@@ -863,10 +907,11 @@ _Symmetric keys may be used to generate keys along the key chain._
 
 *FCS_CKM.2.1 Refinement* The TSF shall *perform* cryptographic *key establishment* in accordance with a specified cryptographic key *establishment* method: [*selection:*
 
-•	*_RSA-based key establishment schemes that meet the following: RSAES-PKCS1-v1_5 as specified in Section 7.2 of RFC 8017, “Public-Key Cryptography Standards (PKCS) #1: RSA Cryptography Specifications Version 2.2”;_*
+•	*_RSA-based key establishment schemes that meet the following: [selection: RSAES-PKCS1-v1_5 as specified in Section 7.2 of RFC 8017, “Public-Key Cryptography Standards (PKCS) #1: RSA Cryptography Specifications Version 2.2”, NIST SP 800-56B Revision 2 (Section 8.3) [KAS2]];_*
 •	*_Elliptic curve-based key establishment schemes that meet the following: NIST Special Publication 800-56A Revision 3, “Recommendation for Pair-Wise Key Establishment Schemes Using Discrete Logarithm Cryptography”;_*
 •	*_Finite field-based key establishment schemes that meet the following: NIST Special Publication 800-56A Revision 3, “Recommendation for Pair-Wise Key Establishment Schemes Using Discrete Logarithm Cryptography”;_*
 •	*_FFC Schemes using “safe-prime” groups that meet the following: ‘NIST Special Publication 800-56A Revision 3, “Recommendation for Pair-Wise Key Establishment Schemes Using Discrete Logarithm Cryptography” and [selection: RFC 3526, RFC 7919]._*
+•	*_Module-Lattice-based Key-Encapsulation Mechanisms (ML-KEM) that meet the following: NIST FIPS 203._*
 
 ] *+++<del>that meets the following: [assignment: list of standards]</del>+++*.
 
@@ -879,6 +924,8 @@ _The ST author selects all key establishment schemes used for the selected crypt
 _The elliptic curves used for the key establishment scheme correlate with the curves specified in FCS_CKM.1.1/AKG._
 
 _The domain parameters used for the finite field-based key establishment scheme are specified by the key generation according to FCS_CKM.1.1/AKG._
+
+_The parameters used for the Module-Lattice-based Key-Encapsulation Mechanisms are specified in FCS_CKM.1.1/AKG._
 
 
 
@@ -965,7 +1012,15 @@ _Examples of protected storage device include Secure Elements (SE), Trusted Plat
 
 *FCS_COP.1.1/DataEncryption* The TSF shall perform [*encryption/decryption*] in accordance with specified cryptographic algorithms [selection:
 
-* _AES used in_ [selection: _CBC, CTR, GCM_] _mode_,
+* _AES used in_ [selection:
+** _CBC mode with non-repeating and unpredictable IVs_,
+** _CTR mode with a non-repeating initial counter and no repeated use of counter values across multiple messages with the same secret key_,
+** _XTS mode with unique tweak values that are consecutive non-negative integers starting at an arbitrary non-negative integer_,
+** _GCM mode with non-repeating IVs using [selection: deterministic, RBG-based] IV construction; the tag must be of length [selection: 96, 104, 112, 120, 128] bits_,
+** _CCM mode with unpredictable, non-repeating nonce, minimum size of 64 bits_,
+** _KW mode_,
+** _KWP mode_],
+
 * _SEED operating in_ [selection:
 ** _CBC mode with non-repeating and unpredictable IVs,_
 ** _CFB mode with non-repeating and unpredictable IVs,_
@@ -992,7 +1047,7 @@ and cryptographic key sizes [selection:
 
 Case: AES algorithm
 
-* [selection: _128 bits, 192 bits, 256 bits_],
+* [selection: _128 bits, 192 bits, 256 bits, 512 bits_],
 
 Case: SEED algorithm
 
@@ -1010,7 +1065,15 @@ that meet the following [selection:
 
 Case: AES algorithm
 
-* _ISO 18033-3_, [selection: _CBC as specified in ISO 10116, CTR as specified in ISO 10116, GCM as specified in ISO 19772_],
+* [selection:
+** _ISO 18033-3_,
+*** [selection: _CBC as specified in ISO 10116, CTR as specified in ISO 10116, GCM as specified in ISO 19772_],
+** _FIPS PUB 197 (AES)_,
+*** [selection: _CBC as specified in NIST SP 800-38A, CTR as specified in NIST SP 800-38A, XTS as specified in NIST SP 38-E, GCM as specified in NIST SP 800-38D, CCM as specified in NIST SP 800-38C, KW as specified in NIST SP 800-38F, KWP as specified in NIST SP 800-38F_],
+* ]
+
+
+
 
 Case: SEED algorithm
 
@@ -1065,44 +1128,93 @@ _If either SEED in GCM mode with non-repeating IVs or LEA in GCM mode with non-r
 	FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction
 ======
 
+
+*FCS_COP.1.1/SigGen* The TSF shall perform _digital signature generation and verification_ in accordance with a specified cryptographic algorithm [selection: _cryptographic algorithm_] and cryptographic key sizes [selection: _cryptographic key sizes_] that meet the following: [selection: _list of standards_].
+
+======
 *FCS_COP.1.1/SigGen* The TSF shall perform [*cryptographic signature services (generation and verification)*] in accordance with a specified cryptographic algorithm [selection:
+======
 
-* _RSA Digital Signature Algorithm and cryptographic key sizes (modulus) [assignment: 2048 bits or greater],_
-* _Elliptic Curve Digital Signature Algorithm and cryptographic key sizes [assignment: 256 bits or greater],_
-* _Korean Certificate-based Digital Signature Algorithm (KCDSA) using [selection: SHA-224, SHA-256] with key size of 2048 bits,_
-* _Elliptic Curve KCDSA (EC-KCDSA) on [selection: NIST P-224, NIST P-256, NIST B-233, NIST B-283, NIST K-233, NIST K-283] using [selection: SHA-224, SHA-256] with key size of [selection: 224 bits, 256 bits]]_
+The following table provides the allowed choices for completion of the selection operations of FCS_COP.1.1/SigGen.
 
-that meet the following: [selection:
+[cols=",,",options="header",]
+|===
+|*Cryptographic Algorithm* |*Cryptographic Algorithm Parameters* |*List of Standards*
+|RSASSA-PKCS1-v1_5
+|Modulus of size [selection: _2048, 3072, 4096, 6144, 8192_] bits and hash [selection: _SHA-256, SHA-384, SHA-512_] 
 
-Case: RSA schemes
+*_RSA Digital Signature Algorithm and cryptographic key sizes (modulus) [assignment: 2048 bits or greater],_*
 
-*	_FIPS PUB 186-4, “Digital Signature Standard (DSS)”, Section 5.5, using PKCS #1 v2.1 Signature Schemes RSASSA-PSS and/or RSASSA-PKCS1v1_5; ISO/IEC 9796-2, Digital signature scheme 2 or Digital Signature scheme 3,_
+|RFC 8017 (Section 8.2) [PKCS #1 v2.2], FIPS PUB 186-5 (Section 5.4) [RSASSA-PKCS1-v1_5]
 
-Case: Elliptic Curve Digital Signature Algorithm schemes
+*_FIPS PUB 186-4, “Digital Signature Standard (DSS)”, Section 5.5, using PKCS #1 v2.1 Signature Schemes RSASSA-PSS and/or RSASSA-PKCS1v1_5; ISO/IEC 9796-2, Digital signature scheme 2 or Digital Signature scheme 3,_*
 
-* _FIPS PUB 186-4, “Digital Signature Standard (DSS)”, Section 6 and Appendix D,_
-* _Implementing “NIST curves” [selection: P-256, P-384, P-521]; ISO/IEC 14888-3, Section 6.4_
+|ECDSA
+|Elliptic Curve [selection: _P-256, P-384, P-521_], per-message secret number generation [selection: _extra random bits, rejection sampling, deterministic_] and hash function using [selection: _SHA-256, SHA-384, SHA-512_]
 
-Case: Korean Certificate-based Digital Signature Algorithm
+*_Elliptic Curve Digital Signature Algorithm and cryptographic key sizes [assignment: 256 bits or greater],_*
 
-* _ISO/IEC 14888-3:2018 (Subclause 6.3), “Digital signatures with appendix - Part 3: Discrete logarithm based mechanisms”,_
-* _ISO/IEC 10118-3:2018 (Clause 10, 14), “Hash-functions – Part 3: Dedicated hash-functions”_
+|[selection: _ISO/IEC 14888-3:2018 (Subclause 6.6), FIPS PUB 186-5 (Sections 6.3.1, 6.4.1)_][ECDSA], 
 
-Case: Elliptic Curve Korean Certificate-based Digital Signature Algorithm
+NIST SP 800-186 (Section 3) [NIST Curves]
 
-* _ISO/IEC 14888-3:2018 (Subclause 6.7), “Digital signatures with appendix - Part 3: Discrete logarithm based mechanisms”,_
-* _FIPS186-4 (Appendix D.1.2, D.1.3), “Digital Signature Standard”,_
-* _The TSF shall implement “NIST curves” [selection: P-224, P-256, B-233, B-283, K-233, K-283] (as defined in FIPS PUB 186-4, “Digital Signature Standard”),_
-* _ISO/IEC 10118-3:2018 (Clause 10, 14), “Hash-functions – Part 3: Dedicated hash-functions”_
+*_FIPS PUB 186-4, “Digital Signature Standard (DSS)”, Section 6 and Appendix D, Implementing “NIST curves” [selection: P-256, P-384, P-521]; ISO/IEC 14888-3, Section 6.4_*
 
-].
+|KCDSA
+|hash function using [selection: _SHA-224, SHA-256, SHA-384, SHA-512_]
 
-*_Application Note:_*
+*_Korean Certificate-based Digital Signature Algorithm (KCDSA) using [selection: SHA-224, SHA-256] with key size of 2048 bits,_*
 
-_The ST Author chooses the algorithm(s) implemented to perform digital signatures. For the algorithm(s) chosen, the ST author makes the appropriate assignments/selections to specify the parameters that are implemented for that algorithm. The ST author ensures that the assignments and selections for this SFR include all the parameter values necessary for the cipher suites selected for the protocol SFRs (see <<appendix-a-protected-communications>>) that are included in the ST. The ST Author checks for consistency of selections with other FCS requirements, especially when supporting elliptic curves._
+|[selection: _ISO/IEC 14888-3:2018 (Subclause 6.6), FIPS PUB 186-5 (Sections 6.3.1, 6.4.1)_] [ECDSA], 
+
+NIST SP 800-186 (Section 3) [NIST Curves]
+
+*_ISO/IEC 14888-3:2018 (Subclause 6.3), “Digital signatures with appendix - Part 3: Discrete logarithm based mechanisms”,_*
+
+*_ISO/IEC 10118-3:2018 (Clause 10, 14), “Hash-functions – Part 3: Dedicated hash-functions”_*
+
+|EC-KCDSA
+|Elliptic Curve [selection: _P-224, P-256, B-233, B-283, K-233, K-283] using hash [selection: _SHA-224, SHA-256, SHA-384, SHA-512_]
+
+*_Elliptic Curve KCDSA (EC-KCDSA) on [selection: NIST P-224, NIST P-256, NIST B-233, NIST B-283, NIST K-233, NIST K-283] using [selection: SHA-224, SHA-256] with key size of [selection: 224 bits, 256 bits]]_*
+
+|[selection: _ISO/IEC 14888-3:2018 (Subclause 6.6), FIPS PUB 186-5 (Sections 6.3.1, 6.4.1)_][ECDSA], 
+
+NIST SP 800-186 (Section 3) [NIST Curves]
+
+*_ISO/IEC 14888-3:2018 (Subclause 6.7), “Digital signatures with appendix - Part 3: Discrete logarithm based mechanisms”,_*
+
+*_FIPS186-4 (Appendix D.1.2, D.1.3), “Digital Signature Standard”,_*
+
+*_The TSF shall implement “NIST curves” [selection: P-224, P-256, B-233, B-283, K-233, K-283] (as defined in FIPS PUB 186-4, “Digital Signature Standard”),_*
+
+*_ISO/IEC 10118-3:2018 (Clause 10, 14), “Hash-functions – Part 3: Dedicated hash-functions”_*
+
+|Module-Lattice-Based Digital Signature Algorithm|ML-DSA-87|NIST FIPS PUB 204 (Section 5.2)
+|===
+
+[[table-5-fcs-cop11-siggen]]_Table 5: Allowed choices for FCS_COP.1.1/SigGen_
+
+*_Application Note_*
+
+_The ST author should choose the cryptographic algorithms, parameters, and standards implemented to perform digital signature generation. For the algorithm chosen, the ST author should make the appropriate assignments/selections to specify the parameters that are implemented for that algorithm._
+
+======
+*_The ST Author chooses the algorithm(s) implemented to perform digital signatures. For the algorithm(s) chosen, the ST author makes the appropriate assignments/selections to specify the parameters that are implemented for that algorithm. The ST author ensures that the assignments and selections for this SFR include all the parameter values necessary for the cipher suites selected for the protocol SFRs (see <<appendix-a-protected-communications>>) that are included in the ST. The ST Author checks for consistency of selections with other FCS requirements, especially when supporting elliptic curves._*
+======
 
 
-==== FCS_COP.1/Hash Cryptographic Operation (Hash Algorithm)
+
+
+
+
+
+
+
+
+
+
+==== FCS_COP.1/Hash Cryptographic Operation (Hashing)
 ======
 (for O.UPDATE_VERIFICATION, O.FW_INTEGRITY, O.STORAGE_ENCRYPTION, O.COMMS_PROTECTION, O.STRONG_CRYPTO) +
 *Hierarchical to:* +
@@ -1111,13 +1223,24 @@ _The ST Author chooses the algorithm(s) implemented to perform digital signature
 *Dependencies:* +
 	No dependencies.
 ======
+
+*FCS_COP.1.1/Hash:* The TSF shall perform _cryptographic hashing_ in accordance with a specified cryptographic algorithm [selection: _SHA-1, SHA-256, SHA-384, SHA-512_] that meets the following: [selection: ISO/IEC 10118-3:2004 [SHA], FIPS PUB 180-4 [SHA]].
+
+======
 *FCS_COP.1.1/Hash Refinement:* The TSF shall perform [*cryptographic hashing services*] in accordance with a specified cryptographic algorithm [selection: _SHA-1, SHA-256, SHA-384, SHA-512_] and +++<del>cryptographic key sizes [assignment: cryptographic key sizes]</del>+++ *message digest sizes [selection: _160, 256, 384, 512_] bits* that meet the following: [*ISO/IEC 10118-3:2004*].
+======
 
 *_Application Note:_*
 
+_The hash selection should be consistent with the overall strength of the algorithm used for signature generation. For example, the TOE should choose SHA-256 for 2048-bit RSA or ECC with P-256; SHA-384 for 3072-bit RSA, 4096-bit RSA, or ECC with P-384; and SHA-512 for ECC with P-521. The ST author selects the standard based on the algorithms selected._
+
+_SHA-1 may be used as a general hash function and for the following applications: generating and verifying hash-based message authentication codes (HMACs), key derivation functions (KDFs), and random bit/number generation. SHA-1 may also be used for verifying old digital signatures and time stamps, if this is explicitly allowed by the application domain. SHA-1 should not be used in applications in which collision resistance is needed._
+
+======
 _Developers are strongly encouraged to implement updated protocols that support the SHA-2 family; until updated protocols are supported, this cPP allows support for SHA-1 implementations in compliance with SP 800-131A.  In a future version of this cPP, SHA-256 will be the minimum requirement for all TOEs._
 
 _The hash selection should be consistent with the overall strength of the algorithm used for FCS_COP.1/DataEncryption and FCS_COP.1/SigGen (for example, SHA 256 for 128-bit keys)._
+======
 
 
 
@@ -1595,7 +1718,7 @@ There are no class FPR requirements.
 	FCS_COP.1/KeyedHash Cryptographic Operation (for keyed-hash message authentication) +
 	FCS_COP.1/DataEncryption Cryptographic Operation (Symmetric encryption/decryption) +
 	FCS_COP.1/StorageEncryption Cryptographic operation (Data Encryption/Decryption) +
-	FCS_COP.1/CMAC Cryptographic Operation (for keyed-hash message authentication)
+	FCS_COP.1/CMAC Cryptographic Operation (for cipher-based message authentication)
 ======
 
 *FPT_SBT_EXT.1.1* The TSF shall contain one or more chains of trust with each chain of trust anchored in a Root of Trust that is implemented in immutable code or a HW-based write-protection mechanism.
@@ -1920,7 +2043,16 @@ FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction
 
 *FCS_COP.1.1/StorageEncryption*  The TSF shall perform [*data encryption and decryption*] in accordance with a specified cryptographic algorithm [selection:
 
-*	_AES used in_ [selection: _CBC, GCM, XTS_] _mode_,
+* _AES used in_ [selection:
+** _CBC mode with non-repeating and unpredictable IVs_,
+** _CTR mode with a non-repeating initial counter and no repeated use of counter values across multiple messages with the same secret key_,
+** _XTS mode with unique tweak values that are consecutive non-negative integers starting at an arbitrary non-negative integer_,
+** _GCM mode with non-repeating IVs using [selection: deterministic, RBG-based] IV construction; the tag must be of length [selection: 96, 104, 112, 120, 128] bits_,
+** _CCM mode with unpredictable, non-repeating nonce, minimum size of 64 bits_,
+** _KW mode_,
+** _KWP mode_],
+
+
 
 * SEED used in [selection:
 ** _CBC mode with non-repeating and unpredictable IVs,_
@@ -1948,7 +2080,7 @@ FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction
 
 Case: AES algorithm
 
-* [selection: _128 bits, 192 bits, 256 bits_],
+* [selection: _128 bits, 192 bits, 256 bits, 512 bits_],
 
 Case: SEED algorithm
 
@@ -1966,7 +2098,20 @@ Case: LEA algorithm
 
 Case: AES algorithm
 
-* _ISO 18033-3_, [selection: _CBC as specified in ISO 10116, GCM as specified in ISO/IEC 19772, and XTS as specified in IEEE 1619_],
+* [selection:
+** _ISO 18033-3_,
+*** [selection: _CBC as specified in ISO 10116, GCM as specified in ISO/IEC 19772, and XTS as specified in IEEE 1619_],
+
+** _FIPS PUB 197 (AES)_,
+*** [selection: _CBC as specified in NIST SP 800-38A, CTR as specified in NIST SP 800-38A, XTS as specified in NIST SP 38-E, GCM as specified in NIST SP 800-38D, CCM as specified in NIST SP 800-38C, KW as specified in NIST SP 800-38F, KWP as specified in NIST SP 800-38F_],
+* ]
+
+
+
+
+
+
+
 
 Case: SEED algorithm
 
@@ -1993,7 +2138,8 @@ _If either SEED in GCM mode with non-repeating IVs or LEA in GCM mode with non-r
 
 _The intent of this requirement is to specify the approved modes that the ST Author may select for encryption of the appropriate information on the Nonvolatile Storage Device.  For the first selection, the ST author should indicate the mode or modes supported by the TOE implementation.  The second selection indicates the key size to be used, which is identical to that specified for FCS_CKM.1/SKG.  The third selection must agree with the mode or modes chosen in the first selection.  If multiple modes are supported, it may be clearer in the ST if this component was iterated._
 
-==== FCS_COP.1/KeyWrap Cryptographic operation (Key Wrapping)
+
+==== FCS_COP.1/KeyWrap Cryptographic Operation - Key Wrapping
 ======
 (selected in FCS_KYC_EXT.1.1, for O.STORAGE_ENCRYPTION, O.STRONG_CRYPTO) +
 *Hierarchical to:* +
@@ -2005,26 +2151,50 @@ FCS_CKM.1/SKG Cryptographic Key Generation (Symmetric Keys) ] +
 FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction
 ======
 
-*FCS_COP.1.1/KeyWrap Refinement:* The TSF shall perform [*key wrapping*] in accordance with a specified cryptographic algorithm [selection: *_AES in the following modes [selection: _KW, KWP, GCM, CCM_], SEED in the following modes [selection: Key Wrap, KWP, GCM, CCM], LEA in the following modes [selection: Key Wrap, KWP, GCM, CCM]_]* and the cryptographic key size *[selection: _128 bits (AES, SEED, LEA), 192 bits (AES, LEA), 256 bits (AES, LEA)_]* that meet the following: [selection:
+*FCS_COP.1/KeyWrap Cryptographic Operation - Key Wrapping*
 
-Case: AES algorithm
+*FCS_COP.1.1/KeyWrap* The TSF shall perform _key wrapping_ in accordance with a specified cryptographic algorithm [selection: _cryptographic algorithm_] and cryptographic key sizes [selection: _cryptographic key sizes_] that meet the following: [selection: _list of standards_] 
 
-* _[ISO/IEC 18033-3 (AES), [selection: _NIST SP 800-38F, ISO/IEC 19772, no other standards]]_,
+The following table provides the allowed choices for completion of the selection operations of FCS_COP.1/KeyWrap. 
 
-Case: SEED algorithm
+[cols=",,,",options="header",]
+|===
+|*Identifier* |*Cryptographic Algorithm* |*Cryptographic Algorithm Parameters* |*List of Standards*
+|KW|[selection: AES, SEED, LEA] in KW mode|[selection: (AES, SEED, LEA) 128, (AES, LEA) 192, (AES, LEA) 256] bits
+|
+[selection: _ISO/IEC 19772:2020 (clause 6), NIST SP 800-38F (Section 6.2)_] [KW mode]
 
-* _[ISO/IEC 18033-3:2010 (SEED), [selection: ISO/IEC 19772:2009, NIST SP 800-38F, sec. 6.3]]_,
-
-Case: LEA algorithm
-
-* _[ISO/IEC 29192-2:2019 (LEA), [selection: ISO/IEC 19772:2009, NIST SP 800-38F, sec. 6.3]]_
-
-].
+[selection: _ISO/IEC 18033-3:2010 (Subclause 5.2), FIPS PUB 197_] [AES]
 
 
-*_Application Note:_*
+|KWP|[selection: AES, SEED, LEA] in KWP mode|[selection: (AES, SEED, LEA) 128, (AES, LEA) 192, (AES, LEA) 256] bits
+|
+NIST SP 800-38F (Section 6.3) [KWP mode]
 
-_This requirement is used in the body of the ST if the ST Author chooses to use key wrapping in the key chaining approach that is specified in FCS_KYC_EXT.1._
+[selection: _ISO/IEC 18033-3:2010 (Subclause 5.2), FIPS PUB 197_] [AES]
+
+|CCM|[selection: AES, SEED, LEA] in CCM mode with unpredictable, non-repeating nonce, minimum size of 64 bits|[selection: (AES, SEED, LEA) 128, (AES, LEA) 192, (AES, LEA) 256] bits
+|
+[selection: _ISO/IEC 19772:2020 (clause 7), NIST SP 800-38C CCM_],
+
+[selection: _ISO/IEC 18033-3:2010 (Subclause 5.2), FIPS PUB 197_] [AES]
+
+|GCM|[selection: AES, SEED, LEA] in GCM mode with non-repeating IVs using [selection: _deterministic, RBG-based_], IV construction; the tag must be of length [selection: _96, 104, 112, 120, 128_] bits. |[selection: (AES, SEED, LEA) 128, (AES, LEA) 192, (AES, LEA) 256] bits
+|
+[selection: _ISO/IEC 19772:2020 (clause 10), NIST SP 800-38D GCM_]
+
+[selection: _ISO/IEC 18033-3:2010 (Subclause 5.2), FIPS PUB 197_] [AES]
+
+|===
+
+[[table-15-fcs-cop1-keywrap]]_Table 15: Allowed choices for FCS_COP.1/KeyWrap_
+
+*_Application Note_*
+
+_NIST SP 800-57 Part 1 Revision 5, Section 5.6.2 specifies that the size of key used to protect the key being transported should be at least the security strength of the key it is protecting._
+
+_The SEED algorithm supports keys of size 128 bits only._
+
 
 ==== FCS_COP.1/KeyEnc Cryptographic operation (Key Encryption)
 ======
@@ -2042,7 +2212,7 @@ _This requirement is used in the body of the ST if the ST Author chooses to use 
 
 Case: AES algorithm
 
-* _AES used in [[selection: CBC, GCM] mode] and cryptographic key sizes [selection: 128 bits, 192 bits, 256 bits] that meet the following: *AES as specified in ISO/IEC 18033-3,* [selection: CBC as specified in ISO/IEC 10116, GCM as specified in ISO/IEC 19772]_,
+* _AES used in [[selection: CBC, GCM] mode] and cryptographic key sizes [selection: 128 bits, 192 bits, 256 bits] that meet the following: *AES as specified in [selection: ISO/IEC 18033-3, FIPS PUB 197]*, [selection: CBC as specified in [selection: ISO/IEC 10116, NIST SP 800-38A], GCM as specified in [selection: ISO/IEC 19772, NIST SP 800-38D]]_,
 
 Case: SEED algorithm
 
@@ -2073,11 +2243,16 @@ No other components.
 	FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction
 ======
 
-*FCS_COP.1.1/KeyTransport Refinement:* The TSF shall perform [*key transport*] in accordance with a specified cryptographic algorithm [*RSA in the following modes [selection: _KTS-OAEP, KTS-KEM-KWS_]]* and the cryptographic key size *[selection: _2048 bits, 3072 bits, 4096 bits, 6144 bits, 8192 bits_]* that meet the following: [*NIST SP 800-56B, Revision 1*].
+*FCS_COP.1.1/KeyTransport Refinement:* The TSF shall perform [*key transport*] in accordance with a specified cryptographic algorithm [selection:
+[*RSA in the following modes [selection: _KTS-OAEP, KTS-KEM-KWS_]* and the cryptographic key size *[selection: _2048 bits, 3072 bits, 4096 bits, 6144 bits, 8192 bits_]* that meet the following: [*NIST SP 800-56B, Revision 2*]],
+[[KEM-DEM Key-Transport Method] that meets the following: [NIST SP 800-227 Section 5.2.1] using a key establishment algorithm [ML-KEM] as specified in FCS_CKM.2 and a key wrapping algorithm as specified in FCS_COP.1/KeyWrap]].
 
 *_Application Note:_*
 
 _This requirement is used in the body of the ST if the ST Author chooses to use key transport in the key chaining approach that is specified in FCS_KYC_EXT.1._
+
+
+
 
 ==== FCS_SMC_EXT.1 Extended: Submask Combining
 ======
@@ -2275,6 +2450,7 @@ Additionally, TLS may or may not be performed with client authentication. The ST
 
 The following list contains all DTLS-/TLS-related ciphersuites supported by this cPP.
 
+•	TLS_AES_256_GCM_SHA384 as defined in RFC 8446
 •	TLS_RSA_WITH_AES_128_CBC_SHA as defined in RFC 3268
 •	TLS_RSA_WITH_AES_256_CBC_SHA as defined in RFC 3268
 •	TLS_DHE_RSA_WITH_AES_128_CBC_SHA as defined in RFC 3268
@@ -2322,7 +2498,7 @@ List 1: List of supported TLS-related ciphersuites
 	FIA_X509_EXT.2 X.509 Certificate Authentication
 ======
 
-*FCS_TLSC_EXT.1.1* The TSF shall implement [selection: _TLS 1.2 (RFC 5246), TLS 1.1 (RFC 4346)_] and reject all other TLS and SSL versions.  The TLS implementation will support the following ciphersuites: [selection: _select supported ciphersuites from List 1_] and no other ciphersuites.
+*FCS_TLSC_EXT.1.1* The TSF shall implement [selection: _TLS 1.3 (RFC 8446), TLS 1.2 (RFC 5246), TLS 1.1 (RFC 4346)_] and reject all other TLS and SSL versions.  The TLS implementation will support the following ciphersuites: [selection: _select supported ciphersuites from List 1_] and no other ciphersuites.
 
 *_Application Note:_*
 
@@ -2375,7 +2551,7 @@ _If ciphersuites with DHE key agreement were selected FCS_TLSC_EXT.1.1 and the T
 
 ===== FCS_TLSS_EXT.1 TLS Server Protocol Without Mutual Authentication
 
-*FCS_TLSS_EXT.1.1* The TSF shall implement [selection: _TLS 1.2 (RFC 5246), TLS 1.1 (RFC 4346)_] and reject all other TLS and SSL versions.  The TLS implementation will support the following ciphersuites: [selection: _select supported ciphersuites from List 1_] and no other ciphersuites.
+*FCS_TLSS_EXT.1.1* The TSF shall implement [selection: _TLS 1.3 (RFC 8446), TLS 1.2 (RFC 5246), TLS 1.1 (RFC 4346)_] and reject all other TLS and SSL versions.  The TLS implementation will support the following ciphersuites: [selection: _select supported ciphersuites from List 1_] and no other ciphersuites.
 
 *_Application Note:_*
 
@@ -2695,8 +2871,7 @@ If HTTPS is selected in FTP_ITC.1, FTP_TRP.1/Admin and/or FTP_TRP.1/NonAdmin the
 
 
 
-
-==== FCS_COP.1/KeyedHash Cryptographic Operation (Keyed Hash Algorithm)
+==== FCS_COP.1/KeyedHash Cryptographic Operation - Keyed Hash
 ======
 (selected with FCS_IPSEC_EXT.1.4, for O.COMMS_PROTECTION, O.STRONG_CRYPTO) +
 *Hierarchical to:* +
@@ -2708,12 +2883,38 @@ No other components. +
 	FCS_CKM.4
 ======
 
+*FCS_COP.1.1/KeyedHash* The TSF shall perform _keyed hash message authentication_ in accordance with a specified cryptographic algorithm [selection: _keyed hash algorithm, implicit_] and cryptographic key sizes [selection: _cryptographic key sizes_] that meet the following: [selection: _list of standards_].
 
-*FCS_COP.1.1/KeyedHash Refinement:* The TSF shall perform [*keyed-hash message authentication*] in accordance with a specified cryptographic algorithm [selection: _HMAC-SHA-1, HMAC-SHA-256, HMAC-SHA-384, HMAC-SHA-512, implicit_] and cryptographic key sizes [_assignment: key size (in bits) used in HMAC_] *and message digest sizes [selection: _160, 256, 384, 512_] bits* that meet the following: [*ISO/IEC 9797-2:2011, Section 7 “MAC Algorithm 2”*].
+The following table provides the allowed choices for completion of the selection operations of FCS_COP.1.1/KeyedHash.
 
-*_Application Note:_*
+[cols=",,",options="header",]
+|===
+|*Keyed Hash Algorithm* |*Cryptographic Key Sizes* |*List of Standards*
+|HMAC-SHA-256|256 bits |[selection: _ISO/IEC 9797-2:2021 (Section 7 “MAC Algorithm 2”), FIPS PUB 198-1_]
+|HMAC-SHA-384|[selection: _384 (ISO, FIPS), 256 (FIPS)_] bits|[selection: _ISO/IEC 9797-2:2021 (Section 7 “MAC Algorithm 2”), FIPS PUB 198-1_]
+|HMAC-SHA-512|[selection: _512 (ISO, FIPS), 384 (FIPS), 256 (FIPS)_] bits|[selection: _ISO/IEC 9797-2:2021 (Section 7 “MAC Algorithm 2”), FIPS PUB 198-1_]
+|===
 
-_The key size [k] in the assignment falls into a range between L1 and L2 (defined in ISO/IEC 10118 for the appropriate hash function). For example, for SHA-256, L1=512, L2=256, where L2<=k<=L1. Select 'implicit' in cases where keyed-hash message authentication is done implicitly (e.g. SSH using AES in GCM mode)._
+[[table-7-fcs-cop11-keyedhash]]_Table 7: Allowed choices for FCS_COP.1.1/KeyedHash_
+
+*_Application Note {counter:appnote_count}_*
+
+_The HMAC minimum key sizes in the table are specified in ISO/IEC 9797-2:2021, which requires that the minimum key size be equal to the digest size. The FIPS standard specifies no minimum or maximum key sizes, so if FIPS PUB 198-1 is selected, larger or smaller key sizes may be used. This is indicted by the parenthesized annotations in the Cryptographic Key Sizes column.  Select 'implicit' in cases where keyed-hash message authentication is done implicitly (e.g., SSH using AES in GCM mode)._
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -2787,7 +2988,7 @@ If the TOE acts as the server during the claimed DTLS sessions, the ST author sh
 	FIA_X509_EXT.2 X.509 Certificate Authentication
 ======
 
-*FCS_DTLSC_EXT.1.1* The TSF shall implement [selection: _DTLS 1.2 (RFC 6347), DTLS 1.0 (RFC 4347)_] supporting the following ciphersuites: [selection: _select supported ciphersuites from List 1_] and no other ciphersuites.
+*FCS_DTLSC_EXT.1.1* The TSF shall implement [selection: _DTLS 1.3 (RFC 9147), DTLS 1.2 (RFC 6347), DTLS 1.0 (RFC 4347)_] supporting the following ciphersuites: [selection: _select supported ciphersuites from List 1_] and no other ciphersuites.
 
 *_Application Note:_*
 
@@ -2842,7 +3043,7 @@ _If ciphersuites with DHE key agreement were selected FCS_DTLSC_EXT.1.1 and the 
 
 ===== FCS_DTLSS_EXT.1 DTLS Server Protocol Without Mutual Authentication
 
-*FCS_DTLSS_EXT.1.1* The TSF shall implement [selection: _DTLS 1.2 (RFC 6347), DTLS 1.0 (RFC 4347)_] supporting the following ciphersuites: [selection: _select supported ciphersuites from List 1_] and no other ciphersuites.
+*FCS_DTLSS_EXT.1.1* The TSF shall implement [selection: _DTLS 1.3 (RFC 9147), DTLS 1.2 (RFC 6347), DTLS 1.0 (RFC 4347)_] supporting the following ciphersuites: [selection: _select supported ciphersuites from List 1_] and no other ciphersuites.
 
 *_Application Note:_*
 
@@ -2909,7 +3110,7 @@ The SFRs in this section are to be incorporated in the ST to support the optiona
 	No other components +
 
 *Dependencies:* +
-	FCS_COP.1/CMAC Cryptographic Operation (for keyed-hash message authentication)
+	FCS_COP.1/CMAC Cryptographic Operation (for cipher-based message authentication)
 ======
 
 *FCS_PCC_EXT.1.1* A password used by the TSF to generate a password authorization factor shall enable up to [assignment: _positive integer of 64 or more_] characters in the set of {upper case characters, lower case characters, numbers, and [assignment: _other supported special characters_]} and shall perform Password-based Key Derivation Functions in accordance with a specified cryptographic algorithm [HMAC-[selection: _SHA-256, SHA-384, SHA-512_]], with [assignment: _positive integer of 1000 or more_] iterations, and output cryptographic key sizes [selection: _128, 256_] bits that meet the following: [*NIST SP 800-132*].
@@ -2925,12 +3126,12 @@ _This SFR is conditionally required if the manual entry of a drive encryption pa
 	No other components +
 
 *Dependencies:* +
-	FCS_COP.1/CMAC Cryptographic Operation (for keyed-hash message authentication), +
+	FCS_COP.1/CMAC Cryptographic Operation (for cipher-based message authentication), +
 	FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction, +
 	[if selected: FCS_RBG_EXT.1 Extended: Cryptographic Operation (Random Bit Generation)]
 ======
 
-*FCS_KDF_EXT.1.1* The TSF shall accept [selection: _a RNG generated submask as specified in FCS_RBG_EXT.1, a conditioned password submask, imported submask_] to derive an intermediate key, as defined in [selection: _NIST SP 800-108 [selection: KDF in Counter Mode, KDF in Feedback Mode, KDF in Double-Pipeline Iteration Mode], NIST SP 800-132, ISO/IEC 11770-6:2016 [selection: KPF2, KPF3, KPF4]_], using the keyed-hash functions specified in FCS_COP.1/CMAC, such that the output is at least of equivalent security strength (in number of bits) to the BEV or the DEK.
+*FCS_KDF_EXT.1.1* The TSF shall accept [selection: _a RNG generated submask as specified in FCS_RBG_EXT.1, a conditioned password submask, imported submask_] to derive an intermediate key, as defined in [selection: _NIST SP 800-108 [selection: KDF in Counter Mode, KDF in Feedback Mode, KDF in Double-Pipeline Iteration Mode], NIST SP 800-132, ISO/IEC 11770-6:2016 [selection: KPF2, KPF3, KPF4]_], using the cipher-based functions specified in FCS_COP.1/CMAC, such that the output is at least of equivalent security strength (in number of bits) to the BEV or the DEK.
 
 ==== FCS_COP.1/CMAC Cryptographic Operation (for cipher-based message authentication)
 ======
@@ -2998,10 +3199,10 @@ _For the assignment, the key size will fall into a range between 128 and 256._
 
 *FCS_SNI_EXT.1.3* The TSF shall create IVs in the following manner: [
 
-• CBC: IVs shall be non-repeating,
-• CCM: Nonce shall be non-repeating.
+• CBC: IVs shall be non-repeating and unpredictable,
+• CCM: Nonce shall be non-repeating, unpredictable, and at least 64 bits in size.
 • XTS: No IV. Tweak values shall be non-negative integers, assigned consecutively, and starting at an arbitrary non-negative integer,
-• GCM: IV shall be non-repeating. The number of invocations of GCM shall not exceed 2^32 for a given secret key.
+• GCM: The IVs are unique values (hence non-repeating) with lengths in the range 1 <= len(IV) <= 2^64-1. Additionally, the number of invocations of GCM shall not exceed 2^32 for a given secret key (unless the IV length is 96 and a deterministic construction is used).
 
 ].
 
@@ -3900,12 +4101,12 @@ The following actions should be auditable if FAU_GEN Security Audit Data Generat
 	No other components
 
 *Dependencies:* +
-	FCS_COP.1/CMAC Cryptographic Operation (for keyed-hash message authentication), +
+	FCS_COP.1/CMAC Cryptographic Operation (for cipher-based message authentication), +
 	FCS_CKM_EXT.4 Extended: Cryptographic Key Material Destruction +
 	[if selected: FCS_RBG_EXT.1 Extended: Cryptographic Operation (Random Bit Generation)]
 ======
 
-FCS_KDF_EXT.1.1 The TSF shall accept [selection: _a RNG generated submask as specified in FCS_RBG_EXT.1, a conditioned password submask, imported submask_] to derive an intermediate key, as defined in [selection: _NIST SP 800-108_ [selection: _KDF in Counter Mode, KDF in Feedback Mode, KDF in Double-Pipeline Iteration Mode_], _NIST SP 800-132, ISO/IEC 11770-6:2016 [selection: KPF2, KPF3, KPF4]_], using the keyed-hash functions specified in FCS_COP.1/CMAC, such that the output is at least of equivalent security strength (in number of bits) to the BEV or the DEK.
+FCS_KDF_EXT.1.1 The TSF shall accept [selection: _a RNG generated submask as specified in FCS_RBG_EXT.1, a conditioned password submask, imported submask_] to derive an intermediate key, as defined in [selection: _NIST SP 800-108_ [selection: _KDF in Counter Mode, KDF in Feedback Mode, KDF in Double-Pipeline Iteration Mode_], _NIST SP 800-132, ISO/IEC 11770-6:2016 [selection: KPF2, KPF3, KPF4]_], using the cipher-based functions specified in FCS_COP.1/CMAC, such that the output is at least of equivalent security strength (in number of bits) to the BEV or the DEK.
 
 *Rationale*
 
@@ -4005,10 +4206,10 @@ There are no auditable events foreseen.
 	No other components
 
 *Dependencies:* +
-	FCS_COP.1/CMAC Cryptographic Operation (for keyed-hash message authentication)
+	FCS_COP.1/CMAC Cryptographic Operation (for cipher-based message authentication)
 ======
 
-FCS_PCC_EXT.1.1 A password used by the TSF to generate a password authorization factor shall enable up to [assignment: _positive integer of 64 or more_] characters in the set of {upper case characters, lower case characters, numbers, and [assignment: _other supported special characters_]} and shall perform Password-based Key Derivation Functions in accordance with a specified cryptographic algorithm [_HMAC_-[selection: _SHA-256, SHA-384, SHA-512_]], with [assignment: _positive integer of 1000 or more_] iterations, and output cryptographic key sizes [selection: _128, 256_] bits that meet the following: [assignment: _list of standards_].
+FCS_PCC_EXT.1.1 A password used by the TSF to generate a password authorization factor shall enable up to [assignment: _positive integer of 64 or more_] characters in the set of {upper case characters, lower case characters, numbers, and [assignment: _other supported special characters_]} and shall perform Password-based Key Derivation Functions in accordance with a specified cryptographic algorithm [_HMAC_-[selection: _SHA-256, SHA-384, SHA-512_]], with [assignment: _positive integer of 1000 or more_] iterations, and output cryptographic key sizes [selection: _128, 256, 384, 512_] bits that meet the following: [assignment: _list of standards_].
 
 *Rationale*
 
@@ -4116,7 +4317,7 @@ The following actions should be auditable if FAU_GEN Security Audit Data Generat
 	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm)
 ======
 
-FCS_SMC_EXT.1.1 The TSF shall combine submasks using the following method [selection: _exclusive OR (XOR), SHA-256, SHA-512_] to generate an intermediary key, BEV or DEK.
+FCS_SMC_EXT.1.1 The TSF shall combine submasks using the following method [selection: _exclusive OR (XOR), SHA-256, SHA-384, SHA-512, HMAC-SHA-384, HMAC-SHA-512_] to generate an intermediary key, BEV or DEK.
 
 *Rationale*
 
@@ -4350,7 +4551,7 @@ The following actions should be considered for audit if FAU_GEN Security audit d
 	FIA_X509_EXT.2 X.509 Certificate Authentication
 ======
 
-*FCS_TLSC_EXT.1.1* The TSF shall implement [selection: _TLS 1.2 (RFC 5246), TLS 1.1 (RFC 4346)_] and reject all other TLS and SSL versions.  The TLS implementation will support the following ciphersuites: [assignment: _List of optional ciphersuites and reference to RFC in which each is defined_] and no other ciphersuites.
+*FCS_TLSC_EXT.1.1* The TSF shall implement [selection: _TLS 1.3 (RFC 8446), TLS 1.2 (RFC 5246), TLS 1.1 (RFC 4346)_] and reject all other TLS and SSL versions.  The TLS implementation will support the following ciphersuites: [assignment: _List of optional ciphersuites and reference to RFC in which each is defined_] and no other ciphersuites.
 
 *FCS_TLSC_EXT.1.2* The TSF shall verify that the presented identifier matches [selection: _the reference identifier per RFC 6125 section 6, IPv4 address in CN or SAN, IPv6 address in the CN or SAN, IPv4 address in SAN, IPv6 address in the SAN_].
 
@@ -4430,7 +4631,7 @@ The following actions should be considered for audit if FAU_GEN Security audit d
 	FIA_X509_EXT.2 X.509 Certificate Authentication
 ======
 
-*FCS_TLSS_EXT.1.1* The TSF shall implement [selection: _TLS 1.2 (RFC 5246), TLS 1.1 (RFC 4346)_] and reject all other TLS and SSL versions.  The TLS implementation will support the following ciphersuites: [assignment: _List of optional ciphersuites and reference to RFC in which each is defined_] and no other ciphersuites.
+*FCS_TLSS_EXT.1.1* The TSF shall implement [selection: _TLS 1.3 (RFC 8446), TLS 1.2 (RFC 5246), TLS 1.1 (RFC 4346)_] and reject all other TLS and SSL versions.  The TLS implementation will support the following ciphersuites: [assignment: _List of optional ciphersuites and reference to RFC in which each is defined_] and no other ciphersuites.
 
 *FCS_TLSS_EXT.1.2* The TSF shall deny connections from clients requesting SSL 2.0, SSL 3.0, TLS 1.0 and [selection: _TLS 1.1, TLS 1.2, none_].
 
@@ -4611,7 +4812,7 @@ The following actions should be considered for audit if FAU_GEN Security audit d
 	FIA_X509_EXT.2 X.509 Certificate Authentication
 ======
 
-*FCS_DTLSS_EXT.1.1* The TSF shall implement [selection: DTLS 1.2 (RFC 6347), DTLS 1.0 (RFC 4347)] supporting the following ciphersuites: [assignment: _List of optional ciphersuites and reference to RFC in which each is defined_] and no other ciphersuites.].
+*FCS_DTLSS_EXT.1.1* The TSF shall implement [selection: DTLS 1.3 (RFC 9147), DTLS 1.2 (RFC 6347), DTLS 1.0 (RFC 4347)] supporting the following ciphersuites: [assignment: _List of optional ciphersuites and reference to RFC in which each is defined_] and no other ciphersuites.].
 
 *FCS_DTLSS_EXT.1.2* The TSF shall deny connections from clients requesting _none_.
 
@@ -4929,7 +5130,7 @@ FIA_PSK_EXT.1.2 The TSF shall be able to accept text-based pre-shared keys that 
 • 22 characters in length and  [selection: _[assignment: other supported lengths], no other lengths_];
 • composed of any combination of upper and lower case letters, numbers, and special characters (that include: “!”, “@”, “#”, “$”, “%”, “^”, “&”, “*”, “(“, and “)”).
 
-FIA_PSK_EXT.1.3 The TSF shall condition the text-based pre-shared keys by using [selection: _SHA-1, SHA-256, SHA-512, [assignment: method of conditioning text string]]_ and be able to [selection: _use no other pre-shared keys; accept bit-based pre-shared keys; generate bit-based pre-shared keys using the random bit generator specified in FCS_RBG_EXT.1_].
+FIA_PSK_EXT.1.3 The TSF shall condition the text-based pre-shared keys by using [selection: _SHA-1, SHA-256, SHA-384, SHA-512, [assignment: method of conditioning text string]]_ and be able to [selection: _use no other pre-shared keys; accept bit-based pre-shared keys; generate bit-based pre-shared keys using the random bit generator specified in FCS_RBG_EXT.1_].
 
 *Rationale*
 
@@ -5154,7 +5355,7 @@ The following actions should be auditable if FAU_GEN Security Audit Data Generat
 	FCS_COP.1/KeyedHash Cryptographic Operation (for keyed-hash message authentication) +
 	FCS_COP.1/DataEncryption Cryptographic Operation (Symmetric encryption/decryption) +
 	FCS_COP.1/StorageEncryption Cryptographic operation (Data Encryption/Decryption) +
-	FCS_COP.1/CMAC Cryptographic Operation (for keyed-hash message authentication)
+	FCS_COP.1/CMAC Cryptographic Operation (for cipher-based message authentication)
 ======
 
 *FPT_SBT_EXT.1.1* The TSF shall contain one or more chains of trust with each chain of trust anchored in a Root of Trust that is implemented in immutable code or a HW-based write-protection mechanism.
