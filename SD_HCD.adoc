@@ -2,13 +2,13 @@
 :showtitle:
 :doctype: book
 :toc: macro
-:toclevels: 7
+:toclevels: 3
 :sectnumlevels: 7
 :table-caption: Table
 :imagesdir: images
 :icons: font
-:revnumber: 1.0e
-:revdate: 4 March 2024
+:revnumber: 1.1
+:revdate: 29 December 2025
 :xrefstyle: full
 
 :iTC-longname: Hardcopy Devices
@@ -18,12 +18,12 @@
 :iTC-GitHub: https://github.com/HCD-iTC
 :pp-name: collaborative Protection Profile for Hardcopy Devices
 :pp-shortname: HCDcPP
-:pp-version: 1.0e
-:pp-date: 4 March 2024
+:pp-version: 1.1
+:pp-date: 29 December 2025
 
 == Foreword
 
-This is a Supporting Document (SD), intended to complement the Common Criteria (CC) version 3 and the associated Common Evaluation Methodology for Information Technology Security Evaluation.
+This is a Supporting Document (SD), intended to complement the Common Criteria (CC) version CC:2022 Revision 1 and the associated Common Evaluation Methodology for Information Technology Security Evaluation.
 
 Supporting Documents may be "Guidance Documents", that highlight specific approaches and application of the standard to areas where no mutual recognition of its application is required, and as such, are not of normative nature, or "Mandatory Technical Documents", whose application is mandatory for evaluations whose scope is covered by that of the Supporting Document. The usage of the latter class is not only mandatory, but certificates issued as a result of their application are recognized under the CCRA.
 
@@ -38,11 +38,9 @@ Hardcopy Device International Technical Community (HCD-iTC)
 .Revision history
 |===
 |Version |Date |Description
-| 0.91 | 8 October 2021 | Public Review Draft 1
-| 0.98 | 24 February 2022 | Public Review Draft 2
-| 0.99 | 29 July 2022 | Final Public Review Draft
 | 1.0  | 31 October 2022 | Initial release for use
-| 1.0e | 4 March 2024 | Errata version. 
+| 1.0e | 4 March 2024 | Errata version.
+| 1.1  | 29 December 2025 | CC:2022 update
 |===
 
 === General Purpose
@@ -124,13 +122,13 @@ The EAs for FAU_GEN.1 address this SFR.
 
 ===== TSS
 
-The evaluator shall check to ensure that the TSS contains a description that audit records can be viewed only by an Administrator  and functions to view audit records.
+The evaluator shall check to ensure that the TSS describes that audit records can be read only by an Administrator and that the TSS describes the functions used to read audit records.
 
 The evaluator shall check to ensure that the TSS contains a description of the methods of using interfaces that retrieve audit records (e.g., methods for user identification and authentication, authorization, and retrieving audit records).
 
 ===== Guidance Documentation
 
-The evaluator shall check to ensure that the operational guidance appropriately describes the ways of viewing audit records and forms of viewing.
+The evaluator shall check to ensure that the operational guidance appropriately describes the methods and formats by which audit records can be read.
 
 ===== Tests
 
@@ -146,41 +144,7 @@ The evaluator shall also perform the following tests:
 
 The evaluator shall include test 2 related to this function in the set of tests performed in FAU_SAR.1.
 
-==== FAU_STG.1 Protected audit trail storage
-
-===== TSS
-
-The evaluator shall check to ensure that the TSS contains a description of the means of preventing audit records from unauthorized access (modification, deletion).
-
-===== Guidance Documentation
-
-The evaluator shall check to ensure that the TSS and operational guidance contain descriptions of the interfaces to access to audit records, and if the descriptions of the means of preventing audit records from unauthorized access (modification, deletion) are consistent.
-
-===== Tests
-
-The evaluator shall also perform the following test:
-
-. The evaluator shall test that an authorized user can access the audit records.
-. The evaluator shall test that a user without authorization for the audit data cannot access the audit records.
-
-==== FAU_STG.4 Prevention of audit data loss
-
-===== TSS
-
-The evaluator shall check to ensure that the TSS contains a description of the processing performed when the capacity of audit records becomes full, which is consistent with the definition of the SFR.
-
-===== Guidance Documentation
-
-The evaluator shall check to ensure that the operational guidance contains a description of the processing performed (such as informing the authorized users) when the capacity of audit records becomes full.
-
-===== Tests
-
-The evaluator shall also perform the following tests:
-
-. The evaluator generates auditable events after the capacity of audit records becomes full by generating auditable events in accordance with the operational guidance.
-. The evaluator shall check to ensure that audit records are processed in accordance with the definition of the SFR.
-
-==== FAU_STG_EXT.1 External Audit Trail Storage
+==== FAU_STG.1 Audit data storage location
 
 ===== TSS
 
@@ -199,6 +163,40 @@ The evaluator shall also examine the operational guidance to ensure it describes
 Testing of the trusted channel mechanism will be performed as specified in the associated assurance activities for the particular trusted channel mechanism. The evaluator shall perform the following test for this requirement:
 
 Test 1: The evaluator shall establish a session between the TOE and the audit server according to the configuration guidance provided. The evaluator shall then examine the traffic that passes between the audit server and the TOE during several activities of the evaluator’s choice designed to generate audit data to be transferred to the audit server. The evaluator shall observe that these data are not able to be viewed in the clear during this transfer, and that they are successfully received by the audit server. The evaluator shall record the particular software (name, version) used on the audit server during testing. The evaluator shall verify that the TOE is capable of transferring audit data to an external audit server automatically without administrator intervention.
+
+==== FAU_STG.2 Protected audit trail storage
+
+===== TSS
+
+The evaluator shall check to ensure that the TSS contains a description of the means of preventing audit records from unauthorized access (modification, deletion).
+
+===== Guidance Documentation
+
+The evaluator shall check to ensure that the TSS and operational guidance contain descriptions of the interfaces to access to audit records, and if the descriptions of the means of preventing audit records from unauthorized access (modification, deletion) are consistent.
+
+===== Tests
+
+The evaluator shall also perform the following test:
+
+. The evaluator shall test that an authorized user can access the audit records.
+. The evaluator shall test that a user without authorization for the audit data cannot access the audit records.
+
+==== FAU_STG.5 Prevention of audit data loss
+
+===== TSS
+
+The evaluator shall check to ensure that the TSS contains a description of the processing performed when the capacity of audit records becomes full, which is consistent with the definition of the SFR.
+
+===== Guidance Documentation
+
+The evaluator shall check to ensure that the operational guidance contains a description of the processing performed (such as informing the authorized users) when the capacity of audit records becomes full.
+
+===== Tests
+
+The evaluator shall also perform the following tests:
+
+. The evaluator generates auditable events after the capacity of audit records becomes full by generating auditable events in accordance with the operational guidance.
+. The evaluator shall check to ensure that audit records are processed in accordance with the definition of the SFR.
 
 === Cryptographic Support (FCS)
 
@@ -357,25 +355,13 @@ selected in FTP_TRP.1/Admin, FTP_TRP.1/NonAdmin and FTP_ITC.1 that uses safe-pri
 group that each protocol uses.
 
 
-==== FCS_CKM_EXT.4 Cryptographic Key Material Destruction
+==== FCS_CKM.6 Timing and event of cryptographic key destruction
 
 ===== TSS
 
-The evaluator shall verify the TSS provides a high level description of what it means for keys and key material to be no longer needed and when they should be expected to be destroyed.
+The evaluator shall verify the TSS provides a high level description of what keys and key material are destroyed, under what conditions they are destroyed, and how they are destroyed.
 
-===== KMD
-
-The evaluator shall verify the Key Management Description (KMD) includes a description of the areas where keys and key material reside and when the keys and key material are no longer needed.
-
-The evaluator shall verify the KMD includes a key lifecycle, that includes a description where key material reside, how the key material is used, how it is determined that keys and key material are no longer needed, and how the material is destroyed once it is not needed and that the documentation in the KMD follows FCS_CKM.4 for the destruction.
-
-==== FCS_CKM.4 Cryptographic key destruction
-
-===== TSS
-
-The evaluator shall verify the TSS provides a high level description of how keys and key material are destroyed.
-
-The evaluator shall check to ensure the TSS lists each type of key that is stored in in non-volatile memory, and identifies how the TOE interacts with the underlying platform to manage keys (e.g., store, retrieve, destroy). The description includes details on the method of how the TOE interacts with the platform, including an identification and description of the interfaces it uses to manage keys (e.g., file system APIs, platform key store APIs).
+The evaluator shall check to ensure the TSS lists each type of key that is stored in nonvolatile memory, and identifies how the TOE interacts with the underlying platform to manage keys (e.g., store, retrieve, destroy). The description includes details on the method of how the TOE interacts with the platform, including an identification and description of the interfaces it uses to manage keys (e.g., file system APIs, platform key store APIs).
 
 If the ST makes use of the open assignment and fills in the type of pattern that is used, the evaluator examines the TSS to ensure it describes how that pattern is obtained and used. The evaluator shall verify that the pattern does not contain any CSPs.
 
@@ -383,11 +369,9 @@ The evaluator shall check that the TSS identifies any configurations or circumst
 
 ===== KMD
 
-The evaluator examines the KMD to ensure it describes how the keys are managed in volatile memory. This description includes details of how each identified key is introduced into volatile memory (e.g., by derivation from user input, or by unwrapping a wrapped key stored in nonvolatile memory) and how they are overwritten.
+The evaluator shall verify the Key Management Description (KMD) includes a key lifecycle that describes the purpose of the key and how it is used, where the keys and key material reside (i.e. volatile or nonvolatile storage), how each identified key is introduced into storage (e.g., by derivation from user input, or by unwrapping a wrapped key stored in nonvolatile storage), how it is determined that keys and key material are no longer needed, and how the material is destroyed once it is not needed and that the documentation in the KMD follows FCS_CKM.6 for the destruction.
 
-The evaluator shall check to ensure the KMD lists each type of key that is stored in nonvolatile memory, and identifies the memory type (volatile or nonvolatile) where key material is stored.
-
-The KMD identifies and describes the interface(s) that is used to service commands to read/write memory. The evaluator examines the interface description for each different media type to ensure that the  interface supports the selection(s) made by the ST Author.
+The KMD identifies and describes the interface(s) that are used to service commands to read/write memory/storage. The evaluator examines the interface description for each different media type to ensure that the interface supports the selection(s) made by the ST Author.
 
 ===== Guidance Documentation
 
@@ -429,7 +413,7 @@ Test 3: Applied to each key held in nonvolatile memory and subject to destructio
 . Cause the TOE to clear the key.
 . Search the nonvolatile memory the key was stored in for instances of the known key value from Step #1. If a copy is found, then the test fails.
 
-Test 4: Applied to each key held as nonvolatile memory and subject to destruction by overwrite by the TOE. The evaluator shall use special tools (as needed), provided by the TOE developer if necessary, to view the key storage location:
+Test 4: Applied to each key held in nonvolatile memory and subject to destruction by overwrite by the TOE. The evaluator shall use special tools (as needed), provided by the TOE developer if necessary, to view the key storage location:
 
 . Record the storage location of the key in the TOE subject to clearing.
 . Cause the TOE to perform a normal cryptographic processing with the key from Step #1.
@@ -1915,11 +1899,11 @@ Further assurance activities are associated with the specific protocols.
 
 ===== TSS
 
-The evaluator shall examine the TSS and verify it identifies the methods used to protect keys stored in non-volatile memory.
+The evaluator shall examine the TSS and verify it identifies the methods used to protect keys stored in nonvolatile memory.
 
 ===== KMD
 
-The evaluator shall verify the KMD to ensure it describes the storage location of all keys and the protection of all keys stored in non-volatile memory. The description of the key chain shall be reviewed to ensure the selected method is followed for the storage of wrapped or encrypted keys in non-volatile memory and plaintext keys in non-volatile memory meet one of the exemptions under the selection “only store plaintext keys that meet any one of the following criteria”.
+The evaluator shall verify the KMD to ensure it describes the storage location of all keys and the protection of all keys stored in nonvolatile memory. The description of the key chain shall be reviewed to ensure the selected method is followed for the storage of wrapped or encrypted keys in nonvolatile memory and plaintext keys in nonvolatile memory meet one of the exemptions under the selection “only store plaintext keys that meet any one of the following criteria”.
 
 ==== FCS_KYC_EXT.1 Key Chaining
 
@@ -2284,7 +2268,7 @@ The evaluator shall check to ensure that the operational guidance describes the 
 
 _Tests activities consists of the six tests below. Test 2 and 6 are mandatory in all cases. Tests 3, 4, and 5 are conditional on the wipe method selected by the ST author._
 
-Test 1: [Conditional: D.USER can be stored in non-volatile memory] Cause the TOE to contain and retain some type of D.USER containing known text strings or byte array in non-volatile memory (e.g., submit a print job when no paper is loaded in the HCD. This will ensure that the job will remain in the HCD for reference in Test 6). Verify that the D.USER data is present on the TOE. For example, it is sufficient to verify that a print job is on the HCD.
+Test 1: [Conditional: D.USER can be stored in nonvolatile memory] Cause the TOE to contain and retain some type of D.USER containing known text strings or byte array in nonvolatile memory (e.g., submit a print job when no paper is loaded in the HCD. This will ensure that the job will remain in the HCD for reference in Test 6). Verify that the D.USER data is present on the TOE. For example, it is sufficient to verify that a print job is on the HCD.
 
 Test 2: The evaluator shall perform the following steps to verify that a wipe function can be initiated by an authorized administrator and that the TOE provides feedback about the status of the wipe operation.
 
@@ -2343,7 +2327,7 @@ a| . First 2049 logical sectors of the disk
 
 Test 5: [Conditional: The case cryptographic erase is selected] The evaluator shall verify that the appropriate key(s) according to the KMD description required by FCS_CKM_EXT.4 has been destroyed in the method described in the Test Assurance Activity for FCS_CKM.4.
 
-Test 6: The evaluator shall verify that known text strings or byte array for D.USER and D.TSF are not found on the non-volatile storage media after wipe has been performed. In some cases, cryptographic erase would make unable to read data from the storage media. In that case, “failed to read data with error” can be considered as “not found”. This test may require special tools to be installed on the TOE, or for the storage media to be moved to a separate system equipped with special tools provided by the TOE developer as necessary. The evaluator shall examine the storage media as specified in the following table for the indicated search patterns. This test is not applicable to protected storage devices (e.g., TPMs) that do not provide direct access to their storage.
+Test 6: The evaluator shall verify that known text strings or byte array for D.USER and D.TSF are not found on the nonvolatile storage media after wipe has been performed. In some cases, cryptographic erase would make unable to read data from the storage media. In that case, “failed to read data with error” can be considered as “not found”. This test may require special tools to be installed on the TOE, or for the storage media to be moved to a separate system equipped with special tools provided by the TOE developer as necessary. The evaluator shall examine the storage media as specified in the following table for the indicated search patterns. This test is not applicable to protected storage devices (e.g., TPMs) that do not provide direct access to their storage.
 
 [cols="1,1"]
 |===
@@ -2352,7 +2336,7 @@ Test 6: The evaluator shall verify that known text strings or byte array for D.U
 |D.USER
 a| Known text strings or byte array from Test 1 that was stored on the TOE prior to the wipe being performed.
 
-Note: If the TOE does not store D.USER data in non-volatile memory (reference Test 1) the non-existence of this D.USER data does not have to be verified.
+Note: If the TOE does not store D.USER data in nonvolatile memory (reference Test 1) the non-existence of this D.USER data does not have to be verified.
 
 |D.TSF
 a| . The text representation of the IP address assigned to the TOE when it was in operation
@@ -2810,7 +2794,7 @@ The evaluator shall perform the following tests or witness respective tests exec
 . Specification of wrapping keys as input parameter to the function to be tested
 . Specification of further required input parameters if required
 . Specification of keys to be wrapped (plaintext, as function’s argument)
-. Direct access to wrapped key (ciphertext), e.g. in the non-volatile memory
+. Direct access to wrapped key (ciphertext), e.g. in the nonvolatile memory
 
 *AES-KW, AES-KWP, AES-GCM, AES-CCM*
 
@@ -3167,11 +3151,22 @@ Each of the following tests shall be performed for each version of IKE selected 
 
 ====== FCS_IPSEC_EXT.1.10
 
-Each of the following tests shall be performed for each version of IKE selected in the FCS_IPSEC_EXT.1.5 protocol selection:
+The following tests shall be performed.
 
-.. Test 1: If the first selection is chosen, the evaluator shall check to ensure that, for each DH group supported, the TSS describes the process for generating each nonce. The evaluator shall verify that the TSS indicates that the random number generated that meets the requirements in this cPP is used, and that the length of the nonces meet the stipulations in the requirement.
+.. Test 1: If IKEv1 is supported, Configure the TOE to use IKEv1:
 
-.. Test 2: If the second selection is chosen, the evaluator shall check to ensure that, for each PRF hash supported, the TSS describes the process for generating each nonce. The evaluator shall verify that the TSS indicates that the random number generated that meets the requirements in this cPP is used, and that the length of the nonces meet the stipulations in the requirement.
+* Test 1.a: If “according to the security strength associated with the negotiated DiffieHellman group” has been selected, for each supported authentication methods and DH
+groups, demonstrate the TOE uses phase 1 and phase 2 nonces meeting the strength
+requirement defined in NIST SP 800-57 for the appropriate DH group.
+
+* Test 1.b: If “at least 128 bits in size and at least half the output size of the negotiated
+pseudorandom function (PRF) hash” has been selected, for each supported
+authentication method and PRF hash, demonstrate the TOE uses phase 1 and phase 2
+nonces suitable for the selected PRF.
+
+.. Test 2: If IKEv2 is supported, configure the TOE to use IKEv2:
+
+* For each supported DH group, demonstrate the TOE uses IKE_SA_INIT and CREATE_CHILD_SA nonces suitable for the selected PRF. 
 
 ====== FCS_IPSEC_EXT.1.11
 
@@ -3739,6 +3734,20 @@ The evaluator shall check that the TSS specifies the following:
 
 .. Rekeying is performed upon reaching the threshold that is hit first.
 
+In cases where TOE limitations prevent reaching the time threshold, the evaluator shall check the TSS to ensure it contains:
+
+.. An argument describing this TOE limitation and
+.. Identification of the hardware components (if any) that form the basis of the such argument.
+
+For example, if a specific Ethernet Controller or Wi-Fi radio chip is the root cause of such limitation, these subsystems shall be identified.
+
+In cases where TOE limitations prevent reaching the data transfer threshold, the evaluator shall check the TSS to ensure it contains:
+
+.. An argument describing this TOE limitation and
+.. Identification of the hardware components (if any) that form the basis of the such argument.
+
+For example, if a specific Ethernet Controller or Wi-Fi radio chip is the root cause of such limitation, these subsystems shall be identified.
+
 ===== Guidance Documentation
 
 ====== FCS_SSHC_EXT.1.2
@@ -3819,11 +3828,9 @@ Testing does not necessarily have to be performed with the threshold configured 
 
 If one or more thresholds that are checked by the TOE to fulfil the SFR are configurable, the evaluator needs to verify that the threshold(s) can be configured as described in the guidance documentation and the evaluator needs to test that modification of the thresholds is restricted to Security Administrators (as required by FMT_MOF.1).
 
-In cases where data transfer threshold could not be reached due to hardware limitations it is acceptable to omit testing of this (SSH rekeying based on data transfer threshold) threshold if both the following conditions are met:
+In cases where time threshold could not be reached due to TOE limitations, it is acceptable to omit testing of this (SSH rekeying based on data transfer threshold) threshold.
 
-.. An argument is present in the TSS section describing this hardware-based limitation and
-
-.. All hardware components that are the basis of such argument are definitively identified in the ST. For example, if specific Ethernet Controller or WiFi radio chip is the root cause of such limitation, these chips must be identified.
+In cases where data transfer threshold could not be reached due to TOE limitations, it is acceptable to omit testing of this (SSH rekeying based on data transfer threshold) threshold.
 
 ====== FCS_SSHC_EXT.1.9
 
@@ -3868,6 +3875,22 @@ The evaluator shall check that the TSS specifies the following:
 .. Both thresholds are checked by the TOE.
 
 .. Rekeying is performed upon reaching the threshold that is hit first.
+
+In cases where TOE limitations prevent reaching the time threshold, the evaluator shall check the TSS to ensure it contains:
+
+An argument describing this TOE limitation and
+
+Identification of the hardware components (if any) that form the basis of the such argument.
+
+For example, if a specific Ethernet Controller or Wi-Fi radio chip is the root cause of such limitation, these subsystems shall be identified.
+
+In cases where TOE limitations prevent reaching the data transfer threshold, the evaluator shall check the TSS to ensure it contains:
+
+An argument describing this TOE limitation and
+
+Identification of the hardware components (if any) that form the basis of the such argument.
+
+For example, if a specific Ethernet Controller or Wi-Fi radio chip is the root cause of such limitation, these subsystems shall be identified.
 
 ===== Guidance Documentation
 
@@ -3948,11 +3971,9 @@ Testing does not necessarily have to be performed with the threshold configured 
 
 If one or more thresholds that are checked by the TOE to fulfil the SFR are configurable, the evaluator needs to verify that the threshold(s) can be configured as described in the guidance documentation and the evaluator needs to test that modification of the thresholds is restricted to Security Administrators (as required by FMT_MOF.1/Functions).
 
-In cases where data transfer threshold could not be reached due to hardware limitations it is acceptable to omit testing of this (SSH rekeying based on data transfer threshold) threshold if both the following conditions are met:
+In cases where the time threshold could not be reached due to TOE limitations, it is acceptable to omit testing of this (SSH rekeying based on data transfer threshold) threshold.
 
-.. An argument is present in the TSS section describing this hardware-based limitation and
-
-.. All hardware components that are the basis of such argument are definitively identified in the ST. For example, if specific Ethernet Controller or WiFi radio chip is the root cause of such limitation, these chips must be identified.
+In cases where the data transfer threshold could not be reached due to TOE limitations, it is acceptable to omit testing of this (SSH rekeying based on data transfer threshold) threshold.
 
 ==== FCS_HTTPS_EXT.1 HTTPS selected
 
@@ -4541,12 +4562,12 @@ Appendix A.3.
 * [#2600]#[2600]# IEEE Std. 2600™-2008 “IEEE Standard for Information Technology: Hardcopy Device and System Security”
 * [#2600.1]#[2600.1]# IEEE Std. 2600.1™-2009 “IEEE Standard for a Protection Profile in Operational Environment A”
 * [#610.12]#[610.12]#  IEEE Std 610.12-1990 “IEEE Standard Glossary of Software Engineering Terminology”
-* [#8802-6]#[8802-6]# ISO /IEC 8802-6:1994 “Information technology – Telecommunications and information exchange between systems – Local and metropolitan area networks – Specific requirements – Part 6”
-* [#CC1]#[CC1]# Common Criteria for Information Technology Security Evaluation, Part 1: Introduction and General Model, CCMB-2017-04-001, Version 3.1 Revision 5, April 2017.
-* [#CC2]#[CC2]# Common Criteria for Information Technology Security Evaluation, Part 2: Security Functional Components, CCMB-2017-04-002, Version 3.1 Revision 5, April 2017.
-* [#CC3]#[CC3]# Common Criteria for Information Technology Security Evaluation, Part 3: Security Assurance Components, CCMB-2017-04-003, Version 3.1 Revision 5, April 2017.
-* [#CEM]#[CEM]# Common Methodology for Information Technology Security Evaluation, Evaluation Methodology, CCMB-2017-04-004, Version 3.1 Revision 5, April 2017.
-* [#addenda]#[addenda]# CC and CEM addenda, Exact Conformance, Selection-Based SFRs, Optional SFRs, Version 0.5, May 2017
+* [#8802-6]#[8802-6]# ISO/IEC 8802-6:1994 “Information technology – Telecommunications and information exchange between systems – Local and metropolitan area networks – Specific requirements – Part 6”
+* [#CC1]#[CC1]# Common Criteria for Information Technology Security Evaluation, Part 1: Introduction and general model, CCMB-2022-11-001, CC:2022 Revision 1, November 2022.
+* [#CC2]#[CC2]# Common Criteria for Information Technology Security Evaluation, Part 2: Security functional components, CCMB-2022-11-002, CC:2022 Revision 1, November 2022.
+* [#CC3]#[CC3]# Common Criteria for Information Technology Security Evaluation, Part 3: Security assurance components, CCMB-2022-11-003, CC:2022 Revision 1, November 2022.
+* [#CEM]#[CEM]# Common Methodology for Information Technology Security Evaluation, Evaluation methodology, CCMB-2022-11-006, CC:2022 Revision 1, November 2022.
+* [#addenda]#[addenda]# Errata and Interpretation for CC:2022 (Release 1) and CEM:2022 (Release 1), 002, Version 1.1, July 22, 2024.
 * [#HCDcPP]#[HCDcPP]# {pp-name}, {pp-version}, {pp-date}
 
 [appendix]
@@ -4842,6 +4863,9 @@ Identification and authentication mechanism that uses services of External IT En
 Hardcopy Device::
 A system producing or utilizing a physical embodiment of an electronic document or image. These systems include printers, scanners, fax machines, digital copiers, MFPs (multifunction peripherals), MFDs (multifunction devices), “all-in-ones” and other similar products.[2600]
 
+Immutable::
+Unchangeable. In the context of this document, this refers only to the inability to make changes in the field through manufacturer intended mechanisms and/or defined interfaces. Note that a platform or device manufacturer may still be able to make changes through manufacturing or service tools directly connected to a locally (physically) present platform or device.
+
 Intermediate Key::
 A key used in a point between the initial user authorization and the DEK. [CPP_FDE_EE_V2.0]
 
@@ -4995,5 +5019,4 @@ The Asset that consists of the information contained in a User’s Document. Thi
 |VPN|Virtual Private Network
 |XPN|eXtended Packet Number
 |XTS|XEX-based tweaked-codebook mode with ciphertext stealing
-|
 |===
