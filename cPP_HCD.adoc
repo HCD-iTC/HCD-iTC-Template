@@ -1164,7 +1164,7 @@ _The ST Author chooses the algorithm(s) implemented to perform digital signature
 *Dependencies:* +
 	No dependencies.
 ======
-*FCS_COP.1.1/Hash Refinement:* The TSF shall perform [*cryptographic hashing services*] in accordance with a specified cryptographic algorithm [selection: _SHA-1, SHA-256, SHA-384, SHA-512_] and +++<del>cryptographic key sizes [assignment: cryptographic key sizes]</del>+++ *message digest sizes [selection: _160, 256, 384, 512_] bits* that meet the following: [*ISO/IEC 10118-3:2004*].
+*FCS_COP.1.1/Hash Refinement:* The TSF shall perform [*cryptographic hashing services*] in accordance with a specified cryptographic algorithm [selection: _SHA-1, SHA-256, SHA-384, SHA-512_] and +++<del>cryptographic key sizes [assignment: cryptographic key sizes]</del>+++ *message digest sizes [selection: _160, 256, 384, 512_] bits* that meet the following: [selection: _ISO/IEC 10118-3:2004, FIPS PUB 180-4_].
 
 *_Application Note:_*
 
@@ -2062,7 +2062,12 @@ FCS_CKM.6 Timing and event of cryptographic key destruction
 
 Case: AES algorithm
 
-* _[ISO/IEC 18033-3 (AES), [selection: _NIST SP 800-38F, ISO/IEC 19772, no other standards]]_,
+* [selection:
+
+** _ISO/IEC 18033-3 (AES), [selection: NIST SP 800-38F, ISO/IEC 19772, no other standards]_,
+** _FIPS PUB 197 (AES), [selection: NIST SP 800-38F (KW,KWP), NIST SP 800-38D (GCM), NIST SP 800-38C (CCM)]_
+
+* ]
 
 Case: SEED algorithm
 
@@ -2095,7 +2100,7 @@ _This requirement is used in the body of the ST if the ST Author chooses to use 
 
 Case: AES algorithm
 
-* _AES used in [[selection: CBC, GCM] mode] and cryptographic key sizes [selection: 128 bits, 192 bits, 256 bits] that meet the following: *AES as specified in ISO/IEC 18033-3,* [selection: CBC as specified in ISO/IEC 10116, GCM as specified in ISO/IEC 19772]_,
+* _AES used in [[selection: CBC, GCM] mode] and cryptographic key sizes [selection: 128 bits, 192 bits, 256 bits] that meet the following: *AES as specified in [selection: ISO/IEC 18033-3, FIPS PUB 197]*, [selection: CBC as specified in [selection: ISO/IEC 10116, NIST SP 800-38A], GCM as specified in [selection: ISO/IEC 19772, NIST SP 800-38D]]_,
 
 Case: SEED algorithm
 
@@ -2764,11 +2769,11 @@ No other components. +
 ======
 
 
-*FCS_COP.1.1/KeyedHash Refinement:* The TSF shall perform [*keyed-hash message authentication*] in accordance with a specified cryptographic algorithm [selection: _HMAC-SHA-1, HMAC-SHA-256, HMAC-SHA-384, HMAC-SHA-512, implicit_] and cryptographic key sizes [_assignment: key size (in bits) used in HMAC_] *and message digest sizes [selection: _160, 256, 384, 512_] bits* that meet the following: [*ISO/IEC 9797-2:2011, Section 7 “MAC Algorithm 2”*].
+*FCS_COP.1.1/KeyedHash Refinement:* The TSF shall perform [*keyed-hash message authentication*] in accordance with a specified cryptographic algorithm [selection: _HMAC-SHA-1, HMAC-SHA-256, HMAC-SHA-384, HMAC-SHA-512, implicit_] and cryptographic key sizes [_assignment: key size (in bits) used in HMAC_] *and message digest sizes [selection: _160, 256, 384, 512_] bits* that meet the following: [selection: _ISO/IEC 9797-2:2011, Section 7 “MAC Algorithm 2”, FIPS PUB 198-1_].
 
 *_Application Note:_*
 
-_The key size [k] in the assignment falls into a range between L1 and L2 (defined in ISO/IEC 10118 for the appropriate hash function). For example, for SHA-256, L1=512, L2=256, where L2<=k<=L1. Select 'implicit' in cases where keyed-hash message authentication is done implicitly (e.g. SSH using AES in GCM mode)._
+_The key size [k] in the assignment falls into a range between L1 and L2 (defined in ISO/IEC 10118 for the appropriate hash function). For example, for SHA-256, L1=512, L2=256, where L2 &lt;= k &lt;= L1. Select 'implicit' in cases where keyed-hash message authentication is done implicitly (e.g. SSH using AES in GCM mode)._
 
 
 
