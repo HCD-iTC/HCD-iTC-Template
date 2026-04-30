@@ -1008,7 +1008,15 @@ Environments (TEE), Secure Enclave Processors (SEP), and so on.
 
 *FCS_COP.1.1/DataEncryption* The TSF shall perform [*encryption/decryption*] in accordance with specified cryptographic algorithms [selection:
 
-* _AES used in_ [selection: _CBC, CTR, GCM_] _mode_,
+* _AES used in_ [selection:
+** _CBC mode with non-repeating and unpredictable IVs_,
+** _CTR mode with a non-repeating initial counter and no repeated use of counter values across multiple messages with the same secret key_,
+** _XTS mode with unique tweak values that are consecutive non-negative integers starting at an arbitrary non-negative integer_,
+** _GCM mode with non-repeating IVs using [selection: deterministic, RBG-based] IV construction; the tag must be of length [selection: 96, 104, 112, 120, 128] bits_,
+** _CCM mode with unpredictable, non-repeating nonce, minimum size of 64 bits_,
+** _KW mode_,
+** _KWP mode_],
+
 * _SEED operating in_ [selection:
 ** _CBC mode with non-repeating and unpredictable IVs,_
 ** _CFB mode with non-repeating and unpredictable IVs,_
@@ -1029,13 +1037,13 @@ Environments (TEE), Secure Enclave Processors (SEP), and so on.
 ** _OFB mode with unique IVs,_
 ** _CTR mode with unique, incremental counter,_
 ** _CCM mode with unpredictable, non-repeating nonce, minimum size of 64 bits,_
-** _GCM mode with non-repeating IVs_]]
+** _GCM mode with non-repeating IVs_]
 
-and cryptographic key sizes [selection:
+] and cryptographic key sizes [selection:
 
 Case: AES algorithm
 
-* [selection: _128 bits, 192 bits, 256 bits_],
+* _128 bits, 192 bits, 256 bits, 512 bits_,
 
 Case: SEED algorithm
 
@@ -1047,13 +1055,17 @@ Case: HIGHT algorithm
 
 Case: LEA algorithm
 
-* [selection: _128 bits, 192 bits, 256 bits_]]
+* _128 bits, 192 bits, 256 bits_
 
-that meet the following [selection:
+] that meet the following [selection:
 
 Case: AES algorithm
 
-* _ISO 18033-3_, [selection: _CBC as specified in ISO 10116, CTR as specified in ISO 10116, GCM as specified in ISO 19772_],
+* _ISO 18033-3_,
+** [selection: _CBC as specified in ISO 10116, CTR as specified in ISO 10116, GCM as specified in ISO 19772_],
+* _FIPS PUB 197 (AES)_,
+** [selection: _CBC as specified in NIST SP 800-38A, CTR as specified in NIST SP 800-38A, XTS as specified in NIST SP 38-E, GCM as specified in NIST SP 800-38D, CCM as specified in NIST SP 800-38C, KW as specified in NIST SP 800-38F, KWP as specified in NIST SP 800-38F_],
+
 
 Case: SEED algorithm
 
@@ -1120,7 +1132,7 @@ _If either SEED in GCM mode with non-repeating IVs or LEA in GCM mode with non-r
 
 * _Module-Lattice-based Digital Signature Algorithm using parameter set ML-DSA-87_
 
-that meet the following: [selection:
+] that meet the following: [selection:
 
 Case: RSA schemes
 
@@ -1146,7 +1158,6 @@ Case: Elliptic Curve Korean Certificate-based Digital Signature Algorithm
 Case: ML-DSA Schemes
 
 * NIST FIPS 204 (Section 5.2)
-
 
 ].
 
@@ -1973,7 +1984,14 @@ FCS_CKM.6 Timing and event of cryptographic key destruction
 
 *FCS_COP.1.1/StorageEncryption*  The TSF shall perform [*data encryption and decryption*] in accordance with a specified cryptographic algorithm [selection:
 
-*	_AES used in_ [selection: _CBC, GCM, XTS_] _mode_,
+* _AES used in_ [selection:
+** _CBC mode with non-repeating and unpredictable IVs_,
+** _CTR mode with a non-repeating initial counter and no repeated use of counter values across multiple messages with the same secret key_,
+** _XTS mode with unique tweak values that are consecutive non-negative integers starting at an arbitrary non-negative integer_,
+** _GCM mode with non-repeating IVs using [selection: deterministic, RBG-based] IV construction; the tag must be of length [selection: 96, 104, 112, 120, 128] bits_,
+** _CCM mode with unpredictable, non-repeating nonce, minimum size of 64 bits_,
+** _KW mode_,
+** _KWP mode_],
 
 * SEED used in [selection:
 ** _CBC mode with non-repeating and unpredictable IVs,_
@@ -2001,25 +2019,29 @@ FCS_CKM.6 Timing and event of cryptographic key destruction
 
 Case: AES algorithm
 
-* [selection: _128 bits, 192 bits, 256 bits_],
+* _128 bits, 192 bits, 256 bits, 512 bits_,
 
 Case: SEED algorithm
 
-* _128 bits,_
+* _128 bits_
 
 Case: HIGHT algorithm
 
-* _128 bits,_
+* _128 bits_
 
 Case: LEA algorithm
 
-* [selection: _128 bits, 192 bits, 256 bits_]
+* _128 bits, 192 bits, 256 bits_
 
 ] that meet the following [selection:
 
 Case: AES algorithm
 
-* _ISO 18033-3_, [selection: _CBC as specified in ISO 10116, GCM as specified in ISO/IEC 19772, and XTS as specified in IEEE 1619_],
+* _ISO 18033-3_,
+** [selection: _CBC as specified in ISO 10116, GCM as specified in ISO/IEC 19772, and XTS as specified in IEEE 1619_],
+
+* _FIPS PUB 197 (AES)_,
+** [selection: _CBC as specified in NIST SP 800-38A, CTR as specified in NIST SP 800-38A, XTS as specified in NIST SP 38-E, GCM as specified in NIST SP 800-38D, CCM as specified in NIST SP 800-38C, KW as specified in NIST SP 800-38F, KWP as specified in NIST SP 800-38F_],
 
 Case: SEED algorithm
 
@@ -2131,7 +2153,13 @@ No other components.
 	FCS_CKM.6 Timing and event of cryptographic key destruction
 ======
 
-*FCS_COP.1.1/KeyTransport Refinement:* The TSF shall perform [*key transport*] in accordance with a specified cryptographic algorithm [*RSA in the following modes [selection: _KTS-OAEP, KTS-KEM-KWS_]]* and the cryptographic key size *[selection: _2048 bits, 3072 bits, 4096 bits, 6144 bits, 8192 bits_]* that meet the following: [*NIST SP 800-56B, Revision 1*].
+*FCS_COP.1.1/KeyTransport Refinement:* The TSF shall perform [*key transport*] in accordance with a specified cryptographic algorithm [selection: 
+
+* RSA in the following modes [selection: _KTS-OAEP, KTS-KEM-KWS_] and the cryptographic key size [selection: _2048 bits, 3072 bits, 4096 bits, 6144 bits, 8192 bits_] that meet the following: [NIST SP 800-56B, Revision 2],
+
+* KEM-DEM Key-Transport Method that meets the following: [NIST SP 800-227 Section 5.2.1] using a key establishment algorithm [ML-KEM] as specified in FCS_CKM.2 and a key wrapping algorithm as specified in FCS_COP.1/KW]
+
+].
 
 *_Application Note:_*
 
