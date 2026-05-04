@@ -1,0 +1,70 @@
+// The Number will be the next sequential TD number of the form HCDxxxx starting with HCD0001
+// The Title will be the title of the GitHub Issue that was generated for this problem, question, etc. that resulted in this TD being generated
+= HCD0017: FCS_TLSS_EXT.1.4 Test 3a - NewSessionTicket made optional during session resumption
+:showtitle:
+:imagesdir: images
+:icons: font
+// revnumber and revdate should be the number and date of the revision of this version of the TD
+:revnumber: 1
+:revdate: 2026-05-04
+:linkattrs:
+
+:iTC-longname: Hardcopy Devices
+:iTC-shortname: HCD-iTC
+:iTC-email: iTC-HCD@niap-ccevs.org
+:iTC-website: https://hcd-iTC.github.io/
+// Provide the link here to either the HCD cPP and/or the HCD SD as applicable
+:iTC-GitHub: https://github.com/HCD-iTC/cPP/
+
+Version: {revnumber}, Published: {revdate}
+
+== Impacted Documents
+
+- SD_HCD_V1.1
+
+// Reference the applicable Section/paragraph number for the HCD cPP SFR(s) / SARs or HCD SD Assurace Activities that this TD pertains to
+== References
+
+- FCS_TLSS_EXT.1.4 (Test 3a)
+
+// Provide the issue description extracted from the Issue that was generated for this problem, question, etc. that resulted in this TD being generated.
+// Include the Issue Number
+== Issue Description
+
+Test 3a for FCS_TLSS_EXT.1.4 in SD_HCD_V1.1 is stricter than RFC 5077 and inconsistent with NDcPP v3.0e.
+
+The current Test 3a states:
+
+> The evaluator shall confirm that the TOE responds with a ServerHello with an empty SessionTicket extension, NewSessionTicket, ChangeCipherSpec and Finished messages (as seen in figure 2 of RFC 5077).
+
+This wording appears to require the TOE to always send a NewSessionTicket message during session resumption.
+
+However, RFC 5077, Section 3.3, and the text immediately preceding Figure 2, state that if the server successfully verifies the client’s ticket, then it may renew the ticket by including a NewSessionTicket handshake message after the ServerHello. The use of “may” makes ticket renewal optional, not mandatory. Figure 2 is therefore an example of one permitted flow, not the only permitted behavior.
+
+As written, Test 3a could cause false failures for implementations that conform to RFC 5077 but choose not to issue a renewed session ticket on every successful resumption. 
+
+// Provide the resolution agreed upon by the HIT for this Issue
+== Resolution
+
+Replace the existing Test 3a for FCS_TLSS_EXT.1.4 with the following revised wording (aligned with Test 3i in ND_Supporting_Document_3_0e.pdf):
+
+[quote]
+____
+Test 3a: The evaluator shall permit a successful TLS handshake to occur in which a session ticket is exchanged with the non-TOE client. The evaluator shall then attempt to correctly reuse the previous session by sending the session ticket in the ClientHello. The evaluator shall confirm that the TOE responds with an abbreviated handshake described in Section 3.1 of RFC 5077 and illustrated with an example in figure 2. Of particular note: if the server successfully verifies the client’s ticket, then it may renew the ticket by including a NewSessionTicket handshake message after the ServerHello in the abbreviated handshake (which is shown in figure 2). This is not required, however as further clarified in Section 3.3 of RFC 5077. When the session is resumed, the evaluator shall verify on the TLS Client used for performing this test, that the TOE (TLS Server) has not advertised support for the early data extension.
+____
+
+// Provide here the specific change(s) by Document, Section number, paragraph and line that is to be made to the HCD cPP and/or HCD SD to resolve this issue
+== SD_HCD_V1.1
+
+The SD is updated as follows (yellow highlights for additions, strikethrough for deletions) per section that is being updated:
+
+*5.2.3.3.4. FCS_TLSS_EXT.1.4*
+
++++<del>The evaluator shall permit a successful TLS handshake to occur in which a session ticket is exchanged with the non-TOE client. The evaluator shall then attempt to correctly reuse the previous session by sending the session ticket in the ClientHello. The evaluator shall confirm that the TOE responds with a ServerHello with an empty SessionTicket extension, NewSessionTicket, ChangeCipherSpec and Finished messages (as seen in figure 2 of RFC 5077).+++ 
+
+#Test 3a: The evaluator shall permit a successful TLS handshake to occur in which a session ticket is exchanged with the non-TOE client. The evaluator shall then attempt to correctly reuse the previous session by sending the session ticket in the ClientHello. The evaluator shall confirm that the TOE responds with an abbreviated handshake described in Section 3.1 of RFC 5077 and illustrated with an example in figure 2. Of particular note: if the server successfully verifies the client’s ticket, then it may renew the ticket by including a NewSessionTicket handshake message after the ServerHello in the abbreviated handshake (which is shown in figure 2). This is not required, however as further clarified in Section 3.3 of RFC 5077. When the session is resumed, the evaluator shall verify on the TLS Client used for performing this test, that the TOE (TLS Server) has not advertised support for the early data extension.#
+
+//Include a pointer to the file that contains the actual fix for this TD
+== Tracking
+
+link:https://github.com/HCD-iTC/HCD-iTC-Template/issues/424[Issue #424]
