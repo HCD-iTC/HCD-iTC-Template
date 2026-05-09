@@ -2186,6 +2186,32 @@ For each selected curve, and for each key pair generation method as described in
 
 For each supported curve, the evaluator shall generate 10 private/public key pairs using the key generation function of a known good implementation and modify some public key values so that they are incorrect, leaving values unchanged (i.e., correct). To determine correctness, the evaluator shall submit the 10 key pairs to the public key validation (PKV) function of the TOE and shall confirm that the results correspond as expected to the modified and unmodified values.
 
+*Key Generation for ML-KEM*
+
+To test the TOE’s ability to generate asymmetric cryptographic keys using ML-KEM, the evaluator shall perform the Algorithm Functional Test using the following input parameters:
+
+* Parameter set [ML-KEM-1024]
+
+* Random seed d [32 bytes]
+
+* Random seed z [32 bytes]
+
+_Algorithm Functional Test_
+
+For each supported parameter set the evaluator shall require the implementation under test to generate 25 key pairs using 25 different randomly generated pairs of 32-byte seed values (d, z). To determine correctness, the evaluator shall compare the resulting key pairs (ek, dk) with those generated using a known-good implementation using the same inputs.
+
+*Key Generation for ML-DSA*
+
+To test the TOE’s ability to generate asymmetric cryptographic keys using ML-DSA, the evaluator shall perform the Algorithm Functional Test using the following input parameters:
+
+* Parameter set [ML-DSA-87]
+
+* Random seed [32 bytes]
+
+_Algorithm Functional Test_
+
+For each supported parameter set the evaluator shall require the implementation under test to generate 25 key pairs using 25 different randomly generated 32-byte seed values. To determine correctness, the evaluator shall compare the resulting key pairs with those generated using a known-good implementation using the same inputs.
+
 === Network Communications
 
 ==== FTP_TRP.1/NonAdmin Trusted path (for Non-administrators)
