@@ -765,10 +765,10 @@ for i = 0 to 99  {
     Output Key[i], IV[i], PT[0]
     for j = 0 to 999 {
         if (j == 0) {
-            CT[j] = PT[j] xor SEED-CFB-Encrypt(Key[i], IV[i])
+            CT[j] = SEED_CFB_ENCRYPT(Key[i], IV[i], PT[j])
             PT[j+1] = IV[i]
         } else {
-            CT[j] = PT[j] xor SEED-CFB-Encrypt(Key[i], CT[j-1])
+            CT[j] = SEED_CFB_ENCRYPT(Key[i], PT[j])
             PT[j+1] = CT[j-1]
         }
     }
@@ -848,15 +848,15 @@ The evaluator shall supply a single 3-tuple of pseudo-random values for 128-bits
 ....
 Key[0] = Key, CTR[0] = CTR, PT[0] = PT
 for i = 0 to 99  {
-    Output Key[i], CTR[i], PT[0]
+    Output Key[i], CTR[0], PT[0]
     for j = 0 to 999 {
-        CT[j] = PT[j] xor SEED-CTR-Encrypt(Key[i], CTR[0])
+        CT[j] = PT[j] XOR SEED-Encrypt(Key[i], CTR[0])
         CTR[0] = (CTR[0] + 1) mod 2^128
         PT[j+1] = CT[j]
     }
     Output CT[j]
     Key[i+1] = Key[i] xor CT[j]
-    PT[0] = CT[j-1]
+    PT[0] = CT[j]
 }
 ....
 
@@ -952,7 +952,33 @@ Refer to SEED-CFB Multi-Block Message Tests for the required HIGHT-CFB testing. 
 
 *_HIGHT-CFB Monte Carlo Tests_*
 
-Refer to SEED-CFB Monte Carlo Tests for the required HIGHT-CFB testing. The evaluator shall test the encrypt functionality using the same test as SEED-CFB Tests, replacing SEED-CFB-Encrypt with HIGHT-CFB-Encrypt.
+The evaluator shall test the encrypt functionality for each selected key size using 100 3-tuples of pseudo-random values for plaintext, IVs, and keys. 
+
+The evaluator shall supply a single 3-tuple of pseudo-random values for 128-bits key. This 3-tuple of plaintext, IV, and key is provided as input to the below algorithm to generate the remaining 99 3-tuples, and to run each 3-tuple through 1000 iterations of HIGHT-CBC encryption.
+
+....
+Key[0] = KEY, IV[0] = IV, PT[0] = PT
+   For i = 0 to 99 {
+       Output Key[i], IV[i], PT[0]
+       For j = 0 to 999 {
+           If ( j=0 ) {
+               CT[j] = HIGHT_CBC_ENCRYPT(Key[i], IV[i], PT[j])
+               PT[j+1] = IV[i]
+           } else {
+               CT[j] = HIGHT_CBC_ENCRYPT(Key[i], PT[j])
+               PT[j+1] = CT[j-1]
+           }
+       }
+       Output CT[j]
+       Key[i+1] = Key[i] xor (CT[j-1]||CT[j])
+       IV[i+1] = CT[j]
+       PT[0] = CT[j-1]
+   }
+....
+
+The ciphertext computed in the 1000th iteration (CT[999]) is the result for each of the 100 3-tuples for a 128-bit key. This result shall be compared to the result of running 1000 iterations with the same values using a known good implementation. 
+
+The evaluator shall test the decrypt functionality using the same test as above, exchanging CT and PT, and replacing HIGHT-CBC-Encrypt with HIGHT-CBC-Decrypt.
 
 *HIGHT-OFB Tests*
 
@@ -968,7 +994,35 @@ Refer to SEED-OFB Multi-Block Message Tests for the required HIGHT-OFB testing. 
 
 *_HIGHT-OFB Monte Carlo Tests_*
 
-Refer to SEED-OFB Monte Carlo Tests for the required HIGHT-OFB testing. The evaluator shall test the encrypt functionality using the same test as SEED-OFB Tests, replacing SEED-OFB-Encrypt with HIGHT-OFB-Encrypt.
+The evaluator shall test the encrypt functionality for each selected key size using 100 3-tuples of pseudo-random values for plaintext, IVs, and keys.  
+
+The evaluator shall supply a single 3-tuple of pseudo-random values for 128-bits key. This 3-tuple of plaintext, IV, and key is provided as input to the below algorithm to generate the remaining 99 3-tuples, and to run each 3-tuple through 1000 iterations of HIGHT-OFB encryption.
+
+....
+Key[0] = KEY, IV[0] = IV, PT[0] = PT
+   For i = 0 to 99 {
+       Output Key[i], IV[i], PT[0]
+       For j = 0 to 999 {
+           If ( j=0 ) {
+               OT[j] = HIGHT_ENCRYPT(Key[i], IV[i])
+               CT[j] = PT[j] XOR OT[j]
+               PT[j+1] = IV[i]
+           } else {
+               OT[j] = HIGHT_ENCRYPT(Key[i], OT[j-1])
+               CT[j] = PT[j] XOR OT[j]
+               PT[j+1] = CT[j-1]
+           }
+       }
+       Output CT[j]
+       Key[i+1] = Key[i] XOR (CT[j-1]||CT[j])
+       IV[i+1] = CT[j]
+       PT[0] = CT[j-1]
+   }
+....
+
+The ciphertext computed in the 1000th iteration (CT[999]) is the result for each of the 100 3-tuples for a 128-bits key. This result shall be compared to the result of running 1000 iterations with the same values using a known good implementation. 
+
+The evaluator shall test the decrypt functionality using the same test as above, exchanging CT and PT, and replacing HIGHT-OFB-Encrypt with HIGHT-OFB-Decrypt.
 
 *HIGHT-CTR Tests*
 
@@ -984,7 +1038,28 @@ Refer to SEED-CTR Multi-Block Message Tests for the required HIGHT-CTR testing. 
 
 *_HIGHT-CTR Monte Carlo Tests_*
 
-Refer to SEED-CTR Monte Carlo Tests for the required HIGHT-CTR testing. The evaluator shall test the encrypt functionality using the same test as SEED-CTR Tests, replacing SEED-CTR-Encrypt with HIGHT-CTR-Encrypt.
+The evaluator shall test the encrypt functionality for each selected key size using 100 3-tuples of pseudo-random values for plaintext, counters, and keys.  
+
+The evaluator shall supply a single 3-tuple of pseudo-random values for 128-bits key. This 3-tuple of plaintext, counter, and key is provided as input to the below algorithm to generate the remaining 99 3-tuples, and to run each 3-tuple through 1000 iterations of HIGHT-CTR encryption.
+
+....
+   Key[0] = KEY, CTR[0] = CTR, PT[0] = PT
+   For i = 0 to 99 {
+       Output Key[i], CTR[0], PT[0]
+       For j = 0 to 999 {
+           CT[j] = PT[j] XOR HIGHT_ENCRYPT(Key[i], CTR[0])
+           CTR[0] = (CTR[0] + 1) MOD 2^128
+           PT[j+1] = CT[j]
+       }
+       Output CT[j]
+       Key[i+1] = Key[i] XOR (CT[j-1]||CT[j])
+       PT[0] = CT[j]
+   }
+....
+
+The ciphertext computed in the 1000th iteration (CT[999]) is the result for each of the 100 3-tuples for a 128-bit key. This result shall be compared to the result of running 1000 iterations with the same values using a known good implementation. 
+
+The evaluator shall test the decrypt functionality using the same test as above, exchanging CT and PT, and replacing HIGHT-CTR-Encrypt with HIGHT-CTR-Decrypt.
 
 *LEA-CBC Tests*
 
@@ -1029,9 +1104,9 @@ for i = 0 to 99  {
         }
     }
     Output CT[j]
-    If(KeySize==128) Key[i+1] = Key[i] xor CT[j]
-    If(KeySize==192) Key[i+1] = Key[i] xor (last 64 bits of CT[j-1]||CT[j])
-    If(KeySize==256) Key[i+1] = Key[i] xor (CT[j-1]||CT[j])
+    If (KeySize==128) Key[i+1] = Key[i] xor CT[j]
+    If (KeySize==192) Key[i+1]=Key[i] XOR ((last 64 bits of CT[j-1])||CT[j])
+    If (KeySize==256) Key[i+1]=Key[i] XOR (CT[j-1]||CT[j])
     IV[i+1] = CT[j]
     PT[0] = CT[j-1]
 }
@@ -1068,25 +1143,25 @@ The evaluator shall test the encrypt functionality for each selected key size us
 The evaluator shall supply a single 3-tuple of pseudo-random values for selected key size. This 3-tuple of plaintext, IV, and key is provided as input to the below algorithm to generate the remaining 99 3-tuples, and to run each 3-tuple through 1000 iterations of LEA-CFB encryption.
 
 ....
-Key[0] = Key, IV[0] = IV, PT[0] = PT
-for i = 0 to 99  {
-    Output Key[i], IV[i], PT[0]
-    for j = 0 to 999 {
-        if (j == 0) {
-            CT[j] = PT[j] xor LEA-CFB-Encrypt(Key[i], IV[i])
-            PT[j+1] = IV[i]
-        } else {
-            CT[j] = PT[j] xor LEA-CFB-Encrypt(Key[i], CT[j-1])
-            PT[j+1] = CT[j-1]
-        }
-    }
-    Output CT[j]
-    If(KeySize==128) Key[i+1] = Key[i] xor CT[j]
-    If(KeySize==192) Key[i+1] = Key[i] xor (last 64 bits of CT[j-1]||CT[j])
-    If(KeySize==256) Key[i+1] = Key[i] xor (CT[j-1]||CT[j])
-    IV[i+1] = CT[j]
-    PT[0] = CT[j-1]
-}
+Key[0] = KEY, IV[0] = IV, PT[0] = PT
+   For i = 0 to 99 {
+       Output Key[i], IV[i], PT[0]
+       For j = 0 to 999 {
+           If ( j=0 ) {
+               CT[j] = LEA_CFB_ENCRYPT(Key[i], IV[i], PT[j])
+               PT[j+1] = IV[i]
+           } else {
+               CT[j] = LEA_CFB_ENCRYPT(Key[i], PT[j])
+               PT[j+1] = CT[j-1]
+           }
+       }
+       Output CT[j]
+       If (KeySize==128) Key[i+1]=Key[i] XOR CT[j]
+       If (KeySize==192) Key[i+1]=Key[i] XOR ((last 64 bits of CT[j-1])||CT[j])
+       If (KeySize==256) Key[i+1]=Key[i] XOR (CT[j-1]||CT[j])
+       IV[i+1] = CT[j]
+       PT[0] = CT[j-1]
+   }
 ....
 
 The ciphertext computed in the 1000th iteration (CT[999]) is the result for each of the 100 3-tuples for each selected key size. This result shall be compared to the result of running 1000 iterations with the same values using a known good implementation.
@@ -1112,27 +1187,27 @@ The evaluator shall test the encrypt functionality for each selected key size us
 The evaluator shall supply a single 3-tuple of pseudo-random values for 128-bits key. This 3-tuple of plaintext, IV, and key is provided as input to the below algorithm to generate the remaining 99 3-tuples, and to run each 3-tuple through 1000 iterations of LEA-OFB encryption.
 
 ....
-Key[0] = Key, IV[0] = IV, PT[0] = PT
-for i = 0 to 99  {
-    Output Key[i], IV[i], PT[0]
-    for j = 0 to 999 {
-        if (j == 0) {
-            OT[j] = LEA-OFB-Encrypt(Key[i], IV[i])
-            CT[j] = PT[j] xor OT[j]
-            PT[j+1] = IV[i]
-        } else {
-            OT[j] = LEA-OFB-Encrypt(Key[i], OT[j-1])
-            CT[j] = PT[j] xor OT[j]
-            PT[j+1] = CT[j-1]
-        }
+Key[0] = KEY, IV[0] = IV, PT[0] = PT
+   For i = 0 to 99 {
+       Output Key[i], IV[i], PT[0]
+       For j = 0 to 999 {
+           If ( j=0 ) {
+               OT[j] = LEA_ENCRYPT(Key[i], IV[i])
+               CT[j] = PT[j] XOR OT[j]
+               PT[j+1] = IV[i]
+           } else {
+               OT[j] = LEA_ENCRYPT(Key[i], OT[j-1])
+               CT[j] = PT[j] XOR OT[j]
+               PT[j+1] = CT[j-1]
+           }
+       }
+       Output CT[j]
+       If (KeySize==128) Key[i+1]=Key[i] XOR CT[j]
+       If (KeySize==192) Key[i+1]=Key[i] XOR ((last 64 bits of CT[j-1])||CT[j])
+       If (KeySize==256) Key[i+1]=Key[i] XOR (CT[j-1]||CT[j])
+       IV[i+1] = CT[j]
+       PT[0] = CT[j-1] 
     }
-    Output CT[j]
-    If(KeySize==128) Key[i+1] = Key[i] xor CT[j]
-    If(KeySize==192) Key[i+1] = Key[i] xor (last 64 bits of CT[j-1]||CT[j])
-    If(KeySize==256) Key[i+1] = Key[i] xor (CT[j-1]||CT[j])
-    IV[i+1] = CT[j]
-    PT[0] = CT[j-1]
-}
 ....
 
 The ciphertext computed in the 1000th iteration (CT[999]) is the result for each of the 100 3-tuples for each selected key size. This result shall be compared to the result of running 1000 iterations with the same values using a known good implementation.
@@ -1158,20 +1233,20 @@ The evaluator shall test the encrypt functionality for each selected key size us
 The evaluator shall supply a single 3-tuple of pseudo-random values for 128-bits key. This 3-tuple of plaintext, counter, and key is provided as input to the below algorithm to generate the remaining 99 3-tuples, and to run each 3-tuple through 1000 iterations of SEED-CFB encryption.
 
 ....
-Key[0] = Key, CTR[0] = CTR, PT[0] = PT
-for i = 0 to 99  {
-    Output Key[i], CTR[i], PT[0]
-    for j = 0 to 999 {
-        CT[j] = PT[j] xor SEED-CTR-Encrypt(Key[i], CTR[0])
-        CTR[0] = (CTR[0] + 1) mod 2^128
-        PT[j+1] = CT[j]
-    }
-    Output CT[j]
-    If(KeySize==128) Key[i+1] = Key[i] xor CT[j]
-    If(KeySize==192) Key[i+1] = Key[i] xor (last 64 bits of CT[j-1]||CT[j])
-    If(KeySize==256) Key[i+1] = Key[i] xor (CT[j-1]||CT[j])
-    PT[0] = CT[j-1]
-}
+Key[0] = KEY, CTR[0] = CTR, PT[0] = PT
+   For i = 0 to 99 {
+       Output Key[i], CTR[0], PT[0]
+       For j = 0 to 999 {
+           CT[j] = PT[j] XOR LEA_ENCRYPT(Key[i], CTR[0])
+           CTR[0] = (CTR[0] + 1) MOD 2^128
+           PT[j+1] = CT[j]
+       }
+       Output CT[j]
+       If (KeySize==128) Key[i+1]=Key[i] XOR CT[j]
+       If (KeySize==192) Key[i+1]=Key[i] XOR ((last 64 bits of CT[j-1])||CT[j])
+       If (KeySize==256) Key[i+1]=Key[i] XOR (CT[j-1]||CT[j])
+       PT[0] = CT[j]
+   }
 ....
 
 The ciphertext computed in the 1000th iteration (CT[999]) is the result for each of the 100 3-tuples for each selected key size. This result shall be compared to the result of running 1000 iterations with the same values using a known good implementation.
@@ -1211,6 +1286,8 @@ For each supported key size and nonce length, and any supported associated data 
 *_Variable Tag Test_*
 
 For each supported key size and tag length, and any supported associated data length, payload length, and nonce length, the evaluator shall supply one key value, one nonce value, and 10 pairs of associated data and payload values, and obtain the resulting ciphertext.
+
+For each claimed key size, and for each supported tag size from 32 through 128 bits in increments of 16 bits, the TOE must be tested by encrypting 10 test cases using all random data.
 
 *_Decryption-Verification Process Test_*
 
@@ -2174,9 +2251,9 @@ The TSS may refer to the KMD, described in Appendix F of <<HCDcPP>>, that may no
 
 The evaluator shall examine the TOE summary specification to verify that it describes how the TOE obtains a key based on input from a random bit generator as specified in FCS_RBG_EXT.1. The evaluator shall review the TOE summary specification to verify that it describes how the functionality described by FCS_RBG_EXT.1 is invoked.
 
-If the TOE uses the generated key in a key chain/hierarchy, then the evaluator shall examine the TOE summary specification to confirm that it describes the followings:
+If the TOE uses the generated key in a key chain/hierarchy, then the evaluator shall examine the TOE summary specification to confirm that it describes the following:
 
-. if KCDSA is selected, then the TOE summary specification describes which methods for generating p and q are used, and
+. If KCDSA is selected, the evaluator shall verify that the TSS specify the methods used to generate p, q and g, and
 . how the key is used as part of the key chain/hierarchy
 
 ===== Guidance Documentation
@@ -2320,8 +2397,8 @@ and two ways to generate the cryptographic group generator g:
 
 The Key generation specifies 2 ways to generate the private key x: Private Key:
 
-* len(q) bit output of RBG where 1 \<=x \<= q-1
-* len(q) + 64 bit output of RBG, followed by a mod q-1 operation and +1 operation where 1\<= x\<=q-1.
+* len(q) bit output of RBG where 2^(len(q)-1)<x<q
+* len(q) + 64 bit output of RBG, followed by a mod q-1 operation and +1 operation where 0< x<q..
 
 To test the key generation method for the Probable primes method and Provable primes method, the evaluator must seed the TSF key generation routine with sufficient data to deterministically generate the KCDSA key pair.
 
@@ -2329,14 +2406,15 @@ For each key length supported, the evaluator shall have the TSF generate 10 key 
 
 If the TOE generates Random Probable Primes then if possible, the Random Probable primes method should also be verified against a known good implementation as described above. If verification against a known good implementation is not possible, the evaluator shall have the TSF generate 25 key pairs for each supported key length and verify that all of the following are true:
 
-. 2\^(len(p)-1)<p<2^(len(p))
-. 2\^(len(q)-1)<p<2^(len(q))
+. 2^(len(p)-1)<p<2^(len(p))
+. 2^(len(q)-1)<q<2^(len(q))
 . q divides p-1
-. 1<g<p-1
-. g^((p-1)/q) mod p>1
-. 0<x<q
-. g^q mod p =1
-. g^x mod p=y.
+. 1<g<p 
+. g^q mod p = 1 
+. 0<x<q 
+
+. g^x' mod p = y, where x' = x^-1 mod q
+
 
 *Key Generation for EC-KCDSA*
 
@@ -2346,7 +2424,7 @@ For each selected curve, and for each key pair generation method as described in
 
 *_Public Key Validation (PKV) Test_*
 
-For each supported curve, the evaluator shall generate 10 private/public key pairs using the key generation function of a known good implementation and modify some public key values so that they are incorrect, leaving values unchanged (i.e., correct). To determine correctness, the evaluator shall submit the 10 key pairs to the public key validation (PKV) function of the TOE and shall confirm that the results correspond as expected to the modified and unmodified values.
+For each supported curve, the evaluator shall generate 10 private/public key pairs using the key generation function of a known good implementation and modify some public key values so that they are incorrect, leaving the other key values unchanged (i.e., correct). To determine correctness, the evaluator shall submit the 10 key pairs to the public key validation (PKV) function of the TOE and shall confirm that the results correspond as expected to the modified and unmodified values.
 
 *Key Generation for ML-KEM*
 
@@ -3027,6 +3105,8 @@ The evaluator shall test the authenticated-encryption functionality of SEED-KWP 
 .. Four lengths that are multiple of 8 bits
 .. The largest supported length less than or equal to 4096 bits.
 
+For each set of the above parameters the evaluator shall generate a set of 100 key and plaintext pairs and obtain the ciphertext that results from SEED-KWP authenticated encryption. To determine correctness, the evaluator shall compare the results with those obtained from the SEED-KWP authenticated-encryption function of a known good implementation.
+
 The evaluator shall test the authenticated-decryption (KWP-AD) functionality of SEED-KWP using the same test as for authenticated-encryption, replacing plaintext values with ciphertext values and SEED-KWP authenticated-encryption with SEED-KWP authenticated-decryption. For the authenticated-decryption test, 20 out of the 100 trials per plaintext length must have ciphertext values that are not authentic; that is, they fail authentication.
 
 Additionally, the evaluator shall perform the following negative tests:
@@ -3047,10 +3127,13 @@ Test that the implementation detects invalid ICV2 values by encrypting any plain
 
 Generate one ciphertext using algorithm KWP-AE with substring `[len(P)/8]`~32~ of S replaced by each of the following 32-bit values, where `len(P)` is the length of P in bits and `[]`~32~ denotes representation of an integer in 32 bits:
 
-∙ `[0]`~32~ +
-∙ `[len(P)/8--8]`~32~ +
-∙ `[len(P)/8+8]`~32~ +
-∙ `[513]`~32~ +
+. `[0]`~32~
+
+. `[len(P)/8--8]`~32~
+
+. `[len(P)/8+8]`~32~
+
+. `[513]`~32~
 
 Verify that the implementation of KWP-AD in the TOE outputs FAIL on those inputs.
 
@@ -3077,11 +3160,109 @@ Refer to FCS_COP.1/StorageEncryption for the required SEED-CCM testing. Each dis
 
 *LEA-KW [SP 800-38F, sec. 6.2]*
 
-Refer to SEED-KW [SP 800-38F, sec. 6.2] for the required LEA-KW testing. The evaluator shall test the authenticated encryption functionality using the same test as SEED-KW Tests, replacing SEED algorithm with LEA algorithm as PRF. In the LEA-KW testing, supported key lengths should be selected in the ST (e.g., 128bits, 192bits, 256bits).
+Refer to SEED-KW [SP 800-38F, sec. 6.2] for the required LEA-KW testing. The evaluator shall perform the Algorithm Functional Tests and Additional Negative Tests of LEA-KW for each combination of the following input parameters:
+
+1.	All supported and selected key sizes (e.g., 128, 192, 256 bits).
+2.	Five plaintext lengths:
+a.	Two lengths that are non-zero multiples of 128 bits (two semi-block lengths)
+b.	Two lengths that are odd multiples of the semi-block length (64 bits)
+c.	The largest supported plaintext length less than or equal to 4096 bits.
+
+For each set of the above parameters the evaluator shall generate a set of 100 key and plaintext pairs and obtain the ciphertext that results from LEA-KW authenticated encryption. To determine correctness, the evaluator shall compare the results with those obtained from the LEA-KW authenticated-encryption function of a known good implementation.
+
+The evaluator shall test the authenticated-decryption functionality of LEA-KW using the same test as for authenticated-encryption, replacing plaintext values with ciphertext values and LEA-KW authenticated-encryption (KW-AE) with LEA-KW authenticated-decryption (KW-AD). For the authenticated-decryption test, 20 out of the 100 trials per plaintext length must have ciphertext values that are not authentic; that is, they fail authentication
+
+Additionally, the evaluator shall perform the following negative tests:
+	
+[.underline]#Test 1 (Invalid Ciphertext Length Test)#
+	
+Determine the valid ciphertext lengths of the implementation from the TOE specification. Verify that the implementation of KW-AD in the TOE rejects ciphertexts of invalid length by testing ciphertext of the following lengths:
+
+1.	Plaintext length greater than 64 semi-blocks
+2.	Plaintext bit-length not divisible by 64
+3.	Plaintext with length 0, and 4) plaintext with one semi-block.
+
+[.underline]#Test 2 (Invalid Ciphertext Length Test)#
+
+Determine the valid ciphertext lengths of the implementation from the TOE specification. Verify that the implementation of KW-AD in the TOE rejects ciphertexts of invalid length by testing ciphertext of the following lengths:
+
+1.	Ciphertext with length greater than 65 semi-blocks
+2.	Ciphertext with bit-length not divisible by 64
+3.	Ciphertext with length 0
+4.	Ciphertext with length of one semi-block
+5.	Ciphertext with length of two semi-blocks
+
+[.underline]#Test 3 (Invalid ICV1 Test)#
+
+Test that the implementation detects invalid ICV1 values by encrypting any plaintext value eight times using a different value for ICV1 each time as follows: 
+
+1.	Start with a base ICV1 of 0xA6A6A6A6A6A6A6A6
+2.	For each of the eight tests change a different byte to a different value, so that each of the eight bytes is changed once
+
+Verify that the implementation of KW-AD in the TOE outputs FAIL for each test.
 
 *LEA-KWP [SP 800-38F, sec. 6.3]*
 
-Refer to SEED-KWP [SP 800-38F, sec. 6.3] for the required LEA-KWP testing. The evaluator shall test the authenticated encryption functionality using the same test as SEED-KWP Tests, replacing SEED algorithm with LEA algorithm as PRF. In the LEA-KWP testing, supported key lengths should be selected in the ST (e.g., 128bits, 192bits, 256bits).
+Refer to SEED-KW [SP 800-38F, sec. 6.3] for the required LEA-KWP testing. The evaluator shall perform the Algorithm Functional Tests and Additional Negative Tests of LEA-KWP for each combination of the following input parameters:
+
+1.	All supported and selected key sizes (e.g., 128, 192, 256 bits).
+2.	Five plaintext lengths:
+a.	Four lengths that are multiple of 8 bits
+b.	The largest supported length less than or equal to 4096 bits
+
+For each set of the above parameters the evaluator shall generate a set of 100 key and plaintext pairs and obtain the ciphertext that results from LEA-KWP authenticated encryption. To determine correctness, the evaluator shall compare the results with those obtained from the LEA-KWP authenticated-encryption function of a known good implementation.
+
+The evaluator shall test the authenticated-decryption (KWP-AD) functionality of LEA-KWP using the same test as for authenticated-encryption, replacing plaintext values with ciphertext values and LEA-KWP authenticated-encryption with LEA-KWP authenticated-decryption. For the authenticated-decryption test, 20 out of the 100 trials per plaintext length must have ciphertext values that are not authentic; that is, they fail authentication.
+
+Additionally, the evaluator shall perform the following negative tests:
+	
+[.underline]#Test 1 (Invalid Plaintext Length Test)#
+	
+Determine the valid plaintext lengths of the implementation from the TOE specification. Verify that the implementation of KWP-AE in the TOE rejects plaintexts of invalid length by testing plaintext of the following lengths:
+
+1.	Plaintext length greater than 64 semi-blocks
+2.	Plaintext bit-length not divisible by 8, 3) plaintext with length 0
+
+[.underline]#Test 2 (Invalid Ciphertext Length Test)#
+
+Determine the valid ciphertext lengths of the implementation from the TOE specification. Verify that the implementation of KWP-AD in the TOE rejects ciphertexts of invalid length by testing ciphertext of the following lengths:
+
+1.	Ciphertext with length greater than 65 semi-blocks
+2.	Ciphertext with bit-length not divisible by 64
+3.	Ciphertext with length 0, 4) ciphertext with length of one semi-block.
+
+[.underline]#Test 3 (Invalid ICV2 Test)#
+
+Test that the implementation detects invalid ICV2 values by encrypting any plaintext value eight times using a different value for ICV2 each time as follows:
+
+1.	Start with a base ICV2 of 0xA65959A6
+2.	For each of the four tests change a different byte to a different value, so that each of the four bytes is changed once
+3.	Verify that the implementation of KWP-AD in the TOE outputs FAIL for each test.
+
+[.underline]#Test 4 (Invalid Padding Length Test)#
+
+Generate one ciphertext using algorithm KWP-AE with substring `[len(P)/8]`~32~ of S replaced by each of the following 32-bit values, where len(P) is the length of P in bits and `[]`~32~ denotes representation of an integer in 32 bits: 
+
+. `[0]`~32~
+
+. `[len(P)/8-8]`~32~
+
+. `[len(P)/8+8]`~32~
+
+. `[513]`~32~
+
+Verify that the implementation of KWP-AD in the TOE outputs FAIL on those inputs.
+
+[.underline]#Test 5 (Invalid Padding Bits Test)#
+
+If the implementation supports plaintext of length not a multiple of 64-bits, then
+
+1. For each PAD length [1-7]
+   * For each byte in PAD
+   ** Set a zero PAD value;
+   ** Replace current byte by a non-zero value and use the resulting plaintext as input to algorithm KWP-AE to generate ciphertexts;
+   ** Verify that the implementation of KWP-AD in the TOE outputs FAIL on this input
+
 
 *LEA-GCM [ISO 19772, clause 11]*
 
