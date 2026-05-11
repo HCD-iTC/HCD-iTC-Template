@@ -36,7 +36,7 @@ This collaborative Protection Profile (cPP) was developed by the {iTC-longname} 
 | 1.0 | 31 October 2022 | Initial release for use
 | 1.0e | 4 March 2024 | Errata version
 | 1.1 | 29 December 2025 | CC:2022 update
-| 1.2-pre.1 | 28 April 2026 | Draft v1.2
+| 2.0-pre.1 | 8 May 2026 | Working Draft v2.0
 
 |===
 
@@ -2791,9 +2791,10 @@ If HTTPS is selected in FTP_ITC.1, FTP_TRP.1/Admin and/or FTP_TRP.1/NonAdmin the
 No other components. +
 
 *Dependencies:* +
-  FCS_RBG_EXT.1 Random Bit Generation +
-	FTP_ITC.1 or FCS_CKM.1/AKG +
-	FCS_CKM.6 Timing and event of cryptographic key destruction
+FCS_RBG_EXT.1 Random Bit Generation, +
+FCS_COP.1/Hash, +
+FTP_ITC.1 or FCS_CKM.1/AKG, +
+FCS_CKM.6 Timing and event of cryptographic key destruction
 ======
 
 
@@ -2994,10 +2995,10 @@ The SFRs in this section are to be incorporated in the ST to support the optiona
 ======
 (for O.STORAGE_ENCRYPTION, O.STRONG_CRYPTO) +
 *Hierarchical to:* +
-	No other components +
+No other components +
 
 *Dependencies:* +
-	FCS_COP.1/CMAC Cryptographic Operation (for cipher-based message authentication)
+FCS_COP.1/KeyedHash Cryptographic Operation (Keyed Hash Algorithm)
 ======
 
 *FCS_PCC_EXT.1.1* A password used by the TSF to generate a password authorization factor shall enable up to [assignment: _positive integer of 64 or more_] characters in the set of {upper case characters, lower case characters, numbers, and [assignment: _other supported special characters_]} and shall perform Password-based Key Derivation Functions in accordance with a specified cryptographic algorithm [HMAC-[selection: _SHA-256, SHA-384, SHA-512_]], with [assignment: _positive integer of 1000 or more_] iterations, and output cryptographic key sizes [selection: _128, 256, 384, 512_] bits that meet the following: [*NIST SP 800-132*].
@@ -4001,10 +4002,10 @@ There are no auditable events foreseen.
 ===== FCS_PCC_EXT.1 Extended: Cryptographic Password Construction and Conditioning
 ======
 *Hierarchical to:* +
-	No other components
+No other components
 
 *Dependencies:* +
-	FCS_COP.1/CMAC Cryptographic Operation (for cipher-based message authentication)
+FCS_COP.1/KeyedHash Cryptographic Operation (Keyed Hash Algorithm)
 ======
 
 FCS_PCC_EXT.1.1 A password used by the TSF to generate a password authorization factor shall enable up to [assignment: _positive integer of 64 or more_] characters in the set of {upper case characters, lower case characters, numbers, and [assignment: _other supported special characters_]} and shall perform Password-based Key Derivation Functions in accordance with a specified cryptographic algorithm [_HMAC_-[selection: _SHA-256, SHA-384, SHA-512_]], with [assignment: _positive integer of 1000 or more_] iterations, and output cryptographic key sizes [selection: _128, 256, 384, 512_] bits that meet the following: [assignment: _list of standards_].
