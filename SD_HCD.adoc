@@ -7,8 +7,8 @@
 :table-caption: Table
 :imagesdir: images
 :icons: font
-:revnumber: 1.1
-:revdate: 29 December 2025
+:revnumber: 2.0-pre.1
+:revdate: 10 May 2026
 :xrefstyle: full
 
 :iTC-longname: Hardcopy Devices
@@ -18,8 +18,8 @@
 :iTC-GitHub: https://github.com/HCD-iTC
 :pp-name: collaborative Protection Profile for Hardcopy Devices
 :pp-shortname: HCDcPP
-:pp-version: 1.1
-:pp-date: 29 December 2025
+:pp-version: 2.0-pre.1
+:pp-date: 10 May 2026
 
 == Foreword
 
@@ -41,6 +41,7 @@ Hardcopy Device International Technical Community (HCD-iTC)
 | 1.0  | 31 October 2022 | Initial release for use
 | 1.0e | 4 March 2024 | Errata version.
 | 1.1  | 29 December 2025 | CC:2022 update
+| 2.0-pre.1  | 10 May 2026 | Draft 2.0
 |===
 
 === General Purpose
@@ -765,10 +766,10 @@ for i = 0 to 99  {
     Output Key[i], IV[i], PT[0]
     for j = 0 to 999 {
         if (j == 0) {
-            CT[j] = PT[j] xor SEED-CFB-Encrypt(Key[i], IV[i])
+            CT[j] = SEED_CFB_ENCRYPT(Key[i], IV[i], PT[j])
             PT[j+1] = IV[i]
         } else {
-            CT[j] = PT[j] xor SEED-CFB-Encrypt(Key[i], CT[j-1])
+            CT[j] = SEED_CFB_ENCRYPT(Key[i], PT[j])
             PT[j+1] = CT[j-1]
         }
     }
@@ -848,15 +849,15 @@ The evaluator shall supply a single 3-tuple of pseudo-random values for 128-bits
 ....
 Key[0] = Key, CTR[0] = CTR, PT[0] = PT
 for i = 0 to 99  {
-    Output Key[i], CTR[i], PT[0]
+    Output Key[i], CTR[0], PT[0]
     for j = 0 to 999 {
-        CT[j] = PT[j] xor SEED-CTR-Encrypt(Key[i], CTR[0])
+        CT[j] = PT[j] XOR SEED-Encrypt(Key[i], CTR[0])
         CTR[0] = (CTR[0] + 1) mod 2^128
         PT[j+1] = CT[j]
     }
     Output CT[j]
     Key[i+1] = Key[i] xor CT[j]
-    PT[0] = CT[j-1]
+    PT[0] = CT[j]
 }
 ....
 
@@ -952,7 +953,33 @@ Refer to SEED-CFB Multi-Block Message Tests for the required HIGHT-CFB testing. 
 
 *_HIGHT-CFB Monte Carlo Tests_*
 
-Refer to SEED-CFB Monte Carlo Tests for the required HIGHT-CFB testing. The evaluator shall test the encrypt functionality using the same test as SEED-CFB Tests, replacing SEED-CFB-Encrypt with HIGHT-CFB-Encrypt.
+The evaluator shall test the encrypt functionality for each selected key size using 100 3-tuples of pseudo-random values for plaintext, IVs, and keys. 
+
+The evaluator shall supply a single 3-tuple of pseudo-random values for 128-bits key. This 3-tuple of plaintext, IV, and key is provided as input to the below algorithm to generate the remaining 99 3-tuples, and to run each 3-tuple through 1000 iterations of HIGHT-CBC encryption.
+
+....
+Key[0] = KEY, IV[0] = IV, PT[0] = PT
+   For i = 0 to 99 {
+       Output Key[i], IV[i], PT[0]
+       For j = 0 to 999 {
+           If ( j=0 ) {
+               CT[j] = HIGHT_CBC_ENCRYPT(Key[i], IV[i], PT[j])
+               PT[j+1] = IV[i]
+           } else {
+               CT[j] = HIGHT_CBC_ENCRYPT(Key[i], PT[j])
+               PT[j+1] = CT[j-1]
+           }
+       }
+       Output CT[j]
+       Key[i+1] = Key[i] xor (CT[j-1]||CT[j])
+       IV[i+1] = CT[j]
+       PT[0] = CT[j-1]
+   }
+....
+
+The ciphertext computed in the 1000th iteration (CT[999]) is the result for each of the 100 3-tuples for a 128-bit key. This result shall be compared to the result of running 1000 iterations with the same values using a known good implementation. 
+
+The evaluator shall test the decrypt functionality using the same test as above, exchanging CT and PT, and replacing HIGHT-CBC-Encrypt with HIGHT-CBC-Decrypt.
 
 *HIGHT-OFB Tests*
 
@@ -968,7 +995,35 @@ Refer to SEED-OFB Multi-Block Message Tests for the required HIGHT-OFB testing. 
 
 *_HIGHT-OFB Monte Carlo Tests_*
 
-Refer to SEED-OFB Monte Carlo Tests for the required HIGHT-OFB testing. The evaluator shall test the encrypt functionality using the same test as SEED-OFB Tests, replacing SEED-OFB-Encrypt with HIGHT-OFB-Encrypt.
+The evaluator shall test the encrypt functionality for each selected key size using 100 3-tuples of pseudo-random values for plaintext, IVs, and keys.  
+
+The evaluator shall supply a single 3-tuple of pseudo-random values for 128-bits key. This 3-tuple of plaintext, IV, and key is provided as input to the below algorithm to generate the remaining 99 3-tuples, and to run each 3-tuple through 1000 iterations of HIGHT-OFB encryption.
+
+....
+Key[0] = KEY, IV[0] = IV, PT[0] = PT
+   For i = 0 to 99 {
+       Output Key[i], IV[i], PT[0]
+       For j = 0 to 999 {
+           If ( j=0 ) {
+               OT[j] = HIGHT_ENCRYPT(Key[i], IV[i])
+               CT[j] = PT[j] XOR OT[j]
+               PT[j+1] = IV[i]
+           } else {
+               OT[j] = HIGHT_ENCRYPT(Key[i], OT[j-1])
+               CT[j] = PT[j] XOR OT[j]
+               PT[j+1] = CT[j-1]
+           }
+       }
+       Output CT[j]
+       Key[i+1] = Key[i] XOR (CT[j-1]||CT[j])
+       IV[i+1] = CT[j]
+       PT[0] = CT[j-1]
+   }
+....
+
+The ciphertext computed in the 1000th iteration (CT[999]) is the result for each of the 100 3-tuples for a 128-bits key. This result shall be compared to the result of running 1000 iterations with the same values using a known good implementation. 
+
+The evaluator shall test the decrypt functionality using the same test as above, exchanging CT and PT, and replacing HIGHT-OFB-Encrypt with HIGHT-OFB-Decrypt.
 
 *HIGHT-CTR Tests*
 
@@ -984,7 +1039,28 @@ Refer to SEED-CTR Multi-Block Message Tests for the required HIGHT-CTR testing. 
 
 *_HIGHT-CTR Monte Carlo Tests_*
 
-Refer to SEED-CTR Monte Carlo Tests for the required HIGHT-CTR testing. The evaluator shall test the encrypt functionality using the same test as SEED-CTR Tests, replacing SEED-CTR-Encrypt with HIGHT-CTR-Encrypt.
+The evaluator shall test the encrypt functionality for each selected key size using 100 3-tuples of pseudo-random values for plaintext, counters, and keys.  
+
+The evaluator shall supply a single 3-tuple of pseudo-random values for 128-bits key. This 3-tuple of plaintext, counter, and key is provided as input to the below algorithm to generate the remaining 99 3-tuples, and to run each 3-tuple through 1000 iterations of HIGHT-CTR encryption.
+
+....
+   Key[0] = KEY, CTR[0] = CTR, PT[0] = PT
+   For i = 0 to 99 {
+       Output Key[i], CTR[0], PT[0]
+       For j = 0 to 999 {
+           CT[j] = PT[j] XOR HIGHT_ENCRYPT(Key[i], CTR[0])
+           CTR[0] = (CTR[0] + 1) MOD 2^128
+           PT[j+1] = CT[j]
+       }
+       Output CT[j]
+       Key[i+1] = Key[i] XOR (CT[j-1]||CT[j])
+       PT[0] = CT[j]
+   }
+....
+
+The ciphertext computed in the 1000th iteration (CT[999]) is the result for each of the 100 3-tuples for a 128-bit key. This result shall be compared to the result of running 1000 iterations with the same values using a known good implementation. 
+
+The evaluator shall test the decrypt functionality using the same test as above, exchanging CT and PT, and replacing HIGHT-CTR-Encrypt with HIGHT-CTR-Decrypt.
 
 *LEA-CBC Tests*
 
@@ -1029,9 +1105,9 @@ for i = 0 to 99  {
         }
     }
     Output CT[j]
-    If(KeySize==128) Key[i+1] = Key[i] xor CT[j]
-    If(KeySize==192) Key[i+1] = Key[i] xor (last 64 bits of CT[j-1]||CT[j])
-    If(KeySize==256) Key[i+1] = Key[i] xor (CT[j-1]||CT[j])
+    If (KeySize==128) Key[i+1] = Key[i] xor CT[j]
+    If (KeySize==192) Key[i+1]=Key[i] XOR ((last 64 bits of CT[j-1])||CT[j])
+    If (KeySize==256) Key[i+1]=Key[i] XOR (CT[j-1]||CT[j])
     IV[i+1] = CT[j]
     PT[0] = CT[j-1]
 }
@@ -1068,25 +1144,25 @@ The evaluator shall test the encrypt functionality for each selected key size us
 The evaluator shall supply a single 3-tuple of pseudo-random values for selected key size. This 3-tuple of plaintext, IV, and key is provided as input to the below algorithm to generate the remaining 99 3-tuples, and to run each 3-tuple through 1000 iterations of LEA-CFB encryption.
 
 ....
-Key[0] = Key, IV[0] = IV, PT[0] = PT
-for i = 0 to 99  {
-    Output Key[i], IV[i], PT[0]
-    for j = 0 to 999 {
-        if (j == 0) {
-            CT[j] = PT[j] xor LEA-CFB-Encrypt(Key[i], IV[i])
-            PT[j+1] = IV[i]
-        } else {
-            CT[j] = PT[j] xor LEA-CFB-Encrypt(Key[i], CT[j-1])
-            PT[j+1] = CT[j-1]
-        }
-    }
-    Output CT[j]
-    If(KeySize==128) Key[i+1] = Key[i] xor CT[j]
-    If(KeySize==192) Key[i+1] = Key[i] xor (last 64 bits of CT[j-1]||CT[j])
-    If(KeySize==256) Key[i+1] = Key[i] xor (CT[j-1]||CT[j])
-    IV[i+1] = CT[j]
-    PT[0] = CT[j-1]
-}
+Key[0] = KEY, IV[0] = IV, PT[0] = PT
+   For i = 0 to 99 {
+       Output Key[i], IV[i], PT[0]
+       For j = 0 to 999 {
+           If ( j=0 ) {
+               CT[j] = LEA_CFB_ENCRYPT(Key[i], IV[i], PT[j])
+               PT[j+1] = IV[i]
+           } else {
+               CT[j] = LEA_CFB_ENCRYPT(Key[i], PT[j])
+               PT[j+1] = CT[j-1]
+           }
+       }
+       Output CT[j]
+       If (KeySize==128) Key[i+1]=Key[i] XOR CT[j]
+       If (KeySize==192) Key[i+1]=Key[i] XOR ((last 64 bits of CT[j-1])||CT[j])
+       If (KeySize==256) Key[i+1]=Key[i] XOR (CT[j-1]||CT[j])
+       IV[i+1] = CT[j]
+       PT[0] = CT[j-1]
+   }
 ....
 
 The ciphertext computed in the 1000th iteration (CT[999]) is the result for each of the 100 3-tuples for each selected key size. This result shall be compared to the result of running 1000 iterations with the same values using a known good implementation.
@@ -1112,27 +1188,27 @@ The evaluator shall test the encrypt functionality for each selected key size us
 The evaluator shall supply a single 3-tuple of pseudo-random values for 128-bits key. This 3-tuple of plaintext, IV, and key is provided as input to the below algorithm to generate the remaining 99 3-tuples, and to run each 3-tuple through 1000 iterations of LEA-OFB encryption.
 
 ....
-Key[0] = Key, IV[0] = IV, PT[0] = PT
-for i = 0 to 99  {
-    Output Key[i], IV[i], PT[0]
-    for j = 0 to 999 {
-        if (j == 0) {
-            OT[j] = LEA-OFB-Encrypt(Key[i], IV[i])
-            CT[j] = PT[j] xor OT[j]
-            PT[j+1] = IV[i]
-        } else {
-            OT[j] = LEA-OFB-Encrypt(Key[i], OT[j-1])
-            CT[j] = PT[j] xor OT[j]
-            PT[j+1] = CT[j-1]
-        }
+Key[0] = KEY, IV[0] = IV, PT[0] = PT
+   For i = 0 to 99 {
+       Output Key[i], IV[i], PT[0]
+       For j = 0 to 999 {
+           If ( j=0 ) {
+               OT[j] = LEA_ENCRYPT(Key[i], IV[i])
+               CT[j] = PT[j] XOR OT[j]
+               PT[j+1] = IV[i]
+           } else {
+               OT[j] = LEA_ENCRYPT(Key[i], OT[j-1])
+               CT[j] = PT[j] XOR OT[j]
+               PT[j+1] = CT[j-1]
+           }
+       }
+       Output CT[j]
+       If (KeySize==128) Key[i+1]=Key[i] XOR CT[j]
+       If (KeySize==192) Key[i+1]=Key[i] XOR ((last 64 bits of CT[j-1])||CT[j])
+       If (KeySize==256) Key[i+1]=Key[i] XOR (CT[j-1]||CT[j])
+       IV[i+1] = CT[j]
+       PT[0] = CT[j-1] 
     }
-    Output CT[j]
-    If(KeySize==128) Key[i+1] = Key[i] xor CT[j]
-    If(KeySize==192) Key[i+1] = Key[i] xor (last 64 bits of CT[j-1]||CT[j])
-    If(KeySize==256) Key[i+1] = Key[i] xor (CT[j-1]||CT[j])
-    IV[i+1] = CT[j]
-    PT[0] = CT[j-1]
-}
 ....
 
 The ciphertext computed in the 1000th iteration (CT[999]) is the result for each of the 100 3-tuples for each selected key size. This result shall be compared to the result of running 1000 iterations with the same values using a known good implementation.
@@ -1158,20 +1234,20 @@ The evaluator shall test the encrypt functionality for each selected key size us
 The evaluator shall supply a single 3-tuple of pseudo-random values for 128-bits key. This 3-tuple of plaintext, counter, and key is provided as input to the below algorithm to generate the remaining 99 3-tuples, and to run each 3-tuple through 1000 iterations of SEED-CFB encryption.
 
 ....
-Key[0] = Key, CTR[0] = CTR, PT[0] = PT
-for i = 0 to 99  {
-    Output Key[i], CTR[i], PT[0]
-    for j = 0 to 999 {
-        CT[j] = PT[j] xor SEED-CTR-Encrypt(Key[i], CTR[0])
-        CTR[0] = (CTR[0] + 1) mod 2^128
-        PT[j+1] = CT[j]
-    }
-    Output CT[j]
-    If(KeySize==128) Key[i+1] = Key[i] xor CT[j]
-    If(KeySize==192) Key[i+1] = Key[i] xor (last 64 bits of CT[j-1]||CT[j])
-    If(KeySize==256) Key[i+1] = Key[i] xor (CT[j-1]||CT[j])
-    PT[0] = CT[j-1]
-}
+Key[0] = KEY, CTR[0] = CTR, PT[0] = PT
+   For i = 0 to 99 {
+       Output Key[i], CTR[0], PT[0]
+       For j = 0 to 999 {
+           CT[j] = PT[j] XOR LEA_ENCRYPT(Key[i], CTR[0])
+           CTR[0] = (CTR[0] + 1) MOD 2^128
+           PT[j+1] = CT[j]
+       }
+       Output CT[j]
+       If (KeySize==128) Key[i+1]=Key[i] XOR CT[j]
+       If (KeySize==192) Key[i+1]=Key[i] XOR ((last 64 bits of CT[j-1])||CT[j])
+       If (KeySize==256) Key[i+1]=Key[i] XOR (CT[j-1]||CT[j])
+       PT[0] = CT[j]
+   }
 ....
 
 The ciphertext computed in the 1000th iteration (CT[999]) is the result for each of the 100 3-tuples for each selected key size. This result shall be compared to the result of running 1000 iterations with the same values using a known good implementation.
@@ -1211,6 +1287,8 @@ For each supported key size and nonce length, and any supported associated data 
 *_Variable Tag Test_*
 
 For each supported key size and tag length, and any supported associated data length, payload length, and nonce length, the evaluator shall supply one key value, one nonce value, and 10 pairs of associated data and payload values, and obtain the resulting ciphertext.
+
+For each claimed key size, and for each supported tag size from 32 through 128 bits in increments of 16 bits, the TOE must be tested by encrypting 10 test cases using all random data.
 
 *_Decryption-Verification Process Test_*
 
@@ -1329,6 +1407,168 @@ For each supported NIST curve (i.e., P-224/P-256, B-233/B-283, K-233/K-283) and 
 *_Signature Verification Test_*
 
 The EC-KCDSA Signature Verification Test tests the ability of the TSF to recognize valid and invalid signatures. The evaluator shall provide a modulus and associated key pair (x, y) for each combination of selected curve, modulus size, and hash size. Each private key (x) is used to sign 15 pseudorandom messages of 1024 bits. For eight of the fifteen messages, the message, IR format, padding, or signature is altered so that signature verification should fail. The test passes only if all the signatures made using unaltered parameters result in successful signature verification, and all the signatures made using altered parameters result in unsuccessful signature verification.
+
+*ML-DSA Signature Generation*
+
+To test the TOE’s ability to generate digital signatures using ML-DSA, the evaluator shall perform the Algorithm Functional Test using the following input parameters:
+
+* Parameter set [ML-DSA-87]
+
+* Seed [32 random bytes] (for non-deterministic signature testing), or
+
+* Seed [32 zero bytes] (for deterministic signature testing)
+
+* Message to sign [8-65535] bytes
+
+* Mu value (if generated externally)
+
+* Previously generated private key (sk)
+
+* Context (for external interface testing)
+
+*_Algorithm Functional Test_*
+
+For each combination of supported parameter set and capabilities, the evaluator shall require the implementation under test to generate 15 signatures pairs using 15 different randomly generated 32-byte seed values. To determine correctness, the evaluator shall compare the resulting key pairs with those generated using a known-good implementation using the same inputs.
+
+*_Known Answer Test for Rejection Cases_*
+
+For each supported parameter set, the evaluator shall cause the TOE to generate signatures using the data below and a deterministic seed of all 0’s. Correctness is determined by comparing the hash of the resulting signature with the hash in the fourth row for each corresponding test case below.
+
+The test values are defined as follows:
+
+* Seed is the seed to generate the key pair (pk, sk)
+* Hash of keys is computed by SHA-256(pk||sk)
+* Message is the message to be signed
+* Hash of sig is computed by SHA-256(sig)
+
+*_ML-DSA-87 Test Cases for Rejection Cases_*
+
+		Test case 87-RC-01
+		Seed: 			E4F5AFCF697E0EC3C1BDEB66FAA903221E803902F9C3F716E1056A63D77DC250
+		Hash of Keys: 	61618E8DDA6998072C8EB36974E03880D741CAF0BD523356DFC161E7C9E63934
+		Message: 		F4F1C05004D5B946F69EAFE104C4020519086ADDB9582A20FDE887D13DFC36B1
+		Hash of sig: 	B584E38FA442FC3C81A147D4BDBF058D73C822CAF5CA4C06B0110867F60A8001
+						
+		Test case 87-RC-02
+		Seed: 			8B828D871254D6C57384A8E7025AA3F7160CAD1D2C754499DF3844426062C3DD
+		Hash of Keys: 	BB64481317D6C0DBAD20C0C7EF11078AD54E5D574F4A07652115A95F77C655FA
+		Message: 		0F9409C5A4930C25B83FC5B77FDB5BB49C75372DE724D9C1A77DB700CF0CF154
+		Hash of sig: 	F86B49BE9DEB2B209BDEB4E922E5939E92D38E562C44BB09AFBD67323C345192
+						
+		Test case 87-RC-03
+		Seed: 			E693D282CACB8CE65FD4D108DA7A373F097F0AA9713550BE242AAD5BD3E2E452
+		Hash of Keys: 	B0BEAF56713A69BD4AB2CBEE006FA5001E7B41F3AE541E05F088933AA0CC78DF
+		Message: 		24DABB9D57ADEBD560ED65D9451C5106D437061708F849BA53F3543CDF9AAAE0
+		Hash of sig: 	DBF65CEFF9F96A74AAF6F3AB27B043231BE6AA04FBA2EEC987A24A00BDD6A08E
+						
+		Test case 87-RC-04
+		Seed: 			4002163EB8EED01A8E0919BA8C07D291341EDCAE25B02B9779A2CFFE50561AF0
+		Hash of Keys: 	FED1BE685C20ECB322FC40D41DEE7E0E98D0409FBF989CAE71B8AD2D58AD645E
+		Message: 		EE316BB5EBED53325B4A55571C60657B53E353B51B831F4A0BBB28107EBA4BA8
+		Hash of sig: 	3BE9B5545FDCED92547B3409C83B3312CCB5792A8EC3A4DA63BA692C79BEF17C
+						
+		Test case 87-RC-05
+		Seed: 			9C7AD524F65854C27E565BCEDF8E86D650F13A40D0448F9AE10C05F10F777120
+		Hash of Keys: 	0EA872CA5A4BEA94F4E8EF7ED31800727899A51059FDEE111E5CB15F0233B534
+		Message: 		CE09831294AA96CAF684B9E667947B021C57B24C138EC7D4DA270694C82F2E08
+		Hash of sig: 	3B9526CEE6587F2418BFE603ADB0F7DF0D69EBA31C9F9F005C60C993945EBD33
+						
+		Test case 87-RC-06
+		Seed: 			2EB7676D4A28700DA7772A7A035EB495CAA6F842352A74824EF5FD891BC38B2A
+		Hash of Keys: 	D5B73703A1DDC5BCB0D14AE39B193A25D6ADA6535827973181ADB0BE70435A5B
+		Message: 		C2B3A0AC483A5517682285C205974B2A506946448A8F7D3E1934C155EFDFE922
+		Hash of sig: 	375D598704B722C8A1FEF1626FD7738A532C06329AA4217357460E3B729660F8
+						
+		Test case 87-RC-07
+		Seed: 			E4E80CCE8B26DF1B02B99949851EE2F907FE4F0CC34790352C76D5D91634D073
+		Hash of Keys: 	84B7E61684A12698400B09EA332EA3C4FBCFA47FE37FD6AE725CBC5FA8A99D3F
+		Message: 		89E6AB43C9CB1CC59C3986D53217A558357E62102A26F666F2B64CD1DBB7A536
+		Hash of sig: 	7C4AABD163CAEF8F6EBFDA3E3EEBC0A9604675B0E991ABAFD284F1AE8BA07B2A
+						
+		Test case 87-RC-08
+		Seed: 			5787262B803499223D4E5A8C1EE572E89F7A69B359B3F8505355B0BDEAB95E5C
+		Hash of Keys: 	85AE1DE605A7B479C02730BF4B7DD6D0FD8FFE5C980893CA6DAD00BD8BD1CE68
+		Message: 		D3230C4E061964BBFB17702432D5D36FC1EB3D1068F8CCAA84044776E3B5CC55
+		Hash of sig: 	D3ABE460EE2DD9595F413CFE2780A319E4E4DFD6592995298A7AB0B82A5E2815
+						
+		Test case 87-RC-09
+		Seed: 			CE099B99330537DD153052243FC32ACAD509A126AB982410258858567D410D79
+		Hash of Keys: 	E04A9F15EDF8F078EB336CE624249EF2A8EDF2CDBF6A8276E9F5E92ED9B0BAE8
+		Message: 		0035931762665F561A1B22176567E3B10FDE2441521F77030733A8E39312EEEE
+		Hash of sig: 	3EEF413CB5EB179896ECA172D0DBFB9B251545DC561D61580BD5BBC8B6D734E1
+
+		Test case 87-RC-10
+		Seed: 			FC8F2929878CBD81E1CCC23913F290380120C043A4A8A251AEEBF09705B8E590
+		Hash of Keys: 	7E2ECCA86F532E8E8092FEBB6E0007F92E7909AD2BCBE2E02AB375DAC9969E5E
+		Message: 		D3C28875D2671C0EF23BFDC8869E8ECF8868D3F0561C3134D254F7479D0CE0E5
+		Hash of sig: 	EB69A908EDCC04320A0B61AD57E21B044465F2037698636B64229CF2DB259789
+
+*_Known Answer Test for Large Number of Rejection Cases (Total Rejection Count)_*
+
+For each supported parameter set, the evaluator shall cause the TOE to generate signatures using the data below and a deterministic seed of all 0’s. Correctness is determined by comparing the hash of the resulting signature with the hash in the fourth row of the corresponding test case below.
+
+*_ML-DSA-87 Test Cases for Total Rejection Count_*
+
+
+		Test case 87-LN-01
+		Seed: 			98B6298051D92BF37293C93C97370747BF527B87B71F6C4264182F45155ADE4C
+		Hash of Keys: 	04A135B5C9B7020332C7B16E7108E8FF7FC1EAE1C23C5FA0B5D5CED0FEEE7424
+		Message: 		D7B0341269259083ABF3C8DC47559A19D57669B4486E0224F376DC43E577A3D8
+		Hash of sig: 	58D72D76EC0FB65BFB9893C4479366B79DD7B8B7577E4291D13514FCC76C26DD
+
+		Test case 87-LN-02
+		Seed: 			DFB5BDD90F58571DCA962426C623F13D046BBE814D183886AC90D143EAD725A7
+		Hash of Keys: 	2B6AB8CFCCCC41F759CAF01932E9413F5DC6D949BC827F739866929683FB155E
+		Message: 		21005DB2B583CC826A9684BFFD0EE00AB97E0479FE4A1D266699337540145778
+		Hash of sig: 	C93EA34E00FFFFC3ECEA072D5FB038A83B5539CAF7B831AEDCFA785E50B3CA5E
+
+		Test case 87-LN-03
+		Seed: 			5AD414E0DD0EF2FE685F342871875FDF06F503717A86C3B3466565ADD2096417
+		Hash of Keys: 	BD9C2D52F3FC78DB17E682DA2E78947ECFC0898333838D60C892700B2B0DDA9F
+		Message: 		29139C279816B25F2D6BB52C8247D163544F7BA332C3CF63359B9E23FBC56515
+		Hash of sig:	DB4BE2DE19FB40437BDB7E9B6578D665DB05B4E88C16907DF4546EBA9BE03AEA
+
+		Test case 87-LN-04
+		Seed: 			484DD2F406A4D15F49A91AD5FC3BDC1D0FF253622EB68F83D6E1C870D0E89E29
+		Hash of Keys: 	A719DC9A77C91C46295555C2353BA0CBEA513DA9A92A5C34D2E949EFF46A12D8
+		Message: 		6AD6E959F0EA60126364FB7C95FA71133F246A9265A11B4965EE78AB0CB5AF0E
+		Hash of sig: 	5050D7A665074EC63D9F3966C1F01A1BFB18F9E83AE0B09F838BC1E2342ED6F4
+
+		Test case 87-LN-05
+		Seed: 			B25C1816F82D59940D5CB829BAC364AAD013C4C16415CE1CF6DCC2F15199B391
+		Hash of Keys: 	ADBB2CD43F222640BD9FF4E61C80E63853E8DC1F759C581B7447C9C166EAA38E
+		Message: 		824E47322895BFFE37B6B4AFC41CF6115C07EEC0C24EB81076C87A1B01AE8617
+		Hash of sig: 	667ADA46073BC69D64DC47BB9A76DD0D78302E7415D87D5E816B05FB95F9E84D
+
+		Test case 87-LN-06
+		Seed: 			B2CE72B3560AF07E06465881F56ADA00262BA708D87B73F39E04E310F3B8A3E9
+		Hash of Keys: 	FD9C4AC53AE803242A62DF933B8E8BAD6CE5207AC4A73683B6D9383B5E70B17A
+		Message: 		A1501CC84C917E0D2D7C27C2AC382220BD8FFFE807DB38E37A9E429EC2781911
+		Hash of sig: 	779553B195E11558EE59EF3942F5F6B446A2144600D1F4F50B300C6C56504760
+
+		Test case 87-LN-07
+		Seed: 			AB01D0E591B7DDCD3C03395AED808FA2763C0A486D44119D621BE0FD0B022B25
+		Hash of Keys: 	93B6ADE34F78A4ADB36B2F6D2C51DB793E659E1243E80488AE1C03B65125D6D7
+		Message: 		8DE8122D89D15FE84A4C34F6B59B2C4B11F33B6A053154D199B634F557FDF5F6
+		Hash of sig: 	0483045999A79B583F403DB96A736F0F0B24E2DFBC4E5CFA9B50E3D910786F07
+
+		Test case 87-LN-08
+		Seed: 			15D60D3693762F82C9AC1DCB0576936651AC81D863842EDB91109C8EE83AE705
+		Hash of Keys: 	2DF544E2E939AA717741C2437288FAEB308DEB8FF37A2652FAE34BAE8B84D779
+		Message: 		F05946A6113905C34163AEF2246FD69016CE24A7BA40F8E7E42EDAC2D0A44605
+		Hash of sig: 	F8383917AF79C8E540D2356AB05F08B465BF32DFEC444B787CE31BF48CC6C3DD
+
+		Test case 87-LN-09
+		Seed: 			21212285BED53B3411705DAF5F3BDDB6F0618EB571B36EE11A74053407A269F5
+		Hash of Keys: 	737061155A9A03F11F9FEBBB940BED4DD54542C4A6212F89A5EB4EC2BE542782
+		Message: 		FFE38246BF3DEFD9CAD15CC17CEA511C067D582E04227B479E32F9197CF91482
+		Hash of sig: 	C4C12C58032052FB2D21F0C6A7388A63154FB85B74287D2859DE6C1C6F7F277B
+
+		Test case 87-LN-10
+		Seed: 			A2744470587C71BA43EC26DC390CE3531978F315993C653E5D3EFD2849D5D9F1
+		Hash of Keys: 	B1BF37BFFB11531B6ADD697870D7DB2E2462D0A97A63F09C1D0038457C6D795A
+		Message: 		9831A830231A160B9847203341A5F30BF3E87A2A482AEEA6886315C92B5C4E4C
+		Hash of sig: 	46C669D2FEB643A38E54FF87B790CC33F44043A1B6B31DB9474D301328CA2A7F
 
 ==== FCS_COP.1/Hash Cryptographic Operation (Hash Algorithm)
 
@@ -2012,9 +2252,9 @@ The TSS may refer to the KMD, described in Appendix F of <<HCDcPP>>, that may no
 
 The evaluator shall examine the TOE summary specification to verify that it describes how the TOE obtains a key based on input from a random bit generator as specified in FCS_RBG_EXT.1. The evaluator shall review the TOE summary specification to verify that it describes how the functionality described by FCS_RBG_EXT.1 is invoked.
 
-If the TOE uses the generated key in a key chain/hierarchy, then the evaluator shall examine the TOE summary specification to confirm that it describes the followings:
+If the TOE uses the generated key in a key chain/hierarchy, then the evaluator shall examine the TOE summary specification to confirm that it describes the following:
 
-. if KCDSA is selected, then the TOE summary specification describes which methods for generating p and q are used, and
+. If KCDSA is selected, the evaluator shall verify that the TSS specify the methods used to generate p, q and g, and
 . how the key is used as part of the key chain/hierarchy
 
 ===== Guidance Documentation
@@ -2158,8 +2398,8 @@ and two ways to generate the cryptographic group generator g:
 
 The Key generation specifies 2 ways to generate the private key x: Private Key:
 
-* len(q) bit output of RBG where 1 \<=x \<= q-1
-* len(q) + 64 bit output of RBG, followed by a mod q-1 operation and +1 operation where 1\<= x\<=q-1.
+* len(q) bit output of RBG where 2^(len(q)-1)<x<q
+* len(q) + 64 bit output of RBG, followed by a mod q-1 operation and +1 operation where 0< x<q..
 
 To test the key generation method for the Probable primes method and Provable primes method, the evaluator must seed the TSF key generation routine with sufficient data to deterministically generate the KCDSA key pair.
 
@@ -2167,14 +2407,15 @@ For each key length supported, the evaluator shall have the TSF generate 10 key 
 
 If the TOE generates Random Probable Primes then if possible, the Random Probable primes method should also be verified against a known good implementation as described above. If verification against a known good implementation is not possible, the evaluator shall have the TSF generate 25 key pairs for each supported key length and verify that all of the following are true:
 
-. 2\^(len(p)-1)<p<2^(len(p))
-. 2\^(len(q)-1)<p<2^(len(q))
+. 2^(len(p)-1)<p<2^(len(p))
+. 2^(len(q)-1)<q<2^(len(q))
 . q divides p-1
-. 1<g<p-1
-. g^((p-1)/q) mod p>1
-. 0<x<q
-. g^q mod p =1
-. g^x mod p=y.
+. 1<g<p 
+. g^q mod p = 1 
+. 0<x<q 
+
+. g^x' mod p = y, where x' = x^-1 mod q
+
 
 *Key Generation for EC-KCDSA*
 
@@ -2184,7 +2425,33 @@ For each selected curve, and for each key pair generation method as described in
 
 *_Public Key Validation (PKV) Test_*
 
-For each supported curve, the evaluator shall generate 10 private/public key pairs using the key generation function of a known good implementation and modify some public key values so that they are incorrect, leaving values unchanged (i.e., correct). To determine correctness, the evaluator shall submit the 10 key pairs to the public key validation (PKV) function of the TOE and shall confirm that the results correspond as expected to the modified and unmodified values.
+For each supported curve, the evaluator shall generate 10 private/public key pairs using the key generation function of a known good implementation and modify some public key values so that they are incorrect, leaving the other key values unchanged (i.e., correct). To determine correctness, the evaluator shall submit the 10 key pairs to the public key validation (PKV) function of the TOE and shall confirm that the results correspond as expected to the modified and unmodified values.
+
+*Key Generation for ML-KEM*
+
+To test the TOE’s ability to generate asymmetric cryptographic keys using ML-KEM, the evaluator shall perform the Algorithm Functional Test using the following input parameters:
+
+* Parameter set [ML-KEM-1024]
+
+* Random seed d [32 bytes]
+
+* Random seed z [32 bytes]
+
+_Algorithm Functional Test_
+
+For each supported parameter set the evaluator shall require the implementation under test to generate 25 key pairs using 25 different randomly generated pairs of 32-byte seed values (d, z). To determine correctness, the evaluator shall compare the resulting key pairs (ek, dk) with those generated using a known-good implementation using the same inputs.
+
+*Key Generation for ML-DSA*
+
+To test the TOE’s ability to generate asymmetric cryptographic keys using ML-DSA, the evaluator shall perform the Algorithm Functional Test using the following input parameters:
+
+* Parameter set [ML-DSA-87]
+
+* Random seed [32 bytes]
+
+_Algorithm Functional Test_
+
+For each supported parameter set the evaluator shall require the implementation under test to generate 25 key pairs using 25 different randomly generated 32-byte seed values. To determine correctness, the evaluator shall compare the resulting key pairs with those generated using a known-good implementation using the same inputs.
 
 === Network Communications
 
@@ -2839,6 +3106,8 @@ The evaluator shall test the authenticated-encryption functionality of SEED-KWP 
 .. Four lengths that are multiple of 8 bits
 .. The largest supported length less than or equal to 4096 bits.
 
+For each set of the above parameters the evaluator shall generate a set of 100 key and plaintext pairs and obtain the ciphertext that results from SEED-KWP authenticated encryption. To determine correctness, the evaluator shall compare the results with those obtained from the SEED-KWP authenticated-encryption function of a known good implementation.
+
 The evaluator shall test the authenticated-decryption (KWP-AD) functionality of SEED-KWP using the same test as for authenticated-encryption, replacing plaintext values with ciphertext values and SEED-KWP authenticated-encryption with SEED-KWP authenticated-decryption. For the authenticated-decryption test, 20 out of the 100 trials per plaintext length must have ciphertext values that are not authentic; that is, they fail authentication.
 
 Additionally, the evaluator shall perform the following negative tests:
@@ -2859,10 +3128,13 @@ Test that the implementation detects invalid ICV2 values by encrypting any plain
 
 Generate one ciphertext using algorithm KWP-AE with substring `[len(P)/8]`~32~ of S replaced by each of the following 32-bit values, where `len(P)` is the length of P in bits and `[]`~32~ denotes representation of an integer in 32 bits:
 
-∙ `[0]`~32~ +
-∙ `[len(P)/8--8]`~32~ +
-∙ `[len(P)/8+8]`~32~ +
-∙ `[513]`~32~ +
+. `[0]`~32~
+
+. `[len(P)/8--8]`~32~
+
+. `[len(P)/8+8]`~32~
+
+. `[513]`~32~
 
 Verify that the implementation of KWP-AD in the TOE outputs FAIL on those inputs.
 
@@ -2889,11 +3161,109 @@ Refer to FCS_COP.1/StorageEncryption for the required SEED-CCM testing. Each dis
 
 *LEA-KW [SP 800-38F, sec. 6.2]*
 
-Refer to SEED-KW [SP 800-38F, sec. 6.2] for the required LEA-KW testing. The evaluator shall test the authenticated encryption functionality using the same test as SEED-KW Tests, replacing SEED algorithm with LEA algorithm as PRF. In the LEA-KW testing, supported key lengths should be selected in the ST (e.g., 128bits, 192bits, 256bits).
+Refer to SEED-KW [SP 800-38F, sec. 6.2] for the required LEA-KW testing. The evaluator shall perform the Algorithm Functional Tests and Additional Negative Tests of LEA-KW for each combination of the following input parameters:
+
+1.	All supported and selected key sizes (e.g., 128, 192, 256 bits).
+2.	Five plaintext lengths:
+a.	Two lengths that are non-zero multiples of 128 bits (two semi-block lengths)
+b.	Two lengths that are odd multiples of the semi-block length (64 bits)
+c.	The largest supported plaintext length less than or equal to 4096 bits.
+
+For each set of the above parameters the evaluator shall generate a set of 100 key and plaintext pairs and obtain the ciphertext that results from LEA-KW authenticated encryption. To determine correctness, the evaluator shall compare the results with those obtained from the LEA-KW authenticated-encryption function of a known good implementation.
+
+The evaluator shall test the authenticated-decryption functionality of LEA-KW using the same test as for authenticated-encryption, replacing plaintext values with ciphertext values and LEA-KW authenticated-encryption (KW-AE) with LEA-KW authenticated-decryption (KW-AD). For the authenticated-decryption test, 20 out of the 100 trials per plaintext length must have ciphertext values that are not authentic; that is, they fail authentication
+
+Additionally, the evaluator shall perform the following negative tests:
+	
+[.underline]#Test 1 (Invalid Ciphertext Length Test)#
+	
+Determine the valid ciphertext lengths of the implementation from the TOE specification. Verify that the implementation of KW-AD in the TOE rejects ciphertexts of invalid length by testing ciphertext of the following lengths:
+
+1.	Plaintext length greater than 64 semi-blocks
+2.	Plaintext bit-length not divisible by 64
+3.	Plaintext with length 0, and 4) plaintext with one semi-block.
+
+[.underline]#Test 2 (Invalid Ciphertext Length Test)#
+
+Determine the valid ciphertext lengths of the implementation from the TOE specification. Verify that the implementation of KW-AD in the TOE rejects ciphertexts of invalid length by testing ciphertext of the following lengths:
+
+1.	Ciphertext with length greater than 65 semi-blocks
+2.	Ciphertext with bit-length not divisible by 64
+3.	Ciphertext with length 0
+4.	Ciphertext with length of one semi-block
+5.	Ciphertext with length of two semi-blocks
+
+[.underline]#Test 3 (Invalid ICV1 Test)#
+
+Test that the implementation detects invalid ICV1 values by encrypting any plaintext value eight times using a different value for ICV1 each time as follows: 
+
+1.	Start with a base ICV1 of 0xA6A6A6A6A6A6A6A6
+2.	For each of the eight tests change a different byte to a different value, so that each of the eight bytes is changed once
+
+Verify that the implementation of KW-AD in the TOE outputs FAIL for each test.
 
 *LEA-KWP [SP 800-38F, sec. 6.3]*
 
-Refer to SEED-KWP [SP 800-38F, sec. 6.3] for the required LEA-KWP testing. The evaluator shall test the authenticated encryption functionality using the same test as SEED-KWP Tests, replacing SEED algorithm with LEA algorithm as PRF. In the LEA-KWP testing, supported key lengths should be selected in the ST (e.g., 128bits, 192bits, 256bits).
+Refer to SEED-KW [SP 800-38F, sec. 6.3] for the required LEA-KWP testing. The evaluator shall perform the Algorithm Functional Tests and Additional Negative Tests of LEA-KWP for each combination of the following input parameters:
+
+1.	All supported and selected key sizes (e.g., 128, 192, 256 bits).
+2.	Five plaintext lengths:
+a.	Four lengths that are multiple of 8 bits
+b.	The largest supported length less than or equal to 4096 bits
+
+For each set of the above parameters the evaluator shall generate a set of 100 key and plaintext pairs and obtain the ciphertext that results from LEA-KWP authenticated encryption. To determine correctness, the evaluator shall compare the results with those obtained from the LEA-KWP authenticated-encryption function of a known good implementation.
+
+The evaluator shall test the authenticated-decryption (KWP-AD) functionality of LEA-KWP using the same test as for authenticated-encryption, replacing plaintext values with ciphertext values and LEA-KWP authenticated-encryption with LEA-KWP authenticated-decryption. For the authenticated-decryption test, 20 out of the 100 trials per plaintext length must have ciphertext values that are not authentic; that is, they fail authentication.
+
+Additionally, the evaluator shall perform the following negative tests:
+	
+[.underline]#Test 1 (Invalid Plaintext Length Test)#
+	
+Determine the valid plaintext lengths of the implementation from the TOE specification. Verify that the implementation of KWP-AE in the TOE rejects plaintexts of invalid length by testing plaintext of the following lengths:
+
+1.	Plaintext length greater than 64 semi-blocks
+2.	Plaintext bit-length not divisible by 8, 3) plaintext with length 0
+
+[.underline]#Test 2 (Invalid Ciphertext Length Test)#
+
+Determine the valid ciphertext lengths of the implementation from the TOE specification. Verify that the implementation of KWP-AD in the TOE rejects ciphertexts of invalid length by testing ciphertext of the following lengths:
+
+1.	Ciphertext with length greater than 65 semi-blocks
+2.	Ciphertext with bit-length not divisible by 64
+3.	Ciphertext with length 0, 4) ciphertext with length of one semi-block.
+
+[.underline]#Test 3 (Invalid ICV2 Test)#
+
+Test that the implementation detects invalid ICV2 values by encrypting any plaintext value eight times using a different value for ICV2 each time as follows:
+
+1.	Start with a base ICV2 of 0xA65959A6
+2.	For each of the four tests change a different byte to a different value, so that each of the four bytes is changed once
+3.	Verify that the implementation of KWP-AD in the TOE outputs FAIL for each test.
+
+[.underline]#Test 4 (Invalid Padding Length Test)#
+
+Generate one ciphertext using algorithm KWP-AE with substring `[len(P)/8]`~32~ of S replaced by each of the following 32-bit values, where len(P) is the length of P in bits and `[]`~32~ denotes representation of an integer in 32 bits: 
+
+. `[0]`~32~
+
+. `[len(P)/8-8]`~32~
+
+. `[len(P)/8+8]`~32~
+
+. `[513]`~32~
+
+Verify that the implementation of KWP-AD in the TOE outputs FAIL on those inputs.
+
+[.underline]#Test 5 (Invalid Padding Bits Test)#
+
+If the implementation supports plaintext of length not a multiple of 64-bits, then
+
+1. For each PAD length [1-7]
+   * For each byte in PAD
+   ** Set a zero PAD value;
+   ** Replace current byte by a non-zero value and use the resulting plaintext as input to algorithm KWP-AE to generate ciphertexts;
+   ** Verify that the implementation of KWP-AD in the TOE outputs FAIL on this input
+
 
 *LEA-GCM [ISO 19772, clause 11]*
 
@@ -3446,7 +3816,7 @@ Remark: If multiple contexts are supported for session resumption, for each of t
 
 Test 3 [conditional]: If the TOE supports session tickets according to RFC5077, the evaluator shall carry out the following steps (note that for each of these tests, it is not necessary to perform the test case for each supported version of TLS):
 
-.. The evaluator shall permit a successful TLS handshake to occur in which a session ticket is exchanged with the non-TOE client.  The evaluator shall then attempt to correctly reuse the previous session by sending the session ticket in the ClientHello.  The evaluator shall confirm that the TOE responds with a ServerHello with an empty SessionTicket extension, NewSessionTicket, ChangeCipherSpec and Finished messages (as seen in figure 2 of RFC 5077).
+.. The evaluator shall permit a successful TLS handshake to occur in which a session ticket is exchanged with the non-TOE client. The evaluator shall then attempt to correctly reuse the previous session by sending the session ticket in the ClientHello. The evaluator shall confirm that the TOE responds with an abbreviated handshake described in Section 3.1 of RFC 5077 and illustrated with an example in figure 2. Of particular note: if the server successfully verifies the client’s ticket, then it may renew the ticket by including a NewSessionTicket handshake message after the ServerHello in the abbreviated handshake (which is shown in figure 2). This is not required, however as further clarified in Section 3.3 of RFC 5077. When the session is resumed, the evaluator shall verify on the TLS Client used for performing this test, that the TOE (TLS Server) has not advertised support for the early data extension.
 
 .. The evaluator shall permit a successful TLS handshake to occur in which a session ticket is exchanged with the non-TOE client.  The evaluator will then modify the session ticket and send it as part of a new Client Hello message.  The evaluator shall confirm that the TOE either (1) implicitly rejects the session ticket by performing a full handshake (as shown in figure 3 or 4 of RFC 5077), or (2) terminates the connection in some way that prevents the flow of application data.
 
