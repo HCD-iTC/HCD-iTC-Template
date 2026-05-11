@@ -2080,7 +2080,7 @@ FCS_CKM.1/SKG Cryptographic Key Generation (Symmetric Keys) ] +
 FCS_CKM.6 Timing and event of cryptographic key destruction
 ======
 
-*FCS_COP.1.1/KeyWrap Refinement:* The TSF shall perform [*key wrapping*] in accordance with a specified cryptographic algorithm [selection: *_AES in the following modes [selection: _KW, KWP, GCM, CCM_], SEED in the following modes [selection: Key Wrap, KWP, GCM, CCM], LEA in the following modes [selection: Key Wrap, KWP, GCM, CCM]_]* and the cryptographic key size *[selection: _128 bits (AES, SEED, LEA), 192 bits (AES, LEA), 256 bits (AES, LEA)_]* that meet the following: [selection:
+*FCS_COP.1.1/KeyWrap Refinement:* The TSF shall perform [*key wrapping*] in accordance with a specified cryptographic algorithm [selection: *_AES in the following modes [selection: _KW, KWP, GCM, CCM_], SEED in the following modes [selection: KW, KWP, GCM, CCM], LEA in the following modes [selection: KW, KWP, GCM, CCM]_]* and the cryptographic key size *[selection: _128 bits (AES, SEED, LEA), 192 bits (AES, LEA), 256 bits (AES, LEA)_]* that meet the following: [selection:
 
 Case: AES algorithm
 
@@ -2157,7 +2157,7 @@ No other components.
 
 * RSA in the following modes [selection: _KTS-OAEP, KTS-KEM-KWS_] and the cryptographic key size [selection: _2048 bits, 3072 bits, 4096 bits, 6144 bits, 8192 bits_] that meet the following: [NIST SP 800-56B, Revision 2],
 
-* KEM-DEM Key-Transport Method that meets the following: [NIST SP 800-227 Section 5.2.1] using a key establishment algorithm [ML-KEM] as specified in FCS_CKM.2 and a key wrapping algorithm as specified in FCS_COP.1/KW]
+* KEM-DEM Key-Transport Method that meets the following: [NIST SP 800-227 Section 5.2.1] using a key establishment algorithm [ML-KEM] as specified in FCS_CKM.2 and a key wrapping algorithm as specified in FCS_COP.1/KeyWrap]
 
 ].
 
