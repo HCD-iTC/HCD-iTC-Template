@@ -2805,7 +2805,7 @@ If HTTPS is selected in FTP_ITC.1, FTP_TRP.1/Admin and/or FTP_TRP.1/NonAdmin the
 
 ==== FCS_COP.1/KeyedHash Cryptographic Operation (Keyed Hash Algorithm)
 ======
-(selected with FCS_IPSEC_EXT.1.4, for O.COMMS_PROTECTION, O.STRONG_CRYPTO) +
+(selected with FCS_PCC_EXT.1 for O.STORAGE_ENCRYPTION O.STRONG_CRYPTO, FCS_IPSEC_EXT.1.4 for O.COMMS_PROTECTION, O.STRONG_CRYPTO) +
 *Hierarchical to:* +
 No other components. +
 
@@ -3057,7 +3057,7 @@ _This SFR is conditionally required if the manual entry of a drive encryption pa
 
 ==== FCS_COP.1/CMAC Cryptographic Operation (for cipher-based message authentication)
 ======
-(selected with FCS_PCC_EXT.1, FPT_SBT_EXT.1.2 for O.STORAGE_ENCRYPTION, O.STRONG_CRYPTO) +
+(selected with FPT_SBT_EXT.1.2 for O.STORAGE_ENCRYPTION, O.STRONG_CRYPTO) +
 *Hierarchical to:* +
 	No other components. +
 
@@ -6505,6 +6505,7 @@ Authorized Users are trained to use the TOE according to site security policies.
 | |FCS_SMC_EXT.1	|This requirement defines the methods for combining submasks to generate an intermediary key.
 | |FCS_KDF_EXT.1 |This requirement defines the methods for generating an intermediary key.
 | |FCS_PCC_EXT.1 |This requirement defines the cryptographic algorithms that must be applied to construct cryptographic passwords.
+| |FCS_COP.1/KeyedHash	|This requirement defines the cryptographic algorithms that must be applied to perform keyed-hash message authentication.
 | |FCS_COP.1/CMAC	|This requirement defines the cryptographic algorithms that must be applied to perform cipher-based message authentication.
 | |FCS_SNI_EXT.1 |This requirement defines the creation and usage of salts, nonces and IVs.
 | |FCS_KYC_EXT.1 |This requirement defines the rules for creating a key chain to unlock  a self-encrypting drive.
@@ -6648,7 +6649,7 @@ The dependencies between SFRs implemented by the TOE are addressed as follows.
 | FCS_DTLSC_EXT.1 | FCS_CKM.1/AKG, FCS_CKM.1/SKG, FCS_CKM.2, FCS_COP.1/DataEncryption, FCS_COP.1/SigGen, FCS_COP.1/Hash, FCS_COP.1/KeyedHash, FCS_RBG_EXT.1, FIA_X509_EXT.1, FIA_X509_EXT.2 | FCS_COP.1/AKG included, FCS_COP.1/SKG included, FCS_CKM.2 included, FCS_COP.1/DataEncryption included, FCS_COP.1/SigGen included, FCS_COP.1/Hash included, FCS_RBG_EXT.1 included, FCS_COP.1/KeyedHash and FIA_X509_EXT.1 and FIA_X509_EXT.2 included as selection-based SFRs
 | FCS_DTLSS_EXT.1 | FCS_CKM.1/AKG, FCS_CKM.1/SKG, FCS_CKM.2, FCS_COP.1/DataEncryption, FCS_COP.1/SigGen, FCS_COP.1/Hash, FCS_COP.1/KeyedHash, FCS_RBG_EXT.1, FIA_X509_EXT.1, FIA_X509_EXT.2 | FCS_COP.1/AKG included, FCS_COP.1/SKG included, FCS_CKM.2 included, FCS_COP.1/DataEncryption included, FCS_COP.1/SigGen included, FCS_COP.1/Hash included, FCS_RBG_EXT.1 included, FCS_COP.1/KeyedHash and FIA_X509_EXT.1 and FIA_X509_EXT.2 included as selection-based SFRs
 
-| FCS_PCC.EXT.1 | FCS_COP.1/CMAC | FCS_COP.1/CMAC included as selection-based SFR
+| FCS_PCC_EXT.1 | FCS_COP.1/KeyedHash | FCS_COP.1/KeyedHash included as selection-based SFR
 | FCS_KDF_EXT | FCS_COP.1/CMAC, FCS_CKM.6, if selected FCS_RBG_EXT.1 | FCS_COP.1/CMAC included as selection-based SFR, FCS_CKM.6 included, if selected - FCS_RBG_EXT.1 included
 | FCS_COP.1/CMAC | FCS_CKM.1/SKG, FCS_COP.1/Hash, FCS_CKM.6 | FCS_CKM.1/SKG included, FCS_COP.1/Hash included, FCS_CKM.6 included.
 
