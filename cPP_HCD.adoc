@@ -3069,9 +3069,8 @@ _This SFR is conditionally required if the manual entry of a drive encryption pa
 	FCS_CKM.6 Timing and event of cryptographic key destruction
 ======
 
-*FCS_COP.1.1/CMAC Refinement*: The TSF shall perform [*cryptographic message authentication*] in accordance with a specified cryptographic algorithm [*selection: _HMAC-SHA-256, HMAC-SHA-384, HMAC-SHA-512, CMAC-AES-128, CMAC-AES-192, CMAC-AES-256, CMAC-SEED-128, CMAC-HIGHT-128, CMAC-LEA-128, CMAC-LEA-192, CMAC-LEA-256_*] and cryptographic key sizes [*assignment: _key size (in bits)_*] *used in* [*selection: _HMAC, AES, CMAC_*] that meet the following: [selection:
+*FCS_COP.1.1/CMAC Refinement*: The TSF shall perform [*cryptographic message authentication*] in accordance with a specified cryptographic algorithm [*selection: _CMAC-AES-128, CMAC-AES-192, CMAC-AES-256, CMAC-SEED-128, CMAC-HIGHT-128, CMAC-LEA-128, CMAC-LEA-192, CMAC-LEA-256_*] and cryptographic key sizes [*assignment: _key size (in bits)_*] *used in* [*selection: _AES, SEED, HIGHT, LEA_*] that meet the following: [selection:
 
-* _ISO/IEC 9797-2:2011, Section 7 “MAC Algorithm 2”,_
 * _NIST SP 800-38B,_
 * _ISO/IEC 9797-1:2011, Section 7.6 “MAC Algorithm 5”; [selection:_
 ** _ISO/IEC 18033-3:2010, Section 5.4 “SEED”,_
@@ -3081,9 +3080,6 @@ _This SFR is conditionally required if the manual entry of a drive encryption pa
 ]
 
 *_Application Note:_*
-
-_If one or more HMAC algorithms are selected, the ST author selects “HMAC” in the second selection and “ISO/IEC 9797-2:2011, Section 7 ‘MAC Algorithm 2’”in the third selection._
-_For the assignment, the key size [k] falls into a range between L1 and L2 (defined in ISO/IEC 10118 for the appropriate hash function). For example, for SHA-256, L1 = 512 and L2 = 256 where L2 ≤ k ≤ L1 for HMAC, and the size is either 128, 192, or 256 bits for CMAC._
 
 _For the assignment, the key size will fall into a range between 128 and 256._
 
