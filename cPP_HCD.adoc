@@ -1129,9 +1129,18 @@ _If either SEED in GCM mode with non-repeating IVs or LEA in GCM mode with non-r
 
 * _Korean Certificate-based Digital Signature Algorithm (KCDSA) using [selection: SHA-224, SHA-256, SHA-384, SHA-512] with key size of 2048 bits,_
 
-* _Elliptic Curve KCDSA (EC-KCDSA) on [selection: NIST P-224, NIST P-256, NIST B-233, NIST B-283, NIST K-233, NIST K-283] using [selection: SHA-224, SHA-256] with key size of [selection: 224 bits, 256 bits]]_
+* _Elliptic Curve KCDSA (EC-KCDSA) on [selection: NIST P-224, NIST P-256, NIST B-233, NIST B-283, NIST K-233, NIST K-283] using [selection: SHA-224, SHA-256, SHA-384, SHA-512] with key size of [selection: 224 bits, 256 bits]]_
 
 * _Module-Lattice-based Digital Signature Algorithm using parameter set ML-DSA-87_
+
+* _Leighton-Micali Signature (LMS) scheme with parameters:_
+** _Private key size = [selection: 192 bits with [selection: SHA-256/192, SHAKE256/192], 256 bits with [selection: SHA-256, SHAKE256]]_
+** _Winternitz parameter = [selection: 1, 2, 4, 8]_
+** _Tree height = [selection: 5, 10, 15, 20, 25]_
+
+* _eXtended Merkle Signature Scheme (XMSS) with parameters:_
+** _Private key size = [selection: 192 bits with [selection: SHA-256/192, SHAKE256/192], 256 bits with [selection: SHA-256, SHAKE256]]_
+** _Tree height = [selection: 10, 16, 20]_
 
 ] that meet the following: [selection:
 
@@ -1158,7 +1167,17 @@ Case: Elliptic Curve Korean Certificate-based Digital Signature Algorithm
 
 Case: ML-DSA Schemes
 
-* NIST FIPS 204 (Section 5.2)
+* _NIST FIPS 204 (Section 5.2)_
+
+Case: LMS Schemes
+
+* _RFC 8554, “Leighton-Micali Hash-Based Signatures”_
+* _NIST SP 800-208, “Recommendation for Stateful Hash-Based Signature Schemes”_
+
+Case: XMSS Schemes
+
+* _RFC 8391, “XMSS: eXtended Merkle Signature Scheme”_
+* _NIST SP 800-208, “Recommendation for Stateful Hash-Based Signature Schemes”_
 
 ].
 
