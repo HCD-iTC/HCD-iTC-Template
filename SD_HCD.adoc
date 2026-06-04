@@ -1075,6 +1075,7 @@ for i = 0 to 99  {
     }
     Output CT[j]
     Key[i+1] = Key[i] xor CT[j]
+    IV[i+1] = CT[j]
     PT[0] = CT[j]
 }
 ....
