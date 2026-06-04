@@ -1426,7 +1426,7 @@ Refer to LEA-CFB Known Answer Tests for the required LEA-OFB testing.
 
 *_LEA-OFB Multi-Block Message Tests_*
 
-Refer to [LEA-CFB Multi-Block Message Tests] for the required LEA-OFB testing.
+Refer to LEA-CFB Multi-Block Message Tests for the required LEA-OFB testing.
 
 *_LEA-OFB Monte Carlo Tests_*
 
