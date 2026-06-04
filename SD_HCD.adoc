@@ -201,6 +201,219 @@ The evaluator shall also perform the following tests:
 
 === Cryptographic Support (FCS)
 
+==== FCS_CKM.1/AKG Cryptographic Key Generation (for asymmetric keys)
+
+===== TSS
+
+The evaluator shall ensure that the TSS identifies the key sizes supported by
+the TOE. If the ST specifies more than one scheme, the evaluator shall
+examine the TSS to verify that it identifies the usage for each scheme.
+
+The TSS may refer to the KMD, described in Appendix F of <<HCDcPP>>, that may not be made available to the public.
+
+The evaluator shall examine the TOE summary specification to verify that it describes how the TOE obtains a key based on input from a random bit generator as specified in FCS_RBG_EXT.1. The evaluator shall review the TOE summary specification to verify that it describes how the functionality described by FCS_RBG_EXT.1 is invoked.
+
+If the TOE uses the generated key in a key chain/hierarchy, then the evaluator shall examine the TOE summary specification to confirm that it describes the following:
+
+. If KCDSA is selected, the evaluator shall verify that the TSS specify the methods used to generate p, q and g, and
+. how the key is used as part of the key chain/hierarchy
+
+===== Guidance Documentation
+
+The evaluator shall verify that the AGD guidance instructs the administrator
+how to configure the TOE to use the selected key generation scheme(s) and
+key size(s) for all cryptographic protocols defined in the Security Target.
+
+===== Tests
+
+The evaluator shall include test cases of FCS_CKM.1/AKG to the test subset. Note that FCS_CKM.1/AKG may be not mapped to the specific interface(s) after evaluator’s analysis during ADV_FSP.1.
+
+The evaluator shall produce test documentation for test cases of FCS_CKM.1/AKG. If there is no explicit external interface(s) mapped to FCS_CKM.1/AKG, the evaluator shall employ an alternative test approach (refer to CEM, section 15.2.2.)
+
+Note: The following tests require the developer to provide access to a test
+platform that provides the evaluator with tools that are typically not found on
+factory products. Generation of long-term cryptographic keys (i.e. keys that
+are not ephemeral keys/session keys) might be performed automatically (e.g.
+during initial start-up). Testing of key generation must cover not only
+administrator invoked key generation but also automated key generation (if
+supported).
+
+*Key Generation for FIPS PUB 186-4 RSA Schemes*
+
+The evaluator shall verify the implementation of RSA Key Generation by the
+TOE using the Key Generation test. This test verifies the ability of the TSF to
+correctly produce values for the key components including the public
+verification exponent _e_, the private prime factors _p_ and _q_, the public modulus
+_n_ and the calculation of the private signature exponent _d_.
+
+Key Pair generation specifies 5 ways (or methods) to generate the primes _p_
+and _q_. These include:
+
+.. Random Primes:
+
+* Provable primes
+*  Probable primes
+
+.. Primes with Conditions:
+
+* Primes p1, p2, q1, q2, p and q shall all be provable primes
+* Primes p1, p2, q1, and q2 shall be provable primes and p and q
+shall be probable primes
+* Primes p1, p2, q1, q2, p and q shall all be probable primes
+
+To test the key generation method for the Random Provable primes method
+and for all the Primes with Conditions methods, the evaluator must seed the
+TSF key generation routine with sufficient data to deterministically generate
+the RSA key pair. This includes the random seed(s), the public exponent of
+the RSA key, and the desired key length. For each key length supported, the
+evaluator shall have the TSF generate 25 key pairs. The evaluator shall verify
+the correctness of the TSF’s implementation by comparing values generated
+by the TSF with those generated from a known good implementation.
+
+*Key Generation for Elliptic Curve Cryptography (ECC)*
+
+_FIPS 186-4 ECC Key Generation Test_
+
+For each supported NIST curve, i.e., P-256, P-384 and P-521, the evaluator
+shall require the implementation under test (IUT) to generate 10 private/public
+key pairs. The private key shall be generated using an approved random bit
+generator (RBG). To determine correctness, the evaluator shall submit the
+generated key pairs to the public key verification (PKV) function of a known
+good implementation.
+
+_FIPS 186-4 Public Key Verification (PKV) Test_
+
+For each supported NIST curve, i.e., P-256, P-384 and P-521, the evaluator
+shall generate 10 private/public key pairs using the key generation function of
+a known good implementation and modify five of the public key values so that
+they are incorrect, leaving five values unchanged (i.e., correct). The evaluator
+shall obtain in response a set of 10 PASS/FAIL values.
+
+*Key Generation for Finite-Field Cryptography (FFC)*
+
+The evaluator shall verify the implementation of the Parameters Generation
+and the Key Generation for FFC by the TOE using the Parameter Generation
+and Key Generation test. This test verifies the ability of the TSF to correctly
+produce values for the field prime p, the cryptographic prime q (dividing p-1),
+the cryptographic group generator g, and the calculation of the private key x
+and public key y.
+
+The Parameter generation specifies 2 ways (or methods) to generate the
+cryptographic prime q and the field prime p:
+
+
+* Primes q and p shall both be provable primes
+* Primes q and field prime p shall both be probable primes
+
+and two ways to generate the cryptographic group generator g:
+
+* Generator g constructed through a verifiable process
+* Generator g constructed through an unverifiable process.
+
+The Key generation specifies 2 ways to generate the private key x:
+
+* len(q) bit output of RBG where 1 \<=x \<= q-1
+* len(q) + 64 bit output of RBG, followed by a mod q-1 operation
+and a +1 operation, where 1\<= x\<=q-1.
+
+The security strength of the RBG must be at least that of the security offered
+by the FFC parameter set.
+
+To test the cryptographic and field prime generation method for the provable
+primes method and/or the group generator g for a verifiable process, the
+evaluator must seed the TSF parameter generation routine with sufficient data
+to deterministically generate the parameter set.
+
+For each key length supported, the evaluator shall have the TSF generate 25
+parameter sets and key pairs. The evaluator shall verify the correctness of the
+TSF’s implementation by comparing values generated by the TSF with those
+generated from a known good implementation. Verification must also confirm
+
+* g != 0,1
+* q divides p-1
+* g^q mod p = 1
+* g^x mod p = y
+
+for each FFC parameter set and key pair.
+
+_Diffie-Hellman Group 14 and FFC Schemes using “safe-prime” groups_
+
+Testing for FFC Schemes using Diffie-Hellman group 14 and/or safe-prime
+groups is done as part of testing in CKM.2.1.
+
+*Key Generation for KCDSA*
+
+The evaluator shall verify the implementation of KCDSA Key Generation by the TOE using the Key Generation test. This test verifies the ability of the TSF to correctly produce values for the key components including the private signing exponent x, the public verification exponent y, the private prime factor p and q, the generator g.
+
+FIPS 186-4 Key Pair generation specifies 2 methods for generating the primes p and q.
+
+These are:
+
+* Primes p and q shall both be probable primes
+* Primes p and q shall both be provable primes
+
+and two ways to generate the cryptographic group generator g:
+
+* Generator g constructed through a verifiable process
+* Generator g constructed through an unverifiable process.
+
+The Key generation specifies 2 ways to generate the private key x: Private Key:
+
+* len(q) bit output of RBG where 2^(len(q)-1)<x<q
+* len(q) + 64 bit output of RBG, followed by a mod q-1 operation and +1 operation where 0< x<q..
+
+To test the key generation method for the Probable primes method and Provable primes method, the evaluator must seed the TSF key generation routine with sufficient data to deterministically generate the KCDSA key pair.
+
+For each key length supported, the evaluator shall have the TSF generate 10 key pairs. The evaluator shall verify the correctness of the TSF’s implementation by comparing values generated by the TSF with those generated by a known good implementation using the same input parameters.
+
+If the TOE generates Random Probable Primes then if possible, the Random Probable primes method should also be verified against a known good implementation as described above. If verification against a known good implementation is not possible, the evaluator shall have the TSF generate 25 key pairs for each supported key length and verify that all of the following are true:
+
+. 2^(len(p)-1)<p<2^(len(p))
+. 2^(len(q)-1)<q<2^(len(q))
+. q divides p-1
+. 1<g<p 
+. g^q mod p = 1 
+. 0<x<q 
+
+. g^x' mod p = y, where x' = x^-1 mod q
+
+
+*Key Generation for EC-KCDSA*
+
+*_ECC Key Generation Test_*
+
+For each selected curve, and for each key pair generation method as described in FIPS 186-4, section B.4, the evaluator shall require the implementation under test to generate 10 private/public key pairs (d, Q=d^(-1) G), where G is a base point. The private key, d, shall be generated using a random bit generator as specified in FCS_RBG_EXT.1. The private key, d, is used to compute the public key, Q’. The evaluator shall confirm that 0<d<n (where n is the order of the group), and the computed value Q’ is then compared to the generated public/private key pairs’ public key, Q, to confirm that Q is equal to Q’.
+
+*_Public Key Validation (PKV) Test_*
+
+For each supported curve, the evaluator shall generate 10 private/public key pairs using the key generation function of a known good implementation and modify some public key values so that they are incorrect, leaving the other key values unchanged (i.e., correct). To determine correctness, the evaluator shall submit the 10 key pairs to the public key validation (PKV) function of the TOE and shall confirm that the results correspond as expected to the modified and unmodified values.
+
+*Key Generation for ML-KEM*
+
+To test the TOE’s ability to generate asymmetric cryptographic keys using ML-KEM, the evaluator shall perform the Algorithm Functional Test using the following input parameters:
+
+* Parameter set [ML-KEM-1024]
+
+* Random seed d [32 bytes]
+
+* Random seed z [32 bytes]
+
+_Algorithm Functional Test_
+
+For each supported parameter set the evaluator shall require the implementation under test to generate 25 key pairs using 25 different randomly generated pairs of 32-byte seed values (d, z). To determine correctness, the evaluator shall compare the resulting key pairs (ek, dk) with those generated using a known-good implementation using the same inputs.
+
+*Key Generation for ML-DSA*
+
+To test the TOE’s ability to generate asymmetric cryptographic keys using ML-DSA, the evaluator shall perform the Algorithm Functional Test using the following input parameters:
+
+* Parameter set [ML-DSA-87]
+
+* Random seed [32 bytes]
+
+_Algorithm Functional Test_
+
+For each supported parameter set the evaluator shall require the implementation under test to generate 25 key pairs using 25 different randomly generated 32-byte seed values. To determine correctness, the evaluator shall compare the resulting key pairs with those generated using a known-good implementation using the same inputs.
+
 ==== FCS_CKM.1/SKG Cryptographic key generation (Symmetric Keys)
 
 ===== TSS
@@ -2237,221 +2450,6 @@ The evaluator shall test to ensure that the fax interface can only be used for t
 . Verify that the TOE accepts incoming calls using fax carrier protocols and rejects calls that use data carriers. For example, this may be achieved using a terminal application to issue modem commands directly to the TOE from a PC modem (issue terminal command: ‘ATDT <TOE Fax Number>’) – the TOE should answer the call and disconnect.
 
 . Verify TOE negotiates outgoing calls using fax carrier protocols and rejects negotiation of data carriers. For example, this may be achieved by using a PC modem to attempt to receive a call from the TOE (submit a fax job from the TOE to <PC modem number>, at PC issue terminal command: ‘ATA’) – the TOE should disconnect without negotiating a carrier.
-
-=== Asymmetric Key Generation
-
-==== FCS_CKM.1/AKG Cryptographic Key Generation (for asymmetric keys)
-
-===== TSS
-
-The evaluator shall ensure that the TSS identifies the key sizes supported by
-the TOE. If the ST specifies more than one scheme, the evaluator shall
-examine the TSS to verify that it identifies the usage for each scheme.
-
-The TSS may refer to the KMD, described in Appendix F of <<HCDcPP>>, that may not be made available to the public.
-
-The evaluator shall examine the TOE summary specification to verify that it describes how the TOE obtains a key based on input from a random bit generator as specified in FCS_RBG_EXT.1. The evaluator shall review the TOE summary specification to verify that it describes how the functionality described by FCS_RBG_EXT.1 is invoked.
-
-If the TOE uses the generated key in a key chain/hierarchy, then the evaluator shall examine the TOE summary specification to confirm that it describes the following:
-
-. If KCDSA is selected, the evaluator shall verify that the TSS specify the methods used to generate p, q and g, and
-. how the key is used as part of the key chain/hierarchy
-
-===== Guidance Documentation
-
-The evaluator shall verify that the AGD guidance instructs the administrator
-how to configure the TOE to use the selected key generation scheme(s) and
-key size(s) for all cryptographic protocols defined in the Security Target.
-
-===== Tests
-
-The evaluator shall include test cases of FCS_CKM.1/AKG to the test subset. Note that FCS_CKM.1/AKG may be not mapped to the specific interface(s) after evaluator’s analysis during ADV_FSP.1.
-
-The evaluator shall produce test documentation for test cases of FCS_CKM.1/AKG. If there is no explicit external interface(s) mapped to FCS_CKM.1/AKG, the evaluator shall employ an alternative test approach (refer to CEM, section 15.2.2.)
-
-Note: The following tests require the developer to provide access to a test
-platform that provides the evaluator with tools that are typically not found on
-factory products. Generation of long-term cryptographic keys (i.e. keys that
-are not ephemeral keys/session keys) might be performed automatically (e.g.
-during initial start-up). Testing of key generation must cover not only
-administrator invoked key generation but also automated key generation (if
-supported).
-
-*Key Generation for FIPS PUB 186-4 RSA Schemes*
-
-The evaluator shall verify the implementation of RSA Key Generation by the
-TOE using the Key Generation test. This test verifies the ability of the TSF to
-correctly produce values for the key components including the public
-verification exponent _e_, the private prime factors _p_ and _q_, the public modulus
-_n_ and the calculation of the private signature exponent _d_.
-
-Key Pair generation specifies 5 ways (or methods) to generate the primes _p_
-and _q_. These include:
-
-.. Random Primes:
-
-* Provable primes
-*  Probable primes
-
-.. Primes with Conditions:
-
-* Primes p1, p2, q1, q2, p and q shall all be provable primes
-* Primes p1, p2, q1, and q2 shall be provable primes and p and q
-shall be probable primes
-* Primes p1, p2, q1, q2, p and q shall all be probable primes
-
-To test the key generation method for the Random Provable primes method
-and for all the Primes with Conditions methods, the evaluator must seed the
-TSF key generation routine with sufficient data to deterministically generate
-the RSA key pair. This includes the random seed(s), the public exponent of
-the RSA key, and the desired key length. For each key length supported, the
-evaluator shall have the TSF generate 25 key pairs. The evaluator shall verify
-the correctness of the TSF’s implementation by comparing values generated
-by the TSF with those generated from a known good implementation.
-
-*Key Generation for Elliptic Curve Cryptography (ECC)*
-
-_FIPS 186-4 ECC Key Generation Test_
-
-For each supported NIST curve, i.e., P-256, P-384 and P-521, the evaluator
-shall require the implementation under test (IUT) to generate 10 private/public
-key pairs. The private key shall be generated using an approved random bit
-generator (RBG). To determine correctness, the evaluator shall submit the
-generated key pairs to the public key verification (PKV) function of a known
-good implementation.
-
-_FIPS 186-4 Public Key Verification (PKV) Test_
-
-For each supported NIST curve, i.e., P-256, P-384 and P-521, the evaluator
-shall generate 10 private/public key pairs using the key generation function of
-a known good implementation and modify five of the public key values so that
-they are incorrect, leaving five values unchanged (i.e., correct). The evaluator
-shall obtain in response a set of 10 PASS/FAIL values.
-
-*Key Generation for Finite-Field Cryptography (FFC)*
-
-The evaluator shall verify the implementation of the Parameters Generation
-and the Key Generation for FFC by the TOE using the Parameter Generation
-and Key Generation test. This test verifies the ability of the TSF to correctly
-produce values for the field prime p, the cryptographic prime q (dividing p-1),
-the cryptographic group generator g, and the calculation of the private key x
-and public key y.
-
-The Parameter generation specifies 2 ways (or methods) to generate the
-cryptographic prime q and the field prime p:
-
-
-* Primes q and p shall both be provable primes
-* Primes q and field prime p shall both be probable primes
-
-and two ways to generate the cryptographic group generator g:
-
-* Generator g constructed through a verifiable process
-* Generator g constructed through an unverifiable process.
-
-The Key generation specifies 2 ways to generate the private key x:
-
-* len(q) bit output of RBG where 1 \<=x \<= q-1
-* len(q) + 64 bit output of RBG, followed by a mod q-1 operation
-and a +1 operation, where 1\<= x\<=q-1.
-
-The security strength of the RBG must be at least that of the security offered
-by the FFC parameter set.
-
-To test the cryptographic and field prime generation method for the provable
-primes method and/or the group generator g for a verifiable process, the
-evaluator must seed the TSF parameter generation routine with sufficient data
-to deterministically generate the parameter set.
-
-For each key length supported, the evaluator shall have the TSF generate 25
-parameter sets and key pairs. The evaluator shall verify the correctness of the
-TSF’s implementation by comparing values generated by the TSF with those
-generated from a known good implementation. Verification must also confirm
-
-* g != 0,1
-* q divides p-1
-* g^q mod p = 1
-* g^x mod p = y
-
-for each FFC parameter set and key pair.
-
-_Diffie-Hellman Group 14 and FFC Schemes using “safe-prime” groups_
-
-Testing for FFC Schemes using Diffie-Hellman group 14 and/or safe-prime
-groups is done as part of testing in CKM.2.1.
-
-*Key Generation for KCDSA*
-
-The evaluator shall verify the implementation of KCDSA Key Generation by the TOE using the Key Generation test. This test verifies the ability of the TSF to correctly produce values for the key components including the private signing exponent x, the public verification exponent y, the private prime factor p and q, the generator g.
-
-FIPS 186-4 Key Pair generation specifies 2 methods for generating the primes p and q.
-
-These are:
-
-* Primes p and q shall both be probable primes
-* Primes p and q shall both be provable primes
-
-and two ways to generate the cryptographic group generator g:
-
-* Generator g constructed through a verifiable process
-* Generator g constructed through an unverifiable process.
-
-The Key generation specifies 2 ways to generate the private key x: Private Key:
-
-* len(q) bit output of RBG where 2^(len(q)-1)<x<q
-* len(q) + 64 bit output of RBG, followed by a mod q-1 operation and +1 operation where 0< x<q..
-
-To test the key generation method for the Probable primes method and Provable primes method, the evaluator must seed the TSF key generation routine with sufficient data to deterministically generate the KCDSA key pair.
-
-For each key length supported, the evaluator shall have the TSF generate 10 key pairs. The evaluator shall verify the correctness of the TSF’s implementation by comparing values generated by the TSF with those generated by a known good implementation using the same input parameters.
-
-If the TOE generates Random Probable Primes then if possible, the Random Probable primes method should also be verified against a known good implementation as described above. If verification against a known good implementation is not possible, the evaluator shall have the TSF generate 25 key pairs for each supported key length and verify that all of the following are true:
-
-. 2^(len(p)-1)<p<2^(len(p))
-. 2^(len(q)-1)<q<2^(len(q))
-. q divides p-1
-. 1<g<p 
-. g^q mod p = 1 
-. 0<x<q 
-
-. g^x' mod p = y, where x' = x^-1 mod q
-
-
-*Key Generation for EC-KCDSA*
-
-*_ECC Key Generation Test_*
-
-For each selected curve, and for each key pair generation method as described in FIPS 186-4, section B.4, the evaluator shall require the implementation under test to generate 10 private/public key pairs (d, Q=d^(-1) G), where G is a base point. The private key, d, shall be generated using a random bit generator as specified in FCS_RBG_EXT.1. The private key, d, is used to compute the public key, Q’. The evaluator shall confirm that 0<d<n (where n is the order of the group), and the computed value Q’ is then compared to the generated public/private key pairs’ public key, Q, to confirm that Q is equal to Q’.
-
-*_Public Key Validation (PKV) Test_*
-
-For each supported curve, the evaluator shall generate 10 private/public key pairs using the key generation function of a known good implementation and modify some public key values so that they are incorrect, leaving the other key values unchanged (i.e., correct). To determine correctness, the evaluator shall submit the 10 key pairs to the public key validation (PKV) function of the TOE and shall confirm that the results correspond as expected to the modified and unmodified values.
-
-*Key Generation for ML-KEM*
-
-To test the TOE’s ability to generate asymmetric cryptographic keys using ML-KEM, the evaluator shall perform the Algorithm Functional Test using the following input parameters:
-
-* Parameter set [ML-KEM-1024]
-
-* Random seed d [32 bytes]
-
-* Random seed z [32 bytes]
-
-_Algorithm Functional Test_
-
-For each supported parameter set the evaluator shall require the implementation under test to generate 25 key pairs using 25 different randomly generated pairs of 32-byte seed values (d, z). To determine correctness, the evaluator shall compare the resulting key pairs (ek, dk) with those generated using a known-good implementation using the same inputs.
-
-*Key Generation for ML-DSA*
-
-To test the TOE’s ability to generate asymmetric cryptographic keys using ML-DSA, the evaluator shall perform the Algorithm Functional Test using the following input parameters:
-
-* Parameter set [ML-DSA-87]
-
-* Random seed [32 bytes]
-
-_Algorithm Functional Test_
-
-For each supported parameter set the evaluator shall require the implementation under test to generate 25 key pairs using 25 different randomly generated 32-byte seed values. To determine correctness, the evaluator shall compare the resulting key pairs with those generated using a known-good implementation using the same inputs.
 
 === Network Communications
 
