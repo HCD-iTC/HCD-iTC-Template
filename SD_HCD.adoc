@@ -1105,7 +1105,7 @@ The testing for CCM consists of five tests. To determine correctness in each of 
 
 For 128-bits key and associated data length, and any supported payload length, nonce length, and tag length, the evaluator shall supply one key value, one nonce value, and 10 pairs of associated data and payload values, and obtain the resulting ciphertext.
 
-*_Variable Payload Text_*
+*_Variable Payload Test_*
 
 For 128-bits key and payload length, and any supported associated data length, nonce length, and tag length, the evaluator shall supply one key value, one nonce value, and 10 pairs of associated data and payload values, and obtain the resulting ciphertext.
 
