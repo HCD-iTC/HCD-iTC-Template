@@ -1,5 +1,6 @@
 = Supporting Document Mandatory Technical Document: Evaluation Activities for collaborative Protection Profile for Hardcopy Devices
 :showtitle:
+:stem: asciimath
 :doctype: book
 :toc: macro
 :toclevels: 3
@@ -368,15 +369,15 @@ For each key length supported, the evaluator shall have the TSF generate 10 key 
 
 If the TOE generates Random Probable Primes then if possible, the Random Probable primes method should also be verified against a known good implementation as described above. If verification against a known good implementation is not possible, the evaluator shall have the TSF generate 25 key pairs for each supported key length and verify that all of the following are true:
 
-. 2^(len(p)-1)<p<2^(len(p))
-. 2^(len(q)-1)<q<2^(len(q))
-. q divides p-1
-. 1<g<p 
-. g^q mod p = 1 
-. 0<x<q 
-
-. g^x' mod p = y, where x' = x^-1 mod q
-
+....
+1. 2^(len(p)-1)<p<2^(len(p))
+2. 2^(len(q)-1)<q<2^(len(q))
+3. q divides p-1
+4. 1<g<p 
+5. g^q mod p = 1 
+6. 0<x<q 
+7. g^x' mod p = y, where x' = x^-1 mod q
+....
 
 *Key Generation for EC-KCDSA*
 
