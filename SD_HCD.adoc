@@ -1197,33 +1197,35 @@ Refer to SEED-CFB Multi-Block Message Tests for the required HIGHT-CFB testing. 
 
 *_HIGHT-CFB Monte Carlo Tests_*
 
-The evaluator shall test the encrypt functionality for each selected key size using 100 3-tuples of pseudo-random values for plaintext, IVs, and keys. 
+The evaluator shall test the encrypt functionality for each selected key size using 100 3-tuples of pseudo-random values for plaintext, IVs, and keys.  
 
-The evaluator shall supply a single 3-tuple of pseudo-random values for 128-bits key. This 3-tuple of plaintext, IV, and key is provided as input to the below algorithm to generate the remaining 99 3-tuples, and to run each 3-tuple through 1000 iterations of HIGHT-CBC encryption.
+The evaluator shall supply a single 3-tuple of pseudo-random values for 128-bits key. This 3-tuple of plaintext, IV, and key is provided as input to the below algorithm to generate the remaining 99 3-tuples, and to run each 3-tuple through 1000 iterations of HIGHT-CFB encryption.
 
 ....
+
 Key[0] = KEY, IV[0] = IV, PT[0] = PT
    For i = 0 to 99 {
        Output Key[i], IV[i], PT[0]
        For j = 0 to 999 {
            If ( j=0 ) {
-               CT[j] = HIGHT_CBC_ENCRYPT(Key[i], IV[i], PT[j])
+               CT[j] = HIGHT_CFB_ENCRYPT(Key[i], IV[i], PT[j])
                PT[j+1] = IV[i]
            } else {
-               CT[j] = HIGHT_CBC_ENCRYPT(Key[i], PT[j])
+               CT[j] = HIGHT_CFB_ENCRYPT(Key[i], PT[j])
                PT[j+1] = CT[j-1]
            }
        }
        Output CT[j]
-       Key[i+1] = Key[i] xor (CT[j-1]||CT[j])
+       Key[i+1] = Key[i] XOR (CT[j-1]||CT[j])
        IV[i+1] = CT[j]
        PT[0] = CT[j-1]
    }
+
 ....
 
-The ciphertext computed in the 1000th iteration (CT[999]) is the result for each of the 100 3-tuples for a 128-bit key. This result shall be compared to the result of running 1000 iterations with the same values using a known good implementation. 
+The ciphertext computed in the 1000th iteration (CT[999]) is the result for each of the 100 3-tuples for a 128-bit key. This result shall be compared to the result of running 1000 iterations with the same values using a known good implementation.
 
-The evaluator shall test the decrypt functionality using the same test as above, exchanging CT and PT, and replacing HIGHT-CBC-Encrypt with HIGHT-CBC-Decrypt.
+The evaluator shall test the decrypt functionality using the same test as above, exchanging CT and PT, and replacing HIGHT-CFB-Encrypt with HIGHT-CFB-Decrypt.
 
 *HIGHT-OFB Tests*
 
