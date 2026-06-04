@@ -643,6 +643,10 @@ The test succeeds if correct pattern is used to overwrite the key in the memory 
 The evaluator shall examine the TSS to ensure it identifies the key size(s) and
 mode(s) supported by the TOE for data encryption/decryption.
 
+The evaluator shall ensure that the TSS describes how IVs and tweaks are handled, as applicable based on the AES mode. 
+
+The evaluator shall confirm that any applicable nonces, IVs, and tweaks meet the stated requirements.
+
 ===== Guidance Documentation
 
 The evaluator shall verify that the AGD guidance instructs the administrator
@@ -2810,6 +2814,10 @@ The evaluator shall send a client certificate with an identifier that does not m
 
 The evaluator shall verify the TSS includes a description of the key size used for encryption and the mode used for encryption.
 
+The evaluator shall ensure that the TSS describes how IVs and tweaks are handled, as applicable based on the AES mode.
+
+The evaluator shall confirm that any applicable nonces, IVs, and tweaks meet the stated requirements.
+
 ===== Guidance Documentation
 
 If multiple encryption modes are supported, the evaluator examines the guidance documentation to determine that the method of choosing a specific mode/key size by the end user is described.
@@ -4538,7 +4546,7 @@ For each of the supported parameter sets, the evaluator shall compose at least 1
 
 The evaluator shall ensure the TSS describes how salts are generated. The evaluator shall confirm that the salt is generating using an RBG described in FCS_RBG_EXT.1.
 
-The evaluator shall ensure the TSS describes how nonces are created uniquely and how IVs and tweaks are handled (based on the AES mode). The evaluator shall confirm that the nonces are unique and the IVs and tweaks meet the stated requirements.
+The evaluator shall ensure the TSS describes how nonces are created uniquely. The evaluator shall confirm that the nonces are unique.
 
 === Identification and Authentication (FIA)
 
