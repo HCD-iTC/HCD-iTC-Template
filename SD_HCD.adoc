@@ -3136,7 +3136,7 @@ Test that the implementation detects invalid ICV1 values by encrypting any plain
 
 The tests below are derived from “The Key Wrap Validation System (KWVS), Updated: June 20, 2014” from the National Institute of Standards and Technology.
 
-The evaluator shall test the authenticated-encryption functionality of SEED-KWP (Key Wrap with Padding) for each combination of the following input parameters:
+The evaluator shall perform the Algorithm Functional Tests and Additional Negative Tests of SEED-KWP for each combination of the following input parameters:
 
 . Supported key lengths selected in the ST (128 bits)
 . Five plaintext lengths:
