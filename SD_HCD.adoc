@@ -1026,11 +1026,11 @@ for i = 0 to 99  {
     Output Key[i], IV[i], PT[0]
     for j = 0 to 999 {
         if (j == 0) {
-            OT[j] = SEED-OFB-Encrypt(Key[i], IV[i])
+            OT[j] = SEED-Encrypt(Key[i], IV[i])
             CT[j] = PT[j] xor OT[j]
             PT[j+1] = IV[i]
         } else {
-            OT[j] = SEED-OFB-Encrypt(Key[i], OT[j-1])
+            OT[j] = SEED-Encrypt(Key[i], OT[j-1])
             CT[j] = PT[j] xor OT[j]
             PT[j+1] = CT[j-1]
         }
