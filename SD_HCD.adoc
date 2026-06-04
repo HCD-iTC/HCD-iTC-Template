@@ -3179,14 +3179,11 @@ Verify that the implementation of KWP-AD in the TOE outputs FAIL on those inputs
 
 If the implementation supports plaintext of length not a multiple of 64-bits, then
 
-....
-for each PAD length [1..7]
-    for each byte in PAD
-        set a zero PAD value;
-        replace current byte by a non-zero value and use the resulting  plaintext as input to algorithm KWP-AE to generate  ciphertexts;
-
-        Verify that the implementation of KWP-AD in the TOE outputs FAIL on this input.
-....
+1. For each PAD length [1-7]
+   * For each byte in PAD
+   ** Set a zero PAD value;
+   ** Replace current byte by a non-zero value and use the resulting plaintext as input to algorithm KWP-AE to generate ciphertexts;
+   ** Verify that the implementation of KWP-AD in the TOE outputs FAIL on this input
 
 *SEED-GCM [ISO 19772, clause 11]*
 
