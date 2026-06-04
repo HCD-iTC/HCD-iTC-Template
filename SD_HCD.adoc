@@ -1432,7 +1432,7 @@ Refer to LEA-CFB Multi-Block Message Tests for the required LEA-OFB testing.
 
 The evaluator shall test the encrypt functionality for each selected key size using 100 3-tuples of pseudo-random values for plaintext, IVs, and keys.
 
-The evaluator shall supply a single 3-tuple of pseudo-random values for 128-bits key. This 3-tuple of plaintext, IV, and key is provided as input to the below algorithm to generate the remaining 99 3-tuples, and to run each 3-tuple through 1000 iterations of LEA-OFB encryption.
+The evaluator shall supply a single 3-tuple of pseudo-random values for each selected key size. This 3-tuple of plaintext, IV, and key is provided as input to the below algorithm to generate the remaining 99 3-tuples, and to run each 3-tuple through 1000 iterations of LEA-OFB encryption.
 
 ....
 Key[0] = KEY, IV[0] = IV, PT[0] = PT
