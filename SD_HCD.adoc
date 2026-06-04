@@ -1516,13 +1516,13 @@ The evaluator shall test the generation-encryption and decryption-verification f
 
 *Tag:* All supported tag lengths (4, 6, 8, 10, 12, 14, 16) in bytes.
 
-The testing for CCM consists of five tests. To determine correctness in each of the below tests, the evaluator shall compare the ciphertext with the result of encryption of the same inputs with a known good implementation.
+The testing for LEA-CCM consists of five tests. To determine correctness in each of the below tests, the evaluator shall compare the ciphertext with the result of encryption of the same inputs with a known good implementation.
 
 *_Variable Associated Data Test_*
 
 For each supported key size and associated data length, and any supported payload length, nonce length, and tag length, the evaluator shall supply one key value, one nonce value, and 10 pairs of associated data and payload values, and obtain the resulting ciphertext.
 
-*_Variable Payload Text_*
+*_Variable Payload Test_*
 
 For each supported key size and payload length, and any supported associated data length, nonce length, and tag length, the evaluator shall supply one key value, one nonce value, and 10 pairs of associated data and payload values, and obtain the resulting ciphertext.
 
