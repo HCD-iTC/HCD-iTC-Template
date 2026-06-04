@@ -3149,19 +3149,19 @@ The evaluator shall test the authenticated-decryption (KWP-AD) functionality of 
 
 Additionally, the evaluator shall perform the following negative tests:
 
-[.underline]#Test 1 (invalid plaintext length)#
+[.underline]#Test 1 (Invalid Plaintext Length)#
 
 Determine the valid plaintext lengths of the implementation from the TOE specification. Verify that the implementation of KWP-AE in the TOE rejects plaintexts of invalid length by testing plaintext of the following lengths: 1) plaintext length greater than 64 semi-blocks, 2) plaintext bit-length not divisible by 8, 3) plaintext with length 0.
 
-[.underline]#Test 2 (invalid ciphertext length)#
+[.underline]#Test 2 (Invalid Ciphertext Length)#
 
 Determine the valid ciphertext lengths of the implementation from the TOE specification. Verify that the implementation of KWP-AD in the TOE rejects ciphertexts of invalid length by testing ciphertext of the following lengths: 1) ciphertext with length greater than 65 semi-blocks, 2) ciphertext with bit-length not divisible by 64, 3) ciphertext with length 0, 4) ciphertext with length of one semi-block.
 
-[.underline]#Test 3 (invalid ICV2)#
+[.underline]#Test 3 (Invalid ICV2)#
 
 Test that the implementation detects invalid ICV2 values by encrypting any plaintext value eight times using a different value for ICV2 each time as follows: Start with a base ICV2 of 0xA65959A6. For each of the four tests change a different byte to a different value, so that each of the four bytes is changed once. Verify that the implementation of KWP-AD in the TOE outputs FAIL for each test.
 
-[.underline]#Test 4 (invalid padding length)#
+[.underline]#Test 4 (Invalid Padding Length)#
 
 Generate one ciphertext using algorithm KWP-AE with substring `[len(P)/8]`~32~ of S replaced by each of the following 32-bit values, where `len(P)` is the length of P in bits and `[]`~32~ denotes representation of an integer in 32 bits:
 
@@ -3175,7 +3175,7 @@ Generate one ciphertext using algorithm KWP-AE with substring `[len(P)/8]`~32~ o
 
 Verify that the implementation of KWP-AD in the TOE outputs FAIL on those inputs.
 
-[.underline]#Test 5 (invalid padding bits)#
+[.underline]#Test 5 (Invalid Padding Bits)#
 
 If the implementation supports plaintext of length not a multiple of 64-bits, then
 
