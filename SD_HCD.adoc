@@ -1478,7 +1478,7 @@ Refer to LEA-CFB Multi-Block Message Tests for the required LEA-CTR testing. The
 
 The evaluator shall test the encrypt functionality for each selected key size using 100 3-tuples of pseudo-random values for plaintext, counters, and keys.
 
-The evaluator shall supply a single 3-tuple of pseudo-random values for 128-bits key. This 3-tuple of plaintext, counter, and key is provided as input to the below algorithm to generate the remaining 99 3-tuples, and to run each 3-tuple through 1000 iterations of SEED-CFB encryption.
+The evaluator shall supply a single 3-tuple of pseudo-random values for each selected key size. This 3-tuple of plaintext, counter, and key is provided as input to the below algorithm to generate the remaining 99 3-tuples, and to run each 3-tuple through 1000 iterations of LEA-CTR encryption.
 
 ....
 Key[0] = KEY, CTR[0] = CTR, PT[0] = PT
