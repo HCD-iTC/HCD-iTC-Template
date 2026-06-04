@@ -3120,15 +3120,15 @@ The evaluator shall test the authenticated-decryption functionality of SEED-KW u
 
 Additionally, the evaluator shall perform the following negative tests:
 
-[.underline]#Test 1 (invalid plaintext length)#
+[.underline]#Test 1 (Invalid Plaintext Length)#
 
 Determine the valid plaintext lengths of the implementation from the TOE specification. Verify that the implementation of KW-AE in the TOE rejects plaintexts of invalid length by testing plaintext of the following lengths: 1) plaintext length greater than 64 semi-blocks, 2) plaintext bit-length not divisible by 64, 3) plaintext with length 0, and 4) plaintext with one semi-block.
 
-[.underline]#Test 2 (invalid ciphertext length)#
+[.underline]#Test 2 (Invalid Ciphertext Length)#
 
 Determine the valid ciphertext lengths of the implementation from the TOE specification. Verify that the implementation of KW-AD in the TOE rejects ciphertexts of invalid length by testing ciphertext of the following lengths: 1) ciphertext with length greater than 65 semi-blocks, 2) ciphertext with bit-length not divisible by 64, 3) ciphertext with length 0, 4)	ciphertext with length of one semi-block, and 5) ciphertext with length of two semi-blocks.
 
-[.underline]#Test 3 (invalid ICV1)#
+[.underline]#Test 3 (Invalid ICV1)#
 
 Test that the implementation detects invalid ICV1 values by encrypting any plaintext value eight times using a different value for ICV1 each time as follows: Start with a base ICV1 of 0xA6A6A6A6A6A6A6A6. For each of the eight tests change a different byte to a different value, so that each of the eight bytes is changed once. Verify that the implementation of KW-AD in the TOE outputs FAIL for each test.
 
