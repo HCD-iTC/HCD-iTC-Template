@@ -3106,7 +3106,7 @@ The evaluator shall ensure the wrapped key is wrapped as specified in this SFR u
 
 *SEED-KW [SP 800-38F, sec. 6.2]*
 
-The evaluator shall test the authenticated-encryption functionality of SEED-KW (Key Wrap) for each combination of the following input parameters:
+The evaluator shall perform the Algorithm Functional Tests and Additional Negative Tests  of SEED-KW for each combination of the following input parameters:
 
 . Supported key lengths selected in the ST (128 bits)
 . Five plaintext lengths:
