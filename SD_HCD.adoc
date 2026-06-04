@@ -344,7 +344,7 @@ groups is done as part of testing in CKM.2.1.
 
 *Key Generation for KCDSA*
 
-The evaluator shall verify the implementation of KCDSA Key Generation by the TOE using the Key Generation test. This test verifies the ability of the TSF to correctly produce values for the key components including the private signing exponent x, the public verification exponent y, the private prime factor p and q, the generator g.
+The evaluator shall verify the implementation of KCDSA Key Generation by the TOE using the Key Generation test. This test verifies the ability of the TSF to correctly produce values for the key components including the private signing exponent x, the public verification exponent y, the domain parameters p and q, the generator g.
 
 FIPS 186-4 Key Pair generation specifies 2 methods for generating the primes p and q.
 
