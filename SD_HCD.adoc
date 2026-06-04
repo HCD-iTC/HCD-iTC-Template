@@ -1370,7 +1370,7 @@ For the LEA-CFB tests described below, the plaintext, ciphertext, and IV values 
 
 *_LEA-CFB Known Answer Tests_*
 
-*KAT-1 (Variable Key):* To test the encrypt functionality of SEED-CFB, the evaluator shall supply a set of keys for each selected key size (as described below) and obtain the ciphertext value that results from LEA encryption of an all-zeros plaintext using each key and an IV of all zeros.
+*KAT-1 (Variable Key):* To test the encrypt functionality of LEA-CFB, the evaluator shall supply a set of keys for each selected key size (as described below) and obtain the ciphertext value that results from LEA encryption of an all-zeros plaintext using each key and an IV of all zeros.
 Key i in each set shall have the leftmost i bits set to ones and the remaining bits to zeros, for values of i from 1 to the key size.
 
 To test the decrypt functionality of LEA-CFB, the evaluator shall use the same keys as above to decrypt the ciphertext results from above. Each decryption should result in an all-zeros plaintext.
