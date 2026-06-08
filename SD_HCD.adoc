@@ -245,11 +245,11 @@ supported).
 The evaluator shall verify the implementation of RSA Key Generation by the
 TOE using the Key Generation test. This test verifies the ability of the TSF to
 correctly produce values for the key components including the public
-verification exponent _e_, the private prime factors _p_ and _q_, the public modulus
-_n_ and the calculation of the private signature exponent _d_.
+verification exponent stem:[e], the private prime factors stem:[p] and stem:[q], the public modulus
+stem:[n] and the calculation of the private signature exponent stem:[d].
 
-Key Pair generation specifies 5 ways (or methods) to generate the primes _p_
-and _q_. These include:
+Key Pair generation specifies 5 ways (or methods) to generate the primes stem:[p]
+and stem:[q]. These include:
 
 .. Random Primes:
 
@@ -258,10 +258,10 @@ and _q_. These include:
 
 .. Primes with Conditions:
 
-* Primes p1, p2, q1, q2, p and q shall all be provable primes
-* Primes p1, p2, q1, and q2 shall be provable primes and p and q
+* Primes stem:[p1], stem:[p2], stem:[q1], stem:[q2], stem:[p] and stem:[q] shall all be provable primes
+* Primes stem:[p1], stem:[p2], stem:[q1], and stem:[q2] shall be provable primes and stem:[p] and stem:[q]
 shall be probable primes
-* Primes p1, p2, q1, q2, p and q shall all be probable primes
+* Primes stem:[p1], stem:[p2], stem:[q1], stem:[q2], stem:[p] and stem:[q] shall all be probable primes
 
 To test the key generation method for the Random Provable primes method
 and for all the Primes with Conditions methods, the evaluator must seed the
@@ -293,36 +293,35 @@ shall obtain in response a set of 10 PASS/FAIL values.
 
 *Key Generation for Finite-Field Cryptography (FFC)*
 
-The evaluator shall verify the implementation of the Parameters Generation
-and the Key Generation for FFC by the TOE using the Parameter Generation
-and Key Generation test. This test verifies the ability of the TSF to correctly
-produce values for the field prime p, the cryptographic prime q (dividing p-1),
-the cryptographic group generator g, and the calculation of the private key x
-and public key y.
+The evaluator shall verify the implementation of Parameter Generation and Key
+Generation for FFC by the TOE using the Parameter Generation and Key Generation
+test. This test verifies the ability of the TSF to correctly produce values for the
+field prime stem:[p], the cryptographic prime stem:[q] (dividing stem:[p-1]),
+the cryptographic group generator stem:[g], and the calculation of the private
+key stem:[x] and public key stem:[y].
 
 The Parameter generation specifies 2 ways (or methods) to generate the
-cryptographic prime q and the field prime p:
+cryptographic prime stem:[q] and the field prime stem:[p]:
 
 
-* Primes q and p shall both be provable primes
-* Primes q and field prime p shall both be probable primes
+* Primes stem:[q] and stem:[p] shall both be provable primes
+* Primes stem:[q] and field prime stem:[p] shall both be probable primes
 
 and two ways to generate the cryptographic group generator g:
 
-* Generator g constructed through a verifiable process
-* Generator g constructed through an unverifiable process.
+* Generator stem:[g] constructed through a verifiable process
+* Generator stem:[g] constructed through an unverifiable process.
 
-The key generation specifies 2 ways to generate the private key x:
+The key generation specifies 2 ways to generate the private key stem:[x]:
 
-* len(q) bit output of RBG where 1 \<=x \<= q-1
-* len(q) + 64 bit output of RBG, followed by a mod q-1 operation
-and a +1 operation, where 1\<= x\<=q-1.
+* stem:[len(q)]-bit output of the RBG where stem:[1 <= x <= q-1]
+* stem:[len(q) + 64]-bit output of the RBG, followed by a mod stem:[q-1] operation and a stem:[+1] operation, where stem:[1 <= x <= q-1]
 
 The security strength of the RBG must be at least that of the security offered
 by the FFC parameter set.
 
 To test the cryptographic and field prime generation method for the provable
-primes method and/or the group generator g for a verifiable process, the
+primes method and/or the group generator stem:[g] for a verifiable process, the
 evaluator must seed the TSF parameter generation routine with sufficient data
 to deterministically generate the parameter set.
 
@@ -2826,7 +2825,8 @@ selected key size. This 3-tuple of plaintext, IV, and key is provided as input t
 below algorithm to generate the remaining 99 3-tuples, and to run each 3-tuple
 through 1000 iterations of AES-CBC encryption.
 
-....
+[source]
+----
 # Input: PT, IV, Key
 Key[0] = Key
 IV[0] = IV
@@ -2849,7 +2849,7 @@ for i = 0 to 99 {
     IV[i+1] = CT[j]
     PT[0] = CT[j-1]
 }
-....
+----
 
 The ciphertext computed in the 1000th iteration (CT[999]) is the result for each of
 the 100 3-tuples for each selected key size. This result shall be compared to the
@@ -3664,7 +3664,7 @@ Test 2: The evaluator shall add an entry associating a host name with a public k
 
 ====== FCS_SSHS_EXT.1.2
 
-The evaluator shall check to ensure that the TSS contains a description of the public key algorithms that are acceptable for use for authentication and that this list conforms to FCS_SSHS_EXT.1.5. and ensure that if password-based authentication methods have been selected in the ST then these are also described.
+The evaluator shall check to ensure that the TSS contains a description of the public key algorithms that are acceptable for use for authentication and that this list conforms to FCS_SSHS_EXT.1.5 and ensure that if password-based authentication methods have been selected in the ST then these are also described.
 
 ====== FCS_SSHS_EXT.1.3
 
@@ -3838,7 +3838,7 @@ If “bit-based pre-shared keys” is selected, the evaluator shall confirm the 
 
 The evaluator shall also perform the following tests:
 
-. The evaluator shall compose at least 15 pre-shared keys of 22 characters that cover all allowed characters in various combinations that conform to the operational guidance, and demonstrates that a successful protocol negotiation can be performed with each key.
+. The evaluator shall compose at least 15 pre-shared keys of 22 characters that cover all allowed characters in various combinations that conform to the operational guidance, and demonstrate that a successful protocol negotiation can be performed with each key.
 
 . [conditional]: If the TOE supports pre-shared keys of multiple lengths, the evaluator shall repeat Test 1 using the minimum length; the maximum length; and an invalid length.  The minimum and maximum length tests should be successful, and the invalid length must be rejected by the TOE.
 
