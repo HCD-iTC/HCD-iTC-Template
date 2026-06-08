@@ -32,7 +32,7 @@ This SD has been developed by the {iTC-longname} ({iTC-shortname}) and is design
 
 === Technical Editor
 
-Hardcopy Device International Technical Community (HCD-iTC)
+Hardcopy Devices international Technical Community (HCD-iTC)
 
 === Revision History
 
@@ -655,28 +655,17 @@ To test the decrypt functionality of AES-CBC, the evaluator shall supply a set o
 
 To test the decrypt functionality of AES-CBC, the evaluator shall supply a set of five different key values for each selected key size and obtain the plaintext that results from AES-CBC decryption of an all-zeros ciphertext using the given key and an IV of all zeros.
 
-[.underline]#KAT-3 (Variable Key):# To test the encrypt functionality of AES-CBC, the evaluator
-shall supply a set of keys for each selected key size (as described below) and obtain
-the ciphertext value that results from AES encryption of an all-zeros plaintext using
-each key and an IV of all zeros.
+[.underline]#KAT-3 (Variable Key):# To test the encrypt functionality of AES-CBC, the evaluator shall supply a set of keys for each selected key size (as described below) and obtain the ciphertext value that results from AES encryption of an all-zeros plaintext using each key and an IV of all zeros.
 
 Key stem:[i] in each set shall have the leftmost stem:[i] bits set to ones and the remaining bits to zeros, for values of stem:[i] from 1 to the key size. The keys and corresponding ciphertext are listed in AESAVS, Appendix E.
 
-To test the decrypt functionality of AES-CBC, the evaluator shall use the same keys
-as above to decrypt the ciphertext results from above. Each decryption should result
-in an all-zeros plaintext.
+To test the decrypt functionality of AES-CBC, the evaluator shall use the same keys as above to decrypt the ciphertext results from above. Each decryption should result in an all-zeros plaintext.
 
-[.underline]#KAT-4 (Variable Text):# To test the encrypt functionality of AES-CBC, for each
-selected key size, the evaluator shall supply a set of 128-bit plaintext values (as
-described below) and obtain the ciphertext values that result from AES-CBC
-encryption of each plaintext value using a key of each size and IV consisting of all
-zeros.
+[.underline]#KAT-4 (Variable Text):# To test the encrypt functionality of AES-CBC, for each selected key size, the evaluator shall supply a set of 128-bit plaintext values (as described below) and obtain the ciphertext values that result from AES-CBC encryption of each plaintext value using a key of each size and IV consisting of all zeros.
 
 Plaintext value stem:[i] shall have the leftmost stem:[i] bits set to ones and the remaining bits set to zeros, for values of stem:[i] from 1 to 128. The plaintext values are listed in AESAVS, Appendix D.
 
-To test the decrypt functionality of AES-CBC, for each selected key size, use the
-plaintext values from above as ciphertext input, and AES-CBC decrypt each
-ciphertext value using key of each size consisting of all zeros and an IV of all zeros.
+To test the decrypt functionality of AES-CBC, for each selected key size, use the plaintext values from above as ciphertext input, and AES-CBC decrypt each ciphertext value using key of each size consisting of all zeros and an IV of all zeros.
 
 *AES-CBC Multi-Block Message Test*
 
@@ -686,13 +675,9 @@ The evaluator shall also test the decrypt functionality for each mode by decrypt
 
 *AES-CBC Monte Carlo Tests*
 
-The evaluator shall test the encrypt functionality for each selected key size using
-100 3-tuples of pseudo-random values for plaintext, IVs, and keys.
+The evaluator shall test the encrypt functionality for each selected key size using 100 3-tuples of pseudo-random values for plaintext, IVs, and keys.
 
-The evaluator shall supply a single 3-tuple of pseudo-random values for each
-selected key size. This 3-tuple of plaintext, IV, and key is provided as input to the
-below algorithm to generate the remaining 99 3-tuples, and to run each 3-tuple
-through 1000 iterations of AES-CBC encryption.
+The evaluator shall supply a single 3-tuple of pseudo-random values for each selected key size. This 3-tuple of plaintext, IV, and key is provided as input to the below algorithm to generate the remaining 99 3-tuples, and to run each 3-tuple through 1000 iterations of AES-CBC encryption.
 
 [source]
 ----
@@ -726,71 +711,32 @@ The evaluator shall test the decrypt functionality using the same test as above,
 
 *AES-GCM Test*
 
-These tests are intended to be equivalent to those described in the NIST document,
-“The Galois/Counter Mode (GCM) and GMAC Validation System (GCMVS) with
-the Addition of XPN Validation Testing,” rev. 15 Jun 2016, section 6.2, found at
-http://csrc.nist.gov/groups/STM/cavp/documents/mac/gcmvs.pdf.
+These tests are intended to be equivalent to those described in the NIST document, “The Galois/Counter Mode (GCM) and GMAC Validation System (GCMVS) with the Addition of XPN Validation Testing,” rev. 15 Jun 2016, section 6.2, found at http://csrc.nist.gov/groups/STM/cavp/documents/mac/gcmvs.pdf.
 
-It is not recommended that evaluators use values obtained from static sources such
-as http://csrc.nist.gov/groups/STM/cavp/documents/mac/gcmtestvectors.zip, or use
-values not generated expressly to exercise the AES-GCM implementation.
+It is not recommended that evaluators use values obtained from static sources such as http://csrc.nist.gov/groups/STM/cavp/documents/mac/gcmtestvectors.zip, or use values not generated expressly to exercise the AES-GCM implementation.
 
-The evaluator shall test the authenticated encryption functionality of AES-GCM by
-supplying 15 sets of Key, Plaintext, AAD, IV, and Tag data for every combination
-of the following parameters as selected in the ST and supported by the
-implementation under test:
+The evaluator shall test the authenticated encryption functionality of AES-GCM by supplying 15 sets of Key, Plaintext, AAD, IV, and Tag data for every combination of the following parameters as selected in the ST and supported by the implementation under test:
 
-* *Key size in bits:* Each selected and supported key size (e.g., 128, 192, or
-256 bits).
+* *Key size in bits:* Each selected and supported key size (e.g., 128, 192, or 256 bits).
 
-*  *Plaintext length in bits:* Up to four values for plaintext length: Two values
-that are non-zero integer multiples of 128, if supported. And two values that
-are non-multiples of 128, if supported.
+*  *Plaintext length in bits:* Up to four values for plaintext length: Two values that are non-zero integer multiples of 128, if supported. And two values that are non-multiples of 128, if supported.
 
-* *AAD length in bits:* Up to five values for AAD length: Zero-length, if
-supported. Two values that are non-zero integer multiples of 128, if
-supported. And two values that are integer non-multiples of 128, if
-supported.
+* *AAD length in bits:* Up to five values for AAD length: Zero-length, if supported. Two values that are non-zero integer multiples of 128, if supported. And two values that are integer non-multiples of 128, if supported.
 
-* *IV length in bits:* Up to three values for IV length: 96 bits. Minimum and
-maximum supported lengths, if different.
+* *IV length in bits:* Up to three values for IV length: 96 bits. Minimum and maximum supported lengths, if different.
 
 * *MAC length in bits:* Each supported length (e.g., 128, 120, 112, 104, 96).
 
-To determine correctness, the evaluator shall compare the resulting values to those
-obtained by submitting the same inputs to a known-good implementation.
+To determine correctness, the evaluator shall compare the resulting values to those obtained by submitting the same inputs to a known-good implementation.
 
-The evaluator shall test the authenticated decrypt functionality of AES-GCM by
-supplying 15 Ciphertext-Tag pairs for every combination of the above parameters,
-replacing Plaintext length with Ciphertext length. For each parameter combination
-the evaluator shall introduce an error into either the Ciphertext or the Tag such that
-approximately half of the cases are correct and half the cases contain errors. To
-determine correctness, the evaluator shall compare the resulting pass/fail status and
-Plaintext values to the results obtained by submitting the same inputs to a known-good
-implementation.
+The evaluator shall test the authenticated decrypt functionality of AES-GCM by supplying 15 Ciphertext-Tag pairs for every combination of the above parameters, replacing Plaintext length with Ciphertext length. For each parameter combination the evaluator shall introduce an error into either the Ciphertext or the Tag such that approximately half of the cases are correct and half the cases contain errors. To determine correctness, the evaluator shall compare the resulting pass/fail status and Plaintext values to the results obtained by submitting the same inputs to a known-good implementation.
 
 *AES-CTR Known Answer Tests*
 
-The Counter (CTR) mode is a confidentiality mode that features the
-application of the forward cipher to a set of input blocks, called counters, to
-produce a sequence of output blocks that are exclusive-ORed with the
-plaintext to produce the ciphertext, and vice versa. Since the Counter Mode
-does not specify the counter that is used, it is not possible to implement an
-automated test for this mode. The generation and management of the counter
-is tested through FCS_SSH*_EXT.1.4. If CBC and/or GCM are selected in
-FCS_COP.1/DataEncryption, the test activities for those modes sufficiently
-demonstrate the correctness of the AES algorithm. If CTR is the only selection
-in FCS_COP.1/DataEncryption, the AES-CBC Known Answer Test, AES-GCM
-Known Answer Test, or the following test shall be performed (all of
-these tests demonstrate the correctness of the AES algorithm):
+The Counter (CTR) mode is a confidentiality mode that features the application of the forward cipher to a set of input blocks, called counters, to produce a sequence of output blocks that are exclusive-ORed with the plaintext to produce the ciphertext, and vice versa. Since the Counter Mode does not specify the counter that is used, it is not possible to implement an automated test for this mode. The generation and management of the counter is tested through FCS_SSH*_EXT.1.4. If CBC and/or GCM are selected in FCS_COP.1/DataEncryption, the test activities for those modes sufficiently demonstrate the correctness of the AES algorithm. If CTR is the only selection in FCS_COP.1/DataEncryption, the AES-CBC Known Answer Test, AES-GCM
+Known Answer Test, or the following test shall be performed (all of these tests demonstrate the correctness of the AES algorithm):
 
-There are four Known Answer Tests (KATs) described below to test a basic
-AES encryption operation (AES-ECB mode). For all KATs, the plaintext, IV,
-and ciphertext values shall be 128-bit blocks. The results from each test may
-either be obtained by the validator directly or by supplying the inputs to the
-implementer and receiving the results in response. To determine correctness,
-the evaluator shall compare the resulting values to those obtained by
-submitting the same inputs to a known good implementation.
+There are four Known Answer Tests (KATs) described below to test a basic AES encryption operation (AES-ECB mode). For all KATs, the plaintext, IV, and ciphertext values shall be 128-bit blocks. The results from each test may either be obtained by the validator directly or by supplying the inputs to the implementer and receiving the results in response. To determine correctness, the evaluator shall compare the resulting values to those obtained by submitting the same inputs to a known good implementation.
 
 KAT-1 To test the encrypt functionality, the evaluator shall supply a set of 5
 plaintext values for each selected key size and obtain the ciphertext value that
