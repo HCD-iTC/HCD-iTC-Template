@@ -2390,40 +2390,6 @@ A TOE may act as the client, the server, or both in TLS sessions. The requiremen
 
 
 
-The following list contains all DTLS-/TLS-related ciphersuites supported by this cPP.
-
-•	TLS_RSA_WITH_AES_128_CBC_SHA as defined in RFC 3268
-•	TLS_RSA_WITH_AES_256_CBC_SHA as defined in RFC 3268
-•	TLS_DHE_RSA_WITH_AES_128_CBC_SHA as defined in RFC 3268
-•	TLS_DHE_RSA_WITH_AES_256_CBC_SHA as defined in RFC 3268
-•	TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA as defined in RFC 4492
-•	TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA as defined in RFC 4492
-•	TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA as defined in RFC 4492
-•	TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA as defined in RFC 4492
-•	TLS_RSA_WITH_AES_128_CBC_SHA256 as defined in RFC 5246
-•	TLS_RSA_WITH_AES_256_CBC_ SHA256 as defined in RFC 5246
-•	TLS_DHE_RSA_WITH_AES_128_CBC_ SHA256 as defined in RFC 5246
-•	TLS_DHE_RSA_WITH_AES_256_CBC_ SHA256 as defined in RFC 5246
-•	TLS_RSA_WITH_AES_128_GCM_SHA256 as defined in RFC 5288
-•	TLS_RSA_WITH_AES_256_GCM_SHA384 as defined in RFC 5288
-•	TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 as defined in RFC 5288
-•	TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 as defined in RFC 5288
-•	TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256 as defined in RFC 5289
-•	TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384 as defined in RFC 5289
-•	TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256 as defined in RFC 5289
-•	TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384 as defined in RFC 5289
-•	TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 as defined in RFC 5289
-•	TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 as defined in RFC 5289
-•	TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 as defined in RFC 5289
-•	TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 as defined in RFC 5289
-
-List 1: List of supported TLS-related ciphersuites
-
-
-
-
-
-
 
 
 ==== FCS_SSHC_EXT & FCS_SSHS_EXT SSH Protocol
