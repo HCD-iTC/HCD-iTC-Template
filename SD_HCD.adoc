@@ -86,7 +86,7 @@ Similarly, at the more granular level of Assurance Components, if the EAs for an
 
 == Evaluation Activities for SFRs
 
-The EAs presented in this section capture the actions the evaluator performs to address technology specific aspects covering specific SARs (e.g.., ASE_TSS.1, ADV_FSP.1, AGD_OPE.1, and ATE_IND.1) - this is in addition to the CEM work units that are performed in Section 6 (Evaluation Activities for SARs).
+The EAs presented in this section capture the actions the evaluator performs to address technology specific aspects covering specific SARs (e.g., ASE_TSS.1, ADV_FSP.1, AGD_OPE.1, and ATE_IND.1) - this is in addition to the CEM work units that are performed in Section 6 (Evaluation Activities for SARs).
 
 Regarding design descriptions (designated by the subsections labelled TSS, as well as any required supplementary material that may be treated as proprietary), the evaluator must ensure there is specific information that satisfies the EA. For findings regarding the TSS section, the evaluator’s verdicts will be associated with the CEM work unit ASE_TSS.1-1. Evaluator verdicts associated with the supplementary evidence will also be associated with ASE_TSS.1-1, since the requirement to provide such evidence is specified in ASE in the cPP.
 
@@ -216,7 +216,7 @@ The evaluator shall examine the TOE summary specification to verify that it desc
 
 If the TOE uses the generated key in a key chain/hierarchy, then the evaluator shall examine the TOE summary specification to confirm that it describes the following:
 
-. If KCDSA is selected, the evaluator shall verify that the TSS specify the methods used to generate p, q and g, and
+. If KCDSA is selected, the evaluator shall verify that the TSS specifies the methods used to generate p, q and g, and
 . how the key is used as part of the key chain/hierarchy
 
 ===== Guidance Documentation
@@ -227,14 +227,14 @@ key size(s) for all cryptographic protocols defined in the Security Target.
 
 ===== Tests
 
-The evaluator shall include test cases of FCS_CKM.1/AKG to the test subset. Note that FCS_CKM.1/AKG may be not mapped to the specific interface(s) after evaluator’s analysis during ADV_FSP.1.
+The evaluator shall include test cases of FCS_CKM.1/AKG to the test subset. Note that FCS_CKM.1/AKG may not be mapped to the specific interface(s) after evaluator’s analysis during ADV_FSP.1.
 
 The evaluator shall produce test documentation for test cases of FCS_CKM.1/AKG. If there is no explicit external interface(s) mapped to FCS_CKM.1/AKG, the evaluator shall employ an alternative test approach (refer to CEM, section 15.2.2.)
 
 Note: The following tests require the developer to provide access to a test
 platform that provides the evaluator with tools that are typically not found on
-factory products. Generation of long-term cryptographic keys (i.e. keys that
-are not ephemeral keys/session keys) might be performed automatically (e.g.
+factory products. Generation of long-term cryptographic keys (i.e., keys that
+are not ephemeral keys/session keys) might be performed automatically (e.g.,
 during initial start-up). Testing of key generation must cover not only
 administrator invoked key generation but also automated key generation (if
 supported).
@@ -311,7 +311,7 @@ and two ways to generate the cryptographic group generator g:
 * Generator g constructed through a verifiable process
 * Generator g constructed through an unverifiable process.
 
-The Key generation specifies 2 ways to generate the private key x:
+The key generation specifies 2 ways to generate the private key x:
 
 * len(q) bit output of RBG where 1 \<=x \<= q-1
 * len(q) + 64 bit output of RBG, followed by a mod q-1 operation
@@ -358,10 +358,10 @@ and two ways to generate the cryptographic group generator g:
 * Generator g constructed through a verifiable process
 * Generator g constructed through an unverifiable process.
 
-The Key generation specifies 2 ways to generate the private key x: Private Key:
+The key generation specifies 2 ways to generate the private key x: 
 
 * len(q) bit output of RBG where 2^(len(q)-1)<x<q
-* len(q) + 64 bit output of RBG, followed by a mod q-1 operation and +1 operation where 0< x<q..
+* len(q) + 64 bit output of RBG, followed by a mod q-1 operation and +1 operation where 0< x<q
 
 To test the key generation method for the Probable primes method and Provable primes method, the evaluator must seed the TSF key generation routine with sufficient data to deterministically generate the KCDSA key pair.
 
@@ -415,7 +415,7 @@ _Algorithm Functional Test_
 
 For each supported parameter set the evaluator shall require the implementation under test to generate 25 key pairs using 25 different randomly generated 32-byte seed values. To determine correctness, the evaluator shall compare the resulting key pairs with those generated using a known-good implementation using the same inputs.
 
-==== FCS_CKM.1/SKG Cryptographic key generation (Symmetric Keys)
+==== FCS_CKM.1/SKG Cryptographic Key Generation (Symmetric Keys)
 
 ===== TSS
 
@@ -423,7 +423,7 @@ The evaluator shall review the TSS to determine that it describes how the functi
 
 ===== KMD
 
-If the TOE is relying on random number generation from a third-party source, the KMD needs to describe the function call and parameters used when calling the third-party DRBG function.  Also, the KMD needs to include a short description of the vendor's assumption for the amount of entropy seeding the third-party DRBG. The evaluator uses the description of the RBG functionality in FCS_RBG_EXT or the KMD to determine that the key size being requested is identical to the key size and mode to be used for the encryption/decryption of the user data (FCS_COP.1/StorageEncryption).
+If the TOE is relying on random number generation from a third-party source, the KMD needs to describe the function call and parameters used when calling the third-party DRBG function.  Also, the KMD needs to include a short description of the vendor's assumption for the amount of entropy seeding the third-party DRBG. The evaluator uses the description of the RBG functionality in FCS_RBG_EXT.1 or the KMD to determine that the key size being requested is identical to the key size and mode to be used for the encryption/decryption of the user data (FCS_COP.1/StorageEncryption).
 
 If the TOE uses the generated key in a key chain/hierarchy, then the evaluator shall examine the KMD to confirm that it describes how the key is used as part of the key chain/hierarchy.
 
@@ -435,7 +435,7 @@ If the TOE provides interfaces to configure the cryptographic key generation fun
 
 ===== Tests
 
-The evaluator shall include test cases of FCS_CKM.1/SKG to the test subset. Note that FCS_CKM.1/SKG may be not mapped to the specific interface(s) after evaluator’s analysis during ADV_FSP.1.
+The evaluator shall include test cases of FCS_CKM.1/SKG to the test subset. Note that FCS_CKM.1/SKG may not be mapped to the specific interface(s) after evaluator’s analysis during ADV_FSP.1.
 
 The evaluator shall produce test documentation for test cases of FCS_CKM.1/SKG. If there is no explicit external interface(s) mapped to FCS_CKM.1/SKG, the evaluator shall employ an alternative test approach (refer to CEM, section 15.2.2.)
 
@@ -558,7 +558,7 @@ Diffie-Hellman group 14 by using a known good implementation for each
 protocol selected in FTP_TRP.1/Admin, FTP_TRP.1/NonAdmin and FTP_ITC.1 that uses Diffie-Hellman group 14.
 FFC Schemes using “safe-prime” groups
 
-The evaluator shall verify the correctness of the TSF’s implementation of safeprime
+The evaluator shall verify the correctness of the TSF’s implementation of safe-prime
 groups by using a known good implementation for each protocol
 selected in FTP_TRP.1/Admin, FTP_TRP.1/NonAdmin and FTP_ITC.1 that uses safe-prime groups. This test must be performed for each safe-prime
 group that each protocol uses.
@@ -578,7 +578,7 @@ The evaluator shall check that the TSS identifies any configurations or circumst
 
 ===== KMD
 
-The evaluator shall verify the Key Management Description (KMD) includes a key lifecycle that describes the purpose of the key and how it is used, where the keys and key material reside (i.e. volatile or nonvolatile storage), how each identified key is introduced into storage (e.g., by derivation from user input, or by unwrapping a wrapped key stored in nonvolatile storage), how it is determined that keys and key material are no longer needed, and how the material is destroyed once it is not needed and that the documentation in the KMD follows FCS_CKM.6 for the destruction.
+The evaluator shall verify the Key Management Description (KMD) includes a key lifecycle that describes the purpose of the key and how it is used, where the keys and key material reside (i.e., volatile or nonvolatile storage), how each identified key is introduced into storage (e.g., by derivation from user input, or by unwrapping a wrapped key stored in nonvolatile storage), how it is determined that keys and key material are no longer needed, and how the material is destroyed once it is not needed and that the documentation in the KMD follows FCS_CKM.6 for the destruction.
 
 The KMD identifies and describes the interface(s) that are used to service commands to read/write memory/storage. The evaluator examines the interface description for each different media type to ensure that the interface supports the selection(s) made by the ST Author.
 
@@ -810,7 +810,7 @@ replacing Plaintext length with Ciphertext length. For each parameter combinatio
 the evaluator shall introduce an error into either the Ciphertext or the Tag such that
 approximately half of the cases are correct and half the cases contain errors. To
 determine correctness, the evaluator shall compare the resulting pass/fail status and
-Plaintext values to the results obtained by submitting the same inputs to a knowngood
+Plaintext values to the results obtained by submitting the same inputs to a known-good
 implementation.
 
 *AES-CTR Known Answer Tests*
@@ -837,15 +837,15 @@ the evaluator shall compare the resulting values to those obtained by
 submitting the same inputs to a known good implementation.
 
 KAT-1 To test the encrypt functionality, the evaluator shall supply a set of 5
-plaintext values for each selected keysize and obtain the ciphertext value that
+plaintext values for each selected key size and obtain the ciphertext value that
 results from encryption of the given plaintext using a key value of all zeros.
 
 KAT-2 To test the encrypt functionality, the evaluator shall supply a set of 5
-key values for each selected keysize and obtain the ciphertext value that results
+key values for each selected key size and obtain the ciphertext value that results
 from encryption of an all zeros plaintext using the given key value.
 
 KAT-3 To test the encrypt functionality, the evaluator shall supply a set of key
-values for each selected keysize as described below and obtain the ciphertext
+values for each selected key size as described below and obtain the ciphertext
 values that result from AES encryption of an all zeros plaintext using the given
 key values. A set of 128 128-bit keys, a set of 192 192-bit keys, and/or a set
 of 256 256-bit keys. Key_i in each set shall have the leftmost i bits be ones
@@ -853,9 +853,9 @@ and the rightmost N-i bits be zeros, for i in [1, N].
 
 KAT-4 To test the encrypt functionality, the evaluator shall supply the set of
 128 plaintext values described below and obtain the ciphertext values that
-result from encryption of the given plaintext using each selected keysize with a key value of all zeros (e.g. 256 ciphertext values will be generated if 128 bits
+result from encryption of the given plaintext using each selected key size with a key value of all zeros (e.g., 256 ciphertext values will be generated if 128 bits
 and 256 bits are selected and 384 ciphertext values will be generated if all
-keysizes are selected). Plaintext value i in each set shall have the leftmost bits
+key sizes are selected). Plaintext value i in each set shall have the leftmost bits
 be ones and the rightmost 128-i bits be zeros, for i in [1, 128].
 
 *AES-CTR Multi-Block Message Test*
@@ -867,7 +867,7 @@ plaintext message of length i blocks and encrypt the message, using the mode
 to be tested, with the chosen key. The ciphertext shall be compared to the result
 of encrypting the same plaintext message with the same key using a known
 good implementation. The evaluator shall perform this test using each selected
-keysize.
+key size.
 
 *AES-CTR Monte-Carlo Test*
 
@@ -883,10 +883,8 @@ shall be run as follows:
 
 The ciphertext computed in the 1000th iteration is the result for that trial. This
 result shall be compared to the result of running 1000 iterations with the same
-values using a known good implementation. The evaluator ciphertext computed in the 1000th iteration is the result for that trial. This
-result shall be compared to the result of running 1000 iterations with the same
 values using a known good implementation. The evaluator shall perform this
-test using each selected keysize.
+test using each selected key size.
 
 There is no need to test the decryption engine.
 
@@ -1330,7 +1328,7 @@ The evaluator shall test the decrypt functionality by decrypting nine i-block me
 
 The evaluator shall test the encrypt functionality for each selected key size using 100 3-tuples of pseudo-random values for plaintext, IVs, and keys.
 
-The evaluator shall supply a single 3-tuple of pseudo-random values for for each selected key size. This 3-tuple of plaintext, IV, and key is provided as input to the below algorithm to generate the remaining 99 3-tuples, and to run each 3-tuple through 1000 iterations of LEA-CBC encryption.
+The evaluator shall supply a single 3-tuple of pseudo-random values for each selected key size. This 3-tuple of plaintext, IV, and key is provided as input to the below algorithm to generate the remaining 99 3-tuples, and to run each 3-tuple through 1000 iterations of LEA-CBC encryption.
 
 ....
 Key[0] = Key, IV[0] = IV, PT[0] = PT
@@ -1572,7 +1570,7 @@ services.
 
 ===== Tests
 
-The evaluator shall include test cases of FCS_COP.1/SigGen to the test subset. Note that FCS_COP.1/SigGen may be not mapped to the specific interface(s) after evaluator’s analysis during ADV_FSP.1.
+The evaluator shall include test cases of FCS_COP.1/SigGen to the test subset. Note that FCS_COP.1/SigGen may not be mapped to the specific interface(s) after evaluator’s analysis during ADV_FSP.1.
 
 The evaluator shall produce test documentation for test cases of FCS_COP.1/SigGen. If there is no explicit external interface(s) mapped to FCS_COP.1/SigGen, the evaluator shall employ an alternative test approach (refer to CEM, section 15.2.2.).
 
@@ -1593,7 +1591,7 @@ function of a known good implementation.
 *_ECDSA FIPS 186-4 Signature Verification Test_*
 
 For each supported NIST curve (i.e., P-256, P-384 and P-521) and SHA
-function pair, the evaluator shall generate a set of 10 1024-bit message, public
+function pair, the evaluator shall generate a set of 10 1024-bit messages, public
 key and signature tuples and modify one of the values (message, public key or
 signature) in five of the 10 tuples. The evaluator shall obtain in response a set
 of 10 PASS/FAIL values.
@@ -1627,12 +1625,12 @@ messages and detects the errors introduced in the altered messages.
 
 *KCDSA Tests*
 
-The following test require the developer to provide access to a test platform that provides the evaluator with tools that are not found on the TOE in its evaluated configuration.
+The following tests require the developer to provide access to a test platform that provides the evaluator with tools that are not found on the TOE in its evaluated configuration.
 The following or equivalent steps shall be taken to test the TSF.
 
 *_Signature Generation Test_*
 
-For each domain parameter (i.e., (p=2048, q= 224), (p=2048, q=256)) and SHA function pair, the evaluator shall generate a set of 10 1024-bit message. The test passes only if all the signatures with submitted parameters result in successful signature verification.
+For each domain parameter (i.e., (p=2048, q=224), (p=2048, q=256)) and SHA function pair, the evaluator shall generate a set of 10 1024-bit messages. The test passes only if all the signatures with submitted parameters result in successful signature verification.
 
 *_Signature Verification Test_*
 
@@ -1640,7 +1638,7 @@ The KCDSA Signature Verification Test tests the ability of the TSF to recognize 
 
 *EC-KCDSA Tests*
 
-The following test require the developer to provide access to a test platform that provides the evaluator with tools that are not found on the TOE in its evaluated configuration.
+The following tests require the developer to provide access to a test platform that provides the evaluator with tools that are not found on the TOE in its evaluated configuration.
 The following or equivalent steps shall be taken to test the TSF.
 
 *_Signature Generation Test_*
@@ -1700,6 +1698,17 @@ To test the TOE’s ability to verify digital signatures using XMSS or XMSS MT, 
 * Hash algorithm [SHA-256/192, SHAKE256/192, SHA-256, SHAKE256]
 * Tree height [10, 16, 20]
 
+*_XMSS Digital Signature Verification Test_*
+
+For each supported combination of the above parameters, the evaluator shall generate four test cases consisting of signed messages and keys, such that
+
+* One test case is unmodified (i.e., correct)
+* For one test case modify the message, i.e., the message is different
+* For one test case modify the signature, i.e., signature is different
+* For one test case modify the signature header so that it is a valid header for a different XMSS parameter set
+
+The evaluator shall verify the correctness of the implementation by verifying that the TOE correctly verifies the unmodified test case and fails to verify the modified test cases.
+
 *ML-DSA Signature Generation*
 
 To test the TOE’s ability to generate digital signatures using ML-DSA, the evaluator shall perform the Algorithm Functional Test using the following input parameters:
@@ -1720,7 +1729,7 @@ To test the TOE’s ability to generate digital signatures using ML-DSA, the eva
 
 *_Algorithm Functional Test_*
 
-For each combination of supported parameter set and capabilities, the evaluator shall require the implementation under test to generate 15 signatures pairs using 15 different randomly generated 32-byte seed values. To determine correctness, the evaluator shall compare the resulting key pairs with those generated using a known-good implementation using the same inputs.
+For each combination of supported parameter set and capabilities, the evaluator shall require the implementation under test to generate 15 signature pairs using 15 different randomly generated 32-byte seed values. To determine correctness, the evaluator shall compare the resulting key pairs with those generated using a known-good implementation using the same inputs.
 
 *_Known Answer Test for Rejection Cases_*
 
@@ -1911,7 +1920,7 @@ correct result is produced when the messages are provided to the TSF.
 *Selected Long Messages Test - Bit-oriented Mode*
 
 The evaluators devise an input set consisting of m messages, where m is the
-block length of the hash algorithm (e.g. 512 bits for SHA-256). The length of
+block length of the hash algorithm (e.g., 512 bits for SHA-256). The length of
 the ith message is m + 99*i, where 1 ≤ i ≤ m. The message text shall be
 pseudorandomly generated. The evaluators compute the message digest for
 each of the messages and ensure that the correct result is produced when the
@@ -1920,7 +1929,7 @@ messages are provided to the TSF.
 *Selected Long Messages Test - Byte-oriented Mode*
 
 The evaluators devise an input set consisting of m/8 messages, where m is the
-block length of the hash algorithm (e.g. 512 bits for SHA-256). The length of
+block length of the hash algorithm (e.g., 512 bits for SHA-256). The length of
 the ith message is m + 8*99*i, where 1 ≤ i ≤ m/8. The message text shall be
 pseudorandomly generated. The evaluators compute the message digest for
 each of the messages and ensure that the correct result is produced when the
@@ -1955,7 +1964,7 @@ appropriate instructions for configuring the RNG functionality.
 
 ===== Tests
 
-The evaluator shall include test cases of FCS_RBG_EXT.1 to the test subset. Note that FCS_RBG_EXT.1 may be not mapped to the specific interface(s) after evaluator’s analysis during ADV_FSP.1.
+The evaluator shall include test cases of FCS_RBG_EXT.1 to the test subset. Note that FCS_RBG_EXT.1 may not be mapped to the specific interface(s) after evaluator’s analysis during ADV_FSP.1.
 
 The evaluator shall produce test documentation for test cases of FCS_RBG_EXT.1. If there is no explicit external interface(s) mapped to FCS_RBG_EXT.1, the evaluator shall employ an alternative test approach (refer to CEM, section 15.2.2.).
 
@@ -2560,7 +2569,7 @@ Further EAs are associated with the specific protocols.
 
 === USER.DOC Unavailability
 
-==== FDP_UDU_EXT Document Unavailability
+==== FDP_UDU_EXT.1 Document Unavailability
 
 ===== TSS
 
@@ -2580,7 +2589,7 @@ The evaluator shall include tests related to this function in the set of tests p
 
 === Data Wiping
 
-==== FPT_WIPE_EXT Data Wiping
+==== FPT_WIPE_EXT.1 Data Wiping
 
 ===== TSS
 
@@ -2669,7 +2678,7 @@ a| . First 2049 logical sectors of the disk
 
 |===
 
-Test 5: [Conditional: The case cryptographic erase is selected] The evaluator shall verify that the appropriate key(s) according to the KMD description required by FCS_CKM_EXT.4 has been destroyed in the method described in the Test Assurance Activity for FCS_CKM.4.
+Test 5: [Conditional: The case cryptographic erase is selected] The evaluator shall verify that the appropriate key(s) according to the KMD description required by FCS_CKM.6 has been destroyed in the method described in the Test Assurance Activity for FCS_CKM.6.
 
 Test 6: The evaluator shall verify that known text strings or byte array for D.USER and D.TSF are not found on the nonvolatile storage media after wipe has been performed. In some cases, cryptographic erase would make unable to read data from the storage media. In that case, “failed to read data with error” can be considered as “not found”. This test may require special tools to be installed on the TOE, or for the storage media to be moved to a separate system equipped with special tools provided by the TOE developer as necessary. The evaluator shall examine the storage media as specified in the following table for the indicated search patterns. This test is not applicable to protected storage devices (e.g., TPMs) that do not provide direct access to their storage.
 
@@ -2694,7 +2703,7 @@ a| . The text representation of the IP address assigned to the TOE when it was i
 
 === Confidential Data on Nonvolatile Storage Devices
 
-==== FCS_COP.1/StorageEncryption Cryptographic operation (Data Encryption/Decryption)
+==== FCS_COP.1/StorageEncryption Cryptographic Operation (Data Encryption/Decryption)
 
 ===== TSS
 
@@ -2866,7 +2875,7 @@ replacing Plaintext length with Ciphertext length. For each parameter combinatio
 the evaluator shall introduce an error into either the Ciphertext or the Tag such that
 approximately half of the cases are correct and half the cases contain errors. To
 determine correctness, the evaluator shall compare the resulting pass/fail status and
-Plaintext values to the results obtained by submitting the same inputs to a knowngood
+Plaintext values to the results obtained by submitting the same inputs to a known-good
 implementation.
 
 *XTS-AES Test*
@@ -2924,7 +2933,7 @@ The evaluator shall refer to Section 2.2.5. “FCS_COP.1/DataEncryption Cryptogr
 * LEA-CCM Tests
 * LEA-GCM Tests
 
-==== FCS_COP.1/KeyWrap Cryptographic operation (Key Wrapping)
+==== FCS_COP.1/KeyWrap Cryptographic Operation (Key Wrapping)
 
 ===== TSS
 
@@ -2942,7 +2951,7 @@ The evaluator shall review the KMD to ensure that all keys are wrapped using the
 
 ===== Tests
 
-The evaluator shall include test cases of FCS_COP.1/KeyWrap to the test subset. Note that FCS_COP.1/KeyWrap may be not mapped to the specific interface(s) after evaluator’s analysis during ADV_FSP.1.
+The evaluator shall include test cases of FCS_COP.1/KeyWrap to the test subset. Note that FCS_COP.1/KeyWrap may not be mapped to the specific interface(s) after evaluator’s analysis during ADV_FSP.1.
 
 The evaluator shall produce test documentation for test cases of FCS_COP.1/KeyWrap. If there is no explicit external interface(s) mapped to FCS_COP.1/KeyWrap, the evaluator shall employ an alternative test approach (refer to CEM, section 15.2.2.).
 
@@ -2953,7 +2962,7 @@ The evaluator shall perform the following tests or witness respective tests exec
 . Specification of wrapping keys as input parameter to the function to be tested
 . Specification of further required input parameters if required
 . Specification of keys to be wrapped (plaintext, as function’s argument)
-. Direct access to wrapped key (ciphertext), e.g. in the nonvolatile memory
+. Direct access to wrapped key (ciphertext), e.g., in the nonvolatile memory
 
 *AES-KW, AES-KWP, AES-GCM, AES-CCM*
 
@@ -3162,7 +3171,7 @@ Refer to FCS_COP.1/StorageEncryption for the required LEA-GCM testing. Each dist
 
 Refer to FCS_COP.1/StorageEncryption for the required LEA-CCM testing. Each distinct LEA-CCM implementation shall be tested separately.
 
-==== FCS_COP.1/KeyEnc Cryptographic operation (Key Encryption)
+==== FCS_COP.1/KeyEnc Cryptographic Operation (Key Encryption)
 
 ===== TSS
 
@@ -3176,7 +3185,7 @@ The evaluator shall review the KMD to ensure that all keys are encrypted using t
 
 The evaluator shall use tests in FCS_COP.1/StorageEncryption to verify encryption.
 
-==== FCS_COP.1/KeyTransport Cryptographic operation (Key Transport)
+==== FCS_COP.1/KeyTransport Cryptographic Operation (Key Transport)
 
 ===== TSS
 
@@ -3206,7 +3215,7 @@ If the KTS-OAEP scheme was selected, the evaluator shall perform the following t
 
 . The evaluator shall decrypt each cipher text, C, produced by the RSA-OAEP encryption operation of the TOE using RSADP, and perform the OAEP decoding operation (described in SP800-56B section 7.2.2.4) to recover HA’ || X. For each HA’, the evaluator shall take the corresponding A and the specified hash algorithm and verify that HA' = Hash(A). The evaluator shall also force the TOE to perform some RSA-OAEP decryptions where the A value is passed incorrectly, and the evaluator shall verify that an error is detected.
 
-. The evaluator shall check the format of the ‘X’ string recovered in OAEP. Test.3 to ensure that the format is of the form PS || 01 || K, where PS consists of zero or more consecutive 0x00 bytes and K is the transported keying material. The evaluator shall also feed into the TOE’s RSA-OAEP decryption operation some cipher texts for which the resulting ‘X’ strings do not have the correct format (i.e., the leftmost non-zero byte is not 0x01). These incorrectly formatted ‘X’ variables shall be detected by the RSA-OAEP decrypt function.
+. The evaluator shall check the format of the ‘X’ string recovered in OAEP Test 3 to ensure that the format is of the form PS || 01 || K, where PS consists of zero or more consecutive 0x00 bytes and K is the transported keying material. The evaluator shall also feed into the TOE’s RSA-OAEP decryption operation some cipher texts for which the resulting ‘X’ strings do not have the correct format (i.e., the leftmost non-zero byte is not 0x01). These incorrectly formatted ‘X’ variables shall be detected by the RSA-OAEP decrypt function.
 
 . The evaluator shall trigger all detectable decryption errors and validate that the returned error codes are the same and that no information is given back to the sender on which type of error occurred. The evaluator shall also validate that no intermediate results from the TOE’s receiver-side operations are revealed to the sender.
 
@@ -3298,7 +3307,7 @@ If pre-shared keys are chosen in the selection, the evaluator shall check to ens
 
 ====== FCS_IPSEC_EXT.1.14
 
-The evaluator shall ensure that the TSS describes how the TOE compares the peer’s presented identifier to the reference identifier. This description shall include which field(s) of the certificate are used as the presented identifier (DN, Common Name, or SAN). If the TOE simultaneously supports the same identifier type in the CN and SAN, the TSS shall describe how the TOE prioritizes the comparisons (e.g. the result of comparison if CN matches but SAN does not). If the location (e.g. CN or SAN) of non-DN identifier types must explicitly be configured as part of the reference identifier, the TSS shall state this. If the ST author assigned an additional identifier type, the TSS description shall also include a description of that type and the method by which that type is compared to the peer’s presented certificate, including what field(s) are compared and which fields take precedence in the comparison.
+The evaluator shall ensure that the TSS describes how the TOE compares the peer’s presented identifier to the reference identifier. This description shall include which field(s) of the certificate are used as the presented identifier (DN, Common Name, or SAN). If the TOE simultaneously supports the same identifier type in the CN and SAN, the TSS shall describe how the TOE prioritizes the comparisons (e.g., the result of comparison if CN matches but SAN does not). If the location (e.g., CN or SAN) of non-DN identifier types must explicitly be configured as part of the reference identifier, the TSS shall state this. If the ST author assigned an additional identifier type, the TSS description shall also include a description of that type and the method by which that type is compared to the peer’s presented certificate, including what field(s) are compared and which fields take precedence in the comparison.
 
 ===== Guidance Documentation
 
@@ -3354,7 +3363,7 @@ The evaluator shall ensure that the operational guidance describes all supported
 
 The evaluator uses the guidance documentation to configure the TOE to carry out the following tests:
 
-.. Test 1: The evaluator shall configure the SPD such that there is a rule for dropping a packet, encrypting a packet, and (if configurable) allowing a packet to flow in plaintext. The selectors used in the construction of the rule shall be different such that the evaluator can generate a packet and send packets to the gateway with the appropriate fields (fields that are used by the rule - e.g., the IP addresses, TCP/UDP ports) in the packet header. The evaluator performs both positive and negative test cases for each type of rule (e.g. a packet that matches the rule and another that does not match the rule). The evaluator observes via the audit trail, and packet captures that the TOE exhibited the expected behaviour: appropriate packets were dropped, allowed to flow without modification, encrypted by the IPsec implementation.
+.. Test 1: The evaluator shall configure the SPD such that there is a rule for dropping a packet, encrypting a packet, and (if configurable) allowing a packet to flow in plaintext. The selectors used in the construction of the rule shall be different such that the evaluator can generate a packet and send packets to the gateway with the appropriate fields (fields that are used by the rule - e.g., the IP addresses, TCP/UDP ports) in the packet header. The evaluator performs both positive and negative test cases for each type of rule (e.g., a packet that matches the rule and another that does not match the rule). The evaluator observes via the audit trail, and packet captures that the TOE exhibited the expected behaviour: appropriate packets were dropped, allowed to flow without modification, encrypted by the IPsec implementation.
 
 .. Test 2: The evaluator shall devise several tests that cover a variety of scenarios for packet processing. As with Test 1, the evaluator ensures both positive and negative test cases are constructed. These scenarios must exercise the range of possibilities for SPD entries and processing modes as outlined in the TSS and guidance documentation. Potential areas to cover include rules with overlapping ranges and conflicting entries, inbound and outbound packets, and packets that establish SAs as well as packets that belong to established SAs. The evaluator shall verify, via the audit trail and packet captures, for each scenario that the expected behavior is exhibited, and is consistent with both the TSS and the guidance documentation.
 
@@ -3453,9 +3462,9 @@ In the context of the tests below, a valid certificate is a certificate that pas
 
 The evaluator shall perform the following tests:
 
-* Test 1: [conditional] For each CN/identifier type combination selected, the evaluator shall configure the peer’s reference identifier on the TOE (per the administrative guidance) to match the field in the peer’s presented certificate and shall verify that the IKE authentication succeeds. If the TOE prioritizes CN checking over SAN (through explicit configuration of the field when specifying the reference identifier or prioritization rules), the evaluator shall also configure the  SAN so it contains an incorrect identifier of the correct type (e.g. the reference identifier on the TOE is example.com, the CN=example.com, and the SAN:FQDN=otherdomain.com) and verify that IKE authentication succeeds.
+* Test 1: [conditional] For each CN/identifier type combination selected, the evaluator shall configure the peer’s reference identifier on the TOE (per the administrative guidance) to match the field in the peer’s presented certificate and shall verify that the IKE authentication succeeds. If the TOE prioritizes CN checking over SAN (through explicit configuration of the field when specifying the reference identifier or prioritization rules), the evaluator shall also configure the  SAN so it contains an incorrect identifier of the correct type (e.g., the reference identifier on the TOE is example.com, the CN=example.com, and the SAN:FQDN=otherdomain.com) and verify that IKE authentication succeeds.
 
-* Test 2: [conditional] For each SAN/identifier type combination selected, the evaluator shall configure the peer’s reference identifier on the TOE (per the administrative guidance) to match the field in the peer’s presented certificate and shall verify that the IKE authentication succeeds. If the TOE prioritizes SAN checking over CN (through explicit specification of the field when specifying the reference identifier or prioritization rules), the evaluator shall also configure the CN so it contains an incorrect identifier formatted to be the same type (e.g. the reference identifier on the TOE is DNS-ID; identify certificate has an identifier in SAN with correct DNS-ID, CN with incorrect DNS-ID (and not a different type of identifier)) and verify that IKE authentication succeeds.
+* Test 2: [conditional] For each SAN/identifier type combination selected, the evaluator shall configure the peer’s reference identifier on the TOE (per the administrative guidance) to match the field in the peer’s presented certificate and shall verify that the IKE authentication succeeds. If the TOE prioritizes SAN checking over CN (through explicit specification of the field when specifying the reference identifier or prioritization rules), the evaluator shall also configure the CN so it contains an incorrect identifier formatted to be the same type (e.g., the reference identifier on the TOE is DNS-ID; identify certificate has an identifier in SAN with correct DNS-ID, CN with incorrect DNS-ID (and not a different type of identifier)) and verify that IKE authentication succeeds.
 
 * Test 3: [conditional] For each CN/identifier type combination selected, the evaluator shall:
 
@@ -3575,7 +3584,7 @@ The evaluator shall demonstrate that if the TOE receives a packet larger than th
 
 ====== FCS_SSHC_EXT.1.4
 
-The evaluator must ensure that only claimed ciphers and cryptographic primitives are used to establish an SSH connection. To verify this, the evaluator shall start session establishment for an SSH connection with a remote server (referred to as ‘remote endpoint’ below). The evaluator shall capture the traffic exchanged between the TOE and the remote endpoint during protocol negotiation (e.g. using a packet capture tool or information provided by the endpoint, respectively). The evaluator shall verify from the captured traffic that the TOE offers all the ciphers defined in the TSS for the TOE for SSH sessions, but no additional ones compared to the definition in the TSS. The evaluator shall perform one successful negotiation of an SSH session to verify that the TOE behaves as expected. It is sufficient to observe the successful negotiation of the session to satisfy the intent of the test. If the evaluator detects that not all ciphers defined in the TSS for SSH are supported by the TOE and/or the TOE supports one or more additional ciphers not defined in the TSS for SSH, the test shall be regarded as failed.
+The evaluator must ensure that only claimed ciphers and cryptographic primitives are used to establish an SSH connection. To verify this, the evaluator shall start session establishment for an SSH connection with a remote server (referred to as ‘remote endpoint’ below). The evaluator shall capture the traffic exchanged between the TOE and the remote endpoint during protocol negotiation (e.g., using a packet capture tool or information provided by the endpoint, respectively). The evaluator shall verify from the captured traffic that the TOE offers all the ciphers defined in the TSS for the TOE for SSH sessions, but no additional ones compared to the definition in the TSS. The evaluator shall perform one successful negotiation of an SSH session to verify that the TOE behaves as expected. It is sufficient to observe the successful negotiation of the session to satisfy the intent of the test. If the evaluator detects that not all ciphers defined in the TSS for SSH are supported by the TOE and/or the TOE supports one or more additional ciphers not defined in the TSS for SSH, the test shall be regarded as failed.
 
 ====== FCS_SSHC_EXT.1.5
 
@@ -3605,7 +3614,7 @@ For testing of the time-based threshold, the evaluator shall use the TOE to conn
 
 Testing does not necessarily have to be performed with the threshold configured at the maximum allowed value of one hour of session time, but the value used for testing shall not exceed one hour. The evaluator needs to ensure that the rekeying has been initiated by the TOE and not by the SSH server the TOE is connected to.
 
-For testing of the traffic-based threshold the evaluator shall use the TOE to connect to an SSH server and shall transmit data to and/or receive data from the TOE within the active SSH session until the threshold for data protected by either encryption key is reached. It is acceptable if the rekey occurs before the threshold is reached (e.g. because the traffic is counted according to one of the alternatives given in the Application Note for FCS_SSHC_EXT.1.8).
+For testing of the traffic-based threshold the evaluator shall use the TOE to connect to an SSH server and shall transmit data to and/or receive data from the TOE within the active SSH session until the threshold for data protected by either encryption key is reached. It is acceptable if the rekey occurs before the threshold is reached (e.g., because the traffic is counted according to one of the alternatives given in the Application Note for FCS_SSHC_EXT.1.8).
 
 The evaluator shall verify that more data has been transmitted within the SSH session than the threshold allows and shall verify that the TOE initiated a rekey (the method of verification shall be reported by the evaluator).
 
@@ -3714,13 +3723,13 @@ The evaluator shall demonstrate that if the TOE receives a packet larger than th
 
 ====== FCS_SSHS_EXT.1.4
 
-The evaluator must ensure that only claimed ciphers and cryptographic primitives are used to establish an SSH connection. To verify this, the evaluator shall start session establishment for an SSH connection from a remote client (referred to as ‘remote endpoint’ below). The evaluator shall capture the traffic exchanged between the TOE and the remote endpoint during protocol negotiation (e.g. using a packet capture tool or information provided by the endpoint, respectively). The evaluator shall verify from the captured traffic that the TOE offers all the ciphers defined in the TSS for the TOE for SSH sessions, but no additional ones compared to the definition in the TSS. The evaluator shall perform one successful negotiation of an SSH session to verify that the TOE behaves as expected. It is sufficient to observe the successful negotiation of the session to satisfy the intent of the test. If the evaluator detects that not all ciphers defined in the TSS for SSH are supported by the TOE and/or the TOE supports one or more additional ciphers not defined in the TSS for SSH, the test shall be regarded as failed.
+The evaluator must ensure that only claimed ciphers and cryptographic primitives are used to establish an SSH connection. To verify this, the evaluator shall start session establishment for an SSH connection from a remote client (referred to as ‘remote endpoint’ below). The evaluator shall capture the traffic exchanged between the TOE and the remote endpoint during protocol negotiation (e.g., using a packet capture tool or information provided by the endpoint, respectively). The evaluator shall verify from the captured traffic that the TOE offers all the ciphers defined in the TSS for the TOE for SSH sessions, but no additional ones compared to the definition in the TSS. The evaluator shall perform one successful negotiation of an SSH session to verify that the TOE behaves as expected. It is sufficient to observe the successful negotiation of the session to satisfy the intent of the test. If the evaluator detects that not all ciphers defined in the TSS for SSH are supported by the TOE and/or the TOE supports one or more additional ciphers not defined in the TSS for SSH, the test shall be regarded as failed.
 
 ====== FCS_SSHS_EXT.1.5
 
 Test 1: The evaluator shall establish an SSH connection using each of the public key algorithms specified by the requirement to authenticate the TOE to an SSH client. It is sufficient to observe (on the wire) the successful negotiation of the algorithm to satisfy the intent of the test.
 
-Test 2: The evaluator shall choose one public key algorithm supported by the TOE. The evaluator shall generate a new key pair for that algorithm without configuring the TOE to recognize the public key for authentication. The evaluator shall use an SSH client to attempt to connect to the TOE with the new key pair and demonstrate that authentication fails. Test objective: The purpose of this negative test is to verify that the server rejects authentication attempts of clients that present a public key that does not match public key(s) associated by the TOE with the identity of the client (i.e. the public keys are unknown to the server). To demonstrate correct functionality, it is sufficient to determine that an SSH connection was not established after using a valid username and an unknown key of supported type.
+Test 2: The evaluator shall choose one public key algorithm supported by the TOE. The evaluator shall generate a new key pair for that algorithm without configuring the TOE to recognize the public key for authentication. The evaluator shall use an SSH client to attempt to connect to the TOE with the new key pair and demonstrate that authentication fails. Test objective: The purpose of this negative test is to verify that the server rejects authentication attempts of clients that present a public key that does not match public key(s) associated by the TOE with the identity of the client (i.e., the public keys are unknown to the server). To demonstrate correct functionality, it is sufficient to determine that an SSH connection was not established after using a valid username and an unknown key of supported type.
 
 Test 3: The evaluator shall configure an SSH client to only allow a public key algorithm that is not included in the ST selection. The evaluator shall attempt to establish an SSH connection from the SSH client to the TOE and observe that the connection is rejected.
 
@@ -3748,13 +3757,13 @@ For testing of the time-based threshold, the evaluator shall use an SSH client t
 
 Testing does not necessarily have to be performed with the threshold configured at the maximum allowed value of one hour of session time, but the value used for testing shall not exceed one hour. The evaluator needs to ensure that the rekeying has been initiated by the TOE and not by the SSH client that is connected to the TOE.
 
-For testing of the traffic-based threshold the evaluator shall use the TOE to connect to an SSH client and shall transmit data to and/or receive data from the TOE within the active SSH session until the threshold for data protected by either encryption key is reached. It is acceptable if the rekey occurs before the threshold is reached (e.g. because the traffic is counted according to one of the alternatives given in the Application Note for FCS_SSHS_EXT.1.8).
+For testing of the traffic-based threshold the evaluator shall use the TOE to connect to an SSH client and shall transmit data to and/or receive data from the TOE within the active SSH session until the threshold for data protected by either encryption key is reached. It is acceptable if the rekey occurs before the threshold is reached (e.g., because the traffic is counted according to one of the alternatives given in the Application Note for FCS_SSHS_EXT.1.8).
 
 The evaluator shall verify that more data has been transmitted within the SSH session than the threshold allows and shall verify that the TOE initiated a rekey (the method of verification shall be reported by the evaluator).
 
 Testing does not necessarily have to be performed with the threshold configured at the maximum allowed value of one gigabyte of transferred traffic, but the value used for testing shall not exceed one gigabyte. The evaluator needs to ensure that the rekeying has been initiated by the TOE and not by the SSH client that is connected to the TOE.
 
-If one or more thresholds that are checked by the TOE to fulfil the SFR are configurable, the evaluator needs to verify that the threshold(s) can be configured as described in the guidance documentation and the evaluator needs to test that modification of the thresholds is restricted to Security Administrators (as required by FMT_MOF.1/Functions).
+If one or more thresholds that are checked by the TOE to fulfil the SFR are configurable, the evaluator needs to verify that the threshold(s) can be configured as described in the guidance documentation and the evaluator needs to test that modification of the thresholds is restricted to Security Administrators (as required by FMT_MOF.1).
 
 In cases where the time threshold could not be reached due to TOE limitations, it is acceptable to omit testing of this (SSH rekeying based on data transfer threshold) threshold.
 
@@ -3847,7 +3856,7 @@ The evaluator shall examine the vendor’s KMD to ensure that all keys used are 
 
 ===== Tests
 
-The evaluator shall include test cases of FCS_KDF_EXT.1 to the test subset. Note that FCS_KDF_EXT.1 may be not mapped to the specific interface(s) after evaluator’s analysis during ADV_FSP.1.
+The evaluator shall include test cases of FCS_KDF_EXT.1 to the test subset. Note that FCS_KDF_EXT.1 may not be mapped to the specific interface(s) after evaluator’s analysis during ADV_FSP.1.
 
 The evaluator shall produce test documentation for test cases of FCS_KDF_EXT.1. If there is no explicit external interface(s) mapped to FCS_KDF_EXT.1, the evaluator shall employ an alternative test approach (refer to CEM, section 15.2.2.).
 
@@ -3869,7 +3878,7 @@ The evaluator shall determine the following characteristics of the key derivatio
 
 . One or more pseudorandom functions (PRFs) that are included in the ‘key derivation algorithm’ selection in the SFR, and their output lengths in bits (h)
 . One or more of the values {8, 16, 24, 32} that equal the length of the binary representation of the counter (r), and the location of the counter relative to the fixed input data: before, after, or in the middle. If the counter is in the middle then the lengths of data before and after the counter must be determined
-. the ‘key size’ selections in the SFR, i.e the lengths (in bits) of the derived keying material (L)
+. the ‘key size’ selections in the SFR, i.e., the lengths (in bits) of the derived keying material (L)
 
 For each supported combination of PRF, counter location, value of r, and value of L, the evaluator shall generate 20 pseudorandom key derivation key values (K~I~).
 
@@ -3881,10 +3890,10 @@ The evaluator shall determine the following characteristics of the key derivatio
 
 . One or more pseudorandom functions (PRFs) that are included in the ‘key derivation algorithm’ selection in the SFR, and their output lengths in bits (h)
 . If the implementation includes a counter then one or more of the values {8, 16, 24, 32} that equal the length of the binary representation of the counter (r), and the location of the counter relative to the fixed input data: before, after, or in the middle. If the counter is in the middle then the lengths of data before and after the counter must be determined
-. the ‘key size’ selections in the SFR, i.e the lengths (in bits) of the derived keying material (L)
+. the ‘key size’ selections in the SFR, i.e., the lengths (in bits) of the derived keying material (L)
 . the supported IV lengths.
 
-For each supported combination of PRF, counter location (of a counter is used), value of r (if a counter is used), value of L, and IV length, the evaluator shall generate 20 pseudorandom key derivation key values (K~I~).
+For each supported combination of PRF, counter location (if a counter is used), value of r (if a counter is used), value of L, and IV length, the evaluator shall generate 20 pseudorandom key derivation key values (K~I~).
 
 For each value of K~I~, the evaluator shall supply this data to the TOE in order to produce the keying material output K~O~. The evaluator shall verify that the resulting output matches the results from submitting the same inputs to a known-good implementation of the key derivation function, having the same characteristics.
 
@@ -3894,7 +3903,7 @@ The evaluator shall determine the following characteristics of the key derivatio
 
 . One or more pseudorandom functions (PRFs) that are included in the ‘key derivation algorithm’ selection in the SFR, and their output lengths in bits (h)
 . If the implementation includes a counter then one or more of the values {8, 16, 24, 32} that equal the length of the binary representation of the counter (r), and the location of the counter relative to the fixed input data: before, after, or in the middle. If the counter is in the middle then the lengths of data before and after the counter must be determined
-. the ‘key size’ selections in the SFR, i.e the lengths (in bits) of the derived keying material (L)
+. the ‘key size’ selections in the SFR, i.e., the lengths (in bits) of the derived keying material (L)
 
 For each supported combination of PRF, counter location (if a counter is used), value of r (if a counter is used), and value of L, the evaluator shall generate 20 pseudorandom key derivation key values (K~I~).
 
@@ -3928,11 +3937,11 @@ For each of the supported parameter sets, the evaluator shall compose 15 sets of
 If CMAC was selected:
 For each of the supported parameter sets, the evaluator shall compose at least 15 sets of test data. Each set shall consist of a key and message data. The test data shall include messages of different lengths, some with partial blocks as the last block and some with full blocks as the last block. The test data keys shall include cases for which subkey K1 is generated both with and without using the irreducible polynomial R_b, as well as cases for which subkey K2 is generated from K1 both with and without using the irreducible polynomial R_b. (The subkey generation and polynomial R_b are as defined in SP800-38E.) The evaluator shall have the TSF generate CMAC tags for these sets of test data. The resulting MAC tags shall be compared to the result of generating CMAC tags with the same key using a known good implementation.
 
-==== FCS_SNI_EXT.1 Cryptographic Operation (Salt, Nonce, and Initialization Vector Generation)
+==== FCS_SNI_EXT.1 Cryptographic Operation (Salt and Nonce)
 
 ===== TSS
 
-The evaluator shall ensure the TSS describes how salts are generated. The evaluator shall confirm that the salt is generating using an RBG described in FCS_RBG_EXT.1.
+The evaluator shall ensure the TSS describes how salts are generated. The evaluator shall confirm that the salt is generated using an RBG described in FCS_RBG_EXT.1.
 
 The evaluator shall ensure the TSS describes how nonces are created uniquely. The evaluator shall confirm that the nonces are unique.
 
@@ -3940,7 +3949,7 @@ The evaluator shall ensure the TSS describes how nonces are created uniquely. Th
 
 ==== Authentication using X.509 certificates (FIA_X509_EXT)
 
-===== FIA_X509_EXT.1  X.509 Certificate Validation
+===== FIA_X509_EXT.1 X.509 Certificate Validation
 
 ====== TSS
 
@@ -3954,15 +3963,15 @@ The evaluator shall also ensure that the guidance documentation describes where 
 
 ====== Tests
 
-The evaluator shall demonstrate that checking the validity of a certificate is performed when a certificate is used in an authentication step or when performing trusted updates. It is not sufficient to verify the status of a X.509 certificate only when it is loaded onto the TOE. It is not necessary to verify the revocation status of X.509 certificates during power-up self-tests (if the option for using X.509 certificates for self-testing is selected). The evaluator shall perform the following tests for FIA_X509_EXT.1. These tests must be repeated for each distinct security function that utilizes X.509v3 certificates. For example, if the TOE implements certificate-based authentication with IPSEC and TLS, then it shall be tested with each of these protocols:
+The evaluator shall demonstrate that checking the validity of a certificate is performed when a certificate is used in an authentication step or when performing trusted updates. It is not sufficient to verify the status of an X.509 certificate only when it is loaded onto the TOE. It is not necessary to verify the revocation status of X.509 certificates during power-up self-tests (if the option for using X.509 certificates for self-testing is selected). The evaluator shall perform the following tests for FIA_X509_EXT.1. These tests must be repeated for each distinct security function that utilizes X.509v3 certificates. For example, if the TOE implements certificate-based authentication with IPsec and TLS, then it shall be tested with each of these protocols:
 
-.. Test 1a: The evaluator shall present the TOE with a valid chain of certificates (terminating in a trusted CA certificate) as needed to validate the leaf certificate to be used in the function and shall use this chain to demonstrate that the function succeeds. Test 1a shall be designed in a way that the chain can be 'broken' in Test 1b by either being able to remove the trust anchor from the TOEs trust store, or by setting up the trust store in a way that at least one intermediate CA certificate needs to be provided, together with the leaf certificate from outside the TOE, to complete the chain (e.g., by storing only the root CA certificate in the trust store).
+.. Test 1a: The evaluator shall present the TOE with a valid chain of certificates (terminating in a trusted CA certificate) as needed to validate the leaf certificate to be used in the function and shall use this chain to demonstrate that the function succeeds. Test 1a shall be designed in a way that the chain can be 'broken' in Test 1b by either being able to remove the trust anchor from the TOE's trust store, or by setting up the trust store in a way that at least one intermediate CA certificate needs to be provided, together with the leaf certificate from outside the TOE, to complete the chain (e.g., by storing only the root CA certificate in the trust store).
 +
 Test 1b: The evaluator shall then 'break' the chain used in Test 1a by either removing the trust anchor in the TOE's trust store used to terminate the chain, or by removing one of the intermediate CA certificates (provided together with the leaf certificate in Test 1a) to complete the chain. The evaluator shall show that an attempt to validate this broken chain fails.
 
 .. Test 2: The evaluator shall demonstrate that validating an expired certificate results in the function failing.
 
-.. Test 3: The evaluator shall test that the TOE can properly handle revoked certificates-–conditional on whether CRL or OCSP is selected; if both are selected, then a test shall be performed for each method. The evaluator shall test revocation of the peer certificate and revocation of the peer intermediate CA certificate i.e. the intermediate CA certificate should be revoked by the root CA. The evaluator shall ensure that a valid certificate is used, and that the validation function succeeds. The evaluator then attempts the test with a certificate that has been revoked (for each method chosen in the selection) to ensure when the certificate is no longer valid that the validation function fails. Revocation checking is only applied to certificates that are not designated as trust anchors. Therefore, the revoked certificate(s) used for testing shall not be a trust anchor.
+.. Test 3: The evaluator shall test that the TOE can properly handle revoked certificates, conditional on whether CRL or OCSP is selected; if both are selected, then a test shall be performed for each method. The evaluator shall test revocation of the peer certificate and revocation of the peer intermediate CA certificate, i.e., the intermediate CA certificate should be revoked by the root CA. The evaluator shall ensure that a valid certificate is used, and that the validation function succeeds. The evaluator then attempts the test with a certificate that has been revoked (for each method chosen in the selection) to ensure when the certificate is no longer valid that the validation function fails. Revocation checking is only applied to certificates that are not designated as trust anchors. Therefore, the revoked certificate(s) used for testing shall not be a trust anchor.
 
 .. Test 4: If OCSP is selected, the evaluator shall configure the OCSP server or use a man-in-the-middle tool to present a certificate that does not have the OCSP signing purpose and verify that validation of the OCSP response fails. If CRL is selected, the evaluator shall configure the CA to sign a CRL with a certificate that does not have the cRLsign key usage bit set and verify that validation of the CRL fails.
 
@@ -3986,25 +3995,25 @@ Test 8b: (Conditional on TOE ability to process CA certificates presented in cer
 +
 Test 8c: The evaluator shall establish a subordinate CA certificate, where the elliptic curve parameters are specified as a named curve, that is signed by a trusted EC root CA. The evaluator shall attempt to load the certificate into the trust store and observe that it is accepted into the TOE's trust store. The evaluator shall then establish a subordinate CA certificate that uses an explicit format version of the elliptic curve parameters, and that is signed by a trusted EC root CA. The evaluator shall attempt to load the certificate into the trust store and observe that it is rejected, and not added to the TOE's trust store.
 
-The evaluator shall perform the following tests for FIA_X509_EXT.1.2. The tests described must be performed in conjunction with the other certificate services assurance activities, including the functions in FIA_X509_EXT.2.1. The tests for the extendedKeyUsage rules are performed in conjunction with the uses that require those rules. Where the TSS identifies any of the rules for extendedKeyUsage fields (in FIA_X509_EXT.1.1) that are not supported by the TOE (i.e. where the ST is therefore claiming that they are trivially satisfied) then the associated extendedKeyUsage rule testing may be omitted.
+The evaluator shall perform the following tests for FIA_X509_EXT.1.2. The tests described must be performed in conjunction with the other certificate services assurance activities, including the functions in FIA_X509_EXT.2.1. The tests for the extendedKeyUsage rules are performed in conjunction with the uses that require those rules. Where the TSS identifies any of the rules for extendedKeyUsage fields (in FIA_X509_EXT.1.1) that are not supported by the TOE (i.e., where the ST is therefore claiming that they are trivially satisfied) then the associated extendedKeyUsage rule testing may be omitted.
 
 The goal of the following tests is to verify that the TOE accepts a certificate as a CA certificate only if it has been marked as a CA certificate by using basicConstraints with the CA flag set to True (and implicitly tests that the TOE correctly parses the basicConstraints extension as part of X509v3 certificate chain validation).
 
 For each of the following tests the evaluator shall create a chain of at least three certificates: a self-signed root CA certificate, an intermediate CA certificate and a leaf (node) certificate. The properties of the certificates in the chain are adjusted as described in each individual test below (and this modification shall be the only invalid aspect of the relevant certificate chain).
 
-.. Test 1: The evaluator shall ensure that at least one of the CAs in the chain does not contain the basicConstraints extension. The evaluator confirms that the TOE rejects such a certificate at one (or both) of the following points: (i) as part of the validation of the leaf certificate belonging to this chain; (ii) when attempting to add a CA certificate without the basicConstraints extension to the TOE’s trust store (i.e. when attempting to install the CA certificate as one which will be retrieved from the TOE itself when validating future certificate chains).
+.. Test 1: The evaluator shall ensure that at least one of the CAs in the chain does not contain the basicConstraints extension. The evaluator confirms that the TOE rejects such a certificate at one (or both) of the following points: (i) as part of the validation of the leaf certificate belonging to this chain; (ii) when attempting to add a CA certificate without the basicConstraints extension to the TOE’s trust store (i.e., when attempting to install the CA certificate as one which will be retrieved from the TOE itself when validating future certificate chains).
 
-.. Test 2: The evaluator shall ensure that at least one of the CA certificates in the chain has a basicConstraints extension in which the CA flag is set to FALSE. The evaluator confirms that the TOE rejects such a certificate at one (or both) of the following points: (i) as part of the validation of the leaf certificate belonging to this chain; (ii) when attempting to add a CA certificate with the CA flag set to FALSE to the TOE’s trust store (i.e. when attempting to install the CA certificate as one which will be retrieved from the TOE itself when validating future certificate chains).
+.. Test 2: The evaluator shall ensure that at least one of the CA certificates in the chain has a basicConstraints extension in which the CA flag is set to FALSE. The evaluator confirms that the TOE rejects such a certificate at one (or both) of the following points: (i) as part of the validation of the leaf certificate belonging to this chain; (ii) when attempting to add a CA certificate with the CA flag set to FALSE to the TOE’s trust store (i.e., when attempting to install the CA certificate as one which will be retrieved from the TOE itself when validating future certificate chains).
 
 The evaluator shall repeat these tests for each distinct use of certificates. Thus, for example, use of certificates for TLS connection is distinct from use of certificates for trusted updates so both of these uses would be tested. But there is no need to repeat the tests for each separate TLS channel/path in FTP_ITC.1, FTP_TRP.1/Admin and FTP_TRP.1/NonAdmin (unless the channels/paths use separate implementations of TLS).
 
-===== FIA_X509_EXT.2  X.509 Certificate Authentication
+===== FIA_X509_EXT.2 X.509 Certificate Authentication
 
 ====== TSS
 
 The evaluator shall check the TSS to ensure that it describes how the TOE chooses which certificates to use, and any necessary instructions in the administrative guidance for configuring the operating environment so that the TOE can use the certificates.
 
-The evaluator shall examine the TSS to confirm that it describes the behaviour of the TOE when a connection cannot be established during the validity check of a certificate used in establishing a trusted channel. The evaluator shall verify that any distinctions between trusted channels are described. If the requirement that the administrator is able to specify the default action, then the evaluator shall ensure that the guidance documentation contains instructions on how this configuration action is performed.
+The evaluator shall examine the TSS to confirm that it describes the behaviour of the TOE when a connection cannot be established during the validity check of a certificate used in establishing a trusted channel. The evaluator shall verify that any distinctions between trusted channels are described. If the administrator is able to specify the default action, then the evaluator shall ensure that the guidance documentation contains instructions on how this configuration action is performed.
 
 ====== Guidance Documentation
 
@@ -4016,7 +4025,7 @@ The evaluator shall perform the following test for each trusted channel:
 
 The evaluator shall demonstrate that using a valid certificate that requires certificate validation checking to be performed in at least some part by communicating with a non-TOE IT entity. The evaluator shall then manipulate the environment so that the TOE is unable to verify the validity of the certificate and observe that the action selected in FIA_X509_EXT.2.2 is performed. If the selected action is administrator-configurable, then the evaluator shall follow the guidance documentation to determine that all supported administrator-configurable options behave in their documented manner.
 
-===== FIA_X509_EXT.3 X509 Certificate Requests
+===== FIA_X509_EXT.3 X.509 Certificate Requests
 
 ====== TSS
 
@@ -4048,7 +4057,7 @@ When evaluating a Security Target, the evaluator performs the work units as pres
 === Class ADV: Development
 ==== Basic Functional Specification (ADV_FSP.1)
 
-The EAs for this assurance component focus on understanding the interfaces (e.g., application programing interfaces, command line interfaces, graphical user interfaces, network interfaces) described in the AGD documentation, and possibly identified in the TOE Summary Specification (TSS) in response to the SFRs. Specific evaluator actions to be performed against this documentation are identified (where relevant) for each SFR in <<Evaluation Activities for SFRs>>, <<Evaluation Activities for Conditionally Mandatory Requirements>>, <<Evaluation Activities for Optional Requirements>>, <<Evaluation Activities for Selection-Based Requirements>>, and in EAs for AGD, ATE and AVA SARs in other parts of <<Evaluation Activities for SARs>>.
+The EAs for this assurance component focus on understanding the interfaces (e.g., application programming interfaces, command line interfaces, graphical user interfaces, network interfaces) described in the AGD documentation, and possibly identified in the TOE Summary Specification (TSS) in response to the SFRs. Specific evaluator actions to be performed against this documentation are identified (where relevant) for each SFR in <<Evaluation Activities for SFRs>>, <<Evaluation Activities for Conditionally Mandatory Requirements>>, <<Evaluation Activities for Optional Requirements>>, <<Evaluation Activities for Selection-Based Requirements>>, and in EAs for AGD, ATE and AVA SARs in other parts of <<Evaluation Activities for SARs>>.
 
 The EAs are reworded (indicated with italicization) for clarity and interpret the CEM work units such that they will result in more objective and repeatable actions by the evaluator. The EAs in this SD are intended to ensure the evaluators are consistently performing equivalent actions.
 
@@ -4223,8 +4232,6 @@ In order to meet these goals some refinement of the AVA_VAN.1 CEM work units is 
 |AVA_VAN.1-1 The evaluator *__shall examine__* the TOE to determine that the test configuration is consistent with the configuration under evaluation as specified in the ST.
 |The evaluator shall perform the CEM activity as specified.
 
-_If the iTC specifies any tools to be used in performing this analysis in section A.1.4, the following text is also included in this cell: "The calibration of test resources specified in paragraph 1467 of the CEM applies to the tools listed in Appendix A, Section A.1.4."_
-
 |AVA_VAN.1-2 The evaluator *__shall examine__* the TOE to determine that it has been installed properly and is in a known state. The evaluator shall perform the CEM activity as specified.
 |The evaluator shall perform the CEM activity as specified.
 
@@ -4242,7 +4249,7 @@ a|AVA_VAN.1-6 The evaluator *__shall produce__* penetration test documentation f
 [loweralpha]
 . Identification of the potential vulnerability the TOE is being tested for;
 
-. Instructions to connect and setup all required test equipment as required to conduct the penetration test;
+. Instructions to connect and set up all required test equipment as required to conduct the penetration test;
 
 . Instructions to establish all penetration test prerequisite initial
 conditions;
@@ -4302,6 +4309,15 @@ server and protocol or cryptographic libraries. This additional documentation
 is merely a list of the name and version number of the components and will be
 used by the evaluators in formulating hypotheses during their analysis.
 
+===== Evaluation Activity
+
+The evaluator formulates hypotheses in accordance with process defined in
+Appendix A. The evaluator documents the flaw hypotheses generated for the
+TOE in the report in accordance with the guidelines in Appendix A.3. The
+evaluator shall perform vulnerability analysis in accordance with Appendix
+A.2. The results of the analysis shall be documented in the report according to
+Appendix A.3.
+
 == Required Supplementary Information
 
 This Supporting Document refers in various places to the possibility that 'required supplementary information' may need to be supplied as part of the deliverables for an evaluation. This term is intended to describe information that is not necessarily included in the Security Target or operational guidance, and that may not necessarily be public. Examples of such information could be entropy analysis, or description of a cryptographic key management architecture used in (or in support of) the TOE. The requirement for any such supplementary information will be identified in the relevant cPP.
@@ -4311,15 +4327,6 @@ The supplementary information required by this SD are:
 * Entropy Documentation, which is evaluated against the guidance specified in Appendix E of <<HCDcPP>>.
 
 * A Key Management Description (KMD), which is evaluated against guidance specified in Appendix F of <<HCDcPP>> and all relevant KMD Evaluation Activities in this SD.
-
-== Evaluation Activity
-
-The evaluator formulates hypotheses in accordance with process defined in
-Appendix A. The evaluator documents the flaw hypotheses generated for the
-TOE in the report in accordance with the guidelines in Appendix A.3. The
-evaluator shall perform vulnerability analysis in accordance with Appendix
-A.2. The results of the analysis shall be documented in the report according to
-Appendix A.3.
 
 == References
 
@@ -4331,6 +4338,7 @@ Appendix A.3.
 * [#CC2]#[CC2]# Common Criteria for Information Technology Security Evaluation, Part 2: Security functional components, CCMB-2022-11-002, CC:2022 Revision 1, November 2022.
 * [#CC3]#[CC3]# Common Criteria for Information Technology Security Evaluation, Part 3: Security assurance components, CCMB-2022-11-003, CC:2022 Revision 1, November 2022.
 * [#CEM]#[CEM]# Common Methodology for Information Technology Security Evaluation, Evaluation methodology, CCMB-2022-11-006, CC:2022 Revision 1, November 2022.
+* [#CPP_FDE_EE_V2.0]#[CPP_FDE_EE_V2.0]# collaborative Protection Profile for Full Drive Encryption - Encryption Engine, Version 2.0 September 09, 2016
 * [#addenda]#[addenda]# Errata and Interpretation for CC:2022 (Release 1) and CEM:2022 (Release 1), 002, Version 1.1, July 22, 2024.
 * [#HCDcPP]#[HCDcPP]# {pp-name}, {pp-version}, {pp-date}
 
@@ -4342,7 +4350,7 @@ CEM Work Unit AVA_VAN.1-3 has been supplemented in this Supporting Document to p
 
 . A list of flaw hypotheses applicable to the technology described by the cPP derived from public sources as documented in <<Type1Hypotheses>>-this fixed set has been agreed to by the iTC. Additionally, this will be supplemented with entries for a set of public sources (as indicated below) that are directly applicable to the TOE or its identified components (as defined by the process in <<Type1Hypotheses>> below); this is to ensure that the evaluators include in their assessment applicable entries that have been discovered since the cPP was published;
 . A list of flaw hypotheses contained in this document that are derived from lessons learned specific to that technology and other iTC input (that might be derived from other open sources and vulnerability databases, for example) as documented in <<Type2Hypotheses>>;
-. A list of flaw hypotheses derived from information available to the evaluators; this includes  the baseline evidence provided by the vendor described in this Supporting Document (documentation associated with EAs, documentation described in <<Evaluation Activity (Documentation)>>, <the iTC can remove the reference to <<Evaluation Activity (Documentation)>> if no additional documentation is defined> documentation described in <<Required Supplementary Information>>), as well as other information (public and/or based on evaluator experience) as documented in <<Type3Hypotheses>>; and
+. A list of flaw hypotheses derived from information available to the evaluators; this includes  the baseline evidence provided by the vendor described in this Supporting Document (documentation associated with EAs, documentation described in <<Evaluation Activity (Documentation)>>, documentation described in <<Required Supplementary Information>>), as well as other information (public and/or based on evaluator experience) as documented in <<Type3Hypotheses>>; and
 . A list of flaw hypotheses that are generated through the use of iTC-defined tools (e.g., nmap, protocol testers) and their application is specified in <<Type4Hypotheses>>.
 
 
@@ -4359,7 +4367,7 @@ The following list of public sources of vulnerability information was selected b
 
 The list of sources above was searched with the search terms selected by evaluation laboratories.
 
-In order to supplement this list, the evaluators shall also perform a search on the sources listed above to determine a list of potential flaw hypotheses that are more recent that the publication date of the cPP, and those that are specific to the TOE and its components as specified by the additional documentation mentioned above. Any duplicates - either in a specific entry, or in the flaw hypothesis that is generated from an entry from the same or a different source - can be noted and removed from consideration by the evaluation team.
+In order to supplement this list, the evaluators shall also perform a search on the sources listed above to determine a list of potential flaw hypotheses that are more recent than the publication date of the cPP, and those that are specific to the TOE and its components as specified by the additional documentation mentioned above. Any duplicates - either in a specific entry, or in the flaw hypothesis that is generated from an entry from the same or a different source - can be noted and removed from consideration by the evaluation team.
 
 As part of type 1 flaw hypothesis generation for the specific components of the TOE, the evaluator shall also search the component manufacturer's websites to determine if flaw hypotheses can be generated on this basis (for instance, if security patches have been released for the version of the component being evaluated, the subject of those patches may form the basis for a flaw hypothesis).
 
@@ -4440,7 +4448,7 @@ The internal CB report contains, in addition to the information in the public-fa
 * How each flaw hypothesis was resolved (this includes whether the original flaw hypothesis was confirmed or disproved, and any analysis relating to whether a residual vulnerability is exploitable by an attacker with Basic Attack Potential) (cf. AVA_VAN1-10); and
 * In the case that actual testing was performed in the investigation (either as part of flaw hypothesis generation using tools specified by the iTC in Section A.1.4, or in proving/disproving a particular flaw) the steps followed in setting up the TOE (and any required test equipment); executing the test; post-test procedures; and the actual results (to a level of detail that allow repetition of the test, including the following:
 ** Identification of the potential vulnerability the TOE is being tested for;
-** Instructions to connect and setup all required test equipment as required to conduct the penetration test;
+** Instructions to connect and set up all required test equipment as required to conduct the penetration test;
 ** Instructions to establish all penetration test prerequisite initial conditions;
 ** Instructions to stimulate the TSF;
 ** Instructions for observing the behaviour of the TSF;
@@ -4531,7 +4539,7 @@ differences only affect non-PP specified
 functionality, the models may still be considered
 equivalent. For each difference the evaluator must
 provide an explanation of why the difference does
-or does not affect cPP specified functionality.
+or does not affect cPP-specified functionality.
 
 .2+|*Differences in Libraries Used to Provide TOE Functionality*
 |Same
@@ -4541,8 +4549,8 @@ shall be considered equivalent.
 |Different
 |If the separate libraries are used between model
 variations, a determination of whether the
-functionality provided by the library affects cPPspecified
-functionality must be made. If cPPspecified
+functionality provided by the library affects cPP-specified
+functionality must be made. If cPP-specified
 functionality is affected, the models are
 not considered equivalent and must be tested
 separately. The evaluator has the option of only retesting the functionality that was affected by the
@@ -4551,7 +4559,7 @@ libraries only affect non-PP specified
 functionality, the models may still be considered
 equivalent. For each different library, the evaluator
 must provide an explanation of why the different
-libraries do or do not affect cPP specified
+libraries do or do not affect cPP-specified
 functionality.
 
 .2+|*TOE Management Interface Differences*
@@ -4576,28 +4584,28 @@ functionality, the models may still be considered
 equivalent. For each management interface
 difference, the evaluator must provide an
 explanation of why the different management
-interfaces do or do not affect cPP specified
+interfaces do or do not affect cPP-specified
 functionality.
 
 .2+|*TOE Functional Differences*
 |Identical
 |If the functionality provided by different TOE
-model variation is identical, the models variations
+model variation is identical, the model variations
 shall be considered equivalent.
 |Different
 |If the functionality provided by different TOE
 model variations differ, a determination must be
-made if the functional differences affect cPPspecified
+made if the functional differences affect cPP-specified
 functionality. If cPP-specific
 functionality differs between models, the models
 are not considered equivalent and must be tested
 separately. In these cases, the evaluator has the
 option of only retesting the functionality that
 differs model-to-model. If the functional
-differences only affect non-cPP specified
+differences only affect non-cPP-specified
 functionality, the model variations may still be
 considered equivalent. For each difference the
-evaluator must provide an explanation of why the difference does or does not affect cPP specified
+evaluator must provide an explanation of why the difference does or does not affect cPP-specified
 functionality.
 
 |===
@@ -4664,7 +4672,7 @@ Security Target::
 Implementation-dependent statement of security needs for a specific identified TOE. [CC]
 
 Submask::
-A submask is a bit string that can be generated and stored in a numbers of ways, such as passphrases, tokens, etc. [CPP_FDE_EE_V2.0]
+A submask is a bit string that can be generated and stored in a number of ways, such as passphrases, tokens, etc. [CPP_FDE_EE_V2.0]
 
 Target of Evaluation::
 Set of software, firmware and/or hardware possibly accompanied by guidance. [CC]
