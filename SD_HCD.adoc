@@ -8,8 +8,8 @@
 :table-caption: Table
 :imagesdir: images
 :icons: font
-:revnumber: 2.0-pre.1
-:revdate: 10 May 2026
+:revnumber: 2.0-pre.2
+:revdate: 8 June 2026
 :xrefstyle: full
 
 :iTC-longname: Hardcopy Devices
@@ -19,8 +19,8 @@
 :iTC-GitHub: https://github.com/HCD-iTC
 :pp-name: collaborative Protection Profile for Hardcopy Devices
 :pp-shortname: HCDcPP
-:pp-version: 2.0-pre.1
-:pp-date: 10 May 2026
+:pp-version: 2.0-pre.2
+:pp-date: 8 June 2026
 
 == Foreword
 
@@ -43,6 +43,7 @@ Hardcopy Device International Technical Community (HCD-iTC)
 | 1.0e | 4 March 2024 | Errata version.
 | 1.1  | 29 December 2025 | CC:2022 update
 | 2.0-pre.1  | 10 May 2026 | Draft 2.0
+| 2.0-pre.2  | 8 June 2026 | Draft 2.0
 |===
 
 === General Purpose
@@ -1870,6 +1871,31 @@ For each supported parameter set, the evaluator shall cause the TOE to generate 
 		Hash of Keys: 	B1BF37BFFB11531B6ADD697870D7DB2E2462D0A97A63F09C1D0038457C6D795A
 		Message: 		9831A830231A160B9847203341A5F30BF3E87A2A482AEEA6886315C92B5C4E4C
 		Hash of sig: 	46C669D2FEB643A38E54FF87B790CC33F44043A1B6B31DB9474D301328CA2A7F
+
+*ML-DSA Signature Generation* 
+
+To test the TOE’s ability to validate digital signatures using ML-DSA, the evaluator shall perform the Algorithm Functional Test using the following input parameters:
+
+* Parameter set [ML-DSA-87]
+* Previously generated signed Message [8-65535] bytes
+* Mu value (if generated externally)
+* Context (for external interface testing)
+* Previously generated Public key (pk)
+* Previously generated Signature
+
+*_Algorithm Functional Test_*
+
+For each combination of supported parameter set and capabilities, the evaluator shall require the implementation under test to validate 15 signatures. Each group of 15 test cases is modified as follows:
+
+* Three test cases are left unmodified
+* For three test cases the Signed message is modified
+* For three test cases the component of the signature that commits the signer to the message is modified
+* For three test cases the component of the signature that allows the verifier to construct the vector z is modified
+* For three test cases the component of the signature that allows the verifier to construct the hint array is modified
+
+
+The TOE must correctly verify the unmodified signatures and fail to verify the modified signatures.
+
 
 ==== FCS_COP.1/Hash Cryptographic Operation (Hash Algorithm)
 
@@ -4100,14 +4126,14 @@ Since the rest of the ADV_FSP.1 work units will have been satisfied upon complet
 ==== ADV_FSP.1-1 Evaluation Activity
 _The evaluator shall examine the interface documentation to ensure it describes the purpose and method of use for each TSFI that is identified as being security relevant._
 
-In this context, TSFI are deemed security relevant if they are used by the administrator to configure the TOE, or to perform other administrative functions (e.g., audit review or performing updates). Additionally, those interfaces that are identified in the ST, or guidance documentation, as adhering to the security policies (as presented in the SFRs), are also considered security relevant. The intent, is that these interfaces will be adequately tested, and having an understanding of how these interfaces are used in the TOE is necessary to ensure proper test coverage is applied.
+In this context, TSFI are deemed security relevant if they are used by the administrator to configure the TOE, or to perform other administrative functions (e.g., audit review or performing updates). Additionally, those interfaces that are identified in the ST, or guidance documentation, as adhering to the security policies (as presented in the SFRs), are also considered security relevant. The intent is that these interfaces will be adequately tested, and having an understanding of how these interfaces are used in the TOE is necessary to ensure proper test coverage is applied.
 
 The set of TSFI that are provided as evaluation evidence are contained in the Administrative Guidance and User Guidance.
 
 ==== ADV_FSP.1-2 Evaluation Activity
 _The evaluator shall examine the interface documentation to ensure it describes the purpose and method of use for each TSFI that is identified as being security relevant._
 
-In this context, TSFI are deemed security relevant if they are used by the administrator to configure the TOE, or to perform other administrative functions (e.g., audit review or performing updates). Additionally, those interfaces that are identified in the ST, or guidance documentation, as adhering to the security policies (as presented in the SFRs), are also considered security relevant. The intent, is that these interfaces will be adequately tested, and having an understanding of how these interfaces are used in the TOE is necessary to ensure proper test coverage is applied.
+In this context, TSFI are deemed security relevant if they are used by the administrator to configure the TOE, or to perform other administrative functions (e.g., audit review or performing updates). Additionally, those interfaces that are identified in the ST, or guidance documentation, as adhering to the security policies (as presented in the SFRs), are also considered security relevant. The intent is that these interfaces will be adequately tested, and having an understanding of how these interfaces are used in the TOE is necessary to ensure proper test coverage is applied.
 
 The set of TSFI that are provided as evaluation evidence are contained in the Administrative Guidance and User Guidance.
 
@@ -4232,10 +4258,10 @@ In order to meet these goals some refinement of the AVA_VAN.1 CEM work units is 
 |AVA_VAN.1-1 The evaluator *__shall examine__* the TOE to determine that the test configuration is consistent with the configuration under evaluation as specified in the ST.
 |The evaluator shall perform the CEM activity as specified.
 
-|AVA_VAN.1-2 The evaluator *__shall examine__* the TOE to determine that it has been installed properly and is in a known state. The evaluator shall perform the CEM activity as specified.
+|AVA_VAN.1-2 The evaluator *__shall examine__* the TOE to determine that it has been installed properly and is in a known state. 
 |The evaluator shall perform the CEM activity as specified.
 
-|AVA_VAN.1-3 The evaluator *__shall examine__* sources of information publicly available to identify potential vulnerabilities in the TOE. Replace CEM work unit with activities outlined in Appendix A, Section A.1
+|AVA_VAN.1-3 The evaluator *__shall examine__* sources of information publicly available to identify potential vulnerabilities in the TOE. 
 |Replace CEM work unit with activities outlined in Appendix A, Section A.1
 
 |AVA_VAN.1-4 The evaluator *__shall record__* in the ETR the identified potential vulnerabilities that are candidates for testing and applicable to the TOE in its operational environment.
@@ -4651,46 +4677,46 @@ Nonvolatile Storage Device::
 A device that provides computer storage of data that is not cleared when the power is turned off.
 
 Operational Environment::
-Environment in which the TOE is operated.[CC]
+Environment in which the TOE is operated.[CC1]
 
 Protection Profile::
-Implementation-independent statement of security needs for a TOE type. [CC]
+Implementation-independent statement of security needs for a TOE type. [CC1]
 
 Read::
 To access data from a storage device or data medium. (Note that in this case, the data medium may be a printed output, and therefore, release of a print job is a “read” operation) [610.12]
 
 Security Assurance Requirement::
-A description of how assurance is to be gained that the TOE meets the SFRs. [CC]
+A description of how assurance is to be gained that the TOE meets the SFRs. [CC1]
 
 Security Functional Requirement::
-A translation of the Security Objectives for the TOE into a standardized language. [CC]
+A translation of the Security Objectives for the TOE into a standardized language. [CC1]
 
 Security Objective::
-Statement of an intent to counter identified Threats and/or satisfy identified organization security policies and/or Assumptions. [CC]
+Statement of an intent to counter identified Threats and/or satisfy identified organization security policies and/or Assumptions. [CC1]
 
 Security Target::
-Implementation-dependent statement of security needs for a specific identified TOE. [CC]
+Implementation-dependent statement of security needs for a specific identified TOE. [CC1]
 
 Submask::
 A submask is a bit string that can be generated and stored in a number of ways, such as passphrases, tokens, etc. [CPP_FDE_EE_V2.0]
 
 Target of Evaluation::
-Set of software, firmware and/or hardware possibly accompanied by guidance. [CC]
+Set of software, firmware and/or hardware possibly accompanied by guidance. [CC1]
 
 TOE Security Functionality::
-Combined functionality of all hardware, software, and firmware of a TOE that must be relied upon for the correct enforcement of the SFRs. [CC]
+Combined functionality of all hardware, software, and firmware of a TOE that must be relied upon for the correct enforcement of the SFRs. [CC1]
 
 TSF Data::
-Data for the operation of the TOE upon which the enforcement of the SFR relies. [CC]
+Data for the operation of the TOE upon which the enforcement of the SFR relies. [CC2]
 
 Unauthorized Access::
 Access to a resource that a User is not permitted to access.
 
 User::
-Human or IT entity possibly interacting with the TOE from outside of the TOE boundary. [CC]
+Human or IT entity possibly interacting with the TOE from outside of the TOE boundary.
 
 User Data::
-Data for the User that does not affect the operation of the TSF. [CC]
+Data for the User that does not affect the operation of the TSF. [CC2]
 
 User Document Data::
 The Asset that consists of the information contained in a User’s Document. This includes the original Document itself in either hardcopy or electronic form, image data, or residually stored data created by the hardcopy device while processing an original Document and printed hardcopy output. [2600.1]
