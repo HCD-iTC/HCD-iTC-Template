@@ -7,7 +7,7 @@
 :sectnumlevels: 7
 :imagesdir: images
 :icons: font
-:revnumber: 2.0-pre.3
+:revnumber: 2.0-pre.2
 :revdate: 8 June 2026
 
 :iTC-longname: Hardcopy Devices
@@ -36,7 +36,7 @@ This collaborative Protection Profile (cPP) was developed by the {iTC-longname} 
 | 1.0 | 31 October 2022 | Initial release for use
 | 1.0e | 4 March 2024 | Errata version
 | 1.1 | 29 December 2025 | CC:2022 update
-| 2.0-pre.3 | 8 June 2026 | Working Draft v2.0 #3
+| 2.0-pre.2 | 8 June 2026 | Working Draft v2.0 #2
 
 |===
 
