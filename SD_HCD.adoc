@@ -472,7 +472,7 @@ how to configure the TOE to use the selected key establishment scheme(s).
 *Key Establishment Schemes*
 
 The evaluator shall verify the implementation of the key establishment
-schemes of the supported by the TOE using the applicable tests below.
+schemes supported by the TOE using the applicable tests below.
 
 *_SP800-56A Key Establishment Schemes_*
 
@@ -582,7 +582,7 @@ There are a variety of concerns that may prevent or delay key destruction in som
 
 Some examples of what is expected to be in the documentation are provided here.
 
-When the TOE does not have full access to the physical memory, it is possible that the storage may be implementing wear-leveling and garbage collection. This may create additional copies of the key that are logically inaccessible but persist physically. In this case, to mitigate this the drive should support the TRIM command and implements garbage collection to destroy these persistent copies when not actively engaged in other tasks.
+When the TOE does not have full access to the physical memory, it is possible that the storage may be implementing wear-leveling and garbage collection. This may create additional copies of the key that are logically inaccessible but persist physically. In this case, to mitigate this the drive should support the TRIM command and implement garbage collection to destroy these persistent copies when not actively engaged in other tasks.
 
 Drive vendors implement garbage collection in a variety of different ways, as such there is a variable amount of time until data is truly removed from these solutions. There is a risk that data may persist for a longer amount of time if it is contained in a block with other data not ready for erasure. To reduce this risk, the operating system and file system of the TOE should support TRIM, instructing the nonvolatile memory to erase copies via garbage collection upon their deletion. If a RAID array is being used, only set-ups that support TRIM are utilized. If the drive is connected via PCI-Express, the operating system supports TRIM over that channel.
 
@@ -699,7 +699,7 @@ for i = 0 to 99 {
     Output CT[j]
     If (KeySize == 128) Key[i+1] = Key[i] xor CT[j]
     If (KeySize == 192) Key[i+1] = Key[i] xor (last 64 bits of CT[j-1] || CT[j])
-    If (KeySize == 256) Key[i+1] = Key[i] xor ((CT[j-1] | CT[j])
+    If (KeySize == 256) Key[i+1] = Key[i] xor (CT[j-1] || CT[j])
     IV[i+1] = CT[j]
     PT[0] = CT[j-1]
 }
@@ -836,7 +836,7 @@ For the SEED-CFB tests described below, the plaintext, ciphertext, and IV values
 
 *_SEED-CFB Known Answer Tests_*
 
-*KAT-1 (Variable Key):* To test the encrypt functionality of SEED-CFB, the evaluator shall supply a set of 128-bit keys(as described below) and obtain the ciphertext value that results from SEED encryption of an all-zeros plaintext using each key and an IV of all zeros.
+*KAT-1 (Variable Key):* To test the encrypt functionality of SEED-CFB, the evaluator shall supply a set of 128-bit keys (as described below) and obtain the ciphertext value that results from SEED encryption of an all-zeros plaintext using each key and an IV of all zeros.
 
 Key stem:[i] in each set shall have the leftmost stem:[i] bits set to ones and the remaining bits set to zeros, for values of stem:[i] from 1 to 128.
 
@@ -1526,7 +1526,7 @@ For each domain parameter pair (i.e., stem:[(p=2048, q=224)], stem:[(p=2048, q=2
 
 *_Signature Verification Test_*
 
-The KCDSA Signature Verification Test tests the ability of the TSF to recognize valid and invalid signatures. The evaluator shall provide a modulus and associated key pair stem:[(x, y)] for each combination of selected modulus size and hash size. Each private key stem:[(x)] is used to sign 15 pseudorandom messages of 1024 bits. For eight of the fifteen messages, the message, IR format, padding, or signature is altered so that signature verification should fail. The test passes only if all the signatures made using unaltered parameters result in successful signature verification, and all the signatures made using altered parameters result in unsuccessful signature verification.``
+The KCDSA Signature Verification Test tests the ability of the TSF to recognize valid and invalid signatures. The evaluator shall provide a modulus and associated key pair stem:[(x, y)] for each combination of selected modulus size and hash size. Each private key stem:[(x)] is used to sign 15 pseudorandom messages of 1024 bits. For eight of the fifteen messages, the message, IR format, padding, or signature is altered so that signature verification should fail. The test passes only if all the signatures made using unaltered parameters result in successful signature verification, and all the signatures made using altered parameters result in unsuccessful signature verification.
 
 *EC-KCDSA Tests*
 
@@ -1559,7 +1559,7 @@ For each supported combination of the above parameters, the evaluator shall gene
 To test the TOE’s ability to verify cryptographic digital signature using LMS, the evaluator shall perform the Algorithm Functional Test using the following input parameters
 
 * Hash algorithm [SHA-256/192, SHAKE256/192, SHA-256, SHAKE256]
-* Winternitz[1, 2, 4, 8]
+* Winternitz [1, 2, 4, 8]
 * Tree height [5, 10, 15, 20, 25]
 
 *_Algorithm Functional Test_*
@@ -1761,7 +1761,7 @@ Message: 		9831A830231A160B9847203341A5F30BF3E87A2A482AEEA6886315C92B5C4E4C
 Hash of sig: 	46C669D2FEB643A38E54FF87B790CC33F44043A1B6B31DB9474D301328CA2A7F
 ....
 
-*ML-DSA Signature Generation* 
+*ML-DSA Signature Verification* 
 
 To test the TOE’s ability to validate digital signatures using ML-DSA, the evaluator shall perform the Algorithm Functional Test using the following input parameters:
 
@@ -2107,7 +2107,7 @@ The evaluator shall check to ensure that the administrator guidance describes ho
 
 The evaluator shall check to ensure that the administrator guidance describes how security attributes are assigned and managed.
 
-The evaluator shall check to ensure that the administrator guidance describes how the security-related rules (.e.g., access control rules, timeout, number of consecutive logon failures) are configured.
+The evaluator shall check to ensure that the administrator guidance describes how the security-related rules (e.g., access control rules, timeout, number of consecutive logon failures) are configured.
 
 ===== Tests
 
@@ -2135,7 +2135,7 @@ The evaluator shall check to ensure that the TSS contains a description of secur
 
 ===== Tests
 
-As for tests of this SFR, it is performed in the tests of FMT_MOF.1, FMT_MSA.1, and FMT_MTD.1.
+Testing for this SFR is performed in the tests of FMT_MOF.1, FMT_MSA.1, and FMT_MTD.1.
 
 === Protection of the TSF (FPT)
 
@@ -2163,7 +2163,7 @@ The evaluator shall carry out the following tests.
 
 . During initial boot of the TOE, the evaluator shall review the initialization output or audit records and verify that the TOE successfully performs verification of the firmware/software.
 
-. For every element in each chain of trust, the evaluator shall attempt to boot the TOE using firmware/software with an invalid hash, digital signature, or message authentication verification and verify that the verification check fails and the TOE doesn’t execute corrupted firmware/software.
+. For every element in each chain of trust, the evaluator shall attempt to boot the TOE using firmware/software with an invalid hash, digital signature, or message authentication verification and verify that the verification check fails and the TOE does not execute corrupted firmware/software.
 +
 Note: Verification of the Root of Trust is out of scope for Test 2.
 
@@ -2172,18 +2172,18 @@ Note: Verification of the Root of Trust is out of scope for Test 2.
 +
 Note: Corruption of the Root of Trust is out of scope for Test 3.
 
-.. (conditional) If ‘revert to previous TOE image’ is selected, the evaluator, following a failed boot attempt, shall review the guidance documentation, verifies that the TOE performed the action of reverting to a previous TOE image and confirms that the TOE returns to an operational state following the remediation action.
+.. (conditional) If ‘revert to previous TOE image’ is selected, the evaluator, following a failed boot attempt, shall review the guidance documentation, verify that the TOE performed the action of reverting to a previous TOE image and confirm that the TOE returns to an operational state following the remediation action.
 +
 Note: The administrator might need to take an action to perform the remediation action.
 
-.. (conditional) If ‘reinstall TOE image’ is selected, the evaluator, following a failed boot attempt, shall review the guidance documentation, verifies that the TOE performed the action of reinstalling the TOE image and confirms that the TOE returns to an operational state following the remediation action.
+.. (conditional) If ‘reinstall TOE image’ is selected, the evaluator, following a failed boot attempt, shall review the guidance documentation, verify that the TOE performed the action of reinstalling the TOE image and confirm that the TOE returns to an operational state following the remediation action.
 +
 Note: The administrator might need to take an action to perform the remediation action.
 
-.. (conditional) If ‘perform factory reset’ is selected, the evaluator, following a failed boot attempt, shall review the guidance documentation, verifies that the TOE performs a factory reset and confirms that the TOE returns to an initialized state where it can be returned into an operational state following the remediation action.
+.. (conditional) If ‘perform factory reset’ is selected, the evaluator, following a failed boot attempt, shall review the guidance documentation, verify that the TOE performs a factory reset and confirm that the TOE returns to an initialized state where it can be returned into an operational state following the remediation action.
 +
 Note: The administrator might need to take an action to perform the remediation action.
-.. (conditional) If ‘indicate a need to contact vendor support’ is selected, the evaluator, following a failed boot attempt, shall review the guidance documentation and verifies that the TSF provides an indication to contact vendor support.
+.. (conditional) If ‘indicate a need to contact vendor support’ is selected, the evaluator, following a failed boot attempt, shall review the guidance documentation and verify that the TSF provides an indication to contact vendor support.
 
 
 ==== FPT_SKP_EXT.1 Protection of TSF Data
@@ -2502,7 +2502,7 @@ The evaluator shall check to ensure that the operational guidance describes the 
 
 ===== Tests
 
-_Tests activities consists of the six tests below. Test 2 and 6 are mandatory in all cases. Tests 3, 4, and 5 are conditional on the wipe method selected by the ST author._
+_Test activities consist of the six tests below. Test 2 and 6 are mandatory in all cases. Tests 3, 4, and 5 are conditional on the wipe method selected by the ST author._
 
 Test 1: [Conditional: D.USER can be stored in nonvolatile memory] Cause the TOE to contain and retain some type of D.USER containing known text strings or byte array in nonvolatile memory (e.g., submit a print job when no paper is loaded in the HCD. This will ensure that the job will remain in the HCD for reference in Test 6). Verify that the D.USER data is present on the TOE. For example, it is sufficient to verify that a print job is on the HCD.
 
@@ -2563,7 +2563,7 @@ a| . First 2049 logical sectors of the disk
 
 Test 5: [Conditional: The case cryptographic erase is selected] The evaluator shall verify that the appropriate key(s) according to the KMD description required by FCS_CKM.6 has been destroyed in the method described in the Test Assurance Activity for FCS_CKM.6.
 
-Test 6: The evaluator shall verify that known text strings or byte array for D.USER and D.TSF are not found on the nonvolatile storage media after wipe has been performed. In some cases, cryptographic erase would make unable to read data from the storage media. In that case, “failed to read data with error” can be considered as “not found”. This test may require special tools to be installed on the TOE, or for the storage media to be moved to a separate system equipped with special tools provided by the TOE developer as necessary. The evaluator shall examine the storage media as specified in the following table for the indicated search patterns. This test is not applicable to protected storage devices (e.g., TPMs) that do not provide direct access to their storage.
+Test 6: The evaluator shall verify that known text strings or byte array for D.USER and D.TSF are not found on the nonvolatile storage media after wipe has been performed. In some cases, cryptographic erase may render the data unreadable from the storage media. In that case, “failed to read data with error” can be considered as “not found”. This test may require special tools to be installed on the TOE, or for the storage media to be moved to a separate system equipped with special tools provided by the TOE developer as necessary. The evaluator shall examine the storage media as specified in the following table for the indicated search patterns. This test is not applicable to protected storage devices (e.g., TPMs) that do not provide direct access to their storage.
 
 [cols="1,1"]
 |===
@@ -2779,7 +2779,7 @@ For each combination of key size and data length, the evaluator shall provide 10
 
 The evaluator shall test the decrypt functionality of XTS-AES using the same test
 as for encrypt, replacing plaintext values with ciphertext values and XTS-AES
-encrypt with XTS- AES decrypt.
+encrypt with XTS-AES decrypt.
 
 The evaluator shall check that the full length keys are created by methods that
 ensure that the two halves are different and independent.
@@ -3073,7 +3073,7 @@ There are no KMD evaluation activities for this SFR.
 
 ===== Tests
 
-For each supported key transport schema, the evaluator shall initiate at least 25 sessions that require key transport with an independently developed remote instance of a key transport entity, using known RSA key-pairs. The evaluator shall observe traffic passed from the sender-side and to the receiver-side of the TOE, and shall perform the following tests, specific to which key transport scheme was employed.
+For each supported key transport scheme, the evaluator shall initiate at least 25 sessions that require key transport with an independently developed remote instance of a key transport entity, using known RSA key-pairs. The evaluator shall observe traffic passed from the sender-side and to the receiver-side of the TOE, and shall perform the following tests, specific to which key transport scheme was employed.
 
 If the KTS-OAEP scheme was selected, the evaluator shall perform the following tests:
 
@@ -3291,7 +3291,7 @@ The following tests shall be performed.
 
 .. Test 1: If IKEv1 is supported, Configure the TOE to use IKEv1:
 
-* Test 1.a: If “according to the security strength associated with the negotiated DiffieHellman group” has been selected, for each supported authentication methods and DH
+* Test 1.a: If “according to the security strength associated with the negotiated Diffie-Hellman group” has been selected, for each supported authentication methods and DH
 groups, demonstrate the TOE uses phase 1 and phase 2 nonces meeting the strength
 requirement defined in NIST SP 800-57 for the appropriate DH group.
 
@@ -3322,7 +3322,7 @@ The evaluator simply follows the guidance to configure the TOE to perform the fo
 
 ====== FCS_IPSEC_EXT.1.13
 
-For efficiency sake, the testing is combined with the testing for FIA_X509_EXT.1, FIA_X509_EXT.2 (for IPsec connections), and FCS_IPSEC_EXT.1.1.
+For efficiency, the testing is combined with the testing for FIA_X509_EXT.1, FIA_X509_EXT.2 (for IPsec connections), and FCS_IPSEC_EXT.1.1.
 
 ====== FCS_IPSEC_EXT.1.14
 
@@ -3399,14 +3399,14 @@ The evaluator shall check that the TSS specifies the following:
 In cases where TOE limitations prevent reaching the time threshold, the evaluator shall check the TSS to ensure it contains:
 
 .. An argument describing this TOE limitation and
-.. Identification of the hardware components (if any) that form the basis of the such argument.
+.. Identification of the hardware components (if any) that form the basis of the argument.
 
 For example, if a specific Ethernet Controller or Wi-Fi radio chip is the root cause of such limitation, these subsystems shall be identified.
 
 In cases where TOE limitations prevent reaching the data transfer threshold, the evaluator shall check the TSS to ensure it contains:
 
 .. An argument describing this TOE limitation and
-.. Identification of the hardware components (if any) that form the basis of the such argument.
+.. Identification of the hardware components (if any) that form the basis of the argument.
 
 For example, if a specific Ethernet Controller or Wi-Fi radio chip is the root cause of such limitation, these subsystems shall be identified.
 
@@ -3542,7 +3542,7 @@ In cases where TOE limitations prevent reaching the time threshold, the evaluato
 
 An argument describing this TOE limitation and
 
-Identification of the hardware components (if any) that form the basis of the such argument.
+Identification of the hardware components (if any) that form the basis of the argument.
 
 For example, if a specific Ethernet Controller or Wi-Fi radio chip is the root cause of such limitation, these subsystems shall be identified.
 
@@ -3550,7 +3550,7 @@ In cases where TOE limitations prevent reaching the data transfer threshold, the
 
 An argument describing this TOE limitation and
 
-Identification of the hardware components (if any) that form the basis of the such argument.
+Identification of the hardware components (if any) that form the basis of the argument.
 
 For example, if a specific Ethernet Controller or Wi-Fi radio chip is the root cause of such limitation, these subsystems shall be identified.
 
