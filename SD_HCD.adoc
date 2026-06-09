@@ -3540,17 +3540,17 @@ The evaluator shall check that the TSS specifies the following:
 
 In cases where TOE limitations prevent reaching the time threshold, the evaluator shall check the TSS to ensure it contains:
 
-An argument describing this TOE limitation and
+.. An argument describing this TOE limitation and
 
-Identification of the hardware components (if any) that form the basis of the argument.
+.. Identification of the hardware components (if any) that form the basis of the argument.
 
 For example, if a specific Ethernet Controller or Wi-Fi radio chip is the root cause of such limitation, these subsystems shall be identified.
 
 In cases where TOE limitations prevent reaching the data transfer threshold, the evaluator shall check the TSS to ensure it contains:
 
-An argument describing this TOE limitation and
+.. An argument describing this TOE limitation and
 
-Identification of the hardware components (if any) that form the basis of the argument.
+.. Identification of the hardware components (if any) that form the basis of the argument.
 
 For example, if a specific Ethernet Controller or Wi-Fi radio chip is the root cause of such limitation, these subsystems shall be identified.
 
