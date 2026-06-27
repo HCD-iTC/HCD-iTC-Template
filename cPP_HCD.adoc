@@ -2751,7 +2751,7 @@ _The key size [k] in the assignment falls into a range between L1 and L2 (define
 
 ==== FIA_PSK_EXT.1 Extended: Pre-Shared Key Composition
 ======
-(selected with FCS_IPSEC_EXT.1.4 for O.COMMS_PROTECTION) +
+(selected with FCS_IPSEC_EXT.1.13 for O.COMMS_PROTECTION) +
 *Hierarchical to:* +
 No other components.
 
