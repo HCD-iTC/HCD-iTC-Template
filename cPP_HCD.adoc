@@ -67,7 +67,7 @@ Although the cPP and SD may contain minor editorial errors, the cPP is recognize
 
 * [#CEM]#[CEM]# Common Methodology for Information Technology Security Evaluation, Evaluation methodology, CCMB-2022-11-006, CC:2022 Release 1, November 2022.
 
-* [#CC-E&I]#[CC-E&I]# Errata and Interpretation for CC:2022 (Release 1) and CEM:2022 (Release 1), 002, Version 1.1, July 22, 2024.
+* [#CC-E&I]#[CC-E&I]# Errata and Interpretation for CC:2022 (Release 1) and CEM:2022 (Release 1), Version 1.2, 2025-10-15.
 
 * [#SFR-CRYPTO]#[SFR-CRYPTO]# Specification of Functional Requirements for Cryptography, Version 1.0, January 31, 2025.
 
@@ -212,23 +212,11 @@ If a conforming HCD has a PSTN fax function, PSTN fax-network separation ensures
 
 Optionally, an HCD may provide functions that actively overwrite image data, or that wipe/purge all customer-supplied information at the request of an authorized Administrator. These are discussed in <<appendix-optional>>.
 
-
-
-
-
-
-
-
-
-
-
-
-
 == CC Conformance Claims
 As defined by the references <<CC1>>, <<CC2>>, <<CC3>>, and <<CC-E&I>> this cPP:
 
 * conforms to the requirements of Common Criteria CC:2022, Release 1,
-* Errata and Interpretation for CC:2022 (Release 1) and CEM:2022 (Release 1), 002, Version 1.1
+* Errata and Interpretation for CC:2022 (Release 1) and CEM:2022 (Release 1), Version 1.2, 2025-10-15
 
 Conformance to this Protection Profile: To claim conformance to this Protection Profile, the conforming Security Target must comply with all of the following rules:
 
