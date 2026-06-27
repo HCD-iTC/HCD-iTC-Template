@@ -4230,7 +4230,7 @@ The following actions should be considered for audit if FAU_GEN Security audit d
 • SSH session establishment
 • SSH session termination
 
-===== FCS_SSHS_EXT.1
+===== FCS_SSHS_EXT.1 Extended: SSH Server Protocol
 ======
 *Hierarchical to:* +
 	No other components
