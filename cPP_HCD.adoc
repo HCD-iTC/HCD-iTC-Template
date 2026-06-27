@@ -217,7 +217,7 @@ As defined by the references <<CC1>>, <<CC2>>, <<CC3>>, and <<CC-E&I>> this cPP:
 
 * Conforms to the requirements of Common Criteria CC:2022, Release 1.
 * Errata and Interpretation for CC:2022 (Release 1) and CEM:2022 (Release 1), Version 1.2, 2025-10-15.
-* Is CC Part 2 extended.
+* Is CC Part 2 extended, CC Part 3 conformant.
 
 Conformance to this Protection Profile: To claim conformance to this Protection Profile, the conforming Security Target must comply with all of the following rules:
 
