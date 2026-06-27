@@ -2746,8 +2746,6 @@ No other components. +
 
 _The key size [k] in the assignment falls into a range between L1 and L2 (defined in ISO/IEC 10118 for the appropriate hash function). For example, for SHA-256, L1=512, L2=256, where L2<=k<=L1. Select 'implicit' in cases where keyed-hash message authentication is done implicitly (e.g. SSH using AES in GCM mode)._
 
-
-
 ==== FIA_PSK_EXT.1 Extended: Pre-Shared Key Composition
 ======
 (selected with FCS_IPSEC_EXT.1.4 for O.COMMS_PROTECTION) +
@@ -2755,7 +2753,9 @@ _The key size [k] in the assignment falls into a range between L1 and L2 (define
 No other components.
 
 *Dependencies:* +
-FCS_RBG_EXT.1 Random Bit Generation
+[if selected: FCS_COP.1/Hash Cryptographic Operation (Hash Algorithm)], +
+[if selected: FCS_RBG_EXT.1 Random Bit Generation] + 
+
 ======
 
 *_Application Note:_*
@@ -4869,7 +4869,8 @@ The following actions should be auditable if FAU_GEN Security Audit Data Generat
 	No other components.
 
 *Dependencies:* +
-	FCS_RBG_EXT.1 Random Bit Generation.
+[if selected: FCS_COP.1/Hash Cryptographic Operation (Hash Algorithm)], +
+[if selected: FCS_RBG_EXT.1 Random Bit Generation] + 
 ======
 
 FIA_PSK_EXT.1.1 The TSF shall be able to use pre-shared keys for IPsec.
@@ -6566,7 +6567,9 @@ The dependencies between SFRs implemented by the TOE are addressed as follows.
 | FCS_HTTPS_EXT.1 | FCS_TLSC_EXT, and/or FCS_TLSS_EXT | FCS_TLSC_EXT.1 and FCS_TLSS_EXT.1 included as selection-based SFRs
 | FCS_COP.1/KeyedHash | FCS_RBG_EXT.1, FTP_ITC.1 or FCS_CKM.1/AKG, FCS_CKM.6 | FCS_RBG_EXT.1 included, FTP_ITC.1 and FCS_CKM.1/AKG included, FCS_CKM.6 included
 
-| FIA_PSK_EXT.1 | FCS_RBG_EXT.1 | FCS_RBG_EXT.1 included
+| FIA_PSK_EXT.1
+| [if selected: FCS_COP.1/Hash], [if selected: FCS_RBG_EXT.1]
+| FCS_COP.1/Hash included if selected, FCS_RBG_EXT.1 included if selected
 
 | FCS_DTLSC_EXT.1 | FCS_CKM.1/AKG, FCS_CKM.1/SKG, FCS_CKM.2, FCS_COP.1/DataEncryption, FCS_COP.1/SigGen, FCS_COP.1/Hash, FCS_COP.1/KeyedHash, FCS_RBG_EXT.1, FIA_X509_EXT.1, FIA_X509_EXT.2 | FCS_COP.1/AKG included, FCS_COP.1/SKG included, FCS_CKM.2 included, FCS_COP.1/DataEncryption included, FCS_COP.1/SigGen included, FCS_COP.1/Hash included, FCS_RBG_EXT.1 included, FCS_COP.1/KeyedHash and FIA_X509_EXT.1 and FIA_X509_EXT.2 included as selection-based SFRs
 | FCS_DTLSS_EXT.1 | FCS_CKM.1/AKG, FCS_CKM.1/SKG, FCS_CKM.2, FCS_COP.1/DataEncryption, FCS_COP.1/SigGen, FCS_COP.1/Hash, FCS_COP.1/KeyedHash, FCS_RBG_EXT.1, FIA_X509_EXT.1, FIA_X509_EXT.2 | FCS_COP.1/AKG included, FCS_COP.1/SKG included, FCS_CKM.2 included, FCS_COP.1/DataEncryption included, FCS_COP.1/SigGen included, FCS_COP.1/Hash included, FCS_RBG_EXT.1 included, FCS_COP.1/KeyedHash and FIA_X509_EXT.1 and FIA_X509_EXT.2 included as selection-based SFRs
