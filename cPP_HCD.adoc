@@ -4203,6 +4203,12 @@ The following actions should be considered for audit if FAU_GEN Security audit d
 
 *FCS_SSHC_EXT.1.9* The TSF shall ensure that the SSH client authenticates the identity of the SSH server using a local database associating each host name with its corresponding public key and [selection: _a list of trusted certification authorities, no other methods_] as described in RFC 4251 section 4.1.
 
+*Rationale*
+
+SSH is used by the SFRs to establish a trusted channel/path as a client, and the Common Criteria does not provide a suitable SFR for the SSH client protocol.
+
+This extended component ensures the secure operation of the SSH client protocol, and it is therefore placed in the FCS class.
+
 ==== FCS_SSHS_EXT SSH Server Protocol
 
 *Family Behaviour*
@@ -4256,12 +4262,11 @@ The following actions should be considered for audit if FAU_GEN Security audit d
 
 *FCS_SSHS_EXT.1.8* The TSF shall ensure that within SSH connections, the same session keys are used for a threshold of no longer than one hour, and each encryption key is used to protect no more than one gigabyte of data. After any of the thresholds are reached, a rekey needs to be performed.
 
+*Rationale*
 
+SSH is used by the SFRs to establish a trusted channel/path as a server, and the Common Criteria does not provide a suitable SFR for the SSH server protocol.
 
-
-
-
-
+This extended component ensures the secure operation of the SSH server protocol, and it is therefore placed in the FCS class.
 
 ==== FCS_TLSC_EXT Extended: TLS Client Protocol
 
@@ -4342,6 +4347,12 @@ The following actions should be considered for audit if FAU_GEN Security audit d
 
 *FCS_TLSC_EXT.2.1* The TSF shall support TLS communication with mutual authentication using X.509v3 certificates.
 
+*Rationale*
+
+TLS is used by the SFRs to establish a trusted channel/path as a client, and the Common Criteria does not provide a suitable SFR for the TLS client protocol.
+
+This extended component ensures the secure operation of the TLS client protocol, and it is therefore placed in the FCS class.
+
 ==== FCS_TLSS_EXT Extended: TLS Server Protocol
 
 *Family Behaviour*
@@ -4366,8 +4377,6 @@ The following actions should be considered for audit if FAU_GEN Security audit d
 - Failure of TLS session establishment
 - TLS session establishment
 - TLS session termination
-
-
 
 ===== FCS_TLSS_EXT.1 TLS Server Protocol without Mutual Authentication
 ======
@@ -4426,10 +4435,11 @@ The following actions should be considered for audit if FAU_GEN Security audit d
 
 *FCS_TLSS_EXT.2.3* The TSF shall not establish a trusted channel if the identifier contained in a certificate does not match an expected identifier for the client. If the identifier is a Fully Qualified Domain Name (FQDN), then the TSF shall match the identifiers according to RFC 6125, otherwise the TSF shall parse the identifier from the certificate and match the identifier against the expected identifier of the client as described in the TSS.
 
+*Rationale*
 
+TLS is used by the SFRs to establish a trusted channel/path as a server, and the Common Criteria does not provide a suitable SFR for the TLS server protocol.
 
-
-
+This extended component ensures the secure operation of the TLS server protocol, and it is therefore placed in the FCS class.
 
 ==== FCS_DTLSC_EXT Extended: DTLS Client Protocol
 
@@ -4456,8 +4466,6 @@ The following actions should be considered for audit if FAU_GEN Security audit d
 - Failure of DTLS session establishment
 - DTLS session establishment
 - DTLS session termination
-
-
 
 ===== FCS_DTLSC_EXT.1 DTLS Client Protocol
 ======
@@ -4490,6 +4498,11 @@ The following actions should be considered for audit if FAU_GEN Security audit d
 
 *FCS_DTLSC_EXT.1.4* The TSF shall [selection: _not present the Supported Elliptic Curves/Supported Groups Extension, present the Supported Elliptic Curves/Supported Groups Extension with the following curves/groups: [selection: secp256r1, secp384r1, secp521r1, ffdhe2048, ffdhe3072, ffdhe4096, ffdhe6144, ffdhe8192] and no other curves/groups_] in the Client Hello.
 
+*Rationale*
+
+DTLS is used by the SFRs to establish a trusted channel/path, and the Common Criteria does not provide a suitable SFR for the DTLS protocol.
+
+This extended component ensures the secure operation of the DTLS protocol, and it is therefore placed in the FCS class.
 
 ===== FCS_DTLSC_EXT.2 DTLS Client Support for Mutual Authentication
 ======
@@ -4519,7 +4532,11 @@ The following actions should be considered for audit if FAU_GEN Security audit d
 •	DTLS records previously received;
 •	DTLS records too old to fit in the sliding window.
 
+*Rationale*
 
+DTLS is used by the SFRs to establish a trusted channel/path as a client, and the Common Criteria does not provide a suitable SFR for the DTLS client protocol.
+
+This extended component ensures the secure operation of the DTLS client protocol, and it is therefore placed in the FCS class.
 
 ==== FCS_DTLSS_EXT Extended: DTLS Server Protocol
 
@@ -4546,9 +4563,6 @@ The following actions should be considered for audit if FAU_GEN Security audit d
 - Failure of DTLS session establishment.
 - DTLS session establishment
 - DTLS session termination
-
-
-
 
 ===== FCS_DTLSS_EXT.1 DTLS Server Protocol
 ======
@@ -4613,8 +4627,11 @@ The following actions should be considered for audit if FAU_GEN Security audit d
 
 *FCS_DTLSS_EXT.2.3* The TSF shall not establish a trusted channel if the distinguished name (DN) or Subject Alternative Name (SAN) contained in a certificate does not match the expected identifier for the client.
 
+*Rationale*
 
+DTLS is used by the SFRs to establish a trusted channel/path as a server, and the Common Criteria does not provide a suitable SFR for the DTLS server protocol.
 
+This extended component ensures the secure operation of the DTLS server protocol, and it is therefore placed in the FCS class.
 
 === User Data Protection (FDP)
 
@@ -4951,15 +4968,6 @@ The following actions should be auditable if FAU_GEN Security audit data generat
 
 *FIA_X509_EXT.1.2* The TSF shall only treat a certificate as a CA certificate if the basicConstraints extension is present and the CA flag is set to TRUE.
 
-
-
-
-
-
-
-
-
-
 ===== FIA_X509_EXT.2 X509 Certificate Authentication
 ======
 *Hierarchical to:* +
@@ -4987,13 +4995,13 @@ The following actions should be auditable if FAU_GEN Security audit data generat
 
 *FIA_X509_EXT.3.2* The TSF shall validate the chain of certificates from the Root CA upon receiving the CA Certificate Response.
 
+*Rationale*
 
+X.509 certificates are used by the SFRs for authentication, certificate validation, and certificate request generation, and the Common Criteria does not provide a suitable SFR for these functions.
 
+This extended component ensures the validation, authentication, and request of X.509 certificates, and it is therefore placed in the FIA class.
 
 === Protection of the TSF (FPT)
-
-
-
 
 ==== FPT_WIPE_EXT Extended: Data Wiping
 
