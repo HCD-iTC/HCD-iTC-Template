@@ -5262,7 +5262,7 @@ FPT_SKP_EXT.1.1 The TSF shall prevent reading of all pre-shared keys, symmetric 
 
 Protection of TSF Data is to ensure the pre-shared keys, symmetric keys and private keys are protected securely, and the Common Criteria does not provide a suitable SFR for the protection of such TSF data.
 
-This extended component protects the TOE by means of strong authentication using Pre-shared Key, and it is therefore placed in the FPT class with a single component.
+This extended component protects TSF data by preventing the reading of key material, and it is therefore placed in the FPT class.
 
 ==== FPT_TST_EXT Extended: TSF testing
 
