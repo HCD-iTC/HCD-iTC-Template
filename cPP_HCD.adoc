@@ -2058,8 +2058,7 @@ _This requirement is used in the body of the ST if the ST Author chooses to use 
 	No other components.
 
 *Dependencies:* +
-	[ +++<del>FDP_ITC.1 Import of user data without security attributes, or FDP_ITC.2 Import of user data with security attributes, or</del>+++ +
-	FCS_CKM.1/SKG Cryptographic Key Generation (Symmetric Keys)] +
+	FCS_CKM.1/SKG Cryptographic Key Generation (Symmetric Keys) +
 	FCS_CKM.6 Timing and event of cryptographic key destruction
 ======
 
@@ -2078,9 +2077,6 @@ Case: LEA algorithm
 * _LEA used in [selection: CCM, GCM] and cryptographic key size [selection: 128 bits, 256 bits] that meet the following: *LEA as specified in ISO/IEC 29192-2:2019,* [selection: CCM as specified in ISO/IEC 19772:2009, GCM as specified in ISO/IEC 19772:2009]_
 
 ].
-
-
-
 
 *_Application Note:_*
 
