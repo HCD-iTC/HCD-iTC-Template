@@ -2969,7 +2969,7 @@ _This SFR is conditionally required if the manual entry of a drive encryption pa
 
 ==== FCS_COP.1/CMAC Cryptographic Operation (for cipher-based message authentication)
 ======
-(selected with FCS_PCC_EXT.1, FPT_SBT_EXT.1.2 for O.STORAGE_ENCRYPTION, O.STRONG_CRYPTO, O.FW_INTEGRITY) +
+(selected with FCS_PCC_EXT.1, FPT_SBT_EXT.1.2 for O.STORAGE_ENCRYPTION, O.STRONG_CRYPTO) +
 *Hierarchical to:* +
 	No other components. +
 
