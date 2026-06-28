@@ -2025,8 +2025,7 @@ _The intent of this requirement is to specify the approved modes that the ST Aut
 No other components. +
 
 *Dependencies:* +
-[ +++<del>FDP_ITC.1 Import of user data without security attributes, or FDP_ITC.2 Import of user data with security attributes, or</del>+++ +
-FCS_CKM.1/SKG Cryptographic Key Generation (Symmetric Keys) ] +
+FCS_CKM.1/SKG Cryptographic Key Generation (Symmetric Keys) +
 FCS_CKM.6 Timing and event of cryptographic key destruction
 ======
 
@@ -6618,6 +6617,7 @@ The dependencies between SFRs implemented by the TOE are addressed as follows.
 | *SFR* | *Dependencies* | *Rationale Statement*
 
 | FCS_COP.1/StorageEncryption | FCS_CKM.1/SKG, FCS_CKM.6 | FCS_CKM.1/SKG included, FCS_CKM.6 included
+
 | FCS_COP.1/KeyWrap | FCS_CKM.1/SKG, FCS_CKM.6 | FCS_CKM.1/SKG included, FCS_CKM.6 included
 
 | FCS_COP.1/KeyEnc | FCS_CKM.1/SKG, FCS_CKM.6 | FCS_CKM.1/SKG included, FCS_CKM.6 included
