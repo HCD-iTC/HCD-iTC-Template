@@ -1938,8 +1938,7 @@ _The audit event “Unsuccessful attempt to validate a certificate” for FIA_X5
 No other components.
 
 *Dependencies:* +
-[ +++<del>FDP_ITC.1 Import of user data without security attributes, or FDP_ITC.2 Import of user data with security attributes, or</del>+++ +
-FCS_CKM.1/SKG Cryptographic Key Generation (Symmetric Keys)] +
+FCS_CKM.1/SKG Cryptographic Key Generation (Symmetric Keys) +
 FCS_CKM.6 Timing and event of cryptographic key destruction
 ======
 
