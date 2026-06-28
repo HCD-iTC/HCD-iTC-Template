@@ -1777,9 +1777,9 @@ _The requirement implies that not only are communications protected when they ar
 
 *Dependencies:* +
 	[ FCS_IPSEC_EXT.1 Extended: IPsec selected, or +
-	FCS_TLSC Extended: TLS Client Protocol and/or FCS_TLSS_EXT Extended: TLS Server Protocol, or +
+	FCS_TLSC_EXT Extended: TLS Client Protocol and/or FCS_TLSS_EXT Extended: TLS Server Protocol, or +
 	FCS_SSHC_EXT Extended: SSH Client Protocol or FCS_SSHS_EXT Extended: SSH Server Protocol, or +
-	FCS_DTLSC_EXT Extended: DTLS Client Protocol and/or FCS_DTLSS_EXT Extended: Server DTLS Protocol, or +
+	FCS_DTLSC_EXT Extended: DTLS Client Protocol and/or FCS_DTLSS_EXT Extended: DTLS Server Protocol, or +
 	FCS_HTTPS_EXT.1 Extended: HTTPS selected ].
 ======
 
@@ -6606,6 +6606,7 @@ The dependencies between SFRs implemented by the TOE are addressed as follows.
 | FTA_SSL.3 | FMT_SMR.1 | FMT_SMR.1 included
 
 | FTP_ITC.1 | FCS_IPSEC_EXT.1, or FCS_TLSC_EXT and/or FCS_TLSS_EXT, or FCS_SSHC_EXT or FCS_SSHS_EXT, or FCS_DTLSC_EXT and/or FCS_DTLSS_EXT, or FCS_HTTPS_EXT.1 | FCS_IPSEC_EXT.1 and FCS_TLSC_EXT.1 and FCS_TLSS_EXT.1 and FCS_SSHC_EXT.1 and FCS_SSHS_EXT.1 and FCS_DTLSC_EXT.1 and FCS_DTLSS_EXT.1 and FCS_HTTPS_EXT.1 included as selection-based SFRs
+
 | FTP_TRP.1/Admin | FCS_IPSEC_EXT.1, or FCS_TLSC_EXT and/or FCS_TLSS_EXT, or FCS_SSHC_EXT or FCS_SSHS_EXT, or FCS_DTLSC_EXT and/or FCS_DTLSS_EXT, or FCS_HTTPS_EXT.1 | FCS_IPSEC_EXT.1 and FCS_TLSC_EXT.1 and FCS_TLSS_EXT.1 and FCS_SSHC_EXT.1 and FCS_SSHS_EXT.1 and FCS_DTLSC_EXT.1 and FCS_DTLSS_EXT.1 and FCS_HTTPS_EXT.1 included as selection-based SFRs
 |===
 
