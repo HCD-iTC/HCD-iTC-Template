@@ -902,14 +902,8 @@ _The domain parameters used for the finite field-based key establishment scheme 
 	No other components.
 
 *Dependencies:* +
-    [+++<del>FDP_ITC.1 Import of user data without security attributes, or</del>+++ +
-    +++<del>FDP_ITC.2 Import of user data with security attributes, or</del>+++ +
-    FCS_CKM.1 Cryptographic key generation, or +
-    FCS_KDF_EXT.1 Cryptographic key derivation
-    +++<del>FCS_CKM_EXT.3 Cryptographic key access, or</del>+++ +
-    +++<del>FCS_CKM.5 Cryptographic key derivation, or</del>+++ +
-    +++<del>FCS_CKM_EXT.7 Cryptographic key agreement, or</del>+++ +
-    +++<del>FCS_CKM_EXT.8 Password-based key derivation</del>+++]
+[FCS_CKM.1 Cryptographic key generation, or +
+FCS_KDF_EXT.1 Cryptographic key derivation]
 ======
 
 *FCS_CKM.6.1 Refinement* The TSF shall destroy [*_plaintext cryptographic keys (including keying material)_*] when [selection: _no longer needed, [assignment: other circumstances for key or keying material destruction]_].
@@ -6573,7 +6567,9 @@ The dependencies between SFRs implemented by the TOE are addressed as follows.
 | FCS_CKM.1/AKG | FCS_CKM.2 or FCS_COP.1/SigGen, FCS_CKM.6 | FCS_CKM.2 and FCS_COP.1/SigGen included, FCS_CKM.6 included
 | FCS_CKM.1/SKG | FCS_COP.1/DataEncryption, FCS_COP.1/StorageEncryption, FCS_COP.1/KeyWrap, FCS_COP.1/KeyEnc, FCS_COP.1/KeyedHash, FCS_COP.1/CMAC, FCS_CKM.6, FCS_RBG_EXT.1 | FCS_COP.1/DataEncryption included, FCS_CKM.6 included, FCS_RBG_EXT.1 included, FCS_COP.1/StorageEncryption and FCS_COP.1/KeyWrap and FCS_COP.1/KeyEnc and FCS_COP.1/KeyedHash and FCS_COP.1/CMAC included as selection-based SFRs
 | FCS_CKM.2 | FCS_CKM.1/AKG, FCS_CKM.6 | FCS_CKM.1/AKG included, FCS_CKM.6 included
-| FCS_CKM.6 | FCS_CKM.1 or FCS_KDF_EXT.1 | FCS_CKM.1 and FCS_KDF_EXT.1 included as selection-based SFRs
+
+| FCS_CKM.6 | FCS_CKM.1 or FCS_KDF_EXT.1 | FCS_CKM.1 included, or FCS_KDF_EXT.1 included as selection-based SFR
+
 | FCS_COP.1/DataEncryption | FCS_CKM.1/SKG, FCS_CKM.6 | FCS_CKM.1/SKG included, FCS_CKM.6 included
 | FCS_COP.1/SigGen | FCS_CKM.1/AKG, FCS_CKM.6 | FCS_CKM.1/AKG included, FCS_CKM.6 included
 | FCS_COP.1/Hash | None |
