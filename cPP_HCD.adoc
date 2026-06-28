@@ -2725,14 +2725,9 @@ _The ST author must provide enough detail to determine how the implementation is
 
 If HTTPS is selected in FTP_ITC.1, FTP_TRP.1/Admin and/or FTP_TRP.1/NonAdmin then validity is determined by the identifier verification, certification path, the expiration date, and the revocation status in accordance with RFC 5280. Certificate validity is tested in accordance with testing performed for FIA_X509_EXT.1/Rev.
 
-
-
-
-
-
 ==== FCS_COP.1/KeyedHash Cryptographic Operation (Keyed Hash Algorithm)
 ======
-(selected with FCS_IPSEC_EXT.1.4, for O.COMMS_PROTECTION, O.STRONG_CRYPTO) +
+(selected with FCS_IPSEC_EXT.1.4, FCS_SSHC_EXT.1.6, FCS_SSHS_EXT.1.6, FCS_TLSC_EXT, FCS_TLSS_EXT, FCS_DTLSC_EXT, FCS_DTLSS_EXT, for O.COMMS_PROTECTION, O.STRONG_CRYPTO) +
 *Hierarchical to:* +
 No other components. +
 
@@ -2972,18 +2967,9 @@ _This SFR is conditionally required if the manual entry of a drive encryption pa
 
 *FCS_KDF_EXT.1.1* The TSF shall accept [selection: _a RNG generated submask as specified in FCS_RBG_EXT.1, a conditioned password submask, imported submask_] to derive an intermediate key, as defined in [selection: _NIST SP 800-108 [selection: KDF in Counter Mode, KDF in Feedback Mode, KDF in Double-Pipeline Iteration Mode], NIST SP 800-132, ISO/IEC 11770-6:2016 [selection: KPF2, KPF3, KPF4]_], using the keyed-hash functions specified in FCS_COP.1/CMAC, such that the output is at least of equivalent security strength (in number of bits) to the BEV or the DEK.
 
-
-
-
-
-
-
-
-
-
 ==== FCS_COP.1/CMAC Cryptographic Operation (for cipher-based message authentication)
 ======
-(selected with FCS_PCC_EXT.1, FPT_SBT_EXT.1.2 for O.STORAGE_ENCRYPTION, O.STRONG_CRYPTO) +
+(selected with FCS_PCC_EXT.1, FPT_SBT_EXT.1.2 for O.STORAGE_ENCRYPTION, O.STRONG_CRYPTO, O.FW_INTEGRITY) +
 *Hierarchical to:* +
 	No other components. +
 
@@ -3017,24 +3003,6 @@ _For the assignment, the key size will fall into a range between 128 and 256._
 _When CMAC is used in FPT_SBT_EXT.1, the dependency on FCS_CKM.1/SKG, FCS_CKM.6 can be removed for the symmetric key used for message authentication. This is because in other standards (*) that specify security requirements for cryptographic modules, public verification key or keyed message authentication key is allowed to be placed in the module code and is not CSP. Such a key can be considered as not needing to rely on the requirements for key generation and key destruction._
 
 _(*) ISO/IEC 19790 "Security requirements for cryptographic modules" 7.5 Software Firmware Security_
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ==== FCS_SNI_EXT.1 Extended: Cryptographic Operation (Salt, Nonce, and Initialization Vector Generation)
 ======
