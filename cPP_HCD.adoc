@@ -2126,15 +2126,14 @@ There are unique requirements associated with each of the protocol suites; these
 	No other components. +
 
 *Dependencies:* +
-	+++<del>FPT_ITT.1 Basic internal TSF data transfer protection,</del>+++ +
-	[if selected: FIA_PSK_EXT.1 Extended: Pre-Shared Key Composition], +
-	FIA_PSK_EXT.1 Extended: Pre-Shared Key Composition, +
-	FCS_CKM.1/AKG Cryptographic Key Generation (Asymmetric Keys), +
-	FCS_COP.1/DataEncryption Cryptographic Operation (Symmetric encryption/decryption), +
-	FCS_COP.1/SigGen Cryptographic Operation (for signature generation/verification), +
-	FCS_COP.1/Hash Cryptographic Operation (Hash Algorithm), +
-	FCS_COP.1/KeyedHash Cryptographic Operation (for keyed-hash message authentication), +
-	FCS_RBG_EXT.1 Random Bit Generation
+[if selected: FIA_PSK_EXT.1 Extended: Pre-Shared Key Composition], +
+FCS_CKM.1/AKG Cryptographic Key Generation (Asymmetric Keys), +
+FCS_CKM.2 Cryptographic Key Establishment, +
+FCS_COP.1/DataEncryption Cryptographic Operation (Symmetric encryption/decryption), +
+FCS_COP.1/SigGen Cryptographic Operation (for signature generation/verification), +
+FCS_COP.1/Hash Cryptographic Operation (Hash Algorithm), +
+[if selected: FCS_COP.1/KeyedHash Cryptographic Operation (Keyed Hash Algorithm)], +
+FCS_RBG_EXT.1 Random Bit Generation
 =====
 
 *_Application Note:_*
@@ -3699,14 +3698,14 @@ The following actions should be auditable if FAU_GEN Security Audit Data Generat
 	No other components.
 
 *Dependencies:* +
-FCS_CKM.1 Cryptographic Key Generation +
+[if selected: FIA_PSK_EXT.1 Extended: Pre-Shared Key Composition] +
+FCS_CKM.1/AKG Cryptographic Key Generation (Asymmetric Keys) +
 FCS_CKM.2 Cryptographic Key Establishment +
 FCS_COP.1/DataEncryption Cryptographic operation (Data Encryption/decryption) +
 FCS_COP.1/SigGen Cryptographic operation (Signature Generation and Verification) +
 FCS_COP.1/Hash Cryptographic operation (Hash Algorithm) +
-FCS_COP.1/KeyedHash Cryptographic operation (Keyed Hash Algorithm) +
-FCS_RBG_EXT.1 Random Bit Generation +
-[if selected: FIA_PSK_EXT.1 Extended: Pre-Shared Key Composition] +
+[if selected: FCS_COP.1/KeyedHash Cryptographic operation (Keyed Hash Algorithm)] +
+FCS_RBG_EXT.1 Random Bit Generation
 ======
 
 *FCS_IPSEC_EXT.1.1* The TSF shall implement the IPsec architecture as specified in RFC 4301.
@@ -6656,8 +6655,7 @@ The dependencies between SFRs implemented by the TOE are addressed as follows.
 
 | FCS_SMC_EXT.1 | FCS_COP.1/Hash | FCS_COP.1/Hash included
 
-| FCS_IPSEC_EXT.1 | [if selected: FIA_PSK_EXT.1], FCS_CKM.1/AKG, FCS_COP.1/DataEncryption, FCS_COP.1/SigGen, FCS_COP.1/Hash, FCS_COP.1/KeyedHash, FCS_RBG_EXT.1 | FCS_CKM.1/AKG included, FCS_COP.1/DataEncryption included, FCS_COP.1/SigGen included, FCS_COP.1/Hash included, FCS_RBG_EXT.1 included, FIA_PSK_EXT.1 and FCS_COP.1/KeyedHash included as selection-based SFRs
-
+| FCS_IPSEC_EXT.1 | [if selected: FIA_PSK_EXT.1], FCS_CKM.1/AKG, FCS_CKM.2, FCS_COP.1/DataEncryption, FCS_COP.1/SigGen, FCS_COP.1/Hash, [if selected: FCS_COP.1/KeyedHash], FCS_RBG_EXT.1 | FCS_CKM.1/AKG included, FCS_CKM.2 included, FCS_COP.1/DataEncryption included, FCS_COP.1/SigGen included, FCS_COP.1/Hash included, FCS_RBG_EXT.1 included, FIA_PSK_EXT.1 included if selected, FCS_COP.1/KeyedHash included if selected
 
 | FCS_TLSC_EXT.1 | FCS_CKM.1/AKG, FCS_CKM.1/SKG, FCS_CKM.2, FCS_COP.1/DataEncryption, FCS_COP.1/SigGen, FCS_COP.1/Hash, FCS_COP.1/KeyedHash, FCS_RBG_EXT.1, FIA_X509_EXT.1, FIA_X509_EXT.2 | FCS_COP.1/AKG included, FCS_COP.1/SKG included, FCS_CKM.2 included, FCS_COP.1/DataEncryption included, FCS_COP.1/SigGen included, FCS_COP.1/Hash included, FCS_RBG_EXT.1 included, FCS_COP.1/KeyedHash and FIA_X509_EXT.1 and FIA_X509_EXT.2 included as selection-based SFRs
 
