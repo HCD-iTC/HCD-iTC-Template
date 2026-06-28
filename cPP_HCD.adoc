@@ -1939,7 +1939,7 @@ _The audit event “Unsuccessful attempt to validate a certificate” for FIA_X5
 
 ==== FCS_COP.1/StorageEncryption Cryptographic operation (Data Encryption/Decryption)
 ======
-(for O.STORAGE_ENCRYPTION, O.STRONG_CRYPTO) +
+(selected with FDP_DSK_EXT.1.1, FPT_SBT_EXT.1.5, for O.STORAGE_ENCRYPTION, O.STRONG_CRYPTO) +
 *Hierarchical to:* +
 No other components.
 
