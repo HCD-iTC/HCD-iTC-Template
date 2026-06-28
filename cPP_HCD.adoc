@@ -1730,7 +1730,7 @@ There are no class FRU requirements.
 	No other components.
 
 *Dependencies:* +
-	No dependencies.
+	FMT_SMR.1 Security roles
 ======
 
 *FTA_SSL.3.1* The TSF shall terminate an interactive session after a [assignment: _time interval of user inactivity_].
@@ -6603,7 +6603,7 @@ The dependencies between SFRs implemented by the TOE are addressed as follows.
 | [if selected: FCS_COP.1/SigGen], [if selected: FIA_X509_EXT.1], [if selected: FCS_COP.1/Hash]
 | FCS_COP.1/SigGen included if selected, FIA_X509_EXT.1 included if selected, FCS_COP.1/Hash included if selected
 
-| FTA_SSL.3 | None |
+| FTA_SSL.3 | FMT_SMR.1 | FMT_SMR.1 included
 
 | FTP_ITC.1 | FCS_IPSEC_EXT.1, or FCS_TLSC_EXT and/or FCS_TLSS_EXT, or FCS_SSHC_EXT or FCS_SSHS_EXT, or FCS_DTLSC_EXT and/or FCS_DTLSS_EXT, or FCS_HTTPS_EXT.1 | FCS_IPSEC_EXT.1 and FCS_TLSC_EXT.1 and FCS_TLSS_EXT.1 and FCS_SSHC_EXT.1 and FCS_SSHS_EXT.1 and FCS_DTLSC_EXT.1 and FCS_DTLSS_EXT.1 and FCS_HTTPS_EXT.1 included as selection-based SFRs
 | FTP_TRP.1/Admin | FCS_IPSEC_EXT.1, or FCS_TLSC_EXT and/or FCS_TLSS_EXT, or FCS_SSHC_EXT or FCS_SSHS_EXT, or FCS_DTLSC_EXT and/or FCS_DTLSS_EXT, or FCS_HTTPS_EXT.1 | FCS_IPSEC_EXT.1 and FCS_TLSC_EXT.1 and FCS_TLSS_EXT.1 and FCS_SSHC_EXT.1 and FCS_SSHS_EXT.1 and FCS_DTLSC_EXT.1 and FCS_DTLSS_EXT.1 and FCS_HTTPS_EXT.1 included as selection-based SFRs
