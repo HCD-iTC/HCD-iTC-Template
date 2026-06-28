@@ -3274,13 +3274,9 @@ _FDP_FXS.EXT.1 is required if fax-net separation is performed by the TSF._
   [	FCS_IPSEC_EXT.1 Extended: IPsec selected, or +
 	FCS_TLSC_EXT Extended: TLS Client Protocol and/or FCS_TLSS_EXT Extended: TLS Server Protocol, or +
 	FCS_SSHC_EXT Extended: SSH Client Protocol or FCS_SSHS_EXT Extended: SSH Server Protocol, or +
-	FCS_DTLSC_EXT Extended: DTLS Client Protocol and/or FCS_DTLSS_EXT Extended: Server DTLS Protocol, or +
+	FCS_DTLSC_EXT Extended: DTLS Client Protocol and/or FCS_DTLSS_EXT Extended: DTLS Server Protocol, or +
 	FCS_HTTPS_EXT.1 Extended: HTTPS selected ].
 ======
-
-
-
-
 
 *FTP_TRP.1.1/NonAdmin Refinement:* The TSF shall *use [selection, choose at least one of: _IPsec, SSH, TLS, DTLS, TLS/HTTPS_] to provide a trusted* communication path between itself and [remote] users that is logically distinct from other communication paths and provides assured identification of its end points and protection of the communicated data from [disclosure *and detection of modification of the communicated data*].
 
@@ -3291,7 +3287,6 @@ _FDP_FXS.EXT.1 is required if fax-net separation is performed by the TSF._
 *_Application Note:_*
 
 _This requirement ensures that authorized remote users initiate all communication with the TOE via a trusted path, and that all communications with the TOE by remote users is performed over this path. The data passed in this trusted communication path are encrypted as defined the protocol chosen in the first selection. The ST author chooses the mechanism or mechanisms supported by the TOE, and then ensures the detailed requirements in <<appendix-a-protected-communications>> corresponding to their selection are copied to the ST if not already present._
-
 
 === Authentication
 ==== FIA_AFL.1 Authentication failure handling
@@ -6678,7 +6673,9 @@ When FCS_COP.1/CMAC is applied to keys used in FPT_SBT_EXT.1, the key-based mess
 | FCS_KYC_EXT.1 | FCS_COP.1/KeyWrap, FCS_SMC_EXT.1, FCS_CKM.6, FCS_COP.1/KeyEnc, FCS_KDF_EXT.1, and/or FCS_COP.1/KeyTransport | FCS_CKM.6 included, FCS_COP.1/KeyWrap and FCS_SMC_EXT.1 and FCS_COP.1/KeyEnc and FCS_KDF_EXT.1 and FCS_COP.1/KeyTransport included as selection-based SFRs
 | FDP_DSK_EXT.1 | FCS_COP.1/StorageEncryption | FCS_COP.1/StorageEncryption included
 | FDP_FXS_EXT.1 | None |
+
 | FTP_TRP.1/NonAdmin | FCS_IPSEC_EXT.1, or FCS_TLSC_EXT and/or FCS_TLSS_EXT, or FCS_SSHC_EXT or FCS_SSHS_EXT, or FCS_DTLSC_EXT and/or FCS_DTLSS_EXT, or FCS_HTTPS_EXT.1 | FCS_IPSEC_EXT.1 and FCS_TLSC_EXT.1 and FCS_TLSS_EXT.1 and FCS_SSHC_EXT.1 and FCS_SSHS_EXT.1 and FCS_DTLSC_EXT.1 and FCS_DTLSS_EXT.1 and FCS_HTTPS_EXT.1 included as selection-based SFRs
+
 | FIA_AFL.1 | FIA_UAU.1 | FIA_UAU.1 included
 
 |===
