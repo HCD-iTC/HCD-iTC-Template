@@ -2858,6 +2858,24 @@ _If ciphersuites with DHE key agreement were selected FCS_DTLSC_EXT.1.1 and the 
 
 ===== FCS_DTLSS_EXT.1 DTLS Server Protocol Without Mutual Authentication
 
+======
+(for O.COMMS_PROTECTION, O.STRONG_CRYPTO) +
+*Hierarchical to:* +
+	No other components +
+
+*Dependencies:* +
+	FCS_CKM.1/AKG Cryptographic Key Generation (Asymmetric Keys) +
+	FCS_CKM.1/SKG Cryptographic Key Generation (Symmetric Keys) +
+	FCS_CKM.2 Cryptographic Key Establishment +
+	FCS_COP.1/DataEncryption Cryptographic operation (Data Encryption/decryption) +
+	FCS_COP.1/SigGen Cryptographic operation (Signature Generation and Verification) +
+	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm) +
+	FCS_COP.1/KeyedHash Cryptographic operation (Keyed Hash Algorithm) +
+	FCS_RBG_EXT.1 Random Bit Generation +
+	FIA_X509_EXT.1 X.509 Certificate Validation +
+	FIA_X509_EXT.2 X.509 Certificate Authentication
+======
+
 *FCS_DTLSS_EXT.1.1* The TSF shall implement [selection: _DTLS 1.2 (RFC 6347), DTLS 1.0 (RFC 4347)_] supporting the following ciphersuites: [selection: _select supported ciphersuites from List 1_] and no other ciphersuites.
 
 *_Application Note:_*
@@ -4595,7 +4613,7 @@ The following actions should be considered for audit if FAU_GEN Security audit d
 - DTLS session establishment
 - DTLS session termination
 
-===== FCS_DTLSS_EXT.1 DTLS Server Protocol
+===== FCS_DTLSS_EXT.1 DTLS Server Protocol without Mutual Authentication
 ======
 *Hierarchical to:* +
 	No other components
