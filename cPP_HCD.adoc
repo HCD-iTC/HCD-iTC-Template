@@ -3479,6 +3479,23 @@ _"Silently Discard" means the TOE discards the packet without responding._
 
 ===== FCS_DTLSS_EXT.2 DTLS Server Support for Mutual Authentication
 
+======
+(for O.COMMS_PROTECTION, O.STRONG_CRYPTO) +
+*Hierarchical to:* +
+	No other components
+
+*Dependencies:* +
+	FCS_CKM.1/AKG Cryptographic Key Generation (Asymmetric Keys) +
+	FCS_CKM.1/SKG Cryptographic Key Generation (Symmetric Keys) +
+	FCS_CKM.2 Cryptographic Key Establishment +
+	FCS_COP.1/DataEncryption Cryptographic operation (Data Encryption/decryption) +
+	FCS_COP.1/SigGen Cryptographic operation (Signature Generation and Verification) +
+	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm) +
+	FCS_COP.1/KeyedHash Cryptographic operation (Keyed Hash Algorithm) +
+	FCS_RBG_EXT.1 Random Bit Generation +
+	FCS_DTLSS_EXT.1 DTLS Server Protocol without Mutual Authentication
+======
+
 *FCS_DTLSS_EXT.2.1* The TSF shall support mutual authentication of DTLS clients using X.509v3 certificates.
 
 *_Application Note:_*
@@ -4662,7 +4679,7 @@ The following actions should be considered for audit if FAU_GEN Security audit d
 	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm) +
 	FCS_COP.1/KeyedHash Cryptographic operation (Keyed Hash Algorithm) +
 	FCS_RBG_EXT.1 Random Bit Generation +
-	FCS_DTLSS_EXT.1 DTLS Server Protocol
+	FCS_DTLSS_EXT.1 DTLS Server Protocol without Mutual Authentication
 ======
 
 *FCS_DTLSS_EXT.2.1* The TSF shall support mutual authentication of DTLS clients using X.509v3 certificates.
