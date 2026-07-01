@@ -2747,7 +2747,7 @@ No other components. +
 ======
 
 
-*FCS_COP.1.1/KeyedHash Refinement:* The TSF shall perform [*keyed-hash message authentication*] in accordance with a specified cryptographic algorithm [selection: _HMAC-SHA-1, HMAC-SHA-256, HMAC-SHA-384, HMAC-SHA-512, implicit_] and cryptographic key sizes [_assignment: key size (in bits) used in HMAC_] *and message digest sizes [selection: _160, 256, 384, 512_] bits* that meet the following: [*ISO/IEC 9797-2:2011, Section 7 “MAC Algorithm 2”*].
+*FCS_COP.1.1/KeyedHash Refinement:* The TSF shall perform [*keyed-hash message authentication*] in accordance with a specified cryptographic algorithm [selection: _HMAC-SHA-1, HMAC-SHA-256, HMAC-SHA-384, HMAC-SHA-512, implicit_] and cryptographic key sizes [assignment: _key size (in bits) used in HMAC_] *and message digest sizes* [selection: _160, 256, 384, 512_] *bits* that meet the following: [*ISO/IEC 9797-2:2011, Section 7 “MAC Algorithm 2”*].
 
 *_Application Note:_*
 
