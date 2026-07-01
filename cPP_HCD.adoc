@@ -835,7 +835,7 @@ _If the TOE acts as a receiver in the key establishment schemes and is not confi
 	FCS_RBG_EXT.1 Random Bit Generation
 ======
 
-*FCS_CKM.1.1/SKG Refinement:* The TSF shall generate *symmetric* cryptographic keys *using a Random Bit Generator as specified in FCS_RBG_EXT.1* and specified cryptographic key sizes [selection: _128 bits, 192 bits, 256 bits_] that meet the following: [selection: _ISO/IEC 18031:2011 (Clause 9) [DRBG], NIST SP 800-133 Rev.2 Section [selection: 6.1, 6.3]_].
+*FCS_CKM.1.1/SKG Refinement:* The TSF shall generate *symmetric* cryptographic keys *_+++<del>in accordance with a specified cryptographic key generation algorithm</del>+++_* *using a* [*Random Bit Generator as specified in FCS_RBG_EXT.1*] and specified cryptographic key sizes [selection: _128 bits, 192 bits, 256 bits_] that meet the following: [selection: _ISO/IEC 18031:2011 (Clause 9) [DRBG], NIST SP 800-133 Rev.2 Section [selection: 6.1, 6.3]_].
 
 *_Application Note:_*
 
