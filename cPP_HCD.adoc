@@ -2322,7 +2322,7 @@ The following list contains all DTLS-/TLS-related ciphersuites supported by this
 
 List 1: List of supported TLS-related ciphersuites
 
-===== FCS_TLSC_EXT.1 TLS Client Protocol Without Mutual Authentication
+===== FCS_TLSC_EXT.1 TLS Client Protocol without Mutual Authentication
 
 ======
 (for O.COMMS_PROTECTION, O.STRONG_CRYPTO) +
@@ -2393,7 +2393,25 @@ _If ciphersuites with DHE key agreement were selected FCS_TLSC_EXT.1.1 and the T
 
 
 
-===== FCS_TLSS_EXT.1 TLS Server Protocol Without Mutual Authentication
+===== FCS_TLSS_EXT.1 TLS Server Protocol without Mutual Authentication
+
+======
+(for O.COMMS_PROTECTION, O.STRONG_CRYPTO) +
+*Hierarchical to:* +
+	No other components
+
+*Dependencies:* +
+	FCS_CKM.1/AKG Cryptographic Key Generation (Asymmetric Keys) +
+	FCS_CKM.1/SKG Cryptographic Key Generation (Symmetric Keys) +
+	FCS_CKM.2 Cryptographic Key Establishment +
+	FCS_COP.1/DataEncryption Cryptographic operation (Data Encryption/decryption) +
+	FCS_COP.1/SigGen Cryptographic operation (Signature Generation and Verification) +
+	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm) +
+	FCS_COP.1/KeyedHash Cryptographic operation (Keyed Hash Algorithm) +
+	FCS_RBG_EXT.1 Random Bit Generation +
+	FIA_X509_EXT.1 X.509 Certificate Validation +
+	FIA_X509_EXT.2 X.509 Certificate Authentication
+======
 
 *FCS_TLSS_EXT.1.1* The TSF shall implement [selection: _TLS 1.2 (RFC 5246), TLS 1.1 (RFC 4346)_] and reject all other TLS and SSL versions.  The TLS implementation will support the following ciphersuites: [selection: _select supported ciphersuites from List 1_] and no other ciphersuites.
 
@@ -2798,7 +2816,7 @@ To ensure audit requirements are properly met, a DTLS receiver may need to monit
 
 If the TOE acts as the server during the claimed DTLS sessions, the ST author should claim the corresponding FCS_DTLSS_EXT requirements. In this case the TOE needs to claim at least the FCS_DTLSS_EXT.1 requirements in <<selection-dtls>> (no support for mutual authentication). If the TOE acts as DTLS server and in addition also supports mutual authentication, the FCS_DTLSS_EXT.2 requirements in <<optional-tls>> need to be claimed in addition. If the TOE acts as both a client and server during the claimed DTLS sessions, the ST author should claim the corresponding FCS_DTLSC_EXT and FCS_DTLSS_EXT requirements.
 
-===== FCS_DTLSC_EXT.1 DTLS Client Protocol Without Mutual Authentication
+===== FCS_DTLSC_EXT.1 DTLS Client Protocol without Mutual Authentication
 
 ======
 (for O.COMMS_PROTECTION, O.STRONG_CRYPTO) +
@@ -2871,7 +2889,7 @@ _If ciphersuites with DHE key agreement were selected FCS_DTLSC_EXT.1.1 and the 
 
 
 
-===== FCS_DTLSS_EXT.1 DTLS Server Protocol Without Mutual Authentication
+===== FCS_DTLSS_EXT.1 DTLS Server Protocol without Mutual Authentication
 
 ======
 (for O.COMMS_PROTECTION, O.STRONG_CRYPTO) +
@@ -6675,7 +6693,8 @@ The dependencies between SFRs implemented by the TOE are addressed as follows.
 
 | FCS_TLSC_EXT.1 | FCS_CKM.1/AKG, FCS_CKM.1/SKG, FCS_CKM.2, FCS_COP.1/DataEncryption, FCS_COP.1/SigGen, FCS_COP.1/Hash, FCS_COP.1/KeyedHash, FCS_RBG_EXT.1, FIA_X509_EXT.1, FIA_X509_EXT.2 | FCS_COP.1/AKG included, FCS_COP.1/SKG included, FCS_CKM.2 included, FCS_COP.1/DataEncryption included, FCS_COP.1/SigGen included, FCS_COP.1/Hash included, FCS_RBG_EXT.1 included, FCS_COP.1/KeyedHash and FIA_X509_EXT.1 and FIA_X509_EXT.2 included as selection-based SFRs
 
-| FCS_TLSS_EXT.1 | FCS_CKM.1/AKG, FCS_CKM.1/SKG, FCS_CKM.2, FCS_COP.1/DataEncryption, FCS_COP.1/SigGen, FCS_COP.1/Hash, FCS_COP.1/KeyedHash, FCS_RBG_EXT.1, FIA_X509_EXT.1, FIA_X509_EXT.2 | FCS_COP.1/AKG included, FCS_COP.1/SKG included, FCS_CKM.2 included, FCS_COP.1/DataEncryption included, FCS_COP.1/SigGen included, FCS_COP.1/Hash included, FCS_RBG_EXT.1 included, FCS_COP.1/KeyedHash and FIA_X509_EXT.1 and FIA_X509_EXT.2 included as selection-based SFRs
+| FCS_TLSS_EXT.1 | FCS_CKM.1/AKG, FCS_CKM.1/SKG, FCS_CKM.2, FCS_COP.1/DataEncryption, FCS_COP.1/SigGen, FCS_COP.1/Hash, FCS_COP.1/KeyedHash, FCS_RBG_EXT.1, FIA_X509_EXT.1, FIA_X509_EXT.2 | FCS_CKM.1/AKG included, FCS_CKM.1/SKG included, FCS_CKM.2 included, FCS_COP.1/DataEncryption included, FCS_COP.1/SigGen included, FCS_COP.1/Hash included, FCS_RBG_EXT.1 included, FCS_COP.1/KeyedHash and FIA_X509_EXT.1 and FIA_X509_EXT.2 included as selection-based SFRs
+
 
 | FCS_SSHC_EXT.1 | FCS_CKM.1/AKG, FCS_CKM.1/SKG, FCS_CKM.2, FCS_COP.1/DataEncryption, FCS_COP.1/SigGen, FCS_COP.1/Hash, FCS_COP.1/KeyedHash, FCS_RBG_EXT.1 | FCS_COP.1/AKG included, FCS_COP.1/SKG included, FCS_CKM.2 included, FCS_COP.1/DataEncryption included, FCS_COP.1/SigGen included, FCS_COP.1/Hash included, FCS_RBG_EXT.1 included, FCS_COP.1/KeyedHash included as selection-based SFRs
 
