@@ -1744,7 +1744,7 @@ There are no class FRU requirements.
 
 *FTP_ITC.1.2 Refinement:* The TSF shall permit [selection: _the TSF,_ *_+++<del>another trusted IT product</del>+++_* *the authorized IT entities*] to initiate communication via the trusted channel.
 
-*FTP_ITC.1.3 Refinement:* The TSF shall initiate communication via the trusted channel for *remote audit* [assignment: *_and list of services for which the TSF is able to initiate communications_*].
+*FTP_ITC.1.3 Refinement:* The TSF shall initiate communication via the trusted channel for *_+++<del>[assignment: list of functions for which a trusted channel is required]</del>+++_* [*remote audit server* [assignment: __and list of services for which the TSF is able to initiate communications__]].
 
 *_Application Note:_*
 
