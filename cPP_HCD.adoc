@@ -1740,7 +1740,7 @@ There are no class FRU requirements.
 	FCS_HTTPS_EXT.1 Extended: HTTPS selected ].
 ======
 
-*FTP_ITC.1.1 Refinement:* The TSF shall *use [selection: _IPsec, SSH, TLS, DTLS, TLS/HTTPS_] to* provide *a trusted* communication channel between itself and *authorized IT entities supporting the following capabilities: remote audit server, [selection: _authentication server, [assignment: other capabilities]_]* that is logically distinct from other communication channels and provides assured identification of its end points and protection of the channel data from *disclosure and detection of modification of the channel data*.
+*FTP_ITC.1.1 Refinement:* The TSF shall *use* [selection: _IPsec, SSH, TLS, DTLS, TLS/HTTPS_] *to* provide *a trusted* communication channel between itself and *_+++<del>another trusted IT product</del>+++_* *authorized IT entities supporting the following capabilities: remote audit server,* [selection: __authentication server, [assignment: other capabilities]__] that is logically distinct from other communication channels and provides assured identification of its end points and protection of the channel data from *_+++<del>modification or</del>+++_* disclosure *and detection of modification of the channel data*.
 
 *FTP_ITC.1.2 Refinement:* The TSF shall permit [selection: _the TSF,_ *_or the authorized IT entities_*] to initiate communication via the trusted channel.
 
