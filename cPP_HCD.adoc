@@ -3006,7 +3006,7 @@ _This SFR is conditionally required if the manual entry of a drive encryption pa
 	FCS_CKM.6 Timing and event of cryptographic key destruction
 ======
 
-*FCS_COP.1.1/CMAC Refinement*: The TSF shall perform [*cryptographic message authentication*] in accordance with a specified cryptographic algorithm [*selection: _HMAC-SHA-256, HMAC-SHA-384, HMAC-SHA-512, CMAC-AES-128, CMAC-AES-192, CMAC-AES-256, CMAC-SEED-128, CMAC-HIGHT-128, CMAC-LEA-128, CMAC-LEA-192, CMAC-LEA-256_*] and cryptographic key sizes [*assignment: _key size (in bits)_*] *used in* [*selection: _HMAC, AES, CMAC_*] that meet the following: [selection:
+*FCS_COP.1.1/CMAC Refinement*: The TSF shall perform [*cryptographic message authentication*] in accordance with a specified cryptographic algorithm [selection: _HMAC-SHA-256, HMAC-SHA-384, HMAC-SHA-512, CMAC-AES-128, CMAC-AES-192, CMAC-AES-256, CMAC-SEED-128, CMAC-HIGHT-128, CMAC-LEA-128, CMAC-LEA-192, CMAC-LEA-256_] and cryptographic key sizes [assignment: _key size (in bits)_] *used in* [selection: _HMAC, AES, CMAC_] that meet the following: [selection:
 
 * _ISO/IEC 9797-2:2011, Section 7 “MAC Algorithm 2”,_
 * _NIST SP 800-38B,_
