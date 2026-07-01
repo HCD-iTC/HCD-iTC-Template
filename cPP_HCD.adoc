@@ -899,7 +899,7 @@ _The domain parameters used for the finite field-based key establishment scheme 
 FCS_KDF_EXT.1 Cryptographic key derivation]
 ======
 
-*FCS_CKM.6.1 Refinement* The TSF shall destroy [*_plaintext cryptographic keys (including keying material)_*] when [selection: _no longer needed, [assignment: other circumstances for key or keying material destruction]_].
+*FCS_CKM.6.1* The TSF shall destroy [*plaintext cryptographic keys (including keying material)*] when [selection: _no longer needed, [assignment: other circumstances for key or keying material destruction]_].
 
 *_Application Note:_*
 
