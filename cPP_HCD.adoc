@@ -778,8 +778,6 @@ _The ST author can include other auditable events directly in the table; they ar
 
 *FAU_STG.5.1 Refinement* The TSF shall [selection: *_+++<del>ignore audited events</del>+++*, “prevent audited events, except those taken by the authorized user with special rights”, overwrite the oldest stored audit records_],  [assignment: _other actions to be taken in case of audit storage failure and conditions for the actions_] if the audit data storage is full.
 
-
-
 === Cryptographic Support (FCS)
 
 
@@ -804,7 +802,8 @@ _The ST author can include other auditable events directly in the table; they ar
 * _KCDSA-based key establishment schemes using key size of [selection: (2048, 224) bit, (2048, 256) bit, (3072, 256) bit]: ISO/IEC 14888-3:2018, (Subclause 6.3) “KCDSA”_
 * _EC-KCDSA-based key establishment schemes using NIST curve of [selection: P-224, P-256, B-233, B-283, K-233, K-283]: ISO/IEC 14888-3:2018, (Subclause 6.7) “EC-KCDSA”_
 
-] +++<del>and specified cryptographic key sizes [assignment: cryptographic key sizes] that meet the following: [assignment: list of standards]</del>+++.
+] *_+++<del>and specified cryptographic key sizes [assignment: cryptographic key sizes] that meet the following: [assignment: list of standards]</del>+++_*.
+
 
 *_Application Note:_*
 
