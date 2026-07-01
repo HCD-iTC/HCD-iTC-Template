@@ -3590,6 +3590,24 @@ A TOE may act as the client, the server, or both in TLS sessions. The requiremen
 _The use of X.509v3 certificates for TLS is addressed in FIA_X509_EXT.2.1. This requirement adds that the client must be capable of presenting a certificate to a TLS server for TLS mutual authentication._
 
 ===== FCS_TLSS_EXT.2 TLS Server Support for Mutual Authentication
+======
+(for O.COMMS_PROTECTION, O.STRONG_CRYPTO) +
+*Hierarchical to:* +
+	No other components
+
+*Dependencies:* +
+	FCS_CKM.1/AKG Cryptographic Key Generation (Asymmetric Keys) +
+	FCS_CKM.1/SKG Cryptographic Key Generation (Symmetric Keys) +
+	FCS_CKM.2 Cryptographic Key Establishment +
+	FCS_COP.1/DataEncryption Cryptographic operation (Data Encryption/decryption) +
+	FCS_COP.1/SigGen Cryptographic operation (Signature Generation and Verification) +
+	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm) +
+	FCS_COP.1/KeyedHash Cryptographic operation (Keyed Hash Algorithm) +
+	FCS_RBG_EXT.1 Random Bit Generation +
+	FCS_TLSS_EXT.1 TLS Server Protocol without Mutual Authentication +
+	FIA_X509_EXT.1 X.509 Certificate Validation +
+	FIA_X509_EXT.2 X.509 Certificate Authentication
+======
 
 *FCS_TLSS_EXT.2.1* The TSF shall support TLS communication with mutual authentication of TLS clients using X.509v3 certificates.
 
@@ -4490,7 +4508,7 @@ The following actions should be considered for audit if FAU_GEN Security audit d
 	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm) +
 	FCS_COP.1/KeyedHash Cryptographic operation (Keyed Hash Algorithm) +
 	FCS_RBG_EXT.1 Random Bit Generation +
-	FCS_TLSS_EXT.1 TLS Server Protocol without mutual authentication +
+	FCS_TLSS_EXT.1 TLS Server Protocol without Mutual Authentication +
 	FIA_X509_EXT.1 X.509 Certificate Validation +
 	FIA_X509_EXT.2 X.509 Certificate Authentication +
 ======
@@ -6758,6 +6776,7 @@ When FCS_COP.1/CMAC is applied to keys used in FPT_SBT_EXT.1, the key-based mess
 | FCS_DTLSC_EXT.2 | FCS_CKM.1/AKG, FCS_CKM.1/SKG, FCS_CKM.2, FCS_COP.1/DataEncryption, FCS_COP.1/SigGen, FCS_COP.1/Hash, FCS_COP.1/KeyedHash, FCS_RBG_EXT.1, FCS_DTLSC_EXT.1, FIA_X509_EXT.1, FIA_X509_EXT.2 | FCS_COP.1/AKG included, FCS_COP.1/SKG included, FCS_CKM.2 included, FCS_COP.1/DataEncryption included, FCS_COP.1/SigGen included, FCS_COP.1/Hash included, FCS_RBG_EXT.1 included, FCS_COP.1/KeyedHash and FCS_DTLSC_EXT.1 and FIA_X509_EXT.1 and FIA_X509_EXT.2 included as selection-based SFRs
 | FCS_DTLSS_EXT.2 | FCS_CKM.1/AKG, FCS_CKM.1/SKG, FCS_CKM.2, FCS_COP.1/DataEncryption, FCS_COP.1/SigGen, FCS_COP.1/Hash, FCS_COP.1/KeyedHash, FCS_RBG_EXT.1, FCS_DTLSS_EXT.1, FIA_X509_EXT.1, FIA_X509_EXT.2 | FCS_COP.1/AKG included, FCS_COP.1/SKG included, FCS_CKM.2 included, FCS_COP.1/DataEncryption included, FCS_COP.1/SigGen included, FCS_COP.1/Hash included, FCS_RBG_EXT.1 included, FCS_COP.1/KeyedHash and FCS_DTLSS_EXT.1 and FIA_X509_EXT.1 and FIA_X509_EXT.2 included as selection-based SFRs
 | FCS_TLSC_EXT.2 | FCS_CKM.1/AKG, FCS_CKM.1/SKG, FCS_CKM.2, FCS_COP.1/DataEncryption, FCS_COP.1/SigGen, FCS_COP.1/Hash, FCS_COP.1/KeyedHash, FCS_RBG_EXT.1, FCS_TLSC_EXT.1, FIA_X509_EXT.1, FIA_X509_EXT.2 | FCS_COP.1/AKG included, FCS_COP.1/SKG included, FCS_CKM.2 included, FCS_COP.1/DataEncryption included, FCS_COP.1/SigGen included, FCS_COP.1/Hash included, FCS_RBG_EXT.1 included, FCS_COP.1/KeyedHash and FCS_TLSC_EXT.1 and FIA_X509_EXT.1 and FIA_X509_EXT.2 included as selection-based SFRs
-| FCS_TLSS_EXT.2 | FCS_CKM.1/AKG, FCS_CKM.1/SKG, FCS_CKM.2, FCS_COP.1/DataEncryption, FCS_COP.1/SigGen, FCS_COP.1/Hash, FCS_COP.1/KeyedHash, FCS_RBG_EXT.1, FCS_TLSS_EXT.1, FIA_X509_EXT.1, FIA_X509_EXT.2 | FCS_COP.1/AKG included, FCS_COP.1/SKG included, FCS_CKM.2 included, FCS_COP.1/DataEncryption included, FCS_COP.1/SigGen included, FCS_COP.1/Hash included, FCS_RBG_EXT.1 included, FCS_COP.1/KeyedHash and FCS_TLSS_EXT.1 and FIA_X509_EXT.1 and FIA_X509_EXT.2 included as selection-based SFRs
+
+| FCS_TLSS_EXT.2 | FCS_CKM.1/AKG, FCS_CKM.1/SKG, FCS_CKM.2, FCS_COP.1/DataEncryption, FCS_COP.1/SigGen, FCS_COP.1/Hash, FCS_COP.1/KeyedHash, FCS_RBG_EXT.1, FCS_TLSS_EXT.1, FIA_X509_EXT.1, FIA_X509_EXT.2 | FCS_CKM.1/AKG included, FCS_CKM.1/SKG included, FCS_CKM.2 included, FCS_COP.1/DataEncryption included, FCS_COP.1/SigGen included, FCS_COP.1/Hash included, FCS_RBG_EXT.1 included, FCS_COP.1/KeyedHash and FCS_TLSS_EXT.1 and FIA_X509_EXT.1 and FIA_X509_EXT.2 included as selection-based SFRs
 
 |===
