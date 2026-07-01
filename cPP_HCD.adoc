@@ -854,14 +854,14 @@ _Symmetric keys may be used to generate keys along the key chain._
 	FCS_CKM.6 Timing and event of cryptographic key destruction
 ======
 
-*FCS_CKM.2.1 Refinement* The TSF shall *perform* cryptographic *key establishment* in accordance with a specified cryptographic key *establishment* method: [*selection:*
+*FCS_CKM.2.1 Refinement* The TSF shall *_+++<del>distribute</del>+++_* *perform* cryptographic *_+++<del>keys</del>+++_* *key establishment* in accordance with a specified cryptographic key *_+++<del>distribution</del>+++_* *establishment* method: [*selection:*
 
-•	*_RSA-based key establishment schemes that meet the following: RSAES-PKCS1-v1_5 as specified in Section 7.2 of RFC 8017, “Public-Key Cryptography Standards (PKCS) #1: RSA Cryptography Specifications Version 2.2”;_*
-•	*_Elliptic curve-based key establishment schemes that meet the following: NIST Special Publication 800-56A Revision 3, “Recommendation for Pair-Wise Key Establishment Schemes Using Discrete Logarithm Cryptography”;_*
-•	*_Finite field-based key establishment schemes that meet the following: NIST Special Publication 800-56A Revision 3, “Recommendation for Pair-Wise Key Establishment Schemes Using Discrete Logarithm Cryptography”;_*
-•	*_FFC Schemes using “safe-prime” groups that meet the following: ‘NIST Special Publication 800-56A Revision 3, “Recommendation for Pair-Wise Key Establishment Schemes Using Discrete Logarithm Cryptography” and [selection: RFC 3526, RFC 7919]._*
+* _RSA-based key establishment schemes that meet the following: RSAES-PKCS1-v1_5 as specified in Section 7.2 of RFC 8017, “Public-Key Cryptography Standards (PKCS) #1: RSA Cryptography Specifications Version 2.2”;_
+* _Elliptic curve-based key establishment schemes that meet the following: NIST Special Publication 800-56A Revision 3, “Recommendation for Pair-Wise Key Establishment Schemes Using Discrete Logarithm Cryptography”;_
+* _Finite field-based key establishment schemes that meet the following: NIST Special Publication 800-56A Revision 3, “Recommendation for Pair-Wise Key Establishment Schemes Using Discrete Logarithm Cryptography”;_
+* _FFC Schemes using “safe-prime” groups that meet the following: ‘NIST Special Publication 800-56A Revision 3, “Recommendation for Pair-Wise Key Establishment Schemes Using Discrete Logarithm Cryptography” and [selection: RFC 3526, RFC 7919]._
 
-] *+++<del>that meets the following: [assignment: list of standards]</del>+++*.
+] *_+++<del>that meets the following: [assignment: list of standards]</del>+++_*.
 
 *_Application Note:_*
 
