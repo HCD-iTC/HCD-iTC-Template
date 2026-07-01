@@ -3135,8 +3135,6 @@ _The ST author must include FIA_X509_EXT.1 in all instances except when only SSH
 	No other components +
 
 *Dependencies:* +
-  FCS_CKM.1/AKG Cryptographic Key Generation (Asymmetric Keys) +
-  FCS_CKM.1/SKG Cryptographic Key Generation (Symmetric Keys) +
 	FIA_X509_EXT.1 X.509 Certificate Validation
 ======
 
@@ -6739,7 +6737,9 @@ When FCS_COP.1/CMAC is applied to keys used in FPT_SBT_EXT.1, the key-based mess
 | FCS_SNI_EXT.1 | FCS_RBG_EXT.1 | FCS_RBG_EXT.1 included
 
 | FIA_X509_EXT.1 | FCS_X509_EXT.2 | FIA_X509_EXT.2 included as selection-based SFR
-| FIA_X509_EXT.2 | FCS_CKM.1/AKG, FCS_CKM.1/SKG, FIA_X509_EXT.1 | FCS_COP.1/AKG included, FCS_COP.1/SKG included, FIA_X509_EXT.1 included as selection-based SFR
+
+| FIA_X509_EXT.2 | FIA_X509_EXT.1 | FIA_X509_EXT.1 included as selection-based SFR
+
 | FIA_X509_EXT.3 | FCS_CKM.1/AKG, FIA_X509_EXT.1 | FCS_COP.1/AKG included, FIA_X509_EXT.1 included as selection-based SFR
 
 
