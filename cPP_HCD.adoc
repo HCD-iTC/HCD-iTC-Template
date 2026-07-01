@@ -1486,7 +1486,7 @@ _User identification may be performed internally by the TOE or externally by an 
 	FMT_SMR.1 Security roles
 ======
 
-*FMT_MSA.3.1 Refinement:* The TSF shall enforce the *User Data Access Control SFP* to provide [selection, choose one of: _restrictive, permissive, [assignment: other property]_] default values for security attributes that are used to enforce the SFP.
+*FMT_MSA.3.1* The TSF shall enforce the [*User Data Access Control SFP*] to provide [selection, choose one of: _restrictive, permissive, [assignment: other property]_] default values for security attributes that are used to enforce the SFP.
 
 *FMT_MSA.3.2 Refinement:* The TSF shall allow the *[selection: _U.ADMIN, no role_]* to specify alternative initial values to override the default values when an object or information is created.
 
