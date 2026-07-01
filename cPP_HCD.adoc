@@ -2017,11 +2017,11 @@ FCS_CKM.1/SKG Cryptographic Key Generation (Symmetric Keys) +
 FCS_CKM.6 Timing and event of cryptographic key destruction
 ======
 
-*FCS_COP.1.1/KeyWrap Refinement:* The TSF shall perform [*key wrapping*] in accordance with a specified cryptographic algorithm [selection: *_AES in the following modes [selection: _KW, KWP, GCM, CCM_], SEED in the following modes [selection: Key Wrap, KWP, GCM, CCM], LEA in the following modes [selection: Key Wrap, KWP, GCM, CCM]_]* and the cryptographic key size *[selection: _128 bits (AES, SEED, LEA), 192 bits (AES, LEA), 256 bits (AES, LEA)_]* that meet the following: [selection:
+*FCS_COP.1.1/KeyWrap Refinement:* The TSF shall perform [*key wrapping*] in accordance with a specified cryptographic algorithm [selection: _AES in the following modes [selection: KW, KWP, GCM, CCM], SEED in the following modes [selection: KW, KWP, GCM, CCM], LEA in the following modes [selection: KW, KWP, GCM, CCM]_] and the cryptographic key size [selection: _128 bits (AES, SEED, LEA), 192 bits (AES, LEA), 256 bits (AES, LEA)_] that meet the following: [selection:
 
 Case: AES algorithm
 
-* _[ISO/IEC 18033-3 (AES), [selection: _NIST SP 800-38F, ISO/IEC 19772, no other standards]]_,
+* _[ISO/IEC 18033-3 (AES), [selection: NIST SP 800-38F, ISO/IEC 19772, no other standards]]_,
 
 Case: SEED algorithm
 
