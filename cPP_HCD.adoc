@@ -6740,7 +6740,7 @@ When FCS_COP.1/CMAC is applied to keys used in FPT_SBT_EXT.1, the key-based mess
 
 | FIA_X509_EXT.2 | FIA_X509_EXT.1 | FIA_X509_EXT.1 included as selection-based SFR
 
-| FIA_X509_EXT.3 | FCS_CKM.1/AKG, FIA_X509_EXT.1 | FCS_COP.1/AKG included, FIA_X509_EXT.1 included as selection-based SFR
+| FIA_X509_EXT.3 | FCS_CKM.1/AKG, FIA_X509_EXT.1 | FCS_CKM.1/AKG included, FIA_X509_EXT.1 included as selection-based SFR
 
 
 |===
