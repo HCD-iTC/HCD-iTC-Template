@@ -907,33 +907,29 @@ The TOE will have mechanisms to destroy keys, including intermediate keys and ke
 
 This SFR does not apply to the public component of asymmetric key pairs or to keys that are permitted to remain stored, such as device identification keys.
 
-*FCS_CKM.6.2* The TSF shall destroy *plaintext* cryptographic keys and keying material specified by FCS_CKM.6.1 in accordance with a specified cryptographic key destruction method [selection:
+*FCS_CKM.6.2 Refinement* The TSF shall destroy *plaintext* cryptographic keys and keying material specified by FCS_CKM.6.1 in accordance with a specified cryptographic key destruction method [selection:
 
+* _For volatile storage, the destruction shall be executed by a [selection:_
+*** _single overwrite consisting of [selection:_
+***** _a pseudo-random pattern using the TSF’s RBG,_
+***** _zeroes,_
+***** _ones,_
+***** _a new value of a key,_
+***** _[assignment: some value that does not contain any CSP]],_
+*** _removal of power to the memory,_
+*** _removal of all references to the key directly followed by a request for garbage collection];_
+* _For nonvolatile storage [selection:_
+*** _that consists of an invocation of an interface provided by a part of the TSF, the destruction shall be executed by: [selection:_
+***** _logically addressing the storage location of the key and performing a [selection: single, [assignment: number of passes]-pass] overwrite consisting of [selection: a pseudo-random pattern using the TSF’s RBG (as specified in FCS_RBG.1), zeroes, ones, a new value of the key, [assignment: a static or dynamic value that does not contain any CSP]];_
+***** _instructing a part of the TSF to destroy the abstraction that represents the key]_
+*** _that employs a wear-leveling algorithm, the destruction shall be executed by a [selection:_
+***** _single overwrite consisting of [selection: zeroes, ones, pseudo-random pattern, a new value of a key of the same size, [assignment: some value that does not contain any CSP]],_
+***** _block erase];_
+*** _that does not employ a wear-leveling algorithm, the destruction shall be executed by a [selection:_
+***** _[selection: single, [assignment: ST author defined multi-pass]] overwrite consisting of [selection: zeros, ones, pseudo-random pattern, a new value of a key of the same size, [assignment: some value that does not contain any CSP]] followed by a read-verify. If the read-verification of the overwritten data fails, the process shall be repeated up to [assignment: number of times to attempt overwrite] times, whereupon an error is returned._
+***** _block erase]]_
 
-* For volatile storage, the destruction shall be executed by a [_selection:_
-***    single overwrite consisting of [selection:
-*****      a pseudo-random pattern using the TSF’s RBG,
-*****      zeroes,
-*****      ones,
-*****      a new value of a key,
-*****      [assignment: some value that does not contain any CSP]],
-***    removal of power to the memory,
-***    removal of all references to the key directly followed by a request for garbage collection
-* ];
-
-* For nonvolatile storage [selection:
-***    that consists of an invocation of an interface provided by a part of the TSF, the destruction shall be executed by: [selection:
-*****        logically addressing the storage location of the key and performing a [selection: single, [assignment: number of passes]-pass] overwrite consisting of [selection: a pseudo-random pattern using the TSF’s RBG (as specified in FCS_RBG.1), zeroes, ones, a new value of the key, [assignment: a static or dynamic value that does not contain any CSP]];
-*****        instructing a part of the TSF to destroy the abstraction that represents the key]
-
-*** that employs a wear-leveling algorithm, the destruction shall be executed by a [selection:
-***** single overwrite consisting of [selection: zeroes, ones, pseudo-random pattern, a new value of a key of the same size, [assignment: some value that does not contain any CSP]], 
-***** block erase];
-*** that does not employ a wear-leveling algorithm, the destruction shall be executed by a [selection:
-***** [selection: single, [assignment: ST author defined multi-pass]] overwrite consisting of [selection: zeros, ones, pseudo-random pattern, a new value of a key of the same size, [assignment: some value that does not contain any CSP]] followed by a read-verify. If the read-verification of the overwritten data fails, the process shall be repeated up to [assignment: number of times to attempt overwrite] times, whereupon an error is returned.
-***** block erase]
-*** ]
-* ] that meets the following: [no standard].
+] that meets the following: [*no standard*].
 
 *_Application Note:_*
 
