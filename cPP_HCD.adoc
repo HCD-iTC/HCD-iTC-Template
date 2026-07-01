@@ -1459,8 +1459,7 @@ _User identification may be performed internally by the TOE or externally by an 
 	FMT_SMF.1 Specification of Management Functions
 ======
 
-*FMT_MOF.1.1 Refinement:* The TSF shall restrict the ability to [selection: _determine the behaviour of, disable, enable, modify the behaviour of_] the functions [assignment: _list of functions_] to [*U.ADMIN*].
-
+*FMT_MOF.1.1* The TSF shall restrict the ability to [selection: _determine the behaviour of, disable, enable, modify the behaviour of_] the functions [assignment: _list of functions_] to [*U.ADMIN*].
 
 ==== FMT_MSA.1 Management of security attributes
 ======
