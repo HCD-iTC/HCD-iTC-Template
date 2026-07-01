@@ -1473,8 +1473,7 @@ _User identification may be performed internally by the TOE or externally by an 
 	FMT_SMF.1 Specification of Management Functions
 ======
 
-*FMT_MSA.1.1 Refinement:* The TSF shall enforce the [*User Data Access Control SFP*] to restrict the ability to [selection: __change_default, query, modify, delete, [assignment: other operations]__] the security attributes [assignment: _list of security attributes_] to [assignment: _the authorized identified roles_].
-
+*FMT_MSA.1.1* The TSF shall enforce the [*User Data Access Control SFP*] to restrict the ability to [selection: __change_default, query, modify, delete, [assignment: other operations]__] the security attributes [assignment: _list of security attributes_] to [assignment: _the authorized identified roles_].
 
 ==== FMT_MSA.3 Static attribute initialization
 ======
