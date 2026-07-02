@@ -1770,7 +1770,7 @@ _The requirement implies that not only are communications protected when they ar
 	FCS_HTTPS_EXT.1 Extended: HTTPS selected ].
 ======
 
-*FTP_TRP.1.1/Admin Refinement:* The TSF shall *use [selection, choose at least one of: _IPsec, SSH, TLS, DTLS, TLS/HTTPS_] to* provide *a trusted* communication path between itself and *remote administrators* that is logically distinct from other communication paths and provides assured identification of its end points and protection of the communicated data from *disclosure and detection of modification of the communicated data*.
+*FTP_TRP.1.1/Admin Refinement:* The TSF shall *use* [selection, choose at least one of: _IPsec, SSH, TLS, DTLS, TLS/HTTPS_] *to* provide a *trusted* communication path between itself and [remote] [.line-through]#*_users_*# *administrators* that is logically distinct from other communication paths and provides assured identification of its end points and protection of the communicated data from [disclosure *and detection of modification of the communicated data*].
 
 *FTP_TRP.1.2/Admin Refinement:* The TSF shall permit *remote administrators* to initiate communication via the trusted path
 
