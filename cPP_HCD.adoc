@@ -1,6 +1,6 @@
 = collaborative Protection Profile for Hardcopy Devices
 :showtitle:
-:doc type:book
+:doctype: book
 :toc: macro
 :toclevels: 3
 :sectnums:
