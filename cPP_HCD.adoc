@@ -1774,7 +1774,7 @@ _The requirement implies that not only are communications protected when they ar
 
 *FTP_TRP.1.2/Admin Refinement:* The TSF shall permit pass:[[]remote [.line-through]#*_users_*# *administrators*] to initiate communication via the trusted path.
 
-*FTP_TRP.1.3/Admin Refinement:* The TSF shall require the use of the trusted path for [*initial administrator authentication and all remote administration actions*].
+*FTP_TRP.1.3/Admin Refinement:* The TSF shall require the use of the trusted path for pass:[[]initial [.line-through]#*_user_*# *administrator* authentication *[and all remote administration actions]*].
 
 *_Application Note:_*
 
