@@ -1938,8 +1938,11 @@ _The audit event “Unsuccessful attempt to validate a certificate” for FIA_X5
 No other components.
 
 *Dependencies:* +
-FCS_CKM.1/SKG Cryptographic Key Generation (Symmetric Keys) +
-FCS_CKM.6 Timing and event of cryptographic key destruction
+	pass:[[][.line-through]#FDP_ITC.1 Import of user data without security attributes, or# +
+	[.line-through]#FDP_ITC.2 Import of user data with security attributes, or# +
+	FCS_CKM.1/SKG Cryptographic Key Generation (Symmetric Keys)[.line-through]#, or# +
+	[.line-through]#FCS_CKM.5 Cryptographic key derivation#{endsb} +
+	FCS_CKM.6 Timing and event of cryptographic key destruction
 ======
 
 *FCS_COP.1.1/StorageEncryption*  The TSF shall perform [*data encryption and decryption*] in accordance with a specified cryptographic algorithm [selection:
