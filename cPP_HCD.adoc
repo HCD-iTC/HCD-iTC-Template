@@ -1127,7 +1127,11 @@ _The ST Author chooses the algorithm(s) implemented to perform digital signature
 	No other components.
 
 *Dependencies:* +
-	No dependencies.
+	pass:[[][.line-through]#FDP_ITC.1 Import of user data without security attributes, or# +
+	[.line-through]#FDP_ITC.2 Import of user data with security attributes, or# +
+	[.line-through]#FCS_CKM.1 Cryptographic key generation, or# +
+	[.line-through]#FCS_CKM.5 Cryptographic key derivation#{endsb} +
+	[.line-through]#FCS_CKM.6 Timing and event of cryptographic key destruction#
 ======
 *FCS_COP.1.1/Hash Refinement:* The TSF shall perform [*cryptographic hashing services*] in accordance with a specified cryptographic algorithm [selection: _SHA-1, SHA-256, SHA-384, SHA-512_] and +++<del>cryptographic key sizes [assignment: cryptographic key sizes]</del>+++ *message digest sizes [selection: _160, 256, 384, 512_] bits* that meet the following: [*ISO/IEC 10118-3:2004*].
 
