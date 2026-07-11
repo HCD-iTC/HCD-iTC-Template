@@ -896,8 +896,10 @@ _The domain parameters used for the finite field-based key establishment scheme 
 	No other components.
 
 *Dependencies:* +
-[FCS_CKM.1 Cryptographic key generation, or +
-FCS_CKM.5 Cryptographic key derivation]
+	pass:[[][.line-through]#FDP_ITC.1 Import of user data without security attributes, or# +
+	[.line-through]#FDP_ITC.2 Import of user data with security attributes, or# +
+	FCS_CKM.1 Cryptographic key generation, or +
+	FCS_CKM.5 Cryptographic key derivation{endsb}
 ======
 
 *FCS_CKM.6.1* The TSF shall destroy [*plaintext cryptographic keys (including keying material)*] when [selection: _no longer needed, [assignment: other circumstances for key or keying material destruction]_].
