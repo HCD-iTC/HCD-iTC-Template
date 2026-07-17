@@ -5803,7 +5803,7 @@ Authorized Users are trained to use the TOE according to site security policies.
 | |FCS_DTLSC_EXT.1	|This requirement defines the implementation of DTLS acting as a client without mutual authentication using strong cryptography.
 | |FCS_DTLSS_EXT.1	|This requirement defines the implementation of DTLS acting as a server without mutual authentication using strong cryptography.
 | |FCS_PCC_EXT.1 |This requirement ensures the use of strong methods to generate cryptographic passwords.
-| |FCS_KDF_EXT.1 |This requirement ensures the use of strong methods for performing cryptographic key derivation.
+| |FCS_CKM.5 |This requirement ensures the use of strong methods for performing cryptographic key derivation.
 | |FCS_COP.1/CMAC	|This requirement ensures the use of strong methods to perform cipher-based message authentication.
 | |FCS_SNI_EXT.1 |This requirement ensures that salts and nonces used by the TOE do not negatively impact key strength.
 | |FCS_CKM.1/AKG	|This requirement ensures the generation of strong asymmetric keys.
