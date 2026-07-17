@@ -4623,9 +4623,13 @@ FPT_TST_EXT.1.1 The TSF shall run a suite of self-tests during initial start-up 
 
 *Rationale*
 
-TSF testing is to ensure the TSF can be operated correctly, and the Common Criteria does not provide a suitable SFR for the TSF testing. In particular, there is no SFR defined for TSF testing.
+FPT_TST_EXT.1 specifies a start-up operational self-test requirement: the TSF runs a suite of self-tests during initial start-up, including power-on, to demonstrate correct operation of the TSF.
+ 
+The Common Criteria Part 2 component FPT_TST.1 also addresses TSF self-testing. However, FPT_TST.1 is defined as a three-element component. When claimed, it also requires verification of the integrity of TSF data and stored TSF executable code. These elements cannot be omitted. As a result, FPT_TST.1 cannot clearly express the intended cPP requirement without importing additional mandatory requirements that are outside the intended baseline.
 
-This extended component protects the TOE, and it is therefore placed in the FPT class with a single component.
+Verification of stored TSF executable-code integrity is already addressed by this cPP through FPT_SBT_EXT.1, Secure Boot. FPT_SBT_EXT.1.2 requires boot-time verification of firmware/software integrity anchored in a hardware Root of Trust, which is specific to the boot architecture of HCD TOEs and more precise than the generic executable-code integrity verification required by FPT_TST.1.
+
+This cPP establishes a security baseline that requires demonstration of correct TSF operation at start-up. It does not mandate general verification of TSF-data integrity across all conformant TOEs. Therefore, FPT_TST_EXT.1 is necessary to state the intended baseline requirement precisely, without importing FPT_TST.1 elements that are either already addressed by FPT_SBT_EXT.1 or outside the intended baseline. The extended component is placed in the FPT class as a single component.
 
 ==== FPT_TUD_EXT Extended: Trusted Update
 
