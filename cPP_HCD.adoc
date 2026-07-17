@@ -4671,8 +4671,9 @@ The following actions should be auditable if FAU_GEN Security Audit Data Generat
 	No other components.
 
 *Dependencies:* +
-  [	FCS_COP.1/SigGen Cryptographic Operation (for signature generation/verification), +
-	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm) ].
+	[if selected: FCS_COP.1/SigGen Cryptographic Operation (for signature generation/verification)], +
+	[if selected: FIA_X509_EXT.1 X.509 Certificate Validation], +
+	[if selected: FCS_COP.1/Hash Cryptographic operation (Hash Algorithm)] +
 ======
 
 FPT_TUD_EXT.1.1 The TSF shall provide authorized administrators the ability to query the current version of the TOE firmware/software.
