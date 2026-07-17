@@ -3427,12 +3427,13 @@ The following actions should be auditable if FAU_GEN Security Audit Data Generat
 	No other components.
 
 *Dependencies:* +
-    FCS_CKM.1 Cryptographic Key Generation +
+	[if selected: FIA_PSK_EXT.1 Extended: Pre-Shared Key Composition] +
+	FCS_CKM.1/AKG Cryptographic Key Generation (Asymmetric Keys) +
 	FCS_CKM.2 Cryptographic Key Establishment +
 	FCS_COP.1/DataEncryption Cryptographic operation (Data Encryption/decryption) +
 	FCS_COP.1/SigGen Cryptographic operation (Signature Generation and Verification) +
 	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm) +
-	FCS_COP.1/KeyedHash Cryptographic operation (Keyed Hash Algorithm) +
+	[if selected: FCS_COP.1/KeyedHash Cryptographic operation (Keyed Hash Algorithm)] +
 	FCS_RBG_EXT.1 Random Bit Generation
 ======
 
