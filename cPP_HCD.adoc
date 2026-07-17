@@ -3157,7 +3157,7 @@ _FDP_FXS.EXT.1 is required if fax-net separation is performed by the TSF._
   [	FCS_IPSEC_EXT.1 Extended: IPsec selected, or +
 	FCS_TLSC_EXT Extended: TLS Client Protocol and/or FCS_TLSS_EXT Extended: TLS Server Protocol, or +
 	FCS_SSHC_EXT Extended: SSH Client Protocol or FCS_SSHS_EXT Extended: SSH Server Protocol, or +
-	FCS_DTLSC_EXT Extended: DTLS Client Protocol and/or FCS_DTLSS_EXT Extended: Server DTLS Protocol, or +
+	FCS_DTLSC_EXT Extended: DTLS Client Protocol and/or FCS_DTLSS_EXT Extended: DTLS Server Protocol, or +
 	FCS_HTTPS_EXT.1 Extended: HTTPS selected ].
 ======
 
