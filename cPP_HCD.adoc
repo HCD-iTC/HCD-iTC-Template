@@ -5869,7 +5869,11 @@ The dependencies between SFRs implemented by the TOE are addressed as follows.
 | FMT_SMF.1 | None |
 | FMT_SMR.1 | FIA_UID.1 | FIA_UID.1 included
 
-| FPT_SBT_EXT.1 | FCS_COP.1/Hash, FCS_COP.1/SigGen, FCS_COP.1/KeyedHash, FCS_COP.1/DataEncryption, FCS_COP.1/StorageEncryption, FCS_COP.1/CMAC | FCS_COP.1/Hash included, FCS_COP.1/SigGen included, FCS_COP.1/DataEncryption included, FCS_COP.1/KeyedHash and FCS_COP.1/StorageEncryption and FCS_COP.1/CMAC included as selection-based SFRs
+| FPT_SBT_EXT.1 | [if selected: FCS_COP.1/Hash], [if selected: FCS_COP.1/SigGen], [if selected: FCS_COP.1/KeyedHash and/or FCS_COP.1/CMAC], [if selected: FCS_COP.1/DataEncryption and/or FCS_COP.1/StorageEncryption]
+| FCS_COP.1/Hash included if selected, FCS_COP.1/SigGen included if selected, FCS_COP.1/KeyedHash and/or FCS_COP.1/CMAC included if selected, FCS_COP.1/DataEncryption and/or FCS_COP.1/StorageEncryption included if selected
+
+
+
 | FPT_SKP_EXT.1 | None |
 | FPT_STM.1 | None |
 | FPT_TST_EXT.1 | None |
