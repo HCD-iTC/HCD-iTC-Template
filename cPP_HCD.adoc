@@ -3926,7 +3926,11 @@ The following actions should be considered for audit if FAU_GEN Security audit d
 
 *FCS_SSHS_EXT.1.8* The TSF shall ensure that within SSH connections, the same session keys are used for a threshold of no longer than one hour, and each encryption key is used to protect no more than one gigabyte of data. After any of the thresholds are reached, a rekey needs to be performed.
 
+*Rationale*
+ 
+SSH is used by the SFRs to establish a trusted channel/path as a server, and the Common Criteria does not provide a suitable SFR for the SSH server protocol.
 
+This extended component ensures the secure operation of the SSH server protocol, and it is therefore placed in the FCS class.
 
 
 
