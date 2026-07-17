@@ -5759,7 +5759,7 @@ Authorized Users are trained to use the TOE according to site security policies.
 | |FCS_COP.1/KeyEnc	|This requirement defines the cryptographic algorithms that must be applied to perform key encryption and decryption.
 | |FCS_COP.1/KeyTransport	|This requirement defines the cryptographic algorithms that must be applied to transfer a key and other keying material from an entity that either owns the key or generates the key to another entity that is intended to use the key.
 | |FCS_SMC_EXT.1	|This requirement defines the methods for combining submasks to generate an intermediary key.
-| |FCS_KDF_EXT.1 |This requirement defines the methods for generating an intermediary key.
+| |FCS_CKM.5 |This requirement defines the methods for generating an intermediary key.
 | |FCS_PCC_EXT.1 |This requirement defines the cryptographic algorithms that must be applied to construct cryptographic passwords.
 | |FCS_COP.1/KeyedHash	|This requirement defines the cryptographic algorithms that must be applied to perform keyed-hash message authentication.
 | |FCS_COP.1/CMAC	|This requirement defines the cryptographic algorithms that must be applied to perform cipher-based message authentication.
