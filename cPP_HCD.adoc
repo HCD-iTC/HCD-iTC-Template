@@ -3856,6 +3856,12 @@ The following actions should be considered for audit if FAU_GEN Security audit d
 
 *FCS_SSHC_EXT.1.9* The TSF shall ensure that the SSH client authenticates the identity of the SSH server using a local database associating each host name with its corresponding public key and [selection: _a list of trusted certification authorities, no other methods_] as described in RFC 4251 section 4.1.
 
+*Rationale*
+
+SSH is used by the SFRs to establish a trusted channel/path as a client, and the Common Criteria does not provide a suitable SFR for the SSH client protocol.
+
+This extended component ensures the secure operation of the SSH client protocol, and it is therefore placed in the FCS class.
+
 ==== FCS_SSHS_EXT SSH Server Protocol
 
 *Family Behaviour*
