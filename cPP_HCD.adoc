@@ -5877,7 +5877,10 @@ The dependencies between SFRs implemented by the TOE are addressed as follows.
 | FPT_SKP_EXT.1 | None |
 | FPT_STM.1 | None |
 | FPT_TST_EXT.1 | None |
-| FPT_TUD_EXT.1 | FCS_COP.1/SigGen, FCS_COP.1/Hash | FCS_COP.1/SigGen included, FCS_COP.1/Hash included
+
+| FPT_TUD_EXT.1
+| [if selected: FCS_COP.1/SigGen], [if selected: FIA_X509_EXT.1], [if selected: FCS_COP.1/Hash]
+| FCS_COP.1/SigGen included if selected, FIA_X509_EXT.1 included if selected, FCS_COP.1/Hash included if selected
 
 | FTA_SSL.3 | None |
 
