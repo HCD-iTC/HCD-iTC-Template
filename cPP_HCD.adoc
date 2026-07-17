@@ -2809,12 +2809,12 @@ _This SFR is conditionally required if the manual entry of a drive encryption pa
 
 *Dependencies:* +
  	[+++<del>+++*_FCS_CKM.2 Cryptographic key distribution, or_*+++</del>+++ +
-	FCS_COP.1/CMAC Cryptographic Operation (for cipher-based message authentication)] +
+	FCS_COP.1/KeyedHash Cryptographic Operation (Keyed Hash Algorithm)] +
 	FCS_CKM.6 Timing and event of cryptographic key destruction +
 	[if selected: FCS_RBG_EXT.1 Random Bit Generation]
 ======
 
-*FCS_CKM.5.1* The TSF shall derive cryptographic keys [*intermediate key*] from [selection: _a RNG generated submask as specified in FCS_RBG_EXT.1, a conditioned password submask, imported submask_] in accordance with a specified key derivation algorithm [*the keyed-hash functions specified in FCS_COP.1/CMAC*] and specified cryptographic key sizes [*at least of equivalent security strength (in number of bits) to the BEV or the DEK*] that meet the following: [selection: _NIST SP 800-108 [selection: KDF in Counter Mode, KDF in Feedback Mode, KDF in Double-Pipeline Iteration Mode], NIST SP 800-132, ISO/IEC 11770-6:2016 [selection: KPF2, KPF3, KPF4]_].
+*FCS_CKM.5.1* The TSF shall derive cryptographic keys [*intermediate key*] from [selection: _a RNG generated submask as specified in FCS_RBG_EXT.1, a conditioned password submask, imported submask_] in accordance with a specified key derivation algorithm [*the keyed-hash functions specified in FCS_COP.1/KeyedHash*] and specified cryptographic key sizes [*at least of equivalent security strength (in number of bits) to the BEV or the DEK*] that meet the following: [selection: _NIST SP 800-108 [selection: KDF in Counter Mode, KDF in Feedback Mode, KDF in Double-Pipeline Iteration Mode], NIST SP 800-132, ISO/IEC 11770-6:2016 [selection: KPF2, KPF3, KPF4]_].
 
 
 
@@ -5928,7 +5928,9 @@ The dependencies between SFRs implemented by the TOE are addressed as follows.
 | FCS_DTLSS_EXT.1 | FCS_CKM.1/AKG, FCS_CKM.1/SKG, FCS_CKM.2, FCS_COP.1/DataEncryption, FCS_COP.1/SigGen, FCS_COP.1/Hash, FCS_COP.1/KeyedHash, FCS_RBG_EXT.1, FIA_X509_EXT.1, FIA_X509_EXT.2 | FCS_COP.1/AKG included, FCS_COP.1/SKG included, FCS_CKM.2 included, FCS_COP.1/DataEncryption included, FCS_COP.1/SigGen included, FCS_COP.1/Hash included, FCS_RBG_EXT.1 included, FCS_COP.1/KeyedHash and FIA_X509_EXT.1 and FIA_X509_EXT.2 included as selection-based SFRs
 
 | FCS_PCC_EXT.1 | FCS_COP.1/KeyedHash | FCS_COP.1/KeyedHash included as selection-based SFR
-| FCS_KDF_EXT.1 | FCS_COP.1/KeyedHash, FCS_COP.1/CMAC, FCS_CKM.6, if selected FCS_RBG_EXT.1 | FCS_COP.1/KeyedHash and FCS_COP.1/CMAC included as selection-based SFR, FCS_CKM.6 included, if selected - FCS_RBG_EXT.1 included
+
+| FCS_CKM.5 | FCS_COP.1/KeyedHash, FCS_CKM.6, [if selected: FCS_RBG_EXT.1] |FCS_COP.1/KeyedHash included, FCS_CKM.6 included, FCS_RBG_EXT.1 included if selected
+
 | FCS_COP.1/CMAC | FCS_CKM.1/SKG, FCS_COP.1/Hash, FCS_CKM.6 | FCS_CKM.1/SKG included, FCS_COP.1/Hash included, FCS_CKM.6 included.
 
 When FCS_COP.1/CMAC is applied to keys used in FPT_SBT_EXT.1, the cipher-based message authentication key is not CSP, so dependencies on FCS_CKM.1/SKG and FCS_CKM.6 can be removed.
