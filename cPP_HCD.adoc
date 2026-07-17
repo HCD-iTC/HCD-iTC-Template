@@ -4426,12 +4426,10 @@ The following actions should be auditable if FAU_GEN Security Audit Data Generat
 	No other components.
 
 *Dependencies:* +
-	FCS_COP.1/Hash Cryptographic operation (Hash Algorithm) +
-	FCS_COP.1/SigGen Cryptographic Operation (for signature generation/verification) +
-	FCS_COP.1/KeyedHash Cryptographic Operation (for keyed-hash message authentication) +
-	FCS_COP.1/DataEncryption Cryptographic Operation (Symmetric encryption/decryption) +
-	FCS_COP.1/StorageEncryption Cryptographic operation (Data Encryption/Decryption) +
-	FCS_COP.1/CMAC Cryptographic Operation (for cipher-based message authentication)
+	[if selected: FCS_COP.1/Hash Cryptographic operation (Hash Algorithm)], +
+	[if selected: FCS_COP.1/SigGen Cryptographic Operation (for signature generation/verification)], +
+	[if selected: FCS_COP.1/KeyedHash Cryptographic Operation (for keyed-hash message authentication), and/or FCS_COP.1/CMAC Cryptographic Operation (for cipher-based message authentication)], +
+	[if selected: FCS_COP.1/DataEncryption Cryptographic Operation (Data Encryption/Decryption), and/or FCS_COP.1/StorageEncryption Cryptographic Operation (Data Encryption/Decryption)] +
 ======
 
 *FPT_SBT_EXT.1.1* The TSF shall contain one or more chains of trust with each chain of trust anchored in a Root of Trust that is implemented in immutable code or a HW-based write-protection mechanism.
