@@ -5931,9 +5931,11 @@ The dependencies between SFRs implemented by the TOE are addressed as follows.
 
 | FCS_CKM.5 | FCS_COP.1/KeyedHash, FCS_CKM.6, [if selected: FCS_RBG_EXT.1] |FCS_COP.1/KeyedHash included, FCS_CKM.6 included, FCS_RBG_EXT.1 included if selected
 
-| FCS_COP.1/CMAC | FCS_CKM.1/SKG, FCS_COP.1/Hash, FCS_CKM.6 | FCS_CKM.1/SKG included, FCS_COP.1/Hash included, FCS_CKM.6 included.
+| FCS_COP.1/CMAC | FCS_CKM.1/SKG, FCS_CKM.6 | FCS_CKM.1/SKG included, FCS_CKM.6 included.
 
 When FCS_COP.1/CMAC is applied to keys used in FPT_SBT_EXT.1, the cipher-based message authentication key is not CSP, so dependencies on FCS_CKM.1/SKG and FCS_CKM.6 can be removed.
+
+
 | FCS_SNI_EXT.1 | FCS_RBG_EXT.1 | FCS_RBG_EXT.1 included
 
 | FIA_X509_EXT.1 | FIA_X509_EXT.2 | FIA_X509_EXT.2 included as selection-based SFR
