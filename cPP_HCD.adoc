@@ -3901,7 +3901,7 @@ The following actions should be considered for audit if FAU_GEN Security audit d
 	No other components
 
 *Dependencies:* +
-  FCS_CKM.1/AKG Cryptographic Key Generation (Asymmetric Keys) +
+  	FCS_CKM.1/AKG Cryptographic Key Generation (Asymmetric Keys) +
 	FCS_CKM.2 Cryptographic Key Establishment +
 	FCS_COP.1/DataEncryption Cryptographic operation (Data Encryption/decryption) +
 	FCS_COP.1/SigGen Cryptographic operation (Signature Generation and Verification) +
@@ -5910,7 +5910,9 @@ The dependencies between SFRs implemented by the TOE are addressed as follows.
 
 
 
-| FCS_SSHS_EXT.1 | FCS_CKM.1/AKG, FCS_CKM.2, FCS_COP.1/DataEncryption, FCS_COP.1/SigGen, FCS_COP.1/Hash, FCS_COP.1/KeyedHash, FCS_RBG_EXT.1 | FCS_COP.1/AKG included, FCS_CKM.2 included, FCS_COP.1/DataEncryption included, FCS_COP.1/SigGen included, FCS_COP.1/Hash included, FCS_RBG_EXT.1 included, FCS_COP.1/KeyedHash included as selection-based SFRs
+| FCS_SSHS_EXT.1 | FCS_CKM.1/AKG, FCS_CKM.2, FCS_COP.1/DataEncryption, FCS_COP.1/SigGen, FCS_COP.1/Hash, FCS_COP.1/KeyedHash, FCS_RBG_EXT.1 | FCS_CKM.1/AKG included, FCS_CKM.2 included, FCS_COP.1/DataEncryption included, FCS_COP.1/SigGen included, FCS_COP.1/Hash included, FCS_RBG_EXT.1 included, FCS_COP.1/KeyedHash included as selection-based SFR
+
+
 
 | FCS_HTTPS_EXT.1 | FCS_TLSC_EXT, and/or FCS_TLSS_EXT | FCS_TLSC_EXT.1 and FCS_TLSS_EXT.1 included as selection-based SFRs
 | FCS_COP.1/KeyedHash | FCS_RBG_EXT.1, FTP_ITC.1 or FCS_CKM.1/AKG, FCS_CKM.6 | FCS_RBG_EXT.1 included, FTP_ITC.1 and FCS_CKM.1/AKG included, FCS_CKM.6 included
