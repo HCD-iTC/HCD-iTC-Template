@@ -3165,7 +3165,7 @@ _FDP_FXS.EXT.1 is required if fax-net separation is performed by the TSF._
 
 
 
-*FTP_TRP.1.1/NonAdmin Refinement:* The TSF shall *use [selection, choose at least one of: _IPsec, SSH, TLS, DTLS, TLS/HTTPS_] to provide a trusted* communication path between itself and [remote] users that is logically distinct from other communication paths and provides assured identification of its end points and protection of the communicated data from [disclosure *and detection of modification of the communicated data*].
+*FTP_TRP.1.1/NonAdmin Refinement:* The TSF shall *use* [selection, choose at least one of: _IPsec, SSH, TLS, DTLS, TLS/HTTPS_] *to* provide a *trusted* communication path between itself and [remote] users that is logically distinct from other communication paths and provides assured identification of its end points and protection of the communicated data from [disclosure *and detection of modification of the communicated data*].
 
 *FTP_TRP.1.2/NonAdmin Refinement:* The TSF shall permit [selection: _the TSF, *+++<del>local users,</del>+++* remote users_] to initiate communication via the trusted path
 
