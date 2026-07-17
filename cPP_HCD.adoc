@@ -4279,15 +4279,6 @@ The following actions should be auditable if FAU_GEN Security audit data generat
 
 *FIA_X509_EXT.1.2* The TSF shall only treat a certificate as a CA certificate if the basicConstraints extension is present and the CA flag is set to TRUE.
 
-
-
-
-
-
-
-
-
-
 ===== FIA_X509_EXT.2 X509 Certificate Authentication
 ======
 *Hierarchical to:* +
@@ -4315,13 +4306,13 @@ The following actions should be auditable if FAU_GEN Security audit data generat
 
 *FIA_X509_EXT.3.2* The TSF shall validate the chain of certificates from the Root CA upon receiving the CA Certificate Response.
 
-
-
+*Rationale*
+ 
+X.509 certificates are used by the SFRs for authentication, certificate validation, and certificate request generation, and the Common Criteria does not provide a suitable SFR for these functions.
+ 
+This extended component ensures the validation, authentication, and request of X.509 certificates, and it is therefore placed in the FIA class.
 
 === Protection of the TSF (FPT)
-
-
-
 
 ==== FPT_WIPE_EXT Extended: Data Wiping
 
