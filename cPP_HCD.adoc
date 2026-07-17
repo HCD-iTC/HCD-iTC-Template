@@ -4184,9 +4184,6 @@ This family defines requirements for the TSF to ensure the ability to use pre-sh
     +------------------------------------------+
 ======
 
-
-
-
 FIA_PSK_EXT.1 Pre-Shared Key Composition, ensures authenticity and access control for updates.
 
 *Management*
@@ -4207,7 +4204,8 @@ The following actions should be auditable if FAU_GEN Security Audit Data Generat
 	No other components.
 
 *Dependencies:* +
-	FCS_RBG_EXT.1 Random Bit Generation.
+	[if selected: FCS_COP.1/Hash Cryptographic Operation (Hash Algorithm)], +
+	[if selected: FCS_RBG_EXT.1 Random Bit Generation] +
 ======
 
 FIA_PSK_EXT.1.1 The TSF shall be able to use pre-shared keys for IPsec.
