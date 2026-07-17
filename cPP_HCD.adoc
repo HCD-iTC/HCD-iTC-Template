@@ -3561,7 +3561,7 @@ No other components.
 	FCS_COP.1/KeyTransport Cryptographic operation (Key Transport) ].
 ======
 
-FCS_KYC_EXT.1.1 The TSF shall maintain a key chain of: [selection: _one, using a submask as the BEV or DEK; intermediate keys originating from one or more submask(s) to the BEV or DEK using the following method(s)_: [selection: _key wrapping as specified in FCS_COP.1/KeyWrap, key combining as specified in FCS_SMC_EXT.1, key encryption as specified in FCS_COP.1/KeyEnc, key derivation as specified in FCS_KDF_EXT.1, key transport as specified in FCS_COP.1/KeyTransport_]] while maintaining an effective strength of [selection: _128 bits, 256 bits_].
+FCS_KYC_EXT.1.1 The TSF shall maintain a key chain of: [selection: _one, using a submask as the BEV or DEK; intermediate keys originating from one or more submask(s) to the BEV or DEK using the following method(s)_: [selection: _key wrapping as specified in FCS_COP.1/KeyWrap, key combining as specified in FCS_SMC_EXT.1, key encryption as specified in FCS_COP.1/KeyEnc, key derivation as specified in FCS_CKM.5, key transport as specified in FCS_COP.1/KeyTransport_]] while maintaining an effective strength of [selection: _128 bits, 256 bits_].
 
 *Rationale*
 
