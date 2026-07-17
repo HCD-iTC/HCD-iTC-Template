@@ -5844,7 +5844,10 @@ The dependencies between SFRs implemented by the TOE are addressed as follows.
 
 | FCS_COP.1/DataEncryption | FCS_CKM.1/SKG, FCS_CKM.6 | FCS_CKM.1/SKG included, FCS_CKM.6 included
 | FCS_COP.1/SigGen | FCS_CKM.1/AKG, FCS_CKM.6 | FCS_CKM.1/AKG included, FCS_CKM.6 included
-| FCS_COP.1/Hash | None |
+
+| FCS_COP.1/Hash | None | FCS_COP.1/Hash performs a keyless hashing operation; the key-source and key-destruction dependencies of FCS_COP.1 do not apply.
+
+
 | FCS_RBG_EXT.1 | None |
 
 | FDP_ACC.1 | FDP_ACF.1 | FDP_ACF.1 included
