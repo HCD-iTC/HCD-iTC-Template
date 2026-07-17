@@ -4493,7 +4493,10 @@ The following actions should be auditable if FAU_GEN Security Audit Data Generat
 	No other components.
 
 *Dependencies:* +
-	FCS_KYC_EXT.1 Extended: Key Chaining
+	FCS_KYC_EXT.1 Extended: Key Chaining, +
+	[if selected: FCS_COP.1/KeyWrap Cryptographic operation (Key Wrapping)], +
+	[if selected: FCS_COP.1/KeyEnc Cryptographic operation (Key Encryption), and/or FCS_COP.1/KeyTransport Cryptographic operation (Key Transport)], +
+	[if selected: FCS_SMC_EXT.1 Extended: Submask Combining] +
 ======
 
 FPT_KYP_EXT.1.1 The TSF shall [selection:
