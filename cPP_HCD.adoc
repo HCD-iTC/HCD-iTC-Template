@@ -5870,6 +5870,7 @@ The dependencies between SFRs implemented by the TOE are addressed as follows.
 | FMT_SMR.1 | FIA_UID.1 | FIA_UID.1 included
 
 | FPT_SBT_EXT.1 | [if selected: FCS_COP.1/Hash], [if selected: FCS_COP.1/SigGen], [if selected: FCS_COP.1/KeyedHash and/or FCS_COP.1/CMAC], [if selected: FCS_COP.1/DataEncryption and/or FCS_COP.1/StorageEncryption]
+
 | FCS_COP.1/Hash included if selected, FCS_COP.1/SigGen included if selected, FCS_COP.1/KeyedHash and/or FCS_COP.1/CMAC included if selected, FCS_COP.1/DataEncryption and/or FCS_COP.1/StorageEncryption included if selected
 
 
@@ -5912,7 +5913,8 @@ The dependencies between SFRs implemented by the TOE are addressed as follows.
 
 
 | FCS_HTTPS_EXT.1 | FCS_TLSC_EXT, and/or FCS_TLSS_EXT | FCS_TLSC_EXT.1 and FCS_TLSS_EXT.1 included as selection-based SFRs
-| FCS_COP.1/KeyedHash | FCS_RBG_EXT.1, FTP_ITC.1 or FCS_CKM.1/AKG, FCS_CKM.6 | FCS_RBG_EXT.1 included, FTP_ITC.1 and FCS_CKM.1/AKG included, FCS_CKM.6 included
+
+| FCS_COP.1/KeyedHash | FCS_RBG_EXT.1, FCS_COP.1/Hash, FTP_ITC.1 or FCS_CKM.1/AKG, FCS_CKM.6 | FCS_RBG_EXT.1 included, FCS_COP.1/Hash included, FTP_ITC.1 and FCS_CKM.1/AKG included, FCS_CKM.6 included
 
 | FIA_PSK_EXT.1
 | [if selected: FCS_COP.1/Hash], [if selected: FCS_RBG_EXT.1]
