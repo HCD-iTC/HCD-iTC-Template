@@ -3669,9 +3669,13 @@ The following actions should be auditable if FAU_GEN Security Audit Data Generat
 
 *Rationale*
 
-Random bits/number will be used by the SFRs for key generation and destruction, and the Common Criteria does not provide a suitable SFR for the random bit generation.
+FCS_RBG_EXT.1 specifies deterministic random bit generation in accordance with ISO/IEC 18031:2011 using an identified DRBG mechanism, and requires the deterministic RBG to be seeded by at least one entropy source that provides a minimum amount of entropy at least equal to the greatest security strength of the keys and hashes that the RBG will generate. The cryptographic SFRs in this cPP that require random bits rely on FCS_RBG_EXT.1 for both the deterministic random bit generation mechanism and the entropy-source seeding requirement.
 
-This extended component ensures the strength of encryption keys, and it is therefore placed in the FCS class with a single component.
+Common Criteria Part 2 includes a random bit generation component, FCS_RBG.1. FCS_RBG.1 carries a defined dependency structure, including dependencies on FCS_RBG.2 or FCS_RBG.3 for external or internal seeding, and dependencies on FPT_FLS.1, Failure with preservation of secure state, and FPT_TST.1, TSF self-testing. Use of FCS_RBG.1 would therefore require the cPP to include or justify additional dependent requirements that are broader than the random bit generation baseline established for conformant TOEs.
+
+The intended cPP baseline is limited to the deterministic random bit generation mechanism, the applicable standard, and the entropy-source seeding requirement. FCS_RBG_EXT.1 states this baseline precisely as a single, self-contained component, without adding broader failure-state or TSF self-testing requirements that are not part of this random bit generation baseline. It is also referenced consistently by the cryptographic SFRs in this cPP that require random bits.
+
+FCS_RBG_EXT.1 is therefore retained and placed in the FCS class.
 
 
 
