@@ -3822,7 +3822,7 @@ The following actions should be considered for audit if FAU_GEN Security audit d
 • SSH session establishment
 • SSH session termination
 
-===== FCS_SSHC_EXT.1
+===== FCS_SSHC_EXT.1 Extended: SSH Client Protocol
 
 ======
 *Hierarchical to:* +
