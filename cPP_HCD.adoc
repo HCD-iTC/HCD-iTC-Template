@@ -3868,6 +3868,18 @@ This extended component ensures the secure operation of the SSH client protocol,
 The component in this family addresses the ability for a server to offer SSH to protect data between a client and the server using the SSH protocol.
 
 *Component Levelling*
+[#img-FCS_SSHS_EXT]
+.Component Levelling
+[ditaa]
+======
+  +----------------------------------------------------+
+  |                                                    |     +---+
+  | FCS_SSHS_EXT Extended: SSH Server Protocol         +---->| 1 |
+  |                                                    |     +---+
+  |                                                    |
+  +----------------------------------------------------+
+======
+
 FCS_SSHS_EXT.1 SSH Server requires that the server side of SSH be implemented as specified.
 
 *Management*: FCS_SSHS_EXT.1
