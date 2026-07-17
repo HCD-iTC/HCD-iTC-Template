@@ -3795,6 +3795,18 @@ This extended component protects the communication data and storage data using c
 The component in this family addresses the ability for a client to use SSH to protect data between the client and a server using the SSH protocol.
 
 *Component Levelling*
+[#img-FCS_SSHC_EXT]
+.Component Levelling
+[ditaa]
+======
+  +----------------------------------------------------+
+  |                                                    |     +---+
+  | FCS_SSHC_EXT Extended: SSH Client Protocol         +---->| 1 |
+  |                                                    |     +---+
+  |                                                    |
+  +----------------------------------------------------+
+======
+
 FCS_SSHC_EXT.1 SSH Client requires that the client side of SSH be implemented as specified.
 
 *Management*: FCS_SSHC_EXT.1
