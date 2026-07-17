@@ -5946,7 +5946,9 @@ When FCS_COP.1/CMAC is applied to keys used in FPT_SBT_EXT.1, the cipher-based m
 | *SFR* | *Dependencies* | *Rationale Statement*
 
 | FPT_KYP_EXT.1 | FCS_KYC_EXT.1 | FCS_KYC_EXT.1 included as conditionally-mandatory SFR
-| FCS_KYC_EXT.1 | FCS_COP.1/KeyWrap, FCS_SMC_EXT.1, FCS_CKM.6, FCS_COP.1/KeyEnc, FCS_KDF_EXT.1, and/or FCS_COP.1/KeyTransport | FCS_CKM.6 included, FCS_COP.1/KeyWrap and FCS_SMC_EXT.1 and FCS_COP.1/KeyEnc and FCS_KDF_EXT.1 and FCS_COP.1/KeyTransport included as selection-based SFRs
+
+| FCS_KYC_EXT.1 | FCS_COP.1/KeyWrap, FCS_SMC_EXT.1, FCS_CKM.6, FCS_COP.1/KeyEnc, FCS_CKM.5, and/or FCS_COP.1/KeyTransport | FCS_CKM.6 included, FCS_COP.1/KeyWrap and FCS_SMC_EXT.1 and FCS_COP.1/KeyEnc and FCS_CKM.5 and FCS_COP.1/KeyTransport included as selection-based SFRs
+
 | FDP_DSK_EXT.1 | FCS_COP.1/StorageEncryption | FCS_COP.1/StorageEncryption included
 | FDP_FXS_EXT.1 | None |
 | FTP_TRP.1/NonAdmin | FCS_IPSEC_EXT.1, or FCS_TLSC_EXT and/or FCS_TLSS_EXT, or FCS_SSHC_EXT or FCS_SSHS_EXT, or FCS_DTLSC_EXT and/or FCS_DTLSS_EXT, or FCS_HTTPS_EXT.1 | FCS_IPSEC_EXT.1 and FCS_TLSC_EXT.1 and FCS_TLSS_EXT.1 and FCS_SSHC_EXT.1 and FCS_SSHS_EXT.1 and FCS_DTLSC_EXT.1 and FCS_DTLSS_EXT.1 and FCS_HTTPS_EXT.1 included as selection-based SFRs
