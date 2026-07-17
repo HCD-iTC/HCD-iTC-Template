@@ -4158,9 +4158,13 @@ FIA_PMG_EXT.1.1 The TSF shall provide the following password management capabili
 
 *Rationale*
 
-Password Management is to ensure the strong authentication between the endpoints of communication, and the Common Criteria does not provide a suitable SFR for the Password Management.
+FIA_PMG_EXT.1 specifies password management capabilities for User passwords, including permitted password composition using upper-case letters, lower-case letters, numbers, and a selectable set of special characters, as well as a minimum password length that is settable by an Administrator and capable of being configured to require 15 characters or greater.
 
-This extended component protects the TOE by means of password management, and it is therefore placed in the FIA class with a single component.
+The Common Criteria Part 2 component FIA_SOS.1, Verification of secrets, provides for verification that secrets meet a defined quality metric and can express password-composition requirements. However, FIA_SOS.1 does not clearly express the full password management capability required by this cPP. In particular, FIA_SOS.1 verifies secrets against a defined metric, but it does not express the requirement for an Administrator-settable minimum password length as part of the password management capability.
+
+FIA_PMG_EXT.1 is therefore defined to state the intended password management requirement precisely as a single component: permitted password composition together with an Administrator-settable minimum password length. No existing Common Criteria Part 2 component clearly expresses this integrated password management capability as intended by this cPP.
+
+The component is placed in the FIA class as a single component.
 
 ==== FIA_PSK_EXT Extended: Pre-Shared Key Composition
 
