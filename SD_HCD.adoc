@@ -3712,7 +3712,7 @@ Test 2: If the TOE supports a password/passphrase length up to a maximum number 
 
 Test 3: Ensure that the TOE supports passwords consisting of all characters assigned and supported by the ST.
 
-==== FCS_KDF_EXT.1 Cryptographic Key Derivation
+==== FCS_CKM.5 Cryptographic Key Derivation
 
 ===== TSS
 
@@ -3724,9 +3724,9 @@ The evaluator shall examine the vendor’s KMD to ensure that all keys used are 
 
 ===== Tests
 
-The evaluator shall include test cases of FCS_KDF_EXT.1 to the test subset. Note that FCS_KDF_EXT.1 may not be mapped to the specific interface(s) after evaluator’s analysis during ADV_FSP.1.
+The evaluator shall include test cases of FCS_CKM.5 to the test subset. Note that FCS_CKM.5 may not be mapped to the specific interface(s) after evaluator’s analysis during ADV_FSP.1.
 
-The evaluator shall produce test documentation for test cases of FCS_KDF_EXT.1. If there is no explicit external interface(s) mapped to FCS_KDF_EXT.1, the evaluator shall employ an alternative test approach (refer to CEM, section 15.2.2.).
+The evaluator shall produce test documentation for test cases of FCS_CKM.5. If there is no explicit external interface(s) mapped to FCS_CKM.5, the evaluator shall employ an alternative test approach (refer to CEM, section 15.2.2.).
 
 The evaluator shall perform the following tests or witness respective tests executed by the developer if technically possible, otherwise an analysis of the implementation representation has to be performed.
 
@@ -3744,9 +3744,9 @@ The evaluator shall perform one or more of the following tests to verify the cor
 
 The evaluator shall determine the following characteristics of the key derivation function:
 
-. One or more pseudorandom functions (PRFs) that are included in the "key derivation algorithm" selection in the SFR, and their output lengths in bits stem:[(h)]
+. One or more pseudorandom functions (PRFs) that are included in the "cryptographic key derivation algorithm" selection in the SFR, and their output lengths in bits stem:[(h)]
 . One or more of the values stem:[\{8, 16, 24, 32\}] that equal the length of the binary representation of the counter stem:[(r)], and the location of the counter relative to the fixed input data: before, after, or in the middle. If the counter is in the middle, then the lengths of data before and after the counter must be determined.
-. The "key size" selections in the SFR, i.e., the lengths (in bits) of the derived keying material stem:[(L)]
+. The "cryptographic key sizes" selections in the SFR, i.e., the lengths (in bits) of the derived keying material stem:[(L)]
 
 For each supported combination of PRF, counter location, value of stem:[r], and value of stem:[L], the evaluator shall generate 20 pseudorandom key derivation key values stem:[(K_I)].
 
@@ -3756,9 +3756,9 @@ For each value of stem:[K_I], the evaluator shall supply this data to the TOE in
 
 The evaluator shall determine the following characteristics of the key derivation function:
 
-. One or more pseudorandom functions (PRFs) that are included in the "key derivation algorithm" selection in the SFR, and their output lengths in bits stem:[(h)]
+. One or more pseudorandom functions (PRFs) that are included in the "cryptographic key derivation algorithm" selection in the SFR, and their output lengths in bits stem:[(h)]
 . If the implementation includes a counter, then one or more of the values stem:[\{8, 16, 24, 32\}] that equal the length of the binary representation of the counter stem:[(r)], and the location of the counter relative to the fixed input data: before, after, or in the middle. If the counter is in the middle, then the lengths of data before and after the counter must be determined.
-. The "key size" selections in the SFR, i.e., the lengths (in bits) of the derived keying material stem:[(L)]
+. The "cryptographic key sizes" selections in the SFR, i.e., the lengths (in bits) of the derived keying material stem:[(L)]
 . The supported IV lengths.
 
 For each supported combination of PRF, counter location (if a counter is used), value of stem:[r] (if a counter is used), value of stem:[L], and IV length, the evaluator shall generate 20 pseudorandom key derivation key values stem:[(K_I)].
@@ -3769,9 +3769,9 @@ For each value of stem:[K_I], the evaluator shall supply this data to the TOE in
 
 The evaluator shall determine the following characteristics of the key derivation function:
 
-. One or more pseudorandom functions (PRFs) that are included in the "key derivation algorithm" selection in the SFR, and their output lengths in bits stem:[(h)]
+. One or more pseudorandom functions (PRFs) that are included in the "cryptographic key derivation algorithm" selection in the SFR, and their output lengths in bits stem:[(h)]
 . If the implementation includes a counter, then one or more of the values stem:[\{8, 16, 24, 32\}] that equal the length of the binary representation of the counter stem:[(r)], and the location of the counter relative to the fixed input data: before, after, or in the middle. If the counter is in the middle, then the lengths of data before and after the counter must be determined.
-. The "key size" selections in the SFR, i.e., the lengths (in bits) of the derived keying material stem:[(L)]
+. The "cryptographic key sizes" selections in the SFR, i.e., the lengths (in bits) of the derived keying material stem:[(L)]
 
 For each supported combination of PRF, counter location (if a counter is used), value of stem:[r] (if a counter is used), and value of stem:[L], the evaluator shall generate 20 pseudorandom key derivation key values stem:[(K_I)].
 
