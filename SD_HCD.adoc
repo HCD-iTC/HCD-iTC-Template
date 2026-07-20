@@ -557,6 +557,10 @@ groups by using a known-good implementation for each protocol
 selected in FTP_TRP.1/Admin, FTP_TRP.1/NonAdmin and FTP_ITC.1 that uses safe-prime groups. This test must be performed for each safe-prime
 group that each protocol uses.
 
+*_Module-Lattice-Based Key-Encapsulation_*
+
+The test activities that verify this claim are specified under
+FCS_COP.1/KeyEncap.
 
 ==== FCS_CKM.6 Timing and event of cryptographic key destruction
 
@@ -3636,6 +3640,68 @@ If one or more thresholds that are checked by the TOE to fulfil the SFR are conf
 In cases where the time threshold could not be reached due to TOE limitations, it is acceptable to omit testing of this (SSH rekeying based on data transfer threshold) threshold.
 
 In cases where the data transfer threshold could not be reached due to TOE limitations, it is acceptable to omit testing of this (SSH rekeying based on data transfer threshold) threshold.
+
+==== FCS_COP.1/KeyEncap Cryptographic Operation - Key Encapsulation
+
+===== TSS
+
+The evaluator shall ensure that the TSS documents that the selection of the key size is sufficient for the security strength of the key encapsulated.
+
+The evaluator shall examine the TSS to verify that any one-time values such as nonces or masks are constructed and used in accordance with the relevant standards. 
+
+===== Guidance Documentation
+
+There are no additional Guidance evaluation activities for this component.
+
+===== Tests
+
+The following tests may require the developer to provide access to a test platform that provides the evaluator with tools that are typically not found on factory products.
+
+The following tests are conditional based upon the selections made in the SFR. The evaluator shall perform the following test or witness respective tests executed by the developer. The tests must be executed on a platform that is as close as practically possible to the operational platform (but which may be instrumented in terms of, for example, use of a debug mode). Where the test is not carried out on the TOE itself, the test platform shall be identified and the differences between test environment and TOE execution environment shall be described.
+
+*ML-KEM Key Encapsulation*
+
+To test the TOE’s implementation of ML-KEM key encapsulation/decapsulation, the evaluator shall perform the Encapsulation Test and the Decapsulation Test using the following input parameters:
+
+* Encapsulation Parameters:
+** Parameter set [ML-KEM-1024]
+** Previously generated encapsulation key (`ek`) [1568 bytes]
+** Random value (`m`) [32 bytes]
+* Decapsulation Parameters:
+** Parameter set [ML-KEM-1024]
+** Previously generated decapsulation key (`dk`) [3168 bytes]
+** Previously generated ciphertext (`c`) [1568 bytes]
+
+*Encapsulation Test*
+
+For each supported parameter set the evaluator shall generate 25 test cases
+consisting of an encapsulation key `ek` and random value `m`. For each test case
+the evaluator shall require the implementation under test to generate the
+corresponding shared secret `K` and ciphertext `c`. To determine correctness, the
+evaluator shall compare the resulting values with those generated using a
+known-good implementation using the same inputs.
+
+*Encapsulation Key Check (if supported)*
+
+The evaluator shall generate 10 encapsulation keys such that:
+
+* Five of the encapsulation keys are valid, and
+* Five of the encapsulation keys are modified such that a value in the noisy linear system is encoded into the key as a value greater than `Q`.
+
+The evaluator shall invoke the TOE’s Encapsulation Key Check functionality to determine the validity of the 10 keys. The unmodified keys should be determined valid, and the modified keys should be determined invalid. 
+
+*Decapsulation Key Check (if supported)*
+
+The evaluator shall generate 10 decapsulation keys such that:
+
+* Five of the decapsulation keys are valid, and
+* Five of the decapsulation keys are modified such that the concatenated values `+ek||H(ek)+` will no longer match by modifying `+H(ek)+` to be a different value.
+
+The evaluator shall invoke the TOE’s Decapsulation Key Check functionality to determine the validity of the 10 keys. The unmodified keys should be determined valid, and the modified keys should be determined invalid.
+
+*Decapsulation Test*
+
+For each supported parameter set the evaluator shall use a single previously generated decapsulation key `dk` and generate 10 test cases consisting of valid and invalid ciphertexts `c`. For each test case the evaluator shall require the implementation under test to generate the corresponding shared secret `k` whether or not the ciphertext is valid. To determine correctness, the evaluator shall compare the resulting values with those generated using a known-good implementation using the same inputs.
 
 ==== FCS_COP.1/KeyedHash Cryptographic Operation (Keyed Hash Algorithm)
 
