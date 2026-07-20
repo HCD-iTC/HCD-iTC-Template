@@ -882,7 +882,8 @@ _Symmetric keys may be used to generate keys along the key chain._
 
 *Dependencies:* +
 	FCS_CKM.1/AKG Cryptographic Key Generation (Asymmetric Keys) +
-	FCS_CKM.6 Timing and event of cryptographic key destruction
+	FCS_CKM.6 Timing and event of cryptographic key destruction,
+    [if selected: FCS_COP.1/KeyEncap Key Encapsulation]
 ======
 
 *FCS_CKM.2.1 Refinement* The TSF shall *_+++<del>distribute</del>+++_* *perform* cryptographic *_+++<del>keys</del>+++_* *key establishment* in accordance with a specified cryptographic key *_+++<del>distribution</del>+++_* *establishment* method: [*selection:*
@@ -905,7 +906,7 @@ _The elliptic curves used for the key establishment scheme correlate with the cu
 
 _The domain parameters used for the finite field-based key establishment scheme are specified by the key generation according to FCS_CKM.1.1/AKG._
 
-_The parameters used for the Module-Lattice-based Key-Encapsulation Mechanisms are specified in FCS_CKM.1.1/AKG._
+_If ML-KEM is selected, FCS_COP.1/KeyEncap must be claimed.  The parameters used for the Module-Lattice-based Key-Encapsulation Mechanisms are specified in FCS_CKM.1.1/AKG and FCS_COP.1.1/KeyEncap._
 
 
 
@@ -2095,6 +2096,55 @@ _If either SEED in GCM mode with non-repeating IVs or LEA in GCM mode with non-r
 
 _The intent of this requirement is to specify the approved modes that the ST Author may select for encryption of the appropriate information on the Nonvolatile Storage Device.  For the first selection, the ST author should indicate the mode or modes supported by the TOE implementation.  The second selection indicates the key size to be used, which is identical to that specified for FCS_CKM.1/SKG.  The third selection must agree with the mode or modes chosen in the first selection.  If multiple modes are supported, it may be clearer in the ST if this component was iterated._
 
+
+
+==== FCS_COP.1/KeyEncap Cryptographic operation (Key Encapsulation)
+======
+(selected with FCS_CKM.2.1 for O.COMMS_PROTECTION, O.STRONG_CRYPTO) +
+*Hierarchical to:* +
+No other components. +
+
+*Dependencies:* +
+pass:[[][.line-through]#FDP_ITC.1 Import of user data without security attributes, or# +
+[.line-through]#FDP_ITC.2 Import of user data with security attributes, or# +
+FCS_CKM.1/AKG Cryptographic Key Generation (Asymmetric Keys)[.line-through]#, or# +
+[.line-through]#FCS_CKM.5 Cryptographic key derivation, or# +
+[.line-through]#FCS_CKM_EXT.7 Cryptographic key agreement, or# +
+[.line-through]#FCS_CKM_EXT.8 Password-based key derivation#] +
+FCS_CKM.6 Timing and event of cryptographic key destruction,# +
+[.line-through]#FSC_OTV_EXT.1 One-Time Value#{endsb}.
+======
+
+*FCS_COP.1.1/KeyEncap:* The TSF shall perform key encapsulation in accordance with a specified cryptographic algorithm [selection: cryptographic algorithm] and cryptographic key sizes [selection: cryptographic key sizes] that meet the following: [selection: List of standards].
+
+The following table provides the allowed choices for completion of the selection
+operations of FCS_COP.1/KeyEncap.
+
+|===
+|Identifier |Cryptographic Algorithm |Cryptographic Algorithm Parameters |List of Standards
+
+|ML-KEM
+|ML-KEM
+|Parameter set = ML-KEM-1024
+|NIST FIPS 203
+|===
+
+*_Application Note_*
+
+The only anticipated use of key encapsulation is the use of ML-KEM as part of key establishment for trusted communication.
+
+
+
+
+
+
+
+
+
+
+
+
+
 ==== FCS_COP.1/KeyWrap Cryptographic operation (Key Wrapping)
 ======
 (selected in FCS_KYC_EXT.1.1, for O.STORAGE_ENCRYPTION, O.STRONG_CRYPTO) +
@@ -2757,7 +2807,7 @@ _In the second selection for FIA_PSK_EXT.1.3, the ST author fills in the method 
 [id=selection-dtls]
 ==== FCS_DTLSC_EXT & FCS_DTLSS_EXT DTLS Protocol
 
-Datagram TLS (DTLS) is not a required component of the cPP. If a TOE implements DTLS, a corresponding selection in FTP_ITC.1, FTP_TRP.1/Admin, and/or FTP_TRP.1/NonAdmin should be made to define what the DTLS protocol is implemented to protect. If a corresponding option to support DTLS has been selected in at least one of the SFRs named above, the corresponding selection-based DTLS-related SFRs should be added to the ST from <<selection-dtls>> (i.e. FCS_DTLSC_EXT.1 and/or FCS_DTLSS_EXT.1).
+Datagram TLS (DTLS) is not a required component of this cPP. If a TOE implements DTLS, a corresponding selection in FTP_ITC.1, FTP_TRP.1/Admin, and/or FTP_TRP.1/NonAdmin should be made to define what the DTLS protocol is implemented to protect. If a corresponding option to support DTLS has been selected in at least one of the SFRs named above, the corresponding selection-based DTLS-related SFRs should be added to the ST from the Functional Package for TLS.
 
 The decision whether to include the support for protocol-level mutual authentication in the scope of the evaluation is regarded as part of the TOE boundary definition. These SFRs can be included in a conforming ST at the discretion of the ST author, even if the conformance statement of the cPP requires exact conformance. It is not mandatory to implement mutually authenticated DTLS in order to conform to this cPP. Similarly, this cPP does not mandate or prohibit any other selections that are defined in the Functional Package for TLS.
 
@@ -3266,7 +3316,7 @@ _Wear-leveling storage media is characterized by differentiating between logical
 [id=optional-dtls]
 ==== FCS_DTLSC_EXT & FCS_DTLSS_EXT DTLS Protocol
 
-Datagram TLS (DTLS) is not a required component of the HCDcPP. If a TOE implements DTLS, a corresponding selection in FTP_ITC.1, FTP_TRP.1/Admin, and/or FTP_TRP.1/NonAdmin should be made to define what the DTLS protocol is implemented to protect. If a corresponding option to support DTLS has been selected in at least one of the SFRs named above, the corresponding selection-based DTLS-related SFRs should be added to the ST from the Functional Package for TLS.
+Datagram TLS (DTLS) is not a required component of this cPP. If a TOE implements DTLS, a corresponding selection in FTP_ITC.1, FTP_TRP.1/Admin, and/or FTP_TRP.1/NonAdmin should be made to define what the DTLS protocol is implemented to protect. If a corresponding option to support DTLS has been selected in at least one of the SFRs named above, the corresponding selection-based DTLS-related SFRs should be added to the ST from the Functional Package for TLS.
 
 The decision whether to include the support for protocol-level mutual authentication in the scope of the evaluation is regarded as part of the TOE boundary definition. These SFRs can be included in a conforming ST at the discretion of the ST author, even if the conformance statement of the cPP requires exact conformance. It is not mandatory to implement mutually authenticated DTLS in order to conform to this cPP. Similarly, this cPP does not mandate or prohibit any other selections that are defined in the Functional Package for TLS.
 
@@ -5701,6 +5751,7 @@ Authorized Users are trained to use the TOE according to site security policies.
 | |FCS_SSHC_EXT.1	|This requirement defines the SSH protocol acting as a client for the secure transmission of user and TSF data between the TOE and a trusted external IT entity.
 | |FCS_SSHS_EXT.1	|This requirement defines the SSH protocol acting as a server for the secure transmission of user and TSF data between the TOE and a trusted external IT entity.
 | |FCS_HTTPS_EXT.1 |This requirement defines the TLS/HTTPS protocol for the secure transmission of user and TSF data between the TOE and a trusted external IT entity.
+| |FCS_COP.1/KeyEncap |This requirement defines the use of a strong method for key encapsulation. 
 | |FCS_COP.1/KeyedHash	|This requirement defines the cryptographic algorithms that must be applied to perform keyed-hash message authentication.
 | |FIA_PSK_EXT.1 |This requirement defines the components of pre-shared keys for the IPsec protocol.
 | |FCS_DTLSC_EXT.1	|This requirement defines the DTLS protocol acting as a client without mutual authentication for the secure transmission of user and TSF data between the TOE and a trusted external IT entity.
@@ -5767,6 +5818,7 @@ Authorized Users are trained to use the TOE according to site security policies.
 | |FCS_COP.1/KeyWrap	|This requirement ensures the use of strong methods to perform key wrapping.
 | |FCS_COP.1/KeyEnc	|This requirement ensures the use of strong methods to perform key encryption.
 | |FCS_COP.1/KeyTransport	|This requirement ensures the use of strong methods to perform key transport.
+| |FCS_COP.1/KeyEncap |This requirement defines the use of a strong method for key encapsulation. 
 | |FCS_SMC_EXT.1	|This requirement ensures the use of strong methods to perform submask combining.
 | |FCS_IPSEC_EXT.1	|This requirement defines the implementation of IPsec using strong cryptography.
 | |FCS_TLSC_EXT.1	|This requirement defines the implementation of TLS acting as a client without mutual authentication using strong cryptography.
@@ -5813,7 +5865,7 @@ The dependencies between SFRs implemented by the TOE are addressed as follows.
 
 | FCS_CKM.1/AKG | FCS_CKM.2 or FCS_COP.1/SigGen, FCS_CKM.6 | FCS_CKM.2 and FCS_COP.1/SigGen included, FCS_CKM.6 included
 | FCS_CKM.1/SKG | [FCS_COP.1/DataEncryption, or FCS_COP.1/StorageEncryption, or FCS_COP.1/KeyWrap, or FCS_COP.1/KeyEnc, or FCS_COP.1/KeyedHash, or FCS_COP.1/CMAC], FCS_CKM.6, FCS_RBG_EXT.1 | FCS_COP.1/DataEncryption included, FCS_CKM.6 included, FCS_RBG_EXT.1 included, FCS_COP.1/StorageEncryption and FCS_COP.1/KeyWrap and FCS_COP.1/KeyEnc and FCS_COP.1/KeyedHash and FCS_COP.1/CMAC included as selection-based SFRs
-| FCS_CKM.2 | FCS_CKM.1/AKG, FCS_CKM.6 | FCS_CKM.1/AKG included, FCS_CKM.6 included
+| FCS_CKM.2 | FCS_CKM.1/AKG, FCS_CKM.6, [if selected: FCS_COP.1/KeyEncap] | FCS_CKM.1/AKG included, FCS_CKM.6 included, FCS_COP.1/KeyEncap included as selection-based SFR
 
 | FCS_CKM.6 | FCS_CKM.1 or FCS_CKM.5 | FCS_CKM.1 included, or FCS_CKM.5 included as selection-based SFR
 
@@ -5871,6 +5923,7 @@ The dependencies between SFRs implemented by the TOE are addressed as follows.
 | *SFR* | *Dependencies* | *Rationale Statement*
 
 | FCS_COP.1/StorageEncryption | FCS_CKM.1/SKG, FCS_CKM.6 | FCS_CKM.1/SKG included, FCS_CKM.6 included
+| FCS_COP.1/KeyEncapsulation |  | 
 | FCS_COP.1/KeyWrap | FCS_CKM.1/SKG, FCS_CKM.6 | FCS_CKM.1/SKG included, FCS_CKM.6 included
 | FCS_COP.1/KeyEnc | FCS_CKM.1/SKG, FCS_CKM.6 | FCS_CKM.1/SKG included, FCS_CKM.6 included
 | FCS_COP.1/KeyTransport | FCS_CKM.1/AKG, FCS_CKM.6 | FCS_CKM.1/AKG included, FCS_CKM.6 included
