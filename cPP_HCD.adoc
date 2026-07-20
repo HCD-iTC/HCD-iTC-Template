@@ -1768,7 +1768,7 @@ Power-on self-tests may take place before the TSF is operational.
 *Dependencies:* +
 	[if selected: FCS_COP.1/SigGen Cryptographic Operation (for signature generation/verification)], +
 	[if selected: FIA_X509_EXT.1 X.509 Certificate Validation], +
-	[if selected: FCS_COP.1/Hash Cryptographic operation (Hash Algorithm)] +
+	[if selected: FCS_COP.1/Hash Cryptographic operation (Hash Algorithm)]
 ======
 
 *FPT_TUD_EXT.1.1* The TSF shall provide authorized administrators the ability to query the current version of the TOE firmware/software.
@@ -2731,7 +2731,7 @@ No other components.
 
 *Dependencies:* +
 	[if selected: FCS_COP.1/Hash Cryptographic Operation (Hash Algorithm)], +
-	[if selected: FCS_RBG_EXT.1 Random Bit Generation] + 
+	[if selected: FCS_RBG_EXT.1 Random Bit Generation]
 ======
 
 *_Application Note:_*
@@ -3030,7 +3030,7 @@ The following are security functional requirements that are mandatory if the TOE
 	FCS_KYC_EXT.1 Extended: Key Chaining, +
 	[if selected: FCS_COP.1/KeyWrap Cryptographic operation (Key Wrapping)], +
 	[if selected: FCS_COP.1/KeyEnc Cryptographic operation (Key Encryption), and/or FCS_COP.1/KeyTransport Cryptographic operation (Key Transport)], +
-	[if selected: FCS_SMC_EXT.1 Extended: Submask Combining] +
+	[if selected: FCS_SMC_EXT.1 Extended: Submask Combining]
 ======
 
 *FPT_KYP_EXT.1.1* The TSF shall [selection:
@@ -4205,7 +4205,7 @@ The following actions should be auditable if FAU_GEN Security Audit Data Generat
 
 *Dependencies:* +
 	[if selected: FCS_COP.1/Hash Cryptographic Operation (Hash Algorithm)], +
-	[if selected: FCS_RBG_EXT.1 Random Bit Generation] +
+	[if selected: FCS_RBG_EXT.1 Random Bit Generation]
 ======
 
 FIA_PSK_EXT.1.1 The TSF shall be able to use pre-shared keys for IPsec.
@@ -4496,7 +4496,7 @@ The following actions should be auditable if FAU_GEN Security Audit Data Generat
 	FCS_KYC_EXT.1 Extended: Key Chaining, +
 	[if selected: FCS_COP.1/KeyWrap Cryptographic operation (Key Wrapping)], +
 	[if selected: FCS_COP.1/KeyEnc Cryptographic operation (Key Encryption), and/or FCS_COP.1/KeyTransport Cryptographic operation (Key Transport)], +
-	[if selected: FCS_SMC_EXT.1 Extended: Submask Combining] +
+	[if selected: FCS_SMC_EXT.1 Extended: Submask Combining]
 ======
 
 FPT_KYP_EXT.1.1 The TSF shall [selection:
@@ -4673,7 +4673,7 @@ The following actions should be auditable if FAU_GEN Security Audit Data Generat
 *Dependencies:* +
 	[if selected: FCS_COP.1/SigGen Cryptographic Operation (for signature generation/verification)], +
 	[if selected: FIA_X509_EXT.1 X.509 Certificate Validation], +
-	[if selected: FCS_COP.1/Hash Cryptographic operation (Hash Algorithm)] +
+	[if selected: FCS_COP.1/Hash Cryptographic operation (Hash Algorithm)] 
 ======
 
 FPT_TUD_EXT.1.1 The TSF shall provide authorized administrators the ability to query the current version of the TOE firmware/software.
