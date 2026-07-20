@@ -882,7 +882,7 @@ _Symmetric keys may be used to generate keys along the key chain._
 
 *Dependencies:* +
 	FCS_CKM.1/AKG Cryptographic Key Generation (Asymmetric Keys) +
-	FCS_CKM.6 Timing and event of cryptographic key destruction,
+	FCS_CKM.6 Timing and event of cryptographic key destruction, +
     [if selected: FCS_COP.1/KeyEncap Key Encapsulation]
 ======
 
@@ -2111,7 +2111,7 @@ FCS_CKM.1/AKG Cryptographic Key Generation (Asymmetric Keys)[.line-through]#, or
 [.line-through]#FCS_CKM.5 Cryptographic key derivation, or# +
 [.line-through]#FCS_CKM_EXT.7 Cryptographic key agreement, or# +
 [.line-through]#FCS_CKM_EXT.8 Password-based key derivation#] +
-FCS_CKM.6 Timing and event of cryptographic key destruction,# +
+FCS_CKM.6 Timing and event of cryptographic key destruction, +
 [.line-through]#FSC_OTV_EXT.1 One-Time Value#{endsb}.
 ======
 
