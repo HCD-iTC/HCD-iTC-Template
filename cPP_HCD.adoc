@@ -7,8 +7,8 @@
 :sectnumlevels: 7
 :imagesdir: images
 :icons: font
-:revnumber: 2.0-pre.2
-:revdate: 8 June 2026
+:revnumber: 2.0-pre.2b
+:revdate: 20 June 2026
 
 :iTC-longname: Hardcopy Devices
 :iTC-shortname: HCD-iTC
@@ -36,7 +36,7 @@ This collaborative Protection Profile (cPP) was developed by the {iTC-longname} 
 | 1.0 | 31 October 2022 | Initial release for use
 | 1.0e | 4 March 2024 | Errata version
 | 1.1 | 29 December 2025 | CC:2022 update
-| 2.0-pre.2 | 8 June 2026 | Working Draft v2.0 #2
+| 2.0-pre.2b | 20 June 2026 | Working Draft v2.0 #2b
 
 |===
 
@@ -64,7 +64,7 @@ Although the cPP and SD may contain minor editorial errors, the cPP is recognize
 
 * [#CC4]#[CC4]# Common Criteria for Information Technology Security Evaluation, Part 4: Framework for the specification of evaluation methods and activities, CCMB-2022-11-004, CC:2022 Release 1, November 2022.
 
-* [#CC5]#[CC5]# Common Criteria for Information Technology Security Evaluation, Part 5: Pre-defined packages of security requirements, CCMB-2022-11-003, CC:2022 Release 1, November 2022.
+* [#CC5]#[CC5]# Common Criteria for Information Technology Security Evaluation, Part 5: Pre-defined packages of security requirements, CCMB-2022-11-005, CC:2022 Release 1, November 2022.
 
 * [#CEM]#[CEM]# Common Methodology for Information Technology Security Evaluation, Evaluation methodology, CCMB-2022-11-006, CC:2022 Release 1, November 2022.
 
@@ -1699,10 +1699,7 @@ There are no class FPR requirements.
 
 *FPT_SBT_EXT.1.5* The TSF shall contain [selection: _hash data, digital signature data, message authentication code, public key for digital signature, symmetric key for message authentication with confidentiality protection as defined in FPT_SBT_EXT.1.6_] in the Hardware Root of Trust.
 
-*FPT_SBT_EXT.1.6* The TSF shall make the symmetric key accessible only to the Hardware Root of Trust
-
-
-
+*FPT_SBT_EXT.1.6* The TSF shall make the symmetric key accessible only to the Hardware Root of Trust.
 
 
 *_Application Note:_*
@@ -2452,7 +2449,7 @@ _The ST author selects which of the additional RFCs to which conformance is bein
 
 *_Application Note:_*
 
-_The intent of this element is to specify user authentication mechanism(s) that the TOE supports when acting as an SSH client. The TOE is required to implement the capability to generate user[1]based authentication keys in accordance with FCS_CKM.1 as specified by FMT_SMF.1 via “Ability to manage the cryptographic keys”. While no specific public key algorithms are mandatory to implement, the use of public key algorithms must be consistent with FCS_CKM.1, FCS_COP.1/Hash, and FCS_COP.1/SigGen._
+_The intent of this element is to specify user authentication mechanism(s) that the TOE supports when acting as an SSH client. The TOE is required to implement the capability to generate user-based authentication keys in accordance with FCS_CKM.1 as specified by FMT_SMF.1 via “Ability to manage the cryptographic keys”. While no specific public key algorithms are mandatory to implement, the use of public key algorithms must be consistent with FCS_CKM.1, FCS_COP.1/Hash, and FCS_COP.1/SigGen._
 
 _If the TOE implements password-based authentication, the option ‘password-based’ must be selected. If the TOE can only authenticate itself with a public key, the option ‘no other method’ must be chosen._
 
@@ -2614,7 +2611,7 @@ FIA_X509_EXT SFRs._
 
 _An SSH server implementation that claims to support x509v3-based public key authentication
 algorithms is expected to comply with RFC 6187 Section 4 recommendations when identifying
-itself with an x.509v3 certificate to SSH clients._
+itself with an X.509v3 certificate to SSH clients._
 
 *FCS_SSHS_EXT.1.6* The TSF shall ensure that the SSH transport implementation uses
 [selection: _hmac-sha1, hmac-sha1-96, hmac-sha2-256, hmac-sha2-512,
@@ -2882,27 +2879,6 @@ _This SFR is conditionally required if the manual entry of a drive encryption pa
 
 
 
-=== Identification and Authentication (FIA)
-
-==== Authentication using X.509 certificates
-
-X.509 certificate-based authentication is required if IPsec or TLS communications are claimed for FTP_ITC.1 or FTP_TRP. X.509 certificate validation is also required if "X.509 Certificate" is selected for trusted update in FPT_TUD_EXT.1.3. If SSH client communications are claimed and any x509 algorithms are claimed in FCS_SSHC_EXT.1.5 or FCS_SSHS_EXT.1.5, these SFRs are required. In the case of the TOE only acting as the SSH server or acting as the client, but not claiming any x509 algorithms in FCS_SSHC_EXT.1.5 or FCS_SSHS_EXT.1.5, these SFRs are optional.
-
-Although the functionality in FIA_X509_EXT.1 and FIA_X509_EXT.2 is always required when using X.509 certificate-based authentication, the TOE only needs to be able to generate a Certification Request if the TOE needs to present an X.509 certificate to another endpoint via the TSF for authentication (i.e. if at least one of the following SFRs is included in the ST: FCS_DTLSC_EXT.2, FCS_DTLSS_EXT.1, FCS_DTLSS_EXT.2, FCS_IPSEC_EXT.1, FCS_SSHC_EXT.1.5 (applicable only if at least one of the x509v3-* ciphers is selected), FCS_SSHS_EXT.1.5 (applicable only if at least one of the x509v3-* ciphers is selected), FCS_TLSC_EXT.2, FCS_TLSS_EXT.1, FCS_TLSS_EXT.2).. Therefore FIA_X509_EXT.3 only needs to be added to the ST in this case. If the TOE does not need to present an X.509 certificate to another endpoint via the TSF for authentication (e.g. a client not supporting mutual authentication) the use of FIA_X509_EXT.3 is optional.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -2912,7 +2888,7 @@ Although the functionality in FIA_X509_EXT.1 and FIA_X509_EXT.2 is always requir
 
 X.509 certificate-based authentication is required if IPsec or TLS communications are claimed for FTP_ITC.1 or FTP_TRP. If SSH client communications are claimed and any x509 algorithms are claimed in FCS_SSHC_EXT.1.5 or FCS_SSHS_EXT.1.5, these SFRs are required. In the case of the TOE only acting as the SSH server or acting as the client, but not claiming any x509 algorithms in FCS_SSHC_EXT.1.5 or FCS_SSHS_EXT.1.5, these SFRs are optional.
 
-Although the functionality in FIA_X509_EXT.1/Rev and FIA_X509_EXT.2 is always required when using X.509 certificate-based authentication, the TOE only needs to be able to generate a Certification Request if the TOE needs to present an X.509 certificate to another endpoint via the TSF for authentication (i.e. if at least one of the following SFRs is included in the ST: FCS_DTLSC_EXT.2, FCS_DTLSS_EXT.1, FCS_DTLSS_EXT.2, FCS_IPSEC_EXT.1, FCS_SSHC_EXT.1.5 (applicable only if at least one of the x509v3-* ciphers is selected), FCS_SSHS_EXT.1.5 (applicable only if at least one of the x509v3-* ciphers is selected), FCS_TLSC_EXT.2, FCS_TLSS_EXT.1, FCS_TLSS_EXT.2).. Therefore FIA_X509_EXT.3 only needs to be added to the ST in this case. If the TOE does not need to present an X.509 certificate to another endpoint via the TSF for authentication (e.g. a client not supporting mutual authentication) the use of FIA_X509_EXT.3 is optional.
+Although the functionality in FIA_X509_EXT.1/Rev and FIA_X509_EXT.2 is always required when using X.509 certificate-based authentication, the TOE only needs to be able to generate a Certification Request if the TOE needs to present an X.509 certificate to another endpoint via the TSF for authentication (i.e. if at least one of the following SFRs is included in the ST: FCS_DTLSC_EXT.2, FCS_DTLSS_EXT.1, FCS_DTLSS_EXT.2, FCS_IPSEC_EXT.1, FCS_SSHC_EXT.1.5 (applicable only if at least one of the x509v3-* ciphers is selected), FCS_SSHS_EXT.1.5 (applicable only if at least one of the x509v3-* ciphers is selected), FCS_TLSC_EXT.2, FCS_TLSS_EXT.1, FCS_TLSS_EXT.2). Therefore FIA_X509_EXT.3 only needs to be added to the ST in this case. If the TOE does not need to present an X.509 certificate to another endpoint via the TSF for authentication (e.g. a client not supporting mutual authentication) the use of FIA_X509_EXT.3 is optional.
 
 ===== FIA_X509_EXT.1 X.509 Certificate Validation
 
@@ -3737,7 +3713,7 @@ This extended component protects the TSF data using cryptographic algorithms, an
 
 
 
-==== FCS_SNI_EXT  Extended: Cryptographic Operation (Salt and Nonce Generation
+==== FCS_SNI_EXT  Extended: Cryptographic Operation (Salt and Nonce Generation)
 
 *Family Behaviour*
 
@@ -3889,7 +3865,7 @@ The following actions could be considered for the management functions in FMT:
 
 *Audit*: FCS_SSHS_EXT.1
 
-The following actions should be considered for audit if FAU_GEN Security audit datageneration is included in the PP/ST:
+The following actions should be considered for audit if FAU_GEN Security audit data generation is included in the PP/ST:
 
 • Failure of SSH session establishment
 • SSH session establishment
@@ -4392,7 +4368,7 @@ Extended: Data Wiping specifies the making of both User and TSF data unavailable
 
 *Family Behaviour*
 
-This family addresses the requirements for verifying firmware/software integrity each time that that it is powered on.
+This family addresses the requirements for verifying firmware/software integrity each time that it is powered on.
 
 *Component Levelling*
 [#img-FPT_SBT_EXT]
@@ -4428,11 +4404,10 @@ The following actions should be auditable if FAU_GEN Security Audit Data Generat
 *Dependencies:* +
 	[if selected: FCS_COP.1/Hash Cryptographic operation (Hash Algorithm)], +
 	[if selected: FCS_COP.1/SigGen Cryptographic Operation (for signature generation/verification)], +
-	[if selected: FCS_COP.1/KeyedHash Cryptographic Operation (for keyed-hash message authentication), and/or FCS_COP.1/CMAC Cryptographic Operation (for cipher-based message authentication)], +
-	[if selected: FCS_COP.1/DataEncryption Cryptographic Operation (Data Encryption/Decryption), and/or FCS_COP.1/StorageEncryption Cryptographic Operation (Data Encryption/Decryption)] +
+	[if selected: FCS_COP.1/KeyedHash Cryptographic Operation (for keyed-hash message authentication), and/or FCS_COP.1/CMAC Cryptographic Operation (for cipher-based message authentication)]
 ======
 
-*FPT_SBT_EXT.1.1* The TSF shall contain one or more chains of trust with each chain of trust anchored in a Root of Trust that is implemented in immutable code or a HW-based write-protection mechanism.
+*FPT_SBT_EXT.1.1* The TSF shall contain one or more chains of trust with each chain of trust anchored in an immutable Root of Trust.
 
 *FPT_SBT_EXT.1.2* At boot time the TSF shall use the chain(s) of trust to confirm integrity of its firmware/software using a [selection: _hash, digital signature, message authentication_] verification method.
 
@@ -5282,7 +5257,7 @@ There are two categories of Users defined in this cPP:
 
 |*U.NORMAL*
 |Normal User
-|A User who has been identified and authenticated and does not have an administrative role. A Normal User can be a Local User or a Network User as described in Section <<Operational Environment>>
+|A User who has been identified and authenticated and does not have an administrative role. A Normal User can be a Local User or a Network User as described in <<Operational Environment>>
 
 |*U.ADMIN*
 |Administrator
@@ -5589,7 +5564,7 @@ An attacker may access (read, modify, or delete) User Document Data or change (m
 
 |*T.TSF_COMPROMISE* +
 An attacker may gain Unauthorized Access to TSF Data in the TOE through one of the TOE’s interfaces.
-|*O.ACCESS_ CONTROL* restricts access to TSF Data in the TOE to authorized Users. +
+|*O.ACCESS_CONTROL* restricts access to TSF Data in the TOE to authorized Users. +
 *O.USER_I&A* provides the basis for access control. +
 *O.ADMIN_ROLES* restricts the ability to authorize Users and set access controls to authorized Administrators.
 
@@ -5631,7 +5606,7 @@ If the TOE stores User Document Data or Confidential TSF Data on Nonvolatile Sto
 
 |*P.KEY_MATERIAL* +
 Cleartext keys, submasks, random numbers, or any other values that contribute to the creation of encryption keys for Nonvolatile Storage of User Document Data or Confidential TSF Data must be protected from unauthorized access and must not be stored on that storage device.
-|*O.KEY_MATERIAL* protects keys and key materials from unauthorized access and ensures that they any key materials are not stored in cleartext on the device that uses those materials for its own encryption.
+|*O.KEY_MATERIAL* protects keys and key materials from unauthorized access and ensures that any key materials are not stored in cleartext on the device that uses those materials for its own encryption.
 
 |*P.FAX_FLOW* (conditionally mandatory) +
 If the TOE provides a PSTN fax function, it will ensure separation between the PSTN fax line and the LAN.
@@ -5686,7 +5661,7 @@ Authorized Users are trained to use the TOE according to site security policies.
 |*O.USER_I&A* |FIA_AFL.1	|This requirement defines how many consecutive unsuccessful authentication failures to prove a user’s identity trigger actions by the TOE and what those actions will be.
 | |FIA_PMG_EXT.1	|This requirement defines the rules for passwords used by users for purposes of proving their identity to the TOE at the TOE itself.
 | |FIA_UAU.1	|This requirement defines the allowed actions that can be performed on behalf of a user before the user is authenticated and requires users to be authenticated before security functions by the TOE can be performed.
-| |FIA_UAU.7	|This requirement defines what type of feedback to the user is to be provided while authentication is in progress..
+| |FIA_UAU.7	|This requirement defines what type of feedback to the user is to be provided while authentication is in progress.
 | |FIA_UID.1	|This requirement defines what actions users can perform before being identified by the TOE.
 | |FIA_USB.1	|This requirement defines the rules governing the association of the user's security attributes to a subject acting on the user's behalf.
 | |FTA_SSL.3	|This requirement enforces that the TOE terminates an interactive user session after a defined period of inactivity.
@@ -5837,7 +5812,7 @@ The dependencies between SFRs implemented by the TOE are addressed as follows.
 | FAU_STG.5 | FAU_STG.2, FAU_GEN.1 | FAU_STG.2 included, FAU_GEN.1 included
 
 | FCS_CKM.1/AKG | FCS_CKM.2 or FCS_COP.1/SigGen, FCS_CKM.6 | FCS_CKM.2 and FCS_COP.1/SigGen included, FCS_CKM.6 included
-| FCS_CKM.1/SKG | FCS_COP.1/DataEncryption, FCS_COP.1/StorageEncryption, FCS_COP.1/KeyWrap, FCS_COP.1/KeyEnc, FCS_COP.1/KeyedHash, FCS_COP.1/CMAC, FCS_CKM.6, FCS_RBG_EXT.1 | FCS_COP.1/DataEncryption included, FCS_CKM.6 included, FCS_RBG_EXT.1 included, FCS_COP.1/StorageEncryption and FCS_COP.1/KeyWrap and FCS_COP.1/KeyEnc and FCS_COP.1/KeyedHash and FCS_COP.1/CMAC included as selection-based SFRs
+| FCS_CKM.1/SKG | [FCS_COP.1/DataEncryption, or FCS_COP.1/StorageEncryption, or FCS_COP.1/KeyWrap, or FCS_COP.1/KeyEnc, or FCS_COP.1/KeyedHash, or FCS_COP.1/CMAC], FCS_CKM.6, FCS_RBG_EXT.1 | FCS_COP.1/DataEncryption included, FCS_CKM.6 included, FCS_RBG_EXT.1 included, FCS_COP.1/StorageEncryption and FCS_COP.1/KeyWrap and FCS_COP.1/KeyEnc and FCS_COP.1/KeyedHash and FCS_COP.1/CMAC included as selection-based SFRs
 | FCS_CKM.2 | FCS_CKM.1/AKG, FCS_CKM.6 | FCS_CKM.1/AKG included, FCS_CKM.6 included
 
 | FCS_CKM.6 | FCS_CKM.1 or FCS_CKM.5 | FCS_CKM.1 included, or FCS_CKM.5 included as selection-based SFR
@@ -5869,9 +5844,9 @@ The dependencies between SFRs implemented by the TOE are addressed as follows.
 | FMT_SMF.1 | None |
 | FMT_SMR.1 | FIA_UID.1 | FIA_UID.1 included
 
-| FPT_SBT_EXT.1 | [if selected: FCS_COP.1/Hash], [if selected: FCS_COP.1/SigGen], [if selected: FCS_COP.1/KeyedHash and/or FCS_COP.1/CMAC], [if selected: FCS_COP.1/DataEncryption and/or FCS_COP.1/StorageEncryption]
+| FPT_SBT_EXT.1 | [if selected: FCS_COP.1/Hash], [if selected: FCS_COP.1/SigGen], [if selected: FCS_COP.1/KeyedHash and/or FCS_COP.1/CMAC]
 
-| FCS_COP.1/Hash included if selected, FCS_COP.1/SigGen included if selected, FCS_COP.1/KeyedHash and/or FCS_COP.1/CMAC included if selected, FCS_COP.1/DataEncryption and/or FCS_COP.1/StorageEncryption included if selected
+| FCS_COP.1/Hash included if selected, FCS_COP.1/SigGen included if selected, FCS_COP.1/KeyedHash and/or FCS_COP.1/CMAC included if selected
 
 
 
