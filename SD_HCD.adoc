@@ -3781,10 +3781,6 @@ For each value of stem:[K_I], the evaluator shall supply this data to the TOE in
 
 ===== TSS
 
-If HMAC was selected:
-The evaluator shall examine the TSS to ensure that it specifies the following values used by the HMAC function: key length, hash function used, block size, and output MAC length used.
-
-If CMAC was selected:
 The evaluator shall examine the TSS to ensure that it specifies the following values used by the CMAC function: key length, block cipher used, block size (of the cipher), and output MAC length used.
 
 ===== Guidance Documentation
@@ -3798,11 +3794,6 @@ There are no KMD evaluation activities for this SFR.
 ===== Tests
 
 Note: Testing of cryptographic functions implemented in the Root of Trust for Secure Boot (FPT_SBT_EXT.1) may not be feasible and independent testing may not be available. In this situation, contact the CC Scheme.
-
-If HMAC was selected:
-For each of the supported parameter sets, the evaluator shall compose 15 sets of test data. Each set shall consist of a key and message data. The evaluator shall have the TSF generate HMAC tags for these sets of test data. The resulting MAC tags shall be compared to the result of generating HMAC tags with the same key using a known-good implementation.
-
-If CMAC was selected:
 
 For each of the supported parameter sets, the evaluator shall compose at least 15 sets of test data. Each set shall consist of a key and message data. The test data shall include messages of different lengths, some with partial blocks as the last block and some with full blocks as the last block. The test data keys shall include cases for which subkey stem:[K_1] is generated both with and without using the irreducible polynomial stem:[R_b], as well as cases for which subkey stem:[K_2] is generated from stem:[K_1] both with and without using the irreducible polynomial stem:[R_b]. (The subkey generation and polynomial stem:[R_b] are as defined in SP 800-38B.) The evaluator shall have the TSF generate CMAC tags for these sets of test data. The resulting MAC tags shall be compared to the result of generating CMAC tags with the same key using a known-good implementation.
 
