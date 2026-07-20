@@ -7,8 +7,8 @@
 :sectnumlevels: 7
 :imagesdir: images
 :icons: font
-:revnumber: 2.0-pre.2b
-:revdate: 20 June 2026
+:revnumber: 2.0-pre.3
+:revdate: 20 July 2026
 
 :iTC-longname: Hardcopy Devices
 :iTC-shortname: HCD-iTC
@@ -36,7 +36,7 @@ This collaborative Protection Profile (cPP) was developed by the {iTC-longname} 
 | 1.0 | 31 October 2022 | Initial release for use
 | 1.0e | 4 March 2024 | Errata version
 | 1.1 | 29 December 2025 | CC:2022 update
-| 2.0-pre.2b | 20 June 2026 | Working Draft v2.0 #2b
+| 2.0-pre.3 | 20 July 2026 | Working Draft v2.0 #3
 
 |===
 
@@ -2132,15 +2132,6 @@ operations of FCS_COP.1/KeyEncap.
 *_Application Note_*
 
 The only anticipated use of key encapsulation is the use of ML-KEM as part of key establishment for trusted communication.
-
-
-
-
-
-
-
-
-
 
 
 
@@ -5923,7 +5914,7 @@ The dependencies between SFRs implemented by the TOE are addressed as follows.
 | *SFR* | *Dependencies* | *Rationale Statement*
 
 | FCS_COP.1/StorageEncryption | FCS_CKM.1/SKG, FCS_CKM.6 | FCS_CKM.1/SKG included, FCS_CKM.6 included
-| FCS_COP.1/KeyEncapsulation |  | 
+| FCS_COP.1/KeyEncap | FCS_CKM.1/SKG, FCS_CKM.6 | FCS_CKM.1/SKG included, FCS_CKM.6 included
 | FCS_COP.1/KeyWrap | FCS_CKM.1/SKG, FCS_CKM.6 | FCS_CKM.1/SKG included, FCS_CKM.6 included
 | FCS_COP.1/KeyEnc | FCS_CKM.1/SKG, FCS_CKM.6 | FCS_CKM.1/SKG included, FCS_CKM.6 included
 | FCS_COP.1/KeyTransport | FCS_CKM.1/AKG, FCS_CKM.6 | FCS_CKM.1/AKG included, FCS_CKM.6 included
