@@ -2115,7 +2115,7 @@ FCS_CKM.6 Timing and event of cryptographic key destruction, +
 [.line-through]#FSC_OTV_EXT.1 One-Time Value#{endsb}.
 ======
 
-*FCS_COP.1.1/KeyEncap:* The TSF shall perform key encapsulation in accordance with a specified cryptographic algorithm [selection: cryptographic algorithm] and cryptographic key sizes [selection: cryptographic key sizes] that meet the following: [selection: List of standards].
+*FCS_COP.1.1/KeyEncap:* The TSF shall perform key encapsulation in accordance with a specified cryptographic algorithm [selection: cryptographic algorithm] and cryptographic key sizes [selection: cryptographic algorithm parameters] that meet the following: [selection: list of standards].
 
 The following table provides the allowed choices for completion of the selection
 operations of FCS_COP.1/KeyEncap.
