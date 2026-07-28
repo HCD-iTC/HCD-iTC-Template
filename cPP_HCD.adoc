@@ -1848,11 +1848,11 @@ _The requirement implies that not only are communications protected when they ar
 	FCS_HTTPS_EXT.1 Extended: HTTPS selected ].
 ======
 
-*FTP_TRP.1.1/Admin Refinement:* The TSF shall *use* [selection, choose at least one of: _IPsec, SSH, TLS, DTLS, TLS/HTTPS_] *to* provide a *trusted* communication path between itself and [remote] [.line-through]#*_users_*# *administrators* that is logically distinct from other communication paths and provides assured identification of its end points and protection of the communicated data from [disclosure *and detection of modification of the communicated data*].
+*FTP_TRP.1.1/Admin Refinement:* The TSF shall *use* [selection, choose at least one of: _IPsec, SSH, TLS, DTLS, TLS/HTTPS_] *to* provide a *trusted* communication path between itself and [remote] *_+++<del>users</del>+++_* *administrators* that is logically distinct from other communication paths and provides assured identification of its end points and protection of the communicated data from [disclosure *and detection of modification of the communicated data*].
 
-*FTP_TRP.1.2/Admin Refinement:* The TSF shall permit pass:[[]remote [.line-through]#*_users_*# *administrators*] to initiate communication via the trusted path.
+*FTP_TRP.1.2/Admin Refinement:* The TSF shall permit [remote *_+++<del>users</del>+++_* *administrators*] to initiate communication via the trusted path.
 
-*FTP_TRP.1.3/Admin Refinement:* The TSF shall require the use of the trusted path for pass:[[]initial [.line-through]#*_user_*# *administrator* authentication *[and all remote administration actions]*].
+*FTP_TRP.1.3/Admin Refinement:* The TSF shall require the use of the trusted path for [initial *_+++<del>user</del>+++_* *administrator* authentication *[and all remote administration actions]*].
 
 *_Application Note:_*
 
@@ -2325,7 +2325,7 @@ _If the TOE implements SHA-2 hash algorithms for IKEv1 or IKEv2, the ST author s
 
 *_Application Note:_*
 
-_AES-GCM-128, AES-GCM-192 and AES-GCM-256 may only be selected if IKEv2 is also selected, as there is no RFC defining AES-GCM for IKEv1._
+_AES-GCM-128 and AES-GCM-256 may only be selected if IKEv2 is also selected, as there is no RFC defining AES-GCM for IKEv1._
 
 *FCS_IPSEC_EXT.1.7* The TSF shall ensure that [selection:
 
@@ -3046,7 +3046,7 @@ The following are security functional requirements that are mandatory if the TOE
 *Dependencies:* +
 	FCS_KYC_EXT.1 Extended: Key Chaining, +
 	[if selected: FCS_COP.1/KeyWrap Cryptographic operation (Key Wrapping)], +
-	[if selected: FCS_COP.1/KeyEnc Cryptographic operation (Key Encryption), and/or FCS_COP.1/KeyTransport Cryptographic operation (Key Transport)], +
+	[if selected: FCS_COP.1/KeyEnc Cryptographic operation (Key Encryption) and/or FCS_COP.1/KeyTransport Cryptographic operation (Key Transport)], +
 	[if selected: FCS_SMC_EXT.1 Extended: Submask Combining]
 ======
 
@@ -4511,7 +4511,7 @@ The following actions should be auditable if FAU_GEN Security Audit Data Generat
 *Dependencies:* +
 	FCS_KYC_EXT.1 Extended: Key Chaining, +
 	[if selected: FCS_COP.1/KeyWrap Cryptographic operation (Key Wrapping)], +
-	[if selected: FCS_COP.1/KeyEnc Cryptographic operation (Key Encryption), and/or FCS_COP.1/KeyTransport Cryptographic operation (Key Transport)], +
+	[if selected: FCS_COP.1/KeyEnc Cryptographic operation (Key Encryption) and/or FCS_COP.1/KeyTransport Cryptographic operation (Key Transport)], +
 	[if selected: FCS_SMC_EXT.1 Extended: Submask Combining]
 ======
 
@@ -5966,10 +5966,7 @@ When FCS_COP.1/CMAC is applied to keys used in FPT_SBT_EXT.1, the cipher-based m
 |===
 | *SFR* | *Dependencies* | *Rationale Statement*
 
-| FPT_KYP_EXT.1 | FCS_KYC_EXT.1 | FCS_KYC_EXT.1 included as conditionally-mandatory SFR
-
-
-	FCS_KYC_EXT.1, [if selected: FCS_COP.1/KeyWrap], [if selected: FCS_COP.1/KeyEnc, FCS_COP.1/KeyTransport], [if selected: FCS_SMC_EXT.1 ]
+| FPT_KYP_EXT.1 | FCS_KYC_EXT.1, [if selected: FCS_COP.1/KeyWrap], [if selected: FCS_COP.1/KeyEnc and/or FCS_COP.1/KeyTransport], [if selected: FCS_SMC_EXT.1] | FCS_KYC_EXT.1 included as conditionally-mandatory SFR, FCS_COP.1/KeyWrap included if selected, FCS_COP.1/KeyEnc included if selected, FCS_COP.1/KeyTransport included if selected, FCS_SMC_EXT.1 included if selected
 
 
 
