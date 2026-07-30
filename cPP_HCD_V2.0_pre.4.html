@@ -440,7 +440,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h1>collaborative Protection Profile for Hardcopy Devices</h1>
 <div class="details">
 <span id="revnumber">version 2.0-pre.4,</span>
-<span id="revdate">28 July 2026</span>
+<span id="revdate">30 July 2026</span>
 </div>
 </div>
 <div id="content">
@@ -489,7 +489,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.0-pre.4</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">28 July 2026</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">30 July 2026</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Working Draft v2.0 #4</p></td>
 </tr>
 </tbody>
@@ -929,7 +929,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p><span id="SFR-CRYPTO">[SFR-CRYPTO]</span> Specification of Functional Requirements for Cryptography, Version 1.0, January 31, 2025.</p>
 </li>
 <li>
-<p><span id="SD">[SD]</span> Supporting Document Mandatory Technical Document: Evaluation Activities for collaborative Protection Profile for Hardcopy Devices, v2.0-pre.4, Draft v2.0 #4, 28 July 2026.</p>
+<p><span id="SD">[SD]</span> Supporting Document Mandatory Technical Document: Evaluation Activities for collaborative Protection Profile for Hardcopy Devices, v2.0-pre.4, Draft v2.0 #4, 30 July 2026.</p>
 </li>
 </ul>
 </div>
@@ -953,7 +953,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>PP Version: 2.0-pre.4</p>
 </li>
 <li>
-<p>PP Date: 28 July 2026</p>
+<p>PP Date: 30 July 2026</p>
 </li>
 </ul>
 </div>
@@ -5881,7 +5881,7 @@ or the TOE must not accept values beyond the thresholds specified in this SFR.</
 <div class="exampleblock">
 <div class="content">
 <div class="paragraph">
-<p>(selected with FCS_IPSEC_EXT.1.4, FCS_SSHC_EXT.1.6, FCS_SSHS_EXT.1.6, FCS_TLSC_EXT, FCS_TLSS_EXT, FCS_DTLSC_EXT, FCS_DTLSS_EXT, for O.COMMS_PROTECTION, O.STRONG_CRYPTO)<br>
+<p>(selected with FCS_PCC_EXT.1 for O.STORAGE_ENCRYPTION, O.STRONG_CRYPTO, selected with FCS_IPSEC_EXT.1.4, FCS_SSHC_EXT.1.6, FCS_SSHS_EXT.1.6, FCS_TLSC_EXT, FCS_TLSS_EXT, FCS_DTLSC_EXT, FCS_DTLSS_EXT for O.COMMS_PROTECTION, O.STRONG_CRYPTO)<br>
 <strong>Hierarchical to:</strong><br>
 No other components.<br></p>
 </div>
@@ -6022,14 +6022,15 @@ FCS_COP.1/KeyedHash Cryptographic Operation (Keyed Hash Algorithm)</p>
 <div class="paragraph">
 <p><strong>Dependencies:</strong><br>
  	[<del><strong><em>FCS_CKM.2 Cryptographic key distribution, or</em></strong></del><br>
-	FCS_COP.1/KeyedHash Cryptographic Operation (Keyed Hash Algorithm)]<br>
+	[if selected: FCS_COP.1/KeyedHash Cryptographic Operation (Keyed Hash Algorithm)],<br>
+    [if selected: FCS_COP.1/CMAC Cryptographic Operation (for cipher-based message authentication)],<br>
 	FCS_CKM.6 Timing and event of cryptographic key destruction<br>
 	[if selected: FCS_RBG_EXT.1 Random Bit Generation]</p>
 </div>
 </div>
 </div>
 <div class="paragraph">
-<p><strong>FCS_CKM.5.1</strong> The TSF shall derive cryptographic keys [<strong>intermediate key</strong>] from [selection: <em>a RNG generated submask as specified in FCS_RBG_EXT.1, a conditioned password submask, imported submask</em>] in accordance with a specified key derivation algorithm [<strong>the keyed-hash functions specified in FCS_COP.1/KeyedHash</strong>] and specified cryptographic key sizes [<strong>at least of equivalent security strength (in number of bits) to the BEV or the DEK</strong>] that meet the following: [selection: <em>NIST SP 800-108 [selection: KDF in Counter Mode, KDF in Feedback Mode, KDF in Double-Pipeline Iteration Mode], NIST SP 800-132, ISO/IEC 11770-6:2016 [selection: KPF2, KPF3, KPF4]</em>].</p>
+<p><strong>FCS_CKM.5.1</strong> The TSF shall derive cryptographic keys [<strong>intermediate key</strong>] from [selection: <em>a RNG generated submask as specified in FCS_RBG_EXT.1, a conditioned password submask, imported submask</em>] in accordance with a specified key derivation algorithm [selection: <em>the keyed-hash functions specified in FCS_COP.1/KeyedHash, the cipher-based function specified in FCS_COP.1/CMAC</em>] and specified cryptographic key sizes [<strong>at least of equivalent security strength (in number of bits) to the BEV or the DEK</strong>] that meet the following: [selection: <em>NIST SP 800-108 [selection: KDF in Counter Mode, KDF in Feedback Mode, KDF in Double-Pipeline Iteration Mode], NIST SP 800-132, ISO/IEC 11770-6:2016 [selection: KPF2, KPF3, KPF4]</em>].</p>
 </div>
 </div>
 <div class="sect3">
@@ -11221,8 +11222,8 @@ Authorized Users are trained to use the TOE according to site security policies.
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">FCS_CKM.5</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">FCS_COP.1/KeyedHash, FCS_CKM.6, [if selected: FCS_RBG_EXT.1]</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">FCS_COP.1/KeyedHash included, FCS_CKM.6 included, FCS_RBG_EXT.1 included if selected</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[if selected: FCS_COP.1/KeyedHash], [if selected: FCS_COP.1/CMAC], FCS_CKM.6, [if selected: FCS_RBG_EXT.1]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FCS_COP.1/KeyedHash included if selected, FCS_COP.1/CMAC included if selected, FCS_CKM.6 included, FCS_RBG_EXT.1 included if selected</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">FCS_COP.1/CMAC</p></td>
@@ -11333,7 +11334,7 @@ Authorized Users are trained to use the TOE according to site security policies.
 <div id="footer">
 <div id="footer-text">
 Version 2.0-pre.4<br>
-Last updated 2026-07-28 10:38:14 -0600
+Last updated 2026-07-30 16:58:12 -0600
 </div>
 </div>
 </body>
