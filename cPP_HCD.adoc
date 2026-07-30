@@ -2742,7 +2742,7 @@ If HTTPS is selected in FTP_ITC.1, FTP_TRP.1/Admin and/or FTP_TRP.1/NonAdmin the
 
 ==== FCS_COP.1/KeyedHash Cryptographic Operation (Keyed Hash Algorithm)
 ======
-(selected with FCS_IPSEC_EXT.1.4, FCS_SSHC_EXT.1.6, FCS_SSHS_EXT.1.6, FCS_TLSC_EXT, FCS_TLSS_EXT, FCS_DTLSC_EXT, FCS_DTLSS_EXT, for O.COMMS_PROTECTION, O.STRONG_CRYPTO) +
+(selected with FCS_PCC_EXT.1 for O.STORAGE_ENCRYPTION, O.STRONG_CRYPTO, selected with FCS_IPSEC_EXT.1.4, FCS_SSHC_EXT.1.6, FCS_SSHS_EXT.1.6, FCS_TLSC_EXT, FCS_TLSS_EXT, FCS_DTLSC_EXT, FCS_DTLSS_EXT for O.COMMS_PROTECTION, O.STRONG_CRYPTO) +
 *Hierarchical to:* +
 No other components. +
 
@@ -2848,12 +2848,13 @@ _This SFR is conditionally required if the manual entry of a drive encryption pa
 
 *Dependencies:* +
  	[+++<del>+++*_FCS_CKM.2 Cryptographic key distribution, or_*+++</del>+++ +
-	FCS_COP.1/KeyedHash Cryptographic Operation (Keyed Hash Algorithm)] +
+	[if selected: FCS_COP.1/KeyedHash Cryptographic Operation (Keyed Hash Algorithm)], +
+    [if selected: FCS_COP.1/CMAC Cryptographic Operation (for cipher-based message authentication)], +
 	FCS_CKM.6 Timing and event of cryptographic key destruction +
 	[if selected: FCS_RBG_EXT.1 Random Bit Generation]
 ======
 
-*FCS_CKM.5.1* The TSF shall derive cryptographic keys [*intermediate key*] from [selection: _a RNG generated submask as specified in FCS_RBG_EXT.1, a conditioned password submask, imported submask_] in accordance with a specified key derivation algorithm [*the keyed-hash functions specified in FCS_COP.1/KeyedHash*] and specified cryptographic key sizes [*at least of equivalent security strength (in number of bits) to the BEV or the DEK*] that meet the following: [selection: _NIST SP 800-108 [selection: KDF in Counter Mode, KDF in Feedback Mode, KDF in Double-Pipeline Iteration Mode], NIST SP 800-132, ISO/IEC 11770-6:2016 [selection: KPF2, KPF3, KPF4]_].
+*FCS_CKM.5.1* The TSF shall derive cryptographic keys [*intermediate key*] from [selection: _a RNG generated submask as specified in FCS_RBG_EXT.1, a conditioned password submask, imported submask_] in accordance with a specified key derivation algorithm [selection: _the keyed-hash functions specified in FCS_COP.1/KeyedHash, the cipher-based function specified in FCS_COP.1/CMAC_] and specified cryptographic key sizes [*at least of equivalent security strength (in number of bits) to the BEV or the DEK*] that meet the following: [selection: _NIST SP 800-108 [selection: KDF in Counter Mode, KDF in Feedback Mode, KDF in Double-Pipeline Iteration Mode], NIST SP 800-132, ISO/IEC 11770-6:2016 [selection: KPF2, KPF3, KPF4]_].
 
 
 
@@ -5943,7 +5944,7 @@ The dependencies between SFRs implemented by the TOE are addressed as follows.
 
 | FCS_PCC_EXT.1 | FCS_COP.1/KeyedHash | FCS_COP.1/KeyedHash included as selection-based SFR
 
-| FCS_CKM.5 | FCS_COP.1/KeyedHash, FCS_CKM.6, [if selected: FCS_RBG_EXT.1] |FCS_COP.1/KeyedHash included, FCS_CKM.6 included, FCS_RBG_EXT.1 included if selected
+| FCS_CKM.5 | [if selected: FCS_COP.1/KeyedHash], [if selected: FCS_COP.1/CMAC], FCS_CKM.6, [if selected: FCS_RBG_EXT.1] |FCS_COP.1/KeyedHash included if selected, FCS_COP.1/CMAC included if selected, FCS_CKM.6 included, FCS_RBG_EXT.1 included if selected
 
 | FCS_COP.1/CMAC | FCS_CKM.1/SKG, FCS_CKM.6 | FCS_CKM.1/SKG included, FCS_CKM.6 included.
 
