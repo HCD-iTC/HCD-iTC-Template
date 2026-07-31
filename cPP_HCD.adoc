@@ -7,8 +7,8 @@
 :sectnumlevels: 7
 :imagesdir: images
 :icons: font
-:revnumber: 2.0-pre.4
-:revdate: 30 July 2026
+:revnumber: 2.0
+:revdate: 31 July 2026
 
 :iTC-longname: Hardcopy Devices
 :iTC-shortname: HCD-iTC
@@ -36,8 +36,7 @@ This collaborative Protection Profile (cPP) was developed by the {iTC-longname} 
 | 1.0 | 31 October 2022 | Initial release for use
 | 1.0e | 4 March 2024 | Errata version
 | 1.1 | 29 December 2025 | CC:2022 update
-| 2.0-pre.3 | 20 July 2026 | Working Draft v2.0 #3
-| 2.0-pre.4 | 30 July 2026 | Working Draft v2.0 #4
+| 2.0 | 31 July 2026 | Released for use 
 
 |===
 
@@ -73,7 +72,7 @@ Although the cPP and SD may contain minor editorial errors, the cPP is recognize
 
 * [#SFR-CRYPTO]#[SFR-CRYPTO]# Specification of Functional Requirements for Cryptography, Version 1.0, January 31, 2025.
 
-* [#SD]#[SD]# Supporting Document Mandatory Technical Document: Evaluation Activities for collaborative Protection Profile for Hardcopy Devices, v2.0-pre.4, Draft v2.0 #4, 30 July 2026.
+* [#SD]#[SD]# Supporting Document Mandatory Technical Document: Evaluation Activities for collaborative Protection Profile for Hardcopy Devices, v2.0, 31 July 2026.
 
 For more see the http://www.commoncriteriaportal.org/[Common Criteria Portal].
 
