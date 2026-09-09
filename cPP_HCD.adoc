@@ -459,7 +459,7 @@ The TOE resists repeated attempts to guess authorization data [O.AUTH_FAILURES] 
 Note: This Security Objective needs to be Conditionally Mandatory based on the condition that the TOE has an internal authentication mechanism. Also, the HCD must ensure the HCD does not outlaw 3rd Party external authentication mechanisms.
 
 ==== Firmware Integrity
-The TOE ensures its own integrity has remained intact [O.FW_INTEGRITY] and attests its integrity to outside parties on request.
+The TOE verifies the integrity of its firmware/software [O.FW_INTEGRITY] during the boot process.
 
 ==== Strong Cryptography
 The TOE implements strong cryptographic mechanisms and algorithms according to recognized standards [O.STRONG_CRYPTO], including support for random bit generation based on recognized standards and a source of sufficient entropy. The TOE uses key sizes that are recognized as providing sufficient resistance to current attack capabilities.
@@ -576,7 +576,7 @@ P.COMMS_PROTECTION
 
 |O.FW_INTEGRITY
 |P.ROT_INTEGRITY
-|The TOE ensures its own integrity has remained intact and attests its integrity to outside parties on request.
+|The TOE verifies the integrity of its firmware/software during the boot process.
 
 |O.STRONG_CRYPTO
 |T.WEAK_CRYPTO
@@ -6292,7 +6292,7 @@ Assumptions are conditions that must be satisfied in order for the Security Obje
 |The TOE resists repeated attempts to guess authorization data by responding to consecutive failed attempts in a way that prevents an attacker from exploring a significant amount of the space of possible authorization data values.
 
 |*O.FW_INTEGRITY*
-|The TOE ensures its own integrity has remained intact and attests its integrity to outside parties on request.
+|The TOE verifies the integrity of its firmware/software during the boot process.
 
 |*O.STRONG_CRYPTO*
 |The TOE implements strong cryptographic mechanisms and algorithms according to recognized standards, including support for random bit generation based on recognized standards and a source of sufficient entropy. The TOE uses key sizes that are recognized as providing sufficient resistance to current attack capabilities.
@@ -6408,7 +6408,7 @@ The TOE shall provide a function that an authorized administrator can invoke to 
 
 |*P.ROT_INTEGRITY* +
 The vendor provides a Root of Trust (RoT) that is comprised of the TOE firmware, hardware, and pre-installed public keys or required critical security parameters.
-|*O.FW_INTEGRITY* ensures that the TOE’s own integrity remains intact and can attest its integrity to outside parties on request.
+|*O.FW_INTEGRITY* ensures that the TOE verifies the integrity of its firmware/software during the boot process.
 
 |*A.PHYSICAL* +
 Physical security, commensurate with the value of the TOE and the data it stores or processes, is assumed to be provided by the environment.
