@@ -1622,7 +1622,7 @@ There are no class FPR requirements.
 
 ======
 
-*FPT_SBT_EXT.1.1* The TSF shall contain one or more chains of trust with each chain of trust anchored in an immutable Root of Trust.
+*FPT_SBT_EXT.1.1* The TSF shall contain one or more chains of trust with each chain of trust anchored in a Root of Trust that is implemented in immutable code or a HW-based write-protection mechanism.
 
 *FPT_SBT_EXT.1.2* At boot time the TSF shall use the chain(s) of trust to confirm integrity of its firmware/software using a [selection: _hash, digital signature, message authentication_] verification method.
 
@@ -1632,11 +1632,7 @@ There are no class FPR requirements.
 
 *FPT_SBT_EXT.1.5* The TSF shall contain [selection: _hash data, digital signature data, message authentication code, public key for digital signature, symmetric key for message authentication with confidentiality protection as defined in FPT_SBT_EXT.1.6_] in the Hardware Root of Trust.
 
-*FPT_SBT_EXT.1.6* The TSF shall make the symmetric key accessible only to the Hardware Root of Trust
-
-
-
-
+*FPT_SBT_EXT.1.6* The TSF shall make the symmetric key accessible only to the Hardware Root of Trust.
 
 *_Application Note:_*
 
