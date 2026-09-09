@@ -1525,7 +1525,7 @@ FMT_MSA.3.2 applies only to security attributes whose default values can be over
 .Management of TSF Data
 |====
 | Data | Operation | Authorized role(s)
-| [assignment: list of TSF Data owned by a U.NORMAL or associated with Documents or jobs owned by a U.NORMAL] | [selection: change default, query, modify, delete, clear, [assignment: other operations]] | U.ADMIN, the owning U.NORMAL.
+| [assignment: list of TSF Data owned by a U.NORMAL or associated with Documents or jobs owned by a U.NORMAL] | [selection: change default, query, modify, delete, clear, [assignment: other operations]] | U.ADMIN, the{nbsp}owning{nbsp}U.NORMAL.
 | [assignment: list of TSF Data not owned by a U.NORMAL] | [selection: change default, query, modify, delete, clear, [assignment: other operations]] | U.ADMIN
 | [assignment: list of software, firmware, and related configuration data] | [selection: change default, query, modify, delete, clear, [assignment: other operations]] | U.ADMIN
 |====
