@@ -3998,26 +3998,14 @@ The following actions should be auditable if FAU_GEN Security Audit Data Generat
 
 *FCS_RBG_EXT.1.2* The deterministic RBG shall be seeded by at least one entropy source that accumulates entropy from [selection: _[assignment: number of firmware/software-based sources] firmware/software-based noise source, [assignment: number of hardware-based sources] hardware-based noise source_] with a minimum of [selection: _128 bits, 192 bits, 256 bits_] of entropy at least equal to the greatest security strength, according to ISO/IEC 18031:2011 Table C.1 “Security Strength Table for Hash Functions”, of the keys and hashes that it will generate.
 
-
 *Rationale*
-
 FCS_RBG_EXT.1 specifies deterministic random bit generation in accordance with ISO/IEC 18031:2011 using an identified DRBG mechanism, and requires the deterministic RBG to be seeded by at least one entropy source that provides a minimum amount of entropy at least equal to the greatest security strength of the keys and hashes that the RBG will generate. The cryptographic SFRs in this cPP that require random bits rely on FCS_RBG_EXT.1 for both the deterministic random bit generation mechanism and the entropy-source seeding requirement.
 
-Common Criteria Part 2 includes a random bit generation component, FCS_RBG.1. FCS_RBG.1 carries a defined dependency structure, including dependencies on FCS_RBG.2 or FCS_RBG.3 for external or internal seeding, and dependencies on FPT_FLS.1, Failure with preservation of secure state, and FPT_TST.1, TSF self-testing. Use of FCS_RBG.1 would therefore require the cPP to include or justify additional dependent requirements that are broader than the random bit generation baseline established for conformant TOEs.
+Common Criteria Part 2 includes a random bit generation component, FCS_RBG.1, which is the closest existing component to FCS_RBG_EXT.1. FCS_RBG.1 carries a defined dependency structure: dependencies on FCS_RBG.2 or FCS_RBG.3 for external or internal seeding, and on FPT_FLS.1, Failure with preservation of secure state, and FPT_TST.1, TSF self-testing. Under CC2022-P2-R1-0035, applied to CC:2022 through CC Errata and Interpretations v1.2, these dependencies shall always be met, and the CC Part 1 mechanism for justifying an unsatisfied dependency is not permitted for this component. Use of FCS_RBG.1 therefore requires the dependencies on FPT_FLS.1 and FPT_TST.1 to be satisfied.
 
-The intended cPP baseline is limited to the deterministic random bit generation mechanism, the applicable standard, and the entropy-source seeding requirement. FCS_RBG_EXT.1 states this baseline precisely as a single, self-contained component, without adding broader failure-state or TSF self-testing requirements that are not part of this random bit generation baseline. It is also referenced consistently by the cryptographic SFRs in this cPP that require random bits.
+FPT_FLS.1 requires preservation of a secure state upon identified TSF failures, and FPT_TST.1 requires, in addition to self-testing, integrity-verification capabilities provided to authorized users (FPT_TST.1.2 and FPT_TST.1.3). This introduces security functionality beyond the random bit generation baseline established for conformant TOEs, which is limited to the deterministic random bit generation mechanism, the applicable standard, and the entropy-source seeding requirement. FCS_RBG_EXT.1 states this baseline precisely as a single, self-contained component. It is not possible to clearly express this functionality using the existing Part 2 components without also incorporating the additional failure-state and self-testing functionality imposed by the mandatory dependencies of FCS_RBG.1.
 
 FCS_RBG_EXT.1 is therefore retained and placed in the FCS class.
-
-
-
-
-
-
-
-
-
-
 
 ==== FCS_SMC_EXT Extended: Submask Combining
 
