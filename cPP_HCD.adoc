@@ -5596,6 +5596,9 @@ An External Entity that is an IT device (not a human). [CC] defines “External 
 FEK::
 File Encryption Key
 
+Finisher:: 
+A hardware device, integrated into or attached to an HCD, that performs post-processing operations on printed output, such as stapling, hole punching, folding, collating, or booklet making.
+
 FIPS::
 Federal Information Processing Standards
 
