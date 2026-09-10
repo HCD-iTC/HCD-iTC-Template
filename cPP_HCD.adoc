@@ -1622,7 +1622,7 @@ There are no class FPR requirements.
 
 ======
 
-*FPT_SBT_EXT.1.1* The TSF shall contain one or more chains of trust with each chain of trust anchored in a Root of Trust that is implemented in immutable code or a HW-based write-protection mechanism.
+*FPT_SBT_EXT.1.1* The TSF shall contain one or more chains of trust with each chain of trust anchored in an immutable Root of Trust.
 
 *FPT_SBT_EXT.1.2* At boot time the TSF shall use the chain(s) of trust to confirm integrity of its firmware/software using a [selection: _hash, digital signature, message authentication_] verification method.
 
@@ -5180,7 +5180,7 @@ The following actions should be auditable if FAU_GEN Security Audit Data Generat
 [if selected: FCS_COP.1/DataEncryption Cryptographic Operation (Data Encryption/Decryption), and/or FCS_COP.1/StorageEncryption Cryptographic Operation (Data Encryption/Decryption)] +
 ======
 
-*FPT_SBT_EXT.1.1* The TSF shall contain one or more chains of trust with each chain of trust anchored in a Root of Trust that is implemented in immutable code or a HW-based write-protection mechanism.
+*FPT_SBT_EXT.1.1* The TSF shall contain one or more chains of trust with each chain of trust anchored in an immutable Root of Trust.
 
 *FPT_SBT_EXT.1.2* At boot time the TSF shall use the chain(s) of trust to confirm integrity of its firmware/software using a [selection: _hash, digital signature, message authentication_] verification method.
 
