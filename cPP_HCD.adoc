@@ -1089,7 +1089,7 @@ _If either SEED in GCM mode with non-repeating IVs or LEA in GCM mode with non-r
 
 * _Elliptic Curve Digital Signature Algorithm and cryptographic key sizes [assignment: 256 bits or greater],_
 
-* _Korean Certificate-based Digital Signature Algorithm (KCDSA) using [selection: SHA-224, SHA-256, SHA-384, SHA-512] with key size of 2048 bits,_
+* _Korean Certificate-based Digital Signature Algorithm (KCDSA) using_ [selection: _SHA-224, SHA-256, SHA-384, SHA-512_] _with key size of_ [*2048 bits*],
 
 * _Elliptic Curve KCDSA (EC-KCDSA) on [selection: NIST P-224, NIST P-256, NIST B-233, NIST B-283, NIST K-233, NIST K-283] using [selection: SHA-224, SHA-256] with key size of [selection: 224 bits, 256 bits]]_
 
