@@ -978,7 +978,7 @@ Environments (TEE), Secure Enclave Processors (SEP), and so on.
 	FCS_CKM.6 Timing and event of cryptographic key destruction
 ======
 
-*FCS_COP.1.1/DataEncryption* The TSF shall perform [*encryption/decryption*] in accordance with specified cryptographic algorithms [selection:
+*FCS_COP.1.1/DataEncryption* The TSF shall perform [*encryption/decryption*] in accordance with a specified cryptographic algorithm [selection:
 
 * _AES used in_ [selection: _CBC, CTR, GCM_] _mode_,
 * _SEED operating in_ [selection:
@@ -1045,14 +1045,14 @@ Case: HIGHT algorithm
 ** _ISO/IEC 10116:2017, Clause 7 “CBC”,_
 ** _ISO/IEC 10116:2017, Clause 8 “CFB”,_
 ** _ISO/IEC 10116:2017, Clause 9 “OFB”,_
-** _ISO/IEC 10116:2017, Clause 10 “CTR_],
+** _ISO/IEC 10116:2017, Clause 10 “CTR”_],
 
 Case: LEA algorithm
 
 * _ISO/IEC 29192-2:2019, Subclause 6.3 “LEA”,_
 * [selection:
 ** _ISO/IEC 10116:2017, Clause 7 “CBC”,_
-** _ISO/IEC 10116:2017, Clause 8 “CFB”_,
+** _ISO/IEC 10116:2017, Clause 8 “CFB”,_
 ** _ISO/IEC 10116:2017, Clause 9 “OFB”,_
 ** _ISO/IEC 10116:2017, Clause 10 “CTR”,_
 ** _ISO/IEC 19772:2009, Clause 8 “CCM”,_
