@@ -7,8 +7,8 @@
 :sectnumlevels: 7
 :imagesdir: images
 :icons: font
-:revnumber: 2.0
-:revdate: 31 July 2026
+:revnumber: 2.0e-pre.1
+:revdate: 21 October 2026
 
 :iTC-longname: Hardcopy Devices
 :iTC-shortname: HCD-iTC
@@ -37,7 +37,7 @@ This collaborative Protection Profile (cPP) was developed by the {iTC-longname} 
 | 1.0e | 4 March 2024 | Errata version
 | 1.1 | 29 December 2025 | CC:2022 update
 | 2.0 | 31 July 2026 | Released for use 
-
+| 2.0e-pre.1 | 21 October 2026 | Draft Errata version #1
 |===
 
 toc::[]
@@ -75,7 +75,6 @@ Although the cPP and SD may contain minor editorial errors, the cPP is recognize
 * [#SD]#[SD]# Supporting Document Mandatory Technical Document: Evaluation Activities for collaborative Protection Profile for Hardcopy Devices, v2.0, 31 July 2026.
 
 For more see the http://www.commoncriteriaportal.org/[Common Criteria Portal].
-
 
 :sectnums:
 
@@ -480,17 +479,10 @@ The TOE resists repeated attempts to guess authorization data [O.AUTH_FAILURES] 
 Note: This Security Objective needs to be Conditionally Mandatory based on the condition that the TOE has an internal authentication mechanism. Also, the HCD must ensure the HCD does not outlaw 3rd Party external authentication mechanisms.
 
 ==== Firmware Integrity
-The TOE ensures its own integrity has remained intact [O.FW_INTEGRITY] and attests its integrity to outside parties on request.
+The TOE verifies the integrity of its firmware/software [O.FW_INTEGRITY] during the boot process.
 
 ==== Strong Cryptography
 The TOE implements strong cryptographic mechanisms and algorithms according to recognized standards [O.STRONG_CRYPTO], including support for random bit generation based on recognized standards and a source of sufficient entropy. The TOE uses key sizes that are recognized as providing sufficient resistance to current attack capabilities.
-
-
-
-
-
-
-
 
 === Security Objectives for the Operational Environment
 
@@ -597,7 +589,7 @@ P.COMMS_PROTECTION
 
 |O.FW_INTEGRITY
 |P.ROT_INTEGRITY
-|The TOE ensures its own integrity has remained intact and attests its integrity to outside parties on request.
+|The TOE verifies the integrity of its firmware/software during the boot process.
 
 |O.STRONG_CRYPTO
 |T.WEAK_CRYPTO
@@ -685,13 +677,13 @@ The following conventions are used for the completion of operations:
 	FPT_STM.1 Reliable time stamps
 ======
 
-*FAU_GEN.1.1* The TSF shall be able to generate audit data of the following auditable events:
+*FAU_GEN.1.1 Refinement* The TSF shall be able to generate audit data of the following auditable events:
 
 ..	Start-up and shutdown of the audit functions;
 ..	All auditable events for the [not specified] level of audit; and
 ..	*All auditable events specified in Table 3*, [assignment: _other specifically defined auditable events_].
 
-*FAU_GEN.1.2* The TSF shall record within each audit data at least the following information:
+*FAU_GEN.1.2 Refinement* The TSF shall record within each audit data at least the following information:
 
 ..	Date and time of the auditable event, type of event, subject identity (if applicable), and the outcome (success or failure) of the event;
 .. For each auditable event type, based on the auditable event definitions of the functional components included in the PP, PP-Module, functional package or ST, *additional information specified in Table 3*, [assignment: _other audit relevant information_].
@@ -804,9 +796,7 @@ _The ST author can include other auditable events directly in the table; they ar
     FAU_GEN.1 Audit data generation
 ======
 
-*FAU_STG.5.1 Refinement* The TSF shall [selection: *_+++<del>ignore audited events</del>+++*, “prevent audited events, except those taken by the authorized user with special rights”, overwrite the oldest stored audit records_],  [assignment: _other actions to be taken in case of audit storage failure and conditions for the actions_] if the audit data storage is full.
-
-
+*FAU_STG.5.1* The TSF shall [selection: _“prevent audited events, except those taken by the authorized user with special rights”, overwrite the oldest stored audit records_], [assignment: _other actions to be taken in case of audit storage failure and conditions for the actions_] if the audit data storage is full.
 
 === Cryptographic Support (FCS)
 
@@ -1012,7 +1002,7 @@ Environments (TEE), Secure Enclave Processors (SEP), and so on.
 	FCS_CKM.6 Timing and event of cryptographic key destruction
 ======
 
-*FCS_COP.1.1/DataEncryption* The TSF shall perform [*encryption/decryption*] in accordance with specified cryptographic algorithms [selection:
+*FCS_COP.1.1/DataEncryption* The TSF shall perform [*encryption/decryption*] in accordance with a specified cryptographic algorithm [selection:
 
 * _AES used in_ [selection:
 ** _CBC mode with non-repeating and unpredictable IVs_,
@@ -1072,7 +1062,6 @@ Case: AES algorithm
 * _FIPS PUB 197 (AES)_,
 ** [selection: _CBC as specified in NIST SP 800-38A, CTR as specified in NIST SP 800-38A, XTS as specified in NIST SP 38-E, GCM as specified in NIST SP 800-38D, CCM as specified in NIST SP 800-38C, KW as specified in NIST SP 800-38F, KWP as specified in NIST SP 800-38F_],
 
-
 Case: SEED algorithm
 
 * _ISO/IEC 18033-3:2010, Subclause 5.4 “SEED”,_
@@ -1091,14 +1080,14 @@ Case: HIGHT algorithm
 ** _ISO/IEC 10116:2017, Clause 7 “CBC”,_
 ** _ISO/IEC 10116:2017, Clause 8 “CFB”,_
 ** _ISO/IEC 10116:2017, Clause 9 “OFB”,_
-** _ISO/IEC 10116:2017, Clause 10 “CTR"_],
+** _ISO/IEC 10116:2017, Clause 10 “CTR”_],
 
 Case: LEA algorithm
 
 * _ISO/IEC 29192-2:2019, Subclause 6.3 “LEA”,_
 * [selection:
 ** _ISO/IEC 10116:2017, Clause 7 “CBC”,_
-** _ISO/IEC 10116:2017, Clause 8 “CFB”_,
+** _ISO/IEC 10116:2017, Clause 8 “CFB”,_
 ** _ISO/IEC 10116:2017, Clause 9 “OFB”,_
 ** _ISO/IEC 10116:2017, Clause 10 “CTR”,_
 ** _ISO/IEC 19772:2009, Clause 8 “CCM”,_
@@ -1106,14 +1095,11 @@ Case: LEA algorithm
 
 ]
 
-
 *_Application Note:_*
 
 _For the first selection of FCS_COP.1.1/DataEncryption, the ST author chooses the mode or modes in which AES, SEED, HIGHT, or LEA operates. For the second selection, the ST author chooses the key sizes that are supported by this functionality. The modes and key sizes selected here correspond to the cipher suite selections made in the trusted channel requirements._
 
 _If either SEED in GCM mode with non-repeating IVs or LEA in GCM mode with non-repeating IVs is selected, IV length must be equal to 96 bits, the deterministic IV construction method [SP800-38D, Section 8.2.1] must be used, and the MAC length t must be one of the values 96, 104, 112, 120, and 128 bits._
-
-
 
 ==== FCS_COP.1/SigGen Cryptographic Operation (Signature Generation and Verification)
 ======
@@ -1126,13 +1112,13 @@ _If either SEED in GCM mode with non-repeating IVs or LEA in GCM mode with non-r
 	FCS_CKM.6 Timing and event of cryptographic key destruction
 ======
 
-*FCS_COP.1.1/SigGen* The TSF shall perform [*cryptographic signature services (generation and verification)*] in accordance with a specified cryptographic algorithm [selection:
+*FCS_COP.1.1/SigGen Refinement:* The TSF shall perform [*cryptographic signature services (generation and verification)*] in accordance with a specified cryptographic algorithm [selection:
 
 * _RSA Digital Signature Algorithm and cryptographic key sizes (modulus) [assignment: 2048 bits or greater],_
 
 * _Elliptic Curve Digital Signature Algorithm and cryptographic key sizes [assignment: 256 bits or greater],_
 
-* _Korean Certificate-based Digital Signature Algorithm (KCDSA) using [selection: SHA-224, SHA-256, SHA-384, SHA-512] with key size of 2048 bits,_
+* _Korean Certificate-based Digital Signature Algorithm (KCDSA) using_ [selection: _SHA-224, SHA-256, SHA-384, SHA-512_] _with key size of_ [*2048 bits*],
 
 * _Elliptic Curve KCDSA (EC-KCDSA) on [selection: NIST P-224, NIST P-256, NIST B-233, NIST B-283, NIST K-233, NIST K-283] using [selection: SHA-224, SHA-256, SHA-384, SHA-512] with key size of [selection: 224 bits, 256 bits]_
 
@@ -1147,7 +1133,7 @@ _If either SEED in GCM mode with non-repeating IVs or LEA in GCM mode with non-r
 ** _Private key size = [selection: 192 bits with [selection: SHA-256/192, SHAKE256/192], 256 bits with [selection: SHA-256, SHAKE256]]_
 ** _Tree height = [selection: 10, 16, 20]_
 
-] that meet the following: [selection:
+] *_+++<del>and cryptographic key sizes [assignment: cryptographic key sizes]</del>+++_* that meet the following: [selection:
 
 Case: RSA schemes
 
@@ -1264,7 +1250,7 @@ _The User Data Access Control SFP is composed of Table 4, Table 5, FDP_ACC.1, FD
 	FDP_ACF.1 Security attribute based access control
 ======
 
-*FDP_ACC.1.1 Refinement:* The TSF shall enforce the *User Data Access Control SFP* on subjects, objects, and operations among subjects and objects specified in *Table 4 and Table 5*.
+*FDP_ACC.1.1 Refinement:* The TSF shall enforce the [*User Data Access Control SFP*] on *subjects, objects, and operations among subjects and objects specified in Table 4 and Table 5*.
 
 ==== FDP_ACF.1 Security attribute based access control
 ======
@@ -1277,7 +1263,7 @@ _The User Data Access Control SFP is composed of Table 4, Table 5, FDP_ACC.1, FD
 	FMT_MSA.3 Static attribute initialization
 ======
 
-*FDP_ACF.1.1 Refinement:* The TSF shall enforce the *User Data Access Control SFP* to objects based on the following: subjects, objects, and attributes specified in *Table 4 and Table 5*.
+*FDP_ACF.1.1 Refinement:* The TSF shall enforce the [*User Data Access Control SFP*] to objects based on the following: *subjects, objects, and attributes specified in Table 4 and Table 5*.
 
 *FDP_ACF.1.2 Refinement:* The TSF shall enforce the following rules to determine if an operation among controlled subjects and controlled objects is allowed: [*rules governing access among controlled subjects and controlled objects using controlled operations on controlled objects specified in Table 4 and Table 5*].
 
@@ -1577,7 +1563,6 @@ _User identification may be performed internally by the TOE or externally by an 
 
 FMT_MSA.3.2 applies only to security attributes whose default values can be overridden.
 
-
 ==== FMT_MTD.1 Management of TSF data
 ======
 (for O.ACCESS_CONTROL) +
@@ -1591,15 +1576,13 @@ FMT_MSA.3.2 applies only to security attributes whose default values can be over
 
 *FMT_MTD.1.1 Refinement:* The TSF shall restrict the ability to *perform the specified operations on the specified TSF Data to the roles specified in Table 6.*
 
-
 .Management of TSF Data
 |====
 | Data | Operation | Authorized role(s)
-| [assignment: list of TSF Data owned by a U.NORMAL or associated with Documents or jobs owned by a U.NORMAL] | [selection: change default, query, modify, delete, clear, [assignment: other operations]] | U.ADMIN, the owning U.NORMAL.
+| [assignment: list of TSF Data owned by a U.NORMAL or associated with Documents or jobs owned by a U.NORMAL] | [selection: change default, query, modify, delete, clear, [assignment: other operations]] | U.ADMIN, the{nbsp}owning{nbsp}U.NORMAL.
 | [assignment: list of TSF Data not owned by a U.NORMAL] | [selection: change default, query, modify, delete, clear, [assignment: other operations]] | U.ADMIN
 | [assignment: list of software, firmware, and related configuration data] | [selection: change default, query, modify, delete, clear, [assignment: other operations]] | U.ADMIN
 |====
-
 
 ==== FMT_SMF.1 Specification of Management Functions
 ======
@@ -1818,13 +1801,23 @@ There are no class FRU requirements.
 	FCS_HTTPS_EXT.1 Extended: HTTPS selected ].
 ======
 
-*FTP_ITC.1.1 Refinement:* The TSF shall *use* [selection: _IPsec, SSH, TLS, DTLS, TLS/HTTPS_] *to* provide *a trusted* communication channel between itself and *_+++<del>another trusted IT product</del>+++_* *authorized IT entities supporting the following capabilities: remote audit server,* [selection: __authentication server, [assignment: other capabilities]__] that is logically distinct from other communication channels and provides assured identification of its end points and protection of the channel data from *_+++<del>modification or</del>+++_* disclosure *and detection of modification of the channel data*.
+*FTP_ITC.1.1 Refinement:* The TSF shall *use* [selection: _IPsec, SSH, TLS, DTLS, TLS/HTTPS_] *to* provide *a trusted* communication channel between itself and *_+++<del>another trusted IT product</del>+++_* *authorized IT entities supporting the following capabilities: remote audit server,* [selection: __authentication server, [assignment: other capabilities]__] that is logically distinct from other communication channels and provides assured identification of its end points and protection of the channel data from modification or disclosure *and detection of modification of the channel data*.
 
 *FTP_ITC.1.2 Refinement:* The TSF shall permit [selection: _the TSF,_ *_+++<del>another trusted IT product</del>+++_* *the authorized IT entities*] to initiate communication via the trusted channel.
 
 *FTP_ITC.1.3 Refinement:* The TSF shall initiate communication via the trusted channel for *_+++<del>[assignment: list of functions for which a trusted channel is required]</del>+++_* [*remote audit server* [assignment: __and list of services for which the TSF is able to initiate communications__]].
 
+*_Refinement Rationale:_*
+
+The term "trusted communication channel" denotes the communication channel required by <<CC2>> FTP_ITC.1.1. The refined element retains all properties required of the communication channel by FTP_ITC.1.1, including logical distinction from other communication channels, assured identification of its end points, and protection of the channel data from modification or disclosure. The term "trusted communication channel" is the terminology used by <<CC2>> itself: the component description of FTP_ITC.1 characterizes the required channel as a trusted communication channel, and the family is named Inter-TSF trusted channel. The refinement therefore does not remove or weaken any requirement of the original component.
+
+In FTP_ITC.1.1, the refinement additionally replaces the end point "another trusted IT product" with "authorized IT entities" supporting the capabilities identified in FTP_ITC.1.1. In FTP_ITC.1.2, the option "another trusted IT product" in the initiator selection is correspondingly replaced with "the authorized IT entities"; the selection itself is retained for completion by the ST author. As defined in the Application Note, an authorized IT entity is a trusted IT product, in the sense used by <<CC2>>, that is configured in the evaluated configuration as an authorized endpoint for one or more of the capabilities identified in FTP_ITC.1.1. Every external end point permitted, and every external initiator selectable, under the refined elements is therefore a trusted IT product within the scope of the original component; the option for the TSF to initiate communication remains unchanged. The refinement therefore restricts the set of external entities to which the requirement applies and admits no additional external end points or initiators.
+
+<<CC1>>, Section 8.2.5, permits an author to refine an SFR to apply to some but not all subjects, objects, operations, security attributes and/or external entities. This exception does not apply when refining SFRs taken from PPs, PP-Modules, or packages to which conformance is being claimed. The FTP_ITC.1 SFR in this cPP is drawn directly from the <<CC2>> component catalogue; it is not taken from a PP, PP-Module, or package to which this cPP claims conformance. The restriction of FTP_ITC.1 to the identified authorized IT entities is therefore a permitted application of that provision. The refinement is also related to the original FTP_ITC.1 component because it restricts the external entities that may serve as end points or initiators of the trusted channel. The capabilities identified in FTP_ITC.1.1—the remote audit server together with the selectable and assignable further capabilities—serve to identify the authorized IT entities; they do not remove or weaken any property required of the trusted channel, which applies unchanged to every channel provided under the refined elements.
+
 *_Application Note:_*
+
+_For purposes of FTP_ITC.1, an “authorized IT entity” is a trusted IT product, in the sense used by <<CC2>>, that is configured in the evaluated configuration as an authorized endpoint for one or more of the capabilities identified in FTP_ITC.1.1._
 
 _The assignment in FTP_ITC.1.3 should address the confidentiality and/or integrity requirements for communication of User and TSF Data between the TOE and another IT entity. FTP_TRP.1 is intended to be used for interactive communication between the TOE and remote users._
 
@@ -2150,7 +2143,7 @@ No other components. +
 	FCS_CKM.6 Timing and event of cryptographic key destruction
 ======
 
-*FCS_COP.1.1/KeyWrap Refinement:* The TSF shall perform [*key wrapping*] in accordance with a specified cryptographic algorithm [selection: _AES in the following modes [selection: KW, KWP, GCM, CCM], SEED in the following modes [selection: KW, KWP, GCM, CCM], LEA in the following modes [selection: KW, KWP, GCM, CCM]_] and the cryptographic key size [selection: _128 bits (AES, SEED, LEA), 192 bits (AES, LEA), 256 bits (AES, LEA)_] that meet the following: [selection:
+*FCS_COP.1.1/KeyWrap* The TSF shall perform [*key wrapping*] in accordance with a specified cryptographic algorithm [selection: _AES in the following modes [selection: KW, KWP, GCM, CCM], SEED in the following modes [selection: KW, KWP, GCM, CCM], LEA in the following modes [selection: KW, KWP, GCM, CCM]_] and cryptographic key sizes [selection: _128 bits (AES, SEED, LEA), 192 bits (AES, LEA), 256 bits (AES, LEA)_] that meet the following: [selection:
 
 Case: AES algorithm
 
@@ -2204,10 +2197,7 @@ Case: LEA algorithm
 
 * _LEA used in [selection: CCM, GCM] and cryptographic key size [selection: 128 bits, 256 bits] that meet the following: *LEA as specified in ISO/IEC 29192-2:2019,* [selection: CCM as specified in ISO/IEC 19772:2009, GCM as specified in ISO/IEC 19772:2009]_
 
-].
-
-
-
+] [.line-through]#*_and cryptographic key sizes [assignment: cryptographic key sizes] that meet the following: [assignment: list of standards]_*#.
 
 *_Application Note:_*
 
@@ -2229,9 +2219,9 @@ No other components.
 
 *FCS_COP.1.1/KeyTransport Refinement:* The TSF shall perform [*key transport*] in accordance with a specified cryptographic algorithm [selection: 
 
-* RSA in the following modes [selection: _KTS-OAEP, KTS-KEM-KWS_] and the cryptographic key size [selection: _2048 bits, 3072 bits, 4096 bits, 6144 bits, 8192 bits_] that meet the following: [NIST SP 800-56B, Revision 2],
+* RSA in the following modes [selection: _KTS-OAEP, KTS-KEM-KWS_] and cryptographic key sizes [selection: _2048 bits, 3072 bits, 4096 bits, 6144 bits, 8192 bits_] that meet the following: [*NIST SP 800-56B, Revision 2*],
 
-* KEM-DEM Key-Transport Method that meets the following: [NIST SP 800-227 Section 5.2.1] using a key establishment algorithm [ML-KEM] as specified in FCS_CKM.2 and a key wrapping algorithm as specified in FCS_COP.1/KeyWrap]
+* KEM-DEM Key-Transport Method that meets the following: [*NIST SP 800-227 Section 5.2.1*] using a key establishment algorithm [*ML-KEM*] as specified in FCS_CKM.2 and a key wrapping algorithm as specified in FCS_COP.1/KeyWrap
 
 ].
 
@@ -3179,20 +3169,15 @@ _FDP_FXS.EXT.1 is required if fax-net separation is performed by the TSF._
 	FCS_HTTPS_EXT.1 Extended: HTTPS selected ].
 ======
 
-
-
-
-
 *FTP_TRP.1.1/NonAdmin Refinement:* The TSF shall *use* [selection, choose at least one of: _IPsec, SSH, TLS, DTLS, TLS/HTTPS_] *to* provide a *trusted* communication path between itself and [remote] users that is logically distinct from other communication paths and provides assured identification of its end points and protection of the communicated data from [disclosure *and detection of modification of the communicated data*].
 
-*FTP_TRP.1.2/NonAdmin Refinement:* The TSF shall permit [selection: _the TSF, *+++<del>local users,</del>+++* remote users_] to initiate communication via the trusted path
+*FTP_TRP.1.2/NonAdmin* The TSF shall permit [selection: _the TSF, remote users_] to initiate communication via the trusted path.
 
-*FTP_TRP.1.3/NonAdmin Refinement:* The TSF shall require the use of the trusted path for [initial user authentication *[and all remote user actions]*].
+*FTP_TRP.1.3/NonAdmin* The TSF shall require the use of the trusted path for [initial user authentication *[and all remote user actions]*].
 
 *_Application Note:_*
 
 _This requirement ensures that authorized remote users initiate all communication with the TOE via a trusted path, and that all communications with the TOE by remote users is performed over this path. The data passed in this trusted communication path are encrypted as defined the protocol chosen in the first selection. The ST author chooses the mechanism or mechanisms supported by the TOE, and then ensures the detailed requirements in <<appendix-a-protected-communications>> corresponding to their selection are copied to the ST if not already present._
-
 
 === Authentication
 ==== FIA_AFL.1 Authentication failure handling
@@ -3684,24 +3669,15 @@ The following actions should be auditable if FAU_GEN Security Audit Data Generat
 
 *FCS_RBG_EXT.1.2* The deterministic RBG shall be seeded by at least one entropy source that accumulates entropy from [selection: _[assignment: number of firmware/software-based sources] firmware/software-based noise source, [assignment: number of hardware-based sources] hardware-based noise source_] with a minimum of [selection: _128 bits, 192 bits, 256 bits_] of entropy at least equal to the greatest security strength, according to ISO/IEC 18031:2011 Table C.1 “Security Strength Table for Hash Functions”, of the keys and hashes that it will generate.
 
-
 *Rationale*
 
 FCS_RBG_EXT.1 specifies deterministic random bit generation in accordance with ISO/IEC 18031:2011 using an identified DRBG mechanism, and requires the deterministic RBG to be seeded by at least one entropy source that provides a minimum amount of entropy at least equal to the greatest security strength of the keys and hashes that the RBG will generate. The cryptographic SFRs in this cPP that require random bits rely on FCS_RBG_EXT.1 for both the deterministic random bit generation mechanism and the entropy-source seeding requirement.
 
-Common Criteria Part 2 includes a random bit generation component, FCS_RBG.1. FCS_RBG.1 carries a defined dependency structure, including dependencies on FCS_RBG.2 or FCS_RBG.3 for external or internal seeding, and dependencies on FPT_FLS.1, Failure with preservation of secure state, and FPT_TST.1, TSF self-testing. Use of FCS_RBG.1 would therefore require the cPP to include or justify additional dependent requirements that are broader than the random bit generation baseline established for conformant TOEs.
+Common Criteria Part 2 includes a random bit generation component, FCS_RBG.1, which is the closest existing component to FCS_RBG_EXT.1. FCS_RBG.1 carries a defined dependency structure: dependencies on FCS_RBG.2 or FCS_RBG.3 for external or internal seeding, and on FPT_FLS.1, Failure with preservation of secure state, and FPT_TST.1, TSF self-testing. Under <<CC2>>, subsection E.4.2.1, these dependencies shall always be met; the CC Part 1 mechanism for justifying a dependency that is not met is therefore not permitted for this component. Use of FCS_RBG.1 therefore requires the dependencies on FPT_FLS.1 and FPT_TST.1 to be satisfied.
 
-The intended cPP baseline is limited to the deterministic random bit generation mechanism, the applicable standard, and the entropy-source seeding requirement. FCS_RBG_EXT.1 states this baseline precisely as a single, self-contained component, without adding broader failure-state or TSF self-testing requirements that are not part of this random bit generation baseline. It is also referenced consistently by the cryptographic SFRs in this cPP that require random bits.
+FPT_FLS.1 requires preservation of a secure state upon identified TSF failures, and FPT_TST.1 requires, in addition to self-testing, integrity-verification capabilities provided to authorized users (FPT_TST.1.2 and FPT_TST.1.3). This introduces security functionality beyond the random bit generation baseline established for conformant TOEs, which is limited to the deterministic random bit generation mechanism, the applicable standard, and the entropy-source seeding requirement. FCS_RBG_EXT.1 states this baseline precisely as a single, self-contained component. It is not possible to clearly express this functionality using the existing Part 2 components without also incorporating the additional failure-state and self-testing functionality imposed by the mandatory dependencies of FCS_RBG.1.
 
 FCS_RBG_EXT.1 is therefore retained and placed in the FCS class.
-
-
-
-
-
-
-
-
 
 ==== FCS_SMC_EXT Extended: Submask Combining
 
@@ -4641,12 +4617,12 @@ FPT_TST_EXT.1.1 The TSF shall run a suite of self-tests during initial start-up 
 *Rationale*
 
 FPT_TST_EXT.1 specifies a start-up operational self-test requirement: the TSF runs a suite of self-tests during initial start-up, including power-on, to demonstrate correct operation of the TSF.
- 
-The Common Criteria Part 2 component FPT_TST.1 also addresses TSF self-testing. However, FPT_TST.1 is defined as a three-element component. When claimed, it also requires verification of the integrity of TSF data and stored TSF executable code. These elements cannot be omitted. As a result, FPT_TST.1 cannot clearly express the intended cPP requirement without importing additional mandatory requirements that are outside the intended baseline.
 
-Verification of stored TSF executable-code integrity is already addressed by this cPP through FPT_SBT_EXT.1, Secure Boot. FPT_SBT_EXT.1.2 requires boot-time verification of firmware/software integrity anchored in a hardware Root of Trust, which is specific to the boot architecture of HCD TOEs and more precise than the generic executable-code integrity verification required by FPT_TST.1.
+The Common Criteria Part 2 component FPT_TST.1 also addresses TSF self-testing and is the closest existing component to FPT_TST_EXT.1. FPT_TST.1 is defined as a three-element component, and the complete set of elements must be selected for inclusion when the component is claimed. In addition to the self-test requirement of FPT_TST.1.1, FPT_TST.1.2 and FPT_TST.1.3 require the TSF to provide authorized users with the capability to verify the integrity of TSF data, or parts of TSF data, and of the TSF, or parts of the TSF. The selections in these elements permit the objects of verification to be narrowed, but do not permit the authorized-user verification capability itself to be removed, and a refinement that removed that capability would not be a valid refinement of the component.
 
-This cPP establishes a security baseline that requires demonstration of correct TSF operation at start-up. It does not mandate general verification of TSF-data integrity across all conformant TOEs. Therefore, FPT_TST_EXT.1 is necessary to state the intended baseline requirement precisely, without importing FPT_TST.1 elements that are either already addressed by FPT_SBT_EXT.1 or outside the intended baseline. The extended component is placed in the FPT class as a single component.
+This cPP establishes a security baseline that requires demonstration of correct TSF operation at start-up. It does not require the TSF to provide authorized users with integrity-verification capabilities for TSF data or for the TSF. Claiming FPT_TST.1 would therefore introduce mandatory security functionality beyond this baseline at any permitted completion of its elements. It is not possible to clearly express the start-up self-test requirement using the existing Part 2 components and their available operations without also incorporating that additional functionality.
+
+FPT_TST_EXT.1 is therefore retained and placed in the FPT class as a single component.
 
 ==== FPT_TUD_EXT Extended: Trusted Update
 
@@ -4862,6 +4838,9 @@ An External Entity that is an IT device (not a human). [CC] defines “External 
 
 FEK::
 File Encryption Key
+
+Finisher::
+A hardware device, integrated into or attached to an HCD, that performs post-processing operations on printed output, such as stapling, hole punching, folding, collating, or booklet making.
 
 FIPS::
 Federal Information Processing Standards
@@ -5548,7 +5527,7 @@ Assumptions are conditions that must be satisfied in order for the Security Obje
 |The TOE resists repeated attempts to guess authorization data by responding to consecutive failed attempts in a way that prevents an attacker from exploring a significant amount of the space of possible authorization data values.
 
 |*O.FW_INTEGRITY*
-|The TOE ensures its own integrity has remained intact and attests its integrity to outside parties on request.
+|The TOE verifies the integrity of its firmware/software during the boot process.
 
 |*O.STRONG_CRYPTO*
 |The TOE implements strong cryptographic mechanisms and algorithms according to recognized standards, including support for random bit generation based on recognized standards and a source of sufficient entropy. The TOE uses key sizes that are recognized as providing sufficient resistance to current attack capabilities.
@@ -5664,7 +5643,7 @@ The TOE shall provide a function that an authorized administrator can invoke to 
 
 |*P.ROT_INTEGRITY* +
 The vendor provides a Root of Trust (RoT) that is comprised of the TOE firmware, hardware, and pre-installed public keys or required critical security parameters.
-|*O.FW_INTEGRITY* ensures that the TOE’s own integrity remains intact and can attest its integrity to outside parties on request.
+|*O.FW_INTEGRITY* ensures that the TOE verifies the integrity of its firmware/software during the boot process.
 
 |*A.PHYSICAL* +
 Physical security, commensurate with the value of the TOE and the data it stores or processes, is assumed to be provided by the environment.
