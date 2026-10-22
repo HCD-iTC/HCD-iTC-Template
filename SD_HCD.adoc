@@ -8,8 +8,8 @@
 :table-caption: Table
 :imagesdir: images
 :icons: font
-:revnumber: 2.0
-:revdate: 31 July 2026
+:revnumber: 2.0e
+:revdate: 22 October 2026
 :xrefstyle: full
 
 :iTC-longname: Hardcopy Devices
@@ -19,8 +19,8 @@
 :iTC-GitHub: https://github.com/HCD-iTC
 :pp-name: collaborative Protection Profile for Hardcopy Devices
 :pp-shortname: HCDcPP
-:pp-version: 2.0
-:pp-date: 31 July 2026
+:pp-version: 2.0e
+:pp-date: 22 October 2026
 
 == Foreword
 
@@ -43,6 +43,7 @@ Hardcopy Devices international Technical Community (HCD-iTC)
 | 1.0e | 4 March 2024 | Errata version.
 | 1.1  | 29 December 2025 | CC:2022 update
 | 2.0  | 31 July 2026 | Released for use
+| 2.0e-pre.1  | 22 October 2026 | Draft Errata version #1
 |===
 
 === General Purpose
